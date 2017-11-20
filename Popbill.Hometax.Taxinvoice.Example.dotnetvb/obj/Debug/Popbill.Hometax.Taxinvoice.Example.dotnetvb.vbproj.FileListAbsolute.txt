@@ -1,0 +1,14 @@
+C:\popbill.example.dotnetvb\Popbill.Hometax.Taxinvoice.Example.dotnetvb\bin\Debug\Popbill.Hometax.Taxinvoice.Example.dotnetvb.exe
+C:\popbill.example.dotnetvb\Popbill.Hometax.Taxinvoice.Example.dotnetvb\bin\Debug\Popbill.Hometax.Taxinvoice.Example.dotnetvb.pdb
+C:\popbill.example.dotnetvb\Popbill.Hometax.Taxinvoice.Example.dotnetvb\bin\Debug\Popbill.Hometax.Taxinvoice.Example.dotnetvb.xml
+C:\popbill.example.dotnetvb\Popbill.Hometax.Taxinvoice.Example.dotnetvb\bin\Debug\Popbill.dll
+C:\popbill.example.dotnetvb\Popbill.Hometax.Taxinvoice.Example.dotnetvb\bin\Debug\Linkhub.dll
+C:\popbill.example.dotnetvb\Popbill.Hometax.Taxinvoice.Example.dotnetvb\bin\Debug\Popbill.pdb
+C:\popbill.example.dotnetvb\Popbill.Hometax.Taxinvoice.Example.dotnetvb\bin\Debug\Linkhub.pdb
+C:\popbill.example.dotnetvb\Popbill.Hometax.Taxinvoice.Example.dotnetvb\obj\Debug\ResolveAssemblyReference.cache
+C:\popbill.example.dotnetvb\Popbill.Hometax.Taxinvoice.Example.dotnetvb\obj\Debug\Popbill.Hometax.Taxinvoice.Example.dotnetvb.frmExample.resources
+C:\popbill.example.dotnetvb\Popbill.Hometax.Taxinvoice.Example.dotnetvb\obj\Debug\Popbill.Hometax.Taxinvoice.Example.dotnetvb.Resources.resources
+C:\popbill.example.dotnetvb\Popbill.Hometax.Taxinvoice.Example.dotnetvb\obj\Debug\Popbill.Hometax.Taxinvoice.Example.dotnetvb.vbproj.GenerateResource.Cache
+C:\popbill.example.dotnetvb\Popbill.Hometax.Taxinvoice.Example.dotnetvb\obj\Debug\Popbill.Hometax.Taxinvoice.Example.dotnetvb.exe
+C:\popbill.example.dotnetvb\Popbill.Hometax.Taxinvoice.Example.dotnetvb\obj\Debug\Popbill.Hometax.Taxinvoice.Example.dotnetvb.xml
+C:\popbill.example.dotnetvb\Popbill.Hometax.Taxinvoice.Example.dotnetvb\obj\Debug\Popbill.Hometax.Taxinvoice.Example.dotnetvb.pdb

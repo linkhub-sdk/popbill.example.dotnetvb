@@ -1,0 +1,13 @@
+C:\popbill.example.dotnetvb\Popbill.Closedown.Example.vbnet\bin\Debug\Popbill.Closedown.Example.vbnet.exe
+C:\popbill.example.dotnetvb\Popbill.Closedown.Example.vbnet\bin\Debug\Popbill.Closedown.Example.vbnet.pdb
+C:\popbill.example.dotnetvb\Popbill.Closedown.Example.vbnet\bin\Debug\Popbill.Closedown.Example.vbnet.xml
+C:\popbill.example.dotnetvb\Popbill.Closedown.Example.vbnet\bin\Debug\Popbill.dll
+C:\popbill.example.dotnetvb\Popbill.Closedown.Example.vbnet\bin\Debug\Linkhub.dll
+C:\popbill.example.dotnetvb\Popbill.Closedown.Example.vbnet\bin\Debug\Popbill.pdb
+C:\popbill.example.dotnetvb\Popbill.Closedown.Example.vbnet\bin\Debug\Linkhub.pdb
+C:\popbill.example.dotnetvb\Popbill.Closedown.Example.vbnet\obj\Debug\ResolveAssemblyReference.cache
+C:\popbill.example.dotnetvb\Popbill.Closedown.Example.vbnet\obj\Debug\Popbill.Closedown.Example.vbnet.Resources.resources
+C:\popbill.example.dotnetvb\Popbill.Closedown.Example.vbnet\obj\Debug\Popbill.Closedown.Example.vbnet.vbproj.GenerateResource.Cache
+C:\popbill.example.dotnetvb\Popbill.Closedown.Example.vbnet\obj\Debug\Popbill.Closedown.Example.vbnet.exe
+C:\popbill.example.dotnetvb\Popbill.Closedown.Example.vbnet\obj\Debug\Popbill.Closedown.Example.vbnet.xml
+C:\popbill.example.dotnetvb\Popbill.Closedown.Example.vbnet\obj\Debug\Popbill.Closedown.Example.vbnet.pdb
