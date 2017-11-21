@@ -87,6 +87,8 @@ Partial Class frmExample
         Me.btnGetPrintURL = New System.Windows.Forms.Button
         Me.btnGetPopUpURL = New System.Windows.Forms.Button
         Me.GroupBox11 = New System.Windows.Forms.GroupBox
+        Me.Button1 = New System.Windows.Forms.Button
+        Me.btnAttachStatement = New System.Windows.Forms.Button
         Me.btnSendFAX = New System.Windows.Forms.Button
         Me.btnSendSMS = New System.Windows.Forms.Button
         Me.btnSendEmail = New System.Windows.Forms.Button
@@ -97,6 +99,7 @@ Partial Class frmExample
         Me.btnAttachFile = New System.Windows.Forms.Button
         Me.gtnGetFiles = New System.Windows.Forms.Button
         Me.GroupBox9 = New System.Windows.Forms.GroupBox
+        Me.btnSearch = New System.Windows.Forms.Button
         Me.btnGetInfos = New System.Windows.Forms.Button
         Me.btnGetLogs = New System.Windows.Forms.Button
         Me.btnGetInfo = New System.Windows.Forms.Button
@@ -131,9 +134,6 @@ Partial Class frmExample
         Me.txtMgtKey = New System.Windows.Forms.TextBox
         Me.Label3 = New System.Windows.Forms.Label
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
-        Me.btnSearch = New System.Windows.Forms.Button
-        Me.btnAttachStatement = New System.Windows.Forms.Button
-        Me.Button1 = New System.Windows.Forms.Button
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -842,6 +842,24 @@ Partial Class frmExample
         Me.GroupBox11.TabStop = False
         Me.GroupBox11.Text = "부가서비스"
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(8, 146)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(101, 26)
+        Me.Button1.TabIndex = 12
+        Me.Button1.Text = "명세서 첨부해제"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'btnAttachStatement
+        '
+        Me.btnAttachStatement.Location = New System.Drawing.Point(8, 116)
+        Me.btnAttachStatement.Name = "btnAttachStatement"
+        Me.btnAttachStatement.Size = New System.Drawing.Size(100, 26)
+        Me.btnAttachStatement.TabIndex = 11
+        Me.btnAttachStatement.Text = "명세서 첨부"
+        Me.btnAttachStatement.UseVisualStyleBackColor = True
+        '
         'btnSendFAX
         '
         Me.btnSendFAX.Location = New System.Drawing.Point(8, 84)
@@ -939,6 +957,15 @@ Partial Class frmExample
         Me.GroupBox9.TabIndex = 8
         Me.GroupBox9.TabStop = False
         Me.GroupBox9.Text = "문서 정보"
+        '
+        'btnSearch
+        '
+        Me.btnSearch.Location = New System.Drawing.Point(6, 147)
+        Me.btnSearch.Name = "btnSearch"
+        Me.btnSearch.Size = New System.Drawing.Size(104, 25)
+        Me.btnSearch.TabIndex = 10
+        Me.btnSearch.Text = "문서목록 조회"
+        Me.btnSearch.UseVisualStyleBackColor = True
         '
         'btnGetInfos
         '
@@ -1313,33 +1340,6 @@ Partial Class frmExample
         'fileDialog
         '
         Me.fileDialog.FileName = "OpenFileDialog1"
-        '
-        'btnSearch
-        '
-        Me.btnSearch.Location = New System.Drawing.Point(6, 147)
-        Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(104, 25)
-        Me.btnSearch.TabIndex = 10
-        Me.btnSearch.Text = "문서목록 조회"
-        Me.btnSearch.UseVisualStyleBackColor = True
-        '
-        'btnAttachStatement
-        '
-        Me.btnAttachStatement.Location = New System.Drawing.Point(8, 116)
-        Me.btnAttachStatement.Name = "btnAttachStatement"
-        Me.btnAttachStatement.Size = New System.Drawing.Size(100, 26)
-        Me.btnAttachStatement.TabIndex = 11
-        Me.btnAttachStatement.Text = "명세서 첨부"
-        Me.btnAttachStatement.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(8, 146)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(101, 26)
-        Me.Button1.TabIndex = 12
-        Me.Button1.Text = "명세서 첨부해제"
-        Me.Button1.UseVisualStyleBackColor = True
         '
         'frmExample
         '
