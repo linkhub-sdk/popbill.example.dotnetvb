@@ -88,6 +88,7 @@ Partial Class frmExample
         Me.Label8 = New System.Windows.Forms.Label
         Me.Label10 = New System.Windows.Forms.Label
         Me.Label12 = New System.Windows.Forms.Label
+        Me.btnSearch = New System.Windows.Forms.Button
         Me.GroupBox7.SuspendLayout()
         Me.GroupBox13.SuspendLayout()
         Me.GroupBox12.SuspendLayout()
@@ -194,7 +195,7 @@ Partial Class frmExample
         Me.btnGetURL_TBOX.Name = "btnGetURL_TBOX"
         Me.btnGetURL_TBOX.Size = New System.Drawing.Size(102, 26)
         Me.btnGetURL_TBOX.TabIndex = 8
-        Me.btnGetURL_TBOX.Text = "연동문서함"
+        Me.btnGetURL_TBOX.Text = "임시문서함"
         Me.btnGetURL_TBOX.UseVisualStyleBackColor = True
         '
         'GroupBox12
@@ -297,6 +298,7 @@ Partial Class frmExample
         '
         'GroupBox9
         '
+        Me.GroupBox9.Controls.Add(Me.btnSearch)
         Me.GroupBox9.Controls.Add(Me.btnGetInfos)
         Me.GroupBox9.Controls.Add(Me.btnGetLogs)
         Me.GroupBox9.Controls.Add(Me.btnGetInfo)
@@ -772,6 +774,15 @@ Partial Class frmExample
         Me.Label12.TabIndex = 15
         Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
+        'btnSearch
+        '
+        Me.btnSearch.Location = New System.Drawing.Point(6, 147)
+        Me.btnSearch.Name = "btnSearch"
+        Me.btnSearch.Size = New System.Drawing.Size(104, 26)
+        Me.btnSearch.TabIndex = 10
+        Me.btnSearch.Text = "문서목록조회"
+        Me.btnSearch.UseVisualStyleBackColor = True
+        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
@@ -872,5 +883,6 @@ Partial Class frmExample
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents Label12 As System.Windows.Forms.Label
+    Friend WithEvents btnSearch As System.Windows.Forms.Button
 
 End Class
