@@ -131,6 +131,9 @@ Partial Class frmExample
         Me.txtMgtKey = New System.Windows.Forms.TextBox
         Me.Label3 = New System.Windows.Forms.Label
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
+        Me.btnSearch = New System.Windows.Forms.Button
+        Me.btnAttachStatement = New System.Windows.Forms.Button
+        Me.Button1 = New System.Windows.Forms.Button
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -472,7 +475,7 @@ Partial Class frmExample
         Me.GroupBox7.Controls.Add(Me.Label3)
         Me.GroupBox7.Location = New System.Drawing.Point(12, 213)
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(1005, 491)
+        Me.GroupBox7.Size = New System.Drawing.Size(907, 491)
         Me.GroupBox7.TabIndex = 6
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "전자세금계산서 관련 API"
@@ -827,39 +830,41 @@ Partial Class frmExample
         '
         'GroupBox11
         '
+        Me.GroupBox11.Controls.Add(Me.Button1)
+        Me.GroupBox11.Controls.Add(Me.btnAttachStatement)
         Me.GroupBox11.Controls.Add(Me.btnSendFAX)
         Me.GroupBox11.Controls.Add(Me.btnSendSMS)
         Me.GroupBox11.Controls.Add(Me.btnSendEmail)
-        Me.GroupBox11.Location = New System.Drawing.Point(316, 285)
+        Me.GroupBox11.Location = New System.Drawing.Point(313, 285)
         Me.GroupBox11.Name = "GroupBox11"
-        Me.GroupBox11.Size = New System.Drawing.Size(107, 154)
+        Me.GroupBox11.Size = New System.Drawing.Size(114, 181)
         Me.GroupBox11.TabIndex = 10
         Me.GroupBox11.TabStop = False
         Me.GroupBox11.Text = "부가서비스"
         '
         'btnSendFAX
         '
-        Me.btnSendFAX.Location = New System.Drawing.Point(7, 84)
+        Me.btnSendFAX.Location = New System.Drawing.Point(8, 84)
         Me.btnSendFAX.Name = "btnSendFAX"
-        Me.btnSendFAX.Size = New System.Drawing.Size(92, 26)
+        Me.btnSendFAX.Size = New System.Drawing.Size(100, 26)
         Me.btnSendFAX.TabIndex = 10
         Me.btnSendFAX.Text = "팩스 전송"
         Me.btnSendFAX.UseVisualStyleBackColor = True
         '
         'btnSendSMS
         '
-        Me.btnSendSMS.Location = New System.Drawing.Point(7, 52)
+        Me.btnSendSMS.Location = New System.Drawing.Point(8, 52)
         Me.btnSendSMS.Name = "btnSendSMS"
-        Me.btnSendSMS.Size = New System.Drawing.Size(92, 26)
+        Me.btnSendSMS.Size = New System.Drawing.Size(100, 26)
         Me.btnSendSMS.TabIndex = 9
         Me.btnSendSMS.Text = "문자 전송"
         Me.btnSendSMS.UseVisualStyleBackColor = True
         '
         'btnSendEmail
         '
-        Me.btnSendEmail.Location = New System.Drawing.Point(7, 20)
+        Me.btnSendEmail.Location = New System.Drawing.Point(8, 20)
         Me.btnSendEmail.Name = "btnSendEmail"
-        Me.btnSendEmail.Size = New System.Drawing.Size(92, 26)
+        Me.btnSendEmail.Size = New System.Drawing.Size(100, 26)
         Me.btnSendEmail.TabIndex = 8
         Me.btnSendEmail.Text = "이메일 전송"
         Me.btnSendEmail.UseVisualStyleBackColor = True
@@ -873,7 +878,7 @@ Partial Class frmExample
         Me.GroupBox10.Controls.Add(Me.gtnGetFiles)
         Me.GroupBox10.Location = New System.Drawing.Point(23, 285)
         Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(131, 161)
+        Me.GroupBox10.Size = New System.Drawing.Size(131, 181)
         Me.GroupBox10.TabIndex = 9
         Me.GroupBox10.TabStop = False
         Me.GroupBox10.Text = "첨부파일"
@@ -923,13 +928,14 @@ Partial Class frmExample
         '
         'GroupBox9
         '
+        Me.GroupBox9.Controls.Add(Me.btnSearch)
         Me.GroupBox9.Controls.Add(Me.btnGetInfos)
         Me.GroupBox9.Controls.Add(Me.btnGetLogs)
         Me.GroupBox9.Controls.Add(Me.btnGetInfo)
         Me.GroupBox9.Controls.Add(Me.btnGetDetailInfo)
         Me.GroupBox9.Location = New System.Drawing.Point(178, 285)
         Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(116, 154)
+        Me.GroupBox9.Size = New System.Drawing.Size(116, 181)
         Me.GroupBox9.TabIndex = 8
         Me.GroupBox9.TabStop = False
         Me.GroupBox9.Text = "문서 정보"
@@ -1308,6 +1314,33 @@ Partial Class frmExample
         '
         Me.fileDialog.FileName = "OpenFileDialog1"
         '
+        'btnSearch
+        '
+        Me.btnSearch.Location = New System.Drawing.Point(6, 147)
+        Me.btnSearch.Name = "btnSearch"
+        Me.btnSearch.Size = New System.Drawing.Size(104, 25)
+        Me.btnSearch.TabIndex = 10
+        Me.btnSearch.Text = "문서목록 조회"
+        Me.btnSearch.UseVisualStyleBackColor = True
+        '
+        'btnAttachStatement
+        '
+        Me.btnAttachStatement.Location = New System.Drawing.Point(8, 116)
+        Me.btnAttachStatement.Name = "btnAttachStatement"
+        Me.btnAttachStatement.Size = New System.Drawing.Size(100, 26)
+        Me.btnAttachStatement.TabIndex = 11
+        Me.btnAttachStatement.Text = "명세서 첨부"
+        Me.btnAttachStatement.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(8, 146)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(101, 26)
+        Me.Button1.TabIndex = 12
+        Me.Button1.Text = "명세서 첨부해제"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
@@ -1455,5 +1488,8 @@ Partial Class frmExample
     Friend WithEvents btnCancelIssue_Sub As System.Windows.Forms.Button
     Friend WithEvents btnRegistIssue As System.Windows.Forms.Button
     Friend WithEvents label26 As System.Windows.Forms.Label
+    Friend WithEvents btnSearch As System.Windows.Forms.Button
+    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents btnAttachStatement As System.Windows.Forms.Button
 
 End Class
