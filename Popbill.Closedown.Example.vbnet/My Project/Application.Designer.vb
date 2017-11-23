@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.Popbill.Closedown.Example.vbnet.Form1
+            Me.MainForm = Global.Popbill.Closedown.Example.vbnet.frmExample
         End Sub
     End Class
 End Namespace
