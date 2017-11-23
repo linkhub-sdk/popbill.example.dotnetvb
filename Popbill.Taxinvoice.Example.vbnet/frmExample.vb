@@ -1937,7 +1937,7 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnGetPopbillURL_LOGIN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPopbillURL_LOGIN.Click
         Try
-            Dim url As String = taxinvoiceService.GetPopbillURL(txtCorpNum.Text, txtUserId.Text, "CHRG")
+            Dim url As String = taxinvoiceService.GetPopbillURL(txtCorpNum.Text, txtUserId.Text, "LOGIN")
 
             MsgBox(url)
         Catch ex As PopbillException
