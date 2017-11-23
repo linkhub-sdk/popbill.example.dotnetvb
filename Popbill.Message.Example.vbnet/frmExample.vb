@@ -42,6 +42,10 @@ Public Class frmExample
 
     End Function
 
+    '=========================================================================
+    ' 예약문자전송을 취소합니다.
+    ' - 예약취소는 예약전송시간 10분전까지만 가능합니다.
+    '=========================================================================
     Private Sub btnCancelReserve_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelReserve.Click
         Try
             Dim response As Response
@@ -55,6 +59,10 @@ Public Class frmExample
         End Try
     End Sub
 
+    '=========================================================================
+    ' 문자메시지 전송내역 팝업 URL을 반환합니다.
+    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    '=========================================================================
     Private Sub btnGetURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL.Click
         Try
             Dim url As String = messageService.GetURL(txtCorpNum.Text, txtUserId.Text, "BOX")
@@ -67,6 +75,9 @@ Public Class frmExample
         End Try
     End Sub
 
+    '=========================================================================
+    ' 문자전송요청에 대한 전송결과를 확인합니다.
+    '=========================================================================
     Private Sub btnGetMessageResult_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMessageResult.Click
         Try
             Dim ResultList As List(Of MessageResult) = messageService.GetMessageResult(txtCorpNum.Text, txtReceiptNum.Text)
@@ -980,8 +991,6 @@ Public Class frmExample
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
         End Try
-
-
     End Sub
 
     '=========================================================================
