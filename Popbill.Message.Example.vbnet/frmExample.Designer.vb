@@ -43,6 +43,15 @@ Partial Class frmExample
         Me.btnGetMessageResult = New System.Windows.Forms.Button
         Me.label3 = New System.Windows.Forms.Label
         Me.groupBox4 = New System.Windows.Forms.GroupBox
+        Me.GroupBox11 = New System.Windows.Forms.GroupBox
+        Me.btnSendMMS_same = New System.Windows.Forms.Button
+        Me.btnSendMMS_hundered = New System.Windows.Forms.Button
+        Me.btnSendMMS_one = New System.Windows.Forms.Button
+        Me.GroupBox10 = New System.Windows.Forms.GroupBox
+        Me.btnGetURL_SENDER = New System.Windows.Forms.Button
+        Me.btnGetSenderNumberList = New System.Windows.Forms.Button
+        Me.btnSearch = New System.Windows.Forms.Button
+        Me.btnGetAutoDenyList = New System.Windows.Forms.Button
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
         Me.GroupBox17 = New System.Windows.Forms.GroupBox
         Me.btnUpdateCorpInfo = New System.Windows.Forms.Button
@@ -60,6 +69,10 @@ Partial Class frmExample
         Me.btnGetPopbillURL_CHRG = New System.Windows.Forms.Button
         Me.btnGetBalance = New System.Windows.Forms.Button
         Me.GroupBox3 = New System.Windows.Forms.GroupBox
+        Me.btnGetChargeInfo_MMS = New System.Windows.Forms.Button
+        Me.btnGetChargeInfo_LMS = New System.Windows.Forms.Button
+        Me.btnGetUnitCost_MMS = New System.Windows.Forms.Button
+        Me.btnGetUnitCost_LMS = New System.Windows.Forms.Button
         Me.btnGetChargeInfo_SMS = New System.Windows.Forms.Button
         Me.btnUnitCost_SMS = New System.Windows.Forms.Button
         Me.GroupBox9 = New System.Windows.Forms.GroupBox
@@ -70,21 +83,14 @@ Partial Class frmExample
         Me.Label2 = New System.Windows.Forms.Label
         Me.txtCorpNum = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
-        Me.btnGetUnitCost_LMS = New System.Windows.Forms.Button
-        Me.btnGetUnitCost_MMS = New System.Windows.Forms.Button
-        Me.btnGetChargeInfo_LMS = New System.Windows.Forms.Button
-        Me.btnGetChargeInfo_MMS = New System.Windows.Forms.Button
-        Me.btnGetAutoDenyList = New System.Windows.Forms.Button
-        Me.btnSearch = New System.Windows.Forms.Button
-        Me.GroupBox10 = New System.Windows.Forms.GroupBox
-        Me.btnGetSenderNumberList = New System.Windows.Forms.Button
-        Me.btnGetURL_SENDER = New System.Windows.Forms.Button
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
         Me.groupBox7.SuspendLayout()
         Me.groupBox8.SuspendLayout()
         CType(Me.dataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.groupBox6.SuspendLayout()
         Me.groupBox4.SuspendLayout()
+        Me.GroupBox11.SuspendLayout()
+        Me.GroupBox10.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -93,7 +99,6 @@ Partial Class frmExample
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
-        Me.GroupBox10.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnCancelReserve
@@ -195,10 +200,10 @@ Partial Class frmExample
         'dataGridView1
         '
         Me.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dataGridView1.Location = New System.Drawing.Point(11, 171)
+        Me.dataGridView1.Location = New System.Drawing.Point(9, 171)
         Me.dataGridView1.Name = "dataGridView1"
         Me.dataGridView1.RowTemplate.Height = 21
-        Me.dataGridView1.Size = New System.Drawing.Size(775, 225)
+        Me.dataGridView1.Size = New System.Drawing.Size(1164, 267)
         Me.dataGridView1.TabIndex = 23
         '
         'txtReserveDT
@@ -284,6 +289,7 @@ Partial Class frmExample
         '
         'groupBox4
         '
+        Me.groupBox4.Controls.Add(Me.GroupBox11)
         Me.groupBox4.Controls.Add(Me.GroupBox10)
         Me.groupBox4.Controls.Add(Me.btnSearch)
         Me.groupBox4.Controls.Add(Me.btnGetAutoDenyList)
@@ -300,10 +306,96 @@ Partial Class frmExample
         Me.groupBox4.Controls.Add(Me.label3)
         Me.groupBox4.Location = New System.Drawing.Point(14, 200)
         Me.groupBox4.Name = "groupBox4"
-        Me.groupBox4.Size = New System.Drawing.Size(878, 402)
+        Me.groupBox4.Size = New System.Drawing.Size(1181, 453)
         Me.groupBox4.TabIndex = 23
         Me.groupBox4.TabStop = False
         Me.groupBox4.Text = "메시지 관련 기능"
+        '
+        'GroupBox11
+        '
+        Me.GroupBox11.Controls.Add(Me.btnSendMMS_same)
+        Me.GroupBox11.Controls.Add(Me.btnSendMMS_hundered)
+        Me.GroupBox11.Controls.Add(Me.btnSendMMS_one)
+        Me.GroupBox11.Location = New System.Drawing.Point(561, 58)
+        Me.GroupBox11.Name = "GroupBox11"
+        Me.GroupBox11.Size = New System.Drawing.Size(172, 55)
+        Me.GroupBox11.TabIndex = 27
+        Me.GroupBox11.TabStop = False
+        Me.GroupBox11.Text = "MMS 문자 전송"
+        '
+        'btnSendMMS_same
+        '
+        Me.btnSendMMS_same.Location = New System.Drawing.Point(115, 20)
+        Me.btnSendMMS_same.Name = "btnSendMMS_same"
+        Me.btnSendMMS_same.Size = New System.Drawing.Size(47, 27)
+        Me.btnSendMMS_same.TabIndex = 2
+        Me.btnSendMMS_same.Text = "동보"
+        Me.btnSendMMS_same.UseVisualStyleBackColor = True
+        '
+        'btnSendMMS_hundered
+        '
+        Me.btnSendMMS_hundered.Location = New System.Drawing.Point(62, 20)
+        Me.btnSendMMS_hundered.Name = "btnSendMMS_hundered"
+        Me.btnSendMMS_hundered.Size = New System.Drawing.Size(47, 27)
+        Me.btnSendMMS_hundered.TabIndex = 1
+        Me.btnSendMMS_hundered.Text = "100건"
+        Me.btnSendMMS_hundered.UseVisualStyleBackColor = True
+        '
+        'btnSendMMS_one
+        '
+        Me.btnSendMMS_one.Location = New System.Drawing.Point(9, 20)
+        Me.btnSendMMS_one.Name = "btnSendMMS_one"
+        Me.btnSendMMS_one.Size = New System.Drawing.Size(47, 27)
+        Me.btnSendMMS_one.TabIndex = 0
+        Me.btnSendMMS_one.Text = "1건"
+        Me.btnSendMMS_one.UseVisualStyleBackColor = True
+        '
+        'GroupBox10
+        '
+        Me.GroupBox10.Controls.Add(Me.btnGetURL_SENDER)
+        Me.GroupBox10.Controls.Add(Me.btnGetSenderNumberList)
+        Me.GroupBox10.Location = New System.Drawing.Point(747, 58)
+        Me.GroupBox10.Name = "GroupBox10"
+        Me.GroupBox10.Size = New System.Drawing.Size(146, 100)
+        Me.GroupBox10.TabIndex = 26
+        Me.GroupBox10.TabStop = False
+        Me.GroupBox10.Text = "발신번호 관리"
+        '
+        'btnGetURL_SENDER
+        '
+        Me.btnGetURL_SENDER.Location = New System.Drawing.Point(12, 57)
+        Me.btnGetURL_SENDER.Name = "btnGetURL_SENDER"
+        Me.btnGetURL_SENDER.Size = New System.Drawing.Size(126, 33)
+        Me.btnGetURL_SENDER.TabIndex = 1
+        Me.btnGetURL_SENDER.Text = "발신번호 관리 팝업"
+        Me.btnGetURL_SENDER.UseVisualStyleBackColor = True
+        '
+        'btnGetSenderNumberList
+        '
+        Me.btnGetSenderNumberList.Location = New System.Drawing.Point(12, 18)
+        Me.btnGetSenderNumberList.Name = "btnGetSenderNumberList"
+        Me.btnGetSenderNumberList.Size = New System.Drawing.Size(126, 33)
+        Me.btnGetSenderNumberList.TabIndex = 0
+        Me.btnGetSenderNumberList.Text = "발신번호 목록 조회"
+        Me.btnGetSenderNumberList.UseVisualStyleBackColor = True
+        '
+        'btnSearch
+        '
+        Me.btnSearch.Location = New System.Drawing.Point(454, 18)
+        Me.btnSearch.Name = "btnSearch"
+        Me.btnSearch.Size = New System.Drawing.Size(132, 33)
+        Me.btnSearch.TabIndex = 25
+        Me.btnSearch.Text = "전송내역 기간조회"
+        Me.btnSearch.UseVisualStyleBackColor = True
+        '
+        'btnGetAutoDenyList
+        '
+        Me.btnGetAutoDenyList.Location = New System.Drawing.Point(730, 18)
+        Me.btnGetAutoDenyList.Name = "btnGetAutoDenyList"
+        Me.btnGetAutoDenyList.Size = New System.Drawing.Size(132, 33)
+        Me.btnGetAutoDenyList.TabIndex = 24
+        Me.btnGetAutoDenyList.Text = "080 수신거부목록"
+        Me.btnGetAutoDenyList.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
@@ -481,6 +573,42 @@ Partial Class frmExample
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "포인트 관련"
         '
+        'btnGetChargeInfo_MMS
+        '
+        Me.btnGetChargeInfo_MMS.Location = New System.Drawing.Point(151, 86)
+        Me.btnGetChargeInfo_MMS.Name = "btnGetChargeInfo_MMS"
+        Me.btnGetChargeInfo_MMS.Size = New System.Drawing.Size(126, 30)
+        Me.btnGetChargeInfo_MMS.TabIndex = 8
+        Me.btnGetChargeInfo_MMS.Text = "포토 과금정보 확인"
+        Me.btnGetChargeInfo_MMS.UseVisualStyleBackColor = True
+        '
+        'btnGetChargeInfo_LMS
+        '
+        Me.btnGetChargeInfo_LMS.Location = New System.Drawing.Point(151, 52)
+        Me.btnGetChargeInfo_LMS.Name = "btnGetChargeInfo_LMS"
+        Me.btnGetChargeInfo_LMS.Size = New System.Drawing.Size(126, 30)
+        Me.btnGetChargeInfo_LMS.TabIndex = 7
+        Me.btnGetChargeInfo_LMS.Text = "장문 과금정보 확인"
+        Me.btnGetChargeInfo_LMS.UseVisualStyleBackColor = True
+        '
+        'btnGetUnitCost_MMS
+        '
+        Me.btnGetUnitCost_MMS.Location = New System.Drawing.Point(18, 86)
+        Me.btnGetUnitCost_MMS.Name = "btnGetUnitCost_MMS"
+        Me.btnGetUnitCost_MMS.Size = New System.Drawing.Size(126, 29)
+        Me.btnGetUnitCost_MMS.TabIndex = 6
+        Me.btnGetUnitCost_MMS.Text = "포토 요금단가 확인"
+        Me.btnGetUnitCost_MMS.UseVisualStyleBackColor = True
+        '
+        'btnGetUnitCost_LMS
+        '
+        Me.btnGetUnitCost_LMS.Location = New System.Drawing.Point(18, 52)
+        Me.btnGetUnitCost_LMS.Name = "btnGetUnitCost_LMS"
+        Me.btnGetUnitCost_LMS.Size = New System.Drawing.Size(126, 29)
+        Me.btnGetUnitCost_LMS.TabIndex = 5
+        Me.btnGetUnitCost_LMS.Text = "장문 요금단가 확인"
+        Me.btnGetUnitCost_LMS.UseVisualStyleBackColor = True
+        '
         'btnGetChargeInfo_SMS
         '
         Me.btnGetChargeInfo_SMS.Location = New System.Drawing.Point(151, 19)
@@ -572,89 +700,6 @@ Partial Class frmExample
         Me.Label1.TabIndex = 24
         Me.Label1.Text = "팝빌회원 사업자번호 : "
         '
-        'btnGetUnitCost_LMS
-        '
-        Me.btnGetUnitCost_LMS.Location = New System.Drawing.Point(18, 52)
-        Me.btnGetUnitCost_LMS.Name = "btnGetUnitCost_LMS"
-        Me.btnGetUnitCost_LMS.Size = New System.Drawing.Size(126, 29)
-        Me.btnGetUnitCost_LMS.TabIndex = 5
-        Me.btnGetUnitCost_LMS.Text = "장문 요금단가 확인"
-        Me.btnGetUnitCost_LMS.UseVisualStyleBackColor = True
-        '
-        'btnGetUnitCost_MMS
-        '
-        Me.btnGetUnitCost_MMS.Location = New System.Drawing.Point(18, 86)
-        Me.btnGetUnitCost_MMS.Name = "btnGetUnitCost_MMS"
-        Me.btnGetUnitCost_MMS.Size = New System.Drawing.Size(126, 29)
-        Me.btnGetUnitCost_MMS.TabIndex = 6
-        Me.btnGetUnitCost_MMS.Text = "포토 요금단가 확인"
-        Me.btnGetUnitCost_MMS.UseVisualStyleBackColor = True
-        '
-        'btnGetChargeInfo_LMS
-        '
-        Me.btnGetChargeInfo_LMS.Location = New System.Drawing.Point(151, 52)
-        Me.btnGetChargeInfo_LMS.Name = "btnGetChargeInfo_LMS"
-        Me.btnGetChargeInfo_LMS.Size = New System.Drawing.Size(126, 30)
-        Me.btnGetChargeInfo_LMS.TabIndex = 7
-        Me.btnGetChargeInfo_LMS.Text = "장문 과금정보 확인"
-        Me.btnGetChargeInfo_LMS.UseVisualStyleBackColor = True
-        '
-        'btnGetChargeInfo_MMS
-        '
-        Me.btnGetChargeInfo_MMS.Location = New System.Drawing.Point(151, 86)
-        Me.btnGetChargeInfo_MMS.Name = "btnGetChargeInfo_MMS"
-        Me.btnGetChargeInfo_MMS.Size = New System.Drawing.Size(126, 30)
-        Me.btnGetChargeInfo_MMS.TabIndex = 8
-        Me.btnGetChargeInfo_MMS.Text = "포토 과금정보 확인"
-        Me.btnGetChargeInfo_MMS.UseVisualStyleBackColor = True
-        '
-        'btnGetAutoDenyList
-        '
-        Me.btnGetAutoDenyList.Location = New System.Drawing.Point(730, 18)
-        Me.btnGetAutoDenyList.Name = "btnGetAutoDenyList"
-        Me.btnGetAutoDenyList.Size = New System.Drawing.Size(132, 33)
-        Me.btnGetAutoDenyList.TabIndex = 24
-        Me.btnGetAutoDenyList.Text = "080 수신거부목록"
-        Me.btnGetAutoDenyList.UseVisualStyleBackColor = True
-        '
-        'btnSearch
-        '
-        Me.btnSearch.Location = New System.Drawing.Point(454, 18)
-        Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(132, 33)
-        Me.btnSearch.TabIndex = 25
-        Me.btnSearch.Text = "전송내역 기간조회"
-        Me.btnSearch.UseVisualStyleBackColor = True
-        '
-        'GroupBox10
-        '
-        Me.GroupBox10.Controls.Add(Me.btnGetURL_SENDER)
-        Me.GroupBox10.Controls.Add(Me.btnGetSenderNumberList)
-        Me.GroupBox10.Location = New System.Drawing.Point(716, 58)
-        Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(146, 100)
-        Me.GroupBox10.TabIndex = 26
-        Me.GroupBox10.TabStop = False
-        Me.GroupBox10.Text = "발신번호 관리"
-        '
-        'btnGetSenderNumberList
-        '
-        Me.btnGetSenderNumberList.Location = New System.Drawing.Point(12, 18)
-        Me.btnGetSenderNumberList.Name = "btnGetSenderNumberList"
-        Me.btnGetSenderNumberList.Size = New System.Drawing.Size(126, 33)
-        Me.btnGetSenderNumberList.TabIndex = 0
-        Me.btnGetSenderNumberList.Text = "발신번호 목록 조회"
-        Me.btnGetSenderNumberList.UseVisualStyleBackColor = True
-        '
-        'btnGetURL_SENDER
-        '
-        Me.btnGetURL_SENDER.Location = New System.Drawing.Point(12, 57)
-        Me.btnGetURL_SENDER.Name = "btnGetURL_SENDER"
-        Me.btnGetURL_SENDER.Size = New System.Drawing.Size(126, 33)
-        Me.btnGetURL_SENDER.TabIndex = 1
-        Me.btnGetURL_SENDER.Text = "발신번호 관리 팝업"
-        Me.btnGetURL_SENDER.UseVisualStyleBackColor = True
-        '
         'fileDialog
         '
         Me.fileDialog.FileName = "fileDialog"
@@ -663,7 +708,7 @@ Partial Class frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1213, 614)
+        Me.ClientSize = New System.Drawing.Size(1213, 665)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.txtUserId)
         Me.Controls.Add(Me.Label2)
@@ -672,13 +717,15 @@ Partial Class frmExample
         Me.Controls.Add(Me.groupBox4)
         Me.Name = "frmExample"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "팝빌 문자메시지  SDK VB.NET Example"
+        Me.Text = "팝빌 문자메시지 SDK VB.NET Example"
         Me.groupBox7.ResumeLayout(False)
         Me.groupBox8.ResumeLayout(False)
         CType(Me.dataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.groupBox6.ResumeLayout(False)
         Me.groupBox4.ResumeLayout(False)
         Me.groupBox4.PerformLayout()
+        Me.GroupBox11.ResumeLayout(False)
+        Me.GroupBox10.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox17.ResumeLayout(False)
         Me.GroupBox16.ResumeLayout(False)
@@ -687,7 +734,6 @@ Partial Class frmExample
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox9.ResumeLayout(False)
-        Me.GroupBox10.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -750,5 +796,9 @@ Partial Class frmExample
     Friend WithEvents btnGetSenderNumberList As System.Windows.Forms.Button
     Friend WithEvents btnGetURL_SENDER As System.Windows.Forms.Button
     Friend WithEvents fileDialog As System.Windows.Forms.OpenFileDialog
+    Private WithEvents GroupBox11 As System.Windows.Forms.GroupBox
+    Private WithEvents btnSendMMS_same As System.Windows.Forms.Button
+    Private WithEvents btnSendMMS_hundered As System.Windows.Forms.Button
+    Private WithEvents btnSendMMS_one As System.Windows.Forms.Button
 
 End Class
