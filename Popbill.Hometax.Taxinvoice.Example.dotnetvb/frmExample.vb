@@ -2,13 +2,13 @@
 '
 ' 팝빌 홈택스 전자세금계산서 매입매출 조회 API VB.Net SDK Example
 '
-' - VB6 SDK 연동환경 설정방법 안내 : http://blog.linkhub.co.kr/569/
-' - 업데이트 일자 : 2017-11-23
+' - VB.Net SDK 연동환경 설정방법 안내 : http://blog.linkhub.co.kr/569/
+' - 업데이트 일자 : 2017-12-04
 ' - 연동 기술지원 연락처 : 1600-8536 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
 ' <테스트 연동개발 준비사항>
-' 1) 29, 32번 라인에 선언된 링크아이디(LinkID)와 비밀키(SecretKey)를
+' 1) 23, 26번 라인에 선언된 링크아이디(LinkID)와 비밀키(SecretKey)를
 '    링크허브 가입시 메일로 발급받은 인증정보를 참조하여 변경합니다.
 ' 2) 팝빌 개발용 사이트(test.popbill.com)에 연동회원으로 가입합니다.
 ' 3) 홈택스에서 이용가능한 공인인증서를 등록합니다.
@@ -362,6 +362,407 @@ Public Class frmExample
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
 
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 전자(세금)계산서 매출/매입 내역 수집을 요청합니다
+    ' - 매출/매입 연계 프로세스는 "[홈택스 전자(세금)계산서 연계 API 연동매뉴얼]
+    '   > 1.2. 프로세스 흐름도" 를 참고하시기 바랍니다.
+    ' - 수집 요청후 반환받은 작업아이디(JobID)의 유효시간은 1시간 입니다.
+    '=========================================================================
+    Private Sub btnRequestJob_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRequestJob.Click
+
+        '전자(세금)계산서 유형, SELL-매출, BUY-매입, TURSTEE-위수탁
+        Dim tiKeyType As KeyType = KeyType.SELL
+
+        '일자유형, W-작성일자, I-발행일자, S-전송일자
+        Dim DType As String = "I"
+
+        '시작일자, 표시형식(yyyyMMdd)
+        Dim SDate As String = "20170101"
+
+        '종료일자, 표시형식(yyyyMMdd)
+        Dim EDate As String = "20170601"
+
+        Try
+            Dim jobID As String = htTaxinvoiceService.RequestJob(txtCorpNum.Text, tiKeyType, DType, SDate, EDate)
+
+            txtJobID.Text = jobID
+            MsgBox("작업아이디(jobID) : " + jobID)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 수집 요청 상태를 확인합니다.
+    ' - 응답항목 관한 정보는 "[홈택스 전자(세금)계산서 연계 API 연동매뉴얼
+    '   > 3.2.2. GetJobState(수집 상태 확인)" 을 참고하시기 바랍니다 .
+    '=========================================================================
+    Private Sub btnGetJobState_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetJobState.Click
+        Try
+            Dim jobINfo As HTTaxinvoiceJobState = htTaxinvoiceService.GetJobState(txtCorpNum.Text, txtJobID.Text)
+
+            Dim tmp As String = "jobID(작업아이디) : " + jobINfo.jobID + vbCrLf
+            tmp += "jobState(수집상태) : " + CStr(jobINfo.jobState) + vbCrLf
+            tmp += "queryType(수집유형) : " + jobINfo.queryType + vbCrLf
+            tmp += "queryDateType(일자유형) : " + jobINfo.queryDateType + vbCrLf
+            tmp += "queryStDate(시작일자) : " + jobINfo.queryStDate + vbCrLf
+            tmp += "queryEnDate(종료일자) : " + jobINfo.queryEnDate + vbCrLf
+            tmp += "errorCode(오류코드) : " + CStr(jobINfo.errorCode) + vbCrLf
+            tmp += "errorReason(오류메시지) : " + jobINfo.errorReason + vbCrLf
+            tmp += "jobStartDT(작업 시작일시) : " + jobINfo.jobStartDT + vbCrLf
+            tmp += "jobEndDT(작업 종료일시) : " + jobINfo.jobEndDT + vbCrLf
+            tmp += "collectCount(수집개수) : " + CStr(jobINfo.collectCount) + vbCrLf
+            tmp += "regDT(수집 요청일시) : " + jobINfo.regDT + vbCrLf
+
+            MsgBox(tmp)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 수집 요청건들에 대한 상태 목록을 확인합니다.
+    ' - 수집 요청 작업아이디(JobID)의 유효시간은 1시간 입니다.
+    ' - 응답항목에 관한 정보는 "[홈택스 전자(세금)계산서 연계 API 연동매뉴얼]
+    '   > 3.2.3. ListActiveJob (수집 상태 목록 확인)" 을 참고하시기 바랍니다.
+    '=========================================================================
+    Private Sub btnListActiveJob_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListActiveJob.Click
+        Try
+            Dim jobList As List(Of HTTaxinvoiceJobState) = htTaxinvoiceService.ListActiveJob(txtCorpNum.Text)
+
+
+            Dim tmp As String = "jobID | jobState | queryType | queryDateType | queryStDate | queryEnDate | errorCode | errorReason | jobStartDT | jobEndDT | collectCount | regDT " + vbCrLf
+
+            For Each info As HTTaxinvoiceJobState In jobList
+                tmp += CStr(info.jobID) + " | "
+                tmp += CStr(info.jobState) + " | "
+                tmp += info.queryType + " | "
+                tmp += info.queryDateType + " | "
+                tmp += info.queryStDate + " | "
+                tmp += info.queryEnDate + " | "
+                tmp += CStr(info.errorCode) + " | "
+                tmp += info.errorReason + " | "
+                tmp += info.jobStartDT + " | "
+                tmp += info.jobEndDT + " | "
+                tmp += CStr(info.collectCount) + " | "
+                tmp += info.regDT
+                tmp += vbCrLf
+
+                txtJobID.Text = info.jobID
+            Next
+
+            MsgBox(tmp)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 검색조건을 사용하여 수집결과를 조회합니다.
+    ' - 응답항목에 관한 정보는 "[홈택스 전자(세금)계산서 연계 API 연동매뉴얼]
+    '   > 3.3.1. Search (수집 결과 조회)" 을 참고하시기 바랍니다.
+    '=========================================================================
+    Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
+
+        '문서형태 배열, N-일반, M-수정
+        Dim tiType(2) As String
+        tiType(0) = "N"
+        tiType(1) = "M"
+
+        '과세형태 배열, T-과세, N-면세, Z-영세
+        Dim taxType(3) As String
+        taxType(0) = "T"
+        taxType(1) = "N"
+        taxType(2) = "Z"
+
+        '영수/청구 배열, R-영수, C-청구, N-없음
+        Dim purposeType(3) As String
+        purposeType(0) = "R"
+        purposeType(1) = "C"
+        purposeType(2) = "N"
+
+
+        '종사업장 유무, 공백-전체조회, 0-종사업장번호 없음, 1-종사업장번호 조회
+        Dim TaxRegIDYN As String = ""
+
+        '종사업장번호 사업자 유형, S-공급자, B-공급받는자, T-수탁자
+        Dim TaxRegIDTYpe As String = "S"
+
+        '종사업장번호 콤마(,)로 구분하여 구성 ex) "0001,0002"
+        Dim TaxRegID As String = ""
+
+        '페이지 번호
+        Dim Page As Integer = 1
+
+        '페이지당 검색개수, 최대 1000건
+        Dim PerPage As Integer = 10
+
+        '정렬 방향, D-내림차순, A-오름차순
+        Dim Order As String = "D"
+
+        Try
+            listBox1.Items.Clear()
+
+            Dim searchList As HTTaxinvoiceSearch = htTaxinvoiceService.Search(txtCorpNum.Text, txtJobID.Text, tiType, _
+                                                                              taxType, purposeType, TaxRegIDYN, TaxRegIDTYpe, TaxRegID, Page, PerPage, Order)
+
+            Dim tmp As String = "code (응답코드) : " + CStr(searchList.code) + vbCrLf
+            tmp += "message (응답메시지) : " + searchList.message + vbCrLf
+            tmp += "total (총 검색결과 건수) : " + CStr(searchList.total) + vbCrLf
+            tmp += "perPage (페이지당 검색개수) : " + CStr(searchList.perPage) + vbCrLf
+            tmp += "pageNum (페이지 번호) : " + CStr(searchList.pageNum) + vbCrLf
+            tmp += "pageCount (페이지 개수) : " + CStr(searchList.pageCount) + vbCrLf + vbCrLf
+
+            MsgBox(tmp)
+
+            Dim rowStr As String = "구분 | 작성일자 | 발행일자 | 전송일자 | 거래처 | 등록번호 | 과세형태 | 공급가액 | 문서형태 | 국세청승인번호 "
+
+            listBox1.Items.Add(rowStr)
+
+            For Each tiInfo As HTTaxinvoiceAbbr In searchList.list
+                rowStr = tiInfo.invoiceType + " | "
+                rowStr += tiInfo.writeDate + " | "
+                rowStr += tiInfo.issueDate + " | "
+                rowStr += tiInfo.sendDate + " | "
+                rowStr += tiInfo.invoiceeCorpName + " | "
+                rowStr += tiInfo.invoiceeCorpNum + " | "
+                rowStr += tiInfo.taxType + " | "
+                rowStr += tiInfo.supplyCostTotal + " | "
+
+                If tiInfo.modifyYN Then
+                    rowStr += "수정 | "
+                Else
+                    rowStr += "일반 | "
+                End If
+
+                rowStr += tiInfo.ntsconfirmNum
+
+                listBox1.Items.Add(rowStr)
+            Next
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 검색조건을 사용하여 수집 결과 요약정보를 조회합니다.
+    ' - 응답항목에 관한 정보는 "[홈택스 전자(세금)계산서 연계 API 연동매뉴얼]
+    '   > 3.3.2. Summary (수집 결과 요약정보 조회)" 을 참고하시기 바랍니다.
+    '=========================================================================
+    Private Sub btnSummary_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSummary.Click
+        '문서형태 배열, N-일반, M-수정
+        Dim tiType(2) As String
+        tiType(0) = "N"
+        tiType(1) = "M"
+
+        '과세형태 배열, T-과세, N-면세, Z-영세
+        Dim taxType(3) As String
+        taxType(0) = "T"
+        taxType(1) = "N"
+        taxType(2) = "Z"
+
+        '영수/청구 배열, R-영수, C-청구, N-없음
+        Dim purposeType(3) As String
+        purposeType(0) = "R"
+        purposeType(1) = "C"
+        purposeType(2) = "N"
+
+
+        '종사업장 유무, 공백-전체조회, 0-종사업장번호 없음, 1-종사업장번호 조회
+        Dim TaxRegIDYN As String = ""
+
+        '종사업장번호 사업자 유형, S-공급자, B-공급받는자, T-수탁자
+        Dim TaxRegIDTYpe As String = "S"
+
+        '종사업장번호 콤마(,)로 구분하여 구성 ex) "0001,0002"
+        Dim TaxRegID As String = ""
+
+        Try
+            Dim summaryInfo As HTTaxinvoiceSummary = htTaxinvoiceService.Summary(txtCorpNum.Text, txtJobID.Text, tiType, taxType, purposeType, TaxRegIDYN, TaxRegIDTYpe, TaxRegID)
+
+            Dim tmp As String = "count (수집결과건수) : " + CStr(summaryInfo.count) + vbCrLf
+            tmp += "supplyCostTotal (공급가액 합계) : " + CStr(summaryInfo.supplyCostTotal) + vbCrLf
+            tmp += "taxTotal (세액 합계) : " + CStr(summaryInfo.taxTotal) + vbCrLf
+            tmp += "amountTotal (합계 금액) : " + CStr(summaryInfo.amountTotal) + vbCrLf
+
+            MsgBox(tmp)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+
+    '=========================================================================
+    ' 수집된 전자(세금)계산서 1건의 상세정보를 확인합니다.
+    ' - 응답항목에 관한 정보는 "[홈택스 전자(세금)계산서 연계 API 연동매뉴얼]
+    '   > 4.1.2. GetTaxinvoice 응답전문 구성" 을 참고하시기 바랍니다.
+    '=========================================================================
+    Private Sub btnGetTaxinvocie_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetTaxinvocie.Click
+        Try
+            Dim taxinvoiceInfo As HTTaxinvoice = htTaxinvoiceService.GetTaxinvoice(txtCorpNum.Text, txtNTSconfirmNum.Text)
+
+            Dim tmp As String = "========전자(세금)계산서 정보=======" + vbCrLf
+            tmp += "writeDate : " + taxinvoiceInfo.writeDate + vbCrLf
+            tmp += "issueDT : " + taxinvoiceInfo.issueDT + vbCrLf
+            tmp += "invoiceType : " + taxinvoiceInfo.invoiceType.ToString() + vbCrLf
+            tmp += "taxType : " + taxinvoiceInfo.taxType + vbCrLf
+            tmp += "taxTotal : " + taxinvoiceInfo.taxTotal + vbCrLf
+            tmp += "supplyCostTotal : " + taxinvoiceInfo.supplyCostTotal + vbCrLf
+            tmp += "totalAmount : " + taxinvoiceInfo.totalAmount + vbCrLf
+            tmp += "purposeType : " + taxinvoiceInfo.purposeType + vbCrLf
+            tmp += "cash : " + taxinvoiceInfo.cash + vbCrLf
+            tmp += "chkBill : " + taxinvoiceInfo.chkBill + vbCrLf
+            tmp += "credit : " + taxinvoiceInfo.credit + vbCrLf
+            tmp += "note : " + taxinvoiceInfo.note + vbCrLf
+            tmp += "remark1 : " + taxinvoiceInfo.remark1 + vbCrLf
+            tmp += "remark2 : " + taxinvoiceInfo.remark2 + vbCrLf
+            tmp += "remark3 : " + taxinvoiceInfo.remark3 + vbCrLf
+            tmp += "ntsconfirmNum : " + taxinvoiceInfo.ntsconfirmNum + vbCrLf + vbCrLf
+
+            tmp += "========공급자 정보=======" + vbCrLf
+            tmp += "invoicerCorpNum : " + taxinvoiceInfo.invoicerCorpNum + vbCrLf
+            tmp += "invoicerMgtKey : " + taxinvoiceInfo.invoicerMgtKey + vbCrLf
+            tmp += "invoicerTaxRegID : " + taxinvoiceInfo.invoicerTaxRegID + vbCrLf
+            tmp += "invoicerCorpName : " + taxinvoiceInfo.invoicerCorpName + vbCrLf
+            tmp += "invoicerCEOName : " + taxinvoiceInfo.invoicerCEOName + vbCrLf
+            tmp += "invoicerAddr : " + taxinvoiceInfo.invoicerAddr + vbCrLf
+            tmp += "invoicerBizType : " + taxinvoiceInfo.invoicerBizType + vbCrLf
+            tmp += "invoicerBizClass : " + taxinvoiceInfo.invoicerBizClass + vbCrLf
+            tmp += "invoicerContactName : " + taxinvoiceInfo.invoicerContactName + vbCrLf
+            tmp += "invoicerDeptName : " + taxinvoiceInfo.invoicerDeptName + vbCrLf
+            tmp += "invoicerTEL : " + taxinvoiceInfo.invoicerTEL + vbCrLf
+            tmp += "invoicerEmail : " + taxinvoiceInfo.invoicerEmail + vbCrLf + vbCrLf
+
+            tmp += "========공급받는자 정보=======" + vbCrLf
+            tmp += "invoiceeCorpNum : " + taxinvoiceInfo.invoiceeCorpNum + vbCrLf
+            tmp += "invoiceeType : " + taxinvoiceInfo.invoiceeType + vbCrLf
+            tmp += "invoiceeMgtKey : " + taxinvoiceInfo.invoiceeMgtKey + vbCrLf
+            tmp += "invoiceeTaxRegID : " + taxinvoiceInfo.invoiceeTaxRegID + vbCrLf
+            tmp += "invoiceeCorpName : " + taxinvoiceInfo.invoiceeCorpName + vbCrLf
+            tmp += "invoiceeCEOName : " + taxinvoiceInfo.invoiceeCEOName + vbCrLf
+            tmp += "invoiceeAddr : " + taxinvoiceInfo.invoiceeAddr + vbCrLf
+            tmp += "invoiceeBizType : " + taxinvoiceInfo.invoiceeBizType + vbCrLf
+            tmp += "invoiceeBizClass : " + taxinvoiceInfo.invoiceeBizClass + vbCrLf
+            tmp += "invoiceeContactName1 : " + taxinvoiceInfo.invoiceeContactName1 + vbCrLf
+            tmp += "invoiceeDeptName1 : " + taxinvoiceInfo.invoiceeDeptName1 + vbCrLf
+            tmp += "invoiceeTEL1 : " + taxinvoiceInfo.invoiceeTEL1 + vbCrLf
+            tmp += "invoiceeEmail1 : " + taxinvoiceInfo.invoiceeEmail1 + vbCrLf
+
+            tmp += "========전자(세금)계산서 품목배열========" + vbCrLf
+
+            For Each detailInfo In taxinvoiceInfo.detailList
+                tmp += "serialNum : " + CStr(detailInfo.serialNum) + vbCrLf
+                tmp += "purchaseDT : " + detailInfo.purchaseDT + vbCrLf
+                tmp += "itemName : " + detailInfo.itemName + vbCrLf
+                tmp += "spec : " + detailInfo.spec + vbCrLf
+                tmp += "qty : " + detailInfo.qty + vbCrLf
+                tmp += "unitCost : " + detailInfo.unitCost + vbCrLf
+                tmp += "supplyCost : " + detailInfo.supplyCost + vbCrLf
+                tmp += "tax : " + detailInfo.tax + vbCrLf
+                tmp += "remark : " + detailInfo.remark + vbCrLf + vbCrLf
+            Next
+
+            MsgBox(tmp)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' XML형식의 전자(세금)계산서 상세정보를 1건을 확인합니다.
+    ' - 응답항목에 관한 정보는 "[홈택스 전자(세금)계산서 연계 API 연동매뉴얼]
+    '   > 3.3.4. GetXML (상세정보 확인 - XML)" 을 참고하시기 바랍니다.
+    '=========================================================================
+    Private Sub btnGetXML_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetXML.Click
+        Try
+            Dim taxinvoiceXML As HTTaxinvoiceXML = htTaxinvoiceService.GetXML(txtCorpNum.Text, txtNTSconfirmNum.Text)
+
+            Dim tmp As String = "ResultCode (응답코드) : " + taxinvoiceXML.ResultCode.ToString() + vbCrLf
+            tmp += "Message (국세청 승인번호) : " + taxinvoiceXML.Message + vbCrLf
+            tmp += "retObject (XML문서) : " + taxinvoiceXML.retObject + vbCrLf
+
+            MsgBox(tmp)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+
+        End Try
+
+    End Sub
+
+    '=========================================================================
+    ' 정액제 신청 팝업 URL을 반환합니다.
+    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    '=========================================================================
+    Private Sub btnGetFlatRatePopUpURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFlatRatePopUpURL.Click
+        Try
+            Dim url As String = htTaxinvoiceService.GetFlatRatePopUpURL(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox(url)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원의 정액제 서비스 이용상태를 확인합니다.
+    '=========================================================================
+    Private Sub btnGetFlatRateState_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFlatRateState.Click
+        Try
+            Dim flatRateInfo As HTFlatRate = htTaxinvoiceService.GetFlatRateState(txtCorpNum.Text)
+
+            Dim tmp As String = "referencdeID (사업자번호) : " + flatRateInfo.referenceID + vbCrLf
+            tmp += "contractDT (정액제 서비스 시작일시) : " + flatRateInfo.contractDT + vbCrLf
+            tmp += "useEndDate (정액제 서비스 종료일) : " + flatRateInfo.useEndDate + vbCrLf
+            tmp += "baseDate (자동연장 결제일) : " + CStr(flatRateInfo.baseDate) + vbCrLf
+            tmp += "state (정액제 서비스 상태) : " + CStr(flatRateInfo.state) + vbCrLf
+            tmp += "closeRequestYN (서비스 해지신청 여부) : " + CStr(flatRateInfo.closeRequestYN) + vbCrLf
+            tmp += "useRestrictYN (서비스 사용제한 여부) : " + CStr(flatRateInfo.useRestrictYN) + vbCrLf
+            tmp += "closeOnExpired (서비스만료시 해지여부 ) : " + CStr(flatRateInfo.closeOnExpired) + vbCrLf
+            tmp += "unPaidYN (미수금 보유 여부) : " + CStr(flatRateInfo.unPaidYN) + vbCrLf
+
+            MsgBox(tmp)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 홈택스연계 인증관리 팝업 URL을 반환합니다.
+    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    '=========================================================================
+    Private Sub btnGetCertificatePopUpURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetCertificatePopUpURL.Click
+        Try
+            Dim url As String = htTaxinvoiceService.GetCertificatePopUpURL(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox(url)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 등록된 홈택스 공인인증서의 만료일자를 확인합니다.
+    '=========================================================================
+    Private Sub btnGetCertificateExpireDate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetCertificateExpireDate.Click
+        Try
+            Dim expireDate As String = htTaxinvoiceService.GetCertificateExpireDate(txtCorpNum.Text)
+
+            MsgBox("홈택스 공인인증서 만료일시 : " + expireDate)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 End Class
