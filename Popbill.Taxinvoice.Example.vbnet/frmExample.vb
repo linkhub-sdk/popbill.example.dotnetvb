@@ -4,7 +4,7 @@
 ' 팝빌 전자세금계산서 API VB.Net SDK Example
 '
 ' - VB.Net SDK 연동환경 설정방법 안내
-' - 업데이트 일자 : 2017-12-04
+' - 업데이트 일자 : 2017-12-05
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -2380,19 +2380,21 @@ Public Class frmExample
         Dim State(3) As String
         Dim TType(2) As String
         Dim taxType(3) As String
+        Dim IssueType(3) As String
 
         '[필수] 일자유형, R-등록일시 W-작성일자 I-발행일시 중 택1
         Dim DType As String = "W"
 
         '[필수] 시작일자, yyyyMMdd
-        Dim SDate As String = "20170701"
+        Dim SDate As String = "20171101"
 
         '[필수] 종료일자, yyyyMMdd
         Dim EDate As String = "20171231"
 
-        '전송상태값 배열, 미기재시 전체상태조회, 문서상태값 3자리숫자 작성
+        '상태코드 배열, 미기재시 전체상태조회, 문서상태값 3자리숫자 작성
         '2,3번째 와일드카드 가능
         State(0) = "3**"
+        State(1) = "4**"
         State(1) = "6**"
 
         '문서유형 배열, N-일반 M-수정 중 선택, 미기재시 전체조회
@@ -2403,6 +2405,12 @@ Public Class frmExample
         taxType(0) = "T"
         taxType(1) = "N"
         taxType(2) = "Z"
+
+        '발행형태 배열, N-정발행, R-역발행, T-위수탁
+        IssueType(0) = "N"
+        IssueType(1) = "R"
+        IssueType(2) = "T"
+
 
         '지연발행 여부, False - 정상발행분만 조회 / True - 지연발행분만조회 / Nothing- 전체조회
         Dim LateOnly As Boolean = Nothing
@@ -2433,7 +2441,7 @@ Public Class frmExample
 
         Try
             Dim tiSearchList As TISearchResult = taxinvoiceService.Search(txtCorpNum.Text, KeyType, DType, SDate, EDate, State, TType, _
-                                taxType, LateOnly, TaxRegIDYN, TaxRegIDType, TaxRegID, QString, Order, Page, PerPage, _
+                                taxType, IssueType, LateOnly, TaxRegIDYN, TaxRegIDType, TaxRegID, QString, Order, Page, PerPage, _
                                 interOPYN, txtUserId.Text)
 
 
