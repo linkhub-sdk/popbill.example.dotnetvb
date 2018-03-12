@@ -40,7 +40,10 @@ Public Class frmExample
 
     End Function
 
-
+    '=========================================================================
+    ' 해당사업자의 회원가입 여부를 확인합니다.
+    ' - 사업자번호는 '-'를 제외한 10자리 숫자 문자열입니다.
+    '=========================================================================
     Private Sub btnCheckIsMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckIsMember.Click
         Try
             Dim response As Response = kakaoService.CheckIsMember(txtCorpNum.Text, LinkID)
@@ -52,6 +55,9 @@ Public Class frmExample
         End Try
     End Sub
 
+    '=========================================================================
+    ' 팝빌 회원아이디 중복여부를 확인합니다.
+    '=========================================================================
     Private Sub btnCheckID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckID.Click
         Try
             Dim response As Response = kakaoService.CheckID(txtCorpNum.Text)
@@ -63,6 +69,9 @@ Public Class frmExample
         End Try
     End Sub
 
+    '=========================================================================
+    ' 연동회원 신규가입을 요청합니다.
+    '=========================================================================
     Private Sub btnJoinMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnJoinMember.Click
         Dim joinInfo As JoinForm = New JoinForm
 
@@ -116,6 +125,9 @@ Public Class frmExample
         End Try
     End Sub
 
+    '=========================================================================
+    ' 연동회원 잔여포인트를 확인합니다.
+    '=========================================================================
     Private Sub btnGetBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetBalance.Click
 
         Try
@@ -129,6 +141,10 @@ Public Class frmExample
         End Try
     End Sub
 
+    '=========================================================================
+    ' 연동회원 포인트충전 팝업 URL을 확인합니다.
+    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    '=========================================================================
     Private Sub btnGetPopbillURL_CHRG_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPopbillURL_CHRG.Click
         Try
             Dim url As String = kakaoService.GetPopbillURL(txtCorpNum.Text, txtUserId.Text, "CHRG")
@@ -149,6 +165,10 @@ Public Class frmExample
         End Try
     End Sub
 
+    '=========================================================================
+    ' 파트너 포인트충전 팝업 URL을 확인합니다.
+    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    '=========================================================================
     Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerURL.Click
         Try
             Dim url As String = kakaoService.GetPartnerURL(txtCorpNum.Text, "CHRG")
@@ -159,6 +179,10 @@ Public Class frmExample
         End Try
     End Sub
 
+    '=========================================================================
+    ' 팝빌 로그인 URL을 확인합니다.
+    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    '=========================================================================
     Private Sub btnGetPopbillURL_LOGIN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPopbillURL_LOGIN.Click
         Try
             Dim url As String = kakaoService.GetPopbillURL(txtCorpNum.Text, txtUserId.Text, "LOGIN")
@@ -306,6 +330,9 @@ Public Class frmExample
         End Try
     End Sub
 
+    '=========================================================================
+    ' 알림톡(ATS) 전송단가를 확인합니다
+    '=========================================================================
     Private Sub btnUnitCost_SMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUnitCost_ATS.Click
 
         '카카오톡 전송유형, ATS-알림톡, FTS-친구톡 텍스트, FMS-친구톡 이미지
@@ -322,6 +349,9 @@ Public Class frmExample
         End Try
     End Sub
 
+    '=========================================================================
+    ' 친구톡 텍스트(FTS) 전송단가를 조회합니다.
+    '=========================================================================
     Private Sub btnGetUnitCost_FTS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetUnitCost_FTS.Click
 
         '카카오톡 전송유형, ATS-알림톡, FTS-친구톡 텍스트, FMS-친구톡 이미지
@@ -338,6 +368,9 @@ Public Class frmExample
         End Try
     End Sub
 
+    '=========================================================================
+    ' 친구톡 이미지(FMS) 전송단가를 조회합니다.
+    '=========================================================================
     Private Sub btnGetUnitCost_FMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetUnitCost_FMS.Click
 
         '카카오톡 전송유형, ATS-알림톡, FTS-친구톡 텍스트, FMS-친구톡 이미지
@@ -354,6 +387,9 @@ Public Class frmExample
         End Try
     End Sub
 
+    '=========================================================================
+    ' 알림톡(ATS) 과금정보를 확인합니다.
+    '=========================================================================
     Private Sub btnGetChargeInfo_ATS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo_ATS.Click
 
         '카카오톡 전송유형, ATS-알림톡, FTS-친구톡 텍스트, FMS-친구톡 이미지
@@ -374,6 +410,9 @@ Public Class frmExample
 
     End Sub
 
+    '=========================================================================
+    ' 친구톡 텍스트(FTS) 과금정보를 확인합니다.
+    '=========================================================================
     Private Sub btnGetChargeInfo_FTS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo_FTS.Click
 
         '카카오톡 전송유형, ATS-알림톡, FTS-친구톡 텍스트, FMS-친구톡 이미지
@@ -393,6 +432,9 @@ Public Class frmExample
         End Try
     End Sub
 
+    '=========================================================================
+    ' 친구톡 이미지(FMS) 과금정보를 확인합니다.
+    '=========================================================================
     Private Sub btnGetChargeInfo_FMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo_FMS.Click
 
         '카카오톡 전송유형, ATS-알림톡, FTS-친구톡 텍스트, FMS-친구톡 이미지
@@ -849,6 +891,10 @@ Public Class frmExample
 
     End Sub
 
+    '=========================================================================
+    ' 플러스친구 계정관리 팝업 URL을 확인합니다.
+    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    '=========================================================================
     Private Sub btnGetURL_PLUSFRIENDID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_PLUSFRIENDID.Click
         Try
             Dim url As String = kakaoService.GetURL(txtCorpNum.Text, txtUserId.Text, "PLUSFRIEND")
@@ -860,6 +906,10 @@ Public Class frmExample
 
     End Sub
 
+    '=========================================================================
+    ' 발신번호 관리 팝업 URL을 확인합니다.
+    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    '=========================================================================
     Private Sub btnGetURL_SENDER_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_SENDER.Click
         Try
             Dim url As String = kakaoService.GetURL(txtCorpNum.Text, txtUserId.Text, "SENDER")
@@ -870,6 +920,10 @@ Public Class frmExample
         End Try
     End Sub
 
+    '=========================================================================
+    ' 알림톡 템플릿 관리 팝업 URL을 확인합니다.
+    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    '=========================================================================
     Private Sub btnGetURL_TEMPLATE_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_TEMPLATE.Click
         Try
             Dim url As String = kakaoService.GetURL(txtCorpNum.Text, txtUserId.Text, "TEMPLATE")
@@ -880,6 +934,10 @@ Public Class frmExample
         End Try
     End Sub
 
+    '=========================================================================
+    ' 카카오톡 전송내역 팝업 URL을 확인합니다.
+    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    '=========================================================================
     Private Sub btnGetURL_BOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_BOX.Click
         Try
             Dim url As String = kakaoService.GetURL(txtCorpNum.Text, txtUserId.Text, "BOX")
@@ -890,6 +948,9 @@ Public Class frmExample
         End Try
     End Sub
 
+    '=========================================================================
+    ' 팝빌에 등록된 플러스친구 계정 목록을 반환한다.
+    '=========================================================================
     Private Sub btnListPlusFriendID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListPlusFriendID.Click
         Try
             Dim plusFriendList As List(Of PlusFriend) = kakaoService.ListPlusFriendID(txtCorpNum.Text, txtUserId.Text)
@@ -906,6 +967,9 @@ Public Class frmExample
         End Try
     End Sub
 
+    '=========================================================================
+    ' 팝빌에 등록된 발신번호 목록을 반환한다.
+    '=========================================================================
     Private Sub btnGetSenderNumberList_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSenderNumberList.Click
         Try
             Dim senderNumberList As List(Of SenderNumber) = kakaoService.GetSenderNumberList(txtCorpNum.Text, txtUserId.Text)
@@ -922,6 +986,9 @@ Public Class frmExample
         End Try
     End Sub
 
+    '=========================================================================
+    ' (주)카카오로부터 심사후 승인된 알림톡 템플릿 목록을 반환한다.
+    '=========================================================================
     Private Sub btnListATSTemplate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListATSTemplate.Click
         Try
             Dim templateList As List(Of ATSTemplate) = kakaoService.ListATSTemplate(txtCorpNum.Text, txtUserId.Text)
@@ -953,6 +1020,9 @@ Public Class frmExample
         End Try
     End Sub
 
+    '=========================================================================
+    ' 알림톡/친구톡 전송내역 및 전송상태를 확인한다
+    '=========================================================================
     Private Sub btnGetMessages_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMessages.Click
         Try
             Dim sentInfo As KakaoSentResult = kakaoService.GetMessages(txtCorpNum.Text, txtReceiptNum.Text)
@@ -994,6 +1064,10 @@ Public Class frmExample
         End Try
     End Sub
 
+    '=========================================================================
+    ' 알림톡/친구톡 예약전송건을 취소한다.
+    ' - 예약전송 취소는 예약시간 10분전까지만 가능하다.
+    '=========================================================================
     Private Sub btnCancelReserve_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelReserve.Click
         Try
             Dim response As Response
@@ -1006,6 +1080,9 @@ Public Class frmExample
         End Try
     End Sub
 
+    '=========================================================================
+    ' 카카오톡 전송내역 목록을 조회한다.
+    '=========================================================================
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
         Dim State(6) As String
         Dim item(3) As String
