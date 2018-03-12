@@ -1090,4 +1090,5 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
         End Try
     End Sub
+
 End Class
