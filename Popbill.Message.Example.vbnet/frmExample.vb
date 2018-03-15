@@ -821,13 +821,13 @@ Public Class frmExample
     Private Sub btnSendSMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendSMS_one.Click
 
         '발신번호
-        Dim sendNum As String = "07075106766"
+        Dim sendNum As String = "07043042993"
 
         '발신자명
         Dim sendName As String = "발신자명"
 
         '수신번호
-        Dim receiveNum As String = "010111222"
+        Dim receiveNum As String = "01043245117"
 
         '수신자명
         Dim receiveName As String = "수신자명칭"
@@ -837,8 +837,8 @@ Public Class frmExample
 
         Try
 
-            Dim receiptNum As String = messageService.SendSMS(txtCorpNum.Text, sendNum, sendName, _
-                                                              receiveNum, receiveName, getReserveDT(), txtUserId.Text)
+            Dim receiptNum As String = messageService.SendSMS(txtCorpNum.Text, sendNum, sendName, receiveNum, receiveName, _
+                     contents, getReserveDT(), txtUserId.Text)
 
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
