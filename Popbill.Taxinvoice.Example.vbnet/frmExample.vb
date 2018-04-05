@@ -1924,8 +1924,12 @@ Public Class frmExample
     Private Sub btnGetPopbillURL_CERT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPopbillURL_CERT.Click
         Try
             Dim url As String = taxinvoiceService.GetPopbillURL(txtCorpNum.Text, txtUserId.Text, "CERT")
-
             MsgBox(url)
+
+            Dim ie As New System.Diagnostics.ProcessStartInfo("iexplore")
+            ie.Arguments = url
+            System.Diagnostics.Process.Start(ie)
+
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
         End Try
