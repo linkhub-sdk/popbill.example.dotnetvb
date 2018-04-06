@@ -2164,7 +2164,7 @@ Public Class frmExample
         Dim taxinvoice As Taxinvoice = New Taxinvoice
 
         '[필수] 작성일자, 표시형식 (yyyyMMdd) ex) 20171120
-        taxinvoice.writeDate = "20171120"
+        taxinvoice.writeDate = "20180405"
 
         '[필수] 발행형태, [정발행, 역발행, 위수탁] 중 기재
         taxinvoice.issueType = "정발행"
@@ -2238,7 +2238,7 @@ Public Class frmExample
         taxinvoice.invoiceeType = "사업자"
 
         '[필수] 공급받는자 사업자번호, '-' 제외 10자리
-        taxinvoice.invoiceeCorpNum = "8888888888"
+        taxinvoice.invoiceeCorpNum = "3012983093"
 
         '[필수] 공급자받는자 상호
         taxinvoice.invoiceeCorpName = "공급받는자 상호"
@@ -2386,6 +2386,7 @@ Public Class frmExample
             Dim response As Response = taxinvoiceService.RegistIssue(txtCorpNum.Text, taxinvoice, forceIssue, memo)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
 
