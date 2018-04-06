@@ -2238,7 +2238,7 @@ Public Class frmExample
         taxinvoice.invoiceeType = "사업자"
 
         '[필수] 공급받는자 사업자번호, '-' 제외 10자리
-        taxinvoice.invoiceeCorpNum = "3012983093"
+        taxinvoice.invoiceeCorpNum = "8888888888"
 
         '[필수] 공급자받는자 상호
         taxinvoice.invoiceeCorpName = "공급받는자 상호"
