@@ -96,12 +96,15 @@ Public Class frmExample
         '전송정보 배열, 최대 1000건
         Dim messages As List(Of Message) = New List(Of Message)
 
-        For i As Integer = 0 To 99
+        '광고문자 여부 (기본값 False)
+        Dim adsYN = True
+
+        For i As Integer = 0 To 10
 
             Dim msg As Message = New Message
 
             '발신번호
-            msg.sendNum = "07075106766"
+            msg.sendNum = "07043042993"
 
             '발신자명
             msg.senderName = "발신자명"
@@ -120,8 +123,7 @@ Public Class frmExample
 
         Try
 
-            Dim receiptNum As String = messageService.SendSMS(txtCorpNum.Text, messages, getReserveDT(), txtUserId.Text)
-
+            Dim receiptNum As String = messageService.SendSMS(txtCorpNum.Text, messages, getReserveDT(), txtUserId.Text, adsYN)
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
 
@@ -134,15 +136,18 @@ Public Class frmExample
     Private Sub btnSendSMS_Same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendSMS_Same.Click
 
         '발신번호
-        Dim sendNum As String = "070-111-2222"
+        Dim sendNum As String = "07043042993"
 
         '메시지 내용, 최대 90Byte(한글45자) 초과된 내용은 삭제되어 전송됨
         Dim contents As String = "다수의 수신자에게 동일한 문자를 전송하는 예제입니다"
 
+        '광고문자 여부 (기본값 False)
+        Dim adsYN As Boolean = False
+
         '수신자정보 배열, 최대 1000건
         Dim messages As List(Of Message) = New List(Of Message)
 
-        For i As Integer = 0 To 99
+        For i As Integer = 0 To 10
             Dim msg As Message = New Message
 
             '수신번호
@@ -154,7 +159,7 @@ Public Class frmExample
         Next
 
         Try
-            Dim receiptNum As String = messageService.SendSMS(txtCorpNum.Text, sendNum, contents, messages, getReserveDT(), txtUserId.Text)
+            Dim receiptNum As String = messageService.SendSMS(txtCorpNum.Text, sendNum, contents, messages, getReserveDT(), txtUserId.Text, adsYN)
 
             MsgBox("접수번호(receiptNum) : " + receiptNum)
             txtReceiptNum.Text = receiptNum
@@ -167,7 +172,7 @@ Public Class frmExample
     Private Sub btnSendLMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendLMS_one.Click
 
         '발신번호
-        Dim sendNum As String = "070-4304-2991"
+        Dim sendNum As String = "07043042993"
 
         '발신자명
         Dim sendName As String = "발신자명"
@@ -184,9 +189,12 @@ Public Class frmExample
         '장문메시지 내용, 최대 20000byte
         Dim contents As String = "장문 메시지 내용. 최대 2000byte"
 
+        '광고문자 여부 (기본값 False)
+        Dim adsYN As Boolean = False
+
         Try
             Dim receiptNum As String = messageService.SendLMS(txtCorpNum.Text, sendNum, sendName, receiveNum, _
-                                                              receiveName, subject, contents, getReserveDT(), txtUserId.Text)
+                                                              receiveName, subject, contents, getReserveDT(), txtUserId.Text, adsYN)
 
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
@@ -198,14 +206,17 @@ Public Class frmExample
 
     Private Sub btnSendLMS_hund_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendLMS_hund.Click
 
+        '광고문자 여부 (기본값 False)
+        Dim adsYN As Boolean = False
+
         '문자전송정보 배열, 최대 1000건
         Dim messages As List(Of Message) = New List(Of Message)
 
-        For i As Integer = 0 To 99
+        For i As Integer = 0 To 10
             Dim msg As Message = New Message
 
             '발신번호
-            msg.sendNum = "07075106766"
+            msg.sendNum = "07043042993"
 
             '발신자명
             msg.senderName = "발신자명"
@@ -226,7 +237,7 @@ Public Class frmExample
         Next
 
         Try
-            Dim receiptNum As String = messageService.SendLMS(txtCorpNum.Text, messages, getReserveDT(), txtUserId.Text)
+            Dim receiptNum As String = messageService.SendLMS(txtCorpNum.Text, messages, getReserveDT(), txtUserId.Text, adsYN)
 
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
@@ -240,7 +251,7 @@ Public Class frmExample
     Private Sub btnSendLMS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendLMS_same.Click
 
         '발신번호
-        Dim sendNum As String = "070-111-2222"
+        Dim sendNum As String = "07043042993"
 
         '메시지제목
         Dim subject As String = "메시지 제목"
@@ -248,11 +259,13 @@ Public Class frmExample
         '장문메시지 내용, 최대 2000byte
         Dim contents As String = "장문메시지 내용, 최대 2000byte"
 
+        '광고문자 여부 (기본값 False)
+        Dim adsYN As Boolean = False
 
         '수신정보배열, 최대 1000건
         Dim messages As List(Of Message) = New List(Of Message)
 
-        For i As Integer = 0 To 99
+        For i As Integer = 0 To 10
             Dim msg As Message = New Message
 
             '수신번호
@@ -265,7 +278,7 @@ Public Class frmExample
         Next
 
         Try
-            Dim receiptNum As String = messageService.SendLMS(txtCorpNum.Text, sendNum, subject, contents, messages, getReserveDT(), txtUserId.Text)
+            Dim receiptNum As String = messageService.SendLMS(txtCorpNum.Text, sendNum, subject, contents, messages, getReserveDT(), txtUserId.Text, adsYN)
 
             MessageBox.Show("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
@@ -278,7 +291,7 @@ Public Class frmExample
     Private Sub btnSendXMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendXMS_one.Click
 
         '발신번호
-        Dim sendNum As String = "070-4304-2991"
+        Dim sendNum As String = "07043042993"
 
         '발신자명
         Dim sendName As String = "발신자명"
@@ -295,9 +308,12 @@ Public Class frmExample
         '장문메시지 내용, 최대 20000byte
         Dim contents As String = "장문 메시지 내용. 최대 2000byte"
 
+        '광고문자 여부 (기본값 False)
+        Dim adsYN As Boolean = False
+
         Try
             Dim receiptNum As String = messageService.SendXMS(txtCorpNum.Text, sendNum, sendName, _
-                                                              receiveNum, receiveName, subject, contents, getReserveDT(), txtUserId.Text)
+                                                              receiveNum, receiveName, subject, contents, getReserveDT(), txtUserId.Text, adsYN)
             MessageBox.Show("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
 
@@ -308,6 +324,9 @@ Public Class frmExample
 
     Private Sub btnSendXMS_hund_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendXMS_hund.Click
 
+        '광고문자 여부 (기본값 False)
+        Dim adsYN As Boolean = False
+
         '전송정보 배열, 최대 1000건
         Dim messages As List(Of Message) = New List(Of Message)
 
@@ -315,7 +334,7 @@ Public Class frmExample
             Dim msg As Message = New Message
 
             '발신번호
-            msg.sendNum = "07075106766"
+            msg.sendNum = "07043042993"
 
             '발신자명
             msg.senderName = "발신자명"
@@ -336,7 +355,7 @@ Public Class frmExample
         Next
 
         Try
-            Dim receiptNum As String = messageService.SendXMS(txtCorpNum.Text, messages, getReserveDT(), txtUserId.Text)
+            Dim receiptNum As String = messageService.SendXMS(txtCorpNum.Text, messages, getReserveDT(), txtUserId.Text, adsYN)
 
             MessageBox.Show("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
@@ -349,7 +368,7 @@ Public Class frmExample
     Private Sub btnSendXMS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendXMS_same.Click
 
         '발신번호
-        Dim sendNum As String = "070-111-2222"
+        Dim sendNum As String = "07043042993"
 
         '제목
         Dim subject As String = "메시지 제목"
@@ -357,11 +376,13 @@ Public Class frmExample
         '메시지 내용
         Dim contents As String = "길이 자동인식 전송 메시지 내용"
 
+        '광고문자 여부 (기본값 False)
+        Dim adsYN As Boolean = False
 
         '전송정보배열, 최대 1000건
         Dim messages As List(Of Message) = New List(Of Message)
 
-        For i As Integer = 0 To 99
+        For i As Integer = 0 To 10
             Dim msg As Message = New Message
 
             '수신번호
@@ -375,7 +396,7 @@ Public Class frmExample
 
         Try
 
-            Dim receiptNum As String = messageService.SendXMS(txtCorpNum.Text, sendNum, subject, contents, messages, getReserveDT(), txtUserId.Text)
+            Dim receiptNum As String = messageService.SendXMS(txtCorpNum.Text, sendNum, subject, contents, messages, getReserveDT(), txtUserId.Text, adsYN)
             MessageBox.Show("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
 
@@ -827,7 +848,7 @@ Public Class frmExample
         Dim sendName As String = "발신자명"
 
         '수신번호
-        Dim receiveNum As String = "01043245117"
+        Dim receiveNum As String = "010111222"
 
         '수신자명
         Dim receiveName As String = "수신자명칭"
@@ -835,10 +856,13 @@ Public Class frmExample
         '메시지 내용
         Dim contents As String = "단문 문자메시지 내용, 각 메시지마다 개별설정 가능."
 
+        '광고문자 여부 (기본값 False)
+        Dim adsYN As Boolean = False
+
         Try
 
             Dim receiptNum As String = messageService.SendSMS(txtCorpNum.Text, sendNum, sendName, receiveNum, receiveName, _
-                     contents, getReserveDT(), txtUserId.Text)
+                     contents, getReserveDT(), txtUserId.Text, adsYN)
 
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
@@ -854,7 +878,7 @@ Public Class frmExample
             Dim strFileName As String = fileDialog.FileName
 
             '발신번호
-            Dim sendNum As String = "070-4304-2993"
+            Dim sendNum As String = "07043042993"
 
             '발신자명
             Dim sendName As String = "발신자명"
@@ -871,9 +895,12 @@ Public Class frmExample
             '장문메시지 내용, 최대 20000byte
             Dim contents As String = "포토 메시지 내용. 최대 2000byte"
 
+            '광고문자 여부 (기본값 False)
+            Dim adsYN As Boolean = False
+
             Try
                 Dim receiptNum As String = messageService.SendMMS(txtCorpNum.Text, sendNum, receiveNum, _
-                                                                  receiveName, subject, contents, strFileName, getReserveDT(), txtUserId.Text)
+                                                                  receiveName, subject, contents, strFileName, getReserveDT(), txtUserId.Text, adsYN)
 
                 MsgBox("접수번호 : " + receiptNum)
                 txtReceiptNum.Text = receiptNum
@@ -891,7 +918,7 @@ Public Class frmExample
             Dim strFileName As String = fileDialog.FileName
 
             '발신번호
-            Dim sendNum As String = "070-4304-2993"
+            Dim sendNum As String = "07043042993"
 
             '메시지 제목
             Dim subject As String = "포토문자 전송 메시지제목"
@@ -899,11 +926,13 @@ Public Class frmExample
             '포토 문자 메시지 내용, 최대 2000byte
             Dim contents As String = "포토 문자 메시지 내용, 최대 2000byte"
 
+            '광고문자 여부 (기본값 False)
+            Dim adsYN As Boolean = False
 
             '문자전송정보 배열, 최대 1000건
             Dim messages As List(Of Message) = New List(Of Message)
 
-            For i As Integer = 0 To 99
+            For i As Integer = 0 To 10
                 Dim msg As Message = New Message
 
                 '수신번호
@@ -917,7 +946,7 @@ Public Class frmExample
 
             Try
                 Dim receiptNum As String = messageService.SendMMS(txtCorpNum.Text, sendNum, subject, contents, _
-                                                                  messages, strFileName, getReserveDT(), txtUserId.Text)
+                                                                  messages, strFileName, getReserveDT(), txtUserId.Text, adsYN)
 
                 MsgBox("접수번호 : " + receiptNum)
                 txtReceiptNum.Text = receiptNum
@@ -935,7 +964,7 @@ Public Class frmExample
             Dim strFileName As String = fileDialog.FileName
 
             '발신번호
-            Dim sendNum As String = "070-4304-2993"
+            Dim sendNum As String = "07043042993"
 
             '메시지 제목
             Dim subject As String = "포토문자 전송 메시지제목"
@@ -943,11 +972,13 @@ Public Class frmExample
             '포토 문자 메시지 내용, 최대 2000byte
             Dim contents As String = "포토 문자 메시지 내용, 최대 2000byte"
 
+            '광고문자 여부 (기본값 False)
+            Dim adsYN As Boolean = False
 
             '문자전송정보 배열, 최대 1000건
             Dim messages As List(Of Message) = New List(Of Message)
 
-            For i As Integer = 0 To 99
+            For i As Integer = 0 To 10
                 Dim msg As Message = New Message
 
                 '수신번호
@@ -961,7 +992,7 @@ Public Class frmExample
 
             Try
                 Dim receiptNum As String = messageService.SendMMS(txtCorpNum.Text, sendNum, subject, contents, _
-                                                                  messages, strFileName, getReserveDT(), txtUserId.Text)
+                                                                  messages, strFileName, getReserveDT(), txtUserId.Text, adsYN)
 
                 MsgBox("접수번호 : " + receiptNum)
                 txtReceiptNum.Text = receiptNum
