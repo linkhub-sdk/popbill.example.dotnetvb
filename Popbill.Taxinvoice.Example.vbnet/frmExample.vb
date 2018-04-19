@@ -2576,7 +2576,7 @@ Public Class frmExample
         End Try
     End Sub
     '=========================================================================
-    '팝빌에서 작성한 세금계산서에 파트너 문서관리번호를 할당합니다.
+    '팝빌사이트 에서 작성한 세금계산서에 파트너 문서관리번호를 할당합니다.
     '문서관리번호가 존재하지 않는 세금계산서만 할당이 가능합니다.
     '=========================================================================
     Private Sub btnAssignMgtKey_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAssignMgtKey.Click
