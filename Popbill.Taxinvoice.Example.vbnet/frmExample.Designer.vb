@@ -134,6 +134,7 @@ Partial Class frmExample
         Me.txtMgtKey = New System.Windows.Forms.TextBox
         Me.Label3 = New System.Windows.Forms.Label
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
+        Me.btnAssignMgtKey = New System.Windows.Forms.Button
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -475,7 +476,7 @@ Partial Class frmExample
         Me.GroupBox7.Controls.Add(Me.Label3)
         Me.GroupBox7.Location = New System.Drawing.Point(12, 213)
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(907, 491)
+        Me.GroupBox7.Size = New System.Drawing.Size(907, 519)
         Me.GroupBox7.TabIndex = 6
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "전자세금계산서 관련 API"
@@ -830,6 +831,7 @@ Partial Class frmExample
         '
         'GroupBox11
         '
+        Me.GroupBox11.Controls.Add(Me.btnAssignMgtKey)
         Me.GroupBox11.Controls.Add(Me.Button1)
         Me.GroupBox11.Controls.Add(Me.btnAttachStatement)
         Me.GroupBox11.Controls.Add(Me.btnSendFAX)
@@ -837,7 +839,7 @@ Partial Class frmExample
         Me.GroupBox11.Controls.Add(Me.btnSendEmail)
         Me.GroupBox11.Location = New System.Drawing.Point(313, 285)
         Me.GroupBox11.Name = "GroupBox11"
-        Me.GroupBox11.Size = New System.Drawing.Size(114, 181)
+        Me.GroupBox11.Size = New System.Drawing.Size(114, 212)
         Me.GroupBox11.TabIndex = 10
         Me.GroupBox11.TabStop = False
         Me.GroupBox11.Text = "부가서비스"
@@ -1341,11 +1343,20 @@ Partial Class frmExample
         '
         Me.fileDialog.FileName = "OpenFileDialog1"
         '
+        'btnAssignMgtKey
+        '
+        Me.btnAssignMgtKey.Location = New System.Drawing.Point(7, 177)
+        Me.btnAssignMgtKey.Name = "btnAssignMgtKey"
+        Me.btnAssignMgtKey.Size = New System.Drawing.Size(101, 26)
+        Me.btnAssignMgtKey.TabIndex = 13
+        Me.btnAssignMgtKey.Text = "관리번호 할당"
+        Me.btnAssignMgtKey.UseVisualStyleBackColor = True
+        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1202, 716)
+        Me.ClientSize = New System.Drawing.Size(1201, 754)
         Me.Controls.Add(Me.GroupBox7)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.txtUserId)
@@ -1491,5 +1502,6 @@ Partial Class frmExample
     Friend WithEvents btnSearch As System.Windows.Forms.Button
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents btnAttachStatement As System.Windows.Forms.Button
+    Friend WithEvents btnAssignMgtKey As System.Windows.Forms.Button
 
 End Class

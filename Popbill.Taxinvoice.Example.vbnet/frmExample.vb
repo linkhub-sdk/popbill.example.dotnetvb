@@ -2575,4 +2575,26 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
         End Try
     End Sub
+    '=========================================================================
+    '팝빌에서 작성한 세금계산서에 파트너 문서관리번호를 할당합니다.
+    '문서관리번호가 존재하지 않는 세금계산서만 할당이 가능합니다.
+    '=========================================================================
+    Private Sub btnAssignMgtKey_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAssignMgtKey.Click
+
+        Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
+
+        '세금계산서 아이템키, 목록조회(Search) API의 반환항목중 ItemKey 참조
+        Dim itemKey As String = "018041823295700001"
+
+        '할당할 문서관리번호, 숫자, 영문, '-', '_' 조합으로 
+        '~24자리까지 사업자번호별 중복없는 고유번호 할당
+        Dim mgtKey As String = "20180419A"
+
+        Try
+            Dim response As Response = taxinvoiceService.AssignMgtKey(txtCorpNum.Text, KeyType, itemKey, mgtKey, txtUserId.Text)
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
 End Class
