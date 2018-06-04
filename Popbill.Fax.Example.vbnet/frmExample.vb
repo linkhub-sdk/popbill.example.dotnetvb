@@ -204,6 +204,7 @@ Public Class frmExample
     Private Sub btnSenFax_4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSenFax_4.Click
         Dim filepaths As List(Of String) = New List(Of String)
 
+        '팩스전송파일, 최대 20개
         Do While fileDialog.ShowDialog(Me) = DialogResult.OK
             filepaths.Add(fileDialog.FileName)
         Loop
