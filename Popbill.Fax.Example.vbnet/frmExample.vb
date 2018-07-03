@@ -54,7 +54,7 @@ Public Class frmExample
 
             MsgBox(response.message)
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
         End Try
     End Sub
@@ -70,7 +70,7 @@ Public Class frmExample
             MsgBox(url)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
         End Try
     End Sub
@@ -85,7 +85,7 @@ Public Class frmExample
             dataGridView1.DataSource = ResultList
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
         End Try
     End Sub
@@ -112,15 +112,19 @@ Public Class frmExample
             '팩스제목, 팩스내용에는 미기재, 전송내역 목록확인용
             Dim title As String = "팩스전송제목"
 
+            ' 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
+            ' 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            Dim requestNum = ""
+
             Try
                 Dim receiptNum As String = faxService.SendFAX(txtCorpNum.Text, sendNum, receiveNum, receiveName, _
-                                                              strFileName, getReserveDT(), txtUserId.Text, adsYN, title)
+                                                              strFileName, getReserveDT(), txtUserId.Text, adsYN, title, requestNum)
 
                 MsgBox("접수번호 : " + receiptNum)
                 txtReceiptNum.Text = receiptNum
 
             Catch ex As PopbillException
-                MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+                MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
             End Try
         End If
     End Sub
@@ -149,14 +153,18 @@ Public Class frmExample
             '팩스제목, 팩스내용에는 미기재, 전송내역목록 확인용
             Dim title As String = "팩스전송 제목"
 
+            ' 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
+            ' 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            Dim requestNum = ""
+
             Try
                 Dim receiptNum As String = faxService.SendFAX(txtCorpNum.Text, sendNum, receivers, strFileName, _
-                                                              getReserveDT(), txtUserId.Text, adsYN, title)
+                                                              getReserveDT(), txtUserId.Text, adsYN, title, requestNum)
                 MsgBox("접수번호 : " + receiptNum)
                 txtReceiptNum.Text = receiptNum
 
             Catch ex As PopbillException
-                MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+                MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
             End Try
 
         End If
@@ -187,15 +195,19 @@ Public Class frmExample
             '팩스 제목, 팩스내용에는 기재되지 않음, 팩스전송내역 확인용
             Dim title As String = ""
 
+            ' 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
+            ' 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            Dim requestNum = ""
+
             Try
                 Dim receiptNum As String = faxService.SendFAX(txtCorpNum.Text, sendNum, receiveNum, receiveName, _
-                                                              filepaths, getReserveDT(), txtUserId.Text, adsYN, title)
+                                                              filepaths, getReserveDT(), txtUserId.Text, adsYN, title, requestNum)
 
                 MsgBox("접수번호 : " + receiptNum)
                 txtReceiptNum.Text = receiptNum
 
             Catch ex As PopbillException
-                MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+                MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
             End Try
 
         End If
@@ -230,14 +242,18 @@ Public Class frmExample
             '팩스제목, 팩스내용에는 미기재, 전송내역목록 확인용
             Dim title As String = "팩스전송 제목"
 
+            ' 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
+            ' 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            Dim requestNum = ""
+
             Try
                 Dim receiptNum As String = faxService.SendFAX(txtCorpNum.Text, sendNum, receivers, filepaths, _
-                                                              getReserveDT(), txtUserId.Text, adsYN, title)
+                                                              getReserveDT(), txtUserId.Text, adsYN, title, requestNum)
 
                 MsgBox("접수번호 : " + receiptNum)
                 txtReceiptNum.Text = receiptNum
             Catch ex As PopbillException
-                MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+                MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
             End Try
 
         End If
@@ -254,7 +270,7 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -268,7 +284,7 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -323,7 +339,7 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
         End Try
     End Sub
@@ -342,7 +358,7 @@ Public Class frmExample
             MsgBox(tmp)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -356,7 +372,7 @@ Public Class frmExample
             MsgBox("세금계산서 발행단가(unitCost) : " + unitCost.ToString())
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
         End Try
     End Sub
@@ -373,7 +389,7 @@ Public Class frmExample
             MsgBox("연동회원 잔여포인트 : " + remainPoint.ToString())
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
         End Try
     End Sub
@@ -388,7 +404,7 @@ Public Class frmExample
 
             MsgBox(url)
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
 
     End Sub
@@ -405,7 +421,7 @@ Public Class frmExample
             MsgBox("파트너 잔여포인트 : " + remainPoint.ToString())
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -419,7 +435,7 @@ Public Class frmExample
 
             MsgBox(url)
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -433,7 +449,7 @@ Public Class frmExample
 
             MsgBox(url)
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -470,7 +486,7 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
         End Try
     End Sub
@@ -492,7 +508,7 @@ Public Class frmExample
             MsgBox(tmp)
         Catch ex As PopbillException
 
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -527,7 +543,7 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
         End Try
     End Sub
@@ -549,7 +565,7 @@ Public Class frmExample
             MsgBox(tmp)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
         End Try
     End Sub
@@ -582,7 +598,7 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
         End Try
     End Sub
@@ -637,7 +653,7 @@ Public Class frmExample
             MsgBox(tmp)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
         End Try
     End Sub
@@ -664,7 +680,7 @@ Public Class frmExample
         '재전송 수신자명 (미기재시 기존 수신자명으로 전송)
         Dim receiveName As String = ""
 
-        '팩스제목, 팩스내용에는 미기재, 전송내역목록 화깅ㄴ용
+        '팩스제목, 팩스내용에는 미기재, 전송내역목록 확인용
         Dim title As String = "팩스전송 제목"
 
         Try
@@ -675,7 +691,7 @@ Public Class frmExample
             txtReceiptNum.Text = receiptNum
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -720,7 +736,7 @@ Public Class frmExample
             txtReceiptNum.Text = receiptNum
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
 
 
@@ -741,7 +757,7 @@ Public Class frmExample
             MsgBox(tmp)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -755,8 +771,114 @@ Public Class frmExample
 
             MsgBox(url)
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
+    '=========================================================================
+    ' 팩스전송 요청시 기재한 요청번호(requestNum)를 이용하여 전송결과 정보를 확인합니다.
+    '=========================================================================
+    Private Sub btnGetFaxResultRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFaxResultRN.Click
+        Try
+            Dim ResultList As List(Of FaxResult) = faxService.GetFaxResultRN(txtCorpNum.Text, txtRequestNum.Text)
 
+            dataGridView1.DataSource = ResultList
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+    '=========================================================================
+    ' 팩스전송 요청시 기재한 요청번호(requestNum)를 이용하여 예약전송건을 취소처리 합니다.
+    ' - 예약전송 취소는 전송예약시간 10분전까지만 가능합니다.
+    '=========================================================================
+    Private Sub btnCancelReserveRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelReserveRN.Click
+        Try
+            Dim response As Response
+
+            response = faxService.CancelReserveRN(txtCorpNum.Text, txtRequestNum.Text, txtUserId.Text)
+
+            MsgBox(response.message)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+    '=========================================================================
+    ' 팩스전송 요청시 기재한 요청번호(requestNum)를 이용하여 팩스 재전송을 요청합니다.
+    '=========================================================================
+    Private Sub btnResendFAXRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnResendFAXRN.Click
+        Try
+            ' 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
+            ' 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            Dim requestNum = ""
+
+            '재전송 발신번호 (미기재시 기존 발신번호으로 전송 )
+            Dim sendNum As String = ""
+
+            '재전송 발신자명 (미기재시 기존 발신자명으로 전송)
+            Dim sendName As String = ""
+
+            '재전송 수신번호 (미기재시 기존 수신번호로 전송)
+            Dim receiveNum As String = ""
+
+            '재전송 수신자명 (미기재시 기존 수신자명으로 전송)
+            Dim receiveName As String = ""
+
+            '팩스제목, 팩스내용에는 미기재, 전송내역목록 확인용
+            Dim title As String = "팩스전송 제목"
+
+            Try
+                Dim receiptNum As String = faxService.ResendFAXRN(txtCorpNum.Text, txtRequestNum.Text, requestNum, sendNum, sendName, _
+                                                                  receiveNum, receiveName, getReserveDT, txtUserId.Text, title)
+
+                MsgBox("접수번호 : " + receiptNum)
+                txtReceiptNum.Text = receiptNum
+
+            Catch ex As PopbillException
+                MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+            End Try
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+    '=========================================================================
+    ' 팩스전송 요청시 기재한 요청번호(requestNum)를 이용하여 팩스 재전송을 요청합니다.
+    '=========================================================================
+    Private Sub btnResendFAXRN_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnResendFAXRN_same.Click
+        ' 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
+        ' 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+        Dim requestNum = ""
+
+        '재전송 발신번호 (미기재시 기존 발신번호으로 전송 )
+        Dim sendNum As String = ""
+
+        '재전송 발신자명 (미기재시 기존 발신자명으로 전송)
+        Dim sendName As String = ""
+
+        '수신정보배열, 최대 1000건
+        Dim receivers As List(Of FaxReceiver) = New List(Of FaxReceiver)
+
+        For i As Integer = 0 To 99
+            Dim receiver As FaxReceiver = New FaxReceiver
+
+            '수신팩스번호
+            receiver.receiveNum = "070-111-222"
+
+            '수신자명
+            receiver.receiveName = "수신자명칭_" + CStr(i)
+            receivers.Add(receiver)
+        Next i
+
+        '팩스전송 제목, 팩스내용에는 미기재 전송내역 목록확인용
+        Dim title As String = "팩스전송 제목"
+
+        Try
+            Dim receiptNum As String = faxService.ResendFAXRN(txtCorpNum.Text, txtRequestNum.Text, requestNum, sendNum, _
+                                                              sendName, receivers, getReserveDT, txtUserId.Text, title)
+
+            MsgBox("접수번호 : " + receiptNum)
+            txtReceiptNum.Text = receiptNum
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
 End Class

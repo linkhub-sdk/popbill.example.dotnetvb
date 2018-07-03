@@ -70,6 +70,14 @@ Partial Class frmExample
         Me.Label2 = New System.Windows.Forms.Label
         Me.txtCorpNum = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
+        Me.GroupBox9 = New System.Windows.Forms.GroupBox
+        Me.btnResendFAXRN_same = New System.Windows.Forms.Button
+        Me.btnResendFAXRN = New System.Windows.Forms.Button
+        Me.btnCancelReserveRN = New System.Windows.Forms.Button
+        Me.btnGetFaxResultRN = New System.Windows.Forms.Button
+        Me.txtRequestNum = New System.Windows.Forms.TextBox
+        Me.Label5 = New System.Windows.Forms.Label
+        Me.GroupBox10 = New System.Windows.Forms.GroupBox
         CType(Me.dataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.groupBox4.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
@@ -86,7 +94,7 @@ Partial Class frmExample
         '
         'btnCancelReserve
         '
-        Me.btnCancelReserve.Location = New System.Drawing.Point(347, 112)
+        Me.btnCancelReserve.Location = New System.Drawing.Point(145, 133)
         Me.btnCancelReserve.Name = "btnCancelReserve"
         Me.btnCancelReserve.Size = New System.Drawing.Size(121, 34)
         Me.btnCancelReserve.TabIndex = 22
@@ -105,10 +113,10 @@ Partial Class frmExample
         'dataGridView1
         '
         Me.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dataGridView1.Location = New System.Drawing.Point(12, 149)
+        Me.dataGridView1.Location = New System.Drawing.Point(12, 219)
         Me.dataGridView1.Name = "dataGridView1"
         Me.dataGridView1.RowTemplate.Height = 21
-        Me.dataGridView1.Size = New System.Drawing.Size(815, 283)
+        Me.dataGridView1.Size = New System.Drawing.Size(884, 213)
         Me.dataGridView1.TabIndex = 23
         '
         'txtReserveDT
@@ -120,15 +128,15 @@ Partial Class frmExample
         '
         'txtReceiptNum
         '
-        Me.txtReceiptNum.Location = New System.Drawing.Point(71, 120)
+        Me.txtReceiptNum.Location = New System.Drawing.Point(86, 108)
         Me.txtReceiptNum.Name = "txtReceiptNum"
-        Me.txtReceiptNum.Size = New System.Drawing.Size(143, 21)
+        Me.txtReceiptNum.Size = New System.Drawing.Size(173, 21)
         Me.txtReceiptNum.TabIndex = 17
         '
         'label4
         '
         Me.label4.AutoSize = True
-        Me.label4.Location = New System.Drawing.Point(10, 124)
+        Me.label4.Location = New System.Drawing.Point(22, 112)
         Me.label4.Name = "label4"
         Me.label4.Size = New System.Drawing.Size(65, 12)
         Me.label4.TabIndex = 16
@@ -136,7 +144,7 @@ Partial Class frmExample
         '
         'btnGetFaxResult
         '
-        Me.btnGetFaxResult.Location = New System.Drawing.Point(222, 112)
+        Me.btnGetFaxResult.Location = New System.Drawing.Point(18, 133)
         Me.btnGetFaxResult.Name = "btnGetFaxResult"
         Me.btnGetFaxResult.Size = New System.Drawing.Size(121, 34)
         Me.btnGetFaxResult.TabIndex = 21
@@ -154,12 +162,19 @@ Partial Class frmExample
         '
         'groupBox4
         '
+        Me.groupBox4.Controls.Add(Me.btnResendFAXRN_same)
         Me.groupBox4.Controls.Add(Me.btnResendFAX_Multi)
+        Me.groupBox4.Controls.Add(Me.btnResendFAXRN)
         Me.groupBox4.Controls.Add(Me.btnResendFAX)
+        Me.groupBox4.Controls.Add(Me.btnCancelReserveRN)
         Me.groupBox4.Controls.Add(Me.GroupBox8)
+        Me.groupBox4.Controls.Add(Me.btnGetFaxResultRN)
         Me.groupBox4.Controls.Add(Me.GroupBox7)
+        Me.groupBox4.Controls.Add(Me.txtRequestNum)
         Me.groupBox4.Controls.Add(Me.btnSenFax_4)
+        Me.groupBox4.Controls.Add(Me.Label5)
         Me.groupBox4.Controls.Add(Me.btnSenFax_3)
+        Me.groupBox4.Controls.Add(Me.GroupBox10)
         Me.groupBox4.Controls.Add(Me.btnSenFax_2)
         Me.groupBox4.Controls.Add(Me.btnSenFax_1)
         Me.groupBox4.Controls.Add(Me.dataGridView1)
@@ -169,6 +184,7 @@ Partial Class frmExample
         Me.groupBox4.Controls.Add(Me.label4)
         Me.groupBox4.Controls.Add(Me.txtReserveDT)
         Me.groupBox4.Controls.Add(Me.label3)
+        Me.groupBox4.Controls.Add(Me.GroupBox9)
         Me.groupBox4.Location = New System.Drawing.Point(15, 217)
         Me.groupBox4.Name = "groupBox4"
         Me.groupBox4.Size = New System.Drawing.Size(913, 449)
@@ -178,18 +194,18 @@ Partial Class frmExample
         '
         'btnResendFAX_Multi
         '
-        Me.btnResendFAX_Multi.Location = New System.Drawing.Point(516, 64)
+        Me.btnResendFAX_Multi.Location = New System.Drawing.Point(145, 172)
         Me.btnResendFAX_Multi.Name = "btnResendFAX_Multi"
-        Me.btnResendFAX_Multi.Size = New System.Drawing.Size(77, 32)
+        Me.btnResendFAX_Multi.Size = New System.Drawing.Size(121, 32)
         Me.btnResendFAX_Multi.TabIndex = 36
         Me.btnResendFAX_Multi.Text = "동보 재전송"
         Me.btnResendFAX_Multi.UseVisualStyleBackColor = True
         '
         'btnResendFAX
         '
-        Me.btnResendFAX.Location = New System.Drawing.Point(433, 64)
+        Me.btnResendFAX.Location = New System.Drawing.Point(18, 171)
         Me.btnResendFAX.Name = "btnResendFAX"
-        Me.btnResendFAX.Size = New System.Drawing.Size(77, 32)
+        Me.btnResendFAX.Size = New System.Drawing.Size(121, 32)
         Me.btnResendFAX.TabIndex = 35
         Me.btnResendFAX.Text = "재전송"
         Me.btnResendFAX.UseVisualStyleBackColor = True
@@ -245,7 +261,7 @@ Partial Class frmExample
         '
         'btnSenFax_4
         '
-        Me.btnSenFax_4.Location = New System.Drawing.Point(297, 64)
+        Me.btnSenFax_4.Location = New System.Drawing.Point(297, 50)
         Me.btnSenFax_4.Name = "btnSenFax_4"
         Me.btnSenFax_4.Size = New System.Drawing.Size(113, 32)
         Me.btnSenFax_4.TabIndex = 31
@@ -254,7 +270,7 @@ Partial Class frmExample
         '
         'btnSenFax_3
         '
-        Me.btnSenFax_3.Location = New System.Drawing.Point(193, 64)
+        Me.btnSenFax_3.Location = New System.Drawing.Point(193, 50)
         Me.btnSenFax_3.Name = "btnSenFax_3"
         Me.btnSenFax_3.Size = New System.Drawing.Size(98, 32)
         Me.btnSenFax_3.TabIndex = 30
@@ -263,7 +279,7 @@ Partial Class frmExample
         '
         'btnSenFax_2
         '
-        Me.btnSenFax_2.Location = New System.Drawing.Point(99, 64)
+        Me.btnSenFax_2.Location = New System.Drawing.Point(99, 50)
         Me.btnSenFax_2.Name = "btnSenFax_2"
         Me.btnSenFax_2.Size = New System.Drawing.Size(88, 32)
         Me.btnSenFax_2.TabIndex = 29
@@ -272,7 +288,7 @@ Partial Class frmExample
         '
         'btnSenFax_1
         '
-        Me.btnSenFax_1.Location = New System.Drawing.Point(14, 64)
+        Me.btnSenFax_1.Location = New System.Drawing.Point(14, 49)
         Me.btnSenFax_1.Name = "btnSenFax_1"
         Me.btnSenFax_1.Size = New System.Drawing.Size(80, 32)
         Me.btnSenFax_1.TabIndex = 28
@@ -546,6 +562,76 @@ Partial Class frmExample
         Me.Label1.TabIndex = 24
         Me.Label1.Text = "팝빌회원 사업자번호 : "
         '
+        'GroupBox9
+        '
+        Me.GroupBox9.Location = New System.Drawing.Point(14, 88)
+        Me.GroupBox9.Name = "GroupBox9"
+        Me.GroupBox9.Size = New System.Drawing.Size(264, 125)
+        Me.GroupBox9.TabIndex = 34
+        Me.GroupBox9.TabStop = False
+        Me.GroupBox9.Text = "접수번호 관련 기능 (요청번호 미할당)"
+        '
+        'btnResendFAXRN_same
+        '
+        Me.btnResendFAXRN_same.Location = New System.Drawing.Point(415, 172)
+        Me.btnResendFAXRN_same.Name = "btnResendFAXRN_same"
+        Me.btnResendFAXRN_same.Size = New System.Drawing.Size(121, 32)
+        Me.btnResendFAXRN_same.TabIndex = 43
+        Me.btnResendFAXRN_same.Text = "동보 재전송"
+        Me.btnResendFAXRN_same.UseVisualStyleBackColor = True
+        '
+        'btnResendFAXRN
+        '
+        Me.btnResendFAXRN.Location = New System.Drawing.Point(288, 171)
+        Me.btnResendFAXRN.Name = "btnResendFAXRN"
+        Me.btnResendFAXRN.Size = New System.Drawing.Size(121, 32)
+        Me.btnResendFAXRN.TabIndex = 42
+        Me.btnResendFAXRN.Text = "재전송"
+        Me.btnResendFAXRN.UseVisualStyleBackColor = True
+        '
+        'btnCancelReserveRN
+        '
+        Me.btnCancelReserveRN.Location = New System.Drawing.Point(415, 133)
+        Me.btnCancelReserveRN.Name = "btnCancelReserveRN"
+        Me.btnCancelReserveRN.Size = New System.Drawing.Size(121, 34)
+        Me.btnCancelReserveRN.TabIndex = 40
+        Me.btnCancelReserveRN.Text = "예약 전송 취소"
+        Me.btnCancelReserveRN.UseVisualStyleBackColor = True
+        '
+        'btnGetFaxResultRN
+        '
+        Me.btnGetFaxResultRN.Location = New System.Drawing.Point(288, 133)
+        Me.btnGetFaxResultRN.Name = "btnGetFaxResultRN"
+        Me.btnGetFaxResultRN.Size = New System.Drawing.Size(121, 34)
+        Me.btnGetFaxResultRN.TabIndex = 39
+        Me.btnGetFaxResultRN.Text = "전송상태확인"
+        Me.btnGetFaxResultRN.UseVisualStyleBackColor = True
+        '
+        'txtRequestNum
+        '
+        Me.txtRequestNum.Location = New System.Drawing.Point(356, 108)
+        Me.txtRequestNum.Name = "txtRequestNum"
+        Me.txtRequestNum.Size = New System.Drawing.Size(173, 21)
+        Me.txtRequestNum.TabIndex = 38
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(292, 112)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(65, 12)
+        Me.Label5.TabIndex = 37
+        Me.Label5.Text = "요청번호 : "
+        '
+        'GroupBox10
+        '
+        Me.GroupBox10.Location = New System.Drawing.Point(284, 88)
+        Me.GroupBox10.Name = "GroupBox10"
+        Me.GroupBox10.Size = New System.Drawing.Size(264, 125)
+        Me.GroupBox10.TabIndex = 41
+        Me.GroupBox10.TabStop = False
+        Me.GroupBox10.Text = "요청번호 할당 전송건 처리"
+        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
@@ -625,5 +711,13 @@ Partial Class frmExample
     Private WithEvents btnGetSenderNumberList As System.Windows.Forms.Button
     Private WithEvents btnResendFAX_Multi As System.Windows.Forms.Button
     Private WithEvents btnResendFAX As System.Windows.Forms.Button
+    Friend WithEvents GroupBox9 As System.Windows.Forms.GroupBox
+    Private WithEvents btnResendFAXRN_same As System.Windows.Forms.Button
+    Private WithEvents btnResendFAXRN As System.Windows.Forms.Button
+    Private WithEvents btnCancelReserveRN As System.Windows.Forms.Button
+    Private WithEvents btnGetFaxResultRN As System.Windows.Forms.Button
+    Friend WithEvents txtRequestNum As System.Windows.Forms.TextBox
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents GroupBox10 As System.Windows.Forms.GroupBox
 
 End Class
