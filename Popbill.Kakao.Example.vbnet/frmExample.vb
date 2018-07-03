@@ -1114,12 +1114,13 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 카카오톡 전송내역 목록을 조회한다.
+    ' 검색조건을 사용하여 카카오톡 전송내역 목록을 조회한다.
     '=========================================================================
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
         Dim State(6) As String
         Dim item(3) As String
 
+        '최대 검색기간 : 6개월 이내
         '[필수] 시작일자, yyyyMMdd
         Dim SDate As String = "20180101"
 
@@ -1154,9 +1155,12 @@ Public Class frmExample
         '정렬방향, D-내림차순(기본값), A-오름차순
         Dim Order As String = "D"
 
+        '조회 검색어, 카카오톡 전송시 기재한 수신자명 입력
+        Dim QString As String = ""
+
         Try
             Dim msgSearchList As KakaoSearchResult = kakaoService.Search(txtCorpNum.Text, SDate, EDate, State, _
-                                                                       item, ReserveYN, SenderYN, Order, Page, PerPage)
+                                                                       item, ReserveYN, SenderYN, Order, Page, PerPage, txtUserId.Text, QString)
 
             Dim tmp As String
 

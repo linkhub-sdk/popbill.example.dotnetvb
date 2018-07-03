@@ -1094,11 +1094,12 @@ Public Class frmExample
         Dim State(4) As String
         Dim item(3) As String
 
+        '최대 검색기간 : 6개월 이내
         '[필수] 시작일자, yyyyMMdd
-        Dim SDate As String = "20170701"
+        Dim SDate As String = "20180501"
 
         '[필수] 종료일자, yyyyMMdd
-        Dim EDate As String = "20171231"
+        Dim EDate As String = "20180631"
 
         '전송상태값 배열, 1-대기, 2-성공, 3-실패, 4-취소
         State(0) = "1"
@@ -1126,11 +1127,12 @@ Public Class frmExample
         '정렬방향, D-내림차순(기본값), A-오름차순
         Dim Order As String = "D"
 
-
+        '조회 검색어, 문자 전송시 기재한 수신자명 또는 발신자명 입력
+        Dim QString As String = ""
 
         Try
             Dim msgSearchList As MSGSearchResult = messageService.Search(txtCorpNum.Text, SDate, EDate, State, _
-                                                                       item, ReserveYN, SenderYN, Order, Page, PerPage)
+                                                                       item, ReserveYN, SenderYN, Order, Page, PerPage, QString)
 
 
             Dim tmp As String
