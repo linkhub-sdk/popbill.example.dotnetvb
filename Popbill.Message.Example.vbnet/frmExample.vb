@@ -1123,4 +1123,23 @@ Public Class frmExample
         End Try
     End Sub
 
+    '=========================================================================
+    ' 문자 전송내역 요약정보를 확인 합니다.
+    '=========================================================================
+    Private Sub btnGetStates_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetStates.Click
+        Dim ReciptNumList As List(Of String) = New List(Of String)
+
+        '문자전송 접수번호
+        ReciptNumList.Add("018041717000000018")
+        ReciptNumList.Add("018041717000000019")
+
+        Try
+            Dim resultList As List(Of MessageState) = messageService.GetStates(txtCorpNum.Text, ReciptNumList, txtUserId.Text)
+
+            dataGridView1.DataSource = resultList
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
 End Class

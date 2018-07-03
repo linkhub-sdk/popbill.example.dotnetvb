@@ -84,6 +84,7 @@ Partial Class frmExample
         Me.txtCorpNum = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
+        Me.btnGetStates = New System.Windows.Forms.Button
         Me.groupBox7.SuspendLayout()
         Me.groupBox8.SuspendLayout()
         CType(Me.dataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -190,7 +191,7 @@ Partial Class frmExample
         '
         'btnGetURL
         '
-        Me.btnGetURL.Location = New System.Drawing.Point(592, 18)
+        Me.btnGetURL.Location = New System.Drawing.Point(676, 18)
         Me.btnGetURL.Name = "btnGetURL"
         Me.btnGetURL.Size = New System.Drawing.Size(132, 33)
         Me.btnGetURL.TabIndex = 20
@@ -289,6 +290,7 @@ Partial Class frmExample
         '
         'groupBox4
         '
+        Me.groupBox4.Controls.Add(Me.btnGetStates)
         Me.groupBox4.Controls.Add(Me.GroupBox11)
         Me.groupBox4.Controls.Add(Me.GroupBox10)
         Me.groupBox4.Controls.Add(Me.btnSearch)
@@ -381,7 +383,7 @@ Partial Class frmExample
         '
         'btnSearch
         '
-        Me.btnSearch.Location = New System.Drawing.Point(454, 18)
+        Me.btnSearch.Location = New System.Drawing.Point(396, 18)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(132, 33)
         Me.btnSearch.TabIndex = 25
@@ -390,7 +392,7 @@ Partial Class frmExample
         '
         'btnGetAutoDenyList
         '
-        Me.btnGetAutoDenyList.Location = New System.Drawing.Point(730, 18)
+        Me.btnGetAutoDenyList.Location = New System.Drawing.Point(814, 19)
         Me.btnGetAutoDenyList.Name = "btnGetAutoDenyList"
         Me.btnGetAutoDenyList.Size = New System.Drawing.Size(132, 33)
         Me.btnGetAutoDenyList.TabIndex = 24
@@ -704,6 +706,15 @@ Partial Class frmExample
         '
         Me.fileDialog.FileName = "fileDialog"
         '
+        'btnGetStates
+        '
+        Me.btnGetStates.Location = New System.Drawing.Point(537, 18)
+        Me.btnGetStates.Name = "btnGetStates"
+        Me.btnGetStates.Size = New System.Drawing.Size(132, 33)
+        Me.btnGetStates.TabIndex = 28
+        Me.btnGetStates.Text = "전송내역 요약정보"
+        Me.btnGetStates.UseVisualStyleBackColor = True
+        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
@@ -800,5 +811,6 @@ Partial Class frmExample
     Private WithEvents btnSendMMS_same As System.Windows.Forms.Button
     Private WithEvents btnSendMMS_hundered As System.Windows.Forms.Button
     Private WithEvents btnSendMMS_one As System.Windows.Forms.Button
+    Private WithEvents btnGetStates As System.Windows.Forms.Button
 
 End Class
