@@ -87,6 +87,7 @@ Partial Class frmExample
         Me.btnGetPrintURL = New System.Windows.Forms.Button
         Me.btnGetPopUpURL = New System.Windows.Forms.Button
         Me.GroupBox11 = New System.Windows.Forms.GroupBox
+        Me.btnAssignMgtKey = New System.Windows.Forms.Button
         Me.Button1 = New System.Windows.Forms.Button
         Me.btnAttachStatement = New System.Windows.Forms.Button
         Me.btnSendFAX = New System.Windows.Forms.Button
@@ -134,7 +135,9 @@ Partial Class frmExample
         Me.txtMgtKey = New System.Windows.Forms.TextBox
         Me.Label3 = New System.Windows.Forms.Label
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
-        Me.btnAssignMgtKey = New System.Windows.Forms.Button
+        Me.GroupBox19 = New System.Windows.Forms.GroupBox
+        Me.btnUpdateEmailConfig = New System.Windows.Forms.Button
+        Me.btnListEmailConfig = New System.Windows.Forms.Button
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -153,6 +156,7 @@ Partial Class frmExample
         Me.GroupBox10.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
+        Me.GroupBox19.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnGetPopbillURL_CERT
@@ -200,6 +204,7 @@ Partial Class frmExample
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.GroupBox19)
         Me.GroupBox1.Controls.Add(Me.GroupBox17)
         Me.GroupBox1.Controls.Add(Me.GroupBox16)
         Me.GroupBox1.Controls.Add(Me.GroupBox15)
@@ -210,7 +215,7 @@ Partial Class frmExample
         Me.GroupBox1.Controls.Add(Me.GroupBox2)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 41)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1168, 155)
+        Me.GroupBox1.Size = New System.Drawing.Size(1309, 155)
         Me.GroupBox1.TabIndex = 5
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "팝빌 기본 API"
@@ -844,6 +849,15 @@ Partial Class frmExample
         Me.GroupBox11.TabStop = False
         Me.GroupBox11.Text = "부가서비스"
         '
+        'btnAssignMgtKey
+        '
+        Me.btnAssignMgtKey.Location = New System.Drawing.Point(7, 177)
+        Me.btnAssignMgtKey.Name = "btnAssignMgtKey"
+        Me.btnAssignMgtKey.Size = New System.Drawing.Size(101, 26)
+        Me.btnAssignMgtKey.TabIndex = 13
+        Me.btnAssignMgtKey.Text = "관리번호 할당"
+        Me.btnAssignMgtKey.UseVisualStyleBackColor = True
+        '
         'Button1
         '
         Me.Button1.Location = New System.Drawing.Point(8, 146)
@@ -1343,20 +1357,40 @@ Partial Class frmExample
         '
         Me.fileDialog.FileName = "OpenFileDialog1"
         '
-        'btnAssignMgtKey
+        'GroupBox19
         '
-        Me.btnAssignMgtKey.Location = New System.Drawing.Point(7, 177)
-        Me.btnAssignMgtKey.Name = "btnAssignMgtKey"
-        Me.btnAssignMgtKey.Size = New System.Drawing.Size(101, 26)
-        Me.btnAssignMgtKey.TabIndex = 13
-        Me.btnAssignMgtKey.Text = "관리번호 할당"
-        Me.btnAssignMgtKey.UseVisualStyleBackColor = True
+        Me.GroupBox19.Controls.Add(Me.btnUpdateEmailConfig)
+        Me.GroupBox19.Controls.Add(Me.btnListEmailConfig)
+        Me.GroupBox19.Location = New System.Drawing.Point(1162, 17)
+        Me.GroupBox19.Name = "GroupBox19"
+        Me.GroupBox19.Size = New System.Drawing.Size(134, 125)
+        Me.GroupBox19.TabIndex = 9
+        Me.GroupBox19.TabStop = False
+        Me.GroupBox19.Text = "알림메일 관련"
+        '
+        'btnUpdateEmailConfig
+        '
+        Me.btnUpdateEmailConfig.Location = New System.Drawing.Point(6, 52)
+        Me.btnUpdateEmailConfig.Name = "btnUpdateEmailConfig"
+        Me.btnUpdateEmailConfig.Size = New System.Drawing.Size(122, 30)
+        Me.btnUpdateEmailConfig.TabIndex = 8
+        Me.btnUpdateEmailConfig.Text = "전송설정 수정"
+        Me.btnUpdateEmailConfig.UseVisualStyleBackColor = True
+        '
+        'btnListEmailConfig
+        '
+        Me.btnListEmailConfig.Location = New System.Drawing.Point(6, 18)
+        Me.btnListEmailConfig.Name = "btnListEmailConfig"
+        Me.btnListEmailConfig.Size = New System.Drawing.Size(122, 30)
+        Me.btnListEmailConfig.TabIndex = 7
+        Me.btnListEmailConfig.Text = "전송목록 조회"
+        Me.btnListEmailConfig.UseVisualStyleBackColor = True
         '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1201, 754)
+        Me.ClientSize = New System.Drawing.Size(1336, 754)
         Me.Controls.Add(Me.GroupBox7)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.txtUserId)
@@ -1386,6 +1420,7 @@ Partial Class frmExample
         Me.GroupBox10.PerformLayout()
         Me.GroupBox9.ResumeLayout(False)
         Me.GroupBox8.ResumeLayout(False)
+        Me.GroupBox19.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1503,5 +1538,8 @@ Partial Class frmExample
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents btnAttachStatement As System.Windows.Forms.Button
     Friend WithEvents btnAssignMgtKey As System.Windows.Forms.Button
+    Friend WithEvents GroupBox19 As System.Windows.Forms.GroupBox
+    Friend WithEvents btnUpdateEmailConfig As System.Windows.Forms.Button
+    Friend WithEvents btnListEmailConfig As System.Windows.Forms.Button
 
 End Class

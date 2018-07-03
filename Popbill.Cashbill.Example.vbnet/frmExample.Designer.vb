@@ -27,10 +27,26 @@ Partial Class frmExample
         Me.Label2 = New System.Windows.Forms.Label
         Me.txtUserId = New System.Windows.Forms.TextBox
         Me.GroupBox7 = New System.Windows.Forms.GroupBox
+        Me.Label4 = New System.Windows.Forms.Label
         Me.GroupBox13 = New System.Windows.Forms.GroupBox
         Me.btnGetURL_WRITE = New System.Windows.Forms.Button
         Me.btnGetURL_PBOX = New System.Windows.Forms.Button
         Me.btnGetURL_TBOX = New System.Windows.Forms.Button
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox
+        Me.btnRevokeRegistIssue_part = New System.Windows.Forms.Button
+        Me.btnCancelIssue02 = New System.Windows.Forms.Button
+        Me.btnDelete02 = New System.Windows.Forms.Button
+        Me.panel2 = New System.Windows.Forms.Panel
+        Me.panel1 = New System.Windows.Forms.Panel
+        Me.btnRevokRegistIssue = New System.Windows.Forms.Button
+        Me.label11 = New System.Windows.Forms.Label
+        Me.groupBox10 = New System.Windows.Forms.GroupBox
+        Me.btnCancelIssueSub = New System.Windows.Forms.Button
+        Me.btnRegistIssue = New System.Windows.Forms.Button
+        Me.btnDeleteSub = New System.Windows.Forms.Button
+        Me.Label8 = New System.Windows.Forms.Label
+        Me.Label10 = New System.Windows.Forms.Label
+        Me.Label12 = New System.Windows.Forms.Label
         Me.GroupBox12 = New System.Windows.Forms.GroupBox
         Me.btnGetEmailURL = New System.Windows.Forms.Button
         Me.btnGetMassPrintURL = New System.Windows.Forms.Button
@@ -42,6 +58,7 @@ Partial Class frmExample
         Me.btnSendSMS = New System.Windows.Forms.Button
         Me.btnSendEmail = New System.Windows.Forms.Button
         Me.GroupBox9 = New System.Windows.Forms.GroupBox
+        Me.btnSearch = New System.Windows.Forms.Button
         Me.btnGetInfos = New System.Windows.Forms.Button
         Me.btnGetLogs = New System.Windows.Forms.Button
         Me.btnGetInfo = New System.Windows.Forms.Button
@@ -72,25 +89,13 @@ Partial Class frmExample
         Me.btnCheckID = New System.Windows.Forms.Button
         Me.btnCheckIsMember = New System.Windows.Forms.Button
         Me.btnJoinMember = New System.Windows.Forms.Button
-        Me.Label4 = New System.Windows.Forms.Label
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox
-        Me.btnRevokeRegistIssue_part = New System.Windows.Forms.Button
-        Me.btnCancelIssue02 = New System.Windows.Forms.Button
-        Me.btnDelete02 = New System.Windows.Forms.Button
-        Me.panel2 = New System.Windows.Forms.Panel
-        Me.panel1 = New System.Windows.Forms.Panel
-        Me.btnRevokRegistIssue = New System.Windows.Forms.Button
-        Me.label11 = New System.Windows.Forms.Label
-        Me.groupBox10 = New System.Windows.Forms.GroupBox
-        Me.btnCancelIssueSub = New System.Windows.Forms.Button
-        Me.btnRegistIssue = New System.Windows.Forms.Button
-        Me.btnDeleteSub = New System.Windows.Forms.Button
-        Me.Label8 = New System.Windows.Forms.Label
-        Me.Label10 = New System.Windows.Forms.Label
-        Me.Label12 = New System.Windows.Forms.Label
-        Me.btnSearch = New System.Windows.Forms.Button
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox
+        Me.btnUpdateEmailConfig = New System.Windows.Forms.Button
+        Me.btnListEmailConfig = New System.Windows.Forms.Button
         Me.GroupBox7.SuspendLayout()
         Me.GroupBox13.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
+        Me.groupBox10.SuspendLayout()
         Me.GroupBox12.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
@@ -102,8 +107,7 @@ Partial Class frmExample
         Me.GroupBox18.SuspendLayout()
         Me.GroupBox19.SuspendLayout()
         Me.GroupBox20.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
-        Me.groupBox10.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -159,6 +163,15 @@ Partial Class frmExample
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "현금영수증 관련 API"
         '
+        'Label4
+        '
+        Me.Label4.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label4.Location = New System.Drawing.Point(273, 45)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(291, 28)
+        Me.Label4.TabIndex = 23
+        Me.Label4.Text = "국세청에 전송이 완료된 현금영수증을 취소하는 경우에는 '취소현금영수증'을 발행해야 합니다."
+        '
         'GroupBox13
         '
         Me.GroupBox13.Controls.Add(Me.btnGetURL_WRITE)
@@ -197,6 +210,171 @@ Partial Class frmExample
         Me.btnGetURL_TBOX.TabIndex = 8
         Me.btnGetURL_TBOX.Text = "임시문서함"
         Me.btnGetURL_TBOX.UseVisualStyleBackColor = True
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.btnRevokeRegistIssue_part)
+        Me.GroupBox1.Controls.Add(Me.btnCancelIssue02)
+        Me.GroupBox1.Controls.Add(Me.btnDelete02)
+        Me.GroupBox1.Controls.Add(Me.panel2)
+        Me.GroupBox1.Controls.Add(Me.panel1)
+        Me.GroupBox1.Controls.Add(Me.btnRevokRegistIssue)
+        Me.GroupBox1.Controls.Add(Me.label11)
+        Me.GroupBox1.Location = New System.Drawing.Point(270, 77)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(277, 140)
+        Me.GroupBox1.TabIndex = 22
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "취소현금영수증 즉시발행 프로세스"
+        '
+        'btnRevokeRegistIssue_part
+        '
+        Me.btnRevokeRegistIssue_part.BackColor = System.Drawing.Color.LightCoral
+        Me.btnRevokeRegistIssue_part.Location = New System.Drawing.Point(164, 24)
+        Me.btnRevokeRegistIssue_part.Name = "btnRevokeRegistIssue_part"
+        Me.btnRevokeRegistIssue_part.Size = New System.Drawing.Size(69, 28)
+        Me.btnRevokeRegistIssue_part.TabIndex = 14
+        Me.btnRevokeRegistIssue_part.Text = "부분취소"
+        Me.btnRevokeRegistIssue_part.UseVisualStyleBackColor = False
+        '
+        'btnCancelIssue02
+        '
+        Me.btnCancelIssue02.BackColor = System.Drawing.Color.LightCoral
+        Me.btnCancelIssue02.Location = New System.Drawing.Point(21, 105)
+        Me.btnCancelIssue02.Name = "btnCancelIssue02"
+        Me.btnCancelIssue02.Size = New System.Drawing.Size(65, 30)
+        Me.btnCancelIssue02.TabIndex = 11
+        Me.btnCancelIssue02.Text = "발행취소"
+        Me.btnCancelIssue02.UseVisualStyleBackColor = False
+        '
+        'btnDelete02
+        '
+        Me.btnDelete02.Location = New System.Drawing.Point(130, 106)
+        Me.btnDelete02.Name = "btnDelete02"
+        Me.btnDelete02.Size = New System.Drawing.Size(56, 29)
+        Me.btnDelete02.TabIndex = 10
+        Me.btnDelete02.Text = "삭제"
+        Me.btnDelete02.UseVisualStyleBackColor = True
+        '
+        'panel2
+        '
+        Me.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.panel2.Location = New System.Drawing.Point(81, 117)
+        Me.panel2.Name = "panel2"
+        Me.panel2.Size = New System.Drawing.Size(56, 1)
+        Me.panel2.TabIndex = 13
+        '
+        'panel1
+        '
+        Me.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.panel1.Location = New System.Drawing.Point(52, 56)
+        Me.panel1.Name = "panel1"
+        Me.panel1.Size = New System.Drawing.Size(1, 59)
+        Me.panel1.TabIndex = 13
+        '
+        'btnRevokRegistIssue
+        '
+        Me.btnRevokRegistIssue.BackColor = System.Drawing.Color.LightCoral
+        Me.btnRevokRegistIssue.Location = New System.Drawing.Point(80, 24)
+        Me.btnRevokRegistIssue.Name = "btnRevokRegistIssue"
+        Me.btnRevokRegistIssue.Size = New System.Drawing.Size(69, 28)
+        Me.btnRevokRegistIssue.TabIndex = 9
+        Me.btnRevokRegistIssue.Text = "전체취소"
+        Me.btnRevokRegistIssue.UseVisualStyleBackColor = False
+        '
+        'label11
+        '
+        Me.label11.BackColor = System.Drawing.Color.Silver
+        Me.label11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.label11.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.label11.Location = New System.Drawing.Point(9, 19)
+        Me.label11.Name = "label11"
+        Me.label11.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.label11.Size = New System.Drawing.Size(249, 37)
+        Me.label11.TabIndex = 6
+        Me.label11.Text = "즉시발행"
+        Me.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'groupBox10
+        '
+        Me.groupBox10.Controls.Add(Me.btnCancelIssueSub)
+        Me.groupBox10.Controls.Add(Me.btnRegistIssue)
+        Me.groupBox10.Controls.Add(Me.btnDeleteSub)
+        Me.groupBox10.Controls.Add(Me.Label8)
+        Me.groupBox10.Controls.Add(Me.Label10)
+        Me.groupBox10.Controls.Add(Me.Label12)
+        Me.groupBox10.Location = New System.Drawing.Point(9, 77)
+        Me.groupBox10.Name = "groupBox10"
+        Me.groupBox10.Size = New System.Drawing.Size(229, 143)
+        Me.groupBox10.TabIndex = 21
+        Me.groupBox10.TabStop = False
+        Me.groupBox10.Text = "현금영수증 즉시발행 프로세스(권장)"
+        '
+        'btnCancelIssueSub
+        '
+        Me.btnCancelIssueSub.BackColor = System.Drawing.Color.LightCoral
+        Me.btnCancelIssueSub.Location = New System.Drawing.Point(22, 106)
+        Me.btnCancelIssueSub.Name = "btnCancelIssueSub"
+        Me.btnCancelIssueSub.Size = New System.Drawing.Size(65, 30)
+        Me.btnCancelIssueSub.TabIndex = 8
+        Me.btnCancelIssueSub.Text = "발행취소"
+        Me.btnCancelIssueSub.UseVisualStyleBackColor = False
+        '
+        'btnRegistIssue
+        '
+        Me.btnRegistIssue.BackColor = System.Drawing.Color.LightCoral
+        Me.btnRegistIssue.Location = New System.Drawing.Point(92, 22)
+        Me.btnRegistIssue.Name = "btnRegistIssue"
+        Me.btnRegistIssue.Size = New System.Drawing.Size(69, 28)
+        Me.btnRegistIssue.TabIndex = 0
+        Me.btnRegistIssue.Text = "즉시발행"
+        Me.btnRegistIssue.UseVisualStyleBackColor = False
+        '
+        'btnDeleteSub
+        '
+        Me.btnDeleteSub.Location = New System.Drawing.Point(131, 107)
+        Me.btnDeleteSub.Name = "btnDeleteSub"
+        Me.btnDeleteSub.Size = New System.Drawing.Size(56, 29)
+        Me.btnDeleteSub.TabIndex = 1
+        Me.btnDeleteSub.Text = "삭제"
+        Me.btnDeleteSub.UseVisualStyleBackColor = True
+        '
+        'Label8
+        '
+        Me.Label8.BackColor = System.Drawing.Color.Silver
+        Me.Label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label8.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label8.Location = New System.Drawing.Point(11, 17)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.Label8.Size = New System.Drawing.Size(194, 37)
+        Me.Label8.TabIndex = 5
+        Me.Label8.Text = "즉시발행"
+        Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label10
+        '
+        Me.Label10.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.Label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label10.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label10.Location = New System.Drawing.Point(43, 122)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.Label10.Size = New System.Drawing.Size(119, 1)
+        Me.Label10.TabIndex = 14
+        Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label12
+        '
+        Me.Label12.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.Label12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label12.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label12.Location = New System.Drawing.Point(53, 52)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.Label12.Size = New System.Drawing.Size(1, 70)
+        Me.Label12.TabIndex = 15
+        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'GroupBox12
         '
@@ -310,6 +488,15 @@ Partial Class frmExample
         Me.GroupBox9.TabStop = False
         Me.GroupBox9.Text = "문서 정보"
         '
+        'btnSearch
+        '
+        Me.btnSearch.Location = New System.Drawing.Point(6, 147)
+        Me.btnSearch.Name = "btnSearch"
+        Me.btnSearch.Size = New System.Drawing.Size(104, 26)
+        Me.btnSearch.TabIndex = 10
+        Me.btnSearch.Text = "문서목록조회"
+        Me.btnSearch.UseVisualStyleBackColor = True
+        '
         'btnGetInfos
         '
         Me.btnGetInfos.Location = New System.Drawing.Point(6, 116)
@@ -373,6 +560,7 @@ Partial Class frmExample
         '
         'GroupBox4
         '
+        Me.GroupBox4.Controls.Add(Me.GroupBox2)
         Me.GroupBox4.Controls.Add(Me.GroupBox17)
         Me.GroupBox4.Controls.Add(Me.GroupBox16)
         Me.GroupBox4.Controls.Add(Me.GroupBox15)
@@ -382,7 +570,7 @@ Partial Class frmExample
         Me.GroupBox4.Controls.Add(Me.GroupBox20)
         Me.GroupBox4.Location = New System.Drawing.Point(14, 40)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(1015, 155)
+        Me.GroupBox4.Size = New System.Drawing.Size(1161, 155)
         Me.GroupBox4.TabIndex = 7
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "팝빌 기본 API"
@@ -600,194 +788,40 @@ Partial Class frmExample
         Me.btnJoinMember.Text = "회원 가입"
         Me.btnJoinMember.UseVisualStyleBackColor = True
         '
-        'Label4
+        'GroupBox2
         '
-        Me.Label4.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label4.Location = New System.Drawing.Point(273, 45)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(291, 28)
-        Me.Label4.TabIndex = 23
-        Me.Label4.Text = "국세청에 전송이 완료된 현금영수증을 취소하는 경우에는 '취소현금영수증'을 발행해야 합니다."
+        Me.GroupBox2.Controls.Add(Me.btnUpdateEmailConfig)
+        Me.GroupBox2.Controls.Add(Me.btnListEmailConfig)
+        Me.GroupBox2.Location = New System.Drawing.Point(1012, 17)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(134, 125)
+        Me.GroupBox2.TabIndex = 10
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "알림메일 관련"
         '
-        'GroupBox1
+        'btnUpdateEmailConfig
         '
-        Me.GroupBox1.Controls.Add(Me.btnRevokeRegistIssue_part)
-        Me.GroupBox1.Controls.Add(Me.btnCancelIssue02)
-        Me.GroupBox1.Controls.Add(Me.btnDelete02)
-        Me.GroupBox1.Controls.Add(Me.panel2)
-        Me.GroupBox1.Controls.Add(Me.panel1)
-        Me.GroupBox1.Controls.Add(Me.btnRevokRegistIssue)
-        Me.GroupBox1.Controls.Add(Me.label11)
-        Me.GroupBox1.Location = New System.Drawing.Point(270, 77)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(277, 140)
-        Me.GroupBox1.TabIndex = 22
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "취소현금영수증 즉시발행 프로세스"
+        Me.btnUpdateEmailConfig.Location = New System.Drawing.Point(6, 52)
+        Me.btnUpdateEmailConfig.Name = "btnUpdateEmailConfig"
+        Me.btnUpdateEmailConfig.Size = New System.Drawing.Size(122, 30)
+        Me.btnUpdateEmailConfig.TabIndex = 8
+        Me.btnUpdateEmailConfig.Text = "전송설정 수정"
+        Me.btnUpdateEmailConfig.UseVisualStyleBackColor = True
         '
-        'btnRevokeRegistIssue_part
+        'btnListEmailConfig
         '
-        Me.btnRevokeRegistIssue_part.BackColor = System.Drawing.Color.LightCoral
-        Me.btnRevokeRegistIssue_part.Location = New System.Drawing.Point(164, 24)
-        Me.btnRevokeRegistIssue_part.Name = "btnRevokeRegistIssue_part"
-        Me.btnRevokeRegistIssue_part.Size = New System.Drawing.Size(69, 28)
-        Me.btnRevokeRegistIssue_part.TabIndex = 14
-        Me.btnRevokeRegistIssue_part.Text = "부분취소"
-        Me.btnRevokeRegistIssue_part.UseVisualStyleBackColor = False
-        '
-        'btnCancelIssue02
-        '
-        Me.btnCancelIssue02.BackColor = System.Drawing.Color.LightCoral
-        Me.btnCancelIssue02.Location = New System.Drawing.Point(21, 105)
-        Me.btnCancelIssue02.Name = "btnCancelIssue02"
-        Me.btnCancelIssue02.Size = New System.Drawing.Size(65, 30)
-        Me.btnCancelIssue02.TabIndex = 11
-        Me.btnCancelIssue02.Text = "발행취소"
-        Me.btnCancelIssue02.UseVisualStyleBackColor = False
-        '
-        'btnDelete02
-        '
-        Me.btnDelete02.Location = New System.Drawing.Point(130, 106)
-        Me.btnDelete02.Name = "btnDelete02"
-        Me.btnDelete02.Size = New System.Drawing.Size(56, 29)
-        Me.btnDelete02.TabIndex = 10
-        Me.btnDelete02.Text = "삭제"
-        Me.btnDelete02.UseVisualStyleBackColor = True
-        '
-        'panel2
-        '
-        Me.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.panel2.Location = New System.Drawing.Point(81, 117)
-        Me.panel2.Name = "panel2"
-        Me.panel2.Size = New System.Drawing.Size(56, 1)
-        Me.panel2.TabIndex = 13
-        '
-        'panel1
-        '
-        Me.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.panel1.Location = New System.Drawing.Point(52, 56)
-        Me.panel1.Name = "panel1"
-        Me.panel1.Size = New System.Drawing.Size(1, 59)
-        Me.panel1.TabIndex = 13
-        '
-        'btnRevokRegistIssue
-        '
-        Me.btnRevokRegistIssue.BackColor = System.Drawing.Color.LightCoral
-        Me.btnRevokRegistIssue.Location = New System.Drawing.Point(80, 24)
-        Me.btnRevokRegistIssue.Name = "btnRevokRegistIssue"
-        Me.btnRevokRegistIssue.Size = New System.Drawing.Size(69, 28)
-        Me.btnRevokRegistIssue.TabIndex = 9
-        Me.btnRevokRegistIssue.Text = "전체취소"
-        Me.btnRevokRegistIssue.UseVisualStyleBackColor = False
-        '
-        'label11
-        '
-        Me.label11.BackColor = System.Drawing.Color.Silver
-        Me.label11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.label11.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.label11.Location = New System.Drawing.Point(9, 19)
-        Me.label11.Name = "label11"
-        Me.label11.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.label11.Size = New System.Drawing.Size(249, 37)
-        Me.label11.TabIndex = 6
-        Me.label11.Text = "즉시발행"
-        Me.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'groupBox10
-        '
-        Me.groupBox10.Controls.Add(Me.btnCancelIssueSub)
-        Me.groupBox10.Controls.Add(Me.btnRegistIssue)
-        Me.groupBox10.Controls.Add(Me.btnDeleteSub)
-        Me.groupBox10.Controls.Add(Me.Label8)
-        Me.groupBox10.Controls.Add(Me.Label10)
-        Me.groupBox10.Controls.Add(Me.Label12)
-        Me.groupBox10.Location = New System.Drawing.Point(9, 77)
-        Me.groupBox10.Name = "groupBox10"
-        Me.groupBox10.Size = New System.Drawing.Size(229, 143)
-        Me.groupBox10.TabIndex = 21
-        Me.groupBox10.TabStop = False
-        Me.groupBox10.Text = "현금영수증 즉시발행 프로세스(권장)"
-        '
-        'btnCancelIssueSub
-        '
-        Me.btnCancelIssueSub.BackColor = System.Drawing.Color.LightCoral
-        Me.btnCancelIssueSub.Location = New System.Drawing.Point(22, 106)
-        Me.btnCancelIssueSub.Name = "btnCancelIssueSub"
-        Me.btnCancelIssueSub.Size = New System.Drawing.Size(65, 30)
-        Me.btnCancelIssueSub.TabIndex = 8
-        Me.btnCancelIssueSub.Text = "발행취소"
-        Me.btnCancelIssueSub.UseVisualStyleBackColor = False
-        '
-        'btnRegistIssue
-        '
-        Me.btnRegistIssue.BackColor = System.Drawing.Color.LightCoral
-        Me.btnRegistIssue.Location = New System.Drawing.Point(92, 22)
-        Me.btnRegistIssue.Name = "btnRegistIssue"
-        Me.btnRegistIssue.Size = New System.Drawing.Size(69, 28)
-        Me.btnRegistIssue.TabIndex = 0
-        Me.btnRegistIssue.Text = "즉시발행"
-        Me.btnRegistIssue.UseVisualStyleBackColor = False
-        '
-        'btnDeleteSub
-        '
-        Me.btnDeleteSub.Location = New System.Drawing.Point(131, 107)
-        Me.btnDeleteSub.Name = "btnDeleteSub"
-        Me.btnDeleteSub.Size = New System.Drawing.Size(56, 29)
-        Me.btnDeleteSub.TabIndex = 1
-        Me.btnDeleteSub.Text = "삭제"
-        Me.btnDeleteSub.UseVisualStyleBackColor = True
-        '
-        'Label8
-        '
-        Me.Label8.BackColor = System.Drawing.Color.Silver
-        Me.Label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label8.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label8.Location = New System.Drawing.Point(11, 17)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.Label8.Size = New System.Drawing.Size(194, 37)
-        Me.Label8.TabIndex = 5
-        Me.Label8.Text = "즉시발행"
-        Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label10
-        '
-        Me.Label10.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.Label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label10.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label10.Location = New System.Drawing.Point(43, 122)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.Label10.Size = New System.Drawing.Size(119, 1)
-        Me.Label10.TabIndex = 14
-        Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label12
-        '
-        Me.Label12.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.Label12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label12.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label12.Location = New System.Drawing.Point(53, 52)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.Label12.Size = New System.Drawing.Size(1, 70)
-        Me.Label12.TabIndex = 15
-        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'btnSearch
-        '
-        Me.btnSearch.Location = New System.Drawing.Point(6, 147)
-        Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(104, 26)
-        Me.btnSearch.TabIndex = 10
-        Me.btnSearch.Text = "문서목록조회"
-        Me.btnSearch.UseVisualStyleBackColor = True
+        Me.btnListEmailConfig.Location = New System.Drawing.Point(6, 18)
+        Me.btnListEmailConfig.Name = "btnListEmailConfig"
+        Me.btnListEmailConfig.Size = New System.Drawing.Size(122, 30)
+        Me.btnListEmailConfig.TabIndex = 7
+        Me.btnListEmailConfig.Text = "전송목록 조회"
+        Me.btnListEmailConfig.UseVisualStyleBackColor = True
         '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1044, 682)
+        Me.ClientSize = New System.Drawing.Size(1189, 682)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.GroupBox7)
         Me.Controls.Add(Me.txtUserId)
@@ -800,6 +834,8 @@ Partial Class frmExample
         Me.GroupBox7.ResumeLayout(False)
         Me.GroupBox7.PerformLayout()
         Me.GroupBox13.ResumeLayout(False)
+        Me.GroupBox1.ResumeLayout(False)
+        Me.groupBox10.ResumeLayout(False)
         Me.GroupBox12.ResumeLayout(False)
         Me.GroupBox11.ResumeLayout(False)
         Me.GroupBox9.ResumeLayout(False)
@@ -811,8 +847,7 @@ Partial Class frmExample
         Me.GroupBox18.ResumeLayout(False)
         Me.GroupBox19.ResumeLayout(False)
         Me.GroupBox20.ResumeLayout(False)
-        Me.GroupBox1.ResumeLayout(False)
-        Me.groupBox10.ResumeLayout(False)
+        Me.GroupBox2.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -884,5 +919,8 @@ Partial Class frmExample
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents btnSearch As System.Windows.Forms.Button
+    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
+    Friend WithEvents btnUpdateEmailConfig As System.Windows.Forms.Button
+    Friend WithEvents btnListEmailConfig As System.Windows.Forms.Button
 
 End Class
