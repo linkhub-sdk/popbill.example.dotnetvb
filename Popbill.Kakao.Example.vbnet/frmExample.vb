@@ -51,7 +51,7 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -65,7 +65,7 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -120,7 +120,7 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
         End Try
     End Sub
@@ -136,7 +136,7 @@ Public Class frmExample
             MsgBox("연동회원 잔여포인트 : " + remainPoint.ToString())
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
         End Try
     End Sub
@@ -151,7 +151,7 @@ Public Class frmExample
 
             MsgBox(url)
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -161,7 +161,7 @@ Public Class frmExample
 
             MsgBox("파트너 잔여포인트 : " + remainPoint.ToString())
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -175,7 +175,7 @@ Public Class frmExample
 
             MsgBox(url)
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -189,7 +189,7 @@ Public Class frmExample
 
             MsgBox(url)
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -225,7 +225,7 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
         End Try
     End Sub
@@ -243,7 +243,7 @@ Public Class frmExample
 
             MsgBox(tmp)
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -277,7 +277,7 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
         End Try
     End Sub
@@ -295,7 +295,7 @@ Public Class frmExample
             MsgBox(tmp)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
         End Try
     End Sub
@@ -326,7 +326,7 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
         End Try
     End Sub
@@ -345,7 +345,7 @@ Public Class frmExample
             MsgBox("알림톡 전송단가(unitCost) : " + unitCost.ToString())
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
         End Try
     End Sub
@@ -364,7 +364,7 @@ Public Class frmExample
             MsgBox("친구톡 텍스트 전송단가(unitCost) : " + unitCost.ToString())
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
         End Try
     End Sub
@@ -383,7 +383,7 @@ Public Class frmExample
             MsgBox("친구톡 이미지 전송단가(unitCost) : " + unitCost.ToString())
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
         End Try
     End Sub
@@ -406,7 +406,7 @@ Public Class frmExample
             MsgBox(tmp)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
 
     End Sub
@@ -429,7 +429,7 @@ Public Class frmExample
             MsgBox(tmp)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -451,17 +451,17 @@ Public Class frmExample
             MsgBox(tmp)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
     Private Sub btnSendATS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendATS_same.Click
 
         '알림톡 템플릿 코드, 알림톡 템플릿 목록확인(ListATSTemplate) API 반환항목중 templateCode로 확인
-        Dim templateCode As String = "018020000001"
+        Dim templateCode As String = "018030000066"
 
         '팝빌에 사전등록된 발신번호
-        Dim senderNum As String = "07043042993"
+        Dim senderNum As String = "07043042991"
 
         '알림톡 템플릿 내용, 최대 1000자
         Dim content As String = "[테스트] 테스트 템플릿입니다."
@@ -472,6 +472,9 @@ Public Class frmExample
         '대체문자 유형, 공백-미전송, C-알림톡내용 전송, A-대체문자내용 전송
         Dim altSendType = "A"
 
+        '전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
+        '최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+        Dim requestNum = ""
 
         '전송정보 배열, 최대 1000건
         Dim receiverList As List(Of KakaoReceiver) = New List(Of KakaoReceiver)
@@ -482,14 +485,14 @@ Public Class frmExample
             msg.rcvnm = "수신자명칭_" + CStr(i) '수신자명
             receiverList.Add(msg)
         Next
-        
+
         Try
             Dim receiptNum As String = kakaoService.SendATS(txtCorpNum.Text, templateCode, senderNum, content, altContent, _
-                                                            altSendType, getReserveDT(), receiverList)
+                                                            altSendType, getReserveDT(), receiverList, txtUserId.Text, requestNum)
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
 
     End Sub
@@ -497,10 +500,10 @@ Public Class frmExample
     Private Sub btnSendATS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendATS_one.Click
 
         '알림톡 템플릿 코드, 알림톡 템플릿 목록확인(ListATSTemplate) API 반환항목중 templateCode로 확인
-        Dim templateCode As String = "018020000001"
+        Dim templateCode As String = "018030000066"
 
         '팝빌에 사전등록된 발신번호
-        Dim senderNum As String = "07043042993"
+        Dim senderNum As String = "07043042991"
 
         '알림톡 템플릿 내용, 최대 1000자
         Dim content As String = "[테스트] 테스트 템플릿입니다."
@@ -517,28 +520,37 @@ Public Class frmExample
         '수신자명
         Dim receiveName = "수신자명"
 
+        '전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
+        '최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+        Dim requestNum = ""
+
         Try
             Dim receiptNum As String = kakaoService.SendATS(txtCorpNum.Text, templateCode, senderNum, altSendType, getReserveDT(), _
-                receiveNum, receiveName, content, altContent)
+                receiveNum, receiveName, content, altContent, requestNum)
 
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
     Private Sub btnSendATS_multi_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendATS_multi.Click
 
         '알림톡 템플릿 코드, 알림톡 템플릿 목록확인(ListATSTemplate) API 반환항목중 templateCode로 확인
-        Dim templateCode As String = "018020000001"
+        Dim templateCode As String = "018030000066"
 
         '팝빌에 사전등록된 발신번호
-        Dim senderNum As String = "07043042993"
+        Dim senderNum As String = "07043042991"
 
         '대체문자 유형, 공백-미전송, C-알림톡내용 전송, A-대체문자내용 전송
         Dim altSendType = "A"
+
+
+        '전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
+        '최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+        Dim requestNum = ""
 
         '전송정보 배열, 최대 1000건
         Dim receiverList As List(Of KakaoReceiver) = New List(Of KakaoReceiver)
@@ -554,11 +566,11 @@ Public Class frmExample
 
         Try
             Dim receiptNum As String = kakaoService.SendATS(txtCorpNum.Text, templateCode, senderNum, altSendType, _
-                                                            getReserveDT(), receiverList)
+                                                            getReserveDT(), receiverList, txtUserId.Text, requestNum)
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -568,7 +580,7 @@ Public Class frmExample
         Dim plusFriendID As String = "@팝빌"
 
         '팝빌에 사전등록된 발신번호
-        Dim senderNum As String = "07043042993"
+        Dim senderNum As String = "07043042991"
 
         '수신번호
         Dim receiverNum As String = "010111222"
@@ -588,6 +600,10 @@ Public Class frmExample
         '광고전송 여부
         Dim adsYN As Boolean = True
 
+        '전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
+        '최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+        Dim requestNum = ""
+
         '버튼 배열 최대 5개
         Dim buttonList As List(Of KakaoButton) = New List(Of KakaoButton)
 
@@ -597,14 +613,14 @@ Public Class frmExample
         btnInfo.u1 = "http://www.linkhub.co.kr"
         btnInfo.u2 = "http://www.popbill.co.kr"
         buttonList.Add(btnInfo)
-        
+
         Try
             Dim receiptNum As String = kakaoService.SendFTS(txtCorpNum.Text, plusFriendID, senderNum, content, altContent, altSendType, _
-                                                            receiverNum, receiverName, adsYN, getReserveDT(), buttonList)
+                                                            receiverNum, receiverName, adsYN, getReserveDT(), buttonList, txtUserId.Text, requestNum)
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
 
     End Sub
@@ -615,7 +631,7 @@ Public Class frmExample
         Dim plusFriendID As String = "@팝빌"
 
         '팝빌에 사전등록된 발신번호
-        Dim senderNum As String = "07043042993"
+        Dim senderNum As String = "07043042991"
 
         '친구톡 내용, 최대 1000자
         Dim content As String = "친구톡 내용입니다."
@@ -629,6 +645,9 @@ Public Class frmExample
         '광고전송 여부
         Dim adsYN As Boolean = True
 
+        '전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
+        '최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+        Dim requestNum = ""
 
         '전송정보 배열, 최대 1000건
         Dim receiverList As List(Of KakaoReceiver) = New List(Of KakaoReceiver)
@@ -653,11 +672,11 @@ Public Class frmExample
 
         Try
             Dim receiptNum As String = kakaoService.SendFTS(txtCorpNum.Text, plusFriendID, senderNum, content, altContent, altSendType, _
-                                                            adsYN, getReserveDT(), receiverList, buttonList)
+                                                            adsYN, getReserveDT(), receiverList, buttonList, txtUserId.Text, requestNum)
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
 
     End Sub
@@ -668,7 +687,7 @@ Public Class frmExample
         Dim plusFriendID As String = "@팝빌"
 
         '팝빌에 사전등록된 발신번호
-        Dim senderNum As String = "07043042993"
+        Dim senderNum As String = "07043042991"
 
         '대체문자 유형, 공백-미전송, C-알림톡내용 전송, A-대체문자내용 전송
         Dim altSendType = "A"
@@ -676,6 +695,9 @@ Public Class frmExample
         '광고전송 여부
         Dim adsYN As Boolean = True
 
+        '전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
+        '최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+        Dim requestNum = ""
 
         '전송정보 배열, 최대 1000건
         Dim receiverList As List(Of KakaoReceiver) = New List(Of KakaoReceiver)
@@ -702,12 +724,12 @@ Public Class frmExample
 
         Try
             Dim receiptNum As String = kakaoService.SendFTS(txtCorpNum.Text, plusFriendID, senderNum, _
-                         altSendType, adsYN, getReserveDT(), receiverList, buttonList)
+                         altSendType, adsYN, getReserveDT(), receiverList, buttonList, txtUserId.Text, requestNum)
 
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -718,7 +740,7 @@ Public Class frmExample
             Dim plusFriendID As String = "@팝빌"
 
             '팝빌에 사전등록된 발신번호
-            Dim senderNum As String = "07043042993"
+            Dim senderNum As String = "07043042991"
 
             '수신번호
             Dim receiverNum As String = "010111222"
@@ -742,8 +764,11 @@ Public Class frmExample
             Dim strFileName As String = fileDialog.FileName
 
             '이미지 링크 URL
-            Dim imageURL As String = "www.popbill.com"
+            Dim imageURL As String = "https://www.popbill.com"
 
+            '전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
+            '최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            Dim requestNum = ""
 
             '버튼 배열 최대 5개
             Dim buttonList As List(Of KakaoButton) = New List(Of KakaoButton)
@@ -759,11 +784,12 @@ Public Class frmExample
             Try
                 Dim receiptNum As String = kakaoService.SendFMS(txtCorpNum.Text, plusFriendID, senderNum, _
                                                                 content, altContent, altSendType, receiverNum, _
-                                                                receiverName, adsYN, getReserveDT(), buttonList, strFileName, imageURL)
+                                                                receiverName, adsYN, getReserveDT(), buttonList, strFileName, imageURL, _
+                                                                txtUserId.Text, requestNum)
                 MsgBox("접수번호 : " + receiptNum)
                 txtReceiptNum.Text = receiptNum
             Catch ex As PopbillException
-                MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+                MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
             End Try
 
         End If
@@ -777,7 +803,7 @@ Public Class frmExample
             Dim plusFriendID As String = "@팝빌"
 
             '팝빌에 사전등록된 발신번호
-            Dim senderNum As String = "07043042993"
+            Dim senderNum As String = "07043042991"
 
             '친구톡 내용, 최대 400자
             Dim content As String = "친구톡 내용입니다."
@@ -795,8 +821,11 @@ Public Class frmExample
             Dim strFileName As String = fileDialog.FileName
 
             '이미지 링크 URL
-            Dim imageURL As String = "www.popbill.com"
+            Dim imageURL As String = "https://www.popbill.com"
 
+            '전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
+            '최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            Dim requestNum = ""
 
             '전송정보 배열, 최대 1000건
             Dim receiverList As List(Of KakaoReceiver) = New List(Of KakaoReceiver)
@@ -822,11 +851,11 @@ Public Class frmExample
 
             Try
                 Dim receiptNum As String = kakaoService.SendFMS(txtCorpNum.Text, plusFriendID, senderNum, content, altContent, altSendType, _
-                                                                adsYN, getReserveDT(), receiverList, buttonList, strFileName, imageURL)
+                                                                adsYN, getReserveDT(), receiverList, buttonList, strFileName, imageURL, txtUserId.Text, requestNum)
                 MsgBox("접수번호 : " + receiptNum)
                 txtReceiptNum.Text = receiptNum
             Catch ex As PopbillException
-                MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+                MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
             End Try
         End If
 
@@ -840,7 +869,7 @@ Public Class frmExample
             Dim plusFriendID As String = "@팝빌"
 
             '팝빌에 사전등록된 발신번호
-            Dim senderNum As String = "07043042993"
+            Dim senderNum As String = "07043042991"
 
             '대체문자 유형, 공백-미전송, C-알림톡내용 전송, A-대체문자내용 전송
             Dim altSendType = "A"
@@ -852,8 +881,11 @@ Public Class frmExample
             Dim strFileName As String = fileDialog.FileName
 
             '이미지 링크 URL
-            Dim imageURL As String = "www.popbill.com"
+            Dim imageURL As String = "https://www.popbill.com"
 
+            '전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
+            '최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            Dim requestNum = ""
 
             '전송정보 배열, 최대 1000건
             Dim receiverList As List(Of KakaoReceiver) = New List(Of KakaoReceiver)
@@ -880,12 +912,12 @@ Public Class frmExample
 
             Try
                 Dim receiptNum As String = kakaoService.SendFMS(txtCorpNum.Text, plusFriendID, senderNum, _
-                             altSendType, adsYN, getReserveDT(), receiverList, buttonList, strFileName, imageURL)
+                             altSendType, adsYN, getReserveDT(), receiverList, buttonList, strFileName, imageURL, txtUserId.Text, requestNum)
                 MsgBox("접수번호 : " + receiptNum)
                 txtReceiptNum.Text = receiptNum
 
             Catch ex As PopbillException
-                MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+                MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
             End Try
 
         End If
@@ -902,7 +934,7 @@ Public Class frmExample
 
             MsgBox(url)
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
 
     End Sub
@@ -917,7 +949,7 @@ Public Class frmExample
 
             MsgBox(url)
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -931,7 +963,7 @@ Public Class frmExample
 
             MsgBox(url)
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -945,7 +977,7 @@ Public Class frmExample
 
             MsgBox(url)
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -964,7 +996,7 @@ Public Class frmExample
 
             MsgBox(tmp)
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -983,7 +1015,7 @@ Public Class frmExample
 
             MsgBox(tmp)
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -1017,7 +1049,7 @@ Public Class frmExample
             MsgBox(tmp)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -1034,7 +1066,7 @@ Public Class frmExample
             tmp += "발신번호(sendNum) : " + sentInfo.sendNum + vbCrLf
             tmp += "대체문자 내용(altContent) : " + sentInfo.altContent + vbCrLf
             tmp += "대체문자 유형(altSendType) : " + sentInfo.altSendType + vbCrLf
-            tmp += "예약일시(reserveDT) : " + sentInfo.altSendType + vbCrLf
+            tmp += "예약일시(reserveDT) : " + sentInfo.reserveDT + vbCrLf
             tmp += "광고전송 여부(adsYN) : " + CStr(sentInfo.adsYN) + vbCrLf
             tmp += "친구톡 이미지 URL(imageURL) : " + sentInfo.imageURL + vbCrLf
             tmp += "전송건수(sendCnt) : " + sentInfo.sendCnt + vbCrLf
@@ -1060,7 +1092,7 @@ Public Class frmExample
             dataGrid1.DataSource = sentInfo.msgs
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
         End Try
     End Sub
@@ -1077,7 +1109,7 @@ Public Class frmExample
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -1140,8 +1172,66 @@ Public Class frmExample
             MsgBox(tmp)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + " 응답메시지(message) : " + ex.Message)
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
+        End Try
+    End Sub
+    '=========================================================================
+    ' 전송요청번호를 할당한 알림톡/친구톡 전송결과를 확인 합니다.
+    '=========================================================================
+    Private Sub btnGetMessagesRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMessagesRN.Click
+        Try
+            Dim sentInfo As KakaoSentResult = kakaoService.GetMessagesRN(txtCorpNum.Text, txtRequestNum.Text)
+
+            Dim tmp As String = "카카오톡 유형(contentType) : " + sentInfo.contentType + vbCrLf
+            tmp += "템플릿 코드(templateCode) : " + sentInfo.templateCode + vbCrLf
+            tmp += "플러스친구 아이디(plusFriendID) : " + sentInfo.plusFriendID + vbCrLf
+            tmp += "발신번호(sendNum) : " + sentInfo.sendNum + vbCrLf
+            tmp += "대체문자 내용(altContent) : " + sentInfo.altContent + vbCrLf
+            tmp += "대체문자 유형(altSendType) : " + sentInfo.altSendType + vbCrLf
+            tmp += "예약일시(reserveDT) : " + sentInfo.reserveDT + vbCrLf
+            tmp += "광고전송 여부(adsYN) : " + CStr(sentInfo.adsYN) + vbCrLf
+            tmp += "친구톡 이미지 URL(imageURL) : " + sentInfo.imageURL + vbCrLf
+            tmp += "전송건수(sendCnt) : " + sentInfo.sendCnt + vbCrLf
+            tmp += "성공건수(successCnt) : " + sentInfo.successCnt + vbCrLf
+            tmp += "실패건수(failCnt) : " + sentInfo.failCnt + vbCrLf
+            tmp += "대체문자 건수(altCnt) : " + sentInfo.altCnt + vbCrLf
+            tmp += "취소건수(cancelCnt) : " + sentInfo.cancelCnt + vbCrLf
+
+            If Not sentInfo.btns Is Nothing Then
+                For Each btnInfo As KakaoButton In sentInfo.btns
+                    tmp += "[버튼정보]" + vbCrLf
+                    tmp += "버튼명(n) : " + btnInfo.n + vbCrLf
+                    tmp += "버튼유형(t) : " + btnInfo.t + vbCrLf
+                    tmp += "버튼링크1(u1) : " + btnInfo.u1 + vbCrLf
+                    tmp += "버튼링크2(u2) : " + btnInfo.u2 + vbCrLf
+                Next
+                tmp += vbCrLf
+            End If
+
+            MsgBox(tmp)
+
+            '전송결과 정보 리스트
+            dataGrid1.DataSource = sentInfo.msgs
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+    '=========================================================================
+    ' 전송요청번호를 할당한 예약 알림톡/알림톡 전송을 취소합니다.
+    ' 예약취소는 예약전송시간 10분전까지만 가능합니다.
+    '=========================================================================
+    Private Sub btnCancelReserveRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelReserveRN.Click
+        Try
+            Dim response As Response
+
+            response = kakaoService.CancelReserveRN(txtCorpNum.Text, txtRequestNum.Text, txtUserId.Text)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 End Class
