@@ -43,6 +43,7 @@ Partial Class frmExample
         Me.btnGetMessageResult = New System.Windows.Forms.Button
         Me.label3 = New System.Windows.Forms.Label
         Me.groupBox4 = New System.Windows.Forms.GroupBox
+        Me.btnGetStates = New System.Windows.Forms.Button
         Me.GroupBox11 = New System.Windows.Forms.GroupBox
         Me.btnSendMMS_same = New System.Windows.Forms.Button
         Me.btnSendMMS_hundered = New System.Windows.Forms.Button
@@ -84,7 +85,12 @@ Partial Class frmExample
         Me.txtCorpNum = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
-        Me.btnGetStates = New System.Windows.Forms.Button
+        Me.GroupBox12 = New System.Windows.Forms.GroupBox
+        Me.btnCancelReserveRN = New System.Windows.Forms.Button
+        Me.btnGetMessageResultRN = New System.Windows.Forms.Button
+        Me.txtRequestNum = New System.Windows.Forms.TextBox
+        Me.Label5 = New System.Windows.Forms.Label
+        Me.GroupBox13 = New System.Windows.Forms.GroupBox
         Me.groupBox7.SuspendLayout()
         Me.groupBox8.SuspendLayout()
         CType(Me.dataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -104,7 +110,7 @@ Partial Class frmExample
         '
         'btnCancelReserve
         '
-        Me.btnCancelReserve.Location = New System.Drawing.Point(348, 134)
+        Me.btnCancelReserve.Location = New System.Drawing.Point(144, 166)
         Me.btnCancelReserve.Name = "btnCancelReserve"
         Me.btnCancelReserve.Size = New System.Drawing.Size(121, 30)
         Me.btnCancelReserve.TabIndex = 22
@@ -201,10 +207,10 @@ Partial Class frmExample
         'dataGridView1
         '
         Me.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dataGridView1.Location = New System.Drawing.Point(9, 171)
+        Me.dataGridView1.Location = New System.Drawing.Point(9, 222)
         Me.dataGridView1.Name = "dataGridView1"
         Me.dataGridView1.RowTemplate.Height = 21
-        Me.dataGridView1.Size = New System.Drawing.Size(1164, 267)
+        Me.dataGridView1.Size = New System.Drawing.Size(1164, 216)
         Me.dataGridView1.TabIndex = 23
         '
         'txtReserveDT
@@ -255,16 +261,15 @@ Partial Class frmExample
         '
         'txtReceiptNum
         '
-        Me.txtReceiptNum.Location = New System.Drawing.Point(72, 139)
+        Me.txtReceiptNum.Location = New System.Drawing.Point(90, 139)
         Me.txtReceiptNum.Name = "txtReceiptNum"
-        Me.txtReceiptNum.Size = New System.Drawing.Size(143, 21)
+        Me.txtReceiptNum.Size = New System.Drawing.Size(165, 21)
         Me.txtReceiptNum.TabIndex = 17
-        Me.txtReceiptNum.Text = "014102315000000005"
         '
         'label4
         '
         Me.label4.AutoSize = True
-        Me.label4.Location = New System.Drawing.Point(11, 143)
+        Me.label4.Location = New System.Drawing.Point(28, 143)
         Me.label4.Name = "label4"
         Me.label4.Size = New System.Drawing.Size(65, 12)
         Me.label4.TabIndex = 16
@@ -272,7 +277,7 @@ Partial Class frmExample
         '
         'btnGetMessageResult
         '
-        Me.btnGetMessageResult.Location = New System.Drawing.Point(221, 134)
+        Me.btnGetMessageResult.Location = New System.Drawing.Point(17, 166)
         Me.btnGetMessageResult.Name = "btnGetMessageResult"
         Me.btnGetMessageResult.Size = New System.Drawing.Size(121, 30)
         Me.btnGetMessageResult.TabIndex = 21
@@ -290,6 +295,11 @@ Partial Class frmExample
         '
         'groupBox4
         '
+        Me.groupBox4.Controls.Add(Me.btnCancelReserveRN)
+        Me.groupBox4.Controls.Add(Me.btnGetMessageResultRN)
+        Me.groupBox4.Controls.Add(Me.txtRequestNum)
+        Me.groupBox4.Controls.Add(Me.Label5)
+        Me.groupBox4.Controls.Add(Me.GroupBox13)
         Me.groupBox4.Controls.Add(Me.btnGetStates)
         Me.groupBox4.Controls.Add(Me.GroupBox11)
         Me.groupBox4.Controls.Add(Me.GroupBox10)
@@ -306,12 +316,22 @@ Partial Class frmExample
         Me.groupBox4.Controls.Add(Me.groupBox6)
         Me.groupBox4.Controls.Add(Me.txtReserveDT)
         Me.groupBox4.Controls.Add(Me.label3)
+        Me.groupBox4.Controls.Add(Me.GroupBox12)
         Me.groupBox4.Location = New System.Drawing.Point(14, 200)
         Me.groupBox4.Name = "groupBox4"
         Me.groupBox4.Size = New System.Drawing.Size(1181, 453)
         Me.groupBox4.TabIndex = 23
         Me.groupBox4.TabStop = False
         Me.groupBox4.Text = "메시지 관련 기능"
+        '
+        'btnGetStates
+        '
+        Me.btnGetStates.Location = New System.Drawing.Point(537, 18)
+        Me.btnGetStates.Name = "btnGetStates"
+        Me.btnGetStates.Size = New System.Drawing.Size(132, 33)
+        Me.btnGetStates.TabIndex = 28
+        Me.btnGetStates.Text = "전송내역 요약정보"
+        Me.btnGetStates.UseVisualStyleBackColor = True
         '
         'GroupBox11
         '
@@ -706,14 +726,57 @@ Partial Class frmExample
         '
         Me.fileDialog.FileName = "fileDialog"
         '
-        'btnGetStates
+        'GroupBox12
         '
-        Me.btnGetStates.Location = New System.Drawing.Point(537, 18)
-        Me.btnGetStates.Name = "btnGetStates"
-        Me.btnGetStates.Size = New System.Drawing.Size(132, 33)
-        Me.btnGetStates.TabIndex = 28
-        Me.btnGetStates.Text = "전송내역 요약정보"
-        Me.btnGetStates.UseVisualStyleBackColor = True
+        Me.GroupBox12.Location = New System.Drawing.Point(13, 119)
+        Me.GroupBox12.Name = "GroupBox12"
+        Me.GroupBox12.Size = New System.Drawing.Size(264, 88)
+        Me.GroupBox12.TabIndex = 29
+        Me.GroupBox12.TabStop = False
+        Me.GroupBox12.Text = "접수번호 관련 기능 (요청번호 미할당)"
+        '
+        'btnCancelReserveRN
+        '
+        Me.btnCancelReserveRN.Location = New System.Drawing.Point(428, 166)
+        Me.btnCancelReserveRN.Name = "btnCancelReserveRN"
+        Me.btnCancelReserveRN.Size = New System.Drawing.Size(121, 30)
+        Me.btnCancelReserveRN.TabIndex = 33
+        Me.btnCancelReserveRN.Text = "예약 전송 취소"
+        Me.btnCancelReserveRN.UseVisualStyleBackColor = True
+        '
+        'btnGetMessageResultRN
+        '
+        Me.btnGetMessageResultRN.Location = New System.Drawing.Point(301, 166)
+        Me.btnGetMessageResultRN.Name = "btnGetMessageResultRN"
+        Me.btnGetMessageResultRN.Size = New System.Drawing.Size(121, 30)
+        Me.btnGetMessageResultRN.TabIndex = 32
+        Me.btnGetMessageResultRN.Text = "전송상태확인"
+        Me.btnGetMessageResultRN.UseVisualStyleBackColor = True
+        '
+        'txtRequestNum
+        '
+        Me.txtRequestNum.Location = New System.Drawing.Point(374, 139)
+        Me.txtRequestNum.Name = "txtRequestNum"
+        Me.txtRequestNum.Size = New System.Drawing.Size(165, 21)
+        Me.txtRequestNum.TabIndex = 31
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(312, 143)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(65, 12)
+        Me.Label5.TabIndex = 30
+        Me.Label5.Text = "요청번호 : "
+        '
+        'GroupBox13
+        '
+        Me.GroupBox13.Location = New System.Drawing.Point(297, 119)
+        Me.GroupBox13.Name = "GroupBox13"
+        Me.GroupBox13.Size = New System.Drawing.Size(264, 88)
+        Me.GroupBox13.TabIndex = 34
+        Me.GroupBox13.TabStop = False
+        Me.GroupBox13.Text = "요청번호 할달 전송건 처리"
         '
         'frmExample
         '
@@ -812,5 +875,11 @@ Partial Class frmExample
     Private WithEvents btnSendMMS_hundered As System.Windows.Forms.Button
     Private WithEvents btnSendMMS_one As System.Windows.Forms.Button
     Private WithEvents btnGetStates As System.Windows.Forms.Button
+    Private WithEvents btnCancelReserveRN As System.Windows.Forms.Button
+    Private WithEvents btnGetMessageResultRN As System.Windows.Forms.Button
+    Friend WithEvents txtRequestNum As System.Windows.Forms.TextBox
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Private WithEvents GroupBox13 As System.Windows.Forms.GroupBox
+    Private WithEvents GroupBox12 As System.Windows.Forms.GroupBox
 
 End Class
