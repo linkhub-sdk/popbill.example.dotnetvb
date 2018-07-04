@@ -2608,10 +2608,7 @@ Public Class frmExample
             Dim tmp As String = "메일전송유형 | 전송여부 " + vbCrLf
 
             For Each info As EmailConfig In emailConfigList
-                If info.emailType = "TAX_ISSUE" Then
-                    tmp += "TAX_ISSUE (공급받는자에게 전자세금계산서 발행 메일) | " + info.sendYN.ToString + vbCrLf
-                End If
-
+                If info.emailType = "TAX_ISSUE" Then tmp += "TAX_ISSUE (공급받는자에게 전자세금계산서 발행 메일) | " + info.sendYN.ToString + vbCrLf
                 If info.emailType = "TAX_ISSUE_INVOICER" Then tmp += "TAX_ISSUE_INVOICER (공급자에게 전자세금계산서 발행 메일) | " + info.sendYN.ToString + vbCrLf
                 If info.emailType = "TAX_CHECK" Then tmp += "TAX_CHECK (공급자에게 전자세금계산서 수신확인 메일) | " + info.sendYN.ToString + vbCrLf
                 If info.emailType = "TAX_CANCEL_ISSUE" Then tmp += "TAX_CANCEL_ISSUE (공급받는자에게 전자세금계산서 발행취소 메일) | " + info.sendYN.ToString + vbCrLf
