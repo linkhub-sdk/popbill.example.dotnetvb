@@ -3,7 +3,7 @@
 ' 팝빌 현금영수증 API VB.Net  SDK Example
 '
 ' - VB.Net SDK 연동환경 설정방법 안내
-' - 업데이트 일자 : 2017-12-04
+' - 업데이트 일자 : 2018-07-03
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -38,6 +38,10 @@ Public Class frmExample
 
     End Sub
 
+    '=========================================================================
+    ' 팝빌의 특정 URL에 로그인 된 상태로 접근할 수 있는 URL을 반환합니다.
+    ' 반환된 URL의 유지시간은 30초이며, 제한된 시간 이후에는 정상적으로 처리되지 않습니다.
+    '=========================================================================
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
             Dim url As String = cashbillService.GetPopbillURL(txtCorpNum.Text, txtUserId.Text, "LOGIN")
@@ -47,7 +51,11 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
+    
+    '=========================================================================
+    ' 파트너 포인트의 잔여량을 확인한다.
+    ' [참고] <개발가이드> “파트너 결제 절차 안내” [ http://blog.linkhub.co.kr/1092 ]
+    '=========================================================================
     Private Sub btnGetPartnerBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
             Dim remainPoint As Double = cashbillService.GetPartnerBalance(txtCorpNum.Text)
@@ -62,6 +70,9 @@ Public Class frmExample
         End Try
     End Sub
 
+    '=========================================================================
+    ' 현금영수증의 발행단가를 확인합니다.
+    '=========================================================================
     Private Sub btnUnitCost_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
             Dim unitCost As Single = cashbillService.GetUnitCost(txtCorpNum.Text)
@@ -94,7 +105,10 @@ Public Class frmExample
     End Sub
 
 
-
+    '=========================================================================
+    ' 현금영수증을 임시저장 합니다.
+    ' [임시저장] 상태의 현금영수증은 반드시 발행(Issue API)처리를 해야 국세청에 전송됩니다.
+    '=========================================================================
     Private Sub btnRegister_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim cashbill As Cashbill = New Cashbill
 
@@ -132,6 +146,10 @@ Public Class frmExample
 
     End Sub
 
+    '=========================================================================
+    ' 삭제 가능한 상태의 현금영수증을 삭제 합니다.
+    ' 삭제가능 상태 : [임시저장], [발행취소]
+    '=========================================================================
     Private Sub btnDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
         Try
@@ -524,7 +542,9 @@ Public Class frmExample
     End Sub
 
 
-
+    '=========================================================================
+    ' 임시저장 상태의 현금영수증을 발행 합니다.
+    '=========================================================================
     Private Sub btnIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
         Try
@@ -553,7 +573,10 @@ Public Class frmExample
         End Try
     End Sub
 
-
+    '=========================================================================
+    ' 공급자가 임시저장 상태의 현금영수증 정보를 수정 한다.
+    ' 수정은 [임시저장] 상태의 현금영수증만 가능하며, 파트너가 부여한 관리번호를 제외한 정보를 수정할 수 있습니다.
+    '=========================================================================
     Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
         Dim cashbill As Cashbill = New Cashbill
