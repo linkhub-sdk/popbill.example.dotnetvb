@@ -3,7 +3,7 @@
 '
 ' 팝빌 전자세금계산서 API VB.Net SDK Example
 '
-' - VB.Net SDK 연동환경 설정방법 안내
+' - VB.Net SDK 연동환경 설정방법 안내 : http://blog.linkhub.co.kr/4453/
 ' - 업데이트 일자 : 2018-07-03
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
@@ -1078,7 +1078,9 @@ Public Class frmExample
 
         End Try
     End Sub
-
+    '=========================================================================
+    ' 공급받는자가 임시저장 상태의 역발행 세금계산서를 공급자에게 발행 요청합니다.
+    '=========================================================================
     Private Sub btnRequest_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRequest.Click
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
@@ -1092,7 +1094,9 @@ Public Class frmExample
 
         End Try
     End Sub
-
+    '=========================================================================
+    ' 공급받는자가 역발행 세금계산서의 발행요청을 취소 한다.
+    '=========================================================================
     Private Sub btnCancelRequest_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelRequest.Click
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
@@ -1106,7 +1110,9 @@ Public Class frmExample
 
         End Try
     End Sub
-
+    '=========================================================================
+    ' 공급받는자가 역발행 세금계산서의 발행요청을 취소 한다.
+    '=========================================================================
     Private Sub btnRefuse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRefuse.Click
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
@@ -1120,7 +1126,9 @@ Public Class frmExample
 
         End Try
     End Sub
-
+    '=========================================================================
+    ' 공급받는자가 역발행 세금계산서의 발행요청을 취소 한다.
+    '=========================================================================
     Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
@@ -1347,7 +1355,15 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
+    '=========================================================================
+    ' 1건의 세금계산서를 임시저장 합니다.
+    ' - 세금계산서 임시저장(Register API) 호출후에는 발행(Issue API)을 호출해야만
+    '   국세청으로 전송됩니다.
+    ' - 임시저장과 발행을 한번의 호출로 처리하는 즉시발행(RegistIssue API) 프로세스
+    '   연동을 권장합니다.
+    ' - 세금계산서 항목별 정보는 "[전자세금계산서 API 연동매뉴얼] > 4.1. (세금)계산서
+    '   구성"을 참조하시기 바랍니다.
+    '=========================================================================
     Private Sub btnRegister_Reverse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegister_Reverse.Click
         Dim taxinvoice As Taxinvoice = New Taxinvoice
 
@@ -1572,7 +1588,10 @@ Public Class frmExample
 
         End Try
     End Sub
-
+    '=========================================================================
+    ' 공급받는자가 임시저장 상태의 세금계산서 정보를 수정처리 한다.
+    ' - 수정은 '임시저장'상태의 세금계산서만 가능하며, 파트너가 부여한 관리번호를 제외한 정보를 수정할 수 있다.
+    '=========================================================================
     Private Sub btnUpdate_Reverse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdate_Reverse.Click
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
@@ -1800,7 +1819,10 @@ Public Class frmExample
 
         End Try
     End Sub
-
+    '=========================================================================
+    '세금계산서에 파일을 첨부합니다. (1건당 최대 5개)
+    '※ [임시저장] 상태에서만 첨부파일 추가가능합니다.
+    '=========================================================================
     Private Sub btnAttachFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAttachFile.Click
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
@@ -1820,8 +1842,10 @@ Public Class frmExample
         End If
 
     End Sub
-
-    Private Sub gtnGetFiles_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles gtnGetFiles.Click
+    '=========================================================================
+    '세금계산서의 첨부파일 목록을 확인한다.
+    '=========================================================================
+    Private Sub btnGetFiles_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFiles.Click
 
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
@@ -1841,7 +1865,9 @@ Public Class frmExample
 
         End Try
     End Sub
-
+    '=========================================================================
+    '세금계산서의 첨부파일 1개를 삭제한다.
+    '=========================================================================
     Private Sub btnDeleteFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteFile.Click
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 

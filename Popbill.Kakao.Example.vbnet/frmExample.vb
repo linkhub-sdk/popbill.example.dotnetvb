@@ -2,7 +2,7 @@
 '
 ' 팝빌 문자 API VB.Net SDK Example
 '
-' - VB.Net 연동환경 설정방법 안내 : http://blog.linkhub.co.kr/569/
+' - VB.Net 연동환경 설정방법 안내 : http://blog.linkhub.co.kr/4453/
 ' - 업데이트 일자 : 2018-07-03
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
@@ -192,7 +192,9 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
+    '=========================================================================
+    ' 연동회원의 담당자를 추가로 등록합니다.
+    '=========================================================================
     Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistContact.Click
 
         '담당자 정보객체
@@ -229,7 +231,9 @@ Public Class frmExample
 
         End Try
     End Sub
-
+    '=========================================================================
+    ' 연동회원의 담당자 목록을 조회합니다.
+    '=========================================================================
     Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListContact.Click
         Try
             Dim contactList As List(Of Contact) = kakaoService.ListContact(txtCorpNum.Text, txtUserId.Text)
@@ -246,7 +250,9 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
+    '=========================================================================
+    ' 연동회원의 담당자 정보를 수정합니다.
+    '=========================================================================
     Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateContact.Click
 
         '담당자 정보객체
@@ -281,7 +287,9 @@ Public Class frmExample
 
         End Try
     End Sub
-
+    '=========================================================================
+    ' 연동회원의 회사정보를 조회합니다.
+    '=========================================================================
     Private Sub btnGetCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetCorpInfo.Click
         Try
             Dim corpInfo As CorpInfo = kakaoService.GetCorpInfo(txtCorpNum.Text, txtUserId.Text)
@@ -299,7 +307,9 @@ Public Class frmExample
 
         End Try
     End Sub
-
+    '=========================================================================
+    ' 연동회원의 회사정보를 수정합니다.
+    '=========================================================================
     Private Sub btnUpdateCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateCorpInfo.Click
 
         Dim corpInfo As New CorpInfo
@@ -454,7 +464,9 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
+    '=========================================================================
+    ' 다수의 수신자에게 동일한 알림톡을 전송합니다.
+    '=========================================================================
     Private Sub btnSendATS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendATS_same.Click
 
         '알림톡 템플릿 코드, 알림톡 템플릿 목록확인(ListATSTemplate) API 반환항목중 templateCode로 확인
@@ -496,7 +508,9 @@ Public Class frmExample
         End Try
 
     End Sub
-
+    '=========================================================================
+    ' 단건의 알림톡을 전송합니다.
+    '=========================================================================
     Private Sub btnSendATS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendATS_one.Click
 
         '알림톡 템플릿 코드, 알림톡 템플릿 목록확인(ListATSTemplate) API 반환항목중 templateCode로 확인
@@ -535,7 +549,9 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
+    '=========================================================================
+    '  다수의 수신자에게 다른 알림톡 내용을 전송 합니다.
+    '=========================================================================
     Private Sub btnSendATS_multi_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendATS_multi.Click
 
         '알림톡 템플릿 코드, 알림톡 템플릿 목록확인(ListATSTemplate) API 반환항목중 templateCode로 확인
@@ -573,7 +589,9 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
+    '=========================================================================
+    ' 단건의 친구톡(텍스트)를 전송합니다.
+    '=========================================================================
     Private Sub btnSendFTS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendFTS_one.Click
 
         '플러스친구 아이디, 플러스친구 목록 확인(LIstPlusFriend) API의 plusFriendID 항목 확인
@@ -624,7 +642,9 @@ Public Class frmExample
         End Try
 
     End Sub
-
+    '=========================================================================
+    ' 다수의 수신자에게 동일한 친구톡(텍스트)를 전송합니다.
+    '=========================================================================
     Private Sub btnSendFTS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendFTS_same.Click
 
         '플러스친구 아이디, 플러스친구 목록 확인(LIstPlusFriend) API의 plusFriendID 항목 확인
@@ -680,7 +700,9 @@ Public Class frmExample
         End Try
 
     End Sub
-
+    '=========================================================================
+    ' 다수의 수신자에게 다른 친구톡(텍스트)을 내용을 전송 합니다.
+    '=========================================================================
     Private Sub btnSendFTS_multi_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendFTS_multi.Click
 
         '플러스친구 아이디, 플러스친구 목록 확인(LIstPlusFriend) API의 plusFriendID 항목 확인
@@ -732,7 +754,9 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
+    '=========================================================================
+    ' 단건의 친구톡(이미지)를 전송합니다.
+    '=========================================================================
     Private Sub btnSendFMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendFMS_one.Click
         If fileDialog.ShowDialog(Me) = DialogResult.OK Then
 
@@ -794,7 +818,9 @@ Public Class frmExample
 
         End If
     End Sub
-
+    '=========================================================================
+    ' 다수의 수신자에게 동일한 친구톡(이미지)를 전송합니다.
+    '=========================================================================
     Private Sub btnSendFMS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendFMS_same.Click
 
         If fileDialog.ShowDialog(Me) = DialogResult.OK Then
@@ -860,7 +886,9 @@ Public Class frmExample
         End If
 
     End Sub
-
+    '=========================================================================
+    ' 다수의 수신자에게 다른 친구톡(이미지)을 내용을 전송 합니다.
+    '=========================================================================
     Private Sub btnSendFMS_multi_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendFMS_multi.Click
 
         If fileDialog.ShowDialog(Me) = DialogResult.OK Then

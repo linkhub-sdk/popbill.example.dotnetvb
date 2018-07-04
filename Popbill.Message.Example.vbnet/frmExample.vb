@@ -2,7 +2,7 @@
 '
 ' 팝빌 문자 API VB.Net SDK Example
 '
-' - VB.Net 연동환경 설정방법 안내 : http://blog.linkhub.co.kr/569/
+' - VB.Net 연동환경 설정방법 안내 : http://blog.linkhub.co.kr/4453/
 ' - 업데이트 일자 : 2018-07-03
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
@@ -90,7 +90,9 @@ Public Class frmExample
 
         End Try
     End Sub
-
+    '=========================================================================
+    ' 다수의 수신자에게 다른 메시지 내용을 전송 합니다.
+    '=========================================================================
     Private Sub btn_SendSMS_hund_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_SendSMS_hund.Click
 
         '전송정보 배열, 최대 1000건
@@ -136,7 +138,9 @@ Public Class frmExample
 
         End Try
     End Sub
-
+    '=========================================================================
+    ' 다수의 수신자에게 동일한 문자를 전송합니다.
+    '=========================================================================
     Private Sub btnSendSMS_Same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendSMS_Same.Click
 
         '발신번호
@@ -176,7 +180,9 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
+    '=========================================================================
+    ' 1건의 장문 문자를 전송합니다.
+    '=========================================================================
     Private Sub btnSendLMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendLMS_one.Click
 
         '발신번호
@@ -215,7 +221,9 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
+    '=========================================================================
+    ' 다수의 수신자에게 다른 메시지 내용을 전송 합니다.
+    '=========================================================================
     Private Sub btnSendLMS_hund_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendLMS_hund.Click
 
         ' 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
@@ -263,7 +271,9 @@ Public Class frmExample
 
         End Try
     End Sub
-
+    '=========================================================================
+    ' 다수의 수신자에게 동일한 문자를 전송합니다.
+    '=========================================================================
     Private Sub btnSendLMS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendLMS_same.Click
 
         '발신번호
@@ -307,7 +317,9 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
+    '=========================================================================
+    ' 
+    '=========================================================================
     Private Sub btnSendXMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendXMS_one.Click
 
         '발신번호
@@ -345,7 +357,9 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
+    '=========================================================================
+    ' 1건의 단문/장문 문자를 전송합니다.
+    '=========================================================================
     Private Sub btnSendXMS_hund_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendXMS_hund.Click
 
         ' 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
@@ -392,7 +406,9 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
+    '=========================================================================
+    ' 다수의 수신자에게 동일한 문자를 전송합니다.
+    '=========================================================================
     Private Sub btnSendXMS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendXMS_same.Click
 
         '발신번호
@@ -871,7 +887,9 @@ Public Class frmExample
 
         End Try
     End Sub
-
+    '=========================================================================
+    ' 1건의 단문 문자를 전송합니다.
+    '=========================================================================
     Private Sub btnSendSMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendSMS_one.Click
 
         '발신번호
@@ -908,7 +926,9 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
+    '=========================================================================
+    ' 1건의 포토문자를 전송합니다.
+    '=========================================================================
     Private Sub btnSendMMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendMMS_one.Click
         If fileDialog.ShowDialog(Me) = DialogResult.OK Then
 
@@ -953,6 +973,9 @@ Public Class frmExample
         End If
     End Sub
 
+    '===========================================================================
+    '다수의 수신자에게 다른 메시지 내용을 전송 합니다.
+    '===========================================================================
     Private Sub btnSendMMS_hundered_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendMMS_hundered.Click
         If fileDialog.ShowDialog(Me) = DialogResult.OK Then
 
@@ -1002,7 +1025,9 @@ Public Class frmExample
 
         End If
     End Sub
-
+    '=========================================================================
+    ' 다수의 수신자에게 동일한 문자를 전송합니다.
+    '=========================================================================
     Private Sub btnSendMMS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendMMS_same.Click
         If fileDialog.ShowDialog(Me) = DialogResult.OK Then
 

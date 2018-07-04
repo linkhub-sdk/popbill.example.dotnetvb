@@ -2,7 +2,7 @@
 '
 ' 팝빌 현금영수증 API VB.Net  SDK Example
 '
-' - VB.Net SDK 연동환경 설정방법 안내
+' - VB.Net SDK 연동환경 설정방법 안내 : http://blog.linkhub.co.kr/4453/
 ' - 업데이트 일자 : 2018-07-03
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
@@ -1311,6 +1311,7 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
+
     '=========================================================================
     ' 현금영수증 메일전송 항목에 대한 전송여부를 목록으로 반환한다.
     '=========================================================================
@@ -1331,6 +1332,7 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
+
     '=========================================================================
     '현금영수증 메일전송 항목에 대한 전송여부를 수정한다.
     '메일전송유형
