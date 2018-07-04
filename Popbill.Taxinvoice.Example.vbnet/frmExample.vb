@@ -1078,7 +1078,9 @@ Public Class frmExample
 
         End Try
     End Sub
-
+    '=========================================================================
+    ' 공급받는자가 임시저장 상태의 역발행 세금계산서를 공급자에게 발행 요청합니다.
+    '=========================================================================
     Private Sub btnRequest_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRequest.Click
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
@@ -1092,7 +1094,9 @@ Public Class frmExample
 
         End Try
     End Sub
-
+    '=========================================================================
+    ' 공급받는자가 역발행 세금계산서의 발행요청을 취소 한다.
+    '=========================================================================
     Private Sub btnCancelRequest_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelRequest.Click
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
@@ -1106,7 +1110,9 @@ Public Class frmExample
 
         End Try
     End Sub
-
+    '=========================================================================
+    ' 공급자가 요청받은 역발행 세금계산서의 발행을 거부 한다.
+    '=========================================================================
     Private Sub btnRefuse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRefuse.Click
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
@@ -1120,8 +1126,11 @@ Public Class frmExample
 
         End Try
     End Sub
-
-    Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
+    '=========================================================================
+    ' 공급자가 임시저장 상태의 세금계산서 정보를 수정처리 한다.
+    ' - 수정은 '임시저장'상태의 세금계산서만 가능하며, 파트너가 부여한 관리번호를 제외한 정보를 수정할 수 있다.
+    '=========================================================================
+    Private Sub btnUpdate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdate.Click
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
         Dim taxinvoice As Taxinvoice = New Taxinvoice
@@ -1347,7 +1356,15 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
+    '=========================================================================
+    ' 1건의 세금계산서를 임시저장 합니다.
+    ' - 세금계산서 임시저장(Register API) 호출후에는 발행(Issue API)을 호출해야만
+    '   국세청으로 전송됩니다.
+    ' - 임시저장과 발행을 한번의 호출로 처리하는 즉시발행(RegistIssue API) 프로세스
+    '   연동을 권장합니다.
+    ' - 세금계산서 항목별 정보는 "[전자세금계산서 API 연동매뉴얼] > 4.1. (세금)계산서
+    '   구성"을 참조하시기 바랍니다.
+    '=========================================================================
     Private Sub btnRegister_Reverse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegister_Reverse.Click
         Dim taxinvoice As Taxinvoice = New Taxinvoice
 
@@ -1572,7 +1589,10 @@ Public Class frmExample
 
         End Try
     End Sub
-
+    '=========================================================================
+    ' 공급받는자가 임시저장 상태의 세금계산서 정보를 수정처리 한다.
+    ' - 수정은 '임시저장'상태의 세금계산서만 가능하며, 파트너가 부여한 관리번호를 제외한 정보를 수정할 수 있다.
+    '=========================================================================
     Private Sub btnUpdate_Reverse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdate_Reverse.Click
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
@@ -1800,7 +1820,10 @@ Public Class frmExample
 
         End Try
     End Sub
-
+    '=========================================================================
+    '세금계산서에 파일을 첨부합니다. (1건당 최대 5개)
+    '※ [임시저장] 상태에서만 첨부파일 추가가능합니다.
+    '=========================================================================
     Private Sub btnAttachFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAttachFile.Click
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
@@ -1820,8 +1843,10 @@ Public Class frmExample
         End If
 
     End Sub
-
-    Private Sub gtnGetFiles_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles gtnGetFiles.Click
+    '=========================================================================
+    '세금계산서의 첨부파일 목록을 확인한다.
+    '=========================================================================
+    Private Sub btnGetFiles_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFiles.Click
 
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
@@ -1841,7 +1866,9 @@ Public Class frmExample
 
         End Try
     End Sub
-
+    '=========================================================================
+    '세금계산서의 첨부파일 1개를 삭제한다.
+    '=========================================================================
     Private Sub btnDeleteFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteFile.Click
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
@@ -1856,7 +1883,6 @@ Public Class frmExample
         End Try
 
     End Sub
-
     '=========================================================================
     ' 팝빌 회원아이디 중복여부를 확인합니다.
     '=========================================================================
@@ -1870,7 +1896,6 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
     '=========================================================================
     ' 연동회원의 전자세금계산서 API 서비스 과금정보를 확인합니다.
     '=========================================================================
@@ -1888,7 +1913,6 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
     '=========================================================================
     ' 연동회원 포인트 충전 URL을 반환합니다.
     ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
@@ -1902,7 +1926,6 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
     '=========================================================================
     ' 파트너 포인트 충전 팝업 URL을 반환합니다.
     ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
@@ -1916,7 +1939,6 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
     '=========================================================================
     ' 공인인증서 등록 URL을 반환합니다.
     ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
@@ -1949,7 +1971,6 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
     '=========================================================================
     ' 팝빌(www.popbill.com)에 로그인된 팝빌 URL을 반환합니다.
     ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
@@ -1963,7 +1984,6 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
     '=========================================================================
     ' 인감 및 첨부문서 등록 팝업 URL을 반환합니다.
     ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
@@ -1977,7 +1997,6 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
     '=========================================================================
     ' 연동회원의 담당자를 신규로 등록합니다.
     '=========================================================================
@@ -2017,7 +2036,6 @@ Public Class frmExample
 
         End Try
     End Sub
-
     '=========================================================================
     ' 연동회원의 담당자 목록을 확인합니다.
     '=========================================================================
@@ -2038,8 +2056,6 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
-
     '=========================================================================
     ' 연동회원의 담당자 정보를 수정합니다.
     '=========================================================================
@@ -2076,7 +2092,6 @@ Public Class frmExample
 
         End Try
     End Sub
-
     '=========================================================================
     ' 연동회원의 회사정보를 확인합니다.
     '=========================================================================
@@ -2097,7 +2112,6 @@ Public Class frmExample
 
         End Try
     End Sub
-
     '=========================================================================
     ' 연동회원의 회사정보를 수정합니다
     '=========================================================================
@@ -2130,7 +2144,11 @@ Public Class frmExample
 
         End Try
     End Sub
-
+    '=========================================================================
+    ' 공급자가 발행완료 상태의 전자세금계산서를 발행취소 합니다.
+    ' 공급자 발행취소는 전자세금계산서가 국세청에 전송되기 전에 가능하며, 
+    '국세청 전송이 성공한 전자세금계산서를 취소하기 위해서는 수정세금계산서를 발행 해야 합니다.
+    '=========================================================================
     Private Sub btnCancelIssue_Sub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelIssue_Sub.Click
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
@@ -2144,7 +2162,10 @@ Public Class frmExample
 
         End Try
     End Sub
-
+    '=========================================================================
+    ' 삭제 가능한 상태의 세금계산서를 삭제 한다.
+    ' 삭제가능 상태 : 임시저장, [발행예정]거부/취소, 발행취소, 역)발행 거부/취소
+    '=========================================================================
     Private Sub btnDelete_Sub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDelete_Sub.Click
 
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
@@ -2160,7 +2181,10 @@ Public Class frmExample
 
         End Try
     End Sub
-
+    '=========================================================================
+    ' 세금계산서를 즉시 발행합니다.
+    ' - 세금계산서 발행을 위해서는 공급자의 공인인증서가 팝빌에 등록되어 있어야 한다.
+    '=========================================================================
     Private Sub btnRegistIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistIssue.Click
         Dim taxinvoice As Taxinvoice = New Taxinvoice
 
@@ -2394,7 +2418,9 @@ Public Class frmExample
         End Try
 
     End Sub
-
+    '=========================================================================
+    ' 기간내 세금계산서 목록을 조회합니다.
+    '=========================================================================
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
@@ -2534,7 +2560,6 @@ Public Class frmExample
 
         End Try
     End Sub
-
     '=========================================================================
     '1건의 전자명세서를 세금계산서에 첨부합니다.
     '=========================================================================
@@ -2555,7 +2580,6 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
     '=========================================================================
     '세금계산서에 첨부된 전자명세서 1건을 첨부해제합니다.
     '=========================================================================
@@ -2588,7 +2612,7 @@ Public Class frmExample
         Dim itemKey As String = "018041823295700001"
 
         '할당할 문서관리번호, 숫자, 영문, '-', '_' 조합으로 
-        '~24자리까지 사업자번호별 중복없는 고유번호 할당
+        '1~24자리까지 사업자번호별 중복없는 고유번호 할당
         Dim mgtKey As String = "20180419A"
 
         Try
