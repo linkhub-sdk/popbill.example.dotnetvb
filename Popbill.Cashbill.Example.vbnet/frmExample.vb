@@ -104,7 +104,6 @@ Public Class frmExample
         End Try
     End Sub
 
-
     '=========================================================================
     ' 현금영수증을 임시저장 합니다.
     ' [임시저장] 상태의 현금영수증은 반드시 발행(Issue API)처리를 해야 국세청에 전송됩니다.
@@ -215,12 +214,10 @@ Public Class frmExample
     '   현금영수증 상태정보 구성"을 참조하시기 바랍니다.
     '=========================================================================
     Private Sub btnGetInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetInfo.Click
-
         Try
             Dim cbInfo As CashbillInfo = cashbillService.GetInfo(txtCorpNum.Text, txtMgtKey.Text)
 
             Dim tmp As String = ""
-
             tmp += "itemKey (아이템키) : " + cbInfo.itemKey + vbCrLf
             tmp += "mgtKey (문서관리번호) : " + cbInfo.mgtKey + vbCrLf
             tmp += "tradeDate (거래일자) : " + cbInfo.tradeDate + vbCrLf
@@ -378,7 +375,6 @@ Public Class frmExample
     ' 발행 안내메일을 재전송합니다.
     '=========================================================================
     Private Sub btnSendEmail_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendEmail.Click
-
         '수신메일주소
         Dim receiverMail = "test@test.com"
 
@@ -526,7 +522,6 @@ Public Class frmExample
         End Try
 
     End Sub
-
 
     '=========================================================================
     ' 임시저장 상태의 현금영수증을 발행 합니다.
@@ -1198,6 +1193,7 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
+
     '=========================================================================
     ' 검색조건을 사용하여 전자세금계산서 목록을 조회합니다.
     ' - 응답항목에 대한 자세한 사항은 "[전자세금계산서 API 연동매뉴얼] >
