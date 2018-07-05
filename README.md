@@ -1,4 +1,4 @@
-popbill.example.vbdotnet
+popbill.example.dotnetvb
 ======================
 
 팝빌 SDK Example for VB.NET
