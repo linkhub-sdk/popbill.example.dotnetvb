@@ -90,6 +90,7 @@ Public Class frmExample
 
         End Try
     End Sub
+
     '=========================================================================
     ' 다수의 수신자에게 다른 메시지 내용을 전송 합니다.
     '=========================================================================
@@ -138,6 +139,7 @@ Public Class frmExample
 
         End Try
     End Sub
+
     '=========================================================================
     ' 다수의 수신자에게 동일한 문자를 전송합니다.
     '=========================================================================
@@ -180,6 +182,7 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
+
     '=========================================================================
     ' 1건의 장문 문자를 전송합니다.
     '=========================================================================
@@ -221,6 +224,7 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
+
     '=========================================================================
     ' 다수의 수신자에게 다른 메시지 내용을 전송 합니다.
     '=========================================================================
@@ -271,6 +275,7 @@ Public Class frmExample
 
         End Try
     End Sub
+
     '=========================================================================
     ' 다수의 수신자에게 동일한 문자를 전송합니다.
     '=========================================================================
@@ -317,8 +322,10 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
+
     '=========================================================================
-    ' 
+    ' 1건의 장문/단문 문자를 전송합니다.
+    ' 메시지 내용의 길이(90byte)에 따라 SMS/LMS(단문/장문)를 자동인식하여 전송합니다
     '=========================================================================
     Private Sub btnSendXMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendXMS_one.Click
 
@@ -357,8 +364,10 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
+
     '=========================================================================
     ' 1건의 단문/장문 문자를 전송합니다.
+    ' 메시지 내용의 길이(90byte)에 따라 SMS/LMS(단문/장문)를 자동인식하여 전송합니다
     '=========================================================================
     Private Sub btnSendXMS_hund_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendXMS_hund.Click
 
@@ -406,8 +415,10 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
+
     '=========================================================================
     ' 다수의 수신자에게 동일한 문자를 전송합니다.
+    ' 메시지 내용의 길이(90byte)에 따라 SMS/LMS(단문/장문)를 자동인식하여 전송합니다
     '=========================================================================
     Private Sub btnSendXMS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendXMS_same.Click
 
@@ -928,6 +939,7 @@ Public Class frmExample
     End Sub
     '=========================================================================
     ' 1건의 포토문자를 전송합니다.
+    ' 이미지 파일의 크기는 최대 300Kbyte(JPEG), 가로/세로 1500px 이하 권장
     '=========================================================================
     Private Sub btnSendMMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendMMS_one.Click
         If fileDialog.ShowDialog(Me) = DialogResult.OK Then
@@ -975,6 +987,7 @@ Public Class frmExample
 
     '===========================================================================
     '다수의 수신자에게 다른 메시지 내용을 전송 합니다.
+    ' 이미지 파일의 크기는 최대 300Kbyte(JPEG), 가로/세로 1500px 이하 권장
     '===========================================================================
     Private Sub btnSendMMS_hundered_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendMMS_hundered.Click
         If fileDialog.ShowDialog(Me) = DialogResult.OK Then
@@ -1025,8 +1038,10 @@ Public Class frmExample
 
         End If
     End Sub
+
     '=========================================================================
     ' 다수의 수신자에게 동일한 문자를 전송합니다.
+    ' 이미지 파일의 크기는 최대 300Kbyte(JPEG), 가로/세로 1500px 이하 권장
     '=========================================================================
     Private Sub btnSendMMS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendMMS_same.Click
         If fileDialog.ShowDialog(Me) = DialogResult.OK Then
@@ -1158,7 +1173,6 @@ Public Class frmExample
         Try
             Dim msgSearchList As MSGSearchResult = messageService.Search(txtCorpNum.Text, SDate, EDate, State, _
                                                                        item, ReserveYN, SenderYN, Order, Page, PerPage, QString)
-
 
             Dim tmp As String
 

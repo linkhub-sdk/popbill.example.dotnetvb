@@ -849,8 +849,17 @@ Public Class frmExample
     Private Sub btnSendSMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendSMS.Click
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
+        '발신번호
+        Dim sendNum As String = "070-1234-1234"
+
+        '수신번호
+        Dim receiveNum As String = "010-1111-2222"
+
+        '메시지내용, 90byte(한글45자) 초과된 내용은 삭제되어 전송됨
+        Dim contents As String = "발신문자 메시지 내용"
+
         Try
-            Dim response As Response = taxinvoiceService.SendSMS(txtCorpNum.Text, KeyType, txtMgtKey.Text, "1111-2222", "111-2222-4444", "발신문자 내용...", txtUserId.Text)
+            Dim response As Response = taxinvoiceService.SendSMS(txtCorpNum.Text, KeyType, txtMgtKey.Text, sendNum, receiveNum, contents, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
@@ -869,8 +878,14 @@ Public Class frmExample
     Private Sub btnSendFAX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendFAX.Click
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
+        '발신번호
+        Dim sendNum As String = "070-1234-1234"
+
+        '수신번호
+        Dim receiveNum As String = "010-1111-2222"
+
         Try
-            Dim response As Response = taxinvoiceService.SendFAX(txtCorpNum.Text, KeyType, txtMgtKey.Text, "1111-2222", "000-2222-4444", txtUserId.Text)
+            Dim response As Response = taxinvoiceService.SendFAX(txtCorpNum.Text, KeyType, txtMgtKey.Text, sendNum, receiveNum, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 

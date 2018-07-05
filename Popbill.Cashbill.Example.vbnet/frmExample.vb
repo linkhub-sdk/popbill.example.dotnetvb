@@ -132,7 +132,6 @@ Public Class frmExample
         cashbill.totalAmount = "11000"
         cashbill.tradeUsage = "소득공제용"      '소득공제용 or 지출증빙용
         cashbill.taxationType = "과세"          '과세 or 비과세
-
         cashbill.smssendYN = False
 
 
@@ -187,13 +186,11 @@ Public Class frmExample
             tmp += "tax (세액) : " + cbDetailInfo.tax + vbCrLf
             tmp += "serviceFee (봉사료) : " + cbDetailInfo.serviceFee + vbCrLf
             tmp += "totalAmount (거래금액) : " + cbDetailInfo.totalAmount + vbCrLf
-
             tmp += "franchiseCorpNum (발행자 사업자번호) : " + cbDetailInfo.franchiseCorpNum + vbCrLf
             tmp += "franchiseCorpName (발행자 상호) : " + cbDetailInfo.franchiseCorpName + vbCrLf
             tmp += "franchiseCEOName (발행자 대표자명) : " + cbDetailInfo.franchiseCEOName + vbCrLf
             tmp += "franchiseAddr (발행자 주소) : " + cbDetailInfo.franchiseAddr + vbCrLf
             tmp += "franchiseTEL (발행자 연락처) : " + cbDetailInfo.franchiseTEL + vbCrLf
-
             tmp += "identityNum (거래처 식별번호) : " + cbDetailInfo.identityNum + vbCrLf
             tmp += "customerName (고객명) : " + cbDetailInfo.customerName + vbCrLf
             tmp += "itemName (상품명) : " + cbDetailInfo.itemName + vbCrLf
@@ -201,7 +198,6 @@ Public Class frmExample
             tmp += "email (고객 이메일) : " + cbDetailInfo.email + vbCrLf
             tmp += "hp (고객 휴대폰번호) : " + cbDetailInfo.hp + vbCrLf
             tmp += "smssendYN (알림문자 전송여부) : " + cbDetailInfo.smssendYN.ToString + vbCrLf
-
             tmp += "orgConfirmNum (원본현금영수증 국세청승인번호) : " + cbDetailInfo.orgConfirmNum + vbCrLf
             tmp += "orgTradeDate (원본현금영수증 거래일자) : " + cbDetailInfo.orgTradeDate + vbCrLf
             tmp += "cancelType (취소사유) : " + cbDetailInfo.cancelType.ToString + vbCrLf
@@ -236,11 +232,9 @@ Public Class frmExample
             tmp += "tradeType (현금영수증 형태) : " + cbInfo.tradeType + vbCrLf
             tmp += "stateCode (상태코드) : " + cbInfo.stateCode.ToString + vbCrLf
             tmp += "stateDT (상태변경일시) : " + cbInfo.stateDT + vbCrLf
-
             tmp += "identityNum (거래처 식별번호) : " + cbInfo.identityNum + vbCrLf
             tmp += "itemName (상품명) : " + cbInfo.itemName + vbCrLf
             tmp += "customerName (고객명) : " + cbInfo.customerName + vbCrLf
-
             tmp += "confirmNum (국세청승인번호) : " + cbInfo.confirmNum + vbCrLf
             tmp += "ntssendDT (국세청 전송일시) : " + cbInfo.ntssendDT + vbCrLf
             tmp += "ntsresultDT (국세청 처리결과 수신일시) : " + cbInfo.ntsresultDT + vbCrLf
@@ -248,7 +242,6 @@ Public Class frmExample
             tmp += "ntsresultMessage (국세청 처리결과 메시지) : " + cbInfo.ntsresultMessage + vbCrLf
             tmp += "orgConfirmNum (원본 현금영수증 국세청 승인번호) : " + cbInfo.orgConfirmNum + vbCrLf
             tmp += "orgTradeDate (원본 현금영수증 거래일자) : " + cbInfo.orgTradeDate + vbCrLf
-
             tmp += "printYN (인쇄여부) : " + cbInfo.printYN.ToString + vbCrLf
 
             MsgBox(tmp)
@@ -315,9 +308,7 @@ Public Class frmExample
         Try
             Dim logList As List(Of CashbillLog) = cashbillService.GetLogs(txtCorpNum.Text, txtMgtKey.Text)
 
-
             Dim tmp As String = ""
-
 
             For Each log As CashbillLog In logList
                 tmp += log.docLogType.ToString + " | " + log.log + " | " + log.procType + " | " + log.procMemo + " | " + log.regDT + " | " + log.ip + vbCrLf
@@ -350,7 +341,6 @@ Public Class frmExample
             Dim tmp As String = ""
 
             For Each cbInfo As CashbillInfo In cashbillInfoList
-
                 tmp += "itemKey (아이템키) : " + cbInfo.itemKey + vbCrLf
                 tmp += "mgtKey (문서관리번호) : " + cbInfo.mgtKey + vbCrLf
                 tmp += "tradeDate (거래일자) : " + cbInfo.tradeDate + vbCrLf
@@ -362,11 +352,9 @@ Public Class frmExample
                 tmp += "tradeType (현금영수증 형태) : " + cbInfo.tradeType + vbCrLf
                 tmp += "stateCode (상태코드) : " + cbInfo.stateCode.ToString + vbCrLf
                 tmp += "stateDT (상태변경일시) : " + cbInfo.stateDT + vbCrLf
-
                 tmp += "identityNum (거래처 식별번호) : " + cbInfo.identityNum + vbCrLf
                 tmp += "itemName (상품명) : " + cbInfo.itemName + vbCrLf
                 tmp += "customerName (고객명) : " + cbInfo.customerName + vbCrLf
-
                 tmp += "confirmNum (국세청승인번호) : " + cbInfo.confirmNum + vbCrLf
                 tmp += "ntssendDT (국세청 전송일시) : " + cbInfo.ntssendDT + vbCrLf
                 tmp += "ntsresultDT (국세청 처리결과 수신일시) : " + cbInfo.ntsresultDT + vbCrLf
@@ -375,13 +363,11 @@ Public Class frmExample
                 tmp += "orgConfirmNum (원본 현금영수증 국세청 승인번호) : " + cbInfo.orgConfirmNum + vbCrLf
                 tmp += "orgTradeDate (원본 현금영수증 거래일자) : " + cbInfo.orgTradeDate + vbCrLf
                 tmp += "printYN (인쇄여부) : " + cbInfo.printYN.ToString + vbCrLf + vbCrLf
-
             Next
 
             MsgBox(tmp)
 
         Catch ex As PopbillException
-
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
 
