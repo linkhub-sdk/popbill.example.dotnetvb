@@ -23,6 +23,8 @@ Partial Class frmExample
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
+        Me.btnUpdateEmailConfig = New System.Windows.Forms.Button
+        Me.btnListEmailConfig = New System.Windows.Forms.Button
         Me.GroupBox17 = New System.Windows.Forms.GroupBox
         Me.btnUpdateCorpInfo = New System.Windows.Forms.Button
         Me.btnGetCorpInfo = New System.Windows.Forms.Button
@@ -106,9 +108,6 @@ Partial Class frmExample
         Me.cboItemCode = New System.Windows.Forms.ComboBox
         Me.btnCheckMgtKeyInUse = New System.Windows.Forms.Button
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
-        Me.GroupBox19 = New System.Windows.Forms.GroupBox
-        Me.btnUpdateEmailConfig = New System.Windows.Forms.Button
-        Me.btnListEmailConfig = New System.Windows.Forms.Button
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -127,12 +126,10 @@ Partial Class frmExample
         Me.groupBox6.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
         Me.panel1.SuspendLayout()
-        Me.GroupBox19.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.GroupBox19)
         Me.GroupBox1.Controls.Add(Me.GroupBox17)
         Me.GroupBox1.Controls.Add(Me.GroupBox16)
         Me.GroupBox1.Controls.Add(Me.GroupBox15)
@@ -142,10 +139,28 @@ Partial Class frmExample
         Me.GroupBox1.Controls.Add(Me.GroupBox2)
         Me.GroupBox1.Location = New System.Drawing.Point(6, 34)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1158, 155)
+        Me.GroupBox1.Size = New System.Drawing.Size(1030, 155)
         Me.GroupBox1.TabIndex = 10
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "팝빌 기본 API"
+        '
+        'btnUpdateEmailConfig
+        '
+        Me.btnUpdateEmailConfig.Location = New System.Drawing.Point(167, 122)
+        Me.btnUpdateEmailConfig.Name = "btnUpdateEmailConfig"
+        Me.btnUpdateEmailConfig.Size = New System.Drawing.Size(151, 30)
+        Me.btnUpdateEmailConfig.TabIndex = 8
+        Me.btnUpdateEmailConfig.Text = "알림메일 전송설정 수정"
+        Me.btnUpdateEmailConfig.UseVisualStyleBackColor = True
+        '
+        'btnListEmailConfig
+        '
+        Me.btnListEmailConfig.Location = New System.Drawing.Point(167, 88)
+        Me.btnListEmailConfig.Name = "btnListEmailConfig"
+        Me.btnListEmailConfig.Size = New System.Drawing.Size(151, 30)
+        Me.btnListEmailConfig.TabIndex = 7
+        Me.btnListEmailConfig.Text = "알림메일 전송목록 조회"
+        Me.btnListEmailConfig.UseVisualStyleBackColor = True
         '
         'GroupBox17
         '
@@ -422,7 +437,7 @@ Partial Class frmExample
         Me.groupBox12.Controls.Add(Me.btnCheckMgtKeyInUse)
         Me.groupBox12.Location = New System.Drawing.Point(6, 206)
         Me.groupBox12.Name = "groupBox12"
-        Me.groupBox12.Size = New System.Drawing.Size(702, 527)
+        Me.groupBox12.Size = New System.Drawing.Size(893, 527)
         Me.groupBox12.TabIndex = 54
         Me.groupBox12.TabStop = False
         Me.groupBox12.Text = "전자명세서 관련 API"
@@ -516,7 +531,7 @@ Partial Class frmExample
         '
         Me.groupBox10.Controls.Add(Me.btnGetURL_TBOX)
         Me.groupBox10.Controls.Add(Me.btnGetURL_SBOX)
-        Me.groupBox10.Location = New System.Drawing.Point(565, 287)
+        Me.groupBox10.Location = New System.Drawing.Point(759, 287)
         Me.groupBox10.Name = "groupBox10"
         Me.groupBox10.Size = New System.Drawing.Size(114, 97)
         Me.groupBox10.TabIndex = 51
@@ -548,9 +563,9 @@ Partial Class frmExample
         Me.groupBox9.Controls.Add(Me.btnGetPrintURL)
         Me.groupBox9.Controls.Add(Me.btnGetEPrintURL)
         Me.groupBox9.Controls.Add(Me.btnGetMassPrintURL)
-        Me.groupBox9.Location = New System.Drawing.Point(338, 287)
+        Me.groupBox9.Location = New System.Drawing.Point(532, 287)
         Me.groupBox9.Name = "groupBox9"
-        Me.groupBox9.Size = New System.Drawing.Size(208, 230)
+        Me.groupBox9.Size = New System.Drawing.Size(208, 201)
         Me.groupBox9.TabIndex = 50
         Me.groupBox9.TabStop = False
         Me.groupBox9.Text = "인쇄 URL"
@@ -602,7 +617,9 @@ Partial Class frmExample
         '
         'groupBox8
         '
+        Me.groupBox8.Controls.Add(Me.btnUpdateEmailConfig)
         Me.groupBox8.Controls.Add(Me.btnDetachStmt)
+        Me.groupBox8.Controls.Add(Me.btnListEmailConfig)
         Me.groupBox8.Controls.Add(Me.btnAttachStmt)
         Me.groupBox8.Controls.Add(Me.btnFAXSend)
         Me.groupBox8.Controls.Add(Me.btnSendEmail)
@@ -610,25 +627,25 @@ Partial Class frmExample
         Me.groupBox8.Controls.Add(Me.btnSendFAX)
         Me.groupBox8.Location = New System.Drawing.Point(173, 287)
         Me.groupBox8.Name = "groupBox8"
-        Me.groupBox8.Size = New System.Drawing.Size(156, 233)
+        Me.groupBox8.Size = New System.Drawing.Size(334, 166)
         Me.groupBox8.TabIndex = 49
         Me.groupBox8.TabStop = False
         Me.groupBox8.Text = "부가 서비스"
         '
         'btnDetachStmt
         '
-        Me.btnDetachStmt.Location = New System.Drawing.Point(10, 191)
+        Me.btnDetachStmt.Location = New System.Drawing.Point(167, 52)
         Me.btnDetachStmt.Name = "btnDetachStmt"
-        Me.btnDetachStmt.Size = New System.Drawing.Size(126, 30)
+        Me.btnDetachStmt.Size = New System.Drawing.Size(151, 30)
         Me.btnDetachStmt.TabIndex = 29
         Me.btnDetachStmt.Text = "명세서 첨부해제"
         Me.btnDetachStmt.UseVisualStyleBackColor = True
         '
         'btnAttachStmt
         '
-        Me.btnAttachStmt.Location = New System.Drawing.Point(10, 155)
+        Me.btnAttachStmt.Location = New System.Drawing.Point(167, 16)
         Me.btnAttachStmt.Name = "btnAttachStmt"
-        Me.btnAttachStmt.Size = New System.Drawing.Size(126, 30)
+        Me.btnAttachStmt.Size = New System.Drawing.Size(151, 30)
         Me.btnAttachStmt.TabIndex = 28
         Me.btnAttachStmt.Text = "명세서 첨부"
         Me.btnAttachStmt.UseVisualStyleBackColor = True
@@ -637,7 +654,7 @@ Partial Class frmExample
         '
         Me.btnFAXSend.Location = New System.Drawing.Point(10, 120)
         Me.btnFAXSend.Name = "btnFAXSend"
-        Me.btnFAXSend.Size = New System.Drawing.Size(126, 30)
+        Me.btnFAXSend.Size = New System.Drawing.Size(151, 30)
         Me.btnFAXSend.TabIndex = 27
         Me.btnFAXSend.Text = "선팩스 전송"
         Me.btnFAXSend.UseVisualStyleBackColor = True
@@ -646,7 +663,7 @@ Partial Class frmExample
         '
         Me.btnSendEmail.Location = New System.Drawing.Point(10, 17)
         Me.btnSendEmail.Name = "btnSendEmail"
-        Me.btnSendEmail.Size = New System.Drawing.Size(126, 30)
+        Me.btnSendEmail.Size = New System.Drawing.Size(151, 30)
         Me.btnSendEmail.TabIndex = 26
         Me.btnSendEmail.Text = "이메일 전송"
         Me.btnSendEmail.UseVisualStyleBackColor = True
@@ -655,7 +672,7 @@ Partial Class frmExample
         '
         Me.btnSendSMS.Location = New System.Drawing.Point(10, 51)
         Me.btnSendSMS.Name = "btnSendSMS"
-        Me.btnSendSMS.Size = New System.Drawing.Size(126, 30)
+        Me.btnSendSMS.Size = New System.Drawing.Size(151, 30)
         Me.btnSendSMS.TabIndex = 25
         Me.btnSendSMS.Text = "문자 전송"
         Me.btnSendSMS.UseVisualStyleBackColor = True
@@ -664,7 +681,7 @@ Partial Class frmExample
         '
         Me.btnSendFAX.Location = New System.Drawing.Point(10, 85)
         Me.btnSendFAX.Name = "btnSendFAX"
-        Me.btnSendFAX.Size = New System.Drawing.Size(126, 30)
+        Me.btnSendFAX.Size = New System.Drawing.Size(151, 30)
         Me.btnSendFAX.TabIndex = 24
         Me.btnSendFAX.Text = "팩스 전송"
         Me.btnSendFAX.UseVisualStyleBackColor = True
@@ -970,40 +987,11 @@ Partial Class frmExample
         '
         Me.fileDialog.FileName = "fileDialog"
         '
-        'GroupBox19
-        '
-        Me.GroupBox19.Controls.Add(Me.btnUpdateEmailConfig)
-        Me.GroupBox19.Controls.Add(Me.btnListEmailConfig)
-        Me.GroupBox19.Location = New System.Drawing.Point(1013, 18)
-        Me.GroupBox19.Name = "GroupBox19"
-        Me.GroupBox19.Size = New System.Drawing.Size(134, 125)
-        Me.GroupBox19.TabIndex = 10
-        Me.GroupBox19.TabStop = False
-        Me.GroupBox19.Text = "알림메일 관련"
-        '
-        'btnUpdateEmailConfig
-        '
-        Me.btnUpdateEmailConfig.Location = New System.Drawing.Point(6, 52)
-        Me.btnUpdateEmailConfig.Name = "btnUpdateEmailConfig"
-        Me.btnUpdateEmailConfig.Size = New System.Drawing.Size(122, 30)
-        Me.btnUpdateEmailConfig.TabIndex = 8
-        Me.btnUpdateEmailConfig.Text = "전송설정 수정"
-        Me.btnUpdateEmailConfig.UseVisualStyleBackColor = True
-        '
-        'btnListEmailConfig
-        '
-        Me.btnListEmailConfig.Location = New System.Drawing.Point(6, 18)
-        Me.btnListEmailConfig.Name = "btnListEmailConfig"
-        Me.btnListEmailConfig.Size = New System.Drawing.Size(122, 30)
-        Me.btnListEmailConfig.TabIndex = 7
-        Me.btnListEmailConfig.Text = "전송목록 조회"
-        Me.btnListEmailConfig.UseVisualStyleBackColor = True
-        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1187, 755)
+        Me.ClientSize = New System.Drawing.Size(1058, 755)
         Me.Controls.Add(Me.groupBox12)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.txtUserId)
@@ -1035,7 +1023,6 @@ Partial Class frmExample
         Me.GroupBox11.ResumeLayout(False)
         Me.panel1.ResumeLayout(False)
         Me.panel1.PerformLayout()
-        Me.GroupBox19.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1124,7 +1111,6 @@ Partial Class frmExample
     Private WithEvents cboItemCode As System.Windows.Forms.ComboBox
     Private WithEvents btnCheckMgtKeyInUse As System.Windows.Forms.Button
     Friend WithEvents fileDialog As System.Windows.Forms.OpenFileDialog
-    Friend WithEvents GroupBox19 As System.Windows.Forms.GroupBox
     Friend WithEvents btnUpdateEmailConfig As System.Windows.Forms.Button
     Friend WithEvents btnListEmailConfig As System.Windows.Forms.Button
 
