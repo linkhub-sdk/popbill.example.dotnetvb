@@ -3,7 +3,7 @@
 ' 팝빌 홈택스 전자세금계산서 매입매출 조회 API VB.Net SDK Example
 '
 ' - VB.Net SDK 연동환경 설정방법 안내 : http://blog.linkhub.co.kr/4453/
-' - 업데이트 일자 : 2018-07-03
+' - 업데이트 일자 : 2018-09-03
 ' - 연동 기술지원 연락처 : 1600-8536 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -763,6 +763,24 @@ Public Class frmExample
             MsgBox("홈택스 공인인증서 만료일시 : " + expireDate)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 세금계산서 1건의 팝업 보기 URL을 반환합니다.. 
+    ' - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+    '=========================================================================
+    Private Sub btnGetPopUpURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPopUpURL.Click
+
+        ' 조회할 전자세금계산서 국세청승인번호
+        Dim NTSConfirmNum As String = txtNTSconfirmNum.Text
+
+        Try
+            Dim url As String = htTaxinvoiceService.GetPopUpURL(txtCorpNum.Text, NTSConfirmNum)
+
+            MessageBox.Show(url, "홈택스 전자세금계산서 보기 팝업 URL")
+        Catch ex As PopbillException
+            MessageBox.Show("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message, "홈택스 전자세금계산서 보기 팝업 URL")
         End Try
     End Sub
 End Class

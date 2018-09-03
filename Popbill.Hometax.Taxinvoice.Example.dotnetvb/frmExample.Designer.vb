@@ -71,6 +71,7 @@ Partial Class frmExample
         Me.btnRequestJob = New System.Windows.Forms.Button
         Me.btnGetJobState = New System.Windows.Forms.Button
         Me.btnListActiveJob = New System.Windows.Forms.Button
+        Me.btnGetPopUpURL = New System.Windows.Forms.Button
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -408,6 +409,7 @@ Partial Class frmExample
         '
         'groupBox10
         '
+        Me.groupBox10.Controls.Add(Me.btnGetPopUpURL)
         Me.groupBox10.Controls.Add(Me.label6)
         Me.groupBox10.Controls.Add(Me.btnGetXML)
         Me.groupBox10.Controls.Add(Me.btnGetTaxinvocie)
@@ -415,14 +417,14 @@ Partial Class frmExample
         Me.groupBox10.Controls.Add(Me.label5)
         Me.groupBox10.Location = New System.Drawing.Point(322, 21)
         Me.groupBox10.Name = "groupBox10"
-        Me.groupBox10.Size = New System.Drawing.Size(265, 132)
+        Me.groupBox10.Size = New System.Drawing.Size(265, 158)
         Me.groupBox10.TabIndex = 6
         Me.groupBox10.TabStop = False
         Me.groupBox10.Text = "전자(세금)계산서 상세정보 조회"
         '
         'label6
         '
-        Me.label6.Location = New System.Drawing.Point(13, 49)
+        Me.label6.Location = New System.Drawing.Point(13, 53)
         Me.label6.Name = "label6"
         Me.label6.Size = New System.Drawing.Size(246, 28)
         Me.label6.TabIndex = 4
@@ -430,7 +432,7 @@ Partial Class frmExample
         '
         'btnGetXML
         '
-        Me.btnGetXML.Location = New System.Drawing.Point(111, 80)
+        Me.btnGetXML.Location = New System.Drawing.Point(111, 88)
         Me.btnGetXML.Name = "btnGetXML"
         Me.btnGetXML.Size = New System.Drawing.Size(142, 29)
         Me.btnGetXML.TabIndex = 3
@@ -439,7 +441,7 @@ Partial Class frmExample
         '
         'btnGetTaxinvocie
         '
-        Me.btnGetTaxinvocie.Location = New System.Drawing.Point(8, 80)
+        Me.btnGetTaxinvocie.Location = New System.Drawing.Point(11, 87)
         Me.btnGetTaxinvocie.Name = "btnGetTaxinvocie"
         Me.btnGetTaxinvocie.Size = New System.Drawing.Size(92, 29)
         Me.btnGetTaxinvocie.TabIndex = 2
@@ -448,7 +450,7 @@ Partial Class frmExample
         '
         'txtNTSconfirmNum
         '
-        Me.txtNTSconfirmNum.Location = New System.Drawing.Point(102, 18)
+        Me.txtNTSconfirmNum.Location = New System.Drawing.Point(102, 22)
         Me.txtNTSconfirmNum.Name = "txtNTSconfirmNum"
         Me.txtNTSconfirmNum.Size = New System.Drawing.Size(157, 21)
         Me.txtNTSconfirmNum.TabIndex = 1
@@ -456,7 +458,7 @@ Partial Class frmExample
         'label5
         '
         Me.label5.AutoSize = True
-        Me.label5.Location = New System.Drawing.Point(2, 23)
+        Me.label5.Location = New System.Drawing.Point(2, 27)
         Me.label5.Name = "label5"
         Me.label5.Size = New System.Drawing.Size(101, 12)
         Me.label5.TabIndex = 0
@@ -465,7 +467,7 @@ Partial Class frmExample
         'label4
         '
         Me.label4.AutoSize = True
-        Me.label4.Location = New System.Drawing.Point(278, 171)
+        Me.label4.Location = New System.Drawing.Point(286, 197)
         Me.label4.Name = "label4"
         Me.label4.Size = New System.Drawing.Size(259, 12)
         Me.label4.TabIndex = 5
@@ -475,9 +477,9 @@ Partial Class frmExample
         '
         Me.listBox1.FormattingEnabled = True
         Me.listBox1.ItemHeight = 12
-        Me.listBox1.Location = New System.Drawing.Point(20, 194)
+        Me.listBox1.Location = New System.Drawing.Point(24, 226)
         Me.listBox1.Name = "listBox1"
-        Me.listBox1.Size = New System.Drawing.Size(770, 256)
+        Me.listBox1.Size = New System.Drawing.Size(770, 220)
         Me.listBox1.TabIndex = 4
         '
         'groupBox9
@@ -511,7 +513,7 @@ Partial Class frmExample
         '
         'txtJobID
         '
-        Me.txtJobID.Location = New System.Drawing.Point(140, 168)
+        Me.txtJobID.Location = New System.Drawing.Point(148, 194)
         Me.txtJobID.Name = "txtJobID"
         Me.txtJobID.Size = New System.Drawing.Size(134, 21)
         Me.txtJobID.TabIndex = 2
@@ -519,7 +521,7 @@ Partial Class frmExample
         'label3
         '
         Me.label3.AutoSize = True
-        Me.label3.Location = New System.Drawing.Point(19, 171)
+        Me.label3.Location = New System.Drawing.Point(27, 197)
         Me.label3.Name = "label3"
         Me.label3.Size = New System.Drawing.Size(115, 12)
         Me.label3.TabIndex = 1
@@ -563,6 +565,15 @@ Partial Class frmExample
         Me.btnListActiveJob.TabIndex = 0
         Me.btnListActiveJob.Text = "수집 상태 목록 확인"
         Me.btnListActiveJob.UseVisualStyleBackColor = True
+        '
+        'btnGetPopUpURL
+        '
+        Me.btnGetPopUpURL.Location = New System.Drawing.Point(111, 121)
+        Me.btnGetPopUpURL.Name = "btnGetPopUpURL"
+        Me.btnGetPopUpURL.Size = New System.Drawing.Size(142, 29)
+        Me.btnGetPopUpURL.TabIndex = 5
+        Me.btnGetPopUpURL.Text = "세금계산서 보기 팝업"
+        Me.btnGetPopUpURL.UseVisualStyleBackColor = True
         '
         'frmExample
         '
@@ -646,5 +657,6 @@ Partial Class frmExample
     Private WithEvents btnRequestJob As System.Windows.Forms.Button
     Private WithEvents btnGetJobState As System.Windows.Forms.Button
     Private WithEvents btnListActiveJob As System.Windows.Forms.Button
+    Friend WithEvents btnGetPopUpURL As System.Windows.Forms.Button
 
 End Class
