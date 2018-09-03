@@ -3,7 +3,7 @@
 ' 팝빌 홈택스 현금영수증 매입매출 API VB.Net SDK Example
 '
 ' - VB.Net SDK 연동환경 설정방법 안내 : http://blog.linkhub.co.kr/4453/
-' - 업데이트 일자 : 2018-07-03
+' - 업데이트 일자 : 2018-09-03
 ' - 연동 기술지원 연락처 : 1600-8536 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -622,11 +622,82 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnGetCertificateExpireDate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetCertificateExpireDate.Click
         Try
-            Dim expireDate As String = htCashbillService.GetCertificateExpireDate(txtCorpNum.Text)
+            Dim expireDate As String = htCashbillService.GetCertificateExpireDate(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox("홈택스 공인인증서 만료일시 : " + expireDate)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    '  팝빌에 등록된 공인인증서의 홈택스 로그인을 테스트한다.
+    '=========================================================================
+    Private Sub btnCheckCertValidation_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckCertValidation.Click
+        Try
+            Dim response As Response = htCashbillService.CheckCertValidation(txtCorpNum.Text)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    '  홈택스 현금영수증 부서사용자 계정을 등록한다.
+    '=========================================================================
+    Private Sub btnRegistDeptUser_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistDeptUser.Click
+        ' 홈택스에서 생성한 현금영수증 부서사용자 아이디
+        Dim deptUserID As String = "userid"
+
+        ' 홈택스에서 생성한 현금영수증 부서사용자 비밀번호
+        Dim deptUserPWD As String = "passwd"
+
+        Try
+            Dim response As Response = htCashbillService.RegistDeptUser(txtCorpNum.Text, deptUserID, deptUserPWD)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    '  팝빌에 등록된 현금영수증 부서사용자 아이디를 확인한다.
+    '=========================================================================
+    Private Sub btnCheckDeptUser_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckDeptUser.Click
+        Try
+            Dim response As Response = htCashbillService.CheckDeptUser(txtCorpNum.Text)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 팝빌에 등록된 현금영수증 부서사용자 계정정보를 이용하여 홈택스 로그인을 테스트한다.
+    '=========================================================================
+    Private Sub btnCheckLoginDeptUser_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckLoginDeptUser.Click
+        Try
+            Dim response As Response = htCashbillService.CheckLoginDeptUser(txtCorpNum.Text)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    '  팝빌에 등록된 현금영수증 부서사용자 계정정보를 삭제한다.
+    '=========================================================================
+    Private Sub btnDeleteDeptUser_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteDeptUser.Click
+        Try
+            Dim response As Response = htCashbillService.DeleteDeptUser(txtCorpNum.Text)
+
+            MessageBox.Show("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+        Catch ex As PopbillException
+            MessageBox.Show("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 End Class
