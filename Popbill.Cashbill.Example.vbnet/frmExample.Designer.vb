@@ -54,6 +54,8 @@ Partial Class frmExample
         Me.btnGetPrintURL = New System.Windows.Forms.Button
         Me.btnGetPopUpURL = New System.Windows.Forms.Button
         Me.GroupBox11 = New System.Windows.Forms.GroupBox
+        Me.btnUpdateEmailConfig = New System.Windows.Forms.Button
+        Me.btnListEmailConfig = New System.Windows.Forms.Button
         Me.btnSendFAX = New System.Windows.Forms.Button
         Me.btnSendSMS = New System.Windows.Forms.Button
         Me.btnSendEmail = New System.Windows.Forms.Button
@@ -67,8 +69,6 @@ Partial Class frmExample
         Me.txtMgtKey = New System.Windows.Forms.TextBox
         Me.Label3 = New System.Windows.Forms.Label
         Me.GroupBox4 = New System.Windows.Forms.GroupBox
-        Me.btnUpdateEmailConfig = New System.Windows.Forms.Button
-        Me.btnListEmailConfig = New System.Windows.Forms.Button
         Me.GroupBox17 = New System.Windows.Forms.GroupBox
         Me.btnUpdateCorpInfo = New System.Windows.Forms.Button
         Me.btnGetCorpInfo = New System.Windows.Forms.Button
@@ -447,6 +447,24 @@ Partial Class frmExample
         Me.GroupBox11.TabStop = False
         Me.GroupBox11.Text = "부가서비스"
         '
+        'btnUpdateEmailConfig
+        '
+        Me.btnUpdateEmailConfig.Location = New System.Drawing.Point(7, 146)
+        Me.btnUpdateEmailConfig.Name = "btnUpdateEmailConfig"
+        Me.btnUpdateEmailConfig.Size = New System.Drawing.Size(155, 26)
+        Me.btnUpdateEmailConfig.TabIndex = 8
+        Me.btnUpdateEmailConfig.Text = "알림메일 전송설정 수정"
+        Me.btnUpdateEmailConfig.UseVisualStyleBackColor = True
+        '
+        'btnListEmailConfig
+        '
+        Me.btnListEmailConfig.Location = New System.Drawing.Point(7, 114)
+        Me.btnListEmailConfig.Name = "btnListEmailConfig"
+        Me.btnListEmailConfig.Size = New System.Drawing.Size(155, 26)
+        Me.btnListEmailConfig.TabIndex = 7
+        Me.btnListEmailConfig.Text = "알림메일 전송목록 조회"
+        Me.btnListEmailConfig.UseVisualStyleBackColor = True
+        '
         'btnSendFAX
         '
         Me.btnSendFAX.Location = New System.Drawing.Point(7, 84)
@@ -573,24 +591,6 @@ Partial Class frmExample
         Me.GroupBox4.TabIndex = 7
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "팝빌 기본 API"
-        '
-        'btnUpdateEmailConfig
-        '
-        Me.btnUpdateEmailConfig.Location = New System.Drawing.Point(7, 146)
-        Me.btnUpdateEmailConfig.Name = "btnUpdateEmailConfig"
-        Me.btnUpdateEmailConfig.Size = New System.Drawing.Size(155, 26)
-        Me.btnUpdateEmailConfig.TabIndex = 8
-        Me.btnUpdateEmailConfig.Text = "알림메일 전송설정 수정"
-        Me.btnUpdateEmailConfig.UseVisualStyleBackColor = True
-        '
-        'btnListEmailConfig
-        '
-        Me.btnListEmailConfig.Location = New System.Drawing.Point(7, 114)
-        Me.btnListEmailConfig.Name = "btnListEmailConfig"
-        Me.btnListEmailConfig.Size = New System.Drawing.Size(155, 26)
-        Me.btnListEmailConfig.TabIndex = 7
-        Me.btnListEmailConfig.Text = "알림메일 전송목록 조회"
-        Me.btnListEmailConfig.UseVisualStyleBackColor = True
         '
         'GroupBox17
         '
