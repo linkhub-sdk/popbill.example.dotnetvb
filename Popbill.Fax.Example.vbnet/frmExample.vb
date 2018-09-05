@@ -3,7 +3,7 @@
 ' 팝빌 팩스 API VB.Net SDK Example
 '
 ' - VB.Net SDK 연동환경 설정방법 안내 : http://blog.linkhub.co.kr/4453/
-' - 업데이트 일자 : 2018-07-03
+' - 업데이트 일자 : 2018-09-05
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -79,11 +79,47 @@ Public Class frmExample
     ' 팩스 전송요청시 반환받은 접수번호(receiptNum)을 사용하여 팩스전송 결과를 확인합니다.
     '=========================================================================
     Private Sub btnGetFaxResult_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFaxResult.Click
+        ListBox1.Items.Clear()
         Try
             Dim ResultList As List(Of FaxResult) = faxService.GetFaxResult(txtCorpNum.Text, txtReceiptNum.Text)
 
-            dataGridView1.DataSource = ResultList
+            Dim rowStr As String = "전송상태 코드 | 전송결과 코드 | 발신번호 | 발신자명 | 수신번호 | 수신자명 | 팩스제목 | 전체 페이지수 | 성공 페이지수 | "
+            rowStr += "실패 페이지수 | 환불 페이지수 | 취소 페이지수 | 예약시간 | 접수시간 | 발송시간 | 전송결과 수신시간 | 전송 파일명 리스트 | 접수번호 | 요청번호"
 
+            ListBox1.Items.Add(rowStr)
+
+            For Each Result As FaxResult In ResultList
+                rowStr = ""
+                rowStr += Result.state.ToString + " | "
+                rowStr += Result.result.ToString + " | "
+                rowStr += Result.sendNum + " | "
+                rowStr += Result.senderName + " | "
+                rowStr += Result.receiveNum + " | "
+                rowStr += Result.receiveName + " | "
+                rowStr += Result.title + " | "
+                rowStr += Result.sendPageCnt.ToString + " | "
+                rowStr += Result.successPageCnt.ToString + " | "
+                rowStr += Result.failPageCnt.ToString + " | "
+                rowStr += Result.refundPageCnt.ToString + " | "
+                rowStr += Result.cancelPageCnt.ToString + " | "
+                rowStr += Result.reserveDT + " | "
+                rowStr += Result.receiptDT + " | "
+                rowStr += Result.sendDT + " | "
+                rowStr += Result.resultDT + " | "
+
+                For i As Integer = 0 To Result.fileNames.Count - 1
+                    If i = Result.fileNames.Count - 1 Then
+                        rowStr += Result.fileNames(i) + " | "
+                    Else
+                        rowStr += Result.fileNames(i) + ","
+                    End If
+                Next
+
+                rowStr += Result.receiptNum + " | "
+                rowStr += Result.requestNum
+
+                ListBox1.Items.Add(rowStr)
+            Next
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
@@ -663,8 +699,43 @@ Public Class frmExample
             tmp = tmp + "pageCount (페이지 개수) : " + CStr(faxSearchList.pageCount) + vbCrLf
             tmp = tmp + "message (응답메시지) : " + faxSearchList.message + vbCrLf + vbCrLf
 
-            dataGridView1.DataSource = faxSearchList.list
+            Dim rowStr As String = "전송상태 코드 | 전송결과 코드 | 발신번호 | 발신자명 | 수신번호 | 수신자명 | 팩스제목 | 전체 페이지수 | 성공 페이지수 | "
+            rowStr += "실패 페이지수 | 환불 페이지수 | 취소 페이지수 | 예약시간 | 접수시간 | 발송시간 | 전송결과 수신시간 | 전송 파일명 리스트 | 접수번호 | 요청번호"
 
+            ListBox1.Items.Add(rowStr)
+
+            For Each Result As FaxResult In faxSearchList.list
+                rowStr = ""
+                rowStr += Result.state.ToString + " | "
+                rowStr += Result.result.ToString + " | "
+                rowStr += Result.sendNum + " | "
+                rowStr += Result.senderName + " | "
+                rowStr += Result.receiveNum + " | "
+                rowStr += Result.receiveName + " | "
+                rowStr += Result.title + " | "
+                rowStr += Result.sendPageCnt.ToString + " | "
+                rowStr += Result.successPageCnt.ToString + " | "
+                rowStr += Result.failPageCnt.ToString + " | "
+                rowStr += Result.refundPageCnt.ToString + " | "
+                rowStr += Result.cancelPageCnt.ToString + " | "
+                rowStr += Result.reserveDT + " | "
+                rowStr += Result.receiptDT + " | "
+                rowStr += Result.sendDT + " | "
+                rowStr += Result.resultDT + " | "
+
+                For i As Integer = 0 To Result.fileNames.Count - 1
+                    If i = Result.fileNames.Count - 1 Then
+                        rowStr += Result.fileNames(i) + " | "
+                    Else
+                        rowStr += Result.fileNames(i) + ","
+                    End If
+                Next
+
+                rowStr += Result.receiptNum + " | "
+                rowStr += Result.requestNum
+
+                ListBox1.Items.Add(rowStr)
+            Next
             MsgBox(tmp)
 
         Catch ex As PopbillException
@@ -793,10 +864,47 @@ Public Class frmExample
     ' 팩스전송 요청시 기재한 요청번호(requestNum)를 이용하여 전송결과 정보를 확인합니다.
     '=========================================================================
     Private Sub btnGetFaxResultRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFaxResultRN.Click
+        ListBox1.Items.Clear()
         Try
             Dim ResultList As List(Of FaxResult) = faxService.GetFaxResultRN(txtCorpNum.Text, txtRequestNum.Text)
 
-            dataGridView1.DataSource = ResultList
+            Dim rowStr As String = "전송상태 코드 | 전송결과 코드 | 발신번호 | 발신자명 | 수신번호 | 수신자명 | 팩스제목 | 전체 페이지수 | 성공 페이지수 | "
+            rowStr += "실패 페이지수 | 환불 페이지수 | 취소 페이지수 | 예약시간 | 접수시간 | 발송시간 | 전송결과 수신시간 | 전송 파일명 리스트 | 접수번호 | 요청번호"
+
+            ListBox1.Items.Add(rowStr)
+
+            For Each Result As FaxResult In ResultList
+                rowStr = ""
+                rowStr += Result.state.ToString + " | "
+                rowStr += Result.result.ToString + " | "
+                rowStr += Result.sendNum + " | "
+                rowStr += Result.senderName + " | "
+                rowStr += Result.receiveNum + " | "
+                rowStr += Result.receiveName + " | "
+                rowStr += Result.title + " | "
+                rowStr += Result.sendPageCnt.ToString + " | "
+                rowStr += Result.successPageCnt.ToString + " | "
+                rowStr += Result.failPageCnt.ToString + " | "
+                rowStr += Result.refundPageCnt.ToString + " | "
+                rowStr += Result.cancelPageCnt.ToString + " | "
+                rowStr += Result.reserveDT + " | "
+                rowStr += Result.receiptDT + " | "
+                rowStr += Result.sendDT + " | "
+                rowStr += Result.resultDT + " | "
+
+                For i As Integer = 0 To Result.fileNames.Count - 1
+                    If i = Result.fileNames.Count - 1 Then
+                        rowStr += Result.fileNames(i) + " | "
+                    Else
+                        rowStr += Result.fileNames(i) + ","
+                    End If
+                Next
+
+                rowStr += Result.receiptNum + " | "
+                rowStr += Result.requestNum
+
+                ListBox1.Items.Add(rowStr)
+            Next
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try

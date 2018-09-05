@@ -54,7 +54,11 @@ Partial Class frmExample
         Me.txtCorpNum = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
         Me.GroupBox4 = New System.Windows.Forms.GroupBox
-        Me.dataGrid1 = New System.Windows.Forms.DataGridView
+        Me.GroupBox12 = New System.Windows.Forms.GroupBox
+        Me.Label5 = New System.Windows.Forms.Label
+        Me.txtRequestNum = New System.Windows.Forms.TextBox
+        Me.btnCancelReserveRN = New System.Windows.Forms.Button
+        Me.btnGetMessagesRN = New System.Windows.Forms.Button
         Me.GroupBox10 = New System.Windows.Forms.GroupBox
         Me.btnSearch = New System.Windows.Forms.Button
         Me.btnGetURL_BOX = New System.Windows.Forms.Button
@@ -64,10 +68,6 @@ Partial Class frmExample
         Me.btnGetURL_TEMPLATE = New System.Windows.Forms.Button
         Me.btnListPlusFriendID = New System.Windows.Forms.Button
         Me.btnGetURL_PLUSFRIENDID = New System.Windows.Forms.Button
-        Me.btnCancelReserve = New System.Windows.Forms.Button
-        Me.btnGetMessages = New System.Windows.Forms.Button
-        Me.txtReceiptNum = New System.Windows.Forms.TextBox
-        Me.Label4 = New System.Windows.Forms.Label
         Me.GroupBox8 = New System.Windows.Forms.GroupBox
         Me.btnSendFMS_multi = New System.Windows.Forms.Button
         Me.btnSendFMS_same = New System.Windows.Forms.Button
@@ -82,13 +82,13 @@ Partial Class frmExample
         Me.btnSendATS_one = New System.Windows.Forms.Button
         Me.txtReserveDT = New System.Windows.Forms.TextBox
         Me.Label3 = New System.Windows.Forms.Label
-        Me.fileDialog = New System.Windows.Forms.OpenFileDialog
         Me.GroupBox11 = New System.Windows.Forms.GroupBox
-        Me.GroupBox12 = New System.Windows.Forms.GroupBox
-        Me.Label5 = New System.Windows.Forms.Label
-        Me.txtRequestNum = New System.Windows.Forms.TextBox
-        Me.btnCancelReserveRN = New System.Windows.Forms.Button
-        Me.btnGetMessagesRN = New System.Windows.Forms.Button
+        Me.Label4 = New System.Windows.Forms.Label
+        Me.txtReceiptNum = New System.Windows.Forms.TextBox
+        Me.btnCancelReserve = New System.Windows.Forms.Button
+        Me.btnGetMessages = New System.Windows.Forms.Button
+        Me.fileDialog = New System.Windows.Forms.OpenFileDialog
+        Me.ListBox1 = New System.Windows.Forms.ListBox
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -98,13 +98,12 @@ Partial Class frmExample
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
-        CType(Me.dataGrid1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox12.SuspendLayout()
         Me.GroupBox10.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
-        Me.GroupBox12.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -412,8 +411,8 @@ Partial Class frmExample
         '
         'GroupBox4
         '
+        Me.GroupBox4.Controls.Add(Me.ListBox1)
         Me.GroupBox4.Controls.Add(Me.GroupBox12)
-        Me.GroupBox4.Controls.Add(Me.dataGrid1)
         Me.GroupBox4.Controls.Add(Me.GroupBox10)
         Me.GroupBox4.Controls.Add(Me.GroupBox8)
         Me.GroupBox4.Controls.Add(Me.GroupBox7)
@@ -428,14 +427,52 @@ Partial Class frmExample
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "카카오톡 관련 기능"
         '
-        'dataGrid1
+        'GroupBox12
         '
-        Me.dataGrid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dataGrid1.Location = New System.Drawing.Point(11, 297)
-        Me.dataGrid1.Name = "dataGrid1"
-        Me.dataGrid1.RowTemplate.Height = 21
-        Me.dataGrid1.Size = New System.Drawing.Size(1062, 189)
-        Me.dataGrid1.TabIndex = 25
+        Me.GroupBox12.Controls.Add(Me.Label5)
+        Me.GroupBox12.Controls.Add(Me.txtRequestNum)
+        Me.GroupBox12.Controls.Add(Me.btnCancelReserveRN)
+        Me.GroupBox12.Controls.Add(Me.btnGetMessagesRN)
+        Me.GroupBox12.Location = New System.Drawing.Point(299, 190)
+        Me.GroupBox12.Name = "GroupBox12"
+        Me.GroupBox12.Size = New System.Drawing.Size(269, 88)
+        Me.GroupBox12.TabIndex = 9
+        Me.GroupBox12.TabStop = False
+        Me.GroupBox12.Text = "요청번호 할당 전송건 처"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(13, 26)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(65, 12)
+        Me.Label5.TabIndex = 5
+        Me.Label5.Text = "요청번호 : "
+        '
+        'txtRequestNum
+        '
+        Me.txtRequestNum.Location = New System.Drawing.Point(74, 20)
+        Me.txtRequestNum.Name = "txtRequestNum"
+        Me.txtRequestNum.Size = New System.Drawing.Size(189, 21)
+        Me.txtRequestNum.TabIndex = 6
+        '
+        'btnCancelReserveRN
+        '
+        Me.btnCancelReserveRN.Location = New System.Drawing.Point(141, 47)
+        Me.btnCancelReserveRN.Name = "btnCancelReserveRN"
+        Me.btnCancelReserveRN.Size = New System.Drawing.Size(122, 33)
+        Me.btnCancelReserveRN.TabIndex = 8
+        Me.btnCancelReserveRN.Text = "예약전송 취소"
+        Me.btnCancelReserveRN.UseVisualStyleBackColor = True
+        '
+        'btnGetMessagesRN
+        '
+        Me.btnGetMessagesRN.Location = New System.Drawing.Point(10, 47)
+        Me.btnGetMessagesRN.Name = "btnGetMessagesRN"
+        Me.btnGetMessagesRN.Size = New System.Drawing.Size(123, 33)
+        Me.btnGetMessagesRN.TabIndex = 7
+        Me.btnGetMessagesRN.Text = "전송상태 확인"
+        Me.btnGetMessagesRN.UseVisualStyleBackColor = True
         '
         'GroupBox10
         '
@@ -525,40 +562,6 @@ Partial Class frmExample
         Me.btnGetURL_PLUSFRIENDID.TabIndex = 0
         Me.btnGetURL_PLUSFRIENDID.Text = "플러스친구 계정관리 팝업 URL"
         Me.btnGetURL_PLUSFRIENDID.UseVisualStyleBackColor = True
-        '
-        'btnCancelReserve
-        '
-        Me.btnCancelReserve.Location = New System.Drawing.Point(141, 47)
-        Me.btnCancelReserve.Name = "btnCancelReserve"
-        Me.btnCancelReserve.Size = New System.Drawing.Size(122, 33)
-        Me.btnCancelReserve.TabIndex = 8
-        Me.btnCancelReserve.Text = "예약전송 취소"
-        Me.btnCancelReserve.UseVisualStyleBackColor = True
-        '
-        'btnGetMessages
-        '
-        Me.btnGetMessages.Location = New System.Drawing.Point(10, 47)
-        Me.btnGetMessages.Name = "btnGetMessages"
-        Me.btnGetMessages.Size = New System.Drawing.Size(123, 33)
-        Me.btnGetMessages.TabIndex = 7
-        Me.btnGetMessages.Text = "전송상태 확인"
-        Me.btnGetMessages.UseVisualStyleBackColor = True
-        '
-        'txtReceiptNum
-        '
-        Me.txtReceiptNum.Location = New System.Drawing.Point(74, 20)
-        Me.txtReceiptNum.Name = "txtReceiptNum"
-        Me.txtReceiptNum.Size = New System.Drawing.Size(189, 21)
-        Me.txtReceiptNum.TabIndex = 6
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(13, 26)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(65, 12)
-        Me.Label4.TabIndex = 5
-        Me.Label4.Text = "접수번호 : "
         '
         'GroupBox8
         '
@@ -693,10 +696,6 @@ Partial Class frmExample
         Me.Label3.TabIndex = 0
         Me.Label3.Text = "예약전송시간(yyyyMMddHHmmss) : "
         '
-        'fileDialog
-        '
-        Me.fileDialog.FileName = "fileDialob"
-        '
         'GroupBox11
         '
         Me.GroupBox11.Controls.Add(Me.Label4)
@@ -710,52 +709,53 @@ Partial Class frmExample
         Me.GroupBox11.TabStop = False
         Me.GroupBox11.Text = "접수번호 관련 기능 (요청번호 미할당)"
         '
-        'GroupBox12
+        'Label4
         '
-        Me.GroupBox12.Controls.Add(Me.Label5)
-        Me.GroupBox12.Controls.Add(Me.txtRequestNum)
-        Me.GroupBox12.Controls.Add(Me.btnCancelReserveRN)
-        Me.GroupBox12.Controls.Add(Me.btnGetMessagesRN)
-        Me.GroupBox12.Location = New System.Drawing.Point(299, 190)
-        Me.GroupBox12.Name = "GroupBox12"
-        Me.GroupBox12.Size = New System.Drawing.Size(269, 88)
-        Me.GroupBox12.TabIndex = 9
-        Me.GroupBox12.TabStop = False
-        Me.GroupBox12.Text = "요청번호 할당 전송건 처"
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(13, 26)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(65, 12)
+        Me.Label4.TabIndex = 5
+        Me.Label4.Text = "접수번호 : "
         '
-        'Label5
+        'txtReceiptNum
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(13, 26)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(65, 12)
-        Me.Label5.TabIndex = 5
-        Me.Label5.Text = "요청번호 : "
+        Me.txtReceiptNum.Location = New System.Drawing.Point(74, 20)
+        Me.txtReceiptNum.Name = "txtReceiptNum"
+        Me.txtReceiptNum.Size = New System.Drawing.Size(189, 21)
+        Me.txtReceiptNum.TabIndex = 6
         '
-        'txtRequestNum
+        'btnCancelReserve
         '
-        Me.txtRequestNum.Location = New System.Drawing.Point(74, 20)
-        Me.txtRequestNum.Name = "txtRequestNum"
-        Me.txtRequestNum.Size = New System.Drawing.Size(189, 21)
-        Me.txtRequestNum.TabIndex = 6
+        Me.btnCancelReserve.Location = New System.Drawing.Point(141, 47)
+        Me.btnCancelReserve.Name = "btnCancelReserve"
+        Me.btnCancelReserve.Size = New System.Drawing.Size(122, 33)
+        Me.btnCancelReserve.TabIndex = 8
+        Me.btnCancelReserve.Text = "예약전송 취소"
+        Me.btnCancelReserve.UseVisualStyleBackColor = True
         '
-        'btnCancelReserveRN
+        'btnGetMessages
         '
-        Me.btnCancelReserveRN.Location = New System.Drawing.Point(141, 47)
-        Me.btnCancelReserveRN.Name = "btnCancelReserveRN"
-        Me.btnCancelReserveRN.Size = New System.Drawing.Size(122, 33)
-        Me.btnCancelReserveRN.TabIndex = 8
-        Me.btnCancelReserveRN.Text = "예약전송 취소"
-        Me.btnCancelReserveRN.UseVisualStyleBackColor = True
+        Me.btnGetMessages.Location = New System.Drawing.Point(10, 47)
+        Me.btnGetMessages.Name = "btnGetMessages"
+        Me.btnGetMessages.Size = New System.Drawing.Size(123, 33)
+        Me.btnGetMessages.TabIndex = 7
+        Me.btnGetMessages.Text = "전송상태 확인"
+        Me.btnGetMessages.UseVisualStyleBackColor = True
         '
-        'btnGetMessagesRN
+        'fileDialog
         '
-        Me.btnGetMessagesRN.Location = New System.Drawing.Point(10, 47)
-        Me.btnGetMessagesRN.Name = "btnGetMessagesRN"
-        Me.btnGetMessagesRN.Size = New System.Drawing.Size(123, 33)
-        Me.btnGetMessagesRN.TabIndex = 7
-        Me.btnGetMessagesRN.Text = "전송상태 확인"
-        Me.btnGetMessagesRN.UseVisualStyleBackColor = True
+        Me.fileDialog.FileName = "fileDialob"
+        '
+        'ListBox1
+        '
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.HorizontalScrollbar = True
+        Me.ListBox1.ItemHeight = 12
+        Me.ListBox1.Location = New System.Drawing.Point(11, 283)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(1062, 208)
+        Me.ListBox1.TabIndex = 26
         '
         'frmExample
         '
@@ -781,15 +781,14 @@ Partial Class frmExample
         Me.GroupBox9.ResumeLayout(False)
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
-        CType(Me.dataGrid1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox12.ResumeLayout(False)
+        Me.GroupBox12.PerformLayout()
         Me.GroupBox10.ResumeLayout(False)
         Me.GroupBox8.ResumeLayout(False)
         Me.GroupBox7.ResumeLayout(False)
         Me.GroupBox6.ResumeLayout(False)
         Me.GroupBox11.ResumeLayout(False)
         Me.GroupBox11.PerformLayout()
-        Me.GroupBox12.ResumeLayout(False)
-        Me.GroupBox12.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -854,12 +853,12 @@ Partial Class frmExample
     Friend WithEvents btnGetURL_BOX As System.Windows.Forms.Button
     Friend WithEvents btnSearch As System.Windows.Forms.Button
     Friend WithEvents fileDialog As System.Windows.Forms.OpenFileDialog
-    Private WithEvents dataGrid1 As System.Windows.Forms.DataGridView
     Friend WithEvents GroupBox11 As System.Windows.Forms.GroupBox
     Friend WithEvents GroupBox12 As System.Windows.Forms.GroupBox
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents txtRequestNum As System.Windows.Forms.TextBox
     Friend WithEvents btnCancelReserveRN As System.Windows.Forms.Button
     Friend WithEvents btnGetMessagesRN As System.Windows.Forms.Button
+    Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
 
 End Class

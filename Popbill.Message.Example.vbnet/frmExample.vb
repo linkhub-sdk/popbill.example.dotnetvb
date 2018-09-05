@@ -3,7 +3,7 @@
 ' 팝빌 문자 API VB.Net SDK Example
 '
 ' - VB.Net 연동환경 설정방법 안내 : http://blog.linkhub.co.kr/4453/
-' - 업데이트 일자 : 2018-07-03
+' - 업데이트 일자 : 2018-09-04
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -79,11 +79,23 @@ Public Class frmExample
     ' 문자전송요청에 대한 전송결과를 확인합니다.
     '=========================================================================
     Private Sub btnGetMessageResult_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMessageResult.Click
+        ListBox1.Items.Clear()
         Try
             Dim ResultList As List(Of MessageResult) = messageService.GetMessageResult(txtCorpNum.Text, txtReceiptNum.Text)
 
-            dataGridView1.DataSource = ResultList
+            Dim rowStr As String = "메시지 제목 | 메시지 내용 | 발신번호 | 발신자명 | 수신번호 | 수신자명 | 접수시간 | 발송시간 | 전송결과 수신시간 | "
+            rowStr += "예약일시 | 전송 상태코드 | 전송 결과코드 | 메시지 타입 | 전송처리 이동통신사명 | 접수번호 | 요청번호"
 
+            ListBox1.Items.Add(rowStr)
+
+            For Each Result As MessageResult In ResultList
+                rowStr = ""
+                rowStr += Result.subject + " | " + Result.content + " | " + Result.sendNum + " | " + Result.senderName + " | " + Result.receiveNum + " | " + Result.receiveName + " | "
+                rowStr += Result.receiptDT + " | " + Result.sendDT + " | " + Result.resultDT + " | " + Result.reserveDT + " | " + Result.state.ToString + " | " + Result.result.ToString + " | "
+                rowStr += Result.type + " | " + Result.tranNet + " | " + Result.receiptNum + " | " + Result.requestNum
+
+                ListBox1.Items.Add(rowStr)
+            Next
 
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
@@ -1172,6 +1184,7 @@ Public Class frmExample
         '조회 검색어, 문자 전송시 기재한 수신자명 또는 발신자명 입력
         Dim QString As String = ""
 
+        ListBox1.Items.Clear()
         Try
             Dim msgSearchList As MSGSearchResult = messageService.Search(txtCorpNum.Text, SDate, EDate, State, _
                                                                        item, ReserveYN, SenderYN, Order, Page, PerPage, QString)
@@ -1185,7 +1198,19 @@ Public Class frmExample
             tmp = tmp + "pageCount (페이지 개수) : " + CStr(msgSearchList.pageCount) + vbCrLf
             tmp = tmp + "message (응답메시지) : " + msgSearchList.message + vbCrLf + vbCrLf
 
-            dataGridView1.DataSource = msgSearchList.list
+            Dim rowStr As String = "메시지 제목 | 메시지 내용 | 발신번호 | 발신자명 | 수신번호 | 수신자명 | 접수시간 | 발송시간 | 전송결과 수신시간 | "
+            rowStr += "예약일시 | 전송 상태코드 | 전송 결과코드 | 메시지 타입 | 전송처리 이동통신사명 | 접수번호 | 요청번호"
+
+            ListBox1.Items.Add(rowStr)
+
+            For Each Result As MessageResult In msgSearchList.list
+                rowStr = ""
+                rowStr += Result.subject + " | " + Result.content + " | " + Result.sendNum + " | " + Result.senderName + " | " + Result.receiveNum + " | " + Result.receiveName + " | "
+                rowStr += Result.receiptDT + " | " + Result.sendDT + " | " + Result.resultDT + " | " + Result.reserveDT + " | " + Result.state.ToString + " | " + Result.result.ToString + " | "
+                rowStr += Result.type + " | " + Result.tranNet + " | " + Result.receiptNum + " | " + Result.requestNum
+
+                ListBox1.Items.Add(rowStr)
+            Next
 
             MsgBox(tmp)
 
@@ -1221,14 +1246,24 @@ Public Class frmExample
         Dim ReciptNumList As List(Of String) = New List(Of String)
 
         '문자전송 접수번호
-        ReciptNumList.Add("018041717000000018")
-        ReciptNumList.Add("018041717000000019")
+        ReciptNumList.Add("018090410000000395")
+        ReciptNumList.Add("018090410000000416")
 
+        ListBox1.Items.Clear()
         Try
             Dim resultList As List(Of MessageState) = messageService.GetStates(txtCorpNum.Text, ReciptNumList, txtUserId.Text)
 
-            dataGridView1.DataSource = resultList
 
+            Dim rowStr As String = "접수번호 | 일련번호 | 전송 상태코드 | 전송 결과코드 | 전송일시 | 결과코드 수신일시 | 전송 이동통신사명"
+
+            ListBox1.Items.Add(rowStr)
+
+            For Each Result As MessageState In resultList
+                rowStr = ""
+                rowStr += Result.rNum + " | " + Result.sn + " | " + Result.stat + " | " + Result.rlt + " | " + Result.sDT + " | " + Result.rDT + " | " + Result.net
+
+                ListBox1.Items.Add(rowStr)
+            Next
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1238,10 +1273,23 @@ Public Class frmExample
     ' 전송요청번호를 할당한 문자 전송결과를 확인 합니다.
     '=========================================================================
     Private Sub btnGetMessageResultRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMessageResultRN.Click
+        ListBox1.Items.Clear()
         Try
             Dim ResultList As List(Of MessageResult) = messageService.GetMessageResultRN(txtCorpNum.Text, txtRequestNum.Text)
 
-            dataGridView1.DataSource = ResultList
+            Dim rowStr As String = "메시지 제목 | 메시지 내용 | 발신번호 | 발신자명 | 수신번호 | 수신자명 | 접수시간 | 발송시간 | 전송결과 수신시간 | "
+            rowStr += "예약일시 | 전송 상태코드 | 전송 결과코드 | 메시지 타입 | 전송처리 이동통신사명 | 접수번호 | 요청번호"
+
+            ListBox1.Items.Add(rowStr)
+
+            For Each Result As MessageResult In ResultList
+                rowStr = ""
+                rowStr += Result.subject + " | " + Result.content + " | " + Result.sendNum + " | " + Result.senderName + " | " + Result.receiveNum + " | " + Result.receiveName + " | "
+                rowStr += Result.receiptDT + " | " + Result.sendDT + " | " + Result.resultDT + " | " + Result.reserveDT + " | " + Result.state.ToString + " | " + Result.result.ToString + " | "
+                rowStr += Result.type + " | " + Result.tranNet + " | " + Result.receiptNum + " | " + Result.requestNum
+
+                ListBox1.Items.Add(rowStr)
+            Next
 
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)

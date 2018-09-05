@@ -3,7 +3,7 @@
 ' 팝빌 문자 API VB.Net SDK Example
 '
 ' - VB.Net 연동환경 설정방법 안내 : http://blog.linkhub.co.kr/4453/
-' - 업데이트 일자 : 2018-07-03
+' - 업데이트 일자 : 2018-09-05
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -1104,6 +1104,7 @@ Public Class frmExample
     ' 알림톡/친구톡 전송내역 및 전송상태를 확인한다
     '=========================================================================
     Private Sub btnGetMessages_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMessages.Click
+        ListBox1.Items.Clear()
         Try
             Dim sentInfo As KakaoSentResult = kakaoService.GetMessages(txtCorpNum.Text, txtReceiptNum.Text)
 
@@ -1136,8 +1137,30 @@ Public Class frmExample
             MsgBox(tmp)
 
             '전송결과 정보 리스트
-            dataGrid1.DataSource = sentInfo.msgs
+            Dim rowStr As String = "전송상태 코드 | 전송일시 | 수신번호 | 수신자명 | 내용 | 전송결과 코드 | 전송결과 수신일시 | 대체문자 내용 | 대체문자 전송유형 | "
+            rowStr += "대체문자 전송일시 | 대체문자 전송결과 코드 | 대체문자 전송결과 수신일시 | 접수번호 | 요청번호"
 
+            ListBox1.Items.Add(rowStr)
+
+            For Each Result As KakaoSentDetail In sentInfo.msgs
+                rowStr = ""
+                rowStr += Result.state.ToString + " | "
+                rowStr += Result.sendDT + " | "
+                rowStr += Result.receiveNum + " | "
+                rowStr += Result.receiveName + " | "
+                rowStr += Result.content + " | "
+                rowStr += Result.result.ToString + " | "
+                rowStr += Result.resultDT + " | "
+                rowStr += Result.altContent + " | "
+                rowStr += Result.altContentType.ToString + " | "
+                rowStr += Result.altSendDT + " | "
+                rowStr += Result.altResult + " | "
+                rowStr += Result.altResultDT + " | "
+                rowStr += Result.receiptNum + " | "
+                rowStr += Result.requestNum
+
+                ListBox1.Items.Add(rowStr)
+            Next
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
@@ -1197,7 +1220,7 @@ Public Class frmExample
         Dim Page As Integer = 1
 
         '페이지 목록개수, 최대 1000건
-        Dim PerPage As Integer = 10
+        Dim PerPage As Integer = 1000
 
         '정렬방향, D-내림차순(기본값), A-오름차순
         Dim Order As String = "D"
@@ -1205,6 +1228,7 @@ Public Class frmExample
         '조회 검색어, 카카오톡 전송시 기재한 수신자명 입력
         Dim QString As String = ""
 
+        ListBox1.Items.Clear()
         Try
             Dim msgSearchList As KakaoSearchResult = kakaoService.Search(txtCorpNum.Text, SDate, EDate, State, _
                                                                        item, ReserveYN, SenderYN, Order, Page, PerPage, txtUserId.Text, QString)
@@ -1218,10 +1242,32 @@ Public Class frmExample
             tmp = tmp + "pageCount (페이지 개수) : " + CStr(msgSearchList.pageCount) + vbCrLf
             tmp = tmp + "message (응답메시지) : " + msgSearchList.message + vbCrLf + vbCrLf
 
-            dataGrid1.DataSource = msgSearchList.list
-
             MsgBox(tmp)
 
+            Dim rowStr As String = "전송상태 코드 | 전송일시 | 전송결과 코드 | 전송결과 수신일시 | 카카오톡 유형 | 수신번호 | 수신자명 | 내용 | 대체문자 전송타입 | "
+            rowStr += "대체문자 전송일시 | 대체문자 전송결과 코드 | 대체문자 전송결과 수신일시 | 접수번호 | 요청번호"
+
+            ListBox1.Items.Add(rowStr)
+
+            For Each Result As KakaoSentDetail In msgSearchList.list
+                rowStr = ""
+                rowStr += Result.state.ToString + " | "
+                rowStr += Result.sendDT + " | "
+                rowStr += Result.receiveNum + " | "
+                rowStr += Result.receiveName + " | "
+                rowStr += Result.content + " | "
+                rowStr += Result.result.ToString + " | "
+                rowStr += Result.resultDT + " | "
+                rowStr += Result.altContent + " | "
+                rowStr += Result.altContentType.ToString + " | "
+                rowStr += Result.altSendDT + " | "
+                rowStr += Result.altResult + " | "
+                rowStr += Result.altResultDT + " | "
+                rowStr += Result.receiptNum + " | "
+                rowStr += Result.requestNum
+
+                ListBox1.Items.Add(rowStr)
+            Next
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
@@ -1232,6 +1278,7 @@ Public Class frmExample
     ' 전송요청번호를 할당한 알림톡/친구톡 전송결과를 확인 합니다.
     '=========================================================================
     Private Sub btnGetMessagesRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMessagesRN.Click
+        ListBox1.Items.Clear()
         Try
             Dim sentInfo As KakaoSentResult = kakaoService.GetMessagesRN(txtCorpNum.Text, txtRequestNum.Text)
 
@@ -1264,8 +1311,30 @@ Public Class frmExample
             MsgBox(tmp)
 
             '전송결과 정보 리스트
-            dataGrid1.DataSource = sentInfo.msgs
+            Dim rowStr As String = "전송상태 코드 | 전송일시 | 수신번호 | 수신자명 | 내용 | 전송결과 코드 | 전송결과 수신일시 | 대체문자 내용 | 대체문자 전송유형 | "
+            rowStr += "대체문자 전송일시 | 대체문자 전송결과 코드 | 대체문자 전송결과 수신일시 | 접수번호 | 요청번호"
 
+            ListBox1.Items.Add(rowStr)
+
+            For Each Result As KakaoSentDetail In sentInfo.msgs
+                rowStr = ""
+                rowStr += Result.state.ToString + " | "
+                rowStr += Result.sendDT + " | "
+                rowStr += Result.receiveNum + " | "
+                rowStr += Result.receiveName + " | "
+                rowStr += Result.content + " | "
+                rowStr += Result.result.ToString + " | "
+                rowStr += Result.resultDT + " | "
+                rowStr += Result.altContent + " | "
+                rowStr += Result.altContentType.ToString + " | "
+                rowStr += Result.altSendDT + " | "
+                rowStr += Result.altResult + " | "
+                rowStr += Result.altResultDT + " | "
+                rowStr += Result.receiptNum + " | "
+                rowStr += Result.requestNum
+
+                ListBox1.Items.Add(rowStr)
+            Next
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
