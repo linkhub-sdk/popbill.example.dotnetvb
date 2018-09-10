@@ -1425,7 +1425,7 @@ Public Class frmExample
 
             For Each info As EmailConfig In emailConfigList
                 If info.emailType = "CSH_ISSUE" Then tmp += "CSH_ISSUE (고객에게 현금영수증이 발행 되었음을 알려주는 메일) | " + info.sendYN.ToString + vbCrLf
-                If info.emailType = "CSH_CANCELISSUE" Then tmp += "CSH_CANCELISSUE (고객에게 현금영수증이 발행취소 되었음을 알려주는 메일) |" + info.sendYN.ToString + vbCrLf
+                If info.emailType = "CSH_CANCEL" Then tmp += "CSH_CANCEL (고객에게 현금영수증이 발행취소 되었음을 알려주는 메일) |" + info.sendYN.ToString + vbCrLf
             Next
 
             MsgBox(tmp)
@@ -1439,7 +1439,7 @@ Public Class frmExample
     '현금영수증 메일전송 항목에 대한 전송여부를 수정한다.
     '메일전송유형
     'CSH_ISSUE : 고객에게 현금영수증이 발행 되었음을 알려주는 메일 입니다.
-    'CSH_CANCELISSUE : 고객에게 현금영수증 발행취소 되었음을 알려주는 메일 입니다.
+    'CSH_CANCEL : 고객에게 현금영수증 발행취소 되었음을 알려주는 메일 입니다.
     '=========================================================================
     Private Sub btnUpdateEmailConfig_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateEmailConfig.Click
         Try
