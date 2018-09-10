@@ -379,7 +379,7 @@ Partial Class frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1040, 414)
+        Me.ClientSize = New System.Drawing.Size(1040, 294)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.txtUserId)
         Me.Controls.Add(Me.Label2)

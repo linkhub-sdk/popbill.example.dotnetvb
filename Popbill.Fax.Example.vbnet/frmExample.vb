@@ -3,7 +3,7 @@
 ' 팝빌 팩스 API VB.Net SDK Example
 '
 ' - VB.Net SDK 연동환경 설정방법 안내 : http://blog.linkhub.co.kr/4453/
-' - 업데이트 일자 : 2018-09-05
+' - 업데이트 일자 : 2018-09-10
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -687,6 +687,7 @@ Public Class frmExample
         '조회 검색어, 팩스 전송시 기재한 수신자명 또는 발신자명 입력
         Dim QString As String = ""
 
+        ListBox1.Items.Clear()
         Try
             Dim faxSearchList As FAXSearchResult = faxService.Search(txtCorpNum.Text, SDate, EDate, State, _
                                                                        ReserveYN, SenderYN, Order, Page, PerPage, QString)
