@@ -84,7 +84,7 @@ Public Class frmExample
             Dim ResultList As List(Of FaxResult) = faxService.GetFaxResult(txtCorpNum.Text, txtReceiptNum.Text)
 
             Dim rowStr As String = "전송상태 코드 | 전송결과 코드 | 발신번호 | 발신자명 | 수신번호 | 수신자명 | 팩스제목 | 전체 페이지수 | 성공 페이지수 | "
-            rowStr += "실패 페이지수 | 환불 페이지수 | 취소 페이지수 | 예약시간 | 접수시간 | 발송시간 | 전송결과 수신시간 | 전송 파일명 리스트 | 접수번호 | 요청번호"
+            rowStr += "실패 페이지수 | 환불 페이지수 | 취소 페이지수 | 예약시간 | 접수시간 | 발송시간 | 전송결과 수신시간 | 전송 파일명 리스트 | 접수번호 | 요청번호 | 과금 페이지수 | 변환파일용량"
 
             ListBox1.Items.Add(rowStr)
 
@@ -116,7 +116,9 @@ Public Class frmExample
                 Next
 
                 rowStr += Result.receiptNum + " | "
-                rowStr += Result.requestNum
+                rowStr += Result.requestNum + " | "
+                rowStr += Result.chargePageCnt + " | "
+                rowStr += Result.tiffFileSize
 
                 ListBox1.Items.Add(rowStr)
             Next
@@ -152,7 +154,7 @@ Public Class frmExample
 
             ' 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
             ' 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
-            Dim requestNum = ""
+            Dim requestNum = "20180929-001"
 
             Try
                 Dim receiptNum As String = faxService.SendFAX(txtCorpNum.Text, sendNum, receiveNum, receiveName, _
@@ -658,10 +660,10 @@ Public Class frmExample
 
         '최대 검색기간 : 6개월 이내
         '[필수] 시작일자, yyyyMMdd
-        Dim SDate As String = "20180201"
+        Dim SDate As String = "20180925"
 
         '[필수] 종료일자, yyyyMMdd
-        Dim EDate As String = "20180630"
+        Dim EDate As String = "20180930"
 
         '전송상태값 배열, 1-대기, 2-성공, 3-실패, 4-취소
         State(0) = "1"
@@ -701,7 +703,7 @@ Public Class frmExample
             tmp = tmp + "message (응답메시지) : " + faxSearchList.message + vbCrLf + vbCrLf
 
             Dim rowStr As String = "전송상태 코드 | 전송결과 코드 | 발신번호 | 발신자명 | 수신번호 | 수신자명 | 팩스제목 | 전체 페이지수 | 성공 페이지수 | "
-            rowStr += "실패 페이지수 | 환불 페이지수 | 취소 페이지수 | 예약시간 | 접수시간 | 발송시간 | 전송결과 수신시간 | 전송 파일명 리스트 | 접수번호 | 요청번호"
+            rowStr += "실패 페이지수 | 환불 페이지수 | 취소 페이지수 | 예약시간 | 접수시간 | 발송시간 | 전송결과 수신시간 | 전송 파일명 리스트 | 접수번호 | 요청번호 | 과금 페이지수 | 변환파일용량"
 
             ListBox1.Items.Add(rowStr)
 
@@ -733,7 +735,9 @@ Public Class frmExample
                 Next
 
                 rowStr += Result.receiptNum + " | "
-                rowStr += Result.requestNum
+                rowStr += Result.requestNum + " | "
+                rowStr += Result.chargePageCnt + " | "
+                rowStr += Result.tiffFileSize
 
                 ListBox1.Items.Add(rowStr)
             Next
@@ -870,7 +874,7 @@ Public Class frmExample
             Dim ResultList As List(Of FaxResult) = faxService.GetFaxResultRN(txtCorpNum.Text, txtRequestNum.Text)
 
             Dim rowStr As String = "전송상태 코드 | 전송결과 코드 | 발신번호 | 발신자명 | 수신번호 | 수신자명 | 팩스제목 | 전체 페이지수 | 성공 페이지수 | "
-            rowStr += "실패 페이지수 | 환불 페이지수 | 취소 페이지수 | 예약시간 | 접수시간 | 발송시간 | 전송결과 수신시간 | 전송 파일명 리스트 | 접수번호 | 요청번호"
+            rowStr += "실패 페이지수 | 환불 페이지수 | 취소 페이지수 | 예약시간 | 접수시간 | 발송시간 | 전송결과 수신시간 | 전송 파일명 리스트 | 접수번호 | 요청번호 | 과금 페이지수 | 변환파일용량"
 
             ListBox1.Items.Add(rowStr)
 
@@ -902,7 +906,9 @@ Public Class frmExample
                 Next
 
                 rowStr += Result.receiptNum + " | "
-                rowStr += Result.requestNum
+                rowStr += Result.requestNum + " | "
+                rowStr += Result.chargePageCnt + " | "
+                rowStr += Result.tiffFileSize
 
                 ListBox1.Items.Add(rowStr)
             Next
