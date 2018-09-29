@@ -49,6 +49,14 @@ Partial Class frmExample
         Me.txtCorpNum = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
         Me.groupBox7 = New System.Windows.Forms.GroupBox
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox
+        Me.btnGetCertificateExpireDate = New System.Windows.Forms.Button
+        Me.btnGetCertificatePopUpURL = New System.Windows.Forms.Button
+        Me.btnDeleteDeptUser = New System.Windows.Forms.Button
+        Me.btnCheckLoginDeptUser = New System.Windows.Forms.Button
+        Me.btnCheckDeptUser = New System.Windows.Forms.Button
+        Me.btnRegistDeptUser = New System.Windows.Forms.Button
+        Me.btnCheckCertValidation = New System.Windows.Forms.Button
         Me.groupBox11 = New System.Windows.Forms.GroupBox
         Me.btnGetFlatRateState = New System.Windows.Forms.Button
         Me.btnGetFlatRatePopUpURL = New System.Windows.Forms.Button
@@ -63,14 +71,6 @@ Partial Class frmExample
         Me.btnRequestJob = New System.Windows.Forms.Button
         Me.btnGetJobState = New System.Windows.Forms.Button
         Me.btnListActiveJob = New System.Windows.Forms.Button
-        Me.GroupBox4 = New System.Windows.Forms.GroupBox
-        Me.btnRegistDeptUser = New System.Windows.Forms.Button
-        Me.btnCheckCertValidation = New System.Windows.Forms.Button
-        Me.btnDeleteDeptUser = New System.Windows.Forms.Button
-        Me.btnCheckLoginDeptUser = New System.Windows.Forms.Button
-        Me.btnCheckDeptUser = New System.Windows.Forms.Button
-        Me.btnGetCertificateExpireDate = New System.Windows.Forms.Button
-        Me.btnGetCertificatePopUpURL = New System.Windows.Forms.Button
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -80,10 +80,10 @@ Partial Class frmExample
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         Me.groupBox7.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
         Me.groupBox11.SuspendLayout()
         Me.groupBox9.SuspendLayout()
         Me.groupBox8.SuspendLayout()
-        Me.GroupBox4.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -356,6 +356,86 @@ Partial Class frmExample
         Me.groupBox7.TabStop = False
         Me.groupBox7.Text = "홈택스 현금영수증 연계 관련 API"
         '
+        'GroupBox4
+        '
+        Me.GroupBox4.Controls.Add(Me.btnGetCertificateExpireDate)
+        Me.GroupBox4.Controls.Add(Me.btnGetCertificatePopUpURL)
+        Me.GroupBox4.Controls.Add(Me.btnDeleteDeptUser)
+        Me.GroupBox4.Controls.Add(Me.btnCheckLoginDeptUser)
+        Me.GroupBox4.Controls.Add(Me.btnCheckDeptUser)
+        Me.GroupBox4.Controls.Add(Me.btnRegistDeptUser)
+        Me.GroupBox4.Controls.Add(Me.btnCheckCertValidation)
+        Me.GroupBox4.Location = New System.Drawing.Point(618, 19)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(383, 159)
+        Me.GroupBox4.TabIndex = 8
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "홈택스 인증관련 기능"
+        '
+        'btnGetCertificateExpireDate
+        '
+        Me.btnGetCertificateExpireDate.Location = New System.Drawing.Point(8, 56)
+        Me.btnGetCertificateExpireDate.Name = "btnGetCertificateExpireDate"
+        Me.btnGetCertificateExpireDate.Size = New System.Drawing.Size(169, 31)
+        Me.btnGetCertificateExpireDate.TabIndex = 8
+        Me.btnGetCertificateExpireDate.Text = "공인인증서 만료일자 확인"
+        Me.btnGetCertificateExpireDate.UseVisualStyleBackColor = True
+        '
+        'btnGetCertificatePopUpURL
+        '
+        Me.btnGetCertificatePopUpURL.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnGetCertificatePopUpURL.Location = New System.Drawing.Point(8, 23)
+        Me.btnGetCertificatePopUpURL.Name = "btnGetCertificatePopUpURL"
+        Me.btnGetCertificatePopUpURL.Size = New System.Drawing.Size(169, 31)
+        Me.btnGetCertificatePopUpURL.TabIndex = 7
+        Me.btnGetCertificatePopUpURL.Text = "홈택스연동 인증관리 URL"
+        Me.btnGetCertificatePopUpURL.UseVisualStyleBackColor = True
+        '
+        'btnDeleteDeptUser
+        '
+        Me.btnDeleteDeptUser.Location = New System.Drawing.Point(193, 89)
+        Me.btnDeleteDeptUser.Name = "btnDeleteDeptUser"
+        Me.btnDeleteDeptUser.Size = New System.Drawing.Size(169, 31)
+        Me.btnDeleteDeptUser.TabIndex = 6
+        Me.btnDeleteDeptUser.Text = "부서사용자 등록정보 삭제"
+        Me.btnDeleteDeptUser.UseVisualStyleBackColor = True
+        '
+        'btnCheckLoginDeptUser
+        '
+        Me.btnCheckLoginDeptUser.Location = New System.Drawing.Point(193, 56)
+        Me.btnCheckLoginDeptUser.Name = "btnCheckLoginDeptUser"
+        Me.btnCheckLoginDeptUser.Size = New System.Drawing.Size(169, 31)
+        Me.btnCheckLoginDeptUser.TabIndex = 5
+        Me.btnCheckLoginDeptUser.Text = "부서사용자 로그인 테스트"
+        Me.btnCheckLoginDeptUser.UseVisualStyleBackColor = True
+        '
+        'btnCheckDeptUser
+        '
+        Me.btnCheckDeptUser.Location = New System.Drawing.Point(193, 23)
+        Me.btnCheckDeptUser.Name = "btnCheckDeptUser"
+        Me.btnCheckDeptUser.Size = New System.Drawing.Size(169, 31)
+        Me.btnCheckDeptUser.TabIndex = 4
+        Me.btnCheckDeptUser.Text = "부서사용자 등록정보 확인"
+        Me.btnCheckDeptUser.UseVisualStyleBackColor = True
+        '
+        'btnRegistDeptUser
+        '
+        Me.btnRegistDeptUser.Location = New System.Drawing.Point(8, 122)
+        Me.btnRegistDeptUser.Name = "btnRegistDeptUser"
+        Me.btnRegistDeptUser.Size = New System.Drawing.Size(169, 31)
+        Me.btnRegistDeptUser.TabIndex = 3
+        Me.btnRegistDeptUser.Text = "부서사용자 계정등록"
+        Me.btnRegistDeptUser.UseVisualStyleBackColor = True
+        '
+        'btnCheckCertValidation
+        '
+        Me.btnCheckCertValidation.Location = New System.Drawing.Point(8, 89)
+        Me.btnCheckCertValidation.Name = "btnCheckCertValidation"
+        Me.btnCheckCertValidation.Size = New System.Drawing.Size(169, 31)
+        Me.btnCheckCertValidation.TabIndex = 2
+        Me.btnCheckCertValidation.Text = "공인인증서 로그인 테스트"
+        Me.btnCheckCertValidation.UseVisualStyleBackColor = True
+        '
         'groupBox11
         '
         Me.groupBox11.Controls.Add(Me.btnGetFlatRateState)
@@ -397,10 +477,11 @@ Partial Class frmExample
         'listBox1
         '
         Me.listBox1.FormattingEnabled = True
+        Me.listBox1.HorizontalScrollbar = True
         Me.listBox1.ItemHeight = 12
         Me.listBox1.Location = New System.Drawing.Point(21, 214)
         Me.listBox1.Name = "listBox1"
-        Me.listBox1.Size = New System.Drawing.Size(969, 256)
+        Me.listBox1.Size = New System.Drawing.Size(980, 256)
         Me.listBox1.TabIndex = 4
         '
         'groupBox9
@@ -487,91 +568,11 @@ Partial Class frmExample
         Me.btnListActiveJob.Text = "수집 상태 목록 확인"
         Me.btnListActiveJob.UseVisualStyleBackColor = True
         '
-        'GroupBox4
-        '
-        Me.GroupBox4.Controls.Add(Me.btnGetCertificateExpireDate)
-        Me.GroupBox4.Controls.Add(Me.btnGetCertificatePopUpURL)
-        Me.GroupBox4.Controls.Add(Me.btnDeleteDeptUser)
-        Me.GroupBox4.Controls.Add(Me.btnCheckLoginDeptUser)
-        Me.GroupBox4.Controls.Add(Me.btnCheckDeptUser)
-        Me.GroupBox4.Controls.Add(Me.btnRegistDeptUser)
-        Me.GroupBox4.Controls.Add(Me.btnCheckCertValidation)
-        Me.GroupBox4.Location = New System.Drawing.Point(618, 19)
-        Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(383, 159)
-        Me.GroupBox4.TabIndex = 8
-        Me.GroupBox4.TabStop = False
-        Me.GroupBox4.Text = "홈택스 인증관련 기능"
-        '
-        'btnRegistDeptUser
-        '
-        Me.btnRegistDeptUser.Location = New System.Drawing.Point(8, 122)
-        Me.btnRegistDeptUser.Name = "btnRegistDeptUser"
-        Me.btnRegistDeptUser.Size = New System.Drawing.Size(169, 31)
-        Me.btnRegistDeptUser.TabIndex = 3
-        Me.btnRegistDeptUser.Text = "부서사용자 계정등록"
-        Me.btnRegistDeptUser.UseVisualStyleBackColor = True
-        '
-        'btnCheckCertValidation
-        '
-        Me.btnCheckCertValidation.Location = New System.Drawing.Point(8, 89)
-        Me.btnCheckCertValidation.Name = "btnCheckCertValidation"
-        Me.btnCheckCertValidation.Size = New System.Drawing.Size(169, 31)
-        Me.btnCheckCertValidation.TabIndex = 2
-        Me.btnCheckCertValidation.Text = "공인인증서 로그인 테스트"
-        Me.btnCheckCertValidation.UseVisualStyleBackColor = True
-        '
-        'btnDeleteDeptUser
-        '
-        Me.btnDeleteDeptUser.Location = New System.Drawing.Point(193, 89)
-        Me.btnDeleteDeptUser.Name = "btnDeleteDeptUser"
-        Me.btnDeleteDeptUser.Size = New System.Drawing.Size(169, 31)
-        Me.btnDeleteDeptUser.TabIndex = 6
-        Me.btnDeleteDeptUser.Text = "부서사용자 등록정보 삭제"
-        Me.btnDeleteDeptUser.UseVisualStyleBackColor = True
-        '
-        'btnCheckLoginDeptUser
-        '
-        Me.btnCheckLoginDeptUser.Location = New System.Drawing.Point(193, 56)
-        Me.btnCheckLoginDeptUser.Name = "btnCheckLoginDeptUser"
-        Me.btnCheckLoginDeptUser.Size = New System.Drawing.Size(169, 31)
-        Me.btnCheckLoginDeptUser.TabIndex = 5
-        Me.btnCheckLoginDeptUser.Text = "부서사용자 로그인 테스트"
-        Me.btnCheckLoginDeptUser.UseVisualStyleBackColor = True
-        '
-        'btnCheckDeptUser
-        '
-        Me.btnCheckDeptUser.Location = New System.Drawing.Point(193, 23)
-        Me.btnCheckDeptUser.Name = "btnCheckDeptUser"
-        Me.btnCheckDeptUser.Size = New System.Drawing.Size(169, 31)
-        Me.btnCheckDeptUser.TabIndex = 4
-        Me.btnCheckDeptUser.Text = "부서사용자 등록정보 확인"
-        Me.btnCheckDeptUser.UseVisualStyleBackColor = True
-        '
-        'btnGetCertificateExpireDate
-        '
-        Me.btnGetCertificateExpireDate.Location = New System.Drawing.Point(8, 56)
-        Me.btnGetCertificateExpireDate.Name = "btnGetCertificateExpireDate"
-        Me.btnGetCertificateExpireDate.Size = New System.Drawing.Size(169, 31)
-        Me.btnGetCertificateExpireDate.TabIndex = 8
-        Me.btnGetCertificateExpireDate.Text = "공인인증서 만료일자 확인"
-        Me.btnGetCertificateExpireDate.UseVisualStyleBackColor = True
-        '
-        'btnGetCertificatePopUpURL
-        '
-        Me.btnGetCertificatePopUpURL.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnGetCertificatePopUpURL.Location = New System.Drawing.Point(8, 23)
-        Me.btnGetCertificatePopUpURL.Name = "btnGetCertificatePopUpURL"
-        Me.btnGetCertificatePopUpURL.Size = New System.Drawing.Size(169, 31)
-        Me.btnGetCertificatePopUpURL.TabIndex = 7
-        Me.btnGetCertificatePopUpURL.Text = "홈택스연동 인증관리 URL"
-        Me.btnGetCertificatePopUpURL.UseVisualStyleBackColor = True
-        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1049, 721)
+        Me.ClientSize = New System.Drawing.Size(1056, 721)
         Me.Controls.Add(Me.groupBox7)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.txtUserId)
@@ -591,10 +592,10 @@ Partial Class frmExample
         Me.GroupBox6.ResumeLayout(False)
         Me.groupBox7.ResumeLayout(False)
         Me.groupBox7.PerformLayout()
+        Me.GroupBox4.ResumeLayout(False)
         Me.groupBox11.ResumeLayout(False)
         Me.groupBox9.ResumeLayout(False)
         Me.groupBox8.ResumeLayout(False)
-        Me.GroupBox4.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

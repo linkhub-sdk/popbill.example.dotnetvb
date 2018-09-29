@@ -506,22 +506,32 @@ Public Class frmExample
 
             MsgBox(tmp)
 
-            Dim rowStr As String = "구분 | 매입/매출 | 거래일시 | 식별번호 | 공급가액 | 세액 | 봉사료 | 거래금액 | 문서형태 | 국세청승인번호"
+            Dim rowStr As String = "국세청승인번호 | 거래일자 | 거래일시 | 문서형태 | 거래구분 | 거래금액 | 공급가액 | 부가세 | 봉사료 | 매입/매출 | "
+            rowStr += "발행자 사업자번호 | 발행자 상호 | 발행자 사업자유형 | 식별번호 | 식별변호유형 | 고객명 | 카드소유자명 | 공제유형"
+ 
 
             listBox1.Items.Add(rowStr)
 
             For Each cbInfo As HTCashbill In searchList.list
                 rowStr = ""
-                rowStr += cbInfo.tradeUsage + " | "
-                rowStr += cbInfo.invoiceType + " | "
+                rowStr += cbInfo.ntsconfirmNum + " | "
+                rowStr += cbInfo.tradeDate + " | "
                 rowStr += cbInfo.tradeDT + " | "
-                rowStr += cbInfo.identityNum + " | "
+                rowStr += cbInfo.tradeType + " | "
+                rowStr += cbInfo.tradeUsage + " | "
+                rowStr += cbInfo.totalAmount + " | "
                 rowStr += cbInfo.supplyCost + " | "
                 rowStr += cbInfo.tax + " | "
                 rowStr += cbInfo.serviceFee + " | "
-                rowStr += cbInfo.totalAmount + " | "
-                rowStr += cbInfo.tradeType + " | "
-                rowStr += cbInfo.ntsconfirmNum
+                rowStr += cbInfo.invoiceType + " | "
+                rowStr += cbInfo.franchiseCorpNum + " | "
+                rowStr += cbInfo.franchiseCorpName + " | "
+                rowStr += cbInfo.franchiseCorpType + " | "
+                rowStr += cbInfo.identityNum + " | "
+                rowStr += cbInfo.identityNumType + " | "
+                rowStr += cbInfo.customerName + " | "
+                rowStr += cbInfo.cardOwnerName + " | "
+                rowStr += cbInfo.deductionType + " | "
 
                 listBox1.Items.Add(rowStr)
             Next
@@ -700,4 +710,5 @@ Public Class frmExample
             MessageBox.Show("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
+
 End Class

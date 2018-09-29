@@ -1254,13 +1254,13 @@ Public Class frmExample
             Dim resultList As List(Of MessageState) = messageService.GetStates(txtCorpNum.Text, ReciptNumList, txtUserId.Text)
 
 
-            Dim rowStr As String = "접수번호 | 일련번호 | 전송 상태코드 | 전송 결과코드 | 전송일시 | 결과코드 수신일시 | 전송 이동통신사명"
+            Dim rowStr As String = "접수번호 | 일련번호 | 전송 상태코드 | 전송 결과코드 | 전송일시 | 결과코드 수신일시 | 전송 이동통신사명 | 구 전송결과 코드"
 
             ListBox1.Items.Add(rowStr)
 
             For Each Result As MessageState In resultList
                 rowStr = ""
-                rowStr += Result.rNum + " | " + Result.sn + " | " + Result.stat + " | " + Result.rlt + " | " + Result.sDT + " | " + Result.rDT + " | " + Result.net
+                rowStr += Result.rNum + " | " + Result.sn + " | " + Result.stat + " | " + Result.rlt + " | " + Result.sDT + " | " + Result.rDT + " | " + Result.net + " | " + Result.srt
 
                 ListBox1.Items.Add(rowStr)
             Next
