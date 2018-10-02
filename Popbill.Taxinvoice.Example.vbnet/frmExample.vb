@@ -26,7 +26,7 @@ Imports System.ComponentModel
 Public Class frmExample
 
     '링크아이디
-    Private LinkID As String = "TESTER"
+    Private Const LinkID As String = "TESTER"
 
     '비밀키
     Private SecretKey As String = "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I="
