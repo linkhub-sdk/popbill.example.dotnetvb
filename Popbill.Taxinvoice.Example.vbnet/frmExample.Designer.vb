@@ -140,6 +140,7 @@ Partial Class frmExample
         Me.txtMgtKey = New System.Windows.Forms.TextBox
         Me.Label3 = New System.Windows.Forms.Label
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
+        Me.btnRegistRequest = New System.Windows.Forms.Button
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -493,6 +494,7 @@ Partial Class frmExample
         '
         'GroupBox7
         '
+        Me.GroupBox7.Controls.Add(Me.btnRegistRequest)
         Me.GroupBox7.Controls.Add(Me.GroupBox18)
         Me.GroupBox7.Controls.Add(Me.GroupBox14)
         Me.GroupBox7.Controls.Add(Me.btnSendToNTS)
@@ -1413,6 +1415,16 @@ Partial Class frmExample
         '
         Me.fileDialog.FileName = "OpenFileDialog1"
         '
+        'btnRegistRequest
+        '
+        Me.btnRegistRequest.BackColor = System.Drawing.Color.Aquamarine
+        Me.btnRegistRequest.Location = New System.Drawing.Point(920, 67)
+        Me.btnRegistRequest.Name = "btnRegistRequest"
+        Me.btnRegistRequest.Size = New System.Drawing.Size(125, 37)
+        Me.btnRegistRequest.TabIndex = 21
+        Me.btnRegistRequest.Text = "즉시 요청"
+        Me.btnRegistRequest.UseVisualStyleBackColor = False
+        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
@@ -1569,5 +1581,6 @@ Partial Class frmExample
     Friend WithEvents btnCheckCertValidation As System.Windows.Forms.Button
     Friend WithEvents label27 As System.Windows.Forms.Label
     Friend WithEvents label25 As System.Windows.Forms.Label
+    Friend WithEvents btnRegistRequest As System.Windows.Forms.Button
 
 End Class
