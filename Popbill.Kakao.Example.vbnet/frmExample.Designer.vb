@@ -31,12 +31,12 @@ Partial Class frmExample
         Me.btnListContact = New System.Windows.Forms.Button
         Me.btnRegistContact = New System.Windows.Forms.Button
         Me.GroupBox15 = New System.Windows.Forms.GroupBox
-        Me.btnGetPopbillURL_LOGIN = New System.Windows.Forms.Button
+        Me.btnGetAccessURL = New System.Windows.Forms.Button
         Me.GroupBox5 = New System.Windows.Forms.GroupBox
         Me.btnGetPartnerURL = New System.Windows.Forms.Button
         Me.btnGetPartnerBalance = New System.Windows.Forms.Button
         Me.GroupBox2 = New System.Windows.Forms.GroupBox
-        Me.btnGetPopbillURL_CHRG = New System.Windows.Forms.Button
+        Me.btnGetChargeURL = New System.Windows.Forms.Button
         Me.btnGetBalance = New System.Windows.Forms.Button
         Me.GroupBox3 = New System.Windows.Forms.GroupBox
         Me.btnGetChargeInfo_FMS = New System.Windows.Forms.Button
@@ -54,6 +54,7 @@ Partial Class frmExample
         Me.txtCorpNum = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
         Me.GroupBox4 = New System.Windows.Forms.GroupBox
+        Me.ListBox1 = New System.Windows.Forms.ListBox
         Me.GroupBox12 = New System.Windows.Forms.GroupBox
         Me.Label5 = New System.Windows.Forms.Label
         Me.txtRequestNum = New System.Windows.Forms.TextBox
@@ -61,13 +62,13 @@ Partial Class frmExample
         Me.btnGetMessagesRN = New System.Windows.Forms.Button
         Me.GroupBox10 = New System.Windows.Forms.GroupBox
         Me.btnSearch = New System.Windows.Forms.Button
-        Me.btnGetURL_BOX = New System.Windows.Forms.Button
+        Me.btnGetSentListURL = New System.Windows.Forms.Button
         Me.btnGetSenderNumberList = New System.Windows.Forms.Button
-        Me.btnGetURL_SENDER = New System.Windows.Forms.Button
+        Me.btnGetSenderNumberMgtURL = New System.Windows.Forms.Button
         Me.btnListATSTemplate = New System.Windows.Forms.Button
-        Me.btnGetURL_TEMPLATE = New System.Windows.Forms.Button
+        Me.btnGetATSTemplateMgtURL = New System.Windows.Forms.Button
         Me.btnListPlusFriendID = New System.Windows.Forms.Button
-        Me.btnGetURL_PLUSFRIENDID = New System.Windows.Forms.Button
+        Me.btnGetPlusFriendMgtURL = New System.Windows.Forms.Button
         Me.GroupBox8 = New System.Windows.Forms.GroupBox
         Me.btnSendFMS_multi = New System.Windows.Forms.Button
         Me.btnSendFMS_same = New System.Windows.Forms.Button
@@ -88,7 +89,6 @@ Partial Class frmExample
         Me.btnCancelReserve = New System.Windows.Forms.Button
         Me.btnGetMessages = New System.Windows.Forms.Button
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
-        Me.ListBox1 = New System.Windows.Forms.ListBox
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -192,7 +192,7 @@ Partial Class frmExample
         '
         'GroupBox15
         '
-        Me.GroupBox15.Controls.Add(Me.btnGetPopbillURL_LOGIN)
+        Me.GroupBox15.Controls.Add(Me.btnGetAccessURL)
         Me.GroupBox15.Location = New System.Drawing.Point(709, 20)
         Me.GroupBox15.Name = "GroupBox15"
         Me.GroupBox15.Size = New System.Drawing.Size(127, 126)
@@ -200,14 +200,14 @@ Partial Class frmExample
         Me.GroupBox15.TabStop = False
         Me.GroupBox15.Text = "팝빌 기본 URL"
         '
-        'btnGetPopbillURL_LOGIN
+        'btnGetAccessURL
         '
-        Me.btnGetPopbillURL_LOGIN.Location = New System.Drawing.Point(6, 19)
-        Me.btnGetPopbillURL_LOGIN.Name = "btnGetPopbillURL_LOGIN"
-        Me.btnGetPopbillURL_LOGIN.Size = New System.Drawing.Size(115, 30)
-        Me.btnGetPopbillURL_LOGIN.TabIndex = 6
-        Me.btnGetPopbillURL_LOGIN.Text = "팝빌 로그인 URL"
-        Me.btnGetPopbillURL_LOGIN.UseVisualStyleBackColor = True
+        Me.btnGetAccessURL.Location = New System.Drawing.Point(6, 19)
+        Me.btnGetAccessURL.Name = "btnGetAccessURL"
+        Me.btnGetAccessURL.Size = New System.Drawing.Size(115, 30)
+        Me.btnGetAccessURL.TabIndex = 6
+        Me.btnGetAccessURL.Text = "팝빌 로그인 URL"
+        Me.btnGetAccessURL.UseVisualStyleBackColor = True
         '
         'GroupBox5
         '
@@ -240,7 +240,7 @@ Partial Class frmExample
         '
         'GroupBox2
         '
-        Me.GroupBox2.Controls.Add(Me.btnGetPopbillURL_CHRG)
+        Me.GroupBox2.Controls.Add(Me.btnGetChargeURL)
         Me.GroupBox2.Controls.Add(Me.btnGetBalance)
         Me.GroupBox2.Location = New System.Drawing.Point(453, 21)
         Me.GroupBox2.Name = "GroupBox2"
@@ -249,14 +249,14 @@ Partial Class frmExample
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "연동과금 포인트"
         '
-        'btnGetPopbillURL_CHRG
+        'btnGetChargeURL
         '
-        Me.btnGetPopbillURL_CHRG.Location = New System.Drawing.Point(6, 50)
-        Me.btnGetPopbillURL_CHRG.Name = "btnGetPopbillURL_CHRG"
-        Me.btnGetPopbillURL_CHRG.Size = New System.Drawing.Size(105, 30)
-        Me.btnGetPopbillURL_CHRG.TabIndex = 5
-        Me.btnGetPopbillURL_CHRG.Text = "포인트 충전 URL"
-        Me.btnGetPopbillURL_CHRG.UseVisualStyleBackColor = True
+        Me.btnGetChargeURL.Location = New System.Drawing.Point(6, 50)
+        Me.btnGetChargeURL.Name = "btnGetChargeURL"
+        Me.btnGetChargeURL.Size = New System.Drawing.Size(105, 30)
+        Me.btnGetChargeURL.TabIndex = 5
+        Me.btnGetChargeURL.Text = "포인트 충전 URL"
+        Me.btnGetChargeURL.UseVisualStyleBackColor = True
         '
         'btnGetBalance
         '
@@ -427,6 +427,16 @@ Partial Class frmExample
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "카카오톡 관련 기능"
         '
+        'ListBox1
+        '
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.HorizontalScrollbar = True
+        Me.ListBox1.ItemHeight = 12
+        Me.ListBox1.Location = New System.Drawing.Point(11, 283)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(1062, 208)
+        Me.ListBox1.TabIndex = 26
+        '
         'GroupBox12
         '
         Me.GroupBox12.Controls.Add(Me.Label5)
@@ -477,13 +487,13 @@ Partial Class frmExample
         'GroupBox10
         '
         Me.GroupBox10.Controls.Add(Me.btnSearch)
-        Me.GroupBox10.Controls.Add(Me.btnGetURL_BOX)
+        Me.GroupBox10.Controls.Add(Me.btnGetSentListURL)
         Me.GroupBox10.Controls.Add(Me.btnGetSenderNumberList)
-        Me.GroupBox10.Controls.Add(Me.btnGetURL_SENDER)
+        Me.GroupBox10.Controls.Add(Me.btnGetSenderNumberMgtURL)
         Me.GroupBox10.Controls.Add(Me.btnListATSTemplate)
-        Me.GroupBox10.Controls.Add(Me.btnGetURL_TEMPLATE)
+        Me.GroupBox10.Controls.Add(Me.btnGetATSTemplateMgtURL)
         Me.GroupBox10.Controls.Add(Me.btnListPlusFriendID)
-        Me.GroupBox10.Controls.Add(Me.btnGetURL_PLUSFRIENDID)
+        Me.GroupBox10.Controls.Add(Me.btnGetPlusFriendMgtURL)
         Me.GroupBox10.Location = New System.Drawing.Point(689, 20)
         Me.GroupBox10.Name = "GroupBox10"
         Me.GroupBox10.Size = New System.Drawing.Size(351, 190)
@@ -500,14 +510,14 @@ Partial Class frmExample
         Me.btnSearch.Text = "전송내역 목록조회"
         Me.btnSearch.UseVisualStyleBackColor = True
         '
-        'btnGetURL_BOX
+        'btnGetSentListURL
         '
-        Me.btnGetURL_BOX.Location = New System.Drawing.Point(196, 102)
-        Me.btnGetURL_BOX.Name = "btnGetURL_BOX"
-        Me.btnGetURL_BOX.Size = New System.Drawing.Size(147, 35)
-        Me.btnGetURL_BOX.TabIndex = 6
-        Me.btnGetURL_BOX.Text = "전송내역 조회 팝업 URL"
-        Me.btnGetURL_BOX.UseVisualStyleBackColor = True
+        Me.btnGetSentListURL.Location = New System.Drawing.Point(196, 102)
+        Me.btnGetSentListURL.Name = "btnGetSentListURL"
+        Me.btnGetSentListURL.Size = New System.Drawing.Size(147, 35)
+        Me.btnGetSentListURL.TabIndex = 6
+        Me.btnGetSentListURL.Text = "전송내역 조회 팝업 URL"
+        Me.btnGetSentListURL.UseVisualStyleBackColor = True
         '
         'btnGetSenderNumberList
         '
@@ -518,14 +528,14 @@ Partial Class frmExample
         Me.btnGetSenderNumberList.Text = "발신번호 목록 확인"
         Me.btnGetSenderNumberList.UseVisualStyleBackColor = True
         '
-        'btnGetURL_SENDER
+        'btnGetSenderNumberMgtURL
         '
-        Me.btnGetURL_SENDER.Location = New System.Drawing.Point(196, 20)
-        Me.btnGetURL_SENDER.Name = "btnGetURL_SENDER"
-        Me.btnGetURL_SENDER.Size = New System.Drawing.Size(147, 35)
-        Me.btnGetURL_SENDER.TabIndex = 4
-        Me.btnGetURL_SENDER.Text = "발신번호 관리 팝업 URL"
-        Me.btnGetURL_SENDER.UseVisualStyleBackColor = True
+        Me.btnGetSenderNumberMgtURL.Location = New System.Drawing.Point(196, 20)
+        Me.btnGetSenderNumberMgtURL.Name = "btnGetSenderNumberMgtURL"
+        Me.btnGetSenderNumberMgtURL.Size = New System.Drawing.Size(147, 35)
+        Me.btnGetSenderNumberMgtURL.TabIndex = 4
+        Me.btnGetSenderNumberMgtURL.Text = "발신번호 관리 팝업 URL"
+        Me.btnGetSenderNumberMgtURL.UseVisualStyleBackColor = True
         '
         'btnListATSTemplate
         '
@@ -536,14 +546,14 @@ Partial Class frmExample
         Me.btnListATSTemplate.Text = "알림톡 템플릿 목록 확인"
         Me.btnListATSTemplate.UseVisualStyleBackColor = True
         '
-        'btnGetURL_TEMPLATE
+        'btnGetATSTemplateMgtURL
         '
-        Me.btnGetURL_TEMPLATE.Location = New System.Drawing.Point(10, 102)
-        Me.btnGetURL_TEMPLATE.Name = "btnGetURL_TEMPLATE"
-        Me.btnGetURL_TEMPLATE.Size = New System.Drawing.Size(180, 35)
-        Me.btnGetURL_TEMPLATE.TabIndex = 2
-        Me.btnGetURL_TEMPLATE.Text = "알림톡 템플릿 관리 팝업 URL"
-        Me.btnGetURL_TEMPLATE.UseVisualStyleBackColor = True
+        Me.btnGetATSTemplateMgtURL.Location = New System.Drawing.Point(10, 102)
+        Me.btnGetATSTemplateMgtURL.Name = "btnGetATSTemplateMgtURL"
+        Me.btnGetATSTemplateMgtURL.Size = New System.Drawing.Size(180, 35)
+        Me.btnGetATSTemplateMgtURL.TabIndex = 2
+        Me.btnGetATSTemplateMgtURL.Text = "알림톡 템플릿 관리 팝업 URL"
+        Me.btnGetATSTemplateMgtURL.UseVisualStyleBackColor = True
         '
         'btnListPlusFriendID
         '
@@ -554,14 +564,14 @@ Partial Class frmExample
         Me.btnListPlusFriendID.Text = "플러스친구 목록 확인"
         Me.btnListPlusFriendID.UseVisualStyleBackColor = True
         '
-        'btnGetURL_PLUSFRIENDID
+        'btnGetPlusFriendMgtURL
         '
-        Me.btnGetURL_PLUSFRIENDID.Location = New System.Drawing.Point(10, 20)
-        Me.btnGetURL_PLUSFRIENDID.Name = "btnGetURL_PLUSFRIENDID"
-        Me.btnGetURL_PLUSFRIENDID.Size = New System.Drawing.Size(180, 35)
-        Me.btnGetURL_PLUSFRIENDID.TabIndex = 0
-        Me.btnGetURL_PLUSFRIENDID.Text = "플러스친구 계정관리 팝업 URL"
-        Me.btnGetURL_PLUSFRIENDID.UseVisualStyleBackColor = True
+        Me.btnGetPlusFriendMgtURL.Location = New System.Drawing.Point(10, 20)
+        Me.btnGetPlusFriendMgtURL.Name = "btnGetPlusFriendMgtURL"
+        Me.btnGetPlusFriendMgtURL.Size = New System.Drawing.Size(180, 35)
+        Me.btnGetPlusFriendMgtURL.TabIndex = 0
+        Me.btnGetPlusFriendMgtURL.Text = "플러스친구 계정관리 팝업 URL"
+        Me.btnGetPlusFriendMgtURL.UseVisualStyleBackColor = True
         '
         'GroupBox8
         '
@@ -747,16 +757,6 @@ Partial Class frmExample
         '
         Me.fileDialog.FileName = "fileDialob"
         '
-        'ListBox1
-        '
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.HorizontalScrollbar = True
-        Me.ListBox1.ItemHeight = 12
-        Me.ListBox1.Location = New System.Drawing.Point(11, 283)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(1062, 208)
-        Me.ListBox1.TabIndex = 26
-        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
@@ -802,12 +802,12 @@ Partial Class frmExample
     Friend WithEvents btnListContact As System.Windows.Forms.Button
     Friend WithEvents btnRegistContact As System.Windows.Forms.Button
     Friend WithEvents GroupBox15 As System.Windows.Forms.GroupBox
-    Friend WithEvents btnGetPopbillURL_LOGIN As System.Windows.Forms.Button
+    Friend WithEvents btnGetAccessURL As System.Windows.Forms.Button
     Friend WithEvents GroupBox5 As System.Windows.Forms.GroupBox
     Friend WithEvents btnGetPartnerURL As System.Windows.Forms.Button
     Friend WithEvents btnGetPartnerBalance As System.Windows.Forms.Button
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
-    Friend WithEvents btnGetPopbillURL_CHRG As System.Windows.Forms.Button
+    Friend WithEvents btnGetChargeURL As System.Windows.Forms.Button
     Friend WithEvents btnGetBalance As System.Windows.Forms.Button
     Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
     Friend WithEvents btnGetChargeInfo_FMS As System.Windows.Forms.Button
@@ -844,13 +844,13 @@ Partial Class frmExample
     Friend WithEvents btnGetMessages As System.Windows.Forms.Button
     Friend WithEvents btnCancelReserve As System.Windows.Forms.Button
     Friend WithEvents GroupBox10 As System.Windows.Forms.GroupBox
-    Friend WithEvents btnGetURL_PLUSFRIENDID As System.Windows.Forms.Button
+    Friend WithEvents btnGetPlusFriendMgtURL As System.Windows.Forms.Button
     Friend WithEvents btnListPlusFriendID As System.Windows.Forms.Button
     Friend WithEvents btnListATSTemplate As System.Windows.Forms.Button
-    Friend WithEvents btnGetURL_TEMPLATE As System.Windows.Forms.Button
-    Friend WithEvents btnGetURL_SENDER As System.Windows.Forms.Button
+    Friend WithEvents btnGetATSTemplateMgtURL As System.Windows.Forms.Button
+    Friend WithEvents btnGetSenderNumberMgtURL As System.Windows.Forms.Button
     Friend WithEvents btnGetSenderNumberList As System.Windows.Forms.Button
-    Friend WithEvents btnGetURL_BOX As System.Windows.Forms.Button
+    Friend WithEvents btnGetSentListURL As System.Windows.Forms.Button
     Friend WithEvents btnSearch As System.Windows.Forms.Button
     Friend WithEvents fileDialog As System.Windows.Forms.OpenFileDialog
     Friend WithEvents GroupBox11 As System.Windows.Forms.GroupBox

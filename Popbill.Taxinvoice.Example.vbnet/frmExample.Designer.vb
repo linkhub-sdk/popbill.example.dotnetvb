@@ -22,7 +22,7 @@ Partial Class frmExample
     '코드 편집기를 사용하여 수정하지 마십시오.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.btnGetPopbillURL_CERT = New System.Windows.Forms.Button
+        Me.btnGetTaxCertURL = New System.Windows.Forms.Button
         Me.Label1 = New System.Windows.Forms.Label
         Me.txtCorpNum = New System.Windows.Forms.TextBox
         Me.Label2 = New System.Windows.Forms.Label
@@ -36,8 +36,8 @@ Partial Class frmExample
         Me.btnListContact = New System.Windows.Forms.Button
         Me.btnRegistContact = New System.Windows.Forms.Button
         Me.GroupBox15 = New System.Windows.Forms.GroupBox
-        Me.btnGetPopbillURL_SEAL = New System.Windows.Forms.Button
-        Me.btnGetPopbillURL_LOGIN = New System.Windows.Forms.Button
+        Me.btnGetSealURL = New System.Windows.Forms.Button
+        Me.btnGetAccessURL = New System.Windows.Forms.Button
         Me.GroupBox6 = New System.Windows.Forms.GroupBox
         Me.btnCheckCertValidation = New System.Windows.Forms.Button
         Me.btnGetCertificateExpireDate = New System.Windows.Forms.Button
@@ -45,7 +45,7 @@ Partial Class frmExample
         Me.btnGetPartnerURL = New System.Windows.Forms.Button
         Me.btnGetPartnerBalance = New System.Windows.Forms.Button
         Me.GroupBox4 = New System.Windows.Forms.GroupBox
-        Me.btnGetPopbillURL_CHRG = New System.Windows.Forms.Button
+        Me.btnGetChargeURL = New System.Windows.Forms.Button
         Me.btnGetBalance = New System.Windows.Forms.Button
         Me.GroupBox3 = New System.Windows.Forms.GroupBox
         Me.btnGetChargeInfo = New System.Windows.Forms.Button
@@ -160,14 +160,14 @@ Partial Class frmExample
         Me.GroupBox8.SuspendLayout()
         Me.SuspendLayout()
         '
-        'btnGetPopbillURL_CERT
+        'btnGetTaxCertURL
         '
-        Me.btnGetPopbillURL_CERT.Location = New System.Drawing.Point(6, 19)
-        Me.btnGetPopbillURL_CERT.Name = "btnGetPopbillURL_CERT"
-        Me.btnGetPopbillURL_CERT.Size = New System.Drawing.Size(150, 29)
-        Me.btnGetPopbillURL_CERT.TabIndex = 0
-        Me.btnGetPopbillURL_CERT.Text = "인증서 등록 URL"
-        Me.btnGetPopbillURL_CERT.UseVisualStyleBackColor = True
+        Me.btnGetTaxCertURL.Location = New System.Drawing.Point(6, 19)
+        Me.btnGetTaxCertURL.Name = "btnGetTaxCertURL"
+        Me.btnGetTaxCertURL.Size = New System.Drawing.Size(150, 29)
+        Me.btnGetTaxCertURL.TabIndex = 0
+        Me.btnGetTaxCertURL.Text = "인증서 등록 URL"
+        Me.btnGetTaxCertURL.UseVisualStyleBackColor = True
         '
         'Label1
         '
@@ -290,8 +290,8 @@ Partial Class frmExample
         '
         'GroupBox15
         '
-        Me.GroupBox15.Controls.Add(Me.btnGetPopbillURL_SEAL)
-        Me.GroupBox15.Controls.Add(Me.btnGetPopbillURL_LOGIN)
+        Me.GroupBox15.Controls.Add(Me.btnGetSealURL)
+        Me.GroupBox15.Controls.Add(Me.btnGetAccessURL)
         Me.GroupBox15.Location = New System.Drawing.Point(836, 17)
         Me.GroupBox15.Name = "GroupBox15"
         Me.GroupBox15.Size = New System.Drawing.Size(161, 126)
@@ -299,29 +299,29 @@ Partial Class frmExample
         Me.GroupBox15.TabStop = False
         Me.GroupBox15.Text = "팝빌 기본 URL"
         '
-        'btnGetPopbillURL_SEAL
+        'btnGetSealURL
         '
-        Me.btnGetPopbillURL_SEAL.Location = New System.Drawing.Point(6, 51)
-        Me.btnGetPopbillURL_SEAL.Name = "btnGetPopbillURL_SEAL"
-        Me.btnGetPopbillURL_SEAL.Size = New System.Drawing.Size(150, 29)
-        Me.btnGetPopbillURL_SEAL.TabIndex = 7
-        Me.btnGetPopbillURL_SEAL.Text = "인감 및 첨부문서 URL"
-        Me.btnGetPopbillURL_SEAL.UseVisualStyleBackColor = True
+        Me.btnGetSealURL.Location = New System.Drawing.Point(6, 51)
+        Me.btnGetSealURL.Name = "btnGetSealURL"
+        Me.btnGetSealURL.Size = New System.Drawing.Size(150, 29)
+        Me.btnGetSealURL.TabIndex = 7
+        Me.btnGetSealURL.Text = "인감 및 첨부문서 URL"
+        Me.btnGetSealURL.UseVisualStyleBackColor = True
         '
-        'btnGetPopbillURL_LOGIN
+        'btnGetAccessURL
         '
-        Me.btnGetPopbillURL_LOGIN.Location = New System.Drawing.Point(6, 19)
-        Me.btnGetPopbillURL_LOGIN.Name = "btnGetPopbillURL_LOGIN"
-        Me.btnGetPopbillURL_LOGIN.Size = New System.Drawing.Size(150, 29)
-        Me.btnGetPopbillURL_LOGIN.TabIndex = 6
-        Me.btnGetPopbillURL_LOGIN.Text = "팝빌 로그인 URL"
-        Me.btnGetPopbillURL_LOGIN.UseVisualStyleBackColor = True
+        Me.btnGetAccessURL.Location = New System.Drawing.Point(6, 19)
+        Me.btnGetAccessURL.Name = "btnGetAccessURL"
+        Me.btnGetAccessURL.Size = New System.Drawing.Size(150, 29)
+        Me.btnGetAccessURL.TabIndex = 6
+        Me.btnGetAccessURL.Text = "팝빌 로그인 URL"
+        Me.btnGetAccessURL.UseVisualStyleBackColor = True
         '
         'GroupBox6
         '
         Me.GroupBox6.Controls.Add(Me.btnCheckCertValidation)
         Me.GroupBox6.Controls.Add(Me.btnGetCertificateExpireDate)
-        Me.GroupBox6.Controls.Add(Me.btnGetPopbillURL_CERT)
+        Me.GroupBox6.Controls.Add(Me.btnGetTaxCertURL)
         Me.GroupBox6.Location = New System.Drawing.Point(670, 17)
         Me.GroupBox6.Name = "GroupBox6"
         Me.GroupBox6.Size = New System.Drawing.Size(161, 126)
@@ -378,7 +378,7 @@ Partial Class frmExample
         '
         'GroupBox4
         '
-        Me.GroupBox4.Controls.Add(Me.btnGetPopbillURL_CHRG)
+        Me.GroupBox4.Controls.Add(Me.btnGetChargeURL)
         Me.GroupBox4.Controls.Add(Me.btnGetBalance)
         Me.GroupBox4.Location = New System.Drawing.Point(338, 17)
         Me.GroupBox4.Name = "GroupBox4"
@@ -387,14 +387,14 @@ Partial Class frmExample
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "연동과금 포인트"
         '
-        'btnGetPopbillURL_CHRG
+        'btnGetChargeURL
         '
-        Me.btnGetPopbillURL_CHRG.Location = New System.Drawing.Point(6, 51)
-        Me.btnGetPopbillURL_CHRG.Name = "btnGetPopbillURL_CHRG"
-        Me.btnGetPopbillURL_CHRG.Size = New System.Drawing.Size(150, 29)
-        Me.btnGetPopbillURL_CHRG.TabIndex = 5
-        Me.btnGetPopbillURL_CHRG.Text = "포인트 충전 URL"
-        Me.btnGetPopbillURL_CHRG.UseVisualStyleBackColor = True
+        Me.btnGetChargeURL.Location = New System.Drawing.Point(6, 51)
+        Me.btnGetChargeURL.Name = "btnGetChargeURL"
+        Me.btnGetChargeURL.Size = New System.Drawing.Size(150, 29)
+        Me.btnGetChargeURL.TabIndex = 5
+        Me.btnGetChargeURL.Text = "포인트 충전 URL"
+        Me.btnGetChargeURL.UseVisualStyleBackColor = True
         '
         'btnGetBalance
         '
@@ -1451,7 +1451,7 @@ Partial Class frmExample
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents btnGetPopbillURL_CERT As System.Windows.Forms.Button
+    Friend WithEvents btnGetTaxCertURL As System.Windows.Forms.Button
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents txtCorpNum As System.Windows.Forms.TextBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
@@ -1547,9 +1547,9 @@ Partial Class frmExample
     Friend WithEvents GroupBox16 As System.Windows.Forms.GroupBox
     Friend WithEvents btnGetChargeInfo As System.Windows.Forms.Button
     Friend WithEvents btnGetPartnerURL As System.Windows.Forms.Button
-    Friend WithEvents btnGetPopbillURL_CHRG As System.Windows.Forms.Button
-    Friend WithEvents btnGetPopbillURL_SEAL As System.Windows.Forms.Button
-    Friend WithEvents btnGetPopbillURL_LOGIN As System.Windows.Forms.Button
+    Friend WithEvents btnGetChargeURL As System.Windows.Forms.Button
+    Friend WithEvents btnGetSealURL As System.Windows.Forms.Button
+    Friend WithEvents btnGetAccessURL As System.Windows.Forms.Button
     Friend WithEvents btnListContact As System.Windows.Forms.Button
     Friend WithEvents btnRegistContact As System.Windows.Forms.Button
     Friend WithEvents btnUpdateContact As System.Windows.Forms.Button

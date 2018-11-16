@@ -1939,19 +1939,6 @@ Public Class frmExample
         End Try
     End Sub
 
-    '=========================================================================
-    ' 연동회원 포인트 충전 URL을 반환합니다.
-    ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
-    '=========================================================================
-    Private Sub btnGetPopbillURL_CHRG_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPopbillURL_CHRG.Click
-        Try
-            Dim url As String = taxinvoiceService.GetPopbillURL(txtCorpNum.Text, txtUserId.Text, "CHRG")
-
-            MsgBox(url)
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
 
     '=========================================================================
     ' 파트너 포인트 충전 팝업 URL을 반환합니다.
@@ -1967,66 +1954,9 @@ Public Class frmExample
         End Try
     End Sub
 
-    '=========================================================================
-    ' 공인인증서 등록 URL을 반환합니다.
-    ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
-    '=========================================================================
-    Private Sub btnGetPopbillURL_CERT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPopbillURL_CERT.Click
-        Try
-            Dim url As String = taxinvoiceService.GetPopbillURL(txtCorpNum.Text, txtUserId.Text, "CERT")
-            MsgBox(url)
 
 
-            '=====================================================================
-            '공인인증서 등록시에는 Internet Explorer 브라우저만 이용이 가능합니다. 
-            '- IE에서만 공인인증서 ActiveX 툴킷 구동가능 
-            '=====================================================================
 
-            'Internet Explorer Process 선언 
-            Dim ie As New System.Diagnostics.ProcessStartInfo("iexplore")
-
-            '팝빌로부터 반환받은 팝업 URL 주소 지정
-            ie.Arguments = url
-
-            '화면 기본위치 지정 (Normal-기본, Minimized-최소화, Maximized-최대화, Hidden-숨김화면)
-            ie.WindowStyle = ProcessWindowStyle.Normal
-
-            'Internet Explorer Process 호출
-            System.Diagnostics.Process.Start(ie)
-
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 팝빌(www.popbill.com)에 로그인된 팝빌 URL을 반환합니다.
-    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
-    '=========================================================================
-    Private Sub btnGetPopbillURL_LOGIN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPopbillURL_LOGIN.Click
-        Try
-            Dim url As String = taxinvoiceService.GetPopbillURL(txtCorpNum.Text, txtUserId.Text, "LOGIN")
-
-            MsgBox(url)
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 인감 및 첨부문서 등록 팝업 URL을 반환합니다.
-    ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
-    '=========================================================================
-    Private Sub btnGetPopbillURL_SEAL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPopbillURL_SEAL.Click
-        Try
-            Dim url As String = taxinvoiceService.GetPopbillURL(txtCorpNum.Text, txtUserId.Text, "SEAL")
-
-            MsgBox(url)
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
 
     '=========================================================================
     ' 연동회원의 담당자를 신규로 등록합니다.
@@ -2786,6 +2716,82 @@ Public Class frmExample
 
         Catch ex As PopbillException
             MessageBox.Show("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원 포인트 충전 URL을 반환합니다.
+    ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    '=========================================================================
+    Private Sub btnGetChargeURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeURL.Click
+        Try
+            Dim url As String = taxinvoiceService.GetChargeURL(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox(url)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 공인인증서 등록 URL을 반환합니다.
+    ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    '=========================================================================
+    Private Sub btnGetTaxCertURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetTaxCertURL.Click
+        Try
+            Dim url As String = taxinvoiceService.GetTaxCertURL(txtCorpNum.Text, txtUserId.Text)
+            MsgBox(url)
+
+
+            '=====================================================================
+            '공인인증서 등록시에는 Internet Explorer 브라우저만 이용이 가능합니다. 
+            '- IE에서만 공인인증서 ActiveX 툴킷 구동가능 
+            '=====================================================================
+
+            'Internet Explorer Process 선언 
+            Dim ie As New System.Diagnostics.ProcessStartInfo("iexplore")
+
+            '팝빌로부터 반환받은 팝업 URL 주소 지정
+            ie.Arguments = url
+
+            '화면 기본위치 지정 (Normal-기본, Minimized-최소화, Maximized-최대화, Hidden-숨김화면)
+            ie.WindowStyle = ProcessWindowStyle.Normal
+
+            'Internet Explorer Process 호출
+            System.Diagnostics.Process.Start(ie)
+
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+
+    '=========================================================================
+    ' 팝빌(www.popbill.com)에 로그인된 팝빌 URL을 반환합니다.
+    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    '=========================================================================
+    Private Sub btnGetAccessURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetAccessURL.Click
+        Try
+            Dim url As String = taxinvoiceService.GetAccessURL(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox(url)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 인감 및 첨부문서 등록 팝업 URL을 반환합니다.
+    ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    '=========================================================================
+    Private Sub btnGetSealURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSealURL.Click
+        Try
+            Dim url As String = taxinvoiceService.GetSealURL(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox(url)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 End Class

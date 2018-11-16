@@ -141,19 +141,7 @@ Public Class frmExample
         End Try
     End Sub
 
-    '=========================================================================
-    ' 연동회원 포인트충전 팝업 URL을 확인합니다.
-    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
-    '=========================================================================
-    Private Sub btnGetPopbillURL_CHRG_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPopbillURL_CHRG.Click
-        Try
-            Dim url As String = kakaoService.GetPopbillURL(txtCorpNum.Text, txtUserId.Text, "CHRG")
 
-            MsgBox(url)
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
 
     '=========================================================================
     ' 파트너의 잔여포인트를 확인합니다.
@@ -184,19 +172,7 @@ Public Class frmExample
         End Try
     End Sub
 
-    '=========================================================================
-    ' 팝빌 로그인 URL을 확인합니다.
-    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
-    '=========================================================================
-    Private Sub btnGetPopbillURL_LOGIN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPopbillURL_LOGIN.Click
-        Try
-            Dim url As String = kakaoService.GetPopbillURL(txtCorpNum.Text, txtUserId.Text, "LOGIN")
 
-            MsgBox(url)
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
 
     '=========================================================================
     ' 연동회원의 담당자를 추가로 등록합니다.
@@ -971,62 +947,6 @@ Public Class frmExample
 
     End Sub
 
-    '=========================================================================
-    ' 플러스친구 계정관리 팝업 URL을 확인합니다.
-    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
-    '=========================================================================
-    Private Sub btnGetURL_PLUSFRIENDID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_PLUSFRIENDID.Click
-        Try
-            Dim url As String = kakaoService.GetURL(txtCorpNum.Text, txtUserId.Text, "PLUSFRIEND")
-
-            MsgBox(url)
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-
-    End Sub
-
-    '=========================================================================
-    ' 발신번호 관리 팝업 URL을 확인합니다.
-    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
-    '=========================================================================
-    Private Sub btnGetURL_SENDER_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_SENDER.Click
-        Try
-            Dim url As String = kakaoService.GetURL(txtCorpNum.Text, txtUserId.Text, "SENDER")
-
-            MsgBox(url)
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 알림톡 템플릿 관리 팝업 URL을 확인합니다.
-    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
-    '=========================================================================
-    Private Sub btnGetURL_TEMPLATE_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_TEMPLATE.Click
-        Try
-            Dim url As String = kakaoService.GetURL(txtCorpNum.Text, txtUserId.Text, "TEMPLATE")
-
-            MsgBox(url)
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 카카오톡 전송내역 팝업 URL을 확인합니다.
-    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
-    '=========================================================================
-    Private Sub btnGetURL_BOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_BOX.Click
-        Try
-            Dim url As String = kakaoService.GetURL(txtCorpNum.Text, txtUserId.Text, "BOX")
-
-            MsgBox(url)
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
 
     '=========================================================================
     ' 팝빌에 등록된 플러스친구 계정 목록을 반환한다.
@@ -1352,6 +1272,90 @@ Public Class frmExample
             response = kakaoService.CancelReserveRN(txtCorpNum.Text, txtRequestNum.Text, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원 포인트충전 팝업 URL을 확인합니다.
+    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    '=========================================================================
+    Private Sub btnGetChargeURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeURL.Click
+        Try
+            Dim url As String = kakaoService.GetChargeURL(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox(url)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 팝빌 로그인 URL을 확인합니다.
+    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    '=========================================================================
+    Private Sub btnGetAccessURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetAccessURL.Click
+        Try
+            Dim url As String = kakaoService.GetAccessURL(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox(url)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 플러스친구 계정관리 팝업 URL을 확인합니다.
+    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    '=========================================================================
+    Private Sub btnGetPlusFriendMgtURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPlusFriendMgtURL.Click
+        Try
+            Dim url As String = kakaoService.GetPlusFriendMgtURL(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox(url)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 발신번호 관리 팝업 URL을 확인합니다.
+    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    '=========================================================================
+    Private Sub btnGetSenderNumberMgtURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSenderNumberMgtURL.Click
+        Try
+            Dim url As String = kakaoService.GetSenderNumberMgtURL(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox(url)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 알림톡 템플릿 관리 팝업 URL을 확인합니다.
+    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    '=========================================================================
+    Private Sub btnGetATSTemplateMgtURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetATSTemplateMgtURL.Click
+        Try
+            Dim url As String = kakaoService.GetATSTemplateMgtURL(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox(url)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 카카오톡 전송내역 팝업 URL을 확인합니다.
+    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    '=========================================================================
+    Private Sub btnGetSentListURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSentListURL.Click
+        Try
+            Dim url As String = kakaoService.GetSentListURL(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox(url)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try

@@ -59,21 +59,7 @@ Public Class frmExample
         End Try
     End Sub
 
-    '=========================================================================
-    ' 문자메시지 전송내역 팝업 URL을 반환합니다.
-    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
-    '=========================================================================
-    Private Sub btnGetURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL.Click
-        Try
-            Dim url As String = messageService.GetURL(txtCorpNum.Text, txtUserId.Text, "BOX")
 
-            MsgBox(url)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
-        End Try
-    End Sub
 
     '=========================================================================
     ' 문자전송요청에 대한 전송결과를 확인합니다.
@@ -703,19 +689,7 @@ Public Class frmExample
         End Try
     End Sub
 
-    '=========================================================================
-    ' 연동회원 포인트 충전 URL을 반환합니다.
-    ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
-    '=========================================================================
-    Private Sub btnGetPopbillURL_CHRG_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPopbillURL_CHRG.Click
-        Try
-            Dim url As String = messageService.GetPopbillURL(txtCorpNum.Text, txtUserId.Text, "CHRG")
 
-            MsgBox(url)
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
 
     '=========================================================================
     ' 파트너의 잔여포인트를 확인합니다.
@@ -746,19 +720,7 @@ Public Class frmExample
         End Try
     End Sub
 
-    '=========================================================================
-    ' 팝빌(www.popbill.com)에 로그인된 팝빌 URL을 반환합니다.
-    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
-    '=========================================================================
-    Private Sub btnGetPopbillURL_LOGIN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPopbillURL_LOGIN.Click
-        Try
-            Dim url As String = messageService.GetPopbillURL(txtCorpNum.Text, txtUserId.Text, "LOGIN")
 
-            MsgBox(url)
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
 
     '=========================================================================
     ' 연동회원의 담당자를 신규로 등록합니다.
@@ -1127,19 +1089,7 @@ Public Class frmExample
         End Try
     End Sub
 
-    '=========================================================================
-    ' 발신번호 관리 팝업 URL을 반환합니다.
-    ' - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
-    '=========================================================================
-    Private Sub btnGetURL_SENDER_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_SENDER.Click
-        Try
-            Dim url As String = messageService.GetURL(txtCorpNum.Text, txtUserId.Text, "SENDER")
 
-            MsgBox(url)
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
 
     '=========================================================================
     ' 검색조건을 사용하여 문자전송 내역을 조회합니다.
@@ -1307,6 +1257,66 @@ Public Class frmExample
             response = messageService.CancelReserveRN(txtCorpNum.Text, txtRequestNum.Text, txtUserId.Text)
 
             MsgBox(response.message)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원 포인트 충전 URL을 반환합니다.
+    ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    '=========================================================================
+    Private Sub btnGetChargeURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeURL.Click
+        Try
+            Dim url As String = messageService.GetChargeURL(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox(url)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 팝빌(www.popbill.com)에 로그인된 팝빌 URL을 반환합니다.
+    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    '=========================================================================
+    Private Sub btnGetAccessURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetAccessURL.Click
+        Try
+            Dim url As String = messageService.GetAccessURL(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox(url)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+
+    '=========================================================================
+    ' 문자메시지 전송내역 팝업 URL을 반환합니다.
+    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    '=========================================================================
+    Private Sub btnGetSentListURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSentListURL.Click
+        Try
+            Dim url As String = messageService.GetSentListURL(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox(url)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 발신번호 관리 팝업 URL을 반환합니다.
+    ' - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+    '=========================================================================
+    Private Sub btnGetSenderNumberMgtURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSenderNumberMgtURL.Click
+        Try
+            Dim url As String = messageService.GetSenderNumberMgtURL(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox(url)
+
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try

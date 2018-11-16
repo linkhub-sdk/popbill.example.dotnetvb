@@ -23,7 +23,7 @@ Partial Class frmExample
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.btnCancelReserve = New System.Windows.Forms.Button
-        Me.btnGetURL = New System.Windows.Forms.Button
+        Me.btnGetSentListURL = New System.Windows.Forms.Button
         Me.txtReserveDT = New System.Windows.Forms.TextBox
         Me.txtReceiptNum = New System.Windows.Forms.TextBox
         Me.label4 = New System.Windows.Forms.Label
@@ -37,7 +37,7 @@ Partial Class frmExample
         Me.btnResendFAX = New System.Windows.Forms.Button
         Me.btnCancelReserveRN = New System.Windows.Forms.Button
         Me.GroupBox8 = New System.Windows.Forms.GroupBox
-        Me.getURL_SENDER = New System.Windows.Forms.Button
+        Me.btnGetSenderNumberMgtURL = New System.Windows.Forms.Button
         Me.btnGetSenderNumberList = New System.Windows.Forms.Button
         Me.btnGetFaxResultRN = New System.Windows.Forms.Button
         Me.GroupBox7 = New System.Windows.Forms.GroupBox
@@ -60,12 +60,12 @@ Partial Class frmExample
         Me.btnListContact = New System.Windows.Forms.Button
         Me.btnRegistContact = New System.Windows.Forms.Button
         Me.GroupBox15 = New System.Windows.Forms.GroupBox
-        Me.btnGetPopbillURL_LOGIN = New System.Windows.Forms.Button
+        Me.btnGetAccessURL = New System.Windows.Forms.Button
         Me.GroupBox5 = New System.Windows.Forms.GroupBox
         Me.btnGetPartnerURL = New System.Windows.Forms.Button
         Me.btnGetPartnerBalance = New System.Windows.Forms.Button
         Me.GroupBox2 = New System.Windows.Forms.GroupBox
-        Me.btnGetPopbillURL_CHRG = New System.Windows.Forms.Button
+        Me.btnGetChargeURL = New System.Windows.Forms.Button
         Me.btnGetBalance = New System.Windows.Forms.Button
         Me.GroupBox3 = New System.Windows.Forms.GroupBox
         Me.btnGetChargeInfo = New System.Windows.Forms.Button
@@ -78,6 +78,7 @@ Partial Class frmExample
         Me.Label2 = New System.Windows.Forms.Label
         Me.txtCorpNum = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
+        Me.btnGetPreviewURL = New System.Windows.Forms.Button
         Me.groupBox4.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
@@ -100,14 +101,14 @@ Partial Class frmExample
         Me.btnCancelReserve.Text = "예약 전송 취소"
         Me.btnCancelReserve.UseVisualStyleBackColor = True
         '
-        'btnGetURL
+        'btnGetSentListURL
         '
-        Me.btnGetURL.Location = New System.Drawing.Point(11, 60)
-        Me.btnGetURL.Name = "btnGetURL"
-        Me.btnGetURL.Size = New System.Drawing.Size(121, 32)
-        Me.btnGetURL.TabIndex = 20
-        Me.btnGetURL.Text = "전송내역조회 팝업"
-        Me.btnGetURL.UseVisualStyleBackColor = True
+        Me.btnGetSentListURL.Location = New System.Drawing.Point(11, 60)
+        Me.btnGetSentListURL.Name = "btnGetSentListURL"
+        Me.btnGetSentListURL.Size = New System.Drawing.Size(121, 32)
+        Me.btnGetSentListURL.TabIndex = 20
+        Me.btnGetSentListURL.Text = "전송내역조회 팝업"
+        Me.btnGetSentListURL.UseVisualStyleBackColor = True
         '
         'txtReserveDT
         '
@@ -239,23 +240,23 @@ Partial Class frmExample
         '
         'GroupBox8
         '
-        Me.GroupBox8.Controls.Add(Me.getURL_SENDER)
+        Me.GroupBox8.Controls.Add(Me.btnGetSenderNumberMgtURL)
         Me.GroupBox8.Controls.Add(Me.btnGetSenderNumberList)
         Me.GroupBox8.Location = New System.Drawing.Point(767, 23)
         Me.GroupBox8.Name = "GroupBox8"
-        Me.GroupBox8.Size = New System.Drawing.Size(136, 103)
+        Me.GroupBox8.Size = New System.Drawing.Size(136, 101)
         Me.GroupBox8.TabIndex = 34
         Me.GroupBox8.TabStop = False
         Me.GroupBox8.Text = "발신번호 관리"
         '
-        'getURL_SENDER
+        'btnGetSenderNumberMgtURL
         '
-        Me.getURL_SENDER.Location = New System.Drawing.Point(8, 60)
-        Me.getURL_SENDER.Name = "getURL_SENDER"
-        Me.getURL_SENDER.Size = New System.Drawing.Size(121, 32)
-        Me.getURL_SENDER.TabIndex = 22
-        Me.getURL_SENDER.Text = "발신번호 관리 팝업"
-        Me.getURL_SENDER.UseVisualStyleBackColor = True
+        Me.btnGetSenderNumberMgtURL.Location = New System.Drawing.Point(8, 60)
+        Me.btnGetSenderNumberMgtURL.Name = "btnGetSenderNumberMgtURL"
+        Me.btnGetSenderNumberMgtURL.Size = New System.Drawing.Size(121, 32)
+        Me.btnGetSenderNumberMgtURL.TabIndex = 22
+        Me.btnGetSenderNumberMgtURL.Text = "발신번호 관리 팝업"
+        Me.btnGetSenderNumberMgtURL.UseVisualStyleBackColor = True
         '
         'btnGetSenderNumberList
         '
@@ -277,11 +278,12 @@ Partial Class frmExample
         '
         'GroupBox7
         '
-        Me.GroupBox7.Controls.Add(Me.btnGetURL)
+        Me.GroupBox7.Controls.Add(Me.btnGetPreviewURL)
+        Me.GroupBox7.Controls.Add(Me.btnGetSentListURL)
         Me.GroupBox7.Controls.Add(Me.btnSearch)
         Me.GroupBox7.Location = New System.Drawing.Point(620, 23)
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(138, 103)
+        Me.GroupBox7.Size = New System.Drawing.Size(138, 144)
         Me.GroupBox7.TabIndex = 33
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "전송내역 관리"
@@ -455,7 +457,7 @@ Partial Class frmExample
         '
         'GroupBox15
         '
-        Me.GroupBox15.Controls.Add(Me.btnGetPopbillURL_LOGIN)
+        Me.GroupBox15.Controls.Add(Me.btnGetAccessURL)
         Me.GroupBox15.Location = New System.Drawing.Point(560, 17)
         Me.GroupBox15.Name = "GroupBox15"
         Me.GroupBox15.Size = New System.Drawing.Size(162, 126)
@@ -463,14 +465,14 @@ Partial Class frmExample
         Me.GroupBox15.TabStop = False
         Me.GroupBox15.Text = "팝빌 기본 URL"
         '
-        'btnGetPopbillURL_LOGIN
+        'btnGetAccessURL
         '
-        Me.btnGetPopbillURL_LOGIN.Location = New System.Drawing.Point(6, 19)
-        Me.btnGetPopbillURL_LOGIN.Name = "btnGetPopbillURL_LOGIN"
-        Me.btnGetPopbillURL_LOGIN.Size = New System.Drawing.Size(150, 30)
-        Me.btnGetPopbillURL_LOGIN.TabIndex = 6
-        Me.btnGetPopbillURL_LOGIN.Text = "팝빌 로그인 URL"
-        Me.btnGetPopbillURL_LOGIN.UseVisualStyleBackColor = True
+        Me.btnGetAccessURL.Location = New System.Drawing.Point(6, 19)
+        Me.btnGetAccessURL.Name = "btnGetAccessURL"
+        Me.btnGetAccessURL.Size = New System.Drawing.Size(150, 30)
+        Me.btnGetAccessURL.TabIndex = 6
+        Me.btnGetAccessURL.Text = "팝빌 로그인 URL"
+        Me.btnGetAccessURL.UseVisualStyleBackColor = True
         '
         'GroupBox5
         '
@@ -503,7 +505,7 @@ Partial Class frmExample
         '
         'GroupBox2
         '
-        Me.GroupBox2.Controls.Add(Me.btnGetPopbillURL_CHRG)
+        Me.GroupBox2.Controls.Add(Me.btnGetChargeURL)
         Me.GroupBox2.Controls.Add(Me.btnGetBalance)
         Me.GroupBox2.Location = New System.Drawing.Point(284, 17)
         Me.GroupBox2.Name = "GroupBox2"
@@ -512,14 +514,14 @@ Partial Class frmExample
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "연동과금 포인트"
         '
-        'btnGetPopbillURL_CHRG
+        'btnGetChargeURL
         '
-        Me.btnGetPopbillURL_CHRG.Location = New System.Drawing.Point(6, 50)
-        Me.btnGetPopbillURL_CHRG.Name = "btnGetPopbillURL_CHRG"
-        Me.btnGetPopbillURL_CHRG.Size = New System.Drawing.Size(118, 30)
-        Me.btnGetPopbillURL_CHRG.TabIndex = 5
-        Me.btnGetPopbillURL_CHRG.Text = "포인트 충전 URL"
-        Me.btnGetPopbillURL_CHRG.UseVisualStyleBackColor = True
+        Me.btnGetChargeURL.Location = New System.Drawing.Point(6, 50)
+        Me.btnGetChargeURL.Name = "btnGetChargeURL"
+        Me.btnGetChargeURL.Size = New System.Drawing.Size(118, 30)
+        Me.btnGetChargeURL.TabIndex = 5
+        Me.btnGetChargeURL.Text = "포인트 충전 URL"
+        Me.btnGetChargeURL.UseVisualStyleBackColor = True
         '
         'btnGetBalance
         '
@@ -632,6 +634,15 @@ Partial Class frmExample
         Me.Label1.TabIndex = 24
         Me.Label1.Text = "팝빌회원 사업자번호 : "
         '
+        'btnGetPreviewURL
+        '
+        Me.btnGetPreviewURL.Location = New System.Drawing.Point(11, 96)
+        Me.btnGetPreviewURL.Name = "btnGetPreviewURL"
+        Me.btnGetPreviewURL.Size = New System.Drawing.Size(121, 32)
+        Me.btnGetPreviewURL.TabIndex = 33
+        Me.btnGetPreviewURL.Text = "팩스 미리보기 URL"
+        Me.btnGetPreviewURL.UseVisualStyleBackColor = True
+        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
@@ -663,7 +674,7 @@ Partial Class frmExample
 
     End Sub
     Private WithEvents btnCancelReserve As System.Windows.Forms.Button
-    Private WithEvents btnGetURL As System.Windows.Forms.Button
+    Private WithEvents btnGetSentListURL As System.Windows.Forms.Button
     Friend WithEvents txtReserveDT As System.Windows.Forms.TextBox
     Friend WithEvents txtReceiptNum As System.Windows.Forms.TextBox
     Friend WithEvents label4 As System.Windows.Forms.Label
@@ -684,12 +695,12 @@ Partial Class frmExample
     Friend WithEvents btnListContact As System.Windows.Forms.Button
     Friend WithEvents btnRegistContact As System.Windows.Forms.Button
     Friend WithEvents GroupBox15 As System.Windows.Forms.GroupBox
-    Friend WithEvents btnGetPopbillURL_LOGIN As System.Windows.Forms.Button
+    Friend WithEvents btnGetAccessURL As System.Windows.Forms.Button
     Friend WithEvents GroupBox5 As System.Windows.Forms.GroupBox
     Friend WithEvents btnGetPartnerURL As System.Windows.Forms.Button
     Friend WithEvents btnGetPartnerBalance As System.Windows.Forms.Button
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
-    Friend WithEvents btnGetPopbillURL_CHRG As System.Windows.Forms.Button
+    Friend WithEvents btnGetChargeURL As System.Windows.Forms.Button
     Friend WithEvents btnGetBalance As System.Windows.Forms.Button
     Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
     Friend WithEvents btnGetChargeInfo As System.Windows.Forms.Button
@@ -705,7 +716,7 @@ Partial Class frmExample
     Private WithEvents btnSearch As System.Windows.Forms.Button
     Friend WithEvents GroupBox7 As System.Windows.Forms.GroupBox
     Friend WithEvents GroupBox8 As System.Windows.Forms.GroupBox
-    Private WithEvents getURL_SENDER As System.Windows.Forms.Button
+    Private WithEvents btnGetSenderNumberMgtURL As System.Windows.Forms.Button
     Private WithEvents btnGetSenderNumberList As System.Windows.Forms.Button
     Private WithEvents btnResendFAX_Multi As System.Windows.Forms.Button
     Private WithEvents btnResendFAX As System.Windows.Forms.Button
@@ -718,5 +729,6 @@ Partial Class frmExample
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents GroupBox10 As System.Windows.Forms.GroupBox
     Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
+    Private WithEvents btnGetPreviewURL As System.Windows.Forms.Button
 
 End Class
