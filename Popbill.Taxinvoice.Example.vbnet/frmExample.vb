@@ -1129,7 +1129,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 공급받는자가 역발행 세금계산서의 발행요청을 취소 한다.
+    ' 공급받는자가 역발행 세금계산서를 거부처리 합니다..
     '=========================================================================
     Private Sub btnRefuse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRefuse.Click
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
@@ -3021,4 +3021,104 @@ Public Class frmExample
 
         End Try
     End Sub
+
+    '=========================================================================
+    ' [(역)발행대기] 상태의 세금계산서를 [발행]처리 합니다.
+    ' - 발행(Issue API)를 호출하는 시점에서 포인트가 차감됩니다.
+    ' - [발행완료] 세금계산서는 연동회원의 국세청 전송설정에 따라
+    '   익일/즉시전송 처리됩니다. 기본설정(익일전송)
+    ' - 국세청 전송설정은 "팝빌 로그인" > [전자세금계산서] > [환경설정] >
+    '   [전자세금계산서 관리] > [국세청 전송 및 지연발행 설정] 탭에서
+    '   확인할 수 있습니다.
+    ' - 국세청 전송정책에 대한 사항은 "[전자세금계산서 API 연동매뉴얼] >
+    '   1.4. 국세청 전송 정책" 을 참조하시기 바랍니다
+    '=========================================================================
+    Private Sub btnIssue_Reverse_sub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnIssue_Reverse_sub.Click
+        Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
+
+        Try
+            Dim response As Response = taxinvoiceService.Issue(txtCorpNum.Text, KeyType, txtMgtKey.Text, "발행시 메모", False, txtUserId.Text)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+    '=========================================================================
+    '[발행완료] 상태의 세금계산서를 [발행취소] 처리합니다.
+    ' - [발행취소]는 국세청 전송전에만 가능합니다.
+    ' - 발행취소된 세금계산서는 국세청에 전송되지 않습니다.
+    ' - 발행취소 세금계산서에 기재된 문서관리번호를 재사용 하기 위해서는
+    '   삭제(Delete API)를 호출하여 [삭제] 처리 하셔야 합니다.
+    '=========================================================================
+    Private Sub btnCancelIssue_Reverse_sub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelIssue_Reverse_sub.Click
+        Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
+
+        Try
+            Dim response As Response = taxinvoiceService.CancelIssue(txtCorpNum.Text, KeyType, txtMgtKey.Text, "발행취소시 메모.", txtUserId.Text)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 공급받는자가 역발행 세금계산서의 발행요청을 취소 합니다.
+    '=========================================================================
+    Private Sub btnCancelRequest_sub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelRequest_sub.Click
+        Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
+
+        Try
+            Dim response As Response = taxinvoiceService.CancelRequest(txtCorpNum.Text, KeyType, txtMgtKey.Text, "역발행 요청 취소시 메모", txtUserId.Text)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 공급자가 역발행 세금계산서를 거부 처리 합니다.
+    '=========================================================================
+    Private Sub btnRefuse_sub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRefuse_sub.Click
+        Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
+
+        Try
+            Dim response As Response = taxinvoiceService.Refuse(txtCorpNum.Text, KeyType, txtMgtKey.Text, "역발행 요청 거부시 메모", txtUserId.Text)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 1건의 전자세금계산서를 삭제합니다.
+    ' - 세금계산서를 삭제해야만 문서관리번호(mgtKey)를 재사용할 수 있습니다.
+    ' - 삭제가능한 문서 상태 : [임시저장], [발행취소], [발행예정 취소],
+    '   [발행예정 거부]
+    '=========================================================================
+    Private Sub btnDelete_Reverse_sub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDelete_Reverse_sub.Click
+        Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
+
+        Try
+            Dim response As Response = taxinvoiceService.Delete(txtCorpNum.Text, KeyType, txtMgtKey.Text)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
 End Class

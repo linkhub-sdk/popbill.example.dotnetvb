@@ -57,13 +57,14 @@ Partial Class frmExample
         Me.btnUpdateEmailConfig = New System.Windows.Forms.Button
         Me.btnListEmailConfig = New System.Windows.Forms.Button
         Me.GroupBox7 = New System.Windows.Forms.GroupBox
+        Me.GroupBox19 = New System.Windows.Forms.GroupBox
+        Me.btnRegistRequest = New System.Windows.Forms.Button
         Me.GroupBox18 = New System.Windows.Forms.GroupBox
         Me.label27 = New System.Windows.Forms.Label
         Me.label25 = New System.Windows.Forms.Label
-        Me.btnDelete_Sub = New System.Windows.Forms.Button
-        Me.btnCancelIssue_Sub = New System.Windows.Forms.Button
         Me.btnRegistIssue = New System.Windows.Forms.Button
         Me.label26 = New System.Windows.Forms.Label
+        Me.btnDelete_Sub = New System.Windows.Forms.Button
         Me.GroupBox14 = New System.Windows.Forms.GroupBox
         Me.btnRequest = New System.Windows.Forms.Button
         Me.btnCancelRequest = New System.Windows.Forms.Button
@@ -79,6 +80,7 @@ Partial Class frmExample
         Me.Label22 = New System.Windows.Forms.Label
         Me.Label23 = New System.Windows.Forms.Label
         Me.Label24 = New System.Windows.Forms.Label
+        Me.btnCancelIssue_Sub = New System.Windows.Forms.Button
         Me.btnSendToNTS = New System.Windows.Forms.Button
         Me.GroupBox13 = New System.Windows.Forms.GroupBox
         Me.btnGetURL_WRITE = New System.Windows.Forms.Button
@@ -140,7 +142,11 @@ Partial Class frmExample
         Me.txtMgtKey = New System.Windows.Forms.TextBox
         Me.Label3 = New System.Windows.Forms.Label
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
-        Me.btnRegistRequest = New System.Windows.Forms.Button
+        Me.btnCancelRequest_sub = New System.Windows.Forms.Button
+        Me.btnRefuse_sub = New System.Windows.Forms.Button
+        Me.btnIssue_Reverse_sub = New System.Windows.Forms.Button
+        Me.btnCancelIssue_Reverse_sub = New System.Windows.Forms.Button
+        Me.btnDelete_Reverse_sub = New System.Windows.Forms.Button
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -151,6 +157,7 @@ Partial Class frmExample
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
+        Me.GroupBox19.SuspendLayout()
         Me.GroupBox18.SuspendLayout()
         Me.GroupBox14.SuspendLayout()
         Me.GroupBox13.SuspendLayout()
@@ -494,7 +501,7 @@ Partial Class frmExample
         '
         'GroupBox7
         '
-        Me.GroupBox7.Controls.Add(Me.btnRegistRequest)
+        Me.GroupBox7.Controls.Add(Me.GroupBox19)
         Me.GroupBox7.Controls.Add(Me.GroupBox18)
         Me.GroupBox7.Controls.Add(Me.GroupBox14)
         Me.GroupBox7.Controls.Add(Me.btnSendToNTS)
@@ -516,12 +523,37 @@ Partial Class frmExample
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "전자세금계산서 관련 API"
         '
+        'GroupBox19
+        '
+        Me.GroupBox19.Controls.Add(Me.btnDelete_Reverse_sub)
+        Me.GroupBox19.Controls.Add(Me.btnCancelIssue_Reverse_sub)
+        Me.GroupBox19.Controls.Add(Me.btnIssue_Reverse_sub)
+        Me.GroupBox19.Controls.Add(Me.btnRefuse_sub)
+        Me.GroupBox19.Controls.Add(Me.btnCancelRequest_sub)
+        Me.GroupBox19.Controls.Add(Me.btnRegistRequest)
+        Me.GroupBox19.Location = New System.Drawing.Point(900, 43)
+        Me.GroupBox19.Name = "GroupBox19"
+        Me.GroupBox19.Size = New System.Drawing.Size(307, 195)
+        Me.GroupBox19.TabIndex = 22
+        Me.GroupBox19.TabStop = False
+        Me.GroupBox19.Text = "역발행 즉시 요청 - (권장)"
+        '
+        'btnRegistRequest
+        '
+        Me.btnRegistRequest.BackColor = System.Drawing.Color.Aquamarine
+        Me.btnRegistRequest.Location = New System.Drawing.Point(26, 28)
+        Me.btnRegistRequest.Name = "btnRegistRequest"
+        Me.btnRegistRequest.Size = New System.Drawing.Size(102, 42)
+        Me.btnRegistRequest.TabIndex = 21
+        Me.btnRegistRequest.Text = "즉시 요청"
+        Me.btnRegistRequest.UseVisualStyleBackColor = False
+        '
         'GroupBox18
         '
+        Me.GroupBox18.Controls.Add(Me.btnCancelIssue_Sub)
+        Me.GroupBox18.Controls.Add(Me.btnDelete_Sub)
         Me.GroupBox18.Controls.Add(Me.label27)
         Me.GroupBox18.Controls.Add(Me.label25)
-        Me.GroupBox18.Controls.Add(Me.btnDelete_Sub)
-        Me.GroupBox18.Controls.Add(Me.btnCancelIssue_Sub)
         Me.GroupBox18.Controls.Add(Me.btnRegistIssue)
         Me.GroupBox18.Controls.Add(Me.label26)
         Me.GroupBox18.Location = New System.Drawing.Point(20, 50)
@@ -555,25 +587,6 @@ Partial Class frmExample
         Me.label25.TabIndex = 17
         Me.label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'btnDelete_Sub
-        '
-        Me.btnDelete_Sub.Location = New System.Drawing.Point(122, 124)
-        Me.btnDelete_Sub.Name = "btnDelete_Sub"
-        Me.btnDelete_Sub.Size = New System.Drawing.Size(50, 31)
-        Me.btnDelete_Sub.TabIndex = 10
-        Me.btnDelete_Sub.Text = "삭제"
-        Me.btnDelete_Sub.UseVisualStyleBackColor = True
-        '
-        'btnCancelIssue_Sub
-        '
-        Me.btnCancelIssue_Sub.BackColor = System.Drawing.Color.LightCoral
-        Me.btnCancelIssue_Sub.Location = New System.Drawing.Point(27, 125)
-        Me.btnCancelIssue_Sub.Name = "btnCancelIssue_Sub"
-        Me.btnCancelIssue_Sub.Size = New System.Drawing.Size(65, 31)
-        Me.btnCancelIssue_Sub.TabIndex = 9
-        Me.btnCancelIssue_Sub.Text = "발행취소"
-        Me.btnCancelIssue_Sub.UseVisualStyleBackColor = False
-        '
         'btnRegistIssue
         '
         Me.btnRegistIssue.BackColor = System.Drawing.Color.LightCoral
@@ -596,6 +609,15 @@ Partial Class frmExample
         Me.label26.TabIndex = 6
         Me.label26.Text = "즉시발행"
         Me.label26.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'btnDelete_Sub
+        '
+        Me.btnDelete_Sub.Location = New System.Drawing.Point(113, 123)
+        Me.btnDelete_Sub.Name = "btnDelete_Sub"
+        Me.btnDelete_Sub.Size = New System.Drawing.Size(50, 31)
+        Me.btnDelete_Sub.TabIndex = 10
+        Me.btnDelete_Sub.Text = "삭제"
+        Me.btnDelete_Sub.UseVisualStyleBackColor = True
         '
         'GroupBox14
         '
@@ -771,6 +793,16 @@ Partial Class frmExample
         Me.Label24.Size = New System.Drawing.Size(197, 1)
         Me.Label24.TabIndex = 20
         Me.Label24.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'btnCancelIssue_Sub
+        '
+        Me.btnCancelIssue_Sub.BackColor = System.Drawing.Color.LightCoral
+        Me.btnCancelIssue_Sub.Location = New System.Drawing.Point(29, 123)
+        Me.btnCancelIssue_Sub.Name = "btnCancelIssue_Sub"
+        Me.btnCancelIssue_Sub.Size = New System.Drawing.Size(65, 31)
+        Me.btnCancelIssue_Sub.TabIndex = 9
+        Me.btnCancelIssue_Sub.Text = "발행취소"
+        Me.btnCancelIssue_Sub.UseVisualStyleBackColor = False
         '
         'btnSendToNTS
         '
@@ -1415,15 +1447,54 @@ Partial Class frmExample
         '
         Me.fileDialog.FileName = "OpenFileDialog1"
         '
-        'btnRegistRequest
+        'btnCancelRequest_sub
         '
-        Me.btnRegistRequest.BackColor = System.Drawing.Color.Aquamarine
-        Me.btnRegistRequest.Location = New System.Drawing.Point(920, 67)
-        Me.btnRegistRequest.Name = "btnRegistRequest"
-        Me.btnRegistRequest.Size = New System.Drawing.Size(125, 37)
-        Me.btnRegistRequest.TabIndex = 21
-        Me.btnRegistRequest.Text = "즉시 요청"
-        Me.btnRegistRequest.UseVisualStyleBackColor = False
+        Me.btnCancelRequest_sub.BackColor = System.Drawing.Color.Aquamarine
+        Me.btnCancelRequest_sub.Location = New System.Drawing.Point(170, 24)
+        Me.btnCancelRequest_sub.Name = "btnCancelRequest_sub"
+        Me.btnCancelRequest_sub.Size = New System.Drawing.Size(62, 25)
+        Me.btnCancelRequest_sub.TabIndex = 21
+        Me.btnCancelRequest_sub.Text = "요청취소"
+        Me.btnCancelRequest_sub.UseVisualStyleBackColor = False
+        '
+        'btnRefuse_sub
+        '
+        Me.btnRefuse_sub.BackColor = System.Drawing.Color.LightCoral
+        Me.btnRefuse_sub.Location = New System.Drawing.Point(179, 54)
+        Me.btnRefuse_sub.Name = "btnRefuse_sub"
+        Me.btnRefuse_sub.Size = New System.Drawing.Size(41, 25)
+        Me.btnRefuse_sub.TabIndex = 21
+        Me.btnRefuse_sub.Text = "거부"
+        Me.btnRefuse_sub.UseVisualStyleBackColor = False
+        '
+        'btnIssue_Reverse_sub
+        '
+        Me.btnIssue_Reverse_sub.BackColor = System.Drawing.Color.LightCoral
+        Me.btnIssue_Reverse_sub.Location = New System.Drawing.Point(46, 90)
+        Me.btnIssue_Reverse_sub.Name = "btnIssue_Reverse_sub"
+        Me.btnIssue_Reverse_sub.Size = New System.Drawing.Size(65, 32)
+        Me.btnIssue_Reverse_sub.TabIndex = 21
+        Me.btnIssue_Reverse_sub.Text = "발행"
+        Me.btnIssue_Reverse_sub.UseVisualStyleBackColor = False
+        '
+        'btnCancelIssue_Reverse_sub
+        '
+        Me.btnCancelIssue_Reverse_sub.BackColor = System.Drawing.Color.LightCoral
+        Me.btnCancelIssue_Reverse_sub.Location = New System.Drawing.Point(46, 140)
+        Me.btnCancelIssue_Reverse_sub.Name = "btnCancelIssue_Reverse_sub"
+        Me.btnCancelIssue_Reverse_sub.Size = New System.Drawing.Size(65, 25)
+        Me.btnCancelIssue_Reverse_sub.TabIndex = 21
+        Me.btnCancelIssue_Reverse_sub.Text = "발행취소"
+        Me.btnCancelIssue_Reverse_sub.UseVisualStyleBackColor = False
+        '
+        'btnDelete_Reverse_sub
+        '
+        Me.btnDelete_Reverse_sub.Location = New System.Drawing.Point(235, 140)
+        Me.btnDelete_Reverse_sub.Name = "btnDelete_Reverse_sub"
+        Me.btnDelete_Reverse_sub.Size = New System.Drawing.Size(50, 25)
+        Me.btnDelete_Reverse_sub.TabIndex = 21
+        Me.btnDelete_Reverse_sub.Text = "삭제"
+        Me.btnDelete_Reverse_sub.UseVisualStyleBackColor = True
         '
         'frmExample
         '
@@ -1450,6 +1521,7 @@ Partial Class frmExample
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox7.ResumeLayout(False)
         Me.GroupBox7.PerformLayout()
+        Me.GroupBox19.ResumeLayout(False)
         Me.GroupBox18.ResumeLayout(False)
         Me.GroupBox14.ResumeLayout(False)
         Me.GroupBox13.ResumeLayout(False)
@@ -1582,5 +1654,11 @@ Partial Class frmExample
     Friend WithEvents label27 As System.Windows.Forms.Label
     Friend WithEvents label25 As System.Windows.Forms.Label
     Friend WithEvents btnRegistRequest As System.Windows.Forms.Button
+    Friend WithEvents GroupBox19 As System.Windows.Forms.GroupBox
+    Friend WithEvents btnDelete_Reverse_sub As System.Windows.Forms.Button
+    Friend WithEvents btnCancelIssue_Reverse_sub As System.Windows.Forms.Button
+    Friend WithEvents btnIssue_Reverse_sub As System.Windows.Forms.Button
+    Friend WithEvents btnRefuse_sub As System.Windows.Forms.Button
+    Friend WithEvents btnCancelRequest_sub As System.Windows.Forms.Button
 
 End Class
