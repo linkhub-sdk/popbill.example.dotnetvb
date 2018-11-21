@@ -1388,7 +1388,7 @@ Public Class frmExample
         Dim taxinvoice As Taxinvoice = New Taxinvoice
 
         '[필수] 작성일자, 표시형식 (yyyyMMdd) ex) 20171120
-        taxinvoice.writeDate = "20171120"
+        taxinvoice.writeDate = "20181120"
 
         '[필수] 발행형태, [정발행, 역발행, 위수탁] 중 기재
         taxinvoice.issueType = "역발행"
@@ -1421,9 +1421,9 @@ Public Class frmExample
         '[필수] 공급자 상호
         taxinvoice.invoicerCorpName = "공급자 상호"
 
-        '[필수] 공급자 문서관리번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로
+        '공급자 문서관리번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로
         '사업자 별로 중복되지 않도록 구성
-        taxinvoice.invoicerMgtKey = txtMgtKey.Text
+        taxinvoice.invoicerMgtKey = ""
 
         '[필수] 공급자 대표자 성명
         taxinvoice.invoicerCEOName = "공급자 대표자 성명"
@@ -1468,7 +1468,7 @@ Public Class frmExample
         taxinvoice.invoiceeCorpName = "공급받는자 상호"
 
         '[역발행시 필수] 공급받는자 문서관리번호(역발행시 필수)
-        taxinvoice.invoiceeMgtKey = ""
+        taxinvoice.invoiceeMgtKey = txtMgtKey.Text
 
         '[필수] 공급받는자 대표자 성명
         taxinvoice.invoiceeCEOName = "공급받는자 대표자 성명"
@@ -1563,7 +1563,7 @@ Public Class frmExample
         Dim detail As TaxinvoiceDetail = New TaxinvoiceDetail
 
         detail.serialNum = 1                            '일련번호, 1부터 순차기재
-        detail.purchaseDT = "201711121"                 '거래일자, yyyyMMdd
+        detail.purchaseDT = "20181121"                 '거래일자, yyyyMMdd
         detail.itemName = "품목명"                      '품목명
         detail.spec = "규격"                            '규격
         detail.qty = "1"                                '수량
