@@ -58,13 +58,22 @@ Partial Class frmExample
         Me.btnListEmailConfig = New System.Windows.Forms.Button
         Me.GroupBox7 = New System.Windows.Forms.GroupBox
         Me.GroupBox19 = New System.Windows.Forms.GroupBox
+        Me.btnDelete_Reverse_sub = New System.Windows.Forms.Button
+        Me.btnCancelIssue_Reverse_sub = New System.Windows.Forms.Button
+        Me.Label30 = New System.Windows.Forms.Label
+        Me.Label29 = New System.Windows.Forms.Label
+        Me.btnIssue_Reverse_sub = New System.Windows.Forms.Button
+        Me.btnRefuse_sub = New System.Windows.Forms.Button
+        Me.btnCancelRequest_sub = New System.Windows.Forms.Button
         Me.btnRegistRequest = New System.Windows.Forms.Button
+        Me.Label28 = New System.Windows.Forms.Label
         Me.GroupBox18 = New System.Windows.Forms.GroupBox
+        Me.btnCancelIssue_Sub = New System.Windows.Forms.Button
+        Me.btnDelete_Sub = New System.Windows.Forms.Button
         Me.label27 = New System.Windows.Forms.Label
         Me.label25 = New System.Windows.Forms.Label
         Me.btnRegistIssue = New System.Windows.Forms.Button
         Me.label26 = New System.Windows.Forms.Label
-        Me.btnDelete_Sub = New System.Windows.Forms.Button
         Me.GroupBox14 = New System.Windows.Forms.GroupBox
         Me.btnRequest = New System.Windows.Forms.Button
         Me.btnCancelRequest = New System.Windows.Forms.Button
@@ -80,7 +89,6 @@ Partial Class frmExample
         Me.Label22 = New System.Windows.Forms.Label
         Me.Label23 = New System.Windows.Forms.Label
         Me.Label24 = New System.Windows.Forms.Label
-        Me.btnCancelIssue_Sub = New System.Windows.Forms.Button
         Me.btnSendToNTS = New System.Windows.Forms.Button
         Me.GroupBox13 = New System.Windows.Forms.GroupBox
         Me.btnGetURL_WRITE = New System.Windows.Forms.Button
@@ -142,11 +150,8 @@ Partial Class frmExample
         Me.txtMgtKey = New System.Windows.Forms.TextBox
         Me.Label3 = New System.Windows.Forms.Label
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
-        Me.btnCancelRequest_sub = New System.Windows.Forms.Button
-        Me.btnRefuse_sub = New System.Windows.Forms.Button
-        Me.btnIssue_Reverse_sub = New System.Windows.Forms.Button
-        Me.btnCancelIssue_Reverse_sub = New System.Windows.Forms.Button
-        Me.btnDelete_Reverse_sub = New System.Windows.Forms.Button
+        Me.Label32 = New System.Windows.Forms.Label
+        Me.Label33 = New System.Windows.Forms.Label
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -417,7 +422,7 @@ Partial Class frmExample
         '
         Me.GroupBox3.Controls.Add(Me.btnGetChargeInfo)
         Me.GroupBox3.Controls.Add(Me.btnUnitCost)
-        Me.GroupBox3.Location = New System.Drawing.Point(172, 17)
+        Me.GroupBox3.Location = New System.Drawing.Point(172, 15)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(161, 126)
         Me.GroupBox3.TabIndex = 1
@@ -525,18 +530,92 @@ Partial Class frmExample
         '
         'GroupBox19
         '
-        Me.GroupBox19.Controls.Add(Me.btnDelete_Reverse_sub)
-        Me.GroupBox19.Controls.Add(Me.btnCancelIssue_Reverse_sub)
-        Me.GroupBox19.Controls.Add(Me.btnIssue_Reverse_sub)
+        Me.GroupBox19.Controls.Add(Me.btnRegistRequest)
         Me.GroupBox19.Controls.Add(Me.btnRefuse_sub)
         Me.GroupBox19.Controls.Add(Me.btnCancelRequest_sub)
-        Me.GroupBox19.Controls.Add(Me.btnRegistRequest)
-        Me.GroupBox19.Location = New System.Drawing.Point(900, 43)
+        Me.GroupBox19.Controls.Add(Me.Label33)
+        Me.GroupBox19.Controls.Add(Me.Label32)
+        Me.GroupBox19.Controls.Add(Me.btnDelete_Reverse_sub)
+        Me.GroupBox19.Controls.Add(Me.btnCancelIssue_Reverse_sub)
+        Me.GroupBox19.Controls.Add(Me.Label30)
+        Me.GroupBox19.Controls.Add(Me.Label29)
+        Me.GroupBox19.Controls.Add(Me.btnIssue_Reverse_sub)
+        Me.GroupBox19.Controls.Add(Me.Label28)
+        Me.GroupBox19.Location = New System.Drawing.Point(617, 60)
         Me.GroupBox19.Name = "GroupBox19"
         Me.GroupBox19.Size = New System.Drawing.Size(307, 195)
         Me.GroupBox19.TabIndex = 22
         Me.GroupBox19.TabStop = False
         Me.GroupBox19.Text = "역발행 즉시 요청 - (권장)"
+        '
+        'btnDelete_Reverse_sub
+        '
+        Me.btnDelete_Reverse_sub.Location = New System.Drawing.Point(235, 140)
+        Me.btnDelete_Reverse_sub.Name = "btnDelete_Reverse_sub"
+        Me.btnDelete_Reverse_sub.Size = New System.Drawing.Size(50, 25)
+        Me.btnDelete_Reverse_sub.TabIndex = 21
+        Me.btnDelete_Reverse_sub.Text = "삭제"
+        Me.btnDelete_Reverse_sub.UseVisualStyleBackColor = True
+        '
+        'btnCancelIssue_Reverse_sub
+        '
+        Me.btnCancelIssue_Reverse_sub.BackColor = System.Drawing.Color.LightCoral
+        Me.btnCancelIssue_Reverse_sub.Location = New System.Drawing.Point(46, 140)
+        Me.btnCancelIssue_Reverse_sub.Name = "btnCancelIssue_Reverse_sub"
+        Me.btnCancelIssue_Reverse_sub.Size = New System.Drawing.Size(65, 25)
+        Me.btnCancelIssue_Reverse_sub.TabIndex = 21
+        Me.btnCancelIssue_Reverse_sub.Text = "발행취소"
+        Me.btnCancelIssue_Reverse_sub.UseVisualStyleBackColor = False
+        '
+        'Label30
+        '
+        Me.Label30.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.Label30.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label30.Location = New System.Drawing.Point(102, 151)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Padding = New System.Windows.Forms.Padding(1, 0, 0, 0)
+        Me.Label30.Size = New System.Drawing.Size(142, 1)
+        Me.Label30.TabIndex = 21
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.Label29.Location = New System.Drawing.Point(257, 39)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Padding = New System.Windows.Forms.Padding(1, 100, 0, 0)
+        Me.Label29.Size = New System.Drawing.Size(1, 112)
+        Me.Label29.TabIndex = 22
+        '
+        'btnIssue_Reverse_sub
+        '
+        Me.btnIssue_Reverse_sub.BackColor = System.Drawing.Color.LightCoral
+        Me.btnIssue_Reverse_sub.Location = New System.Drawing.Point(46, 90)
+        Me.btnIssue_Reverse_sub.Name = "btnIssue_Reverse_sub"
+        Me.btnIssue_Reverse_sub.Size = New System.Drawing.Size(65, 32)
+        Me.btnIssue_Reverse_sub.TabIndex = 21
+        Me.btnIssue_Reverse_sub.Text = "발행"
+        Me.btnIssue_Reverse_sub.UseVisualStyleBackColor = False
+        '
+        'btnRefuse_sub
+        '
+        Me.btnRefuse_sub.BackColor = System.Drawing.Color.LightCoral
+        Me.btnRefuse_sub.Location = New System.Drawing.Point(179, 53)
+        Me.btnRefuse_sub.Name = "btnRefuse_sub"
+        Me.btnRefuse_sub.Size = New System.Drawing.Size(41, 25)
+        Me.btnRefuse_sub.TabIndex = 21
+        Me.btnRefuse_sub.Text = "거부"
+        Me.btnRefuse_sub.UseVisualStyleBackColor = False
+        '
+        'btnCancelRequest_sub
+        '
+        Me.btnCancelRequest_sub.BackColor = System.Drawing.Color.Aquamarine
+        Me.btnCancelRequest_sub.Location = New System.Drawing.Point(170, 24)
+        Me.btnCancelRequest_sub.Name = "btnCancelRequest_sub"
+        Me.btnCancelRequest_sub.Size = New System.Drawing.Size(62, 25)
+        Me.btnCancelRequest_sub.TabIndex = 21
+        Me.btnCancelRequest_sub.Text = "요청취소"
+        Me.btnCancelRequest_sub.UseVisualStyleBackColor = False
         '
         'btnRegistRequest
         '
@@ -547,6 +626,17 @@ Partial Class frmExample
         Me.btnRegistRequest.TabIndex = 21
         Me.btnRegistRequest.Text = "즉시 요청"
         Me.btnRegistRequest.UseVisualStyleBackColor = False
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.Label28.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label28.Location = New System.Drawing.Point(77, 60)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Padding = New System.Windows.Forms.Padding(1, 70, 0, 0)
+        Me.Label28.Size = New System.Drawing.Size(1, 82)
+        Me.Label28.TabIndex = 18
         '
         'GroupBox18
         '
@@ -562,6 +652,25 @@ Partial Class frmExample
         Me.GroupBox18.TabIndex = 16
         Me.GroupBox18.TabStop = False
         Me.GroupBox18.Text = "즉시발행 세금계산서 - (권장)"
+        '
+        'btnCancelIssue_Sub
+        '
+        Me.btnCancelIssue_Sub.BackColor = System.Drawing.Color.LightCoral
+        Me.btnCancelIssue_Sub.Location = New System.Drawing.Point(29, 123)
+        Me.btnCancelIssue_Sub.Name = "btnCancelIssue_Sub"
+        Me.btnCancelIssue_Sub.Size = New System.Drawing.Size(65, 31)
+        Me.btnCancelIssue_Sub.TabIndex = 9
+        Me.btnCancelIssue_Sub.Text = "발행취소"
+        Me.btnCancelIssue_Sub.UseVisualStyleBackColor = False
+        '
+        'btnDelete_Sub
+        '
+        Me.btnDelete_Sub.Location = New System.Drawing.Point(113, 123)
+        Me.btnDelete_Sub.Name = "btnDelete_Sub"
+        Me.btnDelete_Sub.Size = New System.Drawing.Size(50, 31)
+        Me.btnDelete_Sub.TabIndex = 10
+        Me.btnDelete_Sub.Text = "삭제"
+        Me.btnDelete_Sub.UseVisualStyleBackColor = True
         '
         'label27
         '
@@ -610,15 +719,6 @@ Partial Class frmExample
         Me.label26.Text = "즉시발행"
         Me.label26.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'btnDelete_Sub
-        '
-        Me.btnDelete_Sub.Location = New System.Drawing.Point(113, 123)
-        Me.btnDelete_Sub.Name = "btnDelete_Sub"
-        Me.btnDelete_Sub.Size = New System.Drawing.Size(50, 31)
-        Me.btnDelete_Sub.TabIndex = 10
-        Me.btnDelete_Sub.Text = "삭제"
-        Me.btnDelete_Sub.UseVisualStyleBackColor = True
-        '
         'GroupBox14
         '
         Me.GroupBox14.Controls.Add(Me.btnRequest)
@@ -635,7 +735,7 @@ Partial Class frmExample
         Me.GroupBox14.Controls.Add(Me.Label22)
         Me.GroupBox14.Controls.Add(Me.Label23)
         Me.GroupBox14.Controls.Add(Me.Label24)
-        Me.GroupBox14.Location = New System.Drawing.Point(602, 50)
+        Me.GroupBox14.Location = New System.Drawing.Point(958, 60)
         Me.GroupBox14.Name = "GroupBox14"
         Me.GroupBox14.Size = New System.Drawing.Size(280, 188)
         Me.GroupBox14.TabIndex = 14
@@ -793,16 +893,6 @@ Partial Class frmExample
         Me.Label24.Size = New System.Drawing.Size(197, 1)
         Me.Label24.TabIndex = 20
         Me.Label24.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'btnCancelIssue_Sub
-        '
-        Me.btnCancelIssue_Sub.BackColor = System.Drawing.Color.LightCoral
-        Me.btnCancelIssue_Sub.Location = New System.Drawing.Point(29, 123)
-        Me.btnCancelIssue_Sub.Name = "btnCancelIssue_Sub"
-        Me.btnCancelIssue_Sub.Size = New System.Drawing.Size(65, 31)
-        Me.btnCancelIssue_Sub.TabIndex = 9
-        Me.btnCancelIssue_Sub.Text = "발행취소"
-        Me.btnCancelIssue_Sub.UseVisualStyleBackColor = False
         '
         'btnSendToNTS
         '
@@ -1447,54 +1537,25 @@ Partial Class frmExample
         '
         Me.fileDialog.FileName = "OpenFileDialog1"
         '
-        'btnCancelRequest_sub
+        'Label32
         '
-        Me.btnCancelRequest_sub.BackColor = System.Drawing.Color.Aquamarine
-        Me.btnCancelRequest_sub.Location = New System.Drawing.Point(170, 24)
-        Me.btnCancelRequest_sub.Name = "btnCancelRequest_sub"
-        Me.btnCancelRequest_sub.Size = New System.Drawing.Size(62, 25)
-        Me.btnCancelRequest_sub.TabIndex = 21
-        Me.btnCancelRequest_sub.Text = "요청취소"
-        Me.btnCancelRequest_sub.UseVisualStyleBackColor = False
+        Me.Label32.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.Label32.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label32.Location = New System.Drawing.Point(115, 39)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Padding = New System.Windows.Forms.Padding(1, 0, 0, 0)
+        Me.Label32.Size = New System.Drawing.Size(142, 1)
+        Me.Label32.TabIndex = 23
         '
-        'btnRefuse_sub
+        'Label33
         '
-        Me.btnRefuse_sub.BackColor = System.Drawing.Color.LightCoral
-        Me.btnRefuse_sub.Location = New System.Drawing.Point(179, 54)
-        Me.btnRefuse_sub.Name = "btnRefuse_sub"
-        Me.btnRefuse_sub.Size = New System.Drawing.Size(41, 25)
-        Me.btnRefuse_sub.TabIndex = 21
-        Me.btnRefuse_sub.Text = "거부"
-        Me.btnRefuse_sub.UseVisualStyleBackColor = False
-        '
-        'btnIssue_Reverse_sub
-        '
-        Me.btnIssue_Reverse_sub.BackColor = System.Drawing.Color.LightCoral
-        Me.btnIssue_Reverse_sub.Location = New System.Drawing.Point(46, 90)
-        Me.btnIssue_Reverse_sub.Name = "btnIssue_Reverse_sub"
-        Me.btnIssue_Reverse_sub.Size = New System.Drawing.Size(65, 32)
-        Me.btnIssue_Reverse_sub.TabIndex = 21
-        Me.btnIssue_Reverse_sub.Text = "발행"
-        Me.btnIssue_Reverse_sub.UseVisualStyleBackColor = False
-        '
-        'btnCancelIssue_Reverse_sub
-        '
-        Me.btnCancelIssue_Reverse_sub.BackColor = System.Drawing.Color.LightCoral
-        Me.btnCancelIssue_Reverse_sub.Location = New System.Drawing.Point(46, 140)
-        Me.btnCancelIssue_Reverse_sub.Name = "btnCancelIssue_Reverse_sub"
-        Me.btnCancelIssue_Reverse_sub.Size = New System.Drawing.Size(65, 25)
-        Me.btnCancelIssue_Reverse_sub.TabIndex = 21
-        Me.btnCancelIssue_Reverse_sub.Text = "발행취소"
-        Me.btnCancelIssue_Reverse_sub.UseVisualStyleBackColor = False
-        '
-        'btnDelete_Reverse_sub
-        '
-        Me.btnDelete_Reverse_sub.Location = New System.Drawing.Point(235, 140)
-        Me.btnDelete_Reverse_sub.Name = "btnDelete_Reverse_sub"
-        Me.btnDelete_Reverse_sub.Size = New System.Drawing.Size(50, 25)
-        Me.btnDelete_Reverse_sub.TabIndex = 21
-        Me.btnDelete_Reverse_sub.Text = "삭제"
-        Me.btnDelete_Reverse_sub.UseVisualStyleBackColor = True
+        Me.Label33.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.Label33.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label33.Location = New System.Drawing.Point(116, 63)
+        Me.Label33.Name = "Label33"
+        Me.Label33.Padding = New System.Windows.Forms.Padding(1, 0, 0, 0)
+        Me.Label33.Size = New System.Drawing.Size(142, 1)
+        Me.Label33.TabIndex = 24
         '
         'frmExample
         '
@@ -1522,6 +1583,7 @@ Partial Class frmExample
         Me.GroupBox7.ResumeLayout(False)
         Me.GroupBox7.PerformLayout()
         Me.GroupBox19.ResumeLayout(False)
+        Me.GroupBox19.PerformLayout()
         Me.GroupBox18.ResumeLayout(False)
         Me.GroupBox14.ResumeLayout(False)
         Me.GroupBox13.ResumeLayout(False)
@@ -1660,5 +1722,10 @@ Partial Class frmExample
     Friend WithEvents btnIssue_Reverse_sub As System.Windows.Forms.Button
     Friend WithEvents btnRefuse_sub As System.Windows.Forms.Button
     Friend WithEvents btnCancelRequest_sub As System.Windows.Forms.Button
+    Friend WithEvents Label28 As System.Windows.Forms.Label
+    Friend WithEvents Label30 As System.Windows.Forms.Label
+    Friend WithEvents Label29 As System.Windows.Forms.Label
+    Friend WithEvents Label33 As System.Windows.Forms.Label
+    Friend WithEvents Label32 As System.Windows.Forms.Label
 
 End Class
