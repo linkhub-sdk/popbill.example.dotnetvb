@@ -631,7 +631,7 @@ Public Class frmExample
         State(2) = "3"
         State(3) = "4"
 
-        '예약문자 검색여부, True(예약문자만 조회), False(전체조회)
+        '예약팩스 검색여부, True(예약팩스만 조회), False(전체조회)
         Dim ReserveYN As Boolean = False
 
         '개인조회여부, True(개인조회), False(전체조회)
@@ -1022,6 +1022,10 @@ Public Class frmExample
         End Try
     End Sub
 
+    '=========================================================================
+    '접수한 팩스 전송건에 대한 미리보기 팝업 URL을 반환합니다.
+    ' - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+    '=========================================================================
     Private Sub btnGetPreviewURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPreviewURL.Click
         Try
             Dim url As String = faxService.GetPreviewURL(txtCorpNum.Text, txtReceiptNum.Text, txtUserId.Text)
