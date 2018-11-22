@@ -77,12 +77,12 @@ Partial Class frmExample
         Me.btnListContact = New System.Windows.Forms.Button
         Me.btnRegistContact = New System.Windows.Forms.Button
         Me.GroupBox15 = New System.Windows.Forms.GroupBox
-        Me.btnGetPopbillURL_LOGIN = New System.Windows.Forms.Button
+        Me.btnGetAccessURL = New System.Windows.Forms.Button
         Me.GroupBox14 = New System.Windows.Forms.GroupBox
         Me.btnGetPartnerURL = New System.Windows.Forms.Button
         Me.btnGetPartnerPoint = New System.Windows.Forms.Button
         Me.GroupBox18 = New System.Windows.Forms.GroupBox
-        Me.btnGetPopbillURL_CHRG = New System.Windows.Forms.Button
+        Me.btnGetChargeURL = New System.Windows.Forms.Button
         Me.btnGetBalance = New System.Windows.Forms.Button
         Me.GroupBox19 = New System.Windows.Forms.GroupBox
         Me.btnGetChargeInfo = New System.Windows.Forms.Button
@@ -662,7 +662,7 @@ Partial Class frmExample
         '
         'GroupBox15
         '
-        Me.GroupBox15.Controls.Add(Me.btnGetPopbillURL_LOGIN)
+        Me.GroupBox15.Controls.Add(Me.btnGetAccessURL)
         Me.GroupBox15.Location = New System.Drawing.Point(560, 17)
         Me.GroupBox15.Name = "GroupBox15"
         Me.GroupBox15.Size = New System.Drawing.Size(162, 126)
@@ -670,14 +670,14 @@ Partial Class frmExample
         Me.GroupBox15.TabStop = False
         Me.GroupBox15.Text = "팝빌 기본 URL"
         '
-        'btnGetPopbillURL_LOGIN
+        'btnGetAccessURL
         '
-        Me.btnGetPopbillURL_LOGIN.Location = New System.Drawing.Point(6, 19)
-        Me.btnGetPopbillURL_LOGIN.Name = "btnGetPopbillURL_LOGIN"
-        Me.btnGetPopbillURL_LOGIN.Size = New System.Drawing.Size(150, 30)
-        Me.btnGetPopbillURL_LOGIN.TabIndex = 6
-        Me.btnGetPopbillURL_LOGIN.Text = "팝빌 로그인 URL"
-        Me.btnGetPopbillURL_LOGIN.UseVisualStyleBackColor = True
+        Me.btnGetAccessURL.Location = New System.Drawing.Point(6, 19)
+        Me.btnGetAccessURL.Name = "btnGetAccessURL"
+        Me.btnGetAccessURL.Size = New System.Drawing.Size(150, 30)
+        Me.btnGetAccessURL.TabIndex = 6
+        Me.btnGetAccessURL.Text = "팝빌 로그인 URL"
+        Me.btnGetAccessURL.UseVisualStyleBackColor = True
         '
         'GroupBox14
         '
@@ -710,7 +710,7 @@ Partial Class frmExample
         '
         'GroupBox18
         '
-        Me.GroupBox18.Controls.Add(Me.btnGetPopbillURL_CHRG)
+        Me.GroupBox18.Controls.Add(Me.btnGetChargeURL)
         Me.GroupBox18.Controls.Add(Me.btnGetBalance)
         Me.GroupBox18.Location = New System.Drawing.Point(284, 17)
         Me.GroupBox18.Name = "GroupBox18"
@@ -719,14 +719,14 @@ Partial Class frmExample
         Me.GroupBox18.TabStop = False
         Me.GroupBox18.Text = "연동과금 포인트"
         '
-        'btnGetPopbillURL_CHRG
+        'btnGetChargeURL
         '
-        Me.btnGetPopbillURL_CHRG.Location = New System.Drawing.Point(6, 50)
-        Me.btnGetPopbillURL_CHRG.Name = "btnGetPopbillURL_CHRG"
-        Me.btnGetPopbillURL_CHRG.Size = New System.Drawing.Size(118, 30)
-        Me.btnGetPopbillURL_CHRG.TabIndex = 5
-        Me.btnGetPopbillURL_CHRG.Text = "포인트 충전 URL"
-        Me.btnGetPopbillURL_CHRG.UseVisualStyleBackColor = True
+        Me.btnGetChargeURL.Location = New System.Drawing.Point(6, 50)
+        Me.btnGetChargeURL.Name = "btnGetChargeURL"
+        Me.btnGetChargeURL.Size = New System.Drawing.Size(118, 30)
+        Me.btnGetChargeURL.TabIndex = 5
+        Me.btnGetChargeURL.Text = "포인트 충전 URL"
+        Me.btnGetChargeURL.UseVisualStyleBackColor = True
         '
         'btnGetBalance
         '
@@ -875,12 +875,12 @@ Partial Class frmExample
     Friend WithEvents btnListContact As System.Windows.Forms.Button
     Friend WithEvents btnRegistContact As System.Windows.Forms.Button
     Friend WithEvents GroupBox15 As System.Windows.Forms.GroupBox
-    Friend WithEvents btnGetPopbillURL_LOGIN As System.Windows.Forms.Button
+    Friend WithEvents btnGetAccessURL As System.Windows.Forms.Button
     Friend WithEvents GroupBox14 As System.Windows.Forms.GroupBox
     Friend WithEvents btnGetPartnerURL As System.Windows.Forms.Button
     Friend WithEvents btnGetPartnerPoint As System.Windows.Forms.Button
     Friend WithEvents GroupBox18 As System.Windows.Forms.GroupBox
-    Friend WithEvents btnGetPopbillURL_CHRG As System.Windows.Forms.Button
+    Friend WithEvents btnGetChargeURL As System.Windows.Forms.Button
     Friend WithEvents btnGetBalance As System.Windows.Forms.Button
     Friend WithEvents GroupBox19 As System.Windows.Forms.GroupBox
     Friend WithEvents btnGetChargeInfo As System.Windows.Forms.Button

@@ -3,7 +3,7 @@
 ' 팝빌 팩스 API VB.Net SDK Example
 '
 ' - VB.Net SDK 연동환경 설정방법 안내 : http://blog.linkhub.co.kr/4453/
-' - 업데이트 일자 :  2018-10-04
+' - 업데이트 일자 :  2018-11-22
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -711,7 +711,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 팩스를 재전송합니다.
-    ' - 전송일로부터 180일이 경과되지 않은 건만 재전송할 수 있습니다.
+    ' - 전송일로부터 60일이 경과되지 않은 건만 재전송할 수 있습니다.
     ' - 발신자/수신자 정보를 수정하여 전송할 수 있습니다.
     '=========================================================================
     Private Sub btnResendFAX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnResendFAX.Click
@@ -748,7 +748,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 팩스를 재전송합니다.
-    ' - 전송일로부터 180일이 경과되지 않은 건만 재전송할 수 있습니다.
+    ' - 전송일로부터 60일이 경과되지 않은 건만 재전송할 수 있습니다.
     ' - 발신자/수신자 정보를 수정하여 전송할 수 있습니다.
     '=========================================================================
     Private Sub btnResendFAX_Multi_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnResendFAX_Multi.Click
@@ -881,6 +881,8 @@ Public Class frmExample
     End Sub
     '=========================================================================
     ' 팩스전송 요청시 기재한 요청번호(requestNum)를 이용하여 팩스 재전송을 요청합니다.
+    ' - 전송일로부터 60일이 경과되지 않은 건만 재전송할 수 있습니다.
+    ' - 발신자/수신자 정보를 수정하여 전송할 수 있습니다.
     '=========================================================================
     Private Sub btnResendFAXRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnResendFAXRN.Click
         Try
@@ -919,6 +921,8 @@ Public Class frmExample
     End Sub
     '=========================================================================
     ' 팩스전송 요청시 기재한 요청번호(requestNum)를 이용하여 팩스 재전송을 요청합니다.
+    ' - 전송일로부터 60일이 경과되지 않은 건만 재전송할 수 있습니다.
+    ' - 발신자/수신자 정보를 수정하여 전송할 수 있습니다.
     '=========================================================================
     Private Sub btnResendFAXRN_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnResendFAXRN_same.Click
         ' 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재

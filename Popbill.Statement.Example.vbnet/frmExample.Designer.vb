@@ -23,8 +23,6 @@ Partial Class frmExample
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
-        Me.btnUpdateEmailConfig = New System.Windows.Forms.Button
-        Me.btnListEmailConfig = New System.Windows.Forms.Button
         Me.GroupBox17 = New System.Windows.Forms.GroupBox
         Me.btnUpdateCorpInfo = New System.Windows.Forms.Button
         Me.btnGetCorpInfo = New System.Windows.Forms.Button
@@ -34,12 +32,12 @@ Partial Class frmExample
         Me.btnRegistContact = New System.Windows.Forms.Button
         Me.GroupBox15 = New System.Windows.Forms.GroupBox
         Me.btnGetPopbillURL_SEAL = New System.Windows.Forms.Button
-        Me.btnGetPopbillURL_LOGIN = New System.Windows.Forms.Button
+        Me.btnGetAccessURL = New System.Windows.Forms.Button
         Me.GroupBox5 = New System.Windows.Forms.GroupBox
         Me.btnGetPartnerURL = New System.Windows.Forms.Button
         Me.btnGetPartnerBalance = New System.Windows.Forms.Button
         Me.GroupBox4 = New System.Windows.Forms.GroupBox
-        Me.btnGetPopbillURL_CHRG = New System.Windows.Forms.Button
+        Me.btnGetChargeURL = New System.Windows.Forms.Button
         Me.btnGetBalance = New System.Windows.Forms.Button
         Me.GroupBox3 = New System.Windows.Forms.GroupBox
         Me.btnGetChargeInfo = New System.Windows.Forms.Button
@@ -48,6 +46,8 @@ Partial Class frmExample
         Me.btnCheckID = New System.Windows.Forms.Button
         Me.btnCheckIsMember = New System.Windows.Forms.Button
         Me.btnJoinMember = New System.Windows.Forms.Button
+        Me.btnUpdateEmailConfig = New System.Windows.Forms.Button
+        Me.btnListEmailConfig = New System.Windows.Forms.Button
         Me.txtUserId = New System.Windows.Forms.TextBox
         Me.Label2 = New System.Windows.Forms.Label
         Me.txtCorpNum = New System.Windows.Forms.TextBox
@@ -144,24 +144,6 @@ Partial Class frmExample
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "팝빌 기본 API"
         '
-        'btnUpdateEmailConfig
-        '
-        Me.btnUpdateEmailConfig.Location = New System.Drawing.Point(167, 122)
-        Me.btnUpdateEmailConfig.Name = "btnUpdateEmailConfig"
-        Me.btnUpdateEmailConfig.Size = New System.Drawing.Size(151, 30)
-        Me.btnUpdateEmailConfig.TabIndex = 8
-        Me.btnUpdateEmailConfig.Text = "알림메일 전송설정 수정"
-        Me.btnUpdateEmailConfig.UseVisualStyleBackColor = True
-        '
-        'btnListEmailConfig
-        '
-        Me.btnListEmailConfig.Location = New System.Drawing.Point(167, 88)
-        Me.btnListEmailConfig.Name = "btnListEmailConfig"
-        Me.btnListEmailConfig.Size = New System.Drawing.Size(151, 30)
-        Me.btnListEmailConfig.TabIndex = 7
-        Me.btnListEmailConfig.Text = "알림메일 전송목록 조회"
-        Me.btnListEmailConfig.UseVisualStyleBackColor = True
-        '
         'GroupBox17
         '
         Me.GroupBox17.Controls.Add(Me.btnUpdateCorpInfo)
@@ -233,7 +215,7 @@ Partial Class frmExample
         'GroupBox15
         '
         Me.GroupBox15.Controls.Add(Me.btnGetPopbillURL_SEAL)
-        Me.GroupBox15.Controls.Add(Me.btnGetPopbillURL_LOGIN)
+        Me.GroupBox15.Controls.Add(Me.btnGetAccessURL)
         Me.GroupBox15.Location = New System.Drawing.Point(560, 17)
         Me.GroupBox15.Name = "GroupBox15"
         Me.GroupBox15.Size = New System.Drawing.Size(162, 126)
@@ -250,14 +232,14 @@ Partial Class frmExample
         Me.btnGetPopbillURL_SEAL.Text = "인감 및 첨부문서 URL"
         Me.btnGetPopbillURL_SEAL.UseVisualStyleBackColor = True
         '
-        'btnGetPopbillURL_LOGIN
+        'btnGetAccessURL
         '
-        Me.btnGetPopbillURL_LOGIN.Location = New System.Drawing.Point(6, 19)
-        Me.btnGetPopbillURL_LOGIN.Name = "btnGetPopbillURL_LOGIN"
-        Me.btnGetPopbillURL_LOGIN.Size = New System.Drawing.Size(150, 30)
-        Me.btnGetPopbillURL_LOGIN.TabIndex = 6
-        Me.btnGetPopbillURL_LOGIN.Text = "팝빌 로그인 URL"
-        Me.btnGetPopbillURL_LOGIN.UseVisualStyleBackColor = True
+        Me.btnGetAccessURL.Location = New System.Drawing.Point(6, 19)
+        Me.btnGetAccessURL.Name = "btnGetAccessURL"
+        Me.btnGetAccessURL.Size = New System.Drawing.Size(150, 30)
+        Me.btnGetAccessURL.TabIndex = 6
+        Me.btnGetAccessURL.Text = "팝빌 로그인 URL"
+        Me.btnGetAccessURL.UseVisualStyleBackColor = True
         '
         'GroupBox5
         '
@@ -290,7 +272,7 @@ Partial Class frmExample
         '
         'GroupBox4
         '
-        Me.GroupBox4.Controls.Add(Me.btnGetPopbillURL_CHRG)
+        Me.GroupBox4.Controls.Add(Me.btnGetChargeURL)
         Me.GroupBox4.Controls.Add(Me.btnGetBalance)
         Me.GroupBox4.Location = New System.Drawing.Point(284, 17)
         Me.GroupBox4.Name = "GroupBox4"
@@ -299,14 +281,14 @@ Partial Class frmExample
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "연동과금 포인트"
         '
-        'btnGetPopbillURL_CHRG
+        'btnGetChargeURL
         '
-        Me.btnGetPopbillURL_CHRG.Location = New System.Drawing.Point(6, 50)
-        Me.btnGetPopbillURL_CHRG.Name = "btnGetPopbillURL_CHRG"
-        Me.btnGetPopbillURL_CHRG.Size = New System.Drawing.Size(118, 30)
-        Me.btnGetPopbillURL_CHRG.TabIndex = 5
-        Me.btnGetPopbillURL_CHRG.Text = "포인트 충전 URL"
-        Me.btnGetPopbillURL_CHRG.UseVisualStyleBackColor = True
+        Me.btnGetChargeURL.Location = New System.Drawing.Point(6, 50)
+        Me.btnGetChargeURL.Name = "btnGetChargeURL"
+        Me.btnGetChargeURL.Size = New System.Drawing.Size(118, 30)
+        Me.btnGetChargeURL.TabIndex = 5
+        Me.btnGetChargeURL.Text = "포인트 충전 URL"
+        Me.btnGetChargeURL.UseVisualStyleBackColor = True
         '
         'btnGetBalance
         '
@@ -384,6 +366,24 @@ Partial Class frmExample
         Me.btnJoinMember.TabIndex = 1
         Me.btnJoinMember.Text = "회원 가입"
         Me.btnJoinMember.UseVisualStyleBackColor = True
+        '
+        'btnUpdateEmailConfig
+        '
+        Me.btnUpdateEmailConfig.Location = New System.Drawing.Point(167, 122)
+        Me.btnUpdateEmailConfig.Name = "btnUpdateEmailConfig"
+        Me.btnUpdateEmailConfig.Size = New System.Drawing.Size(151, 30)
+        Me.btnUpdateEmailConfig.TabIndex = 8
+        Me.btnUpdateEmailConfig.Text = "알림메일 전송설정 수정"
+        Me.btnUpdateEmailConfig.UseVisualStyleBackColor = True
+        '
+        'btnListEmailConfig
+        '
+        Me.btnListEmailConfig.Location = New System.Drawing.Point(167, 88)
+        Me.btnListEmailConfig.Name = "btnListEmailConfig"
+        Me.btnListEmailConfig.Size = New System.Drawing.Size(151, 30)
+        Me.btnListEmailConfig.TabIndex = 7
+        Me.btnListEmailConfig.Text = "알림메일 전송목록 조회"
+        Me.btnListEmailConfig.UseVisualStyleBackColor = True
         '
         'txtUserId
         '
@@ -1037,12 +1037,12 @@ Partial Class frmExample
     Friend WithEvents btnRegistContact As System.Windows.Forms.Button
     Friend WithEvents GroupBox15 As System.Windows.Forms.GroupBox
     Friend WithEvents btnGetPopbillURL_SEAL As System.Windows.Forms.Button
-    Friend WithEvents btnGetPopbillURL_LOGIN As System.Windows.Forms.Button
+    Friend WithEvents btnGetAccessURL As System.Windows.Forms.Button
     Friend WithEvents GroupBox5 As System.Windows.Forms.GroupBox
     Friend WithEvents btnGetPartnerURL As System.Windows.Forms.Button
     Friend WithEvents btnGetPartnerBalance As System.Windows.Forms.Button
     Friend WithEvents GroupBox4 As System.Windows.Forms.GroupBox
-    Friend WithEvents btnGetPopbillURL_CHRG As System.Windows.Forms.Button
+    Friend WithEvents btnGetChargeURL As System.Windows.Forms.Button
     Friend WithEvents btnGetBalance As System.Windows.Forms.Button
     Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
     Friend WithEvents btnGetChargeInfo As System.Windows.Forms.Button

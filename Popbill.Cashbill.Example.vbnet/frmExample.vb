@@ -3,7 +3,7 @@
 ' 팝빌 현금영수증 API VB.Net  SDK Example
 '
 ' - VB.Net SDK 연동환경 설정방법 안내 : http://blog.linkhub.co.kr/4453/
-' - 업데이트 일자 : 2018-09-10
+' - 업데이트 일자 : 2018-11-22
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -864,9 +864,9 @@ Public Class frmExample
     ' 연동회원 포인트 충전 URL을 반환합니다.
     ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
     '=========================================================================
-    Private Sub btnGetPopbillURL_CHRG_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPopbillURL_CHRG.Click
+    Private Sub btnGetChargeURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeURL.Click
         Try
-            Dim url As String = cashbillService.GetPopbillURL(txtCorpNum.Text, txtUserId.Text, "CHRG")
+            Dim url As String = cashbillService.GetChargeURL(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox(url)
         Catch ex As PopbillException
@@ -892,9 +892,9 @@ Public Class frmExample
     ' 팝빌(www.popbill.com)에 로그인된 팝빌 URL을 반환합니다.
     ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
     '=========================================================================
-    Private Sub btnGetPopbillURL_LOGIN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPopbillURL_LOGIN.Click
+    Private Sub btnGetAccessURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetAccessURL.Click
         Try
-            Dim url As String = cashbillService.GetPopbillURL(txtCorpNum.Text, txtUserId.Text, "CHRG")
+            Dim url As String = cashbillService.GetAccessURL(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox(url)
         Catch ex As PopbillException
