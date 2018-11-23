@@ -711,7 +711,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 팩스를 재전송합니다.
-    ' - 전송일로부터 60일이 경과되지 않은 건만 재전송할 수 있습니다.
+    ' - 접수일로부터 60일이 경과되지 않은 건만 재전송할 수 있습니다.
     ' - 발신자/수신자 정보를 수정하여 전송할 수 있습니다.
     '=========================================================================
     Private Sub btnResendFAX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnResendFAX.Click
@@ -748,7 +748,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 팩스를 재전송합니다.
-    ' - 전송일로부터 60일이 경과되지 않은 건만 재전송할 수 있습니다.
+    ' - 접수일로부터 60일이 경과되지 않은 건만 재전송할 수 있습니다.
     ' - 발신자/수신자 정보를 수정하여 전송할 수 있습니다.
     '=========================================================================
     Private Sub btnResendFAX_Multi_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnResendFAX_Multi.Click
@@ -881,7 +881,7 @@ Public Class frmExample
     End Sub
     '=========================================================================
     ' 팩스전송 요청시 기재한 요청번호(requestNum)를 이용하여 팩스 재전송을 요청합니다.
-    ' - 전송일로부터 60일이 경과되지 않은 건만 재전송할 수 있습니다.
+    ' - 접수일로부터 60일이 경과되지 않은 건만 재전송할 수 있습니다.
     ' - 발신자/수신자 정보를 수정하여 전송할 수 있습니다.
     '=========================================================================
     Private Sub btnResendFAXRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnResendFAXRN.Click
@@ -921,7 +921,7 @@ Public Class frmExample
     End Sub
     '=========================================================================
     ' 팩스전송 요청시 기재한 요청번호(requestNum)를 이용하여 팩스 재전송을 요청합니다.
-    ' - 전송일로부터 60일이 경과되지 않은 건만 재전송할 수 있습니다.
+    ' - 접수일로부터 60일이 경과되지 않은 건만 재전송할 수 있습니다.
     ' - 발신자/수신자 정보를 수정하여 전송할 수 있습니다.
     '=========================================================================
     Private Sub btnResendFAXRN_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnResendFAXRN_same.Click
