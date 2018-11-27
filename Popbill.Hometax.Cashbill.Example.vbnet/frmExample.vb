@@ -124,7 +124,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 전자세금계산서 API 서비스 과금정보를 확인합니다.
+    ' 연동회원의 현금영수증 API 서비스 과금정보를 확인합니다.
     '=========================================================================
     Private Sub btnGetChargeInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo.Click
         Try
