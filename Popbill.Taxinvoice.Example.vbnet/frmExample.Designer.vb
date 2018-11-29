@@ -57,28 +57,26 @@ Partial Class frmExample
         Me.btnUpdateEmailConfig = New System.Windows.Forms.Button
         Me.btnListEmailConfig = New System.Windows.Forms.Button
         Me.GroupBox7 = New System.Windows.Forms.GroupBox
+        Me.GroupBox21 = New System.Windows.Forms.GroupBox
         Me.GroupBox19 = New System.Windows.Forms.GroupBox
-        Me.btnRegistRequest = New System.Windows.Forms.Button
         Me.btnRefuse_sub = New System.Windows.Forms.Button
+        Me.Label32 = New System.Windows.Forms.Label
+        Me.btnRegistRequest = New System.Windows.Forms.Button
         Me.btnCancelRequest_sub = New System.Windows.Forms.Button
         Me.Label33 = New System.Windows.Forms.Label
         Me.btnDelete_Reverse_sub = New System.Windows.Forms.Button
         Me.btnCancelIssue_Reverse_sub = New System.Windows.Forms.Button
         Me.Label30 = New System.Windows.Forms.Label
-        Me.Label29 = New System.Windows.Forms.Label
         Me.btnIssue_Reverse_sub = New System.Windows.Forms.Button
         Me.Label28 = New System.Windows.Forms.Label
-        Me.GroupBox18 = New System.Windows.Forms.GroupBox
-        Me.btnCancelIssue_Sub = New System.Windows.Forms.Button
-        Me.btnDelete_Sub = New System.Windows.Forms.Button
-        Me.label27 = New System.Windows.Forms.Label
-        Me.label25 = New System.Windows.Forms.Label
-        Me.btnRegistIssue = New System.Windows.Forms.Button
-        Me.label26 = New System.Windows.Forms.Label
+        Me.Label31 = New System.Windows.Forms.Label
+        Me.Label29 = New System.Windows.Forms.Label
+        Me.Label34 = New System.Windows.Forms.Label
         Me.GroupBox14 = New System.Windows.Forms.GroupBox
-        Me.btnRequest = New System.Windows.Forms.Button
-        Me.btnCancelRequest = New System.Windows.Forms.Button
         Me.btnRefuse = New System.Windows.Forms.Button
+        Me.btnRequest = New System.Windows.Forms.Button
+        Me.Label24 = New System.Windows.Forms.Label
+        Me.btnCancelRequest = New System.Windows.Forms.Button
         Me.btnCancelIssue_Reverse = New System.Windows.Forms.Button
         Me.btnDelete_Reverse = New System.Windows.Forms.Button
         Me.btnIssue_Reverse = New System.Windows.Forms.Button
@@ -89,7 +87,39 @@ Partial Class frmExample
         Me.Label21 = New System.Windows.Forms.Label
         Me.Label22 = New System.Windows.Forms.Label
         Me.Label23 = New System.Windows.Forms.Label
+        Me.GroupBox20 = New System.Windows.Forms.GroupBox
+        Me.GroupBox18 = New System.Windows.Forms.GroupBox
+        Me.btnCancelIssue_Sub = New System.Windows.Forms.Button
+        Me.btnDelete_Sub = New System.Windows.Forms.Button
+        Me.label27 = New System.Windows.Forms.Label
+        Me.label25 = New System.Windows.Forms.Label
+        Me.btnRegistIssue = New System.Windows.Forms.Button
+        Me.label26 = New System.Windows.Forms.Label
         Me.btnSendToNTS = New System.Windows.Forms.Button
+        Me.GroupBox8 = New System.Windows.Forms.GroupBox
+        Me.btnDeny = New System.Windows.Forms.Button
+        Me.btnAccept = New System.Windows.Forms.Button
+        Me.btnCancelIssue = New System.Windows.Forms.Button
+        Me.btnIssue = New System.Windows.Forms.Button
+        Me.Button7 = New System.Windows.Forms.Button
+        Me.btnRegister = New System.Windows.Forms.Button
+        Me.btnCancelSend = New System.Windows.Forms.Button
+        Me.btnSend = New System.Windows.Forms.Button
+        Me.btnDelete = New System.Windows.Forms.Button
+        Me.Label5 = New System.Windows.Forms.Label
+        Me.Label6 = New System.Windows.Forms.Label
+        Me.Label7 = New System.Windows.Forms.Label
+        Me.Label8 = New System.Windows.Forms.Label
+        Me.Label9 = New System.Windows.Forms.Label
+        Me.Label11 = New System.Windows.Forms.Label
+        Me.Label12 = New System.Windows.Forms.Label
+        Me.Label13 = New System.Windows.Forms.Label
+        Me.Label14 = New System.Windows.Forms.Label
+        Me.Label16 = New System.Windows.Forms.Label
+        Me.Label15 = New System.Windows.Forms.Label
+        Me.Label17 = New System.Windows.Forms.Label
+        Me.Label18 = New System.Windows.Forms.Label
+        Me.Label10 = New System.Windows.Forms.Label
         Me.GroupBox13 = New System.Windows.Forms.GroupBox
         Me.btnGetURL_WRITE = New System.Windows.Forms.Button
         Me.btnGetURL_PBOX = New System.Windows.Forms.Button
@@ -120,42 +150,12 @@ Partial Class frmExample
         Me.btnDeleteFile = New System.Windows.Forms.Button
         Me.btnAttachFile = New System.Windows.Forms.Button
         Me.btnGetFiles = New System.Windows.Forms.Button
-        Me.GroupBox8 = New System.Windows.Forms.GroupBox
-        Me.btnDeny = New System.Windows.Forms.Button
-        Me.btnAccept = New System.Windows.Forms.Button
-        Me.btnCancelIssue = New System.Windows.Forms.Button
-        Me.btnIssue = New System.Windows.Forms.Button
-        Me.Button7 = New System.Windows.Forms.Button
-        Me.btnRegister = New System.Windows.Forms.Button
-        Me.btnCancelSend = New System.Windows.Forms.Button
-        Me.btnSend = New System.Windows.Forms.Button
-        Me.btnDelete = New System.Windows.Forms.Button
-        Me.Label5 = New System.Windows.Forms.Label
-        Me.Label6 = New System.Windows.Forms.Label
-        Me.Label7 = New System.Windows.Forms.Label
-        Me.Label8 = New System.Windows.Forms.Label
-        Me.Label9 = New System.Windows.Forms.Label
-        Me.Label11 = New System.Windows.Forms.Label
-        Me.Label12 = New System.Windows.Forms.Label
-        Me.Label13 = New System.Windows.Forms.Label
-        Me.Label14 = New System.Windows.Forms.Label
-        Me.Label16 = New System.Windows.Forms.Label
-        Me.Label15 = New System.Windows.Forms.Label
-        Me.Label17 = New System.Windows.Forms.Label
-        Me.Label18 = New System.Windows.Forms.Label
-        Me.Label10 = New System.Windows.Forms.Label
         Me.btnGetEmailPublicKey = New System.Windows.Forms.Button
         Me.btnCheckMgtKeyInUse = New System.Windows.Forms.Button
         Me.cboMgtKeyType = New System.Windows.Forms.ComboBox
         Me.txtMgtKey = New System.Windows.Forms.TextBox
         Me.Label3 = New System.Windows.Forms.Label
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
-        Me.GroupBox20 = New System.Windows.Forms.GroupBox
-        Me.GroupBox21 = New System.Windows.Forms.GroupBox
-        Me.Label24 = New System.Windows.Forms.Label
-        Me.Label31 = New System.Windows.Forms.Label
-        Me.Label32 = New System.Windows.Forms.Label
-        Me.Label34 = New System.Windows.Forms.Label
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -166,17 +166,17 @@ Partial Class frmExample
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
+        Me.GroupBox21.SuspendLayout()
         Me.GroupBox19.SuspendLayout()
-        Me.GroupBox18.SuspendLayout()
         Me.GroupBox14.SuspendLayout()
+        Me.GroupBox20.SuspendLayout()
+        Me.GroupBox18.SuspendLayout()
+        Me.GroupBox8.SuspendLayout()
         Me.GroupBox13.SuspendLayout()
         Me.GroupBox12.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
         Me.GroupBox10.SuspendLayout()
-        Me.GroupBox8.SuspendLayout()
-        Me.GroupBox20.SuspendLayout()
-        Me.GroupBox21.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnGetTaxCertURL
@@ -531,6 +531,17 @@ Partial Class frmExample
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "전자세금계산서 관련 API"
         '
+        'GroupBox21
+        '
+        Me.GroupBox21.Controls.Add(Me.GroupBox19)
+        Me.GroupBox21.Controls.Add(Me.GroupBox14)
+        Me.GroupBox21.Location = New System.Drawing.Point(657, 49)
+        Me.GroupBox21.Name = "GroupBox21"
+        Me.GroupBox21.Size = New System.Drawing.Size(659, 267)
+        Me.GroupBox21.TabIndex = 24
+        Me.GroupBox21.TabStop = False
+        Me.GroupBox21.Text = "역발행 프로세스"
+        '
         'GroupBox19
         '
         Me.GroupBox19.Controls.Add(Me.btnRefuse_sub)
@@ -553,16 +564,6 @@ Partial Class frmExample
         Me.GroupBox19.TabStop = False
         Me.GroupBox19.Text = "(권장) 즉시요청 프로세스"
         '
-        'btnRegistRequest
-        '
-        Me.btnRegistRequest.BackColor = System.Drawing.Color.Aquamarine
-        Me.btnRegistRequest.Location = New System.Drawing.Point(102, 23)
-        Me.btnRegistRequest.Name = "btnRegistRequest"
-        Me.btnRegistRequest.Size = New System.Drawing.Size(86, 25)
-        Me.btnRegistRequest.TabIndex = 21
-        Me.btnRegistRequest.Text = "즉시 요청"
-        Me.btnRegistRequest.UseVisualStyleBackColor = False
-        '
         'btnRefuse_sub
         '
         Me.btnRefuse_sub.BackColor = System.Drawing.Color.LightCoral
@@ -572,6 +573,27 @@ Partial Class frmExample
         Me.btnRefuse_sub.TabIndex = 21
         Me.btnRefuse_sub.Text = "거부"
         Me.btnRefuse_sub.UseVisualStyleBackColor = False
+        '
+        'Label32
+        '
+        Me.Label32.AutoSize = True
+        Me.Label32.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.Label32.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label32.Location = New System.Drawing.Point(147, 68)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Padding = New System.Windows.Forms.Padding(1, 72, 0, 0)
+        Me.Label32.Size = New System.Drawing.Size(1, 84)
+        Me.Label32.TabIndex = 26
+        '
+        'btnRegistRequest
+        '
+        Me.btnRegistRequest.BackColor = System.Drawing.Color.Aquamarine
+        Me.btnRegistRequest.Location = New System.Drawing.Point(102, 23)
+        Me.btnRegistRequest.Name = "btnRegistRequest"
+        Me.btnRegistRequest.Size = New System.Drawing.Size(86, 25)
+        Me.btnRegistRequest.TabIndex = 21
+        Me.btnRegistRequest.Text = "즉시 요청"
+        Me.btnRegistRequest.UseVisualStyleBackColor = False
         '
         'btnCancelRequest_sub
         '
@@ -622,16 +644,6 @@ Partial Class frmExample
         Me.Label30.Size = New System.Drawing.Size(142, 1)
         Me.Label30.TabIndex = 21
         '
-        'Label29
-        '
-        Me.Label29.AutoSize = True
-        Me.Label29.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.Label29.Location = New System.Drawing.Point(257, 39)
-        Me.Label29.Name = "Label29"
-        Me.Label29.Padding = New System.Windows.Forms.Padding(1, 100, 0, 0)
-        Me.Label29.Size = New System.Drawing.Size(1, 112)
-        Me.Label29.TabIndex = 22
-        '
         'btnIssue_Reverse_sub
         '
         Me.btnIssue_Reverse_sub.BackColor = System.Drawing.Color.LightCoral
@@ -653,86 +665,39 @@ Partial Class frmExample
         Me.Label28.Size = New System.Drawing.Size(1, 77)
         Me.Label28.TabIndex = 18
         '
-        'GroupBox18
+        'Label31
         '
-        Me.GroupBox18.Controls.Add(Me.btnCancelIssue_Sub)
-        Me.GroupBox18.Controls.Add(Me.btnDelete_Sub)
-        Me.GroupBox18.Controls.Add(Me.label27)
-        Me.GroupBox18.Controls.Add(Me.label25)
-        Me.GroupBox18.Controls.Add(Me.btnRegistIssue)
-        Me.GroupBox18.Controls.Add(Me.label26)
-        Me.GroupBox18.Location = New System.Drawing.Point(27, 26)
-        Me.GroupBox18.Name = "GroupBox18"
-        Me.GroupBox18.Size = New System.Drawing.Size(206, 188)
-        Me.GroupBox18.TabIndex = 16
-        Me.GroupBox18.TabStop = False
-        Me.GroupBox18.Text = "(권장) 즉시발행 프로세스"
+        Me.Label31.BackColor = System.Drawing.Color.Silver
+        Me.Label31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label31.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label31.Location = New System.Drawing.Point(28, 19)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.Label31.Size = New System.Drawing.Size(257, 33)
+        Me.Label31.TabIndex = 25
+        Me.Label31.Text = "즉시요청"
+        Me.Label31.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'btnCancelIssue_Sub
+        'Label29
         '
-        Me.btnCancelIssue_Sub.BackColor = System.Drawing.Color.LightCoral
-        Me.btnCancelIssue_Sub.Location = New System.Drawing.Point(29, 123)
-        Me.btnCancelIssue_Sub.Name = "btnCancelIssue_Sub"
-        Me.btnCancelIssue_Sub.Size = New System.Drawing.Size(65, 31)
-        Me.btnCancelIssue_Sub.TabIndex = 9
-        Me.btnCancelIssue_Sub.Text = "발행취소"
-        Me.btnCancelIssue_Sub.UseVisualStyleBackColor = False
+        Me.Label29.AutoSize = True
+        Me.Label29.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.Label29.Location = New System.Drawing.Point(257, 39)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Padding = New System.Windows.Forms.Padding(1, 100, 0, 0)
+        Me.Label29.Size = New System.Drawing.Size(1, 112)
+        Me.Label29.TabIndex = 22
         '
-        'btnDelete_Sub
+        'Label34
         '
-        Me.btnDelete_Sub.Location = New System.Drawing.Point(113, 123)
-        Me.btnDelete_Sub.Name = "btnDelete_Sub"
-        Me.btnDelete_Sub.Size = New System.Drawing.Size(50, 31)
-        Me.btnDelete_Sub.TabIndex = 10
-        Me.btnDelete_Sub.Text = "삭제"
-        Me.btnDelete_Sub.UseVisualStyleBackColor = True
-        '
-        'label27
-        '
-        Me.label27.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.label27.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.label27.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.label27.Location = New System.Drawing.Point(60, 69)
-        Me.label27.Name = "label27"
-        Me.label27.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.label27.Size = New System.Drawing.Size(1, 58)
-        Me.label27.TabIndex = 18
-        Me.label27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'label25
-        '
-        Me.label25.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.label25.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.label25.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.label25.Location = New System.Drawing.Point(90, 140)
-        Me.label25.Name = "label25"
-        Me.label25.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.label25.Size = New System.Drawing.Size(33, 1)
-        Me.label25.TabIndex = 17
-        Me.label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'btnRegistIssue
-        '
-        Me.btnRegistIssue.BackColor = System.Drawing.Color.LightCoral
-        Me.btnRegistIssue.Location = New System.Drawing.Point(109, 37)
-        Me.btnRegistIssue.Name = "btnRegistIssue"
-        Me.btnRegistIssue.Size = New System.Drawing.Size(67, 28)
-        Me.btnRegistIssue.TabIndex = 7
-        Me.btnRegistIssue.Text = "즉시발행"
-        Me.btnRegistIssue.UseVisualStyleBackColor = False
-        '
-        'label26
-        '
-        Me.label26.BackColor = System.Drawing.Color.Silver
-        Me.label26.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.label26.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.label26.Location = New System.Drawing.Point(12, 33)
-        Me.label26.Name = "label26"
-        Me.label26.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.label26.Size = New System.Drawing.Size(175, 36)
-        Me.label26.TabIndex = 6
-        Me.label26.Text = "즉시발행"
-        Me.label26.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label34.AutoSize = True
+        Me.Label34.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.Label34.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label34.Location = New System.Drawing.Point(111, 41)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Padding = New System.Windows.Forms.Padding(1, 15, 0, 0)
+        Me.Label34.Size = New System.Drawing.Size(1, 27)
+        Me.Label34.TabIndex = 27
         '
         'GroupBox14
         '
@@ -757,6 +722,16 @@ Partial Class frmExample
         Me.GroupBox14.TabStop = False
         Me.GroupBox14.Text = "임시저장 역발행 프로세스"
         '
+        'btnRefuse
+        '
+        Me.btnRefuse.BackColor = System.Drawing.Color.LightCoral
+        Me.btnRefuse.Location = New System.Drawing.Point(88, 108)
+        Me.btnRefuse.Name = "btnRefuse"
+        Me.btnRefuse.Size = New System.Drawing.Size(50, 30)
+        Me.btnRefuse.TabIndex = 12
+        Me.btnRefuse.Text = "거부"
+        Me.btnRefuse.UseVisualStyleBackColor = False
+        '
         'btnRequest
         '
         Me.btnRequest.BackColor = System.Drawing.Color.Aquamarine
@@ -767,6 +742,18 @@ Partial Class frmExample
         Me.btnRequest.Text = "역)발행요청"
         Me.btnRequest.UseVisualStyleBackColor = False
         '
+        'Label24
+        '
+        Me.Label24.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.Label24.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label24.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label24.Location = New System.Drawing.Point(111, 74)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.Label24.Size = New System.Drawing.Size(1, 90)
+        Me.Label24.TabIndex = 20
+        Me.Label24.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'btnCancelRequest
         '
         Me.btnCancelRequest.BackColor = System.Drawing.Color.Aquamarine
@@ -776,16 +763,6 @@ Partial Class frmExample
         Me.btnCancelRequest.TabIndex = 13
         Me.btnCancelRequest.Text = "요청취소"
         Me.btnCancelRequest.UseVisualStyleBackColor = False
-        '
-        'btnRefuse
-        '
-        Me.btnRefuse.BackColor = System.Drawing.Color.LightCoral
-        Me.btnRefuse.Location = New System.Drawing.Point(88, 108)
-        Me.btnRefuse.Name = "btnRefuse"
-        Me.btnRefuse.Size = New System.Drawing.Size(50, 30)
-        Me.btnRefuse.TabIndex = 12
-        Me.btnRefuse.Text = "거부"
-        Me.btnRefuse.UseVisualStyleBackColor = False
         '
         'btnCancelIssue_Reverse
         '
@@ -878,10 +855,10 @@ Partial Class frmExample
         Me.Label22.BackColor = System.Drawing.SystemColors.ControlDark
         Me.Label22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Label22.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label22.Location = New System.Drawing.Point(244, 45)
+        Me.Label22.Location = New System.Drawing.Point(244, 75)
         Me.Label22.Name = "Label22"
         Me.Label22.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.Label22.Size = New System.Drawing.Size(1, 109)
+        Me.Label22.Size = New System.Drawing.Size(1, 80)
         Me.Label22.TabIndex = 18
         Me.Label22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -897,6 +874,99 @@ Partial Class frmExample
         Me.Label23.TabIndex = 19
         Me.Label23.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
+        'GroupBox20
+        '
+        Me.GroupBox20.Controls.Add(Me.GroupBox18)
+        Me.GroupBox20.Controls.Add(Me.btnSendToNTS)
+        Me.GroupBox20.Controls.Add(Me.GroupBox8)
+        Me.GroupBox20.Location = New System.Drawing.Point(22, 49)
+        Me.GroupBox20.Name = "GroupBox20"
+        Me.GroupBox20.Size = New System.Drawing.Size(615, 268)
+        Me.GroupBox20.TabIndex = 23
+        Me.GroupBox20.TabStop = False
+        Me.GroupBox20.Text = "정발행 프로세스"
+        '
+        'GroupBox18
+        '
+        Me.GroupBox18.Controls.Add(Me.btnCancelIssue_Sub)
+        Me.GroupBox18.Controls.Add(Me.btnDelete_Sub)
+        Me.GroupBox18.Controls.Add(Me.label27)
+        Me.GroupBox18.Controls.Add(Me.label25)
+        Me.GroupBox18.Controls.Add(Me.btnRegistIssue)
+        Me.GroupBox18.Controls.Add(Me.label26)
+        Me.GroupBox18.Location = New System.Drawing.Point(27, 26)
+        Me.GroupBox18.Name = "GroupBox18"
+        Me.GroupBox18.Size = New System.Drawing.Size(206, 188)
+        Me.GroupBox18.TabIndex = 16
+        Me.GroupBox18.TabStop = False
+        Me.GroupBox18.Text = "(권장) 즉시발행 프로세스"
+        '
+        'btnCancelIssue_Sub
+        '
+        Me.btnCancelIssue_Sub.BackColor = System.Drawing.Color.LightCoral
+        Me.btnCancelIssue_Sub.Location = New System.Drawing.Point(29, 123)
+        Me.btnCancelIssue_Sub.Name = "btnCancelIssue_Sub"
+        Me.btnCancelIssue_Sub.Size = New System.Drawing.Size(65, 31)
+        Me.btnCancelIssue_Sub.TabIndex = 9
+        Me.btnCancelIssue_Sub.Text = "발행취소"
+        Me.btnCancelIssue_Sub.UseVisualStyleBackColor = False
+        '
+        'btnDelete_Sub
+        '
+        Me.btnDelete_Sub.Location = New System.Drawing.Point(113, 123)
+        Me.btnDelete_Sub.Name = "btnDelete_Sub"
+        Me.btnDelete_Sub.Size = New System.Drawing.Size(50, 31)
+        Me.btnDelete_Sub.TabIndex = 10
+        Me.btnDelete_Sub.Text = "삭제"
+        Me.btnDelete_Sub.UseVisualStyleBackColor = True
+        '
+        'label27
+        '
+        Me.label27.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.label27.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.label27.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.label27.Location = New System.Drawing.Point(60, 69)
+        Me.label27.Name = "label27"
+        Me.label27.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.label27.Size = New System.Drawing.Size(1, 58)
+        Me.label27.TabIndex = 18
+        Me.label27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'label25
+        '
+        Me.label25.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.label25.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.label25.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.label25.Location = New System.Drawing.Point(90, 140)
+        Me.label25.Name = "label25"
+        Me.label25.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.label25.Size = New System.Drawing.Size(33, 1)
+        Me.label25.TabIndex = 17
+        Me.label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'btnRegistIssue
+        '
+        Me.btnRegistIssue.BackColor = System.Drawing.Color.LightCoral
+        Me.btnRegistIssue.Location = New System.Drawing.Point(109, 37)
+        Me.btnRegistIssue.Name = "btnRegistIssue"
+        Me.btnRegistIssue.Size = New System.Drawing.Size(67, 28)
+        Me.btnRegistIssue.TabIndex = 7
+        Me.btnRegistIssue.Text = "즉시발행"
+        Me.btnRegistIssue.UseVisualStyleBackColor = False
+        '
+        'label26
+        '
+        Me.label26.BackColor = System.Drawing.Color.Silver
+        Me.label26.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.label26.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.label26.Location = New System.Drawing.Point(12, 33)
+        Me.label26.Name = "label26"
+        Me.label26.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.label26.Size = New System.Drawing.Size(175, 36)
+        Me.label26.TabIndex = 6
+        Me.label26.Text = "즉시발행"
+        Me.label26.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'btnSendToNTS
         '
         Me.btnSendToNTS.BackColor = System.Drawing.Color.LightCoral
@@ -906,6 +976,297 @@ Partial Class frmExample
         Me.btnSendToNTS.TabIndex = 13
         Me.btnSendToNTS.Text = "국세청 즉시 전송"
         Me.btnSendToNTS.UseVisualStyleBackColor = False
+        '
+        'GroupBox8
+        '
+        Me.GroupBox8.Controls.Add(Me.btnDeny)
+        Me.GroupBox8.Controls.Add(Me.btnAccept)
+        Me.GroupBox8.Controls.Add(Me.btnCancelIssue)
+        Me.GroupBox8.Controls.Add(Me.btnIssue)
+        Me.GroupBox8.Controls.Add(Me.Button7)
+        Me.GroupBox8.Controls.Add(Me.btnRegister)
+        Me.GroupBox8.Controls.Add(Me.btnCancelSend)
+        Me.GroupBox8.Controls.Add(Me.btnSend)
+        Me.GroupBox8.Controls.Add(Me.btnDelete)
+        Me.GroupBox8.Controls.Add(Me.Label5)
+        Me.GroupBox8.Controls.Add(Me.Label6)
+        Me.GroupBox8.Controls.Add(Me.Label7)
+        Me.GroupBox8.Controls.Add(Me.Label8)
+        Me.GroupBox8.Controls.Add(Me.Label9)
+        Me.GroupBox8.Controls.Add(Me.Label11)
+        Me.GroupBox8.Controls.Add(Me.Label12)
+        Me.GroupBox8.Controls.Add(Me.Label13)
+        Me.GroupBox8.Controls.Add(Me.Label14)
+        Me.GroupBox8.Controls.Add(Me.Label16)
+        Me.GroupBox8.Controls.Add(Me.Label15)
+        Me.GroupBox8.Controls.Add(Me.Label17)
+        Me.GroupBox8.Controls.Add(Me.Label18)
+        Me.GroupBox8.Controls.Add(Me.Label10)
+        Me.GroupBox8.Location = New System.Drawing.Point(259, 26)
+        Me.GroupBox8.Name = "GroupBox8"
+        Me.GroupBox8.Size = New System.Drawing.Size(336, 188)
+        Me.GroupBox8.TabIndex = 7
+        Me.GroupBox8.TabStop = False
+        Me.GroupBox8.Text = "임시저장 발행, 발행예정 프로세스"
+        '
+        'btnDeny
+        '
+        Me.btnDeny.BackColor = System.Drawing.Color.Aquamarine
+        Me.btnDeny.Location = New System.Drawing.Point(209, 109)
+        Me.btnDeny.Name = "btnDeny"
+        Me.btnDeny.Size = New System.Drawing.Size(41, 25)
+        Me.btnDeny.TabIndex = 10
+        Me.btnDeny.Text = "거부"
+        Me.btnDeny.UseVisualStyleBackColor = False
+        '
+        'btnAccept
+        '
+        Me.btnAccept.BackColor = System.Drawing.Color.Aquamarine
+        Me.btnAccept.Location = New System.Drawing.Point(162, 109)
+        Me.btnAccept.Name = "btnAccept"
+        Me.btnAccept.Size = New System.Drawing.Size(41, 25)
+        Me.btnAccept.TabIndex = 9
+        Me.btnAccept.Text = "승인"
+        Me.btnAccept.UseVisualStyleBackColor = False
+        '
+        'btnCancelIssue
+        '
+        Me.btnCancelIssue.BackColor = System.Drawing.Color.LightCoral
+        Me.btnCancelIssue.Location = New System.Drawing.Point(11, 157)
+        Me.btnCancelIssue.Name = "btnCancelIssue"
+        Me.btnCancelIssue.Size = New System.Drawing.Size(65, 25)
+        Me.btnCancelIssue.TabIndex = 8
+        Me.btnCancelIssue.Text = "발행취소"
+        Me.btnCancelIssue.UseVisualStyleBackColor = False
+        '
+        'btnIssue
+        '
+        Me.btnIssue.BackColor = System.Drawing.Color.LightCoral
+        Me.btnIssue.Location = New System.Drawing.Point(11, 105)
+        Me.btnIssue.Name = "btnIssue"
+        Me.btnIssue.Size = New System.Drawing.Size(65, 32)
+        Me.btnIssue.TabIndex = 7
+        Me.btnIssue.Text = "발행"
+        Me.btnIssue.UseVisualStyleBackColor = False
+        '
+        'Button7
+        '
+        Me.Button7.BackColor = System.Drawing.Color.LightCoral
+        Me.Button7.Location = New System.Drawing.Point(142, 23)
+        Me.Button7.Name = "Button7"
+        Me.Button7.Size = New System.Drawing.Size(50, 25)
+        Me.Button7.TabIndex = 6
+        Me.Button7.Text = "수정"
+        Me.Button7.UseVisualStyleBackColor = False
+        '
+        'btnRegister
+        '
+        Me.btnRegister.BackColor = System.Drawing.Color.LightCoral
+        Me.btnRegister.Location = New System.Drawing.Point(86, 23)
+        Me.btnRegister.Name = "btnRegister"
+        Me.btnRegister.Size = New System.Drawing.Size(50, 25)
+        Me.btnRegister.TabIndex = 0
+        Me.btnRegister.Text = "등록"
+        Me.btnRegister.UseVisualStyleBackColor = False
+        '
+        'btnCancelSend
+        '
+        Me.btnCancelSend.BackColor = System.Drawing.Color.LightCoral
+        Me.btnCancelSend.Location = New System.Drawing.Point(256, 109)
+        Me.btnCancelSend.Name = "btnCancelSend"
+        Me.btnCancelSend.Size = New System.Drawing.Size(41, 25)
+        Me.btnCancelSend.TabIndex = 3
+        Me.btnCancelSend.Text = "취소"
+        Me.btnCancelSend.UseVisualStyleBackColor = False
+        '
+        'btnSend
+        '
+        Me.btnSend.BackColor = System.Drawing.Color.LightCoral
+        Me.btnSend.Location = New System.Drawing.Point(92, 78)
+        Me.btnSend.Name = "btnSend"
+        Me.btnSend.Size = New System.Drawing.Size(67, 25)
+        Me.btnSend.TabIndex = 2
+        Me.btnSend.Text = "발행예정"
+        Me.btnSend.UseVisualStyleBackColor = False
+        '
+        'btnDelete
+        '
+        Me.btnDelete.Location = New System.Drawing.Point(220, 157)
+        Me.btnDelete.Name = "btnDelete"
+        Me.btnDelete.Size = New System.Drawing.Size(50, 25)
+        Me.btnDelete.TabIndex = 1
+        Me.btnDelete.Text = "삭제"
+        Me.btnDelete.UseVisualStyleBackColor = True
+        '
+        'Label5
+        '
+        Me.Label5.BackColor = System.Drawing.Color.Silver
+        Me.Label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label5.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label5.Location = New System.Drawing.Point(11, 17)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.Label5.Size = New System.Drawing.Size(312, 37)
+        Me.Label5.TabIndex = 5
+        Me.Label5.Text = "임시저장"
+        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label6
+        '
+        Me.Label6.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.Label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label6.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label6.Location = New System.Drawing.Point(43, 168)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.Label6.Size = New System.Drawing.Size(266, 1)
+        Me.Label6.TabIndex = 14
+        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label7
+        '
+        Me.Label7.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.Label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label7.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label7.Location = New System.Drawing.Point(42, 52)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.Label7.Size = New System.Drawing.Size(1, 104)
+        Me.Label7.TabIndex = 15
+        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label8
+        '
+        Me.Label8.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.Label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label8.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label8.Location = New System.Drawing.Point(124, 54)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.Label8.Size = New System.Drawing.Size(1, 61)
+        Me.Label8.TabIndex = 16
+        Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label9
+        '
+        Me.Label9.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.Label9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label9.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label9.Location = New System.Drawing.Point(309, 51)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.Label9.Size = New System.Drawing.Size(1, 117)
+        Me.Label9.TabIndex = 17
+        Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label11
+        '
+        Me.Label11.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.Label11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label11.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label11.Location = New System.Drawing.Point(33, 114)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.Label11.Size = New System.Drawing.Size(91, 1)
+        Me.Label11.TabIndex = 19
+        Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label12
+        '
+        Me.Label12.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.Label12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label12.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label12.Location = New System.Drawing.Point(71, 123)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.Label12.Size = New System.Drawing.Size(91, 1)
+        Me.Label12.TabIndex = 20
+        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label13
+        '
+        Me.Label13.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.Label13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label13.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label13.Location = New System.Drawing.Point(156, 89)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.Label13.Size = New System.Drawing.Size(120, 1)
+        Me.Label13.TabIndex = 21
+        Me.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label14
+        '
+        Me.Label14.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.Label14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label14.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label14.Location = New System.Drawing.Point(181, 89)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.Label14.Size = New System.Drawing.Size(1, 35)
+        Me.Label14.TabIndex = 22
+        Me.Label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label16
+        '
+        Me.Label16.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.Label16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label16.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label16.Location = New System.Drawing.Point(276, 89)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.Label16.Size = New System.Drawing.Size(1, 35)
+        Me.Label16.TabIndex = 24
+        Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label15
+        '
+        Me.Label15.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.Label15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label15.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label15.Location = New System.Drawing.Point(229, 89)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.Label15.Size = New System.Drawing.Size(1, 35)
+        Me.Label15.TabIndex = 23
+        Me.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label17
+        '
+        Me.Label17.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.Label17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label17.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label17.Location = New System.Drawing.Point(235, 128)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.Label17.Size = New System.Drawing.Size(1, 35)
+        Me.Label17.TabIndex = 25
+        Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label18
+        '
+        Me.Label18.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.Label18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label18.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label18.Location = New System.Drawing.Point(262, 128)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.Label18.Size = New System.Drawing.Size(1, 35)
+        Me.Label18.TabIndex = 26
+        Me.Label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label10
+        '
+        Me.Label10.BackColor = System.Drawing.Color.Silver
+        Me.Label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label10.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label10.Location = New System.Drawing.Point(82, 64)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Padding = New System.Windows.Forms.Padding(10, 5, 10, 0)
+        Me.Label10.Size = New System.Drawing.Size(221, 84)
+        Me.Label10.TabIndex = 18
+        Me.Label10.Text = "발행예정"
+        Me.Label10.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'GroupBox13
         '
@@ -1202,297 +1563,6 @@ Partial Class frmExample
         Me.btnGetFiles.Text = "첨부파일 목록"
         Me.btnGetFiles.UseVisualStyleBackColor = True
         '
-        'GroupBox8
-        '
-        Me.GroupBox8.Controls.Add(Me.btnDeny)
-        Me.GroupBox8.Controls.Add(Me.btnAccept)
-        Me.GroupBox8.Controls.Add(Me.btnCancelIssue)
-        Me.GroupBox8.Controls.Add(Me.btnIssue)
-        Me.GroupBox8.Controls.Add(Me.Button7)
-        Me.GroupBox8.Controls.Add(Me.btnRegister)
-        Me.GroupBox8.Controls.Add(Me.btnCancelSend)
-        Me.GroupBox8.Controls.Add(Me.btnSend)
-        Me.GroupBox8.Controls.Add(Me.btnDelete)
-        Me.GroupBox8.Controls.Add(Me.Label5)
-        Me.GroupBox8.Controls.Add(Me.Label6)
-        Me.GroupBox8.Controls.Add(Me.Label7)
-        Me.GroupBox8.Controls.Add(Me.Label8)
-        Me.GroupBox8.Controls.Add(Me.Label9)
-        Me.GroupBox8.Controls.Add(Me.Label11)
-        Me.GroupBox8.Controls.Add(Me.Label12)
-        Me.GroupBox8.Controls.Add(Me.Label13)
-        Me.GroupBox8.Controls.Add(Me.Label14)
-        Me.GroupBox8.Controls.Add(Me.Label16)
-        Me.GroupBox8.Controls.Add(Me.Label15)
-        Me.GroupBox8.Controls.Add(Me.Label17)
-        Me.GroupBox8.Controls.Add(Me.Label18)
-        Me.GroupBox8.Controls.Add(Me.Label10)
-        Me.GroupBox8.Location = New System.Drawing.Point(259, 26)
-        Me.GroupBox8.Name = "GroupBox8"
-        Me.GroupBox8.Size = New System.Drawing.Size(336, 188)
-        Me.GroupBox8.TabIndex = 7
-        Me.GroupBox8.TabStop = False
-        Me.GroupBox8.Text = "임시저장 발행, 발행예정 프로세스"
-        '
-        'btnDeny
-        '
-        Me.btnDeny.BackColor = System.Drawing.Color.Aquamarine
-        Me.btnDeny.Location = New System.Drawing.Point(209, 109)
-        Me.btnDeny.Name = "btnDeny"
-        Me.btnDeny.Size = New System.Drawing.Size(41, 25)
-        Me.btnDeny.TabIndex = 10
-        Me.btnDeny.Text = "거부"
-        Me.btnDeny.UseVisualStyleBackColor = False
-        '
-        'btnAccept
-        '
-        Me.btnAccept.BackColor = System.Drawing.Color.Aquamarine
-        Me.btnAccept.Location = New System.Drawing.Point(162, 109)
-        Me.btnAccept.Name = "btnAccept"
-        Me.btnAccept.Size = New System.Drawing.Size(41, 25)
-        Me.btnAccept.TabIndex = 9
-        Me.btnAccept.Text = "승인"
-        Me.btnAccept.UseVisualStyleBackColor = False
-        '
-        'btnCancelIssue
-        '
-        Me.btnCancelIssue.BackColor = System.Drawing.Color.LightCoral
-        Me.btnCancelIssue.Location = New System.Drawing.Point(11, 157)
-        Me.btnCancelIssue.Name = "btnCancelIssue"
-        Me.btnCancelIssue.Size = New System.Drawing.Size(65, 25)
-        Me.btnCancelIssue.TabIndex = 8
-        Me.btnCancelIssue.Text = "발행취소"
-        Me.btnCancelIssue.UseVisualStyleBackColor = False
-        '
-        'btnIssue
-        '
-        Me.btnIssue.BackColor = System.Drawing.Color.LightCoral
-        Me.btnIssue.Location = New System.Drawing.Point(11, 105)
-        Me.btnIssue.Name = "btnIssue"
-        Me.btnIssue.Size = New System.Drawing.Size(65, 32)
-        Me.btnIssue.TabIndex = 7
-        Me.btnIssue.Text = "발행"
-        Me.btnIssue.UseVisualStyleBackColor = False
-        '
-        'Button7
-        '
-        Me.Button7.BackColor = System.Drawing.Color.LightCoral
-        Me.Button7.Location = New System.Drawing.Point(142, 23)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(50, 25)
-        Me.Button7.TabIndex = 6
-        Me.Button7.Text = "수정"
-        Me.Button7.UseVisualStyleBackColor = False
-        '
-        'btnRegister
-        '
-        Me.btnRegister.BackColor = System.Drawing.Color.LightCoral
-        Me.btnRegister.Location = New System.Drawing.Point(86, 23)
-        Me.btnRegister.Name = "btnRegister"
-        Me.btnRegister.Size = New System.Drawing.Size(50, 25)
-        Me.btnRegister.TabIndex = 0
-        Me.btnRegister.Text = "등록"
-        Me.btnRegister.UseVisualStyleBackColor = False
-        '
-        'btnCancelSend
-        '
-        Me.btnCancelSend.BackColor = System.Drawing.Color.LightCoral
-        Me.btnCancelSend.Location = New System.Drawing.Point(256, 109)
-        Me.btnCancelSend.Name = "btnCancelSend"
-        Me.btnCancelSend.Size = New System.Drawing.Size(41, 25)
-        Me.btnCancelSend.TabIndex = 3
-        Me.btnCancelSend.Text = "취소"
-        Me.btnCancelSend.UseVisualStyleBackColor = False
-        '
-        'btnSend
-        '
-        Me.btnSend.BackColor = System.Drawing.Color.LightCoral
-        Me.btnSend.Location = New System.Drawing.Point(92, 78)
-        Me.btnSend.Name = "btnSend"
-        Me.btnSend.Size = New System.Drawing.Size(67, 25)
-        Me.btnSend.TabIndex = 2
-        Me.btnSend.Text = "발행예정"
-        Me.btnSend.UseVisualStyleBackColor = False
-        '
-        'btnDelete
-        '
-        Me.btnDelete.Location = New System.Drawing.Point(220, 157)
-        Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(50, 25)
-        Me.btnDelete.TabIndex = 1
-        Me.btnDelete.Text = "삭제"
-        Me.btnDelete.UseVisualStyleBackColor = True
-        '
-        'Label5
-        '
-        Me.Label5.BackColor = System.Drawing.Color.Silver
-        Me.Label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label5.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label5.Location = New System.Drawing.Point(11, 17)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.Label5.Size = New System.Drawing.Size(312, 37)
-        Me.Label5.TabIndex = 5
-        Me.Label5.Text = "임시저장"
-        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label6
-        '
-        Me.Label6.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.Label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label6.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label6.Location = New System.Drawing.Point(43, 168)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.Label6.Size = New System.Drawing.Size(266, 1)
-        Me.Label6.TabIndex = 14
-        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label7
-        '
-        Me.Label7.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.Label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label7.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label7.Location = New System.Drawing.Point(42, 52)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.Label7.Size = New System.Drawing.Size(1, 104)
-        Me.Label7.TabIndex = 15
-        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label8
-        '
-        Me.Label8.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.Label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label8.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label8.Location = New System.Drawing.Point(124, 54)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.Label8.Size = New System.Drawing.Size(1, 61)
-        Me.Label8.TabIndex = 16
-        Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label9
-        '
-        Me.Label9.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.Label9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label9.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label9.Location = New System.Drawing.Point(309, 51)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.Label9.Size = New System.Drawing.Size(1, 117)
-        Me.Label9.TabIndex = 17
-        Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label11
-        '
-        Me.Label11.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.Label11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label11.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label11.Location = New System.Drawing.Point(33, 114)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.Label11.Size = New System.Drawing.Size(91, 1)
-        Me.Label11.TabIndex = 19
-        Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label12
-        '
-        Me.Label12.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.Label12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label12.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label12.Location = New System.Drawing.Point(71, 123)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.Label12.Size = New System.Drawing.Size(91, 1)
-        Me.Label12.TabIndex = 20
-        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label13
-        '
-        Me.Label13.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.Label13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label13.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label13.Location = New System.Drawing.Point(156, 89)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.Label13.Size = New System.Drawing.Size(120, 1)
-        Me.Label13.TabIndex = 21
-        Me.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label14
-        '
-        Me.Label14.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.Label14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label14.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label14.Location = New System.Drawing.Point(181, 89)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.Label14.Size = New System.Drawing.Size(1, 35)
-        Me.Label14.TabIndex = 22
-        Me.Label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label16
-        '
-        Me.Label16.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.Label16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label16.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label16.Location = New System.Drawing.Point(276, 89)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.Label16.Size = New System.Drawing.Size(1, 35)
-        Me.Label16.TabIndex = 24
-        Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label15
-        '
-        Me.Label15.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.Label15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label15.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label15.Location = New System.Drawing.Point(229, 89)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.Label15.Size = New System.Drawing.Size(1, 35)
-        Me.Label15.TabIndex = 23
-        Me.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label17
-        '
-        Me.Label17.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.Label17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label17.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label17.Location = New System.Drawing.Point(235, 128)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.Label17.Size = New System.Drawing.Size(1, 35)
-        Me.Label17.TabIndex = 25
-        Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label18
-        '
-        Me.Label18.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.Label18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label18.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label18.Location = New System.Drawing.Point(262, 128)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.Label18.Size = New System.Drawing.Size(1, 35)
-        Me.Label18.TabIndex = 26
-        Me.Label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label10
-        '
-        Me.Label10.BackColor = System.Drawing.Color.Silver
-        Me.Label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label10.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label10.Location = New System.Drawing.Point(82, 64)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Padding = New System.Windows.Forms.Padding(10, 5, 10, 0)
-        Me.Label10.Size = New System.Drawing.Size(221, 84)
-        Me.Label10.TabIndex = 18
-        Me.Label10.Text = "발행예정"
-        Me.Label10.TextAlign = System.Drawing.ContentAlignment.TopRight
-        '
         'btnGetEmailPublicKey
         '
         Me.btnGetEmailPublicKey.Location = New System.Drawing.Point(1112, 20)
@@ -1541,76 +1611,6 @@ Partial Class frmExample
         '
         Me.fileDialog.FileName = "OpenFileDialog1"
         '
-        'GroupBox20
-        '
-        Me.GroupBox20.Controls.Add(Me.GroupBox18)
-        Me.GroupBox20.Controls.Add(Me.btnSendToNTS)
-        Me.GroupBox20.Controls.Add(Me.GroupBox8)
-        Me.GroupBox20.Location = New System.Drawing.Point(22, 49)
-        Me.GroupBox20.Name = "GroupBox20"
-        Me.GroupBox20.Size = New System.Drawing.Size(615, 268)
-        Me.GroupBox20.TabIndex = 23
-        Me.GroupBox20.TabStop = False
-        Me.GroupBox20.Text = "정발행 프로세스"
-        '
-        'GroupBox21
-        '
-        Me.GroupBox21.Controls.Add(Me.GroupBox19)
-        Me.GroupBox21.Controls.Add(Me.GroupBox14)
-        Me.GroupBox21.Location = New System.Drawing.Point(657, 49)
-        Me.GroupBox21.Name = "GroupBox21"
-        Me.GroupBox21.Size = New System.Drawing.Size(659, 267)
-        Me.GroupBox21.TabIndex = 24
-        Me.GroupBox21.TabStop = False
-        Me.GroupBox21.Text = "역발행 프로세스"
-        '
-        'Label24
-        '
-        Me.Label24.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.Label24.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label24.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label24.Location = New System.Drawing.Point(111, 74)
-        Me.Label24.Name = "Label24"
-        Me.Label24.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.Label24.Size = New System.Drawing.Size(1, 90)
-        Me.Label24.TabIndex = 20
-        Me.Label24.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label31
-        '
-        Me.Label31.BackColor = System.Drawing.Color.Silver
-        Me.Label31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label31.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label31.Location = New System.Drawing.Point(28, 19)
-        Me.Label31.Name = "Label31"
-        Me.Label31.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.Label31.Size = New System.Drawing.Size(257, 33)
-        Me.Label31.TabIndex = 25
-        Me.Label31.Text = "즉시요청"
-        Me.Label31.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label32
-        '
-        Me.Label32.AutoSize = True
-        Me.Label32.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.Label32.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label32.Location = New System.Drawing.Point(147, 68)
-        Me.Label32.Name = "Label32"
-        Me.Label32.Padding = New System.Windows.Forms.Padding(1, 72, 0, 0)
-        Me.Label32.Size = New System.Drawing.Size(1, 84)
-        Me.Label32.TabIndex = 26
-        '
-        'Label34
-        '
-        Me.Label34.AutoSize = True
-        Me.Label34.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.Label34.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label34.Location = New System.Drawing.Point(111, 41)
-        Me.Label34.Name = "Label34"
-        Me.Label34.Padding = New System.Windows.Forms.Padding(1, 15, 0, 0)
-        Me.Label34.Size = New System.Drawing.Size(1, 27)
-        Me.Label34.TabIndex = 27
-        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
@@ -1636,19 +1636,19 @@ Partial Class frmExample
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox7.ResumeLayout(False)
         Me.GroupBox7.PerformLayout()
+        Me.GroupBox21.ResumeLayout(False)
         Me.GroupBox19.ResumeLayout(False)
         Me.GroupBox19.PerformLayout()
-        Me.GroupBox18.ResumeLayout(False)
         Me.GroupBox14.ResumeLayout(False)
+        Me.GroupBox20.ResumeLayout(False)
+        Me.GroupBox18.ResumeLayout(False)
+        Me.GroupBox8.ResumeLayout(False)
         Me.GroupBox13.ResumeLayout(False)
         Me.GroupBox12.ResumeLayout(False)
         Me.GroupBox9.ResumeLayout(False)
         Me.GroupBox11.ResumeLayout(False)
         Me.GroupBox10.ResumeLayout(False)
         Me.GroupBox10.PerformLayout()
-        Me.GroupBox8.ResumeLayout(False)
-        Me.GroupBox20.ResumeLayout(False)
-        Me.GroupBox21.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
