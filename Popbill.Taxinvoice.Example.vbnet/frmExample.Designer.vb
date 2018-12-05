@@ -156,6 +156,16 @@ Partial Class frmExample
         Me.txtMgtKey = New System.Windows.Forms.TextBox
         Me.Label3 = New System.Windows.Forms.Label
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
+        Me.GroupBox22 = New System.Windows.Forms.GroupBox
+        Me.Panel1 = New System.Windows.Forms.Panel
+        Me.Label35 = New System.Windows.Forms.Label
+        Me.Panel2 = New System.Windows.Forms.Panel
+        Me.Label36 = New System.Windows.Forms.Label
+        Me.GroupBox23 = New System.Windows.Forms.GroupBox
+        Me.Label37 = New System.Windows.Forms.Label
+        Me.Panel3 = New System.Windows.Forms.Panel
+        Me.Label38 = New System.Windows.Forms.Label
+        Me.Panel4 = New System.Windows.Forms.Panel
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -177,6 +187,8 @@ Partial Class frmExample
         Me.GroupBox9.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
         Me.GroupBox10.SuspendLayout()
+        Me.GroupBox22.SuspendLayout()
+        Me.GroupBox23.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnGetTaxCertURL
@@ -526,18 +538,19 @@ Partial Class frmExample
         Me.GroupBox7.Controls.Add(Me.Label3)
         Me.GroupBox7.Location = New System.Drawing.Point(12, 202)
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(1329, 536)
+        Me.GroupBox7.Size = New System.Drawing.Size(1329, 566)
         Me.GroupBox7.TabIndex = 6
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "전자세금계산서 관련 API"
         '
         'GroupBox21
         '
+        Me.GroupBox21.Controls.Add(Me.GroupBox23)
         Me.GroupBox21.Controls.Add(Me.GroupBox19)
         Me.GroupBox21.Controls.Add(Me.GroupBox14)
         Me.GroupBox21.Location = New System.Drawing.Point(657, 49)
         Me.GroupBox21.Name = "GroupBox21"
-        Me.GroupBox21.Size = New System.Drawing.Size(659, 267)
+        Me.GroupBox21.Size = New System.Drawing.Size(659, 296)
         Me.GroupBox21.TabIndex = 24
         Me.GroupBox21.TabStop = False
         Me.GroupBox21.Text = "역발행 프로세스"
@@ -557,7 +570,7 @@ Partial Class frmExample
         Me.GroupBox19.Controls.Add(Me.Label31)
         Me.GroupBox19.Controls.Add(Me.Label29)
         Me.GroupBox19.Controls.Add(Me.Label34)
-        Me.GroupBox19.Location = New System.Drawing.Point(25, 26)
+        Me.GroupBox19.Location = New System.Drawing.Point(25, 66)
         Me.GroupBox19.Name = "GroupBox19"
         Me.GroupBox19.Size = New System.Drawing.Size(307, 188)
         Me.GroupBox19.TabIndex = 22
@@ -715,7 +728,7 @@ Partial Class frmExample
         Me.GroupBox14.Controls.Add(Me.Label21)
         Me.GroupBox14.Controls.Add(Me.Label22)
         Me.GroupBox14.Controls.Add(Me.Label23)
-        Me.GroupBox14.Location = New System.Drawing.Point(362, 26)
+        Me.GroupBox14.Location = New System.Drawing.Point(362, 66)
         Me.GroupBox14.Name = "GroupBox14"
         Me.GroupBox14.Size = New System.Drawing.Size(280, 188)
         Me.GroupBox14.TabIndex = 14
@@ -876,12 +889,13 @@ Partial Class frmExample
         '
         'GroupBox20
         '
+        Me.GroupBox20.Controls.Add(Me.GroupBox22)
         Me.GroupBox20.Controls.Add(Me.GroupBox18)
         Me.GroupBox20.Controls.Add(Me.btnSendToNTS)
         Me.GroupBox20.Controls.Add(Me.GroupBox8)
         Me.GroupBox20.Location = New System.Drawing.Point(22, 49)
         Me.GroupBox20.Name = "GroupBox20"
-        Me.GroupBox20.Size = New System.Drawing.Size(615, 268)
+        Me.GroupBox20.Size = New System.Drawing.Size(615, 306)
         Me.GroupBox20.TabIndex = 23
         Me.GroupBox20.TabStop = False
         Me.GroupBox20.Text = "정발행 프로세스"
@@ -894,7 +908,7 @@ Partial Class frmExample
         Me.GroupBox18.Controls.Add(Me.label25)
         Me.GroupBox18.Controls.Add(Me.btnRegistIssue)
         Me.GroupBox18.Controls.Add(Me.label26)
-        Me.GroupBox18.Location = New System.Drawing.Point(27, 26)
+        Me.GroupBox18.Location = New System.Drawing.Point(27, 62)
         Me.GroupBox18.Name = "GroupBox18"
         Me.GroupBox18.Size = New System.Drawing.Size(206, 188)
         Me.GroupBox18.TabIndex = 16
@@ -970,9 +984,9 @@ Partial Class frmExample
         'btnSendToNTS
         '
         Me.btnSendToNTS.BackColor = System.Drawing.Color.LightCoral
-        Me.btnSendToNTS.Location = New System.Drawing.Point(133, 223)
+        Me.btnSendToNTS.Location = New System.Drawing.Point(112, 260)
         Me.btnSendToNTS.Name = "btnSendToNTS"
-        Me.btnSendToNTS.Size = New System.Drawing.Size(313, 34)
+        Me.btnSendToNTS.Size = New System.Drawing.Size(313, 27)
         Me.btnSendToNTS.TabIndex = 13
         Me.btnSendToNTS.Text = "국세청 즉시 전송"
         Me.btnSendToNTS.UseVisualStyleBackColor = False
@@ -1002,7 +1016,7 @@ Partial Class frmExample
         Me.GroupBox8.Controls.Add(Me.Label17)
         Me.GroupBox8.Controls.Add(Me.Label18)
         Me.GroupBox8.Controls.Add(Me.Label10)
-        Me.GroupBox8.Location = New System.Drawing.Point(259, 26)
+        Me.GroupBox8.Location = New System.Drawing.Point(259, 62)
         Me.GroupBox8.Name = "GroupBox8"
         Me.GroupBox8.Size = New System.Drawing.Size(336, 188)
         Me.GroupBox8.TabIndex = 7
@@ -1274,7 +1288,7 @@ Partial Class frmExample
         Me.GroupBox13.Controls.Add(Me.btnGetURL_PBOX)
         Me.GroupBox13.Controls.Add(Me.btnGetURL_SBOX)
         Me.GroupBox13.Controls.Add(Me.btnGetURL_TBOX)
-        Me.GroupBox13.Location = New System.Drawing.Point(1099, 330)
+        Me.GroupBox13.Location = New System.Drawing.Point(1099, 365)
         Me.GroupBox13.Name = "GroupBox13"
         Me.GroupBox13.Size = New System.Drawing.Size(217, 182)
         Me.GroupBox13.TabIndex = 12
@@ -1324,7 +1338,7 @@ Partial Class frmExample
         Me.GroupBox12.Controls.Add(Me.btnEPrintURL)
         Me.GroupBox12.Controls.Add(Me.btnGetPrintURL)
         Me.GroupBox12.Controls.Add(Me.btnGetPopUpURL)
-        Me.GroupBox12.Location = New System.Drawing.Point(876, 330)
+        Me.GroupBox12.Location = New System.Drawing.Point(876, 365)
         Me.GroupBox12.Name = "GroupBox12"
         Me.GroupBox12.Size = New System.Drawing.Size(217, 182)
         Me.GroupBox12.TabIndex = 11
@@ -1383,7 +1397,7 @@ Partial Class frmExample
         Me.GroupBox9.Controls.Add(Me.btnGetLogs)
         Me.GroupBox9.Controls.Add(Me.btnGetInfo)
         Me.GroupBox9.Controls.Add(Me.btnGetDetailInfo)
-        Me.GroupBox9.Location = New System.Drawing.Point(243, 331)
+        Me.GroupBox9.Location = New System.Drawing.Point(243, 366)
         Me.GroupBox9.Name = "GroupBox9"
         Me.GroupBox9.Size = New System.Drawing.Size(217, 182)
         Me.GroupBox9.TabIndex = 8
@@ -1445,7 +1459,7 @@ Partial Class frmExample
         Me.GroupBox11.Controls.Add(Me.btnSendFAX)
         Me.GroupBox11.Controls.Add(Me.btnSendSMS)
         Me.GroupBox11.Controls.Add(Me.btnSendEmail)
-        Me.GroupBox11.Location = New System.Drawing.Point(466, 331)
+        Me.GroupBox11.Location = New System.Drawing.Point(466, 366)
         Me.GroupBox11.Name = "GroupBox11"
         Me.GroupBox11.Size = New System.Drawing.Size(404, 182)
         Me.GroupBox11.TabIndex = 10
@@ -1513,7 +1527,7 @@ Partial Class frmExample
         Me.GroupBox10.Controls.Add(Me.btnDeleteFile)
         Me.GroupBox10.Controls.Add(Me.btnAttachFile)
         Me.GroupBox10.Controls.Add(Me.btnGetFiles)
-        Me.GroupBox10.Location = New System.Drawing.Point(20, 331)
+        Me.GroupBox10.Location = New System.Drawing.Point(20, 366)
         Me.GroupBox10.Name = "GroupBox10"
         Me.GroupBox10.Size = New System.Drawing.Size(217, 182)
         Me.GroupBox10.TabIndex = 9
@@ -1611,11 +1625,107 @@ Partial Class frmExample
         '
         Me.fileDialog.FileName = "OpenFileDialog1"
         '
+        'GroupBox22
+        '
+        Me.GroupBox22.Controls.Add(Me.Label36)
+        Me.GroupBox22.Controls.Add(Me.Panel2)
+        Me.GroupBox22.Controls.Add(Me.Label35)
+        Me.GroupBox22.Controls.Add(Me.Panel1)
+        Me.GroupBox22.Location = New System.Drawing.Point(334, 8)
+        Me.GroupBox22.Name = "GroupBox22"
+        Me.GroupBox22.Size = New System.Drawing.Size(261, 44)
+        Me.GroupBox22.TabIndex = 17
+        Me.GroupBox22.TabStop = False
+        '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.LightCoral
+        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Location = New System.Drawing.Point(13, 19)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(30, 15)
+        Me.Panel1.TabIndex = 0
+        '
+        'Label35
+        '
+        Me.Label35.AutoSize = True
+        Me.Label35.Location = New System.Drawing.Point(44, 21)
+        Me.Label35.Name = "Label35"
+        Me.Label35.Size = New System.Drawing.Size(77, 12)
+        Me.Label35.TabIndex = 1
+        Me.Label35.Text = ": 공급자 처리"
+        '
+        'Panel2
+        '
+        Me.Panel2.BackColor = System.Drawing.Color.Aquamarine
+        Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel2.Location = New System.Drawing.Point(123, 19)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(30, 15)
+        Me.Panel2.TabIndex = 2
+        '
+        'Label36
+        '
+        Me.Label36.AutoSize = True
+        Me.Label36.Location = New System.Drawing.Point(154, 21)
+        Me.Label36.Name = "Label36"
+        Me.Label36.Size = New System.Drawing.Size(101, 12)
+        Me.Label36.TabIndex = 3
+        Me.Label36.Text = ": 공급받는자 처리"
+        '
+        'GroupBox23
+        '
+        Me.GroupBox23.Controls.Add(Me.Label37)
+        Me.GroupBox23.Controls.Add(Me.Panel3)
+        Me.GroupBox23.Controls.Add(Me.Label38)
+        Me.GroupBox23.Controls.Add(Me.Panel4)
+        Me.GroupBox23.Location = New System.Drawing.Point(380, 8)
+        Me.GroupBox23.Name = "GroupBox23"
+        Me.GroupBox23.Size = New System.Drawing.Size(261, 44)
+        Me.GroupBox23.TabIndex = 18
+        Me.GroupBox23.TabStop = False
+        '
+        'Label37
+        '
+        Me.Label37.AutoSize = True
+        Me.Label37.Location = New System.Drawing.Point(154, 21)
+        Me.Label37.Name = "Label37"
+        Me.Label37.Size = New System.Drawing.Size(101, 12)
+        Me.Label37.TabIndex = 3
+        Me.Label37.Text = ": 공급받는자 처리"
+        '
+        'Panel3
+        '
+        Me.Panel3.BackColor = System.Drawing.Color.Aquamarine
+        Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel3.Location = New System.Drawing.Point(123, 19)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(30, 15)
+        Me.Panel3.TabIndex = 2
+        '
+        'Label38
+        '
+        Me.Label38.AutoSize = True
+        Me.Label38.Location = New System.Drawing.Point(44, 21)
+        Me.Label38.Name = "Label38"
+        Me.Label38.Size = New System.Drawing.Size(77, 12)
+        Me.Label38.TabIndex = 1
+        Me.Label38.Text = ": 공급자 처리"
+        '
+        'Panel4
+        '
+        Me.Panel4.BackColor = System.Drawing.Color.LightCoral
+        Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel4.Location = New System.Drawing.Point(13, 19)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(30, 15)
+        Me.Panel4.TabIndex = 0
+        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1363, 758)
+        Me.ClientSize = New System.Drawing.Size(1363, 781)
         Me.Controls.Add(Me.GroupBox7)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.txtUserId)
@@ -1649,6 +1759,10 @@ Partial Class frmExample
         Me.GroupBox11.ResumeLayout(False)
         Me.GroupBox10.ResumeLayout(False)
         Me.GroupBox10.PerformLayout()
+        Me.GroupBox22.ResumeLayout(False)
+        Me.GroupBox22.PerformLayout()
+        Me.GroupBox23.ResumeLayout(False)
+        Me.GroupBox23.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1787,5 +1901,15 @@ Partial Class frmExample
     Friend WithEvents Label32 As System.Windows.Forms.Label
     Friend WithEvents Label31 As System.Windows.Forms.Label
     Friend WithEvents Label34 As System.Windows.Forms.Label
+    Friend WithEvents GroupBox23 As System.Windows.Forms.GroupBox
+    Friend WithEvents Label37 As System.Windows.Forms.Label
+    Friend WithEvents Panel3 As System.Windows.Forms.Panel
+    Friend WithEvents Label38 As System.Windows.Forms.Label
+    Friend WithEvents Panel4 As System.Windows.Forms.Panel
+    Friend WithEvents GroupBox22 As System.Windows.Forms.GroupBox
+    Friend WithEvents Label36 As System.Windows.Forms.Label
+    Friend WithEvents Panel2 As System.Windows.Forms.Panel
+    Friend WithEvents Label35 As System.Windows.Forms.Label
+    Friend WithEvents Panel1 As System.Windows.Forms.Panel
 
 End Class
