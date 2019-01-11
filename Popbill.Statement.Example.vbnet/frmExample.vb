@@ -103,75 +103,75 @@ Public Class frmExample
 
 
         '=========================================================================
-        '                               공급자 정보
+        '                               발신자 정보
         '=========================================================================
 
-        '공급자 사업자번호, '-' 제외 10자리
+        '발신자 사업자번호, '-' 제외 10자리
         statement.senderCorpNum = txtCorpNum.Text
 
-        '공급자 종사업장 식별번호, 필요시 기재, 형식은 숫자 4자리
+        '발신자 종사업장 식별번호, 필요시 기재, 형식은 숫자 4자리
         statement.senderTaxRegID = ""
 
-        '공급자 상호
-        statement.senderCorpName = "공급자 상호"
+        '발신자 상호
+        statement.senderCorpName = "발신자 상호"
 
-        '공급자 대표자 성명
-        statement.senderCEOName = "공급자 대표자 성명"
+        '발신자 대표자 성명
+        statement.senderCEOName = "발신자 대표자 성명"
 
-        '공급자 주소
-        statement.senderAddr = "공급자 주소"
+        '발신자 주소
+        statement.senderAddr = "발신자 주소"
 
-        '공급자 종목
-        statement.senderBizClass = "공급자 종목"
+        '발신자 종목
+        statement.senderBizClass = "발신자 종목"
 
-        '공급자 업태
-        statement.senderBizType = "공급자 업태,업태2"
+        '발신자 업태
+        statement.senderBizType = "발신자 업태,업태2"
 
-        '공급자 담당자성명
-        statement.senderContactName = "공급자 담당자명"
+        '발신자 담당자성명
+        statement.senderContactName = "발신자 담당자명"
 
-        '공급자 이메일
+        '발신자 이메일
         statement.senderEmail = "test@test.com"
 
-        '공급자 연락처
+        '발신자 연락처
         statement.senderTEL = "070-7070-0707"
 
-        '공급자 휴대전화 번호
+        '발신자 휴대전화 번호
         statement.senderHP = "010-000-2222"
 
 
         '=========================================================================
-        '                        공급받는자 정보
+        '                        수신자 정보
         '=========================================================================
 
-        '공급받는자 사업자번호, '-' 제외 10자리
+        '수신자 사업자번호, '-' 제외 10자리
         statement.receiverCorpNum = "8888888888"
 
-        '공급받는자 상호
-        statement.receiverCorpName = "공급받는자 상호"
+        '수신자 상호
+        statement.receiverCorpName = "수신자 상호"
 
-        '공급받는자 대표자 성명
-        statement.receiverCEOName = "공급받는자 대표자 성명"
+        '수신자 대표자 성명
+        statement.receiverCEOName = "수신자 대표자 성명"
 
-        '공급받는자 주소
-        statement.receiverAddr = "공급받는자 주소"
+        '수신자 주소
+        statement.receiverAddr = "수신자 주소"
 
-        '공급받는자 종목
-        statement.receiverBizClass = "공급받는자 종목 "
+        '수신자 종목
+        statement.receiverBizClass = "수신자 종목 "
 
-        '공급받는자 업태
-        statement.receiverBizType = "공급받는자 업태"
+        '수신자 업태
+        statement.receiverBizType = "수신자 업태"
 
-        '공급받는자 담당자명
-        statement.receiverContactName = "공급받는자 담당자명"
+        '수신자 담당자명
+        statement.receiverContactName = "수신자 담당자명"
 
-        '공급받는자 담당자 휴대폰번호
+        '수신자 담당자 휴대폰번호
         statement.receiverHP = "010-1111-2222"
 
-        '공급받는자 담당자 연락처
+        '수신자 담당자 연락처
         statement.receiverTEL = "070-1234-1234"
 
-        '공급받는자 메일주소
+        '수신자 메일주소
         statement.receiverEmail = "test@receiver.com"
 
         '=========================================================================
@@ -287,75 +287,75 @@ Public Class frmExample
 
 
         '=========================================================================
-        '                               공급자 정보
+        '                               발신자 정보
         '=========================================================================
 
-        '공급자 사업자번호, '-' 제외 10자리
+        '발신자 사업자번호, '-' 제외 10자리
         statement.senderCorpNum = txtCorpNum.Text
 
-        '공급자 종사업장 식별번호, 필요시 기재, 형식은 숫자 4자리
+        '발신자 종사업장 식별번호, 필요시 기재, 형식은 숫자 4자리
         statement.senderTaxRegID = ""
 
-        '공급자 상호
-        statement.senderCorpName = "공급자 상호"
+        '발신자 상호
+        statement.senderCorpName = "발신자 상호"
 
-        '공급자 대표자 성명
-        statement.senderCEOName = "공급자 대표자 성명"
+        '발신자 대표자 성명
+        statement.senderCEOName = "발신자 대표자 성명"
 
-        '공급자 주소
-        statement.senderAddr = "공급자 주소"
+        '발신자 주소
+        statement.senderAddr = "발신자 주소"
 
-        '공급자 종목
-        statement.senderBizClass = "공급자 종목"
+        '발신자 종목
+        statement.senderBizClass = "발신자 종목"
 
-        '공급자 업태
-        statement.senderBizType = "공급자 업태,업태2"
+        '발신자 업태
+        statement.senderBizType = "발신자 업태,업태2"
 
-        '공급자 담당자성명
-        statement.senderContactName = "공급자 담당자명"
+        '발신자 담당자성명
+        statement.senderContactName = "발신자 담당자명"
 
-        '공급자 이메일
+        '발신자 이메일
         statement.senderEmail = "test@test.com"
 
-        '공급자 연락처
+        '발신자 연락처
         statement.senderTEL = "070-7070-0707"
 
-        '공급자 휴대전화 번호
+        '발신자 휴대전화 번호
         statement.senderHP = "010-000-2222"
 
 
         '=========================================================================
-        '                        공급받는자 정보
+        '                        수신자 정보
         '=========================================================================
 
-        '공급받는자 사업자번호, '-' 제외 10자리
+        '수신자 사업자번호, '-' 제외 10자리
         statement.receiverCorpNum = "8888888888"
 
-        '공급받는자 상호
-        statement.receiverCorpName = "공급받는자 상호"
+        '수신자 상호
+        statement.receiverCorpName = "수신자 상호"
 
-        '공급받는자 대표자 성명
-        statement.receiverCEOName = "공급받는자 대표자 성명"
+        '수신자 대표자 성명
+        statement.receiverCEOName = "수신자 대표자 성명"
 
-        '공급받는자 주소
-        statement.receiverAddr = "공급받는자 주소"
+        '수신자 주소
+        statement.receiverAddr = "수신자 주소"
 
-        '공급받는자 종목
-        statement.receiverBizClass = "공급받는자 종목 "
+        '수신자 종목
+        statement.receiverBizClass = "수신자 종목 "
 
-        '공급받는자 업태
-        statement.receiverBizType = "공급받는자 업태"
+        '수신자 업태
+        statement.receiverBizType = "수신자 업태"
 
-        '공급받는자 담당자명
-        statement.receiverContactName = "공급받는자 담당자명"
+        '수신자 담당자명
+        statement.receiverContactName = "수신자 담당자명"
 
-        '공급받는자 담당자 휴대폰번호
+        '수신자 담당자 휴대폰번호
         statement.receiverHP = "010-1111-2222"
 
-        '공급받는자 담당자 연락처
+        '수신자 담당자 연락처
         statement.receiverTEL = "070-1234-1234"
 
-        '공급받는자 메일주소
+        '수신자 메일주소
         statement.receiverEmail = "test@receiver.com"
 
         '=========================================================================
@@ -470,75 +470,75 @@ Public Class frmExample
 
 
         '=========================================================================
-        '                               공급자 정보
+        '                               발신자 정보
         '=========================================================================
 
-        '공급자 사업자번호, '-' 제외 10자리
+        '발신자 사업자번호, '-' 제외 10자리
         statement.senderCorpNum = txtCorpNum.Text
 
-        '공급자 종사업장 식별번호, 필요시 기재, 형식은 숫자 4자리
+        '발신자 종사업장 식별번호, 필요시 기재, 형식은 숫자 4자리
         statement.senderTaxRegID = ""
 
-        '공급자 상호
-        statement.senderCorpName = "공급자 상호"
+        '발신자 상호
+        statement.senderCorpName = "발신자 상호"
 
-        '공급자 대표자 성명
-        statement.senderCEOName = "공급자 대표자 성명"
+        '발신자 대표자 성명
+        statement.senderCEOName = "발신자 대표자 성명"
 
-        '공급자 주소
-        statement.senderAddr = "공급자 주소"
+        '발신자 주소
+        statement.senderAddr = "발신자 주소"
 
-        '공급자 종목
-        statement.senderBizClass = "공급자 종목"
+        '발신자 종목
+        statement.senderBizClass = "발신자 종목"
 
-        '공급자 업태
-        statement.senderBizType = "공급자 업태,업태2"
+        '발신자 업태
+        statement.senderBizType = "발신자 업태,업태2"
 
-        '공급자 담당자성명
-        statement.senderContactName = "공급자 담당자명"
+        '발신자 담당자성명
+        statement.senderContactName = "발신자 담당자명"
 
-        '공급자 이메일
+        '발신자 이메일
         statement.senderEmail = "test@test.com"
 
-        '공급자 연락처
+        '발신자 연락처
         statement.senderTEL = "070-7070-0707"
 
-        '공급자 휴대전화 번호
+        '발신자 휴대전화 번호
         statement.senderHP = "010-000-2222"
 
 
         '=========================================================================
-        '                        공급받는자 정보
+        '                        수신자 정보
         '=========================================================================
 
-        '공급받는자 사업자번호, '-' 제외 10자리
+        '수신자 사업자번호, '-' 제외 10자리
         statement.receiverCorpNum = "8888888888"
 
-        '공급받는자 상호
-        statement.receiverCorpName = "공급받는자 상호"
+        '수신자 상호
+        statement.receiverCorpName = "수신자 상호"
 
-        '공급받는자 대표자 성명
-        statement.receiverCEOName = "공급받는자 대표자 성명"
+        '수신자 대표자 성명
+        statement.receiverCEOName = "수신자 대표자 성명"
 
-        '공급받는자 주소
-        statement.receiverAddr = "공급받는자 주소"
+        '수신자 주소
+        statement.receiverAddr = "수신자 주소"
 
-        '공급받는자 종목
-        statement.receiverBizClass = "공급받는자 종목 "
+        '수신자 종목
+        statement.receiverBizClass = "수신자 종목 "
 
-        '공급받는자 업태
-        statement.receiverBizType = "공급받는자 업태"
+        '수신자 업태
+        statement.receiverBizType = "수신자 업태"
 
-        '공급받는자 담당자명
-        statement.receiverContactName = "공급받는자 담당자명"
+        '수신자 담당자명
+        statement.receiverContactName = "수신자 담당자명"
 
-        '공급받는자 담당자 휴대폰번호
+        '수신자 담당자 휴대폰번호
         statement.receiverHP = "010-1111-2222"
 
-        '공급받는자 담당자 연락처
+        '수신자 담당자 연락처
         statement.receiverTEL = "070-1234-1234"
 
-        '공급받는자 메일주소
+        '수신자 메일주소
         statement.receiverEmail = "test@receiver.com"
 
         '=========================================================================
@@ -820,7 +820,7 @@ Public Class frmExample
 
         Try
 
-            Dim docDetailInfo As Statement = statementService.GetDetailInfo(txtCorpNum.Text, selectedItemCode,txtMgtKey.Text)
+            Dim docDetailInfo As Statement = statementService.GetDetailInfo(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text)
 
             tmp = tmp + "itemCode(문서종류코드) : " + CStr(docDetailInfo.itemCode) + vbCrLf
             tmp = tmp + "mgtKey(관리번호) : " + docDetailInfo.mgtKey + vbCrLf
@@ -931,7 +931,7 @@ Public Class frmExample
         Dim PerPage As Integer = 10
 
         Try
-            Dim stmtSearchList As DocSearchResult = statementService.Search(txtCorpNum.Text, DType, SDate, EDate, State,ItemCode, QString, Order, Page, PerPage)
+            Dim stmtSearchList As DocSearchResult = statementService.Search(txtCorpNum.Text, DType, SDate, EDate, State, ItemCode, QString, Order, Page, PerPage)
 
             Dim tmp As String
 
@@ -1039,7 +1039,7 @@ Public Class frmExample
         Handles btnGetPopUpURL.Click
 
         Try
-            Dim url As String = statementService.GetPopUpURL(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text,txtUserId.Text)
+            Dim url As String = statementService.GetPopUpURL(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, txtUserId.Text)
 
             MsgBox(url)
         Catch ex As PopbillException
@@ -1055,7 +1055,7 @@ Public Class frmExample
         Handles btnGetPrintURL.Click
 
         Try
-            Dim url As String = statementService.GetPrintURL(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text,txtUserId.Text)
+            Dim url As String = statementService.GetPrintURL(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, txtUserId.Text)
 
             MsgBox(url)
         Catch ex As PopbillException
@@ -1064,14 +1064,14 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 전자명세서 인쇄(공급받는자) URL을 반환합니다.
+    ' 전자명세서 인쇄(수신자) URL을 반환합니다.
     ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
     '=========================================================================
     Private Sub btnGetEPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnGetEPrintURL.Click
 
         Try
-            Dim url As String = statementService.GetEPrintURL(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text,txtUserId.Text)
+            Dim url As String = statementService.GetEPrintURL(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, txtUserId.Text)
 
             MsgBox(url)
         Catch ex As PopbillException
@@ -1093,7 +1093,7 @@ Public Class frmExample
         MgtKeyList.Add("20190111-02")
 
         Try
-            Dim url As String = statementService.GetMassPrintURL(txtCorpNum.Text, selectedItemCode, MgtKeyList,txtUserId.Text)
+            Dim url As String = statementService.GetMassPrintURL(txtCorpNum.Text, selectedItemCode, MgtKeyList, txtUserId.Text)
 
             MsgBox(url)
         Catch ex As PopbillException
@@ -1102,13 +1102,13 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 공급받는자 메일링크 URL을 반환합니다.
+    ' 수신자 메일링크 URL을 반환합니다.
     ' - 메일링크 URL은 유효시간이 존재하지 않습니다.
     '=========================================================================
     Private Sub btnGetMailURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnGetMailURL.Click
         Try
-            Dim url As String = statementService.GetMailURL(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text,txtUserId.Text)
+            Dim url As String = statementService.GetMailURL(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, txtUserId.Text)
 
             MsgBox(url)
         Catch ex As PopbillException
@@ -1282,7 +1282,7 @@ Public Class frmExample
 
 
     '=========================================================================
-    ' 팝빌에 전자명세서를 등록하지 않고 공급받는자에게 팩스전송합니다.
+    ' 팝빌에 전자명세서를 등록하지 않고 수신자에게 팩스전송합니다.
     ' - 팩스 전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
     ' - 팩스 발행 요청시 작성한 문서관리번호는 팩스전송 파일명으로 사용됩니다.
     ' - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인할 수 있습니다.
@@ -1320,75 +1320,75 @@ Public Class frmExample
 
 
         '=========================================================================
-        '                               공급자 정보
+        '                               발신자 정보
         '=========================================================================
 
-        '공급자 사업자번호, '-' 제외 10자리
+        '발신자 사업자번호, '-' 제외 10자리
         statement.senderCorpNum = txtCorpNum.Text
 
-        '공급자 종사업장 식별번호, 필요시 기재, 형식은 숫자 4자리
+        '발신자 종사업장 식별번호, 필요시 기재, 형식은 숫자 4자리
         statement.senderTaxRegID = ""
 
-        '공급자 상호
-        statement.senderCorpName = "공급자 상호"
+        '발신자 상호
+        statement.senderCorpName = "발신자 상호"
 
-        '공급자 대표자 성명
-        statement.senderCEOName = "공급자 대표자 성명"
+        '발신자 대표자 성명
+        statement.senderCEOName = "발신자 대표자 성명"
 
-        '공급자 주소
-        statement.senderAddr = "공급자 주소"
+        '발신자 주소
+        statement.senderAddr = "발신자 주소"
 
-        '공급자 종목
-        statement.senderBizClass = "공급자 종목"
+        '발신자 종목
+        statement.senderBizClass = "발신자 종목"
 
-        '공급자 업태
-        statement.senderBizType = "공급자 업태,업태2"
+        '발신자 업태
+        statement.senderBizType = "발신자 업태,업태2"
 
-        '공급자 담당자성명
-        statement.senderContactName = "공급자 담당자명"
+        '발신자 담당자성명
+        statement.senderContactName = "발신자 담당자명"
 
-        '공급자 이메일
+        '발신자 이메일
         statement.senderEmail = "test@test.com"
 
-        '공급자 연락처
+        '발신자 연락처
         statement.senderTEL = "070-7070-0707"
 
-        '공급자 휴대전화 번호
+        '발신자 휴대전화 번호
         statement.senderHP = "010-000-2222"
 
 
         '=========================================================================
-        '                        공급받는자 정보
+        '                        수신자 정보
         '=========================================================================
 
-        '공급받는자 사업자번호, '-' 제외 10자리
+        '수신자 사업자번호, '-' 제외 10자리
         statement.receiverCorpNum = "8888888888"
 
-        '공급받는자 상호
-        statement.receiverCorpName = "공급받는자 상호"
+        '수신자 상호
+        statement.receiverCorpName = "수신자 상호"
 
-        '공급받는자 대표자 성명
-        statement.receiverCEOName = "공급받는자 대표자 성명"
+        '수신자 대표자 성명
+        statement.receiverCEOName = "수신자 대표자 성명"
 
-        '공급받는자 주소
-        statement.receiverAddr = "공급받는자 주소"
+        '수신자 주소
+        statement.receiverAddr = "수신자 주소"
 
-        '공급받는자 종목
-        statement.receiverBizClass = "공급받는자 종목 "
+        '수신자 종목
+        statement.receiverBizClass = "수신자 종목 "
 
-        '공급받는자 업태
-        statement.receiverBizType = "공급받는자 업태"
+        '수신자 업태
+        statement.receiverBizType = "수신자 업태"
 
-        '공급받는자 담당자명
-        statement.receiverContactName = "공급받는자 담당자명"
+        '수신자 담당자명
+        statement.receiverContactName = "수신자 담당자명"
 
-        '공급받는자 담당자 휴대폰번호
+        '수신자 담당자 휴대폰번호
         statement.receiverHP = "010-1111-2222"
 
-        '공급받는자 담당자 연락처
+        '수신자 담당자 연락처
         statement.receiverTEL = "070-1234-1234"
 
-        '공급받는자 메일주소
+        '수신자 메일주소
         statement.receiverEmail = "test@receiver.com"
 
         '=========================================================================
@@ -1532,15 +1532,15 @@ Public Class frmExample
 
             For Each info As EmailConfig In emailConfigList
                 If info.emailType = "SMT_ISSUE" Then _
-                    tmp += "SMT_ISSUE (공급받는자에게 전자명세서가 발행 되었음을 알려주는 메일) | " + info.sendYN.ToString + vbCrLf
+                    tmp += "SMT_ISSUE (수신자에게 전자명세서가 발행 되었음을 알려주는 메일) | " + info.sendYN.ToString + vbCrLf
                 If info.emailType = "SMT_ACCEPT" Then _
-                    tmp += "SMT_ACCEPT (공급자에게 전자명세서가 승인 되었음을 알려주는 메일) | " + info.sendYN.ToString + vbCrLf
+                    tmp += "SMT_ACCEPT (발신자에게 전자명세서가 승인 되었음을 알려주는 메일) | " + info.sendYN.ToString + vbCrLf
                 If info.emailType = "SMT_DENY" Then _
-                    tmp += "SMT_DENY (공급자게에 전자명세서가 거부 되었음을 알려주는 메일) | " + info.sendYN.ToString + vbCrLf
+                    tmp += "SMT_DENY (발신자게에 전자명세서가 거부 되었음을 알려주는 메일) | " + info.sendYN.ToString + vbCrLf
                 If info.emailType = "SMT_CANCEL" Then _
-                    tmp += "SMT_CANCEL (공급받는자게에 전자명세서가 취소 되었음을 알려주는 메일) | " + info.sendYN.ToString + vbCrLf
+                    tmp += "SMT_CANCEL (수신자게에 전자명세서가 취소 되었음을 알려주는 메일) | " + info.sendYN.ToString + vbCrLf
                 If info.emailType = "SMT_CANCEL_ISSUE" Then _
-                    tmp += "SMT_CANCEL_ISSUE (공급받는자에게 전자명세서가 발행취소 되었음을 알려주는 메일) | " + info.sendYN.ToString + vbCrLf
+                    tmp += "SMT_CANCEL_ISSUE (수신자에게 전자명세서가 발행취소 되었음을 알려주는 메일) | " + info.sendYN.ToString + vbCrLf
             Next
 
             MsgBox(tmp)
@@ -1553,11 +1553,11 @@ Public Class frmExample
     '=========================================================================
     '전자명세서 메일전송 항목에 대한 전송여부를 수정합니다.
     '메일전송유형
-    'SMT_ISSUE : 공급받는자에게 전자명세서가 발행 되었음을 알려주는 메일입니다.
-    'SMT_ACCEPT : 공급자에게 전자명세서가 승인 되었음을 알려주는 메일입니다.
-    'SMT_DENY : 공급자게에 전자명세서가 거부 되었음을 알려주는 메일입니다.
-    'SMT_CANCEL : 공급받는자게에 전자명세서가 취소 되었음을 알려주는 메일입니다.
-    'SMT_CANCEL_ISSUE : 공급받는자에게 전자명세서가 발행취소 되었음을 알려주는 메일입니다.
+    'SMT_ISSUE : 수신자에게 전자명세서가 발행 되었음을 알려주는 메일입니다.
+    'SMT_ACCEPT : 발신자에게 전자명세서가 승인 되었음을 알려주는 메일입니다.
+    'SMT_DENY : 발신자게에 전자명세서가 거부 되었음을 알려주는 메일입니다.
+    'SMT_CANCEL : 수신자게에 전자명세서가 취소 되었음을 알려주는 메일입니다.
+    'SMT_CANCEL_ISSUE : 수신자에게 전자명세서가 발행취소 되었음을 알려주는 메일입니다.
     '=========================================================================
     Private Sub btnUpdateEmailConfig_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnUpdateEmailConfig.Click
