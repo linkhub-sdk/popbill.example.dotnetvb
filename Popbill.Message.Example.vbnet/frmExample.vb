@@ -3,14 +3,17 @@
 ' 팝빌 문자 API VB.Net SDK Example
 '
 ' - VB.Net 연동환경 설정방법 안내 : http://blog.linkhub.co.kr/4453/
-' - 업데이트 일자 :  2018-11-22
+' - 업데이트 일자 :  2019-01-11
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
 ' <테스트 연동개발 준비사항>
-' 1) 19, 22번 라인에 선언된 링크아이디(LinkID)와 비밀키(SecretKey)를
+' 1) 22, 25번 라인에 선언된 링크아이디(LinkID)와 비밀키(SecretKey)를
 '    링크허브 가입시 메일로 발급받은 인증정보를 참조하여 변경합니다.
 ' 2) 팝빌 개발용 사이트(test.popbill.com)에 연동회원으로 가입합니다.
+' 3) 발신번호 사전등록을 합니다. (등록방법은 사이트/API 두가지 방식이 있습니다.)
+'    - 1. 팝빌 사이트 로그인 > [문자/팩스] > [문자] > [발신번호 사전등록] 메뉴에서 등록
+'    - 2. getSenderNumberMgtURL API를 통해 반환된 URL을 이용하여 발신번호 등록
 '=========================================================================
 
 Public Class frmExample
@@ -42,55 +45,86 @@ Public Class frmExample
 
     End Function
 
+
     '=========================================================================
-    ' 예약문자전송을 취소합니다.
-    ' - 예약취소는 예약전송시간 10분전까지만 가능합니다.
+    ' 발신번호 관리 팝업 URL을 반환합니다.
+    ' - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
     '=========================================================================
-    Private Sub btnCancelReserve_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelReserve.Click
+    Private Sub btnGetSenderNumberMgtURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSenderNumberMgtURL.Click
         Try
-            Dim response As Response
+            Dim url As String = messageService.GetSenderNumberMgtURL(txtCorpNum.Text, txtUserId.Text)
 
-            response = messageService.CancelReserve(txtCorpNum.Text, txtReceiptNum.Text, txtUserId.Text)
+            MsgBox(url)
 
-            MsgBox(response.message)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
-
-
     '=========================================================================
-    ' 문자전송요청에 대한 전송결과를 확인합니다.
+    ' 팝빌에 등록된 문자 발신번호 목록을 조회합니다.
     '=========================================================================
-    Private Sub btnGetMessageResult_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMessageResult.Click
-        ListBox1.Items.Clear()
+    Private Sub btnGetSenderNumberList_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSenderNumberList.Click
         Try
-            Dim ResultList As List(Of MessageResult) = messageService.GetMessageResult(txtCorpNum.Text, txtReceiptNum.Text)
+            Dim senderList As List(Of SenderNumber) = messageService.GetSenderNumberList(txtCorpNum.Text)
 
-            Dim rowStr As String = "메시지 제목 | 메시지 내용 | 발신번호 | 발신자명 | 수신번호 | 수신자명 | 접수시간 | 발송시간 | 전송결과 수신시간 | "
-            rowStr += "예약일시 | 전송 상태코드 | 전송 결과코드 | 메시지 타입 | 전송처리 이동통신사명 | 접수번호 | 요청번호"
-
-            ListBox1.Items.Add(rowStr)
-
-            For Each Result As MessageResult In ResultList
-                rowStr = ""
-                rowStr += Result.subject + " | " + Result.content + " | " + Result.sendNum + " | " + Result.senderName + " | " + Result.receiveNum + " | " + Result.receiveName + " | "
-                rowStr += Result.receiptDT + " | " + Result.sendDT + " | " + Result.resultDT + " | " + Result.reserveDT + " | " + Result.state.ToString + " | " + Result.result.ToString + " | "
-                rowStr += Result.type + " | " + Result.tranNet + " | " + Result.receiptNum + " | " + Result.requestNum
-
-                ListBox1.Items.Add(rowStr)
+            Dim tmp As String = "number(발신번호) | representYN(대표번호여부) | state(인증상태)" + vbCrLf
+            For Each info As SenderNumber In senderList
+                tmp += info.number + " | " + CStr(info.representYN) + " | " + CStr(info.state) + vbCrLf
             Next
 
+            MsgBox(tmp)
+
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
     '=========================================================================
-    ' 다수의 수신자에게 다른 메시지 내용을 전송 합니다.
+    ' SMS(단문)를 전송합니다.
+    '  - 메시지 내용이 90Byte 초과시 메시지 내용은 자동으로 제거됩니다.
+    '=========================================================================
+    Private Sub btnSendSMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendSMS_one.Click
+
+        '발신번호
+        Dim sendNum As String = "07043042991"
+
+        '발신자명
+        Dim sendName As String = "발신자명"
+
+        '수신번호
+        Dim receiveNum As String = "010111222"
+
+        '수신자명
+        Dim receiveName As String = "수신자명칭"
+
+        '메시지 내용
+        Dim contents As String = "단문 문자메시지 내용, 각 메시지마다 개별설정 가능."
+
+        ' 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
+        ' 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+        Dim requestNum = ""
+
+        '광고문자 여부 (기본값 False)
+        Dim adsYN As Boolean = False
+
+        Try
+
+            Dim receiptNum As String = messageService.SendSMS(txtCorpNum.Text, sendNum, sendName, receiveNum, receiveName, _
+                                                              contents, getReserveDT(), txtUserId.Text, requestNum, adsYN)
+
+            MsgBox("접수번호 : " + receiptNum)
+            txtReceiptNum.Text = receiptNum
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' [대량전송] SMS(단문)를 전송합니다.
+    '  - 메시지 내용이 90Byte 초과시 메시지 내용은 자동으로 제거됩니다.
+    '  - 단건/대량 전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.1 SendSMS(단문전송)"을 참조하시기 바랍니다.
     '=========================================================================
     Private Sub btn_SendSMS_hund_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_SendSMS_hund.Click
 
@@ -139,7 +173,9 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 다수의 수신자에게 동일한 문자를 전송합니다.
+    ' [동보전송] SMS(단문)를 전송합니다.
+    '  - 메시지 내용이 90Byte 초과시 메시지 내용은 자동으로 제거됩니다.
+    '  - 단건/대량 전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.1 SendSMS(단문전송)"을 참조하시기 바랍니다.
     '=========================================================================
     Private Sub btnSendSMS_Same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendSMS_Same.Click
 
@@ -182,7 +218,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 장문 문자를 전송합니다.
+    ' LMS(장문)를 전송합니다.
+    '  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
     '=========================================================================
     Private Sub btnSendLMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendLMS_one.Click
 
@@ -224,7 +261,9 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 다수의 수신자에게 다른 메시지 내용을 전송 합니다.
+    ' [대량전송] LMS(장문)를 전송합니다.
+    '  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
+    '  - 단건/대량 전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.2 SendLMS(장문전송)"을 참조하시기 바랍니다.
     '=========================================================================
     Private Sub btnSendLMS_hund_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendLMS_hund.Click
 
@@ -275,7 +314,9 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 다수의 수신자에게 동일한 문자를 전송합니다.
+    ' [동보전송] LNS(장문)를 전송합니다.
+    '  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
+    '  - 단건/대량 전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.2 SendLMS(장문전송)"을 참조하시기 바랍니다.
     '=========================================================================
     Private Sub btnSendLMS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendLMS_same.Click
 
@@ -322,8 +363,9 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 장문/단문 문자를 전송합니다.
-    ' 메시지 내용의 길이(90byte)에 따라 SMS/LMS(단문/장문)를 자동인식하여 전송합니다
+    ' XMS(단문/장문 자동인식)를 전송합니다.
+    '  - 메시지 내용의 길이(90byte)에 따라 SMS/LMS(단문/장문)를 자동인식하여 전송합니다.
+    '  - 90byte 초과시 LMS(장문)으로 인식 합니다.
     '=========================================================================
     Private Sub btnSendXMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendXMS_one.Click
 
@@ -364,8 +406,10 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 단문/장문 문자를 전송합니다.
-    ' 메시지 내용의 길이(90byte)에 따라 SMS/LMS(단문/장문)를 자동인식하여 전송합니다
+    ' [대량전송] XMS(단문/장문 자동인식)를 전송합니다.
+    '  - 메시지 내용의 길이(90byte)에 따라 SMS/LMS(단문/장문)를 자동인식하여 전송합니다.
+    '  - 90byte 초과시 LMS(장문)으로 인식 합니다.
+    '  - 단건/대량 전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.4 SendXMS(단문/장문 자동인식 전송)"을 참조하시기 바랍니다.
     '=========================================================================
     Private Sub btnSendXMS_hund_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendXMS_hund.Click
 
@@ -415,8 +459,10 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 다수의 수신자에게 동일한 문자를 전송합니다.
-    ' 메시지 내용의 길이(90byte)에 따라 SMS/LMS(단문/장문)를 자동인식하여 전송합니다
+    ' [동보전송] XMS(단문/장문 자동인식)를 전송합니다.
+    '  - 메시지 내용의 길이(90byte)에 따라 SMS/LMS(단문/장문)를 자동인식하여 전송합니다.
+    '  - 90byte 초과시 LMS(장문)으로 인식 합니다.
+    '  - 단건/대량 전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.4 SendXMS(단문/장문 자동인식 전송)"을 참조하시기 바랍니다.
     '=========================================================================
     Private Sub btnSendXMS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendXMS_same.Click
 
@@ -462,84 +508,223 @@ Public Class frmExample
         End Try
     End Sub
 
+
     '=========================================================================
-    ' 해당 사업자의 파트너 연동회원 가입여부를 확인합니다.
-    ' - LinkID는 인증정보로 설정되어 있는 링크아이디 값입니다.
+    ' MMS(포토)를 전송합니다.
+    '  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
+    '  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1500px 이하 권장
     '=========================================================================
-    Private Sub btnCheckIsMember_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckIsMember.Click
+    Private Sub btnSendMMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendMMS_one.Click
+        If fileDialog.ShowDialog(Me) = DialogResult.OK Then
+
+            Dim strFileName As String = fileDialog.FileName
+
+            '발신번호
+            Dim sendNum As String = "07043042991"
+
+            '발신자명
+            Dim sendName As String = "발신자명"
+
+            '수신번호
+            Dim receiveNum As String = "010-111-222"
+
+            '수신자명
+            Dim receiveName As String = "수신자명"
+
+            '메시지 제목
+            Dim subject As String = "포토 메시지 제목"
+
+            '장문메시지 내용, 최대 20000byte
+            Dim contents As String = "포토 메시지 내용. 최대 2000byte"
+
+            ' 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
+            ' 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            Dim requestNum = ""
+
+            '광고문자 여부 (기본값 False)
+            Dim adsYN As Boolean = False
+
+            Try
+                Dim receiptNum As String = messageService.SendMMS(txtCorpNum.Text, sendNum, receiveNum, _
+                                                                  receiveName, subject, contents, strFileName, getReserveDT(), txtUserId.Text, requestNum, adsYN)
+
+                MsgBox("접수번호 : " + receiptNum)
+                txtReceiptNum.Text = receiptNum
+
+            Catch ex As PopbillException
+                MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+            End Try
+
+        End If
+    End Sub
+
+    '===========================================================================
+    ' [대랑전송] MMS(포토)를 전송합니다.
+    '  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
+    '  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1500px 이하 권장
+    '===========================================================================
+    Private Sub btnSendMMS_hundered_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendMMS_hundered.Click
+        If fileDialog.ShowDialog(Me) = DialogResult.OK Then
+
+            Dim strFileName As String = fileDialog.FileName
+
+            '발신번호
+            Dim sendNum As String = "07043042991"
+
+            '메시지 제목
+            Dim subject As String = "포토문자 전송 메시지제목"
+
+            '포토 문자 메시지 내용, 최대 2000byte
+            Dim contents As String = "포토 문자 메시지 내용, 최대 2000byte"
+
+            ' 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
+            ' 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            Dim requestNum = ""
+
+            '광고문자 여부 (기본값 False)
+            Dim adsYN As Boolean = False
+
+            '문자전송정보 배열, 최대 1000건
+            Dim messages As List(Of Message) = New List(Of Message)
+
+            For i As Integer = 0 To 99
+                Dim msg As Message = New Message
+
+                '수신번호
+                msg.receiveNum = "010-111-222"
+
+                '수신자명
+                msg.receiveName = "수신자명칭_" + CStr(i)
+
+                messages.Add(msg)
+            Next
+
+            Try
+                Dim receiptNum As String = messageService.SendMMS(txtCorpNum.Text, sendNum, subject, contents, _
+                                                                  messages, strFileName, getReserveDT(), txtUserId.Text, requestNum, adsYN)
+
+                MsgBox("접수번호 : " + receiptNum)
+                txtReceiptNum.Text = receiptNum
+
+            Catch ex As PopbillException
+                MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+            End Try
+
+        End If
+    End Sub
+
+    '=========================================================================
+    ' [동보전송] MMS(포토)를 전송합니다.
+    '  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
+    '  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1500px 이하 권장
+    '=========================================================================
+    Private Sub btnSendMMS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendMMS_same.Click
+        If fileDialog.ShowDialog(Me) = DialogResult.OK Then
+
+            Dim strFileName As String = fileDialog.FileName
+
+            '발신번호
+            Dim sendNum As String = "07043042991"
+
+            '메시지 제목
+            Dim subject As String = "포토문자 전송 메시지제목"
+
+            '포토 문자 메시지 내용, 최대 2000byte
+            Dim contents As String = "포토 문자 메시지 내용, 최대 2000byte"
+
+            ' 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
+            ' 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            Dim requestNum = ""
+
+            '광고문자 여부 (기본값 False)
+            Dim adsYN As Boolean = False
+
+            '문자전송정보 배열, 최대 1000건
+            Dim messages As List(Of Message) = New List(Of Message)
+
+            For i As Integer = 0 To 99
+                Dim msg As Message = New Message
+
+                '수신번호
+                msg.receiveNum = "010-111-222"
+
+                '수신자명
+                msg.receiveName = "수신자명칭_" + CStr(i)
+
+                messages.Add(msg)
+            Next
+
+            Try
+                Dim receiptNum As String = messageService.SendMMS(txtCorpNum.Text, sendNum, subject, contents, _
+                                                                  messages, strFileName, getReserveDT(), txtUserId.Text, requestNum, adsYN)
+
+                MsgBox("접수번호 : " + receiptNum)
+                txtReceiptNum.Text = receiptNum
+
+            Catch ex As PopbillException
+                MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+            End Try
+
+        End If
+
+    End Sub
+
+    '=========================================================================
+    ' 예약문자전송을 취소합니다.
+    ' - 예약취소는 예약전송시간 10분전까지만 가능합니다.
+    '=========================================================================
+    Private Sub btnCancelReserve_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelReserve.Click
         Try
-            Dim response As Response = messageService.CheckIsMember(txtCorpNum.Text, LinkID)
+            Dim response As Response
 
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+            response = messageService.CancelReserve(txtCorpNum.Text, txtReceiptNum.Text, txtUserId.Text)
 
+            MsgBox(response.message)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 전송요청번호를 할당한 예약문자전송을 취소합니다.
+    ' - 예약취소는 예약전송시간 10분전까지만 가능합니다.
+    '=========================================================================
+    Private Sub btnCancelReserveRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelReserveRN.Click
+        Try
+            Dim response As Response
+
+            response = messageService.CancelReserveRN(txtCorpNum.Text, txtRequestNum.Text, txtUserId.Text)
+
+            MsgBox(response.message)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
     '=========================================================================
-    ' 팝빌 회원아이디 중복여부를 확인합니다.
+    ' 문자전송요청시 발급받은 접수번호(receiptNum)로 전송상태를 확인합니다
+    ' - 응답항목에 대한 자세한 사항은 "[문자 API 연동매뉴얼] >  3.3.1. GetMessages (전송내역 확인)을 참조하시기 바랍니다.
     '=========================================================================
-    Private Sub btnCheckID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckID.Click
+    Private Sub btnGetMessageResult_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMessageResult.Click
+        ListBox1.Items.Clear()
         Try
-            Dim response As Response = messageService.CheckID(txtCorpNum.Text)
+            Dim ResultList As List(Of MessageResult) = messageService.GetMessageResult(txtCorpNum.Text, txtReceiptNum.Text)
 
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+            Dim rowStr As String = "subject(메시지 제목) | content(메시지 내용) | sendNum(발신번호) | senderName(발신자명) | receiveNum(수신번호) | receiveName(수신자명) | "
+            rowStr += "receiptDT(접수시간) | sendDT(발송시간) | resultDT(전송결과 수신시간) | reserveDT(예약일시) | state(전송 상태코드) | result(전송 결과코드) | type(메시지 타입) | "
+            rowStr += "tranNet(전송처리 이동통신사명) | receiptNum(접수번호) | requestNum(요청번호)"
 
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
+            ListBox1.Items.Add(rowStr)
 
-    '=========================================================================
-    ' 파트너의 연동회원으로 회원가입을 요청합니다.
-    '=========================================================================
-    Private Sub btnJoinMember_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnJoinMember.Click
-        Dim joinInfo As JoinForm = New JoinForm
+            For Each Result As MessageResult In ResultList
+                rowStr = ""
+                rowStr += Result.subject + " | " + Result.content + " | " + Result.sendNum + " | " + Result.senderName + " | " + Result.receiveNum + " | " + Result.receiveName + " | "
+                rowStr += Result.receiptDT + " | " + Result.sendDT + " | " + Result.resultDT + " | " + Result.reserveDT + " | " + Result.state.ToString + " | " + Result.result.ToString + " | "
+                rowStr += Result.type + " | " + Result.tranNet + " | " + Result.receiptNum + " | " + Result.requestNum
 
-        '링크아이디
-        joinInfo.LinkID = LinkID
-
-        '사업자번호, '-'제외 10자리
-        joinInfo.CorpNum = "0000000105"
-
-        '대표자성명
-        joinInfo.CEOName = "대표자성명"
-
-        '상호
-        joinInfo.CorpName = "상호"
-
-        '주소
-        joinInfo.Addr = "주소"
-
-        '업태
-        joinInfo.BizType = "업태"
-
-        '종목
-        joinInfo.BizClass = "종목"
-
-        '아이디
-        joinInfo.ID = "userid1120"
-
-        '비밀번호
-        joinInfo.PWD = "pwd_must_be_long_enough"
-
-        '담당자명
-        joinInfo.ContactName = "담당자명"
-
-        '담당자 연락처
-        joinInfo.ContactTEL = "02-999-9999"
-
-        '담당자 휴대폰번호
-        joinInfo.ContactHP = "010-1234-5678"
-
-        '담당자 메일주소
-        joinInfo.ContactEmail = "test@test.com"
-
-        Try
-            Dim response As Response = messageService.JoinMember(joinInfo)
-
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+                ListBox1.Items.Add(rowStr)
+            Next
 
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
@@ -548,22 +733,238 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 문자-단문 API 서비스 과금정보를 확인합니다.
+    ' 문자전송요청시 할당한 전송요청번호(requestNum)로 전송상태를 확인합니다
+    ' - 응답항목에 대한 자세한 사항은 "[문자 API 연동매뉴얼] > 3.3.2. GetMessagesRN (전송내역 확인 - 요청번호 할당)을 참조하시기 바랍니다.
     '=========================================================================
-    Private Sub btnGetChargeInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo_SMS.Click
-
-        '문자 유형, SMS-단문, LMS-장문, MMS-포토
-        Dim msgType As MessageType = MessageType.SMS
-
+    Private Sub btnGetMessageResultRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMessageResultRN.Click
+        ListBox1.Items.Clear()
         Try
-            Dim ChargeInfo As ChargeInfo = messageService.GetChargeInfo(txtCorpNum.Text, msgType)
+            Dim ResultList As List(Of MessageResult) = messageService.GetMessageResultRN(txtCorpNum.Text, txtRequestNum.Text)
 
-            Dim tmp As String = "unitCost (발행단가) : " + ChargeInfo.unitCost + vbCrLf
-            tmp += "chargeMethod (과금유형) : " + ChargeInfo.chargeMethod + vbCrLf
-            tmp += "rateSystem (과금제도) : " + ChargeInfo.rateSystem + vbCrLf
+            Dim rowStr As String = "subject(메시지 제목) | content(메시지 내용) | sendNum(발신번호) | senderName(발신자명) | receiveNum(수신번호) | receiveName(수신자명) | "
+            rowStr += "receiptDT(접수시간) | sendDT(발송시간) | resultDT(전송결과 수신시간) | reserveDT(예약일시) | state(전송 상태코드) | result(전송 결과코드) | type(메시지 타입) | "
+            rowStr += "tranNet(전송처리 이동통신사명) | receiptNum(접수번호) | requestNum(요청번호)"
+
+            ListBox1.Items.Add(rowStr)
+
+            For Each Result As MessageResult In ResultList
+                rowStr = ""
+                rowStr += Result.subject + " | " + Result.content + " | " + Result.sendNum + " | " + Result.senderName + " | " + Result.receiveNum + " | " + Result.receiveName + " | "
+                rowStr += Result.receiptDT + " | " + Result.sendDT + " | " + Result.resultDT + " | " + Result.reserveDT + " | " + Result.state.ToString + " | " + Result.result.ToString + " | "
+                rowStr += Result.type + " | " + Result.tranNet + " | " + Result.receiptNum + " | " + Result.requestNum
+
+                ListBox1.Items.Add(rowStr)
+            Next
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+
+    '=========================================================================
+    ' 문자 전송내역 요약정보를 확인합니다. (최대 1000건)
+    '=========================================================================
+    Private Sub btnGetStates_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetStates.Click
+        Dim ReciptNumList As List(Of String) = New List(Of String)
+
+        '문자전송 접수번호
+        ReciptNumList.Add("018090410000000395")
+        ReciptNumList.Add("018090410000000416")
+
+        ListBox1.Items.Clear()
+        Try
+            Dim resultList As List(Of MessageState) = messageService.GetStates(txtCorpNum.Text, ReciptNumList, txtUserId.Text)
+
+
+            Dim rowStr As String = "rNum(접수번호) | sn(일련번호) | stat(전송 상태코드) | rlt(전송 결과코드) | sDT(전송일시) | rDT(결과코드 수신일시) | net(전송 이동통신사명) | srt(구 전송결과 코드)"
+
+            ListBox1.Items.Add(rowStr)
+
+            For Each Result As MessageState In resultList
+                rowStr = ""
+                rowStr += Result.rNum + " | " + Result.sn + " | " + Result.stat + " | " + Result.rlt + " | " + Result.sDT + " | " + Result.rDT + " | " + Result.net + " | " + Result.srt
+
+                ListBox1.Items.Add(rowStr)
+            Next
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 검색조건을 사용하여 문자전송 내역을 조회합니다.
+    ' - 최대 검색기간 : 6개월 이내
+    '=========================================================================
+    Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
+        Dim State(4) As String
+        Dim item(3) As String
+
+        '최대 검색기간 : 6개월 이내
+        '[필수] 시작일자, yyyyMMdd
+        Dim SDate As String = "20181201"
+
+        '[필수] 종료일자, yyyyMMdd
+        Dim EDate As String = "20190111"
+
+        '전송상태값 배열, 1-대기, 2-성공, 3-실패, 4-취소
+        State(0) = "1"
+        State(1) = "2"
+        State(2) = "3"
+        State(3) = "4"
+
+        '검색대상 배열, SMS(단문),LMS(장문),MMS(포토)
+        item(0) = "SMS"
+        item(1) = "LMS"
+        item(2) = "MMS"
+
+        '예약문자 검색여부, True(예약문자만 조회), False(전체조회)
+        Dim ReserveYN As Boolean = False
+
+        '개인조회여부, True(개인조회), False(전체조회)
+        Dim SenderYN As Boolean = False
+
+        '페이지 번호
+        Dim Page As Integer = 1
+
+        '페이지 목록개수, 최대 1000건
+        Dim PerPage As Integer = 10
+
+        '정렬방향, D-내림차순(기본값), A-오름차순
+        Dim Order As String = "D"
+
+        '조회 검색어, 문자 전송시 기재한 수신자명 또는 발신자명 입력
+        Dim QString As String = ""
+
+        ListBox1.Items.Clear()
+        Try
+            Dim msgSearchList As MSGSearchResult = messageService.Search(txtCorpNum.Text, SDate, EDate, State, _
+                                                                       item, ReserveYN, SenderYN, Order, Page, PerPage, QString)
+
+            Dim tmp As String
+
+            tmp = "code (응답코드) : " + CStr(msgSearchList.code) + vbCrLf
+            tmp = tmp + "total (총 검색결과 건수) : " + CStr(msgSearchList.total) + vbCrLf
+            tmp = tmp + "perPage (페이지당 검색개수) : " + CStr(msgSearchList.perPage) + vbCrLf
+            tmp = tmp + "pageNum (페이지 번호) : " + CStr(msgSearchList.pageNum) + vbCrLf
+            tmp = tmp + "pageCount (페이지 개수) : " + CStr(msgSearchList.pageCount) + vbCrLf
+            tmp = tmp + "message (응답메시지) : " + msgSearchList.message + vbCrLf + vbCrLf
+
+            Dim rowStr As String = "subject(메시지 제목) | content(메시지 내용) | sendNum(발신번호) | senderName(발신자명) | receiveNum(수신번호) | receiveName(수신자명) | "
+            rowStr += "receiptDT(접수시간) | sendDT(발송시간) | resultDT(전송결과 수신시간) | reserveDT(예약일시) | state(전송 상태코드) | result(전송 결과코드) | type(메시지 타입) | "
+            rowStr += "tranNet(전송처리 이동통신사명) | receiptNum(접수번호) | requestNum(요청번호)"
+
+            ListBox1.Items.Add(rowStr)
+
+            For Each Result As MessageResult In msgSearchList.list
+                rowStr = ""
+                rowStr += Result.subject + " | " + Result.content + " | " + Result.sendNum + " | " + Result.senderName + " | " + Result.receiveNum + " | " + Result.receiveName + " | "
+                rowStr += Result.receiptDT + " | " + Result.sendDT + " | " + Result.resultDT + " | " + Result.reserveDT + " | " + Result.state.ToString + " | " + Result.result.ToString + " | "
+                rowStr += Result.type + " | " + Result.tranNet + " | " + Result.receiptNum + " | " + Result.requestNum
+
+                ListBox1.Items.Add(rowStr)
+            Next
 
             MsgBox(tmp)
 
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 문자메시지 전송내역 팝업 URL을 반환합니다.
+    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    '=========================================================================
+    Private Sub btnGetSentListURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSentListURL.Click
+        Try
+            Dim url As String = messageService.GetSentListURL(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox(url)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 080 서비스 수신거부 목록을 확인합니다.
+    '=========================================================================
+    Private Sub btnGetAutoDenyList_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetAutoDenyList.Click
+        Try
+            Dim numberList As List(Of AutoDeny) = messageService.GetAutoDenyList(txtCorpNum.Text)
+
+            Dim tmp As String = "number(수신거부번호) | regDT(등록일시) " + vbCrLf
+            For Each info As AutoDeny In numberList
+                tmp += info.number + " | " + info.regDT + vbCrLf
+            Next
+
+            MsgBox(tmp)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+
+    '=========================================================================
+    ' 연동회원의 잔여포인트를 확인합니다.
+    ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트(GetPartnerBalance API) 를 통해 확인하시기 바랍니다.
+    '=========================================================================
+    Private Sub btnGetBalance_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetBalance.Click
+
+        Try
+            Dim remainPoint As Double = messageService.GetBalance(txtCorpNum.Text)
+
+            MsgBox("연동회원 잔여포인트 : " + remainPoint.ToString())
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+
+    '=========================================================================
+    ' 연동회원 포인트 충전 URL을 반환합니다.
+    ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    '=========================================================================
+    Private Sub btnGetChargeURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeURL.Click
+        Try
+            Dim url As String = messageService.GetChargeURL(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox(url)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+
+    '=========================================================================
+    ' 파트너의 잔여포인트를 확인합니다.
+    ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
+    '=========================================================================
+    Private Sub btnGetPartnerBalance_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerBalance.Click
+        Try
+            Dim remainPoint As Double = messageService.GetPartnerBalance(txtCorpNum.Text)
+
+            MsgBox("파트너 잔여포인트 : " + remainPoint.ToString())
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 파트너 포인트 충전 팝업 URL을 반환합니다.
+    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    '=========================================================================
+    Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerURL.Click
+        Try
+            Dim url As String = messageService.GetPartnerURL(txtCorpNum.Text, "CHRG")
+
+            MsgBox(url)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -626,8 +1027,32 @@ Public Class frmExample
         End Try
     End Sub
 
+
     '=========================================================================
-    ' 연동회원의 문자-장문 API 서비스 과금정보를 확인합니다.
+    ' 연동회원의 문자 - 단문 API 서비스 과금정보를 확인합니다.
+    '=========================================================================
+    Private Sub btnGetChargeInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo_SMS.Click
+
+        '문자 유형, SMS-단문, LMS-장문, MMS-포토
+        Dim msgType As MessageType = MessageType.SMS
+
+        Try
+            Dim ChargeInfo As ChargeInfo = messageService.GetChargeInfo(txtCorpNum.Text, msgType)
+
+            Dim tmp As String = "unitCost (발행단가) : " + ChargeInfo.unitCost + vbCrLf
+            tmp += "chargeMethod (과금유형) : " + ChargeInfo.chargeMethod + vbCrLf
+            tmp += "rateSystem (과금제도) : " + ChargeInfo.rateSystem + vbCrLf
+
+            MsgBox(tmp)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+
+    '=========================================================================
+    ' 연동회원의 문자 - 장문 API 서비스 과금정보를 확인합니다.
     '=========================================================================
     Private Sub btnGetChargeInfo_LMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo_LMS.Click
 
@@ -650,7 +1075,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 문자-포토 API 서비스 과금정보를 확인합니다.
+    ' 연동회원의 문자 - 포토 API 서비스 과금정보를 확인합니다.
     '=========================================================================
     Private Sub btnGetChargeInfo_MMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo_MMS.Click
 
@@ -672,16 +1097,87 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 잔여포인트를 확인합니다.
-    ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트(GetPartnerBalance API)
-    '   를 통해 확인하시기 바랍니다.
+    ' 해당 사업자의 파트너 연동회원 가입여부를 확인합니다.
+    ' - LinkID는 인증정보로 설정되어 있는 링크아이디 값입니다.
     '=========================================================================
-    Private Sub btnGetBalance_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetBalance.Click
+    Private Sub btnCheckIsMember_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckIsMember.Click
+        Try
+            Dim response As Response = messageService.CheckIsMember(txtCorpNum.Text, LinkID)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 팝빌 회원아이디 중복여부를 확인합니다.
+    '=========================================================================
+    Private Sub btnCheckID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckID.Click
+        Try
+            Dim response As Response = messageService.CheckID(txtCorpNum.Text)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 파트너의 연동회원으로 회원가입을 요청합니다.
+    '=========================================================================
+    Private Sub btnJoinMember_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnJoinMember.Click
+        Dim joinInfo As JoinForm = New JoinForm
+
+
+        '아이디, 6자이상 50자 미만
+        joinInfo.ID = "userid"
+
+        '비밀번호, 6자이상 20자 미만
+        joinInfo.PWD = "pwd_must_be_long_enough"
+
+        '링크아이디
+        joinInfo.LinkID = LinkID
+
+        '사업자번호 "-" 제외
+        joinInfo.CorpNum = "1231212312"
+
+        '대표자명 (최대 100자)
+        joinInfo.CEOName = "대표자성명"
+
+        '상호 (최대 200자)
+        joinInfo.CorpName = "상호"
+
+        '사업장 주소 (최대 300자)
+        joinInfo.Addr = "주소"
+
+        '업태 (최대 100자)
+        joinInfo.BizType = "업태"
+
+        '종목 (최대 100자)
+        joinInfo.BizClass = "종목"
+
+        '담당자 성명 (최대 100자)
+        joinInfo.ContactName = "담당자명"
+
+        '담당자 이메일 (최대 20자)
+        joinInfo.ContactEmail = "test@test.com"
+
+        '담당자 연락처 (최대 20자)
+        joinInfo.ContactTEL = "070-4304-2991"
+
+        '담당자 휴대폰번호 (최대 20자)
+        joinInfo.ContactHP = "010-111-222"
+
+        '담당자 팩스번호 (최대 20자)
+        joinInfo.ContactFAX = "02-6442-9700"
 
         Try
-            Dim remainPoint As Double = messageService.GetBalance(txtCorpNum.Text)
+            Dim response As Response = messageService.JoinMember(joinInfo)
 
-            MsgBox("연동회원 잔여포인트 : " + remainPoint.ToString())
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
@@ -689,30 +1185,13 @@ Public Class frmExample
         End Try
     End Sub
 
-
-
     '=========================================================================
-    ' 파트너의 잔여포인트를 확인합니다.
-    ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를
-    '   이용하시기 바랍니다.
-    '=========================================================================
-    Private Sub btnGetPartnerBalance_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerBalance.Click
-        Try
-            Dim remainPoint As Double = messageService.GetPartnerBalance(txtCorpNum.Text)
-
-            MsgBox("파트너 잔여포인트 : " + remainPoint.ToString())
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 파트너 포인트 충전 팝업 URL을 반환합니다.
+    ' 팝빌(www.popbill.com)에 로그인된 팝빌 URL을 반환합니다.
     ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
     '=========================================================================
-    Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerURL.Click
+    Private Sub btnGetAccessURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetAccessURL.Click
         Try
-            Dim url As String = messageService.GetPartnerURL(txtCorpNum.Text, "CHRG")
+            Dim url As String = messageService.GetAccessURL(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox(url)
         Catch ex As PopbillException
@@ -720,35 +1199,40 @@ Public Class frmExample
         End Try
     End Sub
 
-
-
     '=========================================================================
     ' 연동회원의 담당자를 신규로 등록합니다.
     '=========================================================================
     Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistContact.Click
+
         '담당자 정보객체
         Dim joinData As New Contact
 
-        '아이디
+        '아이디 (6자이상 50자미만)
         joinData.id = "testkorea1120"
 
-        '비밀번호
+        '비밀번호 (6자이상 20자미만)
         joinData.pwd = "password"
 
-        '담당자명
+        '담당자 성명 (최대 100자)
         joinData.personName = "담당자명"
 
-        '연락처
+        '담당자 연락처 (최대 20자)
         joinData.tel = "070-1111-2222"
 
-        '휴대폰번호
+        '담당자 휴대폰 (최대 20자)
         joinData.hp = "010-1234-1234"
 
-        '이메일
+        '담당자 팩스 (최대 20자)
+        joinData.fax = "070-1234-1234"
+
+        '담당자 이메일 (최대 100자)
         joinData.email = "test@test.com"
 
         '회사조회 권한여부, True-회사조회, False-개인조회
         joinData.searchAllAllowYN = False
+
+        '관리자 여부, True-관리자, False-사용자
+        joinData.mgrYN = False
 
         Try
             Dim response As Response = messageService.RegistContact(txtCorpNum.Text, joinData, txtUserId.Text)
@@ -768,7 +1252,8 @@ Public Class frmExample
         Try
             Dim contactList As List(Of Contact) = messageService.ListContact(txtCorpNum.Text, txtUserId.Text)
 
-            Dim tmp As String = "아이디 | 담당자명 | 메일주소 | 휴대폰번호 | 팩스 | 연락처 | 등록일시 | 회사조회 여부 | 관리자 여부 | 상태" + vbCrLf
+            Dim tmp As String = "id(아이디) | personName(담당자명) | email(메일주소) | hp(휴대폰번호) | fax(팩스) | tel(연락처) |"
+            tmp += "regDT(등록일시) | searchAllAllowYN(회사조회 여부) | mgrYN(관리자 여부) | state(상태)" + vbCrLf
 
             For Each info As Contact In contactList
                 tmp += info.id + " | " + info.personName + " | " + info.email + " | " + info.hp + " | " + info.fax + " | " + info.tel + " | "
@@ -789,24 +1274,29 @@ Public Class frmExample
         '담당자 정보객체
         Dim joinData As New Contact
 
-
-        '아이디
+        '아이디 (6자이상 50자미만)
         joinData.id = "testkorea1120"
 
-        '담당자명
+        '담당자 성명 (최대 100자)
         joinData.personName = "담당자명"
 
-        '연락처
+        '담당자 연락처 (최대 20자)
         joinData.tel = "070-1111-2222"
 
-        '휴대폰번호
+        '담당자 휴대폰 (최대 20자)
         joinData.hp = "010-1234-1234"
 
-        '이메일
+        '담당자 팩스 (최대 20자)
+        joinData.fax = "070-1234-1234"
+
+        '담당자 이메일 (최대 100자)
         joinData.email = "test@test.com"
 
         '회사조회 권한여부, True-회사조회, False-개인조회
         joinData.searchAllAllowYN = False
+
+        '관리자 여부, True-관리자, False-사용자
+        joinData.mgrYN = False
 
         Try
             Dim response As Response = messageService.UpdateContact(txtCorpNum.Text, joinData, txtUserId.Text)
@@ -846,19 +1336,19 @@ Public Class frmExample
     Private Sub btnUpdateCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateCorpInfo.Click
         Dim corpInfo As New CorpInfo
 
-        '대표자명
+        '대표자명(최대 100자)
         corpInfo.ceoname = "대표자명_수정"
 
-        '상호
+        '상호(최대 200자)
         corpInfo.corpName = "상호_수정"
 
-        '주소
+        '주소(최대 300자)
         corpInfo.addr = "주소_수정"
 
-        '업태
+        '업태(최대 100자)
         corpInfo.bizType = "업태_수정"
 
-        '종목
+        '종목(최대 100자)
         corpInfo.bizClass = "종목_수정"
 
         Try
@@ -873,452 +1363,4 @@ Public Class frmExample
         End Try
     End Sub
 
-    '=========================================================================
-    ' 1건의 단문 문자를 전송합니다.
-    '=========================================================================
-    Private Sub btnSendSMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendSMS_one.Click
-
-        '발신번호
-        Dim sendNum As String = "07043042991"
-
-        '발신자명
-        Dim sendName As String = "발신자명"
-
-        '수신번호
-        Dim receiveNum As String = "010111222"
-
-        '수신자명
-        Dim receiveName As String = "수신자명칭"
-
-        '메시지 내용
-        Dim contents As String = "단문 문자메시지 내용, 각 메시지마다 개별설정 가능."
-
-        ' 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-        ' 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
-        Dim requestNum = ""
-
-        '광고문자 여부 (기본값 False)
-        Dim adsYN As Boolean = False
-
-        Try
-
-            Dim receiptNum As String = messageService.SendSMS(txtCorpNum.Text, sendNum, sendName, receiveNum, receiveName, _
-                     contents, getReserveDT(), txtUserId.Text, requestNum, adsYN)
-
-            MsgBox("접수번호 : " + receiptNum)
-            txtReceiptNum.Text = receiptNum
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 1건의 포토문자를 전송합니다.
-    ' 이미지 파일의 크기는 최대 300Kbyte(JPEG), 가로/세로 1500px 이하 권장
-    '=========================================================================
-    Private Sub btnSendMMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendMMS_one.Click
-        If fileDialog.ShowDialog(Me) = DialogResult.OK Then
-
-            Dim strFileName As String = fileDialog.FileName
-
-            '발신번호
-            Dim sendNum As String = "07043042991"
-
-            '발신자명
-            Dim sendName As String = "발신자명"
-
-            '수신번호
-            Dim receiveNum As String = "010-111-222"
-
-            '수신자명
-            Dim receiveName As String = "수신자명"
-
-            '메시지 제목
-            Dim subject As String = "포토 메시지 제목"
-
-            '장문메시지 내용, 최대 20000byte
-            Dim contents As String = "포토 메시지 내용. 최대 2000byte"
-
-            ' 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            ' 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
-            Dim requestNum = ""
-
-            '광고문자 여부 (기본값 False)
-            Dim adsYN As Boolean = False
-
-            Try
-                Dim receiptNum As String = messageService.SendMMS(txtCorpNum.Text, sendNum, receiveNum, _
-                                                                  receiveName, subject, contents, strFileName, getReserveDT(), txtUserId.Text, requestNum, adsYN)
-
-                MsgBox("접수번호 : " + receiptNum)
-                txtReceiptNum.Text = receiptNum
-
-            Catch ex As PopbillException
-                MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-            End Try
-
-        End If
-    End Sub
-
-    '===========================================================================
-    '다수의 수신자에게 다른 메시지 내용을 전송 합니다.
-    ' 이미지 파일의 크기는 최대 300Kbyte(JPEG), 가로/세로 1500px 이하 권장
-    '===========================================================================
-    Private Sub btnSendMMS_hundered_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendMMS_hundered.Click
-        If fileDialog.ShowDialog(Me) = DialogResult.OK Then
-
-            Dim strFileName As String = fileDialog.FileName
-
-            '발신번호
-            Dim sendNum As String = "07043042991"
-
-            '메시지 제목
-            Dim subject As String = "포토문자 전송 메시지제목"
-
-            '포토 문자 메시지 내용, 최대 2000byte
-            Dim contents As String = "포토 문자 메시지 내용, 최대 2000byte"
-
-            ' 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            ' 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
-            Dim requestNum = ""
-
-            '광고문자 여부 (기본값 False)
-            Dim adsYN As Boolean = False
-
-            '문자전송정보 배열, 최대 1000건
-            Dim messages As List(Of Message) = New List(Of Message)
-
-            For i As Integer = 0 To 99
-                Dim msg As Message = New Message
-
-                '수신번호
-                msg.receiveNum = "010-111-222"
-
-                '수신자명
-                msg.receiveName = "수신자명칭_" + CStr(i)
-
-                messages.Add(msg)
-            Next
-
-            Try
-                Dim receiptNum As String = messageService.SendMMS(txtCorpNum.Text, sendNum, subject, contents, _
-                                                                  messages, strFileName, getReserveDT(), txtUserId.Text, requestNum, adsYN)
-
-                MsgBox("접수번호 : " + receiptNum)
-                txtReceiptNum.Text = receiptNum
-
-            Catch ex As PopbillException
-                MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-            End Try
-
-        End If
-    End Sub
-
-    '=========================================================================
-    ' 다수의 수신자에게 동일한 문자를 전송합니다.
-    ' 이미지 파일의 크기는 최대 300Kbyte(JPEG), 가로/세로 1500px 이하 권장
-    '=========================================================================
-    Private Sub btnSendMMS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendMMS_same.Click
-        If fileDialog.ShowDialog(Me) = DialogResult.OK Then
-
-            Dim strFileName As String = fileDialog.FileName
-
-            '발신번호
-            Dim sendNum As String = "07043042991"
-
-            '메시지 제목
-            Dim subject As String = "포토문자 전송 메시지제목"
-
-            '포토 문자 메시지 내용, 최대 2000byte
-            Dim contents As String = "포토 문자 메시지 내용, 최대 2000byte"
-
-            ' 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            ' 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
-            Dim requestNum = ""
-
-            '광고문자 여부 (기본값 False)
-            Dim adsYN As Boolean = False
-
-            '문자전송정보 배열, 최대 1000건
-            Dim messages As List(Of Message) = New List(Of Message)
-
-            For i As Integer = 0 To 99
-                Dim msg As Message = New Message
-
-                '수신번호
-                msg.receiveNum = "010-111-222"
-
-                '수신자명
-                msg.receiveName = "수신자명칭_" + CStr(i)
-
-                messages.Add(msg)
-            Next
-
-            Try
-                Dim receiptNum As String = messageService.SendMMS(txtCorpNum.Text, sendNum, subject, contents, _
-                                                                  messages, strFileName, getReserveDT(), txtUserId.Text, requestNum, adsYN)
-
-                MsgBox("접수번호 : " + receiptNum)
-                txtReceiptNum.Text = receiptNum
-
-            Catch ex As PopbillException
-                MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-            End Try
-
-        End If
-
-    End Sub
-
-    '=========================================================================
-    ' 문자 발신번호 목록을 조회합니다.
-    '=========================================================================
-    Private Sub btnGetSenderNumberList_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSenderNumberList.Click
-        Try
-            Dim senderList As List(Of SenderNumber) = messageService.GetSenderNumberList(txtCorpNum.Text)
-
-            Dim tmp As String = "발신번호 | 대표번호여부 | 인증상태" + vbCrLf
-            For Each info As SenderNumber In senderList
-                tmp += info.number + " | " + CStr(info.representYN) + " | " + CStr(info.state)
-            Next
-
-            MsgBox(tmp)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-
-
-    '=========================================================================
-    ' 검색조건을 사용하여 문자전송 내역을 조회합니다.
-    '=========================================================================
-    Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
-        Dim State(4) As String
-        Dim item(3) As String
-
-        '최대 검색기간 : 6개월 이내
-        '[필수] 시작일자, yyyyMMdd
-        Dim SDate As String = "20180501"
-
-        '[필수] 종료일자, yyyyMMdd
-        Dim EDate As String = "20180631"
-
-        '전송상태값 배열, 1-대기, 2-성공, 3-실패, 4-취소
-        State(0) = "1"
-        State(1) = "2"
-        State(2) = "3"
-        State(3) = "4"
-
-        '검색대상 배열, SMS(단문),LMS(장문),MMS(포토)
-        item(0) = "SMS"
-        item(1) = "LMS"
-        item(2) = "MMS"
-
-        '예약문자 검색여부, True(예약문자만 조회), False(전체조회)
-        Dim ReserveYN As Boolean = False
-
-        '개인조회여부, True(개인조회), False(전체조회)
-        Dim SenderYN As Boolean = False
-
-        '페이지 번호
-        Dim Page As Integer = 1
-
-        '페이지 목록개수, 최대 1000건
-        Dim PerPage As Integer = 10
-
-        '정렬방향, D-내림차순(기본값), A-오름차순
-        Dim Order As String = "D"
-
-        '조회 검색어, 문자 전송시 기재한 수신자명 또는 발신자명 입력
-        Dim QString As String = ""
-
-        ListBox1.Items.Clear()
-        Try
-            Dim msgSearchList As MSGSearchResult = messageService.Search(txtCorpNum.Text, SDate, EDate, State, _
-                                                                       item, ReserveYN, SenderYN, Order, Page, PerPage, QString)
-
-            Dim tmp As String
-
-            tmp = "code (응답코드) : " + CStr(msgSearchList.code) + vbCrLf
-            tmp = tmp + "total (총 검색결과 건수) : " + CStr(msgSearchList.total) + vbCrLf
-            tmp = tmp + "perPage (페이지당 검색개수) : " + CStr(msgSearchList.perPage) + vbCrLf
-            tmp = tmp + "pageNum (페이지 번호) : " + CStr(msgSearchList.pageNum) + vbCrLf
-            tmp = tmp + "pageCount (페이지 개수) : " + CStr(msgSearchList.pageCount) + vbCrLf
-            tmp = tmp + "message (응답메시지) : " + msgSearchList.message + vbCrLf + vbCrLf
-
-            Dim rowStr As String = "메시지 제목 | 메시지 내용 | 발신번호 | 발신자명 | 수신번호 | 수신자명 | 접수시간 | 발송시간 | 전송결과 수신시간 | "
-            rowStr += "예약일시 | 전송 상태코드 | 전송 결과코드 | 메시지 타입 | 전송처리 이동통신사명 | 접수번호 | 요청번호"
-
-            ListBox1.Items.Add(rowStr)
-
-            For Each Result As MessageResult In msgSearchList.list
-                rowStr = ""
-                rowStr += Result.subject + " | " + Result.content + " | " + Result.sendNum + " | " + Result.senderName + " | " + Result.receiveNum + " | " + Result.receiveName + " | "
-                rowStr += Result.receiptDT + " | " + Result.sendDT + " | " + Result.resultDT + " | " + Result.reserveDT + " | " + Result.state.ToString + " | " + Result.result.ToString + " | "
-                rowStr += Result.type + " | " + Result.tranNet + " | " + Result.receiptNum + " | " + Result.requestNum
-
-                ListBox1.Items.Add(rowStr)
-            Next
-
-            MsgBox(tmp)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 080 서비스 수신거부 목록을 확인합니다.
-    '=========================================================================
-    Private Sub btnGetAutoDenyList_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetAutoDenyList.Click
-        Try
-            Dim numberList As List(Of AutoDeny) = messageService.GetAutoDenyList(txtCorpNum.Text)
-
-            Dim tmp As String = "수신번호 | 등록일시 " + vbCrLf
-            For Each info As AutoDeny In numberList
-                tmp += info.number + " | " + info.regDT + vbCrLf
-            Next
-
-            MsgBox(tmp)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 문자 전송내역 요약정보를 확인 합니다.
-    '=========================================================================
-    Private Sub btnGetStates_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetStates.Click
-        Dim ReciptNumList As List(Of String) = New List(Of String)
-
-        '문자전송 접수번호
-        ReciptNumList.Add("018090410000000395")
-        ReciptNumList.Add("018090410000000416")
-
-        ListBox1.Items.Clear()
-        Try
-            Dim resultList As List(Of MessageState) = messageService.GetStates(txtCorpNum.Text, ReciptNumList, txtUserId.Text)
-
-
-            Dim rowStr As String = "접수번호 | 일련번호 | 전송 상태코드 | 전송 결과코드 | 전송일시 | 결과코드 수신일시 | 전송 이동통신사명 | 구 전송결과 코드"
-
-            ListBox1.Items.Add(rowStr)
-
-            For Each Result As MessageState In resultList
-                rowStr = ""
-                rowStr += Result.rNum + " | " + Result.sn + " | " + Result.stat + " | " + Result.rlt + " | " + Result.sDT + " | " + Result.rDT + " | " + Result.net + " | " + Result.srt
-
-                ListBox1.Items.Add(rowStr)
-            Next
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 전송요청번호를 할당한 문자 전송결과를 확인 합니다.
-    '=========================================================================
-    Private Sub btnGetMessageResultRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMessageResultRN.Click
-        ListBox1.Items.Clear()
-        Try
-            Dim ResultList As List(Of MessageResult) = messageService.GetMessageResultRN(txtCorpNum.Text, txtRequestNum.Text)
-
-            Dim rowStr As String = "메시지 제목 | 메시지 내용 | 발신번호 | 발신자명 | 수신번호 | 수신자명 | 접수시간 | 발송시간 | 전송결과 수신시간 | "
-            rowStr += "예약일시 | 전송 상태코드 | 전송 결과코드 | 메시지 타입 | 전송처리 이동통신사명 | 접수번호 | 요청번호"
-
-            ListBox1.Items.Add(rowStr)
-
-            For Each Result As MessageResult In ResultList
-                rowStr = ""
-                rowStr += Result.subject + " | " + Result.content + " | " + Result.sendNum + " | " + Result.senderName + " | " + Result.receiveNum + " | " + Result.receiveName + " | "
-                rowStr += Result.receiptDT + " | " + Result.sendDT + " | " + Result.resultDT + " | " + Result.reserveDT + " | " + Result.state.ToString + " | " + Result.result.ToString + " | "
-                rowStr += Result.type + " | " + Result.tranNet + " | " + Result.receiptNum + " | " + Result.requestNum
-
-                ListBox1.Items.Add(rowStr)
-            Next
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 전송요청번호를 할당한 예약문자전송을 취소합니다.
-    ' - 예약취소는 예약전송시간 10분전까지만 가능합니다.
-    '=========================================================================
-    Private Sub btnCancelReserveRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelReserveRN.Click
-        Try
-            Dim response As Response
-
-            response = messageService.CancelReserveRN(txtCorpNum.Text, txtRequestNum.Text, txtUserId.Text)
-
-            MsgBox(response.message)
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 연동회원 포인트 충전 URL을 반환합니다.
-    ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
-    '=========================================================================
-    Private Sub btnGetChargeURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeURL.Click
-        Try
-            Dim url As String = messageService.GetChargeURL(txtCorpNum.Text, txtUserId.Text)
-
-            MsgBox(url)
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 팝빌(www.popbill.com)에 로그인된 팝빌 URL을 반환합니다.
-    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
-    '=========================================================================
-    Private Sub btnGetAccessURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetAccessURL.Click
-        Try
-            Dim url As String = messageService.GetAccessURL(txtCorpNum.Text, txtUserId.Text)
-
-            MsgBox(url)
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-
-    '=========================================================================
-    ' 문자메시지 전송내역 팝업 URL을 반환합니다.
-    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
-    '=========================================================================
-    Private Sub btnGetSentListURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSentListURL.Click
-        Try
-            Dim url As String = messageService.GetSentListURL(txtCorpNum.Text, txtUserId.Text)
-
-            MsgBox(url)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 발신번호 관리 팝업 URL을 반환합니다.
-    ' - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
-    '=========================================================================
-    Private Sub btnGetSenderNumberMgtURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSenderNumberMgtURL.Click
-        Try
-            Dim url As String = messageService.GetSenderNumberMgtURL(txtCorpNum.Text, txtUserId.Text)
-
-            MsgBox(url)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
 End Class
