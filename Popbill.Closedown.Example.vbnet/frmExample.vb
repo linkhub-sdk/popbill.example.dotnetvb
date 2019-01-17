@@ -57,7 +57,6 @@ Public Class frmExample
 
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -91,7 +90,6 @@ Public Class frmExample
             MsgBox(tmp)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -107,7 +105,6 @@ Public Class frmExample
 
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -145,7 +142,10 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerURL.Click
         Try
-            Dim url As String = closedownService.GetPartnerURL(txtCorpNum.Text, "CHRG")
+            '파트너 포인트충전 URL
+            Dim TOGO As String = "CHRG"
+
+            Dim url As String = closedownService.GetPartnerURL(txtCorpNum.Text, TOGO)
 
             MsgBox(url)
         Catch ex As PopbillException
@@ -277,13 +277,6 @@ Public Class frmExample
         End Try
 
     End Sub
-
-
-
-
-
-
-
 
     '=========================================================================
     ' 연동회원의 담당자를 신규로 등록합니다.
@@ -463,6 +456,5 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
 
 End Class

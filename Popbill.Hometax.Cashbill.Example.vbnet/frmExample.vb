@@ -150,8 +150,8 @@ Public Class frmExample
 
         '거래용도 배열, P-소득공제용, C-지출증빙용
         Dim tradeUsage(2) As String
-        tradeUsage(0) = "T"
-        tradeUsage(1) = "N"
+        tradeUsage(0) = "P"
+        tradeUsage(1) = "C"
 
         '페이지 번호
         Dim Page As Integer = 1
@@ -382,7 +382,10 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerURL.Click
         Try
-            Dim url As String = htCashbillService.GetPartnerURL(txtCorpNum.Text, "CHRG")
+            '파트너 포인트충전 URL
+            Dim TOGO As String = "CHRG"
+
+            Dim url As String = htCashbillService.GetPartnerURL(txtCorpNum.Text, TOGO)
 
             MsgBox(url)
         Catch ex As PopbillException
@@ -413,7 +416,7 @@ Public Class frmExample
         Try
             Dim ChargeInfo As ChargeInfo = htCashbillService.GetChargeInfo(txtCorpNum.Text)
 
-            Dim tmp As String = "unitCost (발행단가) : " + ChargeInfo.unitCost + vbCrLf
+            Dim tmp As String = "unitCost (월정액요금) : " + ChargeInfo.unitCost + vbCrLf
             tmp += "chargeMethod (과금유형) : " + ChargeInfo.chargeMethod + vbCrLf
             tmp += "rateSystem (과금제도) : " + ChargeInfo.rateSystem + vbCrLf
 

@@ -8,7 +8,7 @@
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
 ' <테스트 연동개발 준비사항>
-' 1) 23, 26번 라인에 선언된 링크아이디(LinkID)와 비밀키(SecretKey)를
+' 1) 22, 25번 라인에 선언된 링크아이디(LinkID)와 비밀키(SecretKey)를
 '    링크허브 가입시 메일로 발급받은 인증정보를 참조하여 변경합니다.
 ' 2) 팝빌 개발용 사이트(test.popbill.com)에 연동회원으로 가입합니다.
 '=========================================================================
@@ -62,8 +62,7 @@ Public Class frmExample
     ' 전자명세서 관리번호 중복여부를 확인합니다.
     ' - 관리번호는 1~24자리로 숫자, 영문 '-', '_' 조합으로 구성할 수 있습니다.
     '=========================================================================
-    Private Sub btnCheckMgtKeyInUse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnCheckMgtKeyInUse.Click
+    Private Sub btnCheckMgtKeyInUse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckMgtKeyInUse.Click
 
         Try
             Dim InUse As Boolean = statementService.CheckMgtKeyInuse(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text)
@@ -71,7 +70,6 @@ Public Class frmExample
             MsgBox(IIf(InUse, "사용중", "미사용중"))
 
         Catch ex As PopbillException
-
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
@@ -79,8 +77,7 @@ Public Class frmExample
     '=========================================================================
     ' 1건의 전자명세서를 [즉시발행]합니다.
     '=========================================================================
-    Private Sub btnRegistIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnRegistIssue.Click
+    Private Sub btnRegistIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistIssue.Click
         Dim statement As New Statement
 
         '[필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
@@ -253,10 +250,8 @@ Public Class frmExample
             Dim response As Response = statementService.RegistIssue(txtCorpNum.Text, statement, memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -430,15 +425,12 @@ Public Class frmExample
         statement.propertyBag.Add("Deposit", "10000")
         statement.propertyBag.Add("Balance", "10000")
 
-
         Try
             Dim response As Response = statementService.Register(txtCorpNum.Text, statement, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -616,12 +608,9 @@ Public Class frmExample
 
         Try
             Dim response As Response = statementService.Update(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, statement, txtUserId.Text)
-
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -655,18 +644,15 @@ Public Class frmExample
             Dim response As Response = statementService.CancelIssue(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
     '=========================================================================
     ' 1건의 전자명세서를 [발행취소]합니다.
     '=========================================================================
-    Private Sub btnCancelIssueSub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnCancelIssueSub.Click
+    Private Sub btnCancelIssueSub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelIssueSub.Click
 
         '메모
         Dim memo As String = "발행취소 메모"
@@ -675,10 +661,8 @@ Public Class frmExample
             Dim response As Response = statementService.CancelIssue(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -692,10 +676,8 @@ Public Class frmExample
             Dim response As Response = statementService.Delete(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -704,16 +686,13 @@ Public Class frmExample
     ' - 전자명세서를 삭제하면 사용된 문서관리번호(mgtKey)를 재사용할 수 있습니다.
     ' - 삭제가능한 문서 상태 : [임시저장], [발행취소]
     '=========================================================================
-    Private Sub btnDeleteSub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnDeleteSub.Click
+    Private Sub btnDeleteSub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteSub.Click
         Try
             Dim response As Response = statementService.Delete(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -755,7 +734,6 @@ Public Class frmExample
 
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -764,7 +742,6 @@ Public Class frmExample
     ' - 응답항목에 대한 자세한 정보는 "[전자명세서 API 연동매뉴얼] > 3.2.2. GetInfos (상태 대량 확인)"을 참조하시기 바랍니다.
     '=========================================================================
     Private Sub btnGetInfos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetInfos.Click
-
 
         Dim MgtKeyList As List(Of String) = New List(Of String)
 
@@ -802,10 +779,8 @@ Public Class frmExample
             Next
 
             MsgBox(tmp)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -813,8 +788,7 @@ Public Class frmExample
     ' 전자명세서 1건의 상세정보를 조회합니다.
     ' - 응답항목에 대한 자세한 사항은 "[전자명세서 API 연동매뉴얼] > 4.1. 전자명세서 구성" 을 참조하시기 바랍니다.
     '=========================================================================
-    Private Sub btnGetDetailInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnGetDetailInfo.Click
+    Private Sub btnGetDetailInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetDetailInfo.Click
 
         Dim tmp As String = ""
 
@@ -881,7 +855,6 @@ Public Class frmExample
                 tmp += vbCrLf
             End If
 
-
             MsgBox(tmp)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
@@ -942,7 +915,6 @@ Public Class frmExample
             tmp = tmp + "pageCount (페이지 개수) : " + stmtSearchList.pageCount.ToString + vbCrLf
             tmp = tmp + "message (응답메시지) : " + stmtSearchList.message + vbCrLf + vbCrLf
 
-
             Dim docInfo As StatementInfo
 
             For Each docInfo In stmtSearchList.list
@@ -968,7 +940,6 @@ Public Class frmExample
             Next
 
             MsgBox(tmp)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -994,7 +965,6 @@ Public Class frmExample
             Next
 
             MsgBox(tmp)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1004,8 +974,7 @@ Public Class frmExample
     ' 팝빌 > 전자명세서 > 임시(연동)문서함 팝업 URL을 반환합니다.
     ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
     '=========================================================================
-    Private Sub btnGetURL_TBOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnGetURL_TBOX.Click
+    Private Sub btnGetURL_TBOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_TBOX.Click
         Try
             Dim url As String = statementService.GetURL(txtCorpNum.Text, txtUserId.Text, "TBOX")
 
@@ -1019,8 +988,7 @@ Public Class frmExample
     ' 팝빌 > 전자명세서 > 발행문서함 팝업 URL을 반환합니다.
     ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
     '=========================================================================
-    Private Sub btnGetURL_SBOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnGetURL_SBOX.Click
+    Private Sub btnGetURL_SBOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_SBOX.Click
         Try
             Dim url As String = statementService.GetURL(txtCorpNum.Text, txtUserId.Text, "SBOX")
 
@@ -1035,8 +1003,7 @@ Public Class frmExample
     ' 1건의 전자명세서 보기 팝업 URL을 반환합니다.
     ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
     '=========================================================================
-    Private Sub btnGetPopUpURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnGetPopUpURL.Click
+    Private Sub btnGetPopUpURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPopUpURL.Click
 
         Try
             Dim url As String = statementService.GetPopUpURL(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, txtUserId.Text)
@@ -1051,8 +1018,7 @@ Public Class frmExample
     ' 1건의 전자명세서 인쇄팝업 URL을 반환합니다.
     ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
     '=========================================================================
-    Private Sub btnGetPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnGetPrintURL.Click
+    Private Sub btnGetPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPrintURL.Click
 
         Try
             Dim url As String = statementService.GetPrintURL(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, txtUserId.Text)
@@ -1067,8 +1033,7 @@ Public Class frmExample
     ' 전자명세서 인쇄(수신자) URL을 반환합니다.
     ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
     '=========================================================================
-    Private Sub btnGetEPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnGetEPrintURL.Click
+    Private Sub btnGetEPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetEPrintURL.Click
 
         Try
             Dim url As String = statementService.GetEPrintURL(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, txtUserId.Text)
@@ -1083,12 +1048,11 @@ Public Class frmExample
     ' 다수건의 전자명세서 인쇄팝업 URL을 반환합니다.
     ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
     '=========================================================================
-    Private Sub btnGetMassPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnGetMassPrintURL.Click
+    Private Sub btnGetMassPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMassPrintURL.Click
 
         Dim MgtKeyList As List(Of String) = New List(Of String)
 
-        '문서관리번호 배열, 최대 1000건
+        '문서관리번호 배열 (최대 100건)
         MgtKeyList.Add("20190111-01")
         MgtKeyList.Add("20190111-02")
 
@@ -1105,8 +1069,7 @@ Public Class frmExample
     ' 수신자 메일링크 URL을 반환합니다.
     ' - 메일링크 URL은 유효시간이 존재하지 않습니다.
     '=========================================================================
-    Private Sub btnGetMailURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnGetMailURL.Click
+    Private Sub btnGetMailURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMailURL.Click
         Try
             Dim url As String = statementService.GetMailURL(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, txtUserId.Text)
 
@@ -1120,8 +1083,7 @@ Public Class frmExample
     ' 팝빌(www.popbill.com)에 로그인된 팝빌 URL을 반환합니다.
     ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
     '=========================================================================
-    Private Sub btnGetAccessURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnGetAccessURL.Click
+    Private Sub btnGetAccessURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetAccessURL.Click
         Try
             Dim url As String = statementService.GetAccessURL(txtCorpNum.Text, txtUserId.Text)
 
@@ -1135,10 +1097,9 @@ Public Class frmExample
     ' 인감 및 첨부문서 등록 팝업 URL을 반환합니다.
     ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
     '=========================================================================
-    Private Sub btnGetPopbillURL_SEAL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnGetPopbillURL_SEAL.Click
+    Private Sub btnGetPopbillURL_SEAL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPopbillURL_SEAL.Click
         Try
-            Dim url As String = statementService.GetPopbillURL(txtCorpNum.Text, txtUserId.Text, "SEAL")
+            Dim url As String = statementService.GetSealURL(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox(url)
         Catch ex As PopbillException
@@ -1152,8 +1113,7 @@ Public Class frmExample
     ' - 첨부파일 등록은 전자명세서가 [임시저장] 상태인 경우에만 가능합니다.
     ' - 첨부파일은 최대 5개까지 등록할 수 있습니다.
     '=========================================================================
-    Private Sub btnAttachFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnAttachFile.Click
+    Private Sub btnAttachFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAttachFile.Click
         If fileDialog.ShowDialog(Me) = DialogResult.OK Then
             Dim strFileName As String = fileDialog.FileName
 
@@ -1170,12 +1130,11 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 전자명세서에 첨부된 파일의 목록을 확인합니다.
-    ' - 응답항목 중 파일아이디(AttachedFile) 항목은 파일삭제(DeleteFile API)
-    '   호출시 이용할 수 있습니다.
+    ' 전자명세서에 첨부된 파일을 삭제합니다.
+    ' - 파일을 식별하는 파일아이디는 첨부파일 목록(GetFileList API) 의 응답항목
+    '   중 파일아이디(AttachedFile) 값을 통해 확인할 수 있습니다.
     '=========================================================================
-    Private Sub btnDeleteFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnDeleteFile.Click
+    Private Sub btnDeleteFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteFile.Click
         Try
             Dim response As Response = statementService.DeleteFile(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, txtFileID.Text, txtUserId.Text)
 
@@ -1216,8 +1175,7 @@ Public Class frmExample
     '=========================================================================
     ' 발행 안내메일을 재전송합니다.
     '=========================================================================
-    Private Sub btnSendEmail_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnSendEmail.Click
+    Private Sub btnSendEmail_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendEmail.Click
 
         '수신메일주소
         Dim receiveMail As String = "test@test.com"
@@ -1238,6 +1196,7 @@ Public Class frmExample
     ' - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [문자] > [전송내역] 탭에서 전송결과를 확인할 수 있습니다.
     '=========================================================================
     Private Sub btnSendSMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendSMS.Click
+
         '발신번호
         Dim sendNum As String = "070-4304-2991"
 
@@ -1251,7 +1210,6 @@ Public Class frmExample
             Dim response As Response = statementService.SendSMS(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, sendNum, receiveNum, contents, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1274,7 +1232,6 @@ Public Class frmExample
             Dim response As Response = statementService.SendFAX(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, sendNum, receiveNum, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1468,7 +1425,6 @@ Public Class frmExample
             Dim receiptNum As String = statementService.FAXSend(txtCorpNum.Text, statement, sendNum, receiveNum, txtUserId.Text)
 
             MsgBox("팩스 접수번호(receiptNum) : " + receiptNum)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1478,8 +1434,7 @@ Public Class frmExample
     '=========================================================================
     ' 전자명세서에 다른 전자명세서 1건을 첨부합니다.
     '=========================================================================
-    Private Sub btnAttachStmt_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnAttachStmt.Click
+    Private Sub btnAttachStmt_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAttachStmt.Click
 
         '첨부할 전자명세서 종류코드, 121-거래명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표,126-영수증
         Dim subItemCode As Integer = 121
@@ -1491,7 +1446,6 @@ Public Class frmExample
             Dim response As Response = statementService.AttachStatement(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, subItemCode, subMgtKey)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1500,8 +1454,7 @@ Public Class frmExample
     '=========================================================================
     ' 전자명세서에 첨부된 다른 전자명세서를 첨부해제합니다.
     '=========================================================================
-    Private Sub btnDetachStmt_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnDetachStmt.Click
+    Private Sub btnDetachStmt_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDetachStmt.Click
 
         '첨부해제 대상 전자명세서 종류코드, 121-거래명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표,126-영수증
         Dim subItemCode As Integer = 121
@@ -1513,7 +1466,6 @@ Public Class frmExample
             Dim response As Response = statementService.DetachStatement(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, subItemCode, subMgtKey)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1523,8 +1475,7 @@ Public Class frmExample
     '=========================================================================
     '전자명세서 메일전송 항목에 대한 전송여부를 목록으로 반환합니다.
     '=========================================================================
-    Private Sub btnListEmailConfig_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnListEmailConfig.Click
+    Private Sub btnListEmailConfig_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListEmailConfig.Click
         Try
             Dim emailConfigList As List(Of EmailConfig) = statementService.ListEmailConfig(txtCorpNum.Text, txtUserId.Text)
 
@@ -1544,7 +1495,6 @@ Public Class frmExample
             Next
 
             MsgBox(tmp)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1571,7 +1521,6 @@ Public Class frmExample
             Dim response As Response = statementService.UpdateEmailConfig(txtCorpNum.Text, emailType, sendYN, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1587,10 +1536,8 @@ Public Class frmExample
             Dim remainPoint As Double = statementService.GetBalance(txtCorpNum.Text)
 
             MsgBox("연동회원 잔여포인트 : " + remainPoint.ToString())
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -1599,8 +1546,7 @@ Public Class frmExample
     ' 연동회원 포인트 충전 URL을 반환합니다.
     ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
     '=========================================================================
-    Private Sub btnGetChargeURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnGetChargeURL.Click
+    Private Sub btnGetChargeURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeURL.Click
 
         Try
             Dim url As String = statementService.GetChargeURL(txtCorpNum.Text, txtUserId.Text)
@@ -1617,18 +1563,13 @@ Public Class frmExample
     ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를
     '   이용하시기 바랍니다.
     '=========================================================================
-    Private Sub btnGetPartnerBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnGetPartnerBalance.Click
+    Private Sub btnGetPartnerBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerBalance.Click
         Try
             Dim remainPoint As Double = statementService.GetPartnerBalance(txtCorpNum.Text)
 
-
             MsgBox("파트너 잔여포인트 : " + remainPoint.ToString())
-
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -1637,10 +1578,12 @@ Public Class frmExample
     ' 파트너 포인트 충전 팝업 URL을 반환합니다.
     ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
     '=========================================================================
-    Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnGetPartnerURL.Click
+    Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerURL.Click
         Try
-            Dim url As String = statementService.GetPartnerURL(txtCorpNum.Text, "CHRG")
+            '파트너 포인트충전 URL
+            Dim TOGO As String = "CHRG"
+
+            Dim url As String = statementService.GetPartnerURL(txtCorpNum.Text, TOGO)
 
             MsgBox(url)
         Catch ex As PopbillException
@@ -1658,15 +1601,13 @@ Public Class frmExample
             MsgBox("전자명세서 발행단가(unitCost) : " + unitCost.ToString())
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
     '=========================================================================
     ' 연동회원의 전자명세서 API 서비스 과금정보를 확인합니다.
     '=========================================================================
-    Private Sub btnGetChargeInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnGetChargeInfo.Click
+    Private Sub btnGetChargeInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo.Click
 
         Try
             Dim ChargeInfo As ChargeInfo = statementService.GetChargeInfo(txtCorpNum.Text, selectedItemCode)
@@ -1676,19 +1617,16 @@ Public Class frmExample
             tmp += "rateSystem (과금제도) : " + ChargeInfo.rateSystem + vbCrLf
 
             MsgBox(tmp)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
-
     '=========================================================================
     ' 해당 사업자의 파트너 연동회원 가입여부를 확인합니다.
     ' - LinkID는 인증정보로 설정되어 있는 링크아이디 값입니다.
     '=========================================================================
-    Private Sub btnCheckIsMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnCheckIsMember.Click
+    Private Sub btnCheckIsMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckIsMember.Click
         Try
             Dim response As Response = statementService.CheckIsMember(txtCorpNum.Text, LinkID)
 
@@ -1716,10 +1654,8 @@ Public Class frmExample
     '=========================================================================
     ' 파트너의 연동회원으로 회원가입을 요청합니다.
     '=========================================================================
-    Private Sub btnJoinMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnJoinMember.Click
+    Private Sub btnJoinMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnJoinMember.Click
         Dim joinInfo As JoinForm = New JoinForm
-
 
         '아이디, 6자이상 50자 미만
         joinInfo.ID = "userid"
@@ -1777,8 +1713,7 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원의 회사정보를 확인합니다.
     '=========================================================================
-    Private Sub btnGetCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnGetCorpInfo.Click
+    Private Sub btnGetCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetCorpInfo.Click
         Try
             Dim corpInfo As CorpInfo = statementService.GetCorpInfo(txtCorpNum.Text, txtUserId.Text)
 
@@ -1799,8 +1734,7 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원의 회사정보를 수정합니다
     '=========================================================================
-    Private Sub btnUpdateCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnUpdateCorpInfo.Click
+    Private Sub btnUpdateCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateCorpInfo.Click
         Dim corpInfo As New CorpInfo
 
         '대표자명(최대 100자)
@@ -1818,16 +1752,13 @@ Public Class frmExample
         '종목(최대 100자)
         corpInfo.bizClass = "종목_수정"
 
-
         Try
 
             Dim response As Response = statementService.UpdateCorpInfo(txtCorpNum.Text, corpInfo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -1835,8 +1766,7 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원의 담당자를 신규로 등록합니다.
     '=========================================================================
-    Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnRegistContact.Click
+    Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistContact.Click
 
         '담당자 정보객체
         Dim joinData As New Contact
@@ -1872,18 +1802,15 @@ Public Class frmExample
             Dim response As Response = statementService.RegistContact(txtCorpNum.Text, joinData, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
     '=========================================================================
     ' 연동회원의 담당자 목록을 확인합니다.
     '=========================================================================
-    Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnListContact.Click
+    Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListContact.Click
         Try
             Dim contactList As List(Of Contact) = statementService.ListContact(txtCorpNum.Text, txtUserId.Text)
 
@@ -1897,7 +1824,6 @@ Public Class frmExample
 
             MsgBox(tmp)
         Catch ex As PopbillException
-
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
@@ -1905,8 +1831,7 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원의 담당자 정보를 수정합니다.
     '=========================================================================
-    Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnUpdateContact.Click
+    Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateContact.Click
 
         '담당자 정보객체
         Dim joinData As New Contact
@@ -1942,7 +1867,6 @@ Public Class frmExample
 
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 End Class

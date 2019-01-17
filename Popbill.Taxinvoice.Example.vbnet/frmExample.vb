@@ -57,9 +57,7 @@ Public Class frmExample
             Dim InUse As Boolean = taxinvoiceService.CheckMgtKeyInUse(txtCorpNum.Text, KeyType, txtMgtKey.Text)
 
             MsgBox(IIf(InUse, "사용중", "미사용중"))
-
         Catch ex As PopbillException
-
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
@@ -193,11 +191,13 @@ Public Class frmExample
         '기재 상 '일련번호' 항목
         taxinvoice.serialNum = "123"
 
-        '기재 상 '권' 항목, 최대값 32767
-        taxinvoice.kwon = 1
+        '기재상 권 항목, 최대값 32767
+        '미기재시 taxinvoice.kwon = Nothing
+        taxinvoice.kwon = Nothing
 
-        '기재 상 '호' 항목, 최대값 32767
-        taxinvoice.ho = 1
+        '기재상 호 항목, 최대값 32767
+        '미기재시 taxinvoice.ho = Nothing
+        taxinvoice.ho = Nothing
 
         '기재 상 '현금' 항목
         taxinvoice.cash = ""
@@ -281,21 +281,20 @@ Public Class frmExample
 
 
         '지연발행 강제여부
+        '지연발행 세금계산서를 발행하는 경우, 가산세가 부과될 수 있습니다.
+        '지연발행 세금계산서를 신고해야 하는 경우 forceIssue 값을 true 선언하여 발행하실 수 있습니다.
         Dim forceIssue As Boolean = False
 
-        '메모
-        Dim memo As String = "메모"
+        '발행시 메모
+        Dim memo As String = "즉시발행 메모"
 
         Try
             Dim response As Response = taxinvoiceService.RegistIssue(txtCorpNum.Text, taxinvoice, forceIssue, memo)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
-
     End Sub
 
     '=========================================================================
@@ -432,11 +431,13 @@ Public Class frmExample
         '기재 상 '일련번호' 항목
         taxinvoice.serialNum = "123"
 
-        '기재 상 '권' 항목, 최대값 32767
-        taxinvoice.kwon = 1
+        '기재상 권 항목, 최대값 32767
+        '미기재시 taxinvoice.kwon = Nothing
+        taxinvoice.kwon = Nothing
 
-        '기재 상 '호' 항목, 최대값 32767
-        taxinvoice.ho = 1
+        '기재상 호 항목, 최대값 32767
+        '미기재시 taxinvoice.ho = Nothing
+        taxinvoice.ho = Nothing
 
         '기재 상 '현금' 항목
         taxinvoice.cash = ""
@@ -484,7 +485,7 @@ Public Class frmExample
         Dim detail As TaxinvoiceDetail = New TaxinvoiceDetail
 
         detail.serialNum = 1                            '일련번호, 1부터 순차기재
-        detail.purchaseDT = "20190111"                 '거래일자, yyyyMMdd
+        detail.purchaseDT = "20190111"                  '거래일자, yyyyMMdd
         detail.itemName = "품목명"                      '품목명
         detail.spec = "규격"                            '규격
         detail.qty = "1"                                '수량
@@ -520,16 +521,16 @@ Public Class frmExample
 
         taxinvoice.addContactList.Add(addContact)
 
+        '전자거래명세서 동시작성 여부
+        Dim writeSpecification As Boolean = False
 
         Try
-            Dim response As Response = taxinvoiceService.Register(txtCorpNum.Text, taxinvoice, txtUserId.Text, False)
+            Dim response As Response = taxinvoiceService.Register(txtCorpNum.Text, taxinvoice, txtUserId.Text, writeSpecification)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
-
     End Sub
 
     '=========================================================================
@@ -666,11 +667,13 @@ Public Class frmExample
         '기재 상 '일련번호' 항목
         taxinvoice.serialNum = "123"
 
-        '기재 상 '권' 항목, 최대값 32767
-        taxinvoice.kwon = 1
+        '기재상 권 항목, 최대값 32767
+        '미기재시 taxinvoice.kwon = Nothing
+        taxinvoice.kwon = Nothing
 
-        '기재 상 '호' 항목, 최대값 32767
-        taxinvoice.ho = 1
+        '기재상 호 항목, 최대값 32767
+        '미기재시 taxinvoice.ho = Nothing
+        taxinvoice.ho = Nothing
 
         '기재 상 '현금' 항목
         taxinvoice.cash = ""
@@ -760,7 +763,6 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -896,11 +898,13 @@ Public Class frmExample
         '기재 상 '일련번호' 항목
         taxinvoice.serialNum = "123"
 
-        '기재 상 '권' 항목, 최대값 32767
-        taxinvoice.kwon = 1
+        '기재상 권 항목, 최대값 32767
+        '미기재시 taxinvoice.kwon = Nothing
+        taxinvoice.kwon = Nothing
 
-        '기재 상 '호' 항목, 최대값 32767
-        taxinvoice.ho = 1
+        '기재상 호 항목, 최대값 32767
+        '미기재시 taxinvoice.ho = Nothing
+        taxinvoice.ho = Nothing
 
         '기재 상 '현금' 항목
         taxinvoice.cash = ""
@@ -1127,11 +1131,13 @@ Public Class frmExample
         '기재 상 '일련번호' 항목
         taxinvoice.serialNum = "123"
 
-        '기재 상 '권' 항목, 최대값 32767
-        taxinvoice.kwon = 1
+        '기재상 권 항목, 최대값 32767
+        '미기재시 taxinvoice.kwon = Nothing
+        taxinvoice.kwon = Nothing
 
-        '기재 상 '호' 항목, 최대값 32767
-        taxinvoice.ho = 1
+        '기재상 호 항목, 최대값 32767
+        '미기재시 taxinvoice.ho = Nothing
+        taxinvoice.ho = Nothing
 
         '기재 상 '현금' 항목
         taxinvoice.cash = ""
@@ -1219,10 +1225,8 @@ Public Class frmExample
             Dim response As Response = taxinvoiceService.Update(txtCorpNum.Text, KeyType, txtMgtKey.Text, taxinvoice, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -1231,13 +1235,22 @@ Public Class frmExample
     ' - 세금계산서 항목별 정보는 "[전자세금계산서 API 연동매뉴얼] > 4.1. (세금)계산서구성"을 참조하시기 바랍니다.
     '=========================================================================
     Private Sub btnIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnIssue.Click, btnIssue_Reverse.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
+        '발행 메모
+        Dim memo As String = "발행메모"
+
+        '지연발행 강제여부, 기본값 - False
+        '발행마감일이 지난 세금계산서를 발행하는 경우, 가산세가 부과될 수 있습니다.
+        '지연발행 세금계산서를 신고해야 하는 경우 forceIssue 값을 True로 선언하여 발행(Issue API)을 호출할 수 있습니다.
+        Dim forceIssue As Boolean = False
+
         Try
-            Dim response As Response = taxinvoiceService.Issue(txtCorpNum.Text, KeyType, txtMgtKey.Text, "발행시 메모", False, txtUserId.Text)
+            Dim response As Response = taxinvoiceService.Issue(txtCorpNum.Text, KeyType, txtMgtKey.Text, memo, forceIssue, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
@@ -1249,10 +1262,20 @@ Public Class frmExample
     ' - 세금계산서 항목별 정보는 "[전자세금계산서 API 연동매뉴얼] > 4.1. (세금)계산서구성"을 참조하시기 바랍니다.
     '=========================================================================
     Private Sub btnIssue_Reverse_sub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnIssue_Reverse_sub.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
+        '발행 메모
+        Dim memo As String = "발행메모"
+
+        '지연발행 강제여부, 기본값 - False
+        '발행마감일이 지난 세금계산서를 발행하는 경우, 가산세가 부과될 수 있습니다.
+        '지연발행 세금계산서를 신고해야 하는 경우 forceIssue 값을 True로 선언하여 발행(Issue API)을 호출할 수 있습니다.
+        Dim forceIssue As Boolean = False
+
         Try
-            Dim response As Response = taxinvoiceService.Issue(txtCorpNum.Text, KeyType, txtMgtKey.Text, "발행시 메모", False, txtUserId.Text)
+            Dim response As Response = taxinvoiceService.Issue(txtCorpNum.Text, KeyType, txtMgtKey.Text, memo, forceIssue, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
@@ -1269,10 +1292,15 @@ Public Class frmExample
     ' - 발행취소 세금계산서에 사용된 문서관리번호를 재사용 하기 위해서는 삭제(Delete API)를 호출하여 해당세금계산서를 삭제해야 합니다.
     '=========================================================================
     Private Sub btnCancelIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelIssue.Click, btnCancelIssue_Reverse.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
+        '발행취소 메모
+        Dim memo As String = "발행취소메모"
+
         Try
-            Dim response As Response = taxinvoiceService.CancelIssue(txtCorpNum.Text, KeyType, txtMgtKey.Text, "발행취소시 메모.", txtUserId.Text)
+            Dim response As Response = taxinvoiceService.CancelIssue(txtCorpNum.Text, KeyType, txtMgtKey.Text, memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
@@ -1290,10 +1318,15 @@ Public Class frmExample
     ' - 발행취소 세금계산서에 사용된 문서관리번호를 재사용 하기 위해서는 삭제(Delete API)를 호출하여 해당세금계산서를 삭제해야 합니다.
     '=========================================================================
     Private Sub btnCancelIssue_Sub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelIssue_Sub.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
+        '발행취소 메모
+        Dim memo As String = "발행취소메모"
+
         Try
-            Dim response As Response = taxinvoiceService.CancelIssue(txtCorpNum.Text, KeyType, txtMgtKey.Text, "발행취소시 메모.", txtUserId.Text)
+            Dim response As Response = taxinvoiceService.CancelIssue(txtCorpNum.Text, KeyType, txtMgtKey.Text, memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
@@ -1310,10 +1343,15 @@ Public Class frmExample
     ' - 발행취소 세금계산서에 사용된 문서관리번호를 재사용 하기 위해서는 삭제(Delete API)를 호출하여 해당세금계산서를 삭제해야 합니다.
     '=========================================================================
     Private Sub btnCancelIssue_Reverse_sub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelIssue_Reverse_sub.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
+        '발행취소 메모
+        Dim memo As String = "발행취소메모"
+
         Try
-            Dim response As Response = taxinvoiceService.CancelIssue(txtCorpNum.Text, KeyType, txtMgtKey.Text, "발행취소시 메모.", txtUserId.Text)
+            Dim response As Response = taxinvoiceService.CancelIssue(txtCorpNum.Text, KeyType, txtMgtKey.Text, memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
@@ -1330,8 +1368,11 @@ Public Class frmExample
     ' - "[전자세금계산서 API 연동매뉴얼] > 1.2.1. 정발행 > 다. 임시저장 발행예정" 의 프로세스를 참조하시기 바랍니다.
     '=========================================================================
     Private Sub btnSend_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSend.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
+        '발행예정 메모
         Dim Memo As String = "발행예정 메모"
 
         '발행예정 메일제목, 공백으로 처리시 기본메일 제목으로 전송ㄴ
@@ -1350,14 +1391,19 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' [발행대기] 상태의 세금계산서를 [공급자]가 [취소]합니다.
+    ' [승인대기] 상태의 세금계산서를 [공급자]가 [취소]합니다.
     ' - [취소]된 세금계산서를 삭제(Delete API)하면 등록된 문서관리번호를 재사용할 수 있습니다.
     '=========================================================================
     Private Sub btnCancelSend_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelSend.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
+        '발행예정 취소 메모
+        Dim Memo As String = "발행예정 취소 메모"
+
         Try
-            Dim response As Response = taxinvoiceService.CancelSend(txtCorpNum.Text, KeyType, txtMgtKey.Text, "발행예정 취소시 메모.", txtUserId.Text)
+            Dim response As Response = taxinvoiceService.CancelSend(txtCorpNum.Text, KeyType, txtMgtKey.Text, Memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
@@ -1370,10 +1416,15 @@ Public Class frmExample
     ' [승인대기] 상태의 세금계산서를 [공급받는자]가 [승인]합니다.
     '=========================================================================
     Private Sub btnAccept_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAccept.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
+        '발행예정 취소 메모
+        Dim Memo As String = "승인 메모"
+
         Try
-            Dim response As Response = taxinvoiceService.Accept(txtCorpNum.Text, KeyType, txtMgtKey.Text, "승인시 메모.", txtUserId.Text)
+            Dim response As Response = taxinvoiceService.Accept(txtCorpNum.Text, KeyType, txtMgtKey.Text, Memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
@@ -1388,10 +1439,15 @@ Public Class frmExample
     ' - [거부]처리된 세금계산서를 삭제(Delete API)하면 등록된 문서관리번호를 재사용할 수 있습니다.
     '=========================================================================
     Private Sub btnDeny_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeny.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
+        '승인대기 거부 메모
+        Dim Memo As String = "승인거부 메모"
+
         Try
-            Dim response As Response = taxinvoiceService.Deny(txtCorpNum.Text, KeyType, txtMgtKey.Text, "거부시 메모.", txtUserId.Text)
+            Dim response As Response = taxinvoiceService.Deny(txtCorpNum.Text, KeyType, txtMgtKey.Text, Memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
@@ -1536,11 +1592,13 @@ Public Class frmExample
         '기재 상 '일련번호' 항목
         taxinvoice.serialNum = ""
 
-        '기재 상 '권' 항목, 최대값 32767
-        taxinvoice.kwon = 1
+        '기재상 권 항목, 최대값 32767
+        '미기재시 taxinvoice.kwon = Nothing
+        taxinvoice.kwon = Nothing
 
-        '기재 상 '호' 항목, 최대값 32767
-        taxinvoice.ho = 1
+        '기재상 호 항목, 최대값 32767
+        '미기재시 taxinvoice.ho = Nothing
+        taxinvoice.ho = Nothing
 
         '기재 상 '현금' 항목
         taxinvoice.cash = ""
@@ -1623,6 +1681,7 @@ Public Class frmExample
 
         taxinvoice.addContactList.Add(addContact)
 
+        '즉시요청 메모
         Dim Memo As String = "즉시요청 메모"
 
         Try
@@ -1631,7 +1690,6 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -1643,16 +1701,19 @@ Public Class frmExample
     '   정과금(공급자과금) 또는 역과금(공급받는자과금) 처리됩니다.
     '=========================================================================
     Private Sub btnRequest_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRequest.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
+        '역발행 요청 메모
+        Dim Memo As String = "역발행 요청 메모"
+
         Try
-            Dim response As Response = taxinvoiceService.Request(txtCorpNum.Text, KeyType, txtMgtKey.Text, "역발행 요청시 메모", txtUserId.Text)
+            Dim response As Response = taxinvoiceService.Request(txtCorpNum.Text, KeyType, txtMgtKey.Text, Memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -1661,16 +1722,19 @@ Public Class frmExample
     ' - [취소]한 세금계산서의 문서관리번호를 재사용하기 위해서는 삭제 (Delete API)를 호출해야 합니다..
     '=========================================================================
     Private Sub btnCancelRequest_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelRequest.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
+        '역발행 요청 취소 메모
+        Dim Memo As String = "역발행 요청 취소 메모"
+
         Try
-            Dim response As Response = taxinvoiceService.CancelRequest(txtCorpNum.Text, KeyType, txtMgtKey.Text, "역발행 요청 취소시 메모", txtUserId.Text)
+            Dim response As Response = taxinvoiceService.CancelRequest(txtCorpNum.Text, KeyType, txtMgtKey.Text, Memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -1680,16 +1744,19 @@ Public Class frmExample
     ' - [취소]한 세금계산서의 문서관리번호를 재사용하기 위해서는 삭제 (Delete API)를 호출해야 합니다.
     '=========================================================================
     Private Sub btnCancelRequest_sub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelRequest_sub.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
+        '역발행 요청 취소 메모
+        Dim Memo As String = "역발행 요청 취소 메모"
+
         Try
-            Dim response As Response = taxinvoiceService.CancelRequest(txtCorpNum.Text, KeyType, txtMgtKey.Text, "역발행 요청 취소시 메모", txtUserId.Text)
+            Dim response As Response = taxinvoiceService.CancelRequest(txtCorpNum.Text, KeyType, txtMgtKey.Text, Memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -1698,16 +1765,19 @@ Public Class frmExample
     ' - 세금계산서의 문서관리번호를 재사용하기 위해서는 삭제 (Delete API)를 호출하여 [삭제] 처리해야 합니다.
     '=========================================================================
     Private Sub btnRefuse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRefuse.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
+        '역발행 요청 거부 메모
+        Dim Memo As String = "역발행 요청 거부 메모"
+
         Try
-            Dim response As Response = taxinvoiceService.Refuse(txtCorpNum.Text, KeyType, txtMgtKey.Text, "역발행 요청 거부시 메모", txtUserId.Text)
+            Dim response As Response = taxinvoiceService.Refuse(txtCorpNum.Text, KeyType, txtMgtKey.Text, Memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -1716,19 +1786,21 @@ Public Class frmExample
     ' - 세금계산서의 문서관리번호를 재사용하기 위해서는 삭제 (Delete API)를 호출하여 [삭제] 처리해야 합니다.
     '=========================================================================
     Private Sub btnRefuse_sub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRefuse_sub.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
+        '역발행 요청 거부 메모
+        Dim Memo As String = "역발행 요청 거부 메모"
+
         Try
-            Dim response As Response = taxinvoiceService.Refuse(txtCorpNum.Text, KeyType, txtMgtKey.Text, "역발행 요청 거부시 메모", txtUserId.Text)
+            Dim response As Response = taxinvoiceService.Refuse(txtCorpNum.Text, KeyType, txtMgtKey.Text, Memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
-
 
     '=========================================================================
     ' 1건의 전자세금계산서를 [삭제]합니다.
@@ -1737,17 +1809,15 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDelete.Click, btnDelete_Reverse.Click
 
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
-
 
         Try
             Dim response As Response = taxinvoiceService.Delete(txtCorpNum.Text, KeyType, txtMgtKey.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -1758,17 +1828,15 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnDelete_Sub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDelete_Sub.Click
 
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
-
 
         Try
             Dim response As Response = taxinvoiceService.Delete(txtCorpNum.Text, KeyType, txtMgtKey.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -1778,16 +1846,16 @@ Public Class frmExample
     ' - 삭제가능한 문서 상태 : [임시저장], [발행취소], [발행예정 취소], [발행예정 거부]
     '=========================================================================
     Private Sub btnDelete_Reverse_sub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDelete_Reverse_sub.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
         Try
             Dim response As Response = taxinvoiceService.Delete(txtCorpNum.Text, KeyType, txtMgtKey.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -1799,23 +1867,23 @@ Public Class frmExample
     ' - 국세청 전송에 관한 사항은 "[전자세금계산서 API 연동매뉴얼] > 1.3 국세청 전송 정책" 을 참조하시기 바랍니다.
     '=========================================================================
     Private Sub btnSendToNTS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendToNTS.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
         Try
             Dim response As Response = taxinvoiceService.SendToNTS(txtCorpNum.Text, KeyType, txtMgtKey.Text, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
     '=========================================================================
-    ' [발행완료] 상태의 세금계산서를 국세청으로 [즉시전송]합니다.
-    ' - 국세청 즉시전송을 호출하지 않은 세금계산서는 발행일 기준 익일 오후 3시에 팝빌 시스템에서 일괄적으로 국세청으로 전송합니다.
-    ' - 익일전송시 전송일이 법정공휴일인 경우 다음 영업일에 전송됩니다.
-    ' - 국세청 전송에 관한 사항은 "[전자세금계산서 API 연동매뉴얼] > 1.3 국세청 전송 정책" 을 참조하시기 바랍니다.
+    ' 1건의 세금계산서 상태/요약 정보를 확인합니다.
+    ' - 세금계산서 상태정보(GetInfo API) 응답항목에 대한 자세한 정보는
+    '   "[전자세금계산서 API 연동매뉴얼] > 4.2. (세금)계산서 상태정보 구성" 을 참조하시기 바랍니다.
     '=========================================================================ㄴ
     Private Sub btnGetInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetInfo.Click
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
@@ -1853,6 +1921,7 @@ Public Class frmExample
             tmp += "invoiceeCorpName (공급받는자 상호) : " + tiInfo.invoiceeCorpName + vbCrLf
             tmp += "invoiceeCorpNum (공급받는자 사업자번호) : " + tiInfo.invoiceeCorpNum + vbCrLf
             tmp += "invoiceePrintYN (공급받는자 문서관리번호) : " + CStr(tiInfo.invoiceePrintYN) + vbCrLf
+            tmp += "closeDownState (공급받는자 휴폐업상태) : " + CStr(tiInfo.closeDownState) + vbCrLf
             tmp += "closeDownStateDate (공급받는자 휴폐업일자) : " + CStr(tiInfo.closeDownStateDate) + vbCrLf
             tmp += "trusteeCorpName (수탁자 상호) : " + tiInfo.trusteeCorpName + vbCrLf
             tmp += "trusteeCorpNum (수탁자 사업자번호) : " + tiInfo.trusteeCorpNum + vbCrLf
@@ -1873,6 +1942,8 @@ Public Class frmExample
     '   "[전자세금계산서 API 연동매뉴얼]  > 4.2. (세금)계산서 상태정보 구성" 을 참조하시기 바랍니다.
     '=========================================================================
     Private Sub btnGetInfos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetInfos.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
         Dim MgtKeyList As List(Of String) = New List(Of String)
@@ -1896,48 +1967,38 @@ Public Class frmExample
                 tmp += "issueType (발행형태) : " + tiInfo.issueType + vbCrLf
                 tmp += "lateIssueYN (지연발행 여부) : " + tiInfo.lateIssueYN.ToString + vbCrLf
                 tmp += "interOPYN (연동문서 여부) : " + tiInfo.interOPYN.ToString + vbCrLf
-
                 tmp += "writeDate (작성일자) : " + tiInfo.writeDate + vbCrLf
-
                 tmp += "invoicerCorpName (공급자 상호) : " + tiInfo.invoicerCorpName + vbCrLf
                 tmp += "invoicerCorpNum (공급자 사업자번호) : " + tiInfo.invoicerCorpNum + vbCrLf
                 tmp += "invoicerMgtKey (공급자 문서관리번호) : " + tiInfo.invoicerMgtKey + vbCrLf
                 tmp += "invoicerPrintYN (공급자 인쇄여부) : " + tiInfo.invoicerPrintYN.ToString + vbCrLf
-
                 tmp += "invoiceeCorpName (공급받는자 상호) : " + tiInfo.invoiceeCorpName + vbCrLf
                 tmp += "invoiceeCorpNum (공급받는자 사업자번호) : " + tiInfo.invoiceeCorpNum + vbCrLf
                 tmp += "invoiceeMgtKey (공급받는자 문서관리번호) : " + tiInfo.invoiceeMgtKey + vbCrLf
                 tmp += "invoiceePrintYN (공급받는지 인쇄여부) : " + tiInfo.invoiceePrintYN.ToString + vbCrLf
                 tmp += "closeDownState (공급받는자 휴폐업상태) : " + tiInfo.closeDownState.ToString + vbCrLf
                 tmp += "closeDownStateDate (공급받는자 휴폐업일자) : " + tiInfo.closeDownStateDate + vbCrLf
-
                 tmp += "trusteeCorpName (수탁자 상호) : " + tiInfo.trusteeCorpName + vbCrLf
                 tmp += "trusteeCorpNum (수탁자 사업자번호) : " + tiInfo.trusteeCorpNum + vbCrLf
                 tmp += "trusteeMgtKey (수탁자 문서관리번호) : " + tiInfo.trusteeMgtKey + vbCrLf
                 tmp += "trusteePrintYN (수탁자 인쇄여부) : " + tiInfo.trusteePrintYN.ToString + vbCrLf
-
                 tmp += "supplyCostTotal (공급가액 합계) : " + tiInfo.supplyCostTotal + vbCrLf
                 tmp += "taxTotal (세액 합계) : " + tiInfo.taxTotal + vbCrLf
-
                 tmp += "issueDT (발행일시) : " + tiInfo.issueDT + vbCrLf
                 tmp += "preIssueDT (발행예정일시) : " + tiInfo.preIssueDT + vbCrLf
                 tmp += "stateDT (상태 변경일시) : " + tiInfo.stateDT + vbCrLf
                 tmp += "openYN (개봉 여부) : " + tiInfo.openYN.ToString + vbCrLf
                 tmp += "openDT (개봉 일시) : " + tiInfo.openDT + vbCrLf
-
                 tmp += "ntsresult (국세청 전송결과) : " + tiInfo.ntsresult + vbCrLf
                 tmp += "ntsconfirmNum (국세청승인번호) : " + tiInfo.ntsconfirmNum + vbCrLf
                 tmp += "ntssendDT (국세청 전송일시) : " + tiInfo.ntssendDT + vbCrLf
                 tmp += "ntsresultDT (국세청 결과 수신일시) : " + tiInfo.ntsresultDT + vbCrLf
                 tmp += "ntssendErrCode (전송실패 사유코드) : " + tiInfo.ntssendErrCode + vbCrLf
-
                 tmp += "stateMemo (상태메모) : " + tiInfo.stateMemo + vbCrLf
                 tmp += "regDT (임시저장 일시) : " + tiInfo.regDT + vbCrLf + vbCrLf + vbCrLf
-
             Next
 
             MsgBox(tmp)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1950,6 +2011,8 @@ Public Class frmExample
     ' - 응답항목에 대한 자세한 사항은 "[전자세금계산서 API 연동매뉴얼] > 4.1 (세금)계산서 구성" 을 참조하시기 바랍니다.
     '=========================================================================
     Private Sub btnGetDetailInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetDetailInfo.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
         Try
@@ -1964,7 +2027,6 @@ Public Class frmExample
             tmp += "issueType (발행형태) : " + tiDetailInfo.issueType + vbCrLf
             tmp += "issueTiming (발행시점) : " + tiDetailInfo.issueTiming + vbCrLf
             tmp += "taxType (과세형태) : " + tiDetailInfo.taxType + vbCrLf
-
             tmp += "invoicerCorpNum (공급자 사업자번호) : " + tiDetailInfo.invoicerCorpNum + vbCrLf
             tmp += "invoicerMgtKey (공급자 문서관리번호) : " + tiDetailInfo.invoicerMgtKey + vbCrLf
             tmp += "invoicerTaxRegID (공급자 종사업장 식별번호) : " + tiDetailInfo.invoicerTaxRegID + vbCrLf
@@ -1978,7 +2040,6 @@ Public Class frmExample
             tmp += "invoicerHP (공급자 담당자 휴대폰) : " + tiDetailInfo.invoicerHP + vbCrLf
             tmp += "invoicerEmail (공급자 담당자 이메일) : " + tiDetailInfo.invoicerEmail + vbCrLf
             tmp += "invoicerSMSSendYN (안내문자 전송여부) : " + CStr(tiDetailInfo.invoicerSMSSendYN) + vbCrLf
-
             tmp += "invoiceeType (공급받는자 구분) : " + tiDetailInfo.invoiceeType + vbCrLf
             tmp += "invoiceeCorpNum (공급받는자 사업자번호) : " + tiDetailInfo.invoiceeCorpNum + vbCrLf
             tmp += "invoiceeMgtKey (공급받는자 문서관리번호) : " + tiDetailInfo.invoiceeMgtKey + vbCrLf
@@ -1996,7 +2057,6 @@ Public Class frmExample
             tmp += "closeDownStateDate (공급받는자 휴폐업일자) : " + tiDetailInfo.closeDownStateDate + vbCrLf
 
             MsgBox(tmp)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -2007,6 +2067,8 @@ Public Class frmExample
     ' - 응답항목에 대한 자세한 사항은 "[전자세금계산서 API 연동매뉴얼] > 4.2. (세금)계산서 상태정보 구성" 을 참조하시기 바랍니다.
     '=========================================================================
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
         Dim State(3) As String
@@ -2043,8 +2105,7 @@ Public Class frmExample
         IssueType(1) = "R"
         IssueType(2) = "T"
 
-
-        '지연발행 여부, False - 정상발행분만 조회 / True - 지연발행분만조회 / Nothing- 전체조회
+        '지연발행 여부, False - 정상발행분만 조회 / True - 지연발행분만조회 / Nothing - 전체조회
         Dim LateOnly As Boolean = Nothing
 
         '페이지 번호
@@ -2130,10 +2191,8 @@ Public Class frmExample
             Next
 
             MsgBox(tmp)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -2144,15 +2203,13 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnGetLogs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetLogs.Click
 
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
         Try
             Dim logList As List(Of TaxinvoiceLog) = taxinvoiceService.GetLogs(txtCorpNum.Text, KeyType, txtMgtKey.Text)
 
-
             Dim tmp As String = ""
-
-
             tmp += "docType(로그타입) | log(이력정보) | procType(처리형태) | procContactName(처리담당자) |"
             tmp += "procMemo(처리메모) | regDT(등록일시) | ip(아이피)" + vbCrLf + vbCrLf
 
@@ -2161,7 +2218,6 @@ Public Class frmExample
             Next
 
             MsgBox(tmp)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -2172,14 +2228,17 @@ Public Class frmExample
     ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
     '=========================================================================
     Private Sub btnGetURL_TBOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_TBOX.Click
+
+        'TBOX-임시문서함 / SBOX-매출문서함 / PBOX-매입문서함 / WRITE-매출문서함
+        Dim TOGO As String = "TBOX"
+
         Try
-            Dim url As String = taxinvoiceService.GetURL(txtCorpNum.Text, txtUserId.Text, "TBOX")
+            Dim url As String = taxinvoiceService.GetURL(txtCorpNum.Text, txtUserId.Text, TOGO)
 
             MsgBox(url)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
-
     End Sub
 
     '=========================================================================
@@ -2188,7 +2247,10 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnGetURL_SBOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_SBOX.Click
         Try
-            Dim url As String = taxinvoiceService.GetURL(txtCorpNum.Text, txtUserId.Text, "SBOX")
+            'TBOX-임시문서함 / SBOX-매출문서함 / PBOX-매입문서함 / WRITE-매출문서함
+            Dim TOGO As String = "SBOX"
+
+            Dim url As String = taxinvoiceService.GetURL(txtCorpNum.Text, txtUserId.Text, TOGO)
 
             MsgBox(url)
         Catch ex As PopbillException
@@ -2202,7 +2264,10 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnGetURL_PBOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_PBOX.Click
         Try
-            Dim url As String = taxinvoiceService.GetURL(txtCorpNum.Text, txtUserId.Text, "PBOX")
+            'TBOX-임시문서함 / SBOX-매출문서함 / PBOX-매입문서함 / WRITE-매출문서함
+            Dim TOGO As String = "PBOX"
+
+            Dim url As String = taxinvoiceService.GetURL(txtCorpNum.Text, txtUserId.Text, TOGO)
 
             MsgBox(url)
         Catch ex As PopbillException
@@ -2216,12 +2281,14 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnGetURL_WRITE_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_WRITE.Click
         Try
-            Dim url As String = taxinvoiceService.GetURL(txtCorpNum.Text, txtUserId.Text, "WRITE")
+            'TBOX-임시문서함 / SBOX-매출문서함 / PBOX-매입문서함 / WRITE-매출문서함
+            Dim TOGO As String = "WRITE"
+
+            Dim url As String = taxinvoiceService.GetURL(txtCorpNum.Text, txtUserId.Text, TOGO)
 
             MsgBox(url)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -2231,6 +2298,7 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnGetPopUpURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPopUpURL.Click
 
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
         Try
@@ -2240,7 +2308,6 @@ Public Class frmExample
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
-
     End Sub
 
     '=========================================================================
@@ -2249,6 +2316,7 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnGetPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPrintURL.Click
 
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
         Try
@@ -2257,9 +2325,7 @@ Public Class frmExample
             MsgBox(url)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
-
     End Sub
 
     '=========================================================================
@@ -2268,6 +2334,7 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnEPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEPrintURL.Click
 
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
         Try
@@ -2277,7 +2344,6 @@ Public Class frmExample
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
-
     End Sub
 
     '=========================================================================
@@ -2286,8 +2352,8 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnGetMassPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMassPrintURL.Click
 
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
-
 
         '문서관리번호 배열, 최대 100건
         Dim MgtKeyList As List(Of String) = New List(Of String)
@@ -2311,6 +2377,7 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnGetEmailURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetEmailURL.Click
 
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
         Try
@@ -2358,8 +2425,9 @@ Public Class frmExample
     ' - 첨부파일은 최대 5개까지 등록할 수 있습니다.
     '=========================================================================
     Private Sub btnAttachFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAttachFile.Click
-        Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
+        Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
         If fileDialog.ShowDialog(Me) = DialogResult.OK Then
             Dim strFileName As String = fileDialog.FileName
@@ -2382,6 +2450,8 @@ Public Class frmExample
     ' - 파일을 식별하는 파일아이디는 첨부파일 목록(GetFiles API) 의 응답항목 중 파일아이디(AttachedFile) 값을 통해 확인할 수 있습니다.
     '=========================================================================
     Private Sub btnDeleteFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteFile.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
         Try
@@ -2402,6 +2472,7 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnGetFiles_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFiles.Click
 
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
         Try
@@ -2426,14 +2497,14 @@ Public Class frmExample
     ' 세금계산서 발행안내 메일을 재전송합니다.
     '=========================================================================
     Private Sub btnSendEmail_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendEmail.Click
-        Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
+        Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
         Try
             Dim response As Response = taxinvoiceService.SendEmail(txtCorpNum.Text, KeyType, txtMgtKey.Text, "test@test.com", txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -2445,6 +2516,8 @@ Public Class frmExample
     ' - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [문자] > [전송내역] 메뉴에서 전송결과를 확인할 수 있습니다.
     '=========================================================================
     Private Sub btnSendSMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendSMS.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
         '발신번호
@@ -2460,7 +2533,6 @@ Public Class frmExample
             Dim response As Response = taxinvoiceService.SendSMS(txtCorpNum.Text, KeyType, txtMgtKey.Text, sendNum, receiveNum, contents, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -2473,6 +2545,8 @@ Public Class frmExample
     ' - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인할 수 있습니다.
     '=========================================================================
     Private Sub btnSendFAX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendFAX.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
         '발신번호
@@ -2485,7 +2559,6 @@ Public Class frmExample
             Dim response As Response = taxinvoiceService.SendFAX(txtCorpNum.Text, KeyType, txtMgtKey.Text, sendNum, receiveNum, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -2495,6 +2568,8 @@ Public Class frmExample
     ' 1건의 전자명세서를 세금계산서에 첨부합니다.
     '=========================================================================
     Private Sub btnAttachStatement_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAttachStatement.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
         '첨부 대상 전자명세서 종류코드, 121-거래명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표,126-영수증
@@ -2506,7 +2581,6 @@ Public Class frmExample
         Try
             Dim response As Response = taxinvoiceService.AttachStatement(txtCorpNum.Text, KeyType, txtMgtKey.Text, docItemCode, docMgtKey)
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -2516,6 +2590,8 @@ Public Class frmExample
     ' 세금계산서에 첨부된 전자명세서 1건을 첨부해제합니다.
     '=========================================================================
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
         '첨부해제 대상 전자명세서 종류코드, 121-거래명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표,126-영수증
@@ -2527,7 +2603,6 @@ Public Class frmExample
         Try
             Dim response As Response = taxinvoiceService.DetachStatement(txtCorpNum.Text, KeyType, txtMgtKey.Text, docItemCode, docMgtKey)
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -2545,7 +2620,6 @@ Public Class frmExample
 
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -2555,13 +2629,14 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnAssignMgtKey_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAssignMgtKey.Click
 
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
         '세금계산서 아이템키, 목록조회(Search) API의 반환항목중 ItemKey 참조
         Dim itemKey As String = "018041823295700001"
 
-        '할당할 문서관리번호, 숫자, 영문, '-', '_' 조합으로 
-        '~24자리까지 사업자번호별 중복없는 고유번호 할당
+        '관리번호가 없는 문서에 할당할 문서관리번호
+        '- 관리번호는 1~24자리로 숫자, 영문 '-', '_' 조합으로 구성할 수 있습니다.
         Dim mgtKey As String = "20190111-A00"
 
         Try
@@ -2611,7 +2686,6 @@ Public Class frmExample
             Next
 
             MsgBox(tmp)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -2671,7 +2745,6 @@ Public Class frmExample
             Dim response As Response = taxinvoiceService.UpdateEmailConfig(txtCorpNum.Text, emailType, sendYN, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -2686,8 +2759,8 @@ Public Class frmExample
     Private Sub btnGetTaxCertURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetTaxCertURL.Click
         Try
             Dim url As String = taxinvoiceService.GetTaxCertURL(txtCorpNum.Text, txtUserId.Text)
-            MsgBox(url)
 
+            MsgBox(url)
 
             '=====================================================================
             '공인인증서 등록시에는 Internet Explorer 브라우저만 이용이 가능합니다. 
@@ -2706,7 +2779,6 @@ Public Class frmExample
             'Internet Explorer Process 호출
             System.Diagnostics.Process.Start(ie)
 
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -2721,13 +2793,9 @@ Public Class frmExample
         Try
             Dim expiration As DateTime = taxinvoiceService.GetCertificateExpireDate(txtCorpNum.Text)
 
-
             MsgBox("공인인증서 만료일시 : " + expiration.ToString())
-
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -2739,7 +2807,6 @@ Public Class frmExample
             Dim response As Response = taxinvoiceService.CheckCertValidation(txtCorpNum.Text, txtUserId.Text)
 
             MessageBox.Show("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MessageBox.Show("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -2755,10 +2822,8 @@ Public Class frmExample
             Dim remainPoint As Double = taxinvoiceService.GetBalance(txtCorpNum.Text)
 
             MsgBox("연동회원 잔여포인트 : " + remainPoint.ToString())
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -2776,8 +2841,6 @@ Public Class frmExample
         End Try
     End Sub
 
-
-
     '=========================================================================
     ' 파트너의 잔여포인트를 확인합니다.
     ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
@@ -2786,13 +2849,9 @@ Public Class frmExample
         Try
             Dim remainPoint As Double = taxinvoiceService.GetPartnerBalance(txtCorpNum.Text)
 
-
             MsgBox("파트너 잔여포인트 : " + remainPoint.ToString())
-
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -2802,14 +2861,16 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerURL.Click
         Try
-            Dim url As String = taxinvoiceService.GetPartnerURL(txtCorpNum.Text, "CHRG")
+            '파트너 포인트충전 URL
+            Dim TOGO As String = "CHRG"
+
+            Dim url As String = taxinvoiceService.GetPartnerURL(txtCorpNum.Text, TOGO)
 
             MsgBox(url)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
 
     '=========================================================================
     ' 전자세금계산서 발행단가를 확인합니다.
@@ -2819,7 +2880,6 @@ Public Class frmExample
             Dim unitCost As Single = taxinvoiceService.GetUnitCost(txtCorpNum.Text)
 
             MsgBox("세금계산서 발행단가(unitCost) : " + unitCost.ToString())
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
@@ -2838,7 +2898,6 @@ Public Class frmExample
             tmp += "rateSystem (과금제도) : " + ChargeInfo.rateSystem + vbCrLf
 
             MsgBox(tmp)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -2853,7 +2912,6 @@ Public Class frmExample
             Dim response As Response = taxinvoiceService.CheckIsMember(txtCorpNum.Text, LinkID)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -2867,7 +2925,6 @@ Public Class frmExample
             Dim response As Response = taxinvoiceService.CheckID(txtCorpNum.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -2925,10 +2982,8 @@ Public Class frmExample
             Dim response As Response = taxinvoiceService.JoinMember(joinInfo)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -2947,10 +3002,8 @@ Public Class frmExample
             tmp += "bizClass(종목) : " + corpInfo.bizClass + vbCrLf
 
             MsgBox(tmp)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -2980,10 +3033,8 @@ Public Class frmExample
             Dim response As Response = taxinvoiceService.UpdateCorpInfo(txtCorpNum.Text, corpInfo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -3027,10 +3078,8 @@ Public Class frmExample
             Dim response As Response = taxinvoiceService.RegistContact(txtCorpNum.Text, joinData, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -3051,7 +3100,6 @@ Public Class frmExample
 
             MsgBox(tmp)
         Catch ex As PopbillException
-
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
@@ -3092,7 +3140,6 @@ Public Class frmExample
             Dim response As Response = taxinvoiceService.UpdateContact(txtCorpNum.Text, joinData, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 

@@ -545,7 +545,10 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerURL.Click
         Try
-            Dim url As String = htTaxinvoiceService.GetPartnerURL(txtCorpNum.Text, "CHRG")
+            '파트너 포인트충전 URL
+            Dim TOGO As String = "CHRG"
+
+            Dim url As String = htTaxinvoiceService.GetPartnerURL(txtCorpNum.Text, TOGO)
 
             MsgBox(url)
         Catch ex As PopbillException
@@ -561,7 +564,7 @@ Public Class frmExample
         Try
             Dim ChargeInfo As ChargeInfo = htTaxinvoiceService.GetChargeInfo(txtCorpNum.Text)
 
-            Dim tmp As String = "unitCost (발행단가) : " + ChargeInfo.unitCost + vbCrLf
+            Dim tmp As String = "unitCost (월정액요금) : " + ChargeInfo.unitCost + vbCrLf
             tmp += "chargeMethod (과금유형) : " + ChargeInfo.chargeMethod + vbCrLf
             tmp += "rateSystem (과금제도) : " + ChargeInfo.rateSystem + vbCrLf
 

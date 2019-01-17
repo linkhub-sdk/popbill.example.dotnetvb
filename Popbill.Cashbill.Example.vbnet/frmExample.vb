@@ -30,7 +30,7 @@ Public Class frmExample
 
     Private Sub frmExample_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
-        '세금계산서 서비스 객체 초기화
+        '현금영수증 서비스 객체 초기화
         cashbillService = New CashbillService(LinkID, SecretKey)
 
         '연동환경 설정값 (True-개발용, False-상업용)
@@ -338,8 +338,12 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
+        '발행 메모
+        Dim Memo As String = "발행 메모"
+
         Try
-            Dim response As Response = cashbillService.Issue(txtCorpNum.Text, txtMgtKey.Text, "발행시 메모", txtUserId.Text)
+
+            Dim response As Response = cashbillService.Issue(txtCorpNum.Text, txtMgtKey.Text, Memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
@@ -354,8 +358,12 @@ Public Class frmExample
     ' - 발행취소된 현금영수증은 국세청에 전송되지 않습니다.
     '=========================================================================
     Private Sub btnCancelIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+
+        '발행취소 메모
+        Dim Memo As String = "발행취소 메모"
+
         Try
-            Dim response As Response = cashbillService.CancelIssue(txtCorpNum.Text, txtMgtKey.Text, "발행취소시 메모.", txtUserId.Text)
+            Dim response As Response = cashbillService.CancelIssue(txtCorpNum.Text, txtMgtKey.Text, Memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
@@ -364,14 +372,14 @@ Public Class frmExample
         End Try
     End Sub
 
-
     '=========================================================================
     ' [발행완료] 상태의 현금영수증을 [발행취소]합니다.
     ' - 발행취소는 국세청 전송전에만 가능합니다.
     ' - 발행취소된 현금영수증은 국세청에 전송되지 않습니다.
     '=========================================================================
     Private Sub btnCancelIssue02_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelIssue02.Click
-        '메모
+
+        '발행취소 메모
         Dim memo As String = "발행취소 메모"
 
         Try
@@ -390,11 +398,12 @@ Public Class frmExample
     ' - 발행취소된 현금영수증은 국세청에 전송되지 않습니다.
     '=========================================================================
     Private Sub btnCancelIssueSub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelIssueSub.Click
-        '메모
-        Dim memo As String = "발행취소 메모"
+
+        '발행취소 메모
+        Dim Memo As String = "발행취소 메모"
 
         Try
-            Dim response As Response = cashbillService.CancelIssue(txtCorpNum.Text, txtMgtKey.Text, memo, txtUserId.Text)
+            Dim response As Response = cashbillService.CancelIssue(txtCorpNum.Text, txtMgtKey.Text, Memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
@@ -420,14 +429,12 @@ Public Class frmExample
         End Try
     End Sub
 
-
     '=========================================================================
     ' 1건의 현금영수증을 [삭제]합니다.
     ' - 현금영수증을 삭제하면 사용된 문서관리번호(mgtKey)를 재사용할 수 있습니다.
     ' - 삭제가능한 문서 상태 : [임시저장], [발행취소]
     '=========================================================================
     Private Sub btnDeleteSub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteSub.Click
-
 
         Try
             Dim response As Response = cashbillService.Delete(txtCorpNum.Text, txtMgtKey.Text, txtUserId.Text)
@@ -472,7 +479,7 @@ Public Class frmExample
         '발행 안내문자 전송여부
         Dim smssendYN As Boolean = False
 
-        '메모
+        '취소현금영수증 메모
         Dim memo As String = "취소현금영수증 발행 메모"
 
         Try
@@ -501,9 +508,8 @@ Public Class frmExample
         '발행안내문자 전송여부
         Dim smssendYN As Boolean = False
 
-        '메모
-        Dim memo As String = "부분취소 즉시발행 메모"
-
+        '취소현금영수증 메모
+        Dim memo As String = "취소현금영수증 발행 메모"
 
         '부분취소 여부
         Dim isPartCancel As Boolean = True
@@ -819,8 +825,12 @@ Public Class frmExample
     ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
     '=========================================================================
     Private Sub btnGetURL_TBOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_TBOX.Click
+
+        'TBOX-임시문서함 / PBOX-발행문서함 / WRITE-현금영수증 신규 작성
+        Dim TOGO As String = "TBOX"
+
         Try
-            Dim url As String = cashbillService.GetURL(txtCorpNum.Text, txtUserId.Text, "TBOX")
+            Dim url As String = cashbillService.GetURL(txtCorpNum.Text, txtUserId.Text, TOGO)
 
             MsgBox(url)
         Catch ex As PopbillException
@@ -835,8 +845,12 @@ Public Class frmExample
     ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
     '=========================================================================
     Private Sub btnGetURL_SBOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_PBOX.Click
+
+        'TBOX-임시문서함 / PBOX-발행문서함 / WRITE-현금영수증 신규 작성
+        Dim TOGO As String = "TBOX"
+
         Try
-            Dim url As String = cashbillService.GetURL(txtCorpNum.Text, txtUserId.Text, "PBOX")
+            Dim url As String = cashbillService.GetURL(txtCorpNum.Text, txtUserId.Text, TOGO)
 
             MsgBox(url)
         Catch ex As PopbillException
@@ -850,8 +864,12 @@ Public Class frmExample
     ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
     '=========================================================================
     Private Sub btnGetURL_WRITE_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_WRITE.Click
+
+        'TBOX-임시문서함 / PBOX-발행문서함 / WRITE-현금영수증 신규 작성
+        Dim TOGO As String = "TBOX"
+
         Try
-            Dim url As String = cashbillService.GetURL(txtCorpNum.Text, txtUserId.Text, "WRITE")
+            Dim url As String = cashbillService.GetURL(txtCorpNum.Text, txtUserId.Text, TOGO)
 
             MsgBox(url)
         Catch ex As PopbillException
@@ -917,8 +935,8 @@ Public Class frmExample
         Dim MgtKeyList As List(Of String) = New List(Of String)
 
         '문서 관리번호 배열, 최대 100건.
-        MgtKeyList.Add("1234")
-        MgtKeyList.Add("12345")
+        MgtKeyList.Add("20190119-001")
+        MgtKeyList.Add("20190119-002")
 
         Try
             Dim url As String = cashbillService.GetMassPrintURL(txtCorpNum.Text, MgtKeyList, txtUserId.Text)
@@ -1072,7 +1090,6 @@ Public Class frmExample
         End Try
     End Sub
 
-
     '=========================================================================
     ' 연동회원의 잔여포인트를 확인합니다.
     ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트(GetPartnerBalance API) 를 통해 확인하시기 바랍니다.
@@ -1085,7 +1102,6 @@ Public Class frmExample
 
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -1103,7 +1119,6 @@ Public Class frmExample
         End Try
     End Sub
 
-
     '=========================================================================
     ' 파트너의 잔여포인트를 확인합니다.
     ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
@@ -1115,12 +1130,9 @@ Public Class frmExample
 
             MsgBox("파트너 잔여포인트 : " + remainPoint.ToString())
 
-
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
-
     End Sub
 
     '=========================================================================
@@ -1129,7 +1141,10 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerURL.Click
         Try
-            Dim url As String = cashbillService.GetPartnerURL(txtCorpNum.Text, "CHRG")
+            '파트너 포인트충전 URL
+            Dim TOGO As String = "CHRG"
+
+            Dim url As String = cashbillService.GetPartnerURL(txtCorpNum.Text, TOGO)
 
             MsgBox(url)
         Catch ex As PopbillException
@@ -1387,7 +1402,6 @@ Public Class frmExample
 
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -1420,7 +1434,6 @@ Public Class frmExample
 
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 

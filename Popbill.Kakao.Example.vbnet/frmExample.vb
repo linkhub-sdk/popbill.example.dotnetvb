@@ -287,7 +287,6 @@ Public Class frmExample
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
-
     End Sub
 
     '=========================================================================
@@ -342,7 +341,6 @@ Public Class frmExample
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
-
     End Sub
 
     '=========================================================================
@@ -439,7 +437,6 @@ Public Class frmExample
             receiverList.Add(msg)
         Next
 
-
         '버튼 배열 최대 5개
         Dim buttonList As List(Of KakaoButton) = New List(Of KakaoButton)
 
@@ -458,7 +455,6 @@ Public Class frmExample
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
-
     End Sub
 
     '=========================================================================
@@ -593,7 +589,6 @@ Public Class frmExample
             End Try
 
         End If
-
     End Sub
 
     '=========================================================================
@@ -663,8 +658,8 @@ Public Class frmExample
             Catch ex As PopbillException
                 MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
             End Try
-        End If
 
+        End If
     End Sub
 
     '=========================================================================
@@ -763,7 +758,6 @@ Public Class frmExample
             Next
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -831,7 +825,6 @@ Public Class frmExample
             Next
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -924,7 +917,6 @@ Public Class frmExample
             Next
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -991,8 +983,12 @@ Public Class frmExample
     ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
     '=========================================================================
     Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerURL.Click
+
         Try
-            Dim url As String = kakaoService.GetPartnerURL(txtCorpNum.Text, "CHRG")
+            '파트너 포인트충전 URL
+            Dim TOGO As String = "CHRG"
+
+            Dim url As String = kakaoService.GetPartnerURL(txtCorpNum.Text, TOGO)
 
             MsgBox(url)
         Catch ex As PopbillException
