@@ -52,7 +52,7 @@ Public Class frmExample
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
         Try
-            Dim InUse As Boolean = taxinvoiceService.CheckMgtKeyInUse(txtCorpNum.Text, KeyType, txtMgtKey.Text)
+            Dim InUse As Boolean = taxinvoiceService.CheckMgtKeyInUse(txtCorpNum.Text, KeyType,txtMgtKey.Text)
 
             MsgBox(IIf(InUse, "사용중", "미사용중"))
         Catch ex As PopbillException
@@ -698,7 +698,7 @@ Public Class frmExample
         '         수정세금계산서 정보 (수정세금계산서 작성시에만 기재
         ' - 수정세금계산서 관련 정보는 연동매뉴얼 또는 개발가이드 링크 참조
         ' - [참고] 수정세금계산서 작성방법 안내 - http://blog.linkhub.co.kr/650
-        '========================================================================='
+        '=========================================================================
 
         ' 수정사유코드, 수정사유에 따라 1~6중 선택기재
         taxinvoice.modifyCode = Nothing
@@ -1161,7 +1161,7 @@ Public Class frmExample
         '         수정세금계산서 정보 (수정세금계산서 작성시에만 기재
         ' - 수정세금계산서 관련 정보는 연동매뉴얼 또는 개발가이드 링크 참조
         ' - [참고] 수정세금계산서 작성방법 안내 - http://blog.linkhub.co.kr/650
-        '========================================================================='
+        '=========================================================================
 
         ' 수정사유코드, 수정사유에 따라 1~6중 선택기재
         taxinvoice.modifyCode = Nothing
@@ -1617,7 +1617,7 @@ Public Class frmExample
         '         수정세금계산서 정보 (수정세금계산서 작성시에만 기재
         ' - 수정세금계산서 관련 정보는 연동매뉴얼 또는 개발가이드 링크 참조
         ' - [참고] 수정세금계산서 작성방법 안내 - http://blog.linkhub.co.kr/650
-        '========================================================================='
+        '=========================================================================
 
         ' 수정사유코드, 수정사유에 따라 1~6중 선택기재
         taxinvoice.modifyCode = Nothing
@@ -1706,7 +1706,7 @@ Public Class frmExample
 
     '=========================================================================
     ' [공급받는자]가 역)발행대기 상태의 세금계산서를 [취소]합니다. 
-    ' - [취소]한 세금계산서의 문서관리번호를 재사용하기 위해서는 삭제 (Delete API)를 호출해야 합니다..
+    ' - [취소]한 세금계산서의 문서관리번호를 재사용하기 위해서는 삭제 (Delete API)를 호출해야 합니다.
     '=========================================================================
     Private Sub btnCancelRequest_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelRequest.Click
 
@@ -1870,7 +1870,7 @@ Public Class frmExample
     ' 1건의 세금계산서 상태/요약 정보를 확인합니다.
     ' - 세금계산서 상태정보(GetInfo API) 응답항목에 대한 자세한 정보는
     '   "[전자세금계산서 API 연동매뉴얼] > 4.2. (세금)계산서 상태정보 구성" 을 참조하시기 바랍니다.
-    '=========================================================================ㄴ
+    '=========================================================================
     Private Sub btnGetInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetInfo.Click
 
         '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
@@ -2494,8 +2494,11 @@ Public Class frmExample
         '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
+        '수신자 이메일주소
+        Dim Receiver As String = "test@test.com";
+        
         Try
-            Dim response As Response = taxinvoiceService.SendEmail(txtCorpNum.Text, KeyType, txtMgtKey.Text, "test@test.com", txtUserId.Text)
+            Dim response As Response = taxinvoiceService.SendEmail(txtCorpNum.Text, KeyType, txtMgtKey.Text, Receiver, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException

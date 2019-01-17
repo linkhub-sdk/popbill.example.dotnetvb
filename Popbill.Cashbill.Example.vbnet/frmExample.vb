@@ -969,7 +969,8 @@ Public Class frmExample
     ' 발행 안내메일을 재전송합니다.
     '=========================================================================
     Private Sub btnSendEmail_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendEmail.Click
-        '수신메일주소
+        
+        '수자 이메일주소
         Dim receiverMail = "test@test.com"
 
         Try
