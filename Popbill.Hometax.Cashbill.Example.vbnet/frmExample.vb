@@ -225,8 +225,8 @@ Public Class frmExample
 
         '거래용도 배열, P-소득공제용, C-지출증빙용
         Dim tradeUsage(2) As String
-        tradeUsage(0) = "T"
-        tradeUsage(1) = "N"
+        tradeUsage(0) = "P"
+        tradeUsage(1) = "C"
 
         Try
 

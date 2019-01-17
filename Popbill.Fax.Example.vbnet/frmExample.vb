@@ -784,7 +784,7 @@ Public Class frmExample
         Try
             Dim ChargeInfo As ChargeInfo = faxService.GetChargeInfo(txtCorpNum.Text)
 
-            Dim tmp As String = "unitCost (발행단가) : " + ChargeInfo.unitCost + vbCrLf
+            Dim tmp As String = "unitCost (전송단가) : " + ChargeInfo.unitCost + vbCrLf
             tmp += "chargeMethod (과금유형) : " + ChargeInfo.chargeMethod + vbCrLf
             tmp += "rateSystem (과금제도) : " + ChargeInfo.rateSystem + vbCrLf
 

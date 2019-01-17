@@ -17,7 +17,6 @@
 '=========================================================================
 
 Public Class frmExample
-
     '링크아이디
     Private LinkID As String = "TESTER"
 
@@ -39,16 +38,18 @@ Public Class frmExample
     Private Function getReserveDT() As DateTime?
         If String.IsNullOrEmpty(txtReserveDT.Text) = False Then
 
-            Return DateTime.ParseExact(txtReserveDT.Text, "yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture)
+            Return _
+                DateTime.ParseExact(txtReserveDT.Text, "yyyyMMddHHmmss",
+                                    System.Globalization.CultureInfo.InvariantCulture)
         End If
-
     End Function
 
     '=========================================================================
     ' 플러스친구 계정관리 팝업 URL을 확인합니다.
     ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
     '=========================================================================
-    Private Sub btnGetPlusFriendMgtURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPlusFriendMgtURL.Click
+    Private Sub btnGetPlusFriendMgtURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnGetPlusFriendMgtURL.Click
         Try
             Dim url As String = kakaoService.GetPlusFriendMgtURL(txtCorpNum.Text, txtUserId.Text)
 
@@ -62,7 +63,8 @@ Public Class frmExample
     '=========================================================================
     ' 팝빌에 등록된 플러스친구 계정 목록을 반환한다.
     '=========================================================================
-    Private Sub btnListPlusFriendID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListPlusFriendID.Click
+    Private Sub btnListPlusFriendID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnListPlusFriendID.Click
         Try
             Dim plusFriendList As List(Of PlusFriend) = kakaoService.ListPlusFriendID(txtCorpNum.Text, txtUserId.Text)
 
@@ -82,7 +84,8 @@ Public Class frmExample
     ' 발신번호 관리 팝업 URL을 확인합니다.
     ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
     '=========================================================================
-    Private Sub btnGetSenderNumberMgtURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSenderNumberMgtURL.Click
+    Private Sub btnGetSenderNumberMgtURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnGetSenderNumberMgtURL.Click
         Try
             Dim url As String = kakaoService.GetSenderNumberMgtURL(txtCorpNum.Text, txtUserId.Text)
 
@@ -95,9 +98,11 @@ Public Class frmExample
     '=========================================================================
     ' 팝빌에 등록된 발신번호 목록을 반환한다.
     '=========================================================================
-    Private Sub btnGetSenderNumberList_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSenderNumberList.Click
+    Private Sub btnGetSenderNumberList_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnGetSenderNumberList.Click
         Try
-            Dim senderNumberList As List(Of SenderNumber) = kakaoService.GetSenderNumberList(txtCorpNum.Text, txtUserId.Text)
+            Dim senderNumberList As List(Of SenderNumber) = kakaoService.GetSenderNumberList(txtCorpNum.Text,
+                                                                                             txtUserId.Text)
 
             Dim tmp As String = "number(발신번호) | representYN(대표번호여부) | state(인증상태)" + vbCrLf
 
@@ -115,7 +120,8 @@ Public Class frmExample
     ' 알림톡 템플릿 관리 팝업 URL을 확인합니다.
     ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
     '=========================================================================
-    Private Sub btnGetATSTemplateMgtURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetATSTemplateMgtURL.Click
+    Private Sub btnGetATSTemplateMgtURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnGetATSTemplateMgtURL.Click
         Try
             Dim url As String = kakaoService.GetATSTemplateMgtURL(txtCorpNum.Text, txtUserId.Text)
 
@@ -128,7 +134,8 @@ Public Class frmExample
     '=========================================================================
     ' (주)카카오로부터 심사후 승인된 알림톡 템플릿 목록을 반환한다.
     '=========================================================================
-    Private Sub btnListATSTemplate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListATSTemplate.Click
+    Private Sub btnListATSTemplate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnListATSTemplate.Click
         Try
             Dim templateList As List(Of ATSTemplate) = kakaoService.ListATSTemplate(txtCorpNum.Text, txtUserId.Text)
 
@@ -163,7 +170,8 @@ Public Class frmExample
     ' 알림톡 전송을 요청합니다.
     ' 사전에 승인된 템플릿의 내용과 알림톡 전송내용(content)이 다를 경우 전송실패 처리됩니다.
     '=========================================================================
-    Private Sub btnSendATS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendATS_one.Click
+    Private Sub btnSendATS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnSendATS_one.Click
 
         '알림톡 템플릿 코드, 알림톡 템플릿 목록확인(ListATSTemplate) API 반환항목중 templateCode로 확인
         Dim templateCode As String = "018110000047"
@@ -171,10 +179,10 @@ Public Class frmExample
         '팝빌에 사전등록된 발신번호
         Dim senderNum As String = "07043042991"
 
-        '알림톡 템플릿 내용, 최대 1000자
+        '알림톡 템플릿 내용 (최대 1000자)
         Dim content As String = "[테스트] 테스트 템플릿입니다."
 
-        '대체문자 메시지 내용
+        '대체문자 메시지 내용 (최대 2000byte)
         Dim altContent As String = "대체문자 메시지 내용"
 
         '대체문자 유형, 공백-미전송, C-알림톡내용 전송, A-대체문자내용 전송
@@ -191,8 +199,9 @@ Public Class frmExample
         Dim requestNum = ""
 
         Try
-            Dim receiptNum As String = kakaoService.SendATS(txtCorpNum.Text, templateCode, senderNum, altSendType, getReserveDT(), _
-                receiveNum, receiveName, content, altContent, requestNum)
+            Dim receiptNum As String = kakaoService.SendATS(txtCorpNum.Text, templateCode, senderNum, altSendType,
+                                                            getReserveDT(),
+                                                            receiveNum, receiveName, content, altContent, requestNum)
 
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
@@ -206,7 +215,8 @@ Public Class frmExample
     ' [대량전송] 알림톡 전송을 요청합니다.
     ' 사전에 승인된 템플릿의 내용과 알림톡 전송내용(content)이 다를 경우 전송실패 처리됩니다.
     '=========================================================================
-    Private Sub btnSendATS_multi_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendATS_multi.Click
+    Private Sub btnSendATS_multi_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnSendATS_multi.Click
 
         '알림톡 템플릿 코드, 알림톡 템플릿 목록확인(ListATSTemplate) API 반환항목중 templateCode로 확인
         Dim templateCode As String = "018110000047"
@@ -228,13 +238,13 @@ Public Class frmExample
             Dim msg As KakaoReceiver = New KakaoReceiver
             msg.rcv = "010111222" '수신번호
             msg.rcvnm = "수신자명칭_" + CStr(i) '수신자명
-            msg.msg = "[테스트] 테스트 템플릿입니다." '알림톡 템플릿 내용, 최대 1000자
-            msg.altmsg = "대체문자 메시지 내용" '대체문자 내용
+            msg.msg = "[테스트] 테스트 템플릿입니다." '알림톡 템플릿 내용 (최대 1000자)
+            msg.altmsg = "대체문자 메시지 내용" '대체문자 내용 (최대 2000byte)
             receiverList.Add(msg)
         Next
 
         Try
-            Dim receiptNum As String = kakaoService.SendATS(txtCorpNum.Text, templateCode, senderNum, altSendType, _
+            Dim receiptNum As String = kakaoService.SendATS(txtCorpNum.Text, templateCode, senderNum, altSendType,
                                                             getReserveDT(), receiverList, txtUserId.Text, requestNum)
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
@@ -247,7 +257,8 @@ Public Class frmExample
     ' [동보전송] 알림톡 전송을 요청합니다.
     ' 사전에 승인된 템플릿의 내용과 알림톡 전송내용(content)이 다를 경우 전송실패 처리됩니다.
     '=========================================================================
-    Private Sub btnSendATS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendATS_same.Click
+    Private Sub btnSendATS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnSendATS_same.Click
 
         '알림톡 템플릿 코드, 알림톡 템플릿 목록확인(ListATSTemplate) API 반환항목중 templateCode로 확인
         Dim templateCode As String = "018110000047"
@@ -255,10 +266,10 @@ Public Class frmExample
         '팝빌에 사전등록된 발신번호
         Dim senderNum As String = "07043042991"
 
-        '알림톡 템플릿 내용, 최대 1000자
+        '알림톡 템플릿 내용 (최대 1000자)
         Dim content As String = "[테스트] 테스트 템플릿입니다."
 
-        '대체문자 메시지 내용
+        '대체문자 메시지 내용 (최대 2000byte)
         Dim altContent As String = "대체문자 메시지 내용"
 
         '대체문자 유형, 공백-미전송, C-알림톡내용 전송, A-대체문자내용 전송
@@ -279,8 +290,10 @@ Public Class frmExample
         Next
 
         Try
-            Dim receiptNum As String = kakaoService.SendATS(txtCorpNum.Text, templateCode, senderNum, content, altContent, _
-                                                            altSendType, getReserveDT(), receiverList, txtUserId.Text, requestNum)
+            Dim receiptNum As String = kakaoService.SendATS(txtCorpNum.Text, templateCode, senderNum, content,
+                                                            altContent,
+                                                            altSendType, getReserveDT(), receiverList, txtUserId.Text,
+                                                            requestNum)
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
         Catch ex As PopbillException
@@ -292,7 +305,8 @@ Public Class frmExample
     ' 친구톡(텍스트) 전송을 요청합니다.
     ' - 친구톡은 심야 전송(20:00~08:00)이 제한됩니다.
     '=========================================================================
-    Private Sub btnSendFTS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendFTS_one.Click
+    Private Sub btnSendFTS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnSendFTS_one.Click
 
         '플러스친구 아이디, 플러스친구 목록 확인(LIstPlusFriend) API의 plusFriendID 항목 확인
         Dim plusFriendID As String = "@팝빌"
@@ -306,13 +320,13 @@ Public Class frmExample
         '수신자명
         Dim receiverName As String = "수신자명"
 
-        '친구톡 내용, 최대 1000자
+        '친구톡 내용 (최대 1000자)
         Dim content As String = "친구톡 내용입니다."
 
-        '대체문자 메시지 내용
+        '대체문자 메시지 내용 (최대 2000byte)
         Dim altContent As String = "대체문자 메시지 내용입니다."
 
-        '대체문자 유형, 공백-미전송, C-알림톡내용 전송, A-대체문자내용 전송
+        '대체문자 유형, 공백-미전송, C-친구톡내용 전송, A-대체문자내용 전송
         Dim altSendType = "A"
 
         '광고전송 여부
@@ -333,8 +347,10 @@ Public Class frmExample
         buttonList.Add(btnInfo)
 
         Try
-            Dim receiptNum As String = kakaoService.SendFTS(txtCorpNum.Text, plusFriendID, senderNum, content, altContent, altSendType, _
-                                                            receiverNum, receiverName, adsYN, getReserveDT(), buttonList, txtUserId.Text, requestNum)
+            Dim receiptNum As String = kakaoService.SendFTS(txtCorpNum.Text, plusFriendID, senderNum, content,
+                                                            altContent, altSendType,
+                                                            receiverNum, receiverName, adsYN, getReserveDT(), buttonList,
+                                                            txtUserId.Text, requestNum)
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
         Catch ex As PopbillException
@@ -346,7 +362,8 @@ Public Class frmExample
     ' [대량전송] 친구톡(텍스트) 전송을 요청합니다.
     ' - 친구톡은 심야 전송(20:00~08:00)이 제한됩니다.
     '=========================================================================
-    Private Sub btnSendFTS_multi_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendFTS_multi.Click
+    Private Sub btnSendFTS_multi_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnSendFTS_multi.Click
 
         '플러스친구 아이디, 플러스친구 목록 확인(LIstPlusFriend) API의 plusFriendID 항목 확인
         Dim plusFriendID As String = "@팝빌"
@@ -354,7 +371,7 @@ Public Class frmExample
         '팝빌에 사전등록된 발신번호
         Dim senderNum As String = "07043042991"
 
-        '대체문자 유형, 공백-미전송, C-알림톡내용 전송, A-대체문자내용 전송
+        '대체문자 유형, 공백-미전송, C-친구톡내용 전송, A-대체문자내용 전송
         Dim altSendType = "A"
 
         '광고전송 여부
@@ -371,8 +388,8 @@ Public Class frmExample
             Dim msg As KakaoReceiver = New KakaoReceiver
             msg.rcv = "010111222" '수신번호
             msg.rcvnm = "수신자명칭_" + CStr(i) '수신자명
-            msg.msg = "친구톡 내용입니다." + CStr(i) '친구톡 내용, 최대 1000자
-            msg.altmsg = "대체문자 메시지 내용" + CStr(i) '대체문자 내용
+            msg.msg = "친구톡 내용입니다." + CStr(i) '친구톡 내용 (최대 1000자)
+            msg.altmsg = "대체문자 메시지 내용" + CStr(i) '대체문자 내용 (최대 2000byte)
             receiverList.Add(msg)
         Next
 
@@ -387,8 +404,9 @@ Public Class frmExample
         buttonList.Add(btnInfo)
 
         Try
-            Dim receiptNum As String = kakaoService.SendFTS(txtCorpNum.Text, plusFriendID, senderNum, _
-                         altSendType, adsYN, getReserveDT(), receiverList, buttonList, txtUserId.Text, requestNum)
+            Dim receiptNum As String = kakaoService.SendFTS(txtCorpNum.Text, plusFriendID, senderNum,
+                                                            altSendType, adsYN, getReserveDT(), receiverList, buttonList,
+                                                            txtUserId.Text, requestNum)
 
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
@@ -401,7 +419,8 @@ Public Class frmExample
     ' [동보전송] 친구톡(텍스트) 전송을 요청합니다.
     ' - 친구톡은 심야 전송(20:00~08:00)이 제한됩니다.
     '=========================================================================
-    Private Sub btnSendFTS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendFTS_same.Click
+    Private Sub btnSendFTS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnSendFTS_same.Click
 
         '플러스친구 아이디, 플러스친구 목록 확인(LIstPlusFriend) API의 plusFriendID 항목 확인
         Dim plusFriendID As String = "@팝빌"
@@ -409,13 +428,13 @@ Public Class frmExample
         '팝빌에 사전등록된 발신번호
         Dim senderNum As String = "07043042991"
 
-        '친구톡 내용, 최대 1000자
+        '친구톡 내용 (최대 1000자)
         Dim content As String = "친구톡 내용입니다."
 
-        '대체문자 메시지 내용
+        '대체문자 메시지 내용 (최대 2000byte)
         Dim altContent As String = "대체문자 메시지 내용입니다."
 
-        '대체문자 유형, 공백-미전송, C-알림톡내용 전송, A-대체문자내용 전송
+        '대체문자 유형, 공백-미전송, C-친구톡내용 전송, A-대체문자내용 전송
         Dim altSendType = "A"
 
         '광고전송 여부
@@ -446,8 +465,10 @@ Public Class frmExample
         buttonList.Add(btnInfo)
 
         Try
-            Dim receiptNum As String = kakaoService.SendFTS(txtCorpNum.Text, plusFriendID, senderNum, content, altContent, altSendType, _
-                                                            adsYN, getReserveDT(), receiverList, buttonList, txtUserId.Text, requestNum)
+            Dim receiptNum As String = kakaoService.SendFTS(txtCorpNum.Text, plusFriendID, senderNum, content,
+                                                            altContent, altSendType,
+                                                            adsYN, getReserveDT(), receiverList, buttonList,
+                                                            txtUserId.Text, requestNum)
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
         Catch ex As PopbillException
@@ -460,7 +481,8 @@ Public Class frmExample
     ' - 친구톡은 심야 전송(20:00~08:00)이 제한됩니다.
     ' - 이미지 전송규격 / jpg 포맷, 용량 최대 500KByte, 이미지 높이/너비 비율 1.333 이하, 1/2 이상
     '=========================================================================
-    Private Sub btnSendFMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendFMS_one.Click
+    Private Sub btnSendFMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnSendFMS_one.Click
         If fileDialog.ShowDialog(Me) = DialogResult.OK Then
 
             '플러스친구 아이디, 플러스친구 목록 확인(LIstPlusFriend) API의 plusFriendID 항목 확인
@@ -475,13 +497,13 @@ Public Class frmExample
             '수신자명
             Dim receiverName As String = "수신자명"
 
-            '친구톡 내용, 최대 400자
+            '친구톡 내용 (최대 400자)
             Dim content As String = "친구톡 내용입니다."
 
-            '대체문자 메시지 내용
+            '대체문자 메시지 내용 (최대 2000byte)
             Dim altContent As String = "대체문자 메시지 내용입니다."
 
-            '대체문자 유형, 공백-미전송, C-알림톡내용 전송, A-대체문자내용 전송
+            '대체문자 유형, 공백-미전송, C-친구톡내용 전송, A-대체문자내용 전송
             Dim altSendType = "A"
 
             '광고전송 여부
@@ -508,9 +530,10 @@ Public Class frmExample
             buttonList.Add(btnInfo)
 
             Try
-                Dim receiptNum As String = kakaoService.SendFMS(txtCorpNum.Text, plusFriendID, senderNum, _
-                                                                content, altContent, altSendType, receiverNum, _
-                                                                receiverName, adsYN, getReserveDT(), buttonList, strFileName, imageURL, _
+                Dim receiptNum As String = kakaoService.SendFMS(txtCorpNum.Text, plusFriendID, senderNum,
+                                                                content, altContent, altSendType, receiverNum,
+                                                                receiverName, adsYN, getReserveDT(), buttonList,
+                                                                strFileName, imageURL,
                                                                 txtUserId.Text, requestNum)
                 MsgBox("접수번호 : " + receiptNum)
                 txtReceiptNum.Text = receiptNum
@@ -526,7 +549,8 @@ Public Class frmExample
     ' - 친구톡은 심야 전송(20:00~08:00)이 제한됩니다.
     ' - 이미지 전송규격 / jpg 포맷, 용량 최대 500KByte, 이미지 높이/너비 비율 1.333 이하, 1/2 이상
     '=========================================================================
-    Private Sub btnSendFMS_multi_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendFMS_multi.Click
+    Private Sub btnSendFMS_multi_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnSendFMS_multi.Click
 
         If fileDialog.ShowDialog(Me) = DialogResult.OK Then
 
@@ -536,7 +560,7 @@ Public Class frmExample
             '팝빌에 사전등록된 발신번호
             Dim senderNum As String = "07043042991"
 
-            '대체문자 유형, 공백-미전송, C-알림톡내용 전송, A-대체문자내용 전송
+            '대체문자 유형, 공백-미전송, C-친구톡내용 전송, A-대체문자내용 전송
             Dim altSendType = "A"
 
             '광고전송 여부
@@ -559,8 +583,8 @@ Public Class frmExample
                 Dim msg As KakaoReceiver = New KakaoReceiver
                 msg.rcv = "010111222" '수신번호
                 msg.rcvnm = "수신자명칭_" + CStr(i) '수신자명
-                msg.msg = "친구톡 내용입니다." + CStr(i) '친구톡 내용, 최대 400자
-                msg.altmsg = "대체문자 메시지 내용" + CStr(i) '대체문자 내용
+                msg.msg = "친구톡 내용입니다." + CStr(i) '친구톡 내용 (최대 400자)
+                msg.altmsg = "대체문자 메시지 내용" + CStr(i) '대체문자 내용 (최대 2000byte)
                 receiverList.Add(msg)
             Next
 
@@ -576,8 +600,10 @@ Public Class frmExample
             buttonList.Add(btnInfo)
 
             Try
-                Dim receiptNum As String = kakaoService.SendFMS(txtCorpNum.Text, plusFriendID, senderNum, _
-                             altSendType, adsYN, getReserveDT(), receiverList, buttonList, strFileName, imageURL, txtUserId.Text, requestNum)
+                Dim receiptNum As String = kakaoService.SendFMS(txtCorpNum.Text, plusFriendID, senderNum,
+                                                                altSendType, adsYN, getReserveDT(), receiverList,
+                                                                buttonList, strFileName, imageURL, txtUserId.Text,
+                                                                requestNum)
                 MsgBox("접수번호 : " + receiptNum)
                 txtReceiptNum.Text = receiptNum
 
@@ -593,7 +619,8 @@ Public Class frmExample
     ' - 친구톡은 심야 전송(20:00~08:00)이 제한됩니다.
     ' - 이미지 전송규격 / jpg 포맷, 용량 최대 500KByte, 이미지 높이/너비 비율 1.333 이하, 1/2 이상
     '=========================================================================
-    Private Sub btnSendFMS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendFMS_same.Click
+    Private Sub btnSendFMS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnSendFMS_same.Click
 
         If fileDialog.ShowDialog(Me) = DialogResult.OK Then
 
@@ -603,13 +630,13 @@ Public Class frmExample
             '팝빌에 사전등록된 발신번호
             Dim senderNum As String = "07043042991"
 
-            '친구톡 내용, 최대 400자
+            '친구톡 내용 (최대 400자)
             Dim content As String = "친구톡 내용입니다."
 
-            '대체문자 메시지 내용
+            '대체문자 메시지 내용 (최대 2000byte)
             Dim altContent As String = "대체문자 메시지 내용입니다."
 
-            '대체문자 유형, 공백-미전송, C-알림톡내용 전송, A-대체문자내용 전송
+            '대체문자 유형, 공백-미전송, C-친구톡내용 전송, A-대체문자내용 전송
             Dim altSendType = "A"
 
             '광고전송 여부
@@ -646,8 +673,10 @@ Public Class frmExample
             buttonList.Add(btnInfo)
 
             Try
-                Dim receiptNum As String = kakaoService.SendFMS(txtCorpNum.Text, plusFriendID, senderNum, content, altContent, altSendType, _
-                                                                adsYN, getReserveDT(), receiverList, buttonList, strFileName, imageURL, txtUserId.Text, requestNum)
+                Dim receiptNum As String = kakaoService.SendFMS(txtCorpNum.Text, plusFriendID, senderNum, content,
+                                                                altContent, altSendType,
+                                                                adsYN, getReserveDT(), receiverList, buttonList,
+                                                                strFileName, imageURL, txtUserId.Text, requestNum)
                 MsgBox("접수번호 : " + receiptNum)
                 txtReceiptNum.Text = receiptNum
             Catch ex As PopbillException
@@ -661,7 +690,8 @@ Public Class frmExample
     ' 알림톡/친구톡 전송요청시 발급받은 접수번호(receiptNum)로 예약전송건을 취소합니다.
     ' - 예약취소는 예약전송시간 10분전까지만 가능합니다.
     '=========================================================================
-    Private Sub btnCancelReserve_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelReserve.Click
+    Private Sub btnCancelReserve_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnCancelReserve.Click
         Try
             Dim response As Response
 
@@ -677,7 +707,8 @@ Public Class frmExample
     ' 전송요청번호(requestNum)를 할당한 알림톡/친구톡 예약전송건을 취소합니다.
     ' - 예약전송 취소는 예약시간 10분전까지만 가능합니다.
     '=========================================================================
-    Private Sub btnCancelReserveRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelReserveRN.Click
+    Private Sub btnCancelReserveRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnCancelReserveRN.Click
         Try
             Dim response As Response
 
@@ -692,7 +723,8 @@ Public Class frmExample
     '=========================================================================
     ' 알림톡/친구톡 전송요청시 발급받은 접수번호(receiptNum)로 전송결과를 확인합니다.
     '=========================================================================
-    Private Sub btnGetMessages_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMessages.Click
+    Private Sub btnGetMessages_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnGetMessages.Click
         ListBox1.Items.Clear()
         Try
             Dim sentInfo As KakaoSentResult = kakaoService.GetMessages(txtCorpNum.Text, txtReceiptNum.Text)
@@ -726,9 +758,11 @@ Public Class frmExample
             MsgBox(tmp)
 
             '전송결과 정보 리스트
-            Dim rowStr As String = "state(전송상태 코드) | sendDT(전송일시) | receiveNum(수신번호) | receiveName(수신자명) | content(내용) | "
+            Dim rowStr As String =
+                    "state(전송상태 코드) | sendDT(전송일시) | receiveNum(수신번호) | receiveName(수신자명) | content(내용) | "
             rowSTR += "result(전송결과 코드) | resultDT(전송결과 수신일시) | altContnet(대체문자 내용) | altContentType(대체문자 전송유형) | "
-            rowStr += "altSendDT(대체문자 전송일시) | altReult(대체문자 전송결과 코드) | altResultDT(대체문자 전송결과 수신일시) | receiptNum(접수번호) | requestNum(요청번호)"
+            rowStr +=
+                "altSendDT(대체문자 전송일시) | altReult(대체문자 전송결과 코드) | altResultDT(대체문자 전송결과 수신일시) | receiptNum(접수번호) | requestNum(요청번호)"
 
             ListBox1.Items.Add(rowStr)
 
@@ -759,7 +793,8 @@ Public Class frmExample
     '=========================================================================
     ' 전송요청번호(requestNum)를 할당한 알림톡/친구톡 전송내역 및 전송상태를 확인합니다.
     '=========================================================================
-    Private Sub btnGetMessagesRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMessagesRN.Click
+    Private Sub btnGetMessagesRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnGetMessagesRN.Click
         ListBox1.Items.Clear()
         Try
             Dim sentInfo As KakaoSentResult = kakaoService.GetMessagesRN(txtCorpNum.Text, txtRequestNum.Text)
@@ -793,9 +828,11 @@ Public Class frmExample
             MsgBox(tmp)
 
             '전송결과 정보 리스트
-            Dim rowStr As String = "state(전송상태 코드) | sendDT(전송일시) | receiveNum(수신번호) | receiveName(수신자명) | content(내용) | "
+            Dim rowStr As String =
+                    "state(전송상태 코드) | sendDT(전송일시) | receiveNum(수신번호) | receiveName(수신자명) | content(내용) | "
             rowSTR += "result(전송결과 코드) | resultDT(전송결과 수신일시) | altContnet(대체문자 내용) | altContentType(대체문자 전송유형) | "
-            rowStr += "altSendDT(대체문자 전송일시) | altReult(대체문자 전송결과 코드) | altResultDT(대체문자 전송결과 수신일시) | receiptNum(접수번호) | requestNum(요청번호)"
+            rowStr +=
+                "altSendDT(대체문자 전송일시) | altReult(대체문자 전송결과 코드) | altResultDT(대체문자 전송결과 수신일시) | receiptNum(접수번호) | requestNum(요청번호)"
 
             ListBox1.Items.Add(rowStr)
 
@@ -871,8 +908,9 @@ Public Class frmExample
 
         ListBox1.Items.Clear()
         Try
-            Dim msgSearchList As KakaoSearchResult = kakaoService.Search(txtCorpNum.Text, SDate, EDate, State, _
-                                                                       item, ReserveYN, SenderYN, Order, Page, PerPage, txtUserId.Text, QString)
+            Dim msgSearchList As KakaoSearchResult = kakaoService.Search(txtCorpNum.Text, SDate, EDate, State,
+                                                                         item, ReserveYN, SenderYN, Order, Page, PerPage,
+                                                                         txtUserId.Text, QString)
 
             Dim tmp As String
 
@@ -885,9 +923,11 @@ Public Class frmExample
 
             MsgBox(tmp)
 
-            Dim rowStr As String = "state(전송상태 코드) | sendDT(전송일시) | receiveNum(수신번호) | receiveName(수신자명) | content(내용) | "
+            Dim rowStr As String =
+                    "state(전송상태 코드) | sendDT(전송일시) | receiveNum(수신번호) | receiveName(수신자명) | content(내용) | "
             rowSTR += "result(전송결과 코드) | resultDT(전송결과 수신일시) | altContnet(대체문자 내용) | altContentType(대체문자 전송유형) | "
-            rowStr += "altSendDT(대체문자 전송일시) | altReult(대체문자 전송결과 코드) | altResultDT(대체문자 전송결과 수신일시) | receiptNum(접수번호) | requestNum(요청번호)"
+            rowStr +=
+                "altSendDT(대체문자 전송일시) | altReult(대체문자 전송결과 코드) | altResultDT(대체문자 전송결과 수신일시) | receiptNum(접수번호) | requestNum(요청번호)"
 
             ListBox1.Items.Add(rowStr)
 
@@ -919,7 +959,8 @@ Public Class frmExample
     ' 카카오톡 전송내역 팝업 URL을 확인합니다.
     ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
     '=========================================================================
-    Private Sub btnGetSentListURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSentListURL.Click
+    Private Sub btnGetSentListURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnGetSentListURL.Click
         Try
             Dim url As String = kakaoService.GetSentListURL(txtCorpNum.Text, txtUserId.Text)
 
@@ -932,7 +973,8 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원 잔여포인트를 확인합니다.
     '=========================================================================
-    Private Sub btnGetBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetBalance.Click
+    Private Sub btnGetBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnGetBalance.Click
 
         Try
             Dim remainPoint As Double = kakaoService.GetBalance(txtCorpNum.Text)
@@ -949,7 +991,8 @@ Public Class frmExample
     ' 연동회원 포인트충전 팝업 URL을 확인합니다.
     ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
     '=========================================================================
-    Private Sub btnGetChargeURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeURL.Click
+    Private Sub btnGetChargeURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnGetChargeURL.Click
         Try
             Dim url As String = kakaoService.GetChargeURL(txtCorpNum.Text, txtUserId.Text)
 
@@ -963,7 +1006,8 @@ Public Class frmExample
     ' 파트너의 잔여포인트를 확인합니다.
     ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
     '=========================================================================
-    Private Sub btnGetPartnerBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerBalance.Click
+    Private Sub btnGetPartnerBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnGetPartnerBalance.Click
         Try
             Dim remainPoint As Double = kakaoService.GetPartnerBalance(txtCorpNum.Text)
 
@@ -977,7 +1021,8 @@ Public Class frmExample
     ' 파트너 포인트충전 팝업 URL을 확인합니다.
     ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
     '=========================================================================
-    Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerURL.Click
+    Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnGetPartnerURL.Click
 
         Try
             '파트너 포인트충전 URL
@@ -994,7 +1039,8 @@ Public Class frmExample
     '=========================================================================
     ' 알림톡(ATS) 전송단가를 확인합니다
     '=========================================================================
-    Private Sub btnUnitCost_SMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUnitCost_ATS.Click
+    Private Sub btnUnitCost_SMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnUnitCost_ATS.Click
 
         '카카오톡 전송유형, ATS-알림톡, FTS-친구톡 텍스트, FMS-친구톡 이미지
         Dim kType As KakaoType = KakaoType.ATS
@@ -1013,7 +1059,8 @@ Public Class frmExample
     '=========================================================================
     ' 친구톡 텍스트(FTS) 전송단가를 조회합니다.
     '=========================================================================
-    Private Sub btnGetUnitCost_FTS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetUnitCost_FTS.Click
+    Private Sub btnGetUnitCost_FTS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnGetUnitCost_FTS.Click
 
         '카카오톡 전송유형, ATS-알림톡, FTS-친구톡 텍스트, FMS-친구톡 이미지
         Dim kType As KakaoType = KakaoType.FTS
@@ -1032,7 +1079,8 @@ Public Class frmExample
     '=========================================================================
     ' 친구톡 이미지(FMS) 전송단가를 조회합니다.
     '=========================================================================
-    Private Sub btnGetUnitCost_FMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetUnitCost_FMS.Click
+    Private Sub btnGetUnitCost_FMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnGetUnitCost_FMS.Click
 
         '카카오톡 전송유형, ATS-알림톡, FTS-친구톡 텍스트, FMS-친구톡 이미지
         Dim kType As KakaoType = KakaoType.FMS
@@ -1051,7 +1099,8 @@ Public Class frmExample
     '=========================================================================
     ' 알림톡(ATS) 과금정보를 확인합니다.
     '=========================================================================
-    Private Sub btnGetChargeInfo_ATS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo_ATS.Click
+    Private Sub btnGetChargeInfo_ATS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnGetChargeInfo_ATS.Click
 
         '카카오톡 전송유형, ATS-알림톡, FTS-친구톡 텍스트, FMS-친구톡 이미지
         Dim kType As KakaoType = KakaoType.ATS
@@ -1068,13 +1117,13 @@ Public Class frmExample
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
-
     End Sub
 
     '=========================================================================
     ' 친구톡 텍스트(FTS) 과금정보를 확인합니다.
     '=========================================================================
-    Private Sub btnGetChargeInfo_FTS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo_FTS.Click
+    Private Sub btnGetChargeInfo_FTS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnGetChargeInfo_FTS.Click
 
         '카카오톡 전송유형, ATS-알림톡, FTS-친구톡 텍스트, FMS-친구톡 이미지
         Dim kType As KakaoType = KakaoType.FTS
@@ -1096,7 +1145,8 @@ Public Class frmExample
     '=========================================================================
     ' 친구톡 이미지(FMS) 과금정보를 확인합니다.
     '=========================================================================
-    Private Sub btnGetChargeInfo_FMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo_FMS.Click
+    Private Sub btnGetChargeInfo_FMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnGetChargeInfo_FMS.Click
 
         '카카오톡 전송유형, ATS-알림톡, FTS-친구톡 텍스트, FMS-친구톡 이미지
         Dim kType As KakaoType = KakaoType.FMS
@@ -1119,7 +1169,8 @@ Public Class frmExample
     ' 해당사업자의 회원가입 여부를 확인합니다.
     ' - 사업자번호는 '-'를 제외한 10자리 숫자 문자열입니다.
     '=========================================================================
-    Private Sub btnCheckIsMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckIsMember.Click
+    Private Sub btnCheckIsMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnCheckIsMember.Click
         Try
             Dim response As Response = kakaoService.CheckIsMember(txtCorpNum.Text, LinkID)
 
@@ -1147,7 +1198,8 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원 신규가입을 요청합니다.
     '=========================================================================
-    Private Sub btnJoinMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnJoinMember.Click
+    Private Sub btnJoinMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnJoinMember.Click
         Dim joinInfo As JoinForm = New JoinForm
 
         '아이디, 6자이상 50자 미만
@@ -1208,7 +1260,8 @@ Public Class frmExample
     ' 팝빌(www.popbill.com)에 로그인된 팝빌 URL을 반환합니다.
     ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
     '=========================================================================
-    Private Sub btnGetAccessURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetAccessURL.Click
+    Private Sub btnGetAccessURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnGetAccessURL.Click
         Try
             Dim url As String = kakaoService.GetAccessURL(txtCorpNum.Text, txtUserId.Text)
 
@@ -1221,7 +1274,8 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원의 담당자를 추가로 등록합니다.
     '=========================================================================
-    Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistContact.Click
+    Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnRegistContact.Click
 
         '담당자 정보객체
         Dim joinData As New Contact
@@ -1267,7 +1321,8 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원의 담당자 목록을 조회합니다.
     '=========================================================================
-    Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListContact.Click
+    Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnListContact.Click
         Try
             Dim contactList As List(Of Contact) = kakaoService.ListContact(txtCorpNum.Text, txtUserId.Text)
 
@@ -1275,8 +1330,10 @@ Public Class frmExample
             tmp += "regDT(등록일시) | searchAllAllowYN(회사조회 여부) | mgrYN(관리자 여부) | state(상태)" + vbCrLf
 
             For Each info As Contact In contactList
-                tmp += info.id + " | " + info.personName + " | " + info.email + " | " + info.hp + " | " + info.fax + " | " + info.tel + " | "
-                tmp += info.regDT.ToString() + " | " + info.searchAllAllowYN.ToString() + " | " + info.mgrYN.ToString() + " | " + info.state + vbCrLf
+                tmp += info.id + " | " + info.personName + " | " + info.email + " | " + info.hp + " | " + info.fax +
+                       " | " + info.tel + " | "
+                tmp += info.regDT.ToString() + " | " + info.searchAllAllowYN.ToString() + " | " + info.mgrYN.ToString() +
+                       " | " + info.state + vbCrLf
             Next
 
             MsgBox(tmp)
@@ -1288,7 +1345,8 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원의 담당자 정보를 수정합니다.
     '=========================================================================
-    Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateContact.Click
+    Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnUpdateContact.Click
 
         '담당자 정보객체
         Dim joinData As New Contact
@@ -1331,7 +1389,8 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원의 회사정보를 조회합니다.
     '=========================================================================
-    Private Sub btnGetCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetCorpInfo.Click
+    Private Sub btnGetCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnGetCorpInfo.Click
         Try
             Dim corpInfo As CorpInfo = kakaoService.GetCorpInfo(txtCorpNum.Text, txtUserId.Text)
 
@@ -1352,7 +1411,8 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원의 회사정보를 수정합니다.
     '=========================================================================
-    Private Sub btnUpdateCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateCorpInfo.Click
+    Private Sub btnUpdateCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnUpdateCorpInfo.Click
 
         Dim corpInfo As New CorpInfo
 
@@ -1382,5 +1442,4 @@ Public Class frmExample
 
         End Try
     End Sub
-
 End Class

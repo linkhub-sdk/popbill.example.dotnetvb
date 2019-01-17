@@ -175,7 +175,7 @@ Public Class frmExample
         Try
             Dim ChargeInfo As ChargeInfo = closedownService.GetChargeInfo(txtCorpNum.Text)
 
-            Dim tmp As String = "unitCost (발행단가) : " + ChargeInfo.unitCost + vbCrLf
+            Dim tmp As String = "unitCost (조회단가) : " + ChargeInfo.unitCost + vbCrLf
             tmp += "chargeMethod (과금유형) : " + ChargeInfo.chargeMethod + vbCrLf
             tmp += "rateSystem (과금제도) : " + ChargeInfo.rateSystem + vbCrLf
 
