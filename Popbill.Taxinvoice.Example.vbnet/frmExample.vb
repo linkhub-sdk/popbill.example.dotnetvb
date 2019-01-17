@@ -473,7 +473,6 @@ Public Class frmExample
         ' 원본세금계산서의 ItemKey, 문서확인 (GetInfo API)의 응답결과(ItemKey 항목) 확인
         taxinvoice.originalTaxinvoiceKey = ""
 
-
         '=========================================================================
         '                            상세항목(품목) 정보
         '=========================================================================
@@ -501,13 +500,11 @@ Public Class frmExample
 
         taxinvoice.detailList.Add(detail)
 
-
         '=========================================================================
         '                              추가담당자 정보
         ' - 세금계산서 발행안내 메일을 수신받을 공급받는자 담당자가 다수인 경우
         ' 담당자 정보를 추가하여 발행안내메일을 다수에게 전송할 수 있습니다.
         '=========================================================================
-
 
         taxinvoice.addContactList = New List(Of TaxinvoiceAddContact)
 
@@ -737,13 +734,11 @@ Public Class frmExample
 
         taxinvoice.detailList.Add(detail)
 
-
         '=========================================================================
         '                              추가담당자 정보
         ' - 세금계산서 발행안내 메일을 수신받을 공급받는자 담당자가 다수인 경우
         ' 담당자 정보를 추가하여 발행안내메일을 다수에게 전송할 수 있습니다.
         '=========================================================================
-
 
         taxinvoice.addContactList = New List(Of TaxinvoiceAddContact)
 
@@ -942,7 +937,6 @@ Public Class frmExample
         ' 원본세금계산서의 ItemKey, 문서확인 (GetInfo API)의 응답결과(ItemKey 항목) 확인
         taxinvoice.originalTaxinvoiceKey = ""
 
-
         '=========================================================================
         '                            상세항목(품목) 정보
         '=========================================================================
@@ -970,13 +964,11 @@ Public Class frmExample
 
         taxinvoice.detailList.Add(detail)
 
-
         '=========================================================================
         '                              추가담당자 정보
         ' - 세금계산서 발행안내 메일을 수신받을 공급받는자 담당자가 다수인 경우
         ' 담당자 정보를 추가하여 발행안내메일을 다수에게 전송할 수 있습니다.
         '=========================================================================
-
 
         taxinvoice.addContactList = New List(Of TaxinvoiceAddContact)
 
@@ -1177,7 +1169,6 @@ Public Class frmExample
         ' 원본세금계산서의 ItemKey, 문서확인 (GetInfo API)의 응답결과(ItemKey 항목) 확인
         taxinvoice.originalTaxinvoiceKey = ""
 
-
         '=========================================================================
         '                            상세항목(품목) 정보
         '=========================================================================
@@ -1205,13 +1196,11 @@ Public Class frmExample
 
         taxinvoice.detailList.Add(detail)
 
-
         '=========================================================================
         '                              추가담당자 정보
         ' - 세금계산서 발행안내 메일을 수신받을 공급받는자 담당자가 다수인 경우
         ' 담당자 정보를 추가하여 발행안내메일을 다수에게 전송할 수 있습니다.
         '=========================================================================
-
 
         taxinvoice.addContactList = New List(Of TaxinvoiceAddContact)
 
@@ -1312,7 +1301,6 @@ Public Class frmExample
         End Try
     End Sub
 
-
     '=========================================================================
     ' [발행완료] 상태의 세금계산서를 [공급자]가 [발행취소]합니다.
     ' - [발행취소]는 국세청 전송전에만 가능합니다.
@@ -1362,7 +1350,6 @@ Public Class frmExample
 
         End Try
     End Sub
-
 
     '=========================================================================
     ' [임시저장] 상태의 세금계산서를 [공급자]가 [발행예정]합니다.
@@ -1638,7 +1625,6 @@ Public Class frmExample
         ' 원본세금계산서의 ItemKey, 문서확인 (GetInfo API)의 응답결과(ItemKey 항목) 확인
         taxinvoice.originalTaxinvoiceKey = ""
 
-
         '=========================================================================
         '                            상세항목(품목) 정보
         '=========================================================================
@@ -1665,7 +1651,6 @@ Public Class frmExample
         detail.itemName = "품목명"
 
         taxinvoice.detailList.Add(detail)
-
 
         '=========================================================================
         '                              추가담당자 정보
@@ -1861,7 +1846,6 @@ Public Class frmExample
         End Try
     End Sub
 
-
     '=========================================================================
     ' [발행완료] 상태의 세금계산서를 국세청으로 [즉시전송]합니다.
     ' - 국세청 즉시전송을 호출하지 않은 세금계산서는 발행일 기준 익일 오후 3시에 팝빌 시스템에서 일괄적으로 국세청으로 전송합니다.
@@ -1888,6 +1872,8 @@ Public Class frmExample
     '   "[전자세금계산서 API 연동매뉴얼] > 4.2. (세금)계산서 상태정보 구성" 을 참조하시기 바랍니다.
     '=========================================================================ㄴ
     Private Sub btnGetInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetInfo.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
         Try
@@ -2248,9 +2234,11 @@ Public Class frmExample
     ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
     '=========================================================================
     Private Sub btnGetURL_SBOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_SBOX.Click
+
+        'TBOX-임시문서함 / SBOX-매출문서함 / PBOX-매입문서함 / WRITE-매출문서함
+        Dim TOGO As String = "SBOX"
+
         Try
-            'TBOX-임시문서함 / SBOX-매출문서함 / PBOX-매입문서함 / WRITE-매출문서함
-            Dim TOGO As String = "SBOX"
 
             Dim url As String = taxinvoiceService.GetURL(txtCorpNum.Text, txtUserId.Text, TOGO)
 
@@ -2265,9 +2253,11 @@ Public Class frmExample
     ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
     '=========================================================================
     Private Sub btnGetURL_PBOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_PBOX.Click
+
+        'TBOX-임시문서함 / SBOX-매출문서함 / PBOX-매입문서함 / WRITE-매출문서함
+        Dim TOGO As String = "PBOX"
+
         Try
-            'TBOX-임시문서함 / SBOX-매출문서함 / PBOX-매입문서함 / WRITE-매출문서함
-            Dim TOGO As String = "PBOX"
 
             Dim url As String = taxinvoiceService.GetURL(txtCorpNum.Text, txtUserId.Text, TOGO)
 
@@ -2282,9 +2272,11 @@ Public Class frmExample
     ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
     '=========================================================================
     Private Sub btnGetURL_WRITE_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_WRITE.Click
+
+        'TBOX-임시문서함 / SBOX-매출문서함 / PBOX-매입문서함 / WRITE-매출문서함
+        Dim TOGO As String = "WRITE"
+
         Try
-            'TBOX-임시문서함 / SBOX-매출문서함 / PBOX-매입문서함 / WRITE-매출문서함
-            Dim TOGO As String = "WRITE"
 
             Dim url As String = taxinvoiceService.GetURL(txtCorpNum.Text, txtUserId.Text, TOGO)
 
@@ -2420,7 +2412,6 @@ Public Class frmExample
         End Try
     End Sub
 
-
     '=========================================================================
     ' 세금계산서에 첨부파일을 등록합니다.
     ' - [임시저장] 상태의 세금계산서만 파일을 첨부할수 있습니다.
@@ -2540,7 +2531,6 @@ Public Class frmExample
         End Try
     End Sub
 
-
     '=========================================================================
     ' 전자세금계산서를 팩스전송합니다.
     ' - 팩스 전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
@@ -2624,7 +2614,6 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
 
     '=========================================================================
     ' 팝빌사이트에서 작성된 세금계산서에 파트너 문서관리번호를 할당합니다.
@@ -2814,7 +2803,6 @@ Public Class frmExample
         End Try
     End Sub
 
-
     '=========================================================================
     ' 연동회원의 잔여포인트를 확인합니다.
     ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트(GetPartnerBalance API)를 통해 확인하시기 바랍니다.
@@ -2989,7 +2977,6 @@ Public Class frmExample
         End Try
     End Sub
 
-
     '=========================================================================
     ' 연동회원의 회사정보를 확인합니다.
     '=========================================================================
@@ -3039,7 +3026,6 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
 
     '=========================================================================
     ' 연동회원의 담당자를 신규로 등록합니다.
@@ -3105,7 +3091,6 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
 
     '=========================================================================
     ' 연동회원의 담당자 정보를 수정합니다.

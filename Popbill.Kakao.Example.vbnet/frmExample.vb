@@ -217,7 +217,6 @@ Public Class frmExample
         '대체문자 유형, 공백-미전송, C-알림톡내용 전송, A-대체문자내용 전송
         Dim altSendType = "A"
 
-
         '전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
         '최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
         Dim requestNum = ""
@@ -327,10 +326,10 @@ Public Class frmExample
         Dim buttonList As List(Of KakaoButton) = New List(Of KakaoButton)
 
         Dim btnInfo As KakaoButton = New KakaoButton
-        btnInfo.n = "버튼명"
-        btnInfo.t = "WL"
-        btnInfo.u1 = "http://www.linkhub.co.kr"
-        btnInfo.u2 = "http://www.popbill.co.kr"
+        btnInfo.n = "버튼명"                        '버튼명
+        btnInfo.t = "WL"                            '버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
+        btnInfo.u1 = "http://www.linkhub.co.kr"     '버튼링크1 [앱링크] Android / [웹링크] Mobile
+        btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] IOS / [웹링크] PC URL
         buttonList.Add(btnInfo)
 
         Try
@@ -377,15 +376,14 @@ Public Class frmExample
             receiverList.Add(msg)
         Next
 
-
         '버튼 배열 최대 5개
         Dim buttonList As List(Of KakaoButton) = New List(Of KakaoButton)
 
         Dim btnInfo As KakaoButton = New KakaoButton
-        btnInfo.n = "버튼명"
-        btnInfo.t = "WL"
-        btnInfo.u1 = "http://www.linkhub.co.kr"
-        btnInfo.u2 = "http://www.popbill.co.kr"
+        btnInfo.n = "버튼명"                        '버튼명
+        btnInfo.t = "WL"                            '버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
+        btnInfo.u1 = "http://www.linkhub.co.kr"     '버튼링크1 [앱링크] Android / [웹링크] Mobile
+        btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] IOS / [웹링크] PC URL
         buttonList.Add(btnInfo)
 
         Try
@@ -441,10 +439,10 @@ Public Class frmExample
         Dim buttonList As List(Of KakaoButton) = New List(Of KakaoButton)
 
         Dim btnInfo As KakaoButton = New KakaoButton
-        btnInfo.n = "버튼명"
-        btnInfo.t = "WL"
-        btnInfo.u1 = "http://www.linkhub.co.kr"
-        btnInfo.u2 = "http://www.popbill.co.kr"
+        btnInfo.n = "버튼명"                        '버튼명
+        btnInfo.t = "WL"                            '버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
+        btnInfo.u1 = "http://www.linkhub.co.kr"     '버튼링크1 [앱링크] Android / [웹링크] Mobile
+        btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] IOS / [웹링크] PC URL
         buttonList.Add(btnInfo)
 
         Try
@@ -503,12 +501,11 @@ Public Class frmExample
             Dim buttonList As List(Of KakaoButton) = New List(Of KakaoButton)
 
             Dim btnInfo As KakaoButton = New KakaoButton
-            btnInfo.n = "버튼명"
-            btnInfo.t = "WL"
-            btnInfo.u1 = "http://www.linkhub.co.kr"
-            btnInfo.u2 = "http://www.popbill.co.kr"
+            btnInfo.n = "버튼명"                        '버튼명
+            btnInfo.t = "WL"                            '버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
+            btnInfo.u1 = "http://www.linkhub.co.kr"     '버튼링크1 [앱링크] Android / [웹링크] Mobile
+            btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] IOS / [웹링크] PC URL
             buttonList.Add(btnInfo)
-
 
             Try
                 Dim receiptNum As String = kakaoService.SendFMS(txtCorpNum.Text, plusFriendID, senderNum, _
@@ -572,10 +569,10 @@ Public Class frmExample
             Dim buttonList As List(Of KakaoButton) = New List(Of KakaoButton)
 
             Dim btnInfo As KakaoButton = New KakaoButton
-            btnInfo.n = "버튼명"
-            btnInfo.t = "WL"
-            btnInfo.u1 = "http://www.linkhub.co.kr"
-            btnInfo.u2 = "http://www.popbill.co.kr"
+            btnInfo.n = "버튼명"                        '버튼명
+            btnInfo.t = "WL"                            '버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
+            btnInfo.u1 = "http://www.linkhub.co.kr"     '버튼링크1 [앱링크] Android / [웹링크] Mobile
+            btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] IOS / [웹링크] PC URL
             buttonList.Add(btnInfo)
 
             Try
@@ -638,17 +635,15 @@ Public Class frmExample
                 receiverList.Add(msg)
             Next
 
-
             '버튼 배열 최대 5개
             Dim buttonList As List(Of KakaoButton) = New List(Of KakaoButton)
 
             Dim btnInfo As KakaoButton = New KakaoButton
-            btnInfo.n = "버튼명"
-            btnInfo.t = "WL"
-            btnInfo.u1 = "http://www.linkhub.co.kr"
-            btnInfo.u2 = "http://www.popbill.co.kr"
+            btnInfo.n = "버튼명"                        '버튼명
+            btnInfo.t = "WL"                            '버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
+            btnInfo.u1 = "http://www.linkhub.co.kr"     '버튼링크1 [앱링크] Android / [웹링크] Mobile
+            btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] IOS / [웹링크] PC URL
             buttonList.Add(btnInfo)
-
 
             Try
                 Dim receiptNum As String = kakaoService.SendFMS(txtCorpNum.Text, plusFriendID, senderNum, content, altContent, altSendType, _

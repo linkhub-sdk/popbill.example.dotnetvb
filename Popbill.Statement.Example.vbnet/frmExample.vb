@@ -208,19 +208,19 @@ Public Class frmExample
 
         newDetail.serialNum = 1             '일련번호 1부터 순차 기재
         newDetail.purchaseDT = "20190111"   '거래일자  yyyyMMdd
-        newDetail.itemName = "품명"
-        newDetail.spec = "규격"
-        newDetail.unit = "단위"
-        newDetail.qty = "1" '수량           ' 소숫점 2자리까지 문자열로 기재가능
-        newDetail.unitCost = "100000"       ' 소숫점 2자리까지 문자열로 기재가능
-        newDetail.supplyCost = "100000"
-        newDetail.tax = "10000"
-        newDetail.remark = "비고"
-        newDetail.spare1 = "spare1"
-        newDetail.spare2 = "spare2"
-        newDetail.spare3 = "spare3"
-        newDetail.spare4 = "spare4"
-        newDetail.spare5 = "spare5"
+        newDetail.itemName = "품명"         '품목명
+        newDetail.spec = "규격"             '규격
+        newDetail.unit = "단위"             '단위
+        newDetail.qty = "1" '               '수량 소수점 2자리까지 문자열로 기재가능
+        newDetail.unitCost = "100000"       '단가 소수점 2자리까지 문자열로 기재가능
+        newDetail.supplyCost = "100000"     '공급가액 소수점 기재 불가
+        newDetail.tax = "10000"             '세액 소수점 기재불가
+        newDetail.remark = "비고"           '비고
+        newDetail.spare1 = "spare1"         '여분1
+        newDetail.spare2 = "spare2"         '여분2
+        newDetail.spare3 = "spare3"         '여분3
+        newDetail.spare4 = "spare4"         '여분4
+        newDetail.spare5 = "spare5"         '여분5
 
         statement.detailList.Add(newDetail)
 
@@ -228,8 +228,8 @@ Public Class frmExample
 
         newDetail.serialNum = 2             '일련번호 1부터 순차 기재
         newDetail.purchaseDT = "20190111"   '거래일자  yyyyMMdd
-        newDetail.itemName = "품명"
-        newDetail.spec = "규격"
+        newDetail.itemName = "품명"         '품목명
+        newDetail.spec = "규격"             '규격
 
 
         '=========================================================================
@@ -390,19 +390,19 @@ Public Class frmExample
 
         newDetail.serialNum = 1             '일련번호 1부터 순차 기재
         newDetail.purchaseDT = "20190111"   '거래일자  yyyyMMdd
-        newDetail.itemName = "품명"
-        newDetail.spec = "규격"
-        newDetail.unit = "단위"
-        newDetail.qty = "1" '수량           ' 소숫점 2자리까지 문자열로 기재가능
-        newDetail.unitCost = "100000"       ' 소숫점 2자리까지 문자열로 기재가능
-        newDetail.supplyCost = "100000"
-        newDetail.tax = "10000"
-        newDetail.remark = "비고"
-        newDetail.spare1 = "spare1"
-        newDetail.spare2 = "spare2"
-        newDetail.spare3 = "spare3"
-        newDetail.spare4 = "spare4"
-        newDetail.spare5 = "spare5"
+        newDetail.itemName = "품명"         '품목명
+        newDetail.spec = "규격"             '규격
+        newDetail.unit = "단위"             '단위
+        newDetail.qty = "1" '               '수량 소수점 2자리까지 문자열로 기재가능
+        newDetail.unitCost = "100000"       '단가 소수점 2자리까지 문자열로 기재가능
+        newDetail.supplyCost = "100000"     '공급가액 소수점 기재 불가
+        newDetail.tax = "10000"             '세액 소수점 기재불가
+        newDetail.remark = "비고"           '비고
+        newDetail.spare1 = "spare1"         '여분1
+        newDetail.spare2 = "spare2"         '여분2
+        newDetail.spare3 = "spare3"         '여분3
+        newDetail.spare4 = "spare4"         '여분4
+        newDetail.spare5 = "spare5"         '여분5
 
         statement.detailList.Add(newDetail)
 
@@ -410,8 +410,8 @@ Public Class frmExample
 
         newDetail.serialNum = 2             '일련번호 1부터 순차 기재
         newDetail.purchaseDT = "20190111"   '거래일자  yyyyMMdd
-        newDetail.itemName = "품명"
-        newDetail.spec = "규격"
+        newDetail.itemName = "품명"         '품목명
+        newDetail.spec = "규격"             '규격
 
 
         '=========================================================================
@@ -570,19 +570,19 @@ Public Class frmExample
 
         newDetail.serialNum = 1             '일련번호 1부터 순차 기재
         newDetail.purchaseDT = "20190111"   '거래일자  yyyyMMdd
-        newDetail.itemName = "품명"
-        newDetail.spec = "규격"
-        newDetail.unit = "단위"
-        newDetail.qty = "1" '수량           ' 소숫점 2자리까지 문자열로 기재가능
-        newDetail.unitCost = "100000"       ' 소숫점 2자리까지 문자열로 기재가능
-        newDetail.supplyCost = "100000"
-        newDetail.tax = "10000"
-        newDetail.remark = "비고"
-        newDetail.spare1 = "spare1"
-        newDetail.spare2 = "spare2"
-        newDetail.spare3 = "spare3"
-        newDetail.spare4 = "spare4"
-        newDetail.spare5 = "spare5"
+        newDetail.itemName = "품명"         '품목명
+        newDetail.spec = "규격"             '규격
+        newDetail.unit = "단위"             '단위
+        newDetail.qty = "1" '               '수량 소수점 2자리까지 문자열로 기재가능
+        newDetail.unitCost = "100000"       '단가 소수점 2자리까지 문자열로 기재가능
+        newDetail.supplyCost = "100000"     '공급가액 소수점 기재 불가
+        newDetail.tax = "10000"             '세액 소수점 기재불가
+        newDetail.remark = "비고"           '비고
+        newDetail.spare1 = "spare1"         '여분1
+        newDetail.spare2 = "spare2"         '여분2
+        newDetail.spare3 = "spare3"         '여분3
+        newDetail.spare4 = "spare4"         '여분4
+        newDetail.spare5 = "spare5"         '여분5
 
         statement.detailList.Add(newDetail)
 
@@ -590,8 +590,8 @@ Public Class frmExample
 
         newDetail.serialNum = 2             '일련번호 1부터 순차 기재
         newDetail.purchaseDT = "20190111"   '거래일자  yyyyMMdd
-        newDetail.itemName = "품명"
-        newDetail.spec = "규격"
+        newDetail.itemName = "품명"         '품목명
+        newDetail.spec = "규격"             '규격
 
 
         '=========================================================================
@@ -1107,7 +1107,6 @@ Public Class frmExample
         End Try
     End Sub
 
-
     '=========================================================================
     ' 전자명세서에 첨부파일을 등록합니다.
     ' - 첨부파일 등록은 전자명세서가 [임시저장] 상태인 경우에만 가능합니다.
@@ -1170,7 +1169,6 @@ Public Class frmExample
 
         End Try
     End Sub
-
 
     '=========================================================================
     ' 발행 안내메일을 재전송합니다.
@@ -1236,7 +1234,6 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
 
     '=========================================================================
     ' 팝빌에 전자명세서를 등록하지 않고 수신자에게 팩스전송합니다.
@@ -1385,19 +1382,19 @@ Public Class frmExample
 
         newDetail.serialNum = 1             '일련번호 1부터 순차 기재
         newDetail.purchaseDT = "20190111"   '거래일자  yyyyMMdd
-        newDetail.itemName = "품명"
-        newDetail.spec = "규격"
-        newDetail.unit = "단위"
-        newDetail.qty = "1" '수량           ' 소숫점 2자리까지 문자열로 기재가능
-        newDetail.unitCost = "100000"       ' 소숫점 2자리까지 문자열로 기재가능
-        newDetail.supplyCost = "100000"
-        newDetail.tax = "10000"
-        newDetail.remark = "비고"
-        newDetail.spare1 = "spare1"
-        newDetail.spare2 = "spare2"
-        newDetail.spare3 = "spare3"
-        newDetail.spare4 = "spare4"
-        newDetail.spare5 = "spare5"
+        newDetail.itemName = "품명"         '품목명
+        newDetail.spec = "규격"             '규격
+        newDetail.unit = "단위"             '단위
+        newDetail.qty = "1" '               '수량 소수점 2자리까지 문자열로 기재가능
+        newDetail.unitCost = "100000"       '단가 소수점 2자리까지 문자열로 기재가능
+        newDetail.supplyCost = "100000"     '공급가액 소수점 기재 불가
+        newDetail.tax = "10000"             '세액 소수점 기재불가
+        newDetail.remark = "비고"           '비고
+        newDetail.spare1 = "spare1"         '여분1
+        newDetail.spare2 = "spare2"         '여분2
+        newDetail.spare3 = "spare3"         '여분3
+        newDetail.spare4 = "spare4"         '여분4
+        newDetail.spare5 = "spare5"         '여분5
 
         statement.detailList.Add(newDetail)
 
@@ -1405,8 +1402,8 @@ Public Class frmExample
 
         newDetail.serialNum = 2             '일련번호 1부터 순차 기재
         newDetail.purchaseDT = "20190111"   '거래일자  yyyyMMdd
-        newDetail.itemName = "품명"
-        newDetail.spec = "규격"
+        newDetail.itemName = "품명"         '품목명
+        newDetail.spec = "규격"             '규격
 
 
         '=========================================================================
@@ -1429,7 +1426,6 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
 
     '=========================================================================
     ' 전자명세서에 다른 전자명세서 1건을 첨부합니다.
@@ -1470,7 +1466,6 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
 
     '=========================================================================
     '전자명세서 메일전송 항목에 대한 전송여부를 목록으로 반환합니다.
@@ -1541,7 +1536,6 @@ Public Class frmExample
         End Try
     End Sub
 
-
     '=========================================================================
     ' 연동회원 포인트 충전 URL을 반환합니다.
     ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
@@ -1557,7 +1551,6 @@ Public Class frmExample
         End Try
     End Sub
 
-
     '=========================================================================
     ' 파트너의 잔여포인트를 확인합니다.
     ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를
@@ -1572,7 +1565,6 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
 
     '=========================================================================
     ' 파트너 포인트 충전 팝업 URL을 반환합니다.
@@ -1761,7 +1753,6 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
 
     '=========================================================================
     ' 연동회원의 담당자를 신규로 등록합니다.

@@ -63,9 +63,6 @@ Public Class frmExample
     Private Sub btnRegistIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistIssue.Click
         Dim cashbill As Cashbill = New Cashbill
 
-        '메모
-        Dim memo As String = "즉시발행 메모"
-
         '현금영수증 관리번호, 1~24자리 영문,숫자조합으로 사업자별로 중복되지 않도록 구성
         cashbill.mgtKey = txtMgtKey.Text
 
@@ -138,6 +135,9 @@ Public Class frmExample
 
         '현금영수증 발행 알림문자 전송여부, 미기재시 "false"
         cashbill.smssendYN = False
+
+        '메모
+        Dim memo As String = "즉시발행 메모"
 
         Try
             Dim response As Response = cashbillService.RegistIssue(txtCorpNum.Text, cashbill, memo)
@@ -564,11 +564,9 @@ Public Class frmExample
             tmp += "stateMemo (상태메모) : " + cbInfo.stateMemo + vbCrLf
             tmp += "stateCode (상태코드) : " + cbInfo.stateCode.ToString + vbCrLf
             tmp += "stateDT (상태변경일시) : " + cbInfo.stateDT + vbCrLf
-
             tmp += "identityNum (식별번호) : " + cbInfo.identityNum + vbCrLf
             tmp += "itemName (주문상품명) : " + cbInfo.itemName + vbCrLf
             tmp += "customerName (주문자명) : " + cbInfo.customerName + vbCrLf
-
             tmp += "confirmNum (국세청승인번호) : " + cbInfo.confirmNum + vbCrLf
             tmp += "orgConfirmNum (원본 현금영수증 국세청승인번호) : " + cbInfo.orgConfirmNum + vbCrLf
             tmp += "orgTradeDate (원본 현금영수증 거래일자) : " + cbInfo.orgTradeDate + vbCrLf
@@ -595,8 +593,8 @@ Public Class frmExample
         Dim MgtKeyList As List(Of String) = New List(Of String)
 
         '문서관리번호 배열, 최대 1000건.
-        MgtKeyList.Add("1234")
-        MgtKeyList.Add("12345")
+        MgtKeyList.Add("20190117-001")
+        MgtKeyList.Add("20190117-002")
 
         Try
             Dim cashbillInfoList As List(Of CashbillInfo) = cashbillService.GetInfos(txtCorpNum.Text, MgtKeyList)
@@ -617,11 +615,9 @@ Public Class frmExample
                 tmp += "stateMemo (상태메모) : " + cbInfo.stateMemo + vbCrLf
                 tmp += "stateCode (상태코드) : " + cbInfo.stateCode.ToString + vbCrLf
                 tmp += "stateDT (상태변경일시) : " + cbInfo.stateDT + vbCrLf
-
                 tmp += "identityNum (식별번호) : " + cbInfo.identityNum + vbCrLf
                 tmp += "itemName (주문상품명) : " + cbInfo.itemName + vbCrLf
                 tmp += "customerName (주문자명) : " + cbInfo.customerName + vbCrLf
-
                 tmp += "confirmNum (국세청승인번호) : " + cbInfo.confirmNum + vbCrLf
                 tmp += "orgConfirmNum (원본 현금영수증 국세청승인번호) : " + cbInfo.orgConfirmNum + vbCrLf
                 tmp += "orgTradeDate (원본 현금영수증 거래일자) : " + cbInfo.orgTradeDate + vbCrLf
@@ -638,7 +634,6 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
 
     '=========================================================================
     ' 현금영수증 1건의 상세정보를 조회합니다.
@@ -666,13 +661,11 @@ Public Class frmExample
             tmp += "supplyCost (공급가액) : " + cbDetailInfo.supplyCost + vbCrLf
             tmp += "tax (부가세) : " + cbDetailInfo.tax + vbCrLf
             tmp += "serviceFee (봉사료) : " + cbDetailInfo.serviceFee + vbCrLf
-
             tmp += "franchiseCorpNum (가맹점 사업자번호) : " + cbDetailInfo.franchiseCorpNum + vbCrLf
             tmp += "franchiseCorpName (가맹점 상호) : " + cbDetailInfo.franchiseCorpName + vbCrLf
             tmp += "franchiseCEOName (가맹점 대표자 성명) : " + cbDetailInfo.franchiseCEOName + vbCrLf
             tmp += "franchiseAddr (가맹점 주소) : " + cbDetailInfo.franchiseAddr + vbCrLf
             tmp += "franchiseTEL (가맹점 전화번호) : " + cbDetailInfo.franchiseTEL + vbCrLf
-
             tmp += "identityNum (식별번호) : " + cbDetailInfo.identityNum + vbCrLf
             tmp += "customerName (주문자명) : " + cbDetailInfo.customerName + vbCrLf
             tmp += "itemName (주문상품명) : " + cbDetailInfo.itemName + vbCrLf
@@ -688,7 +681,6 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
 
     '=========================================================================
     ' 검색조건을 사용하여 현금영수증 목록을 조회합니다.
@@ -759,7 +751,6 @@ Public Class frmExample
             tmp = tmp + "pageNum (페이지 번호) : " + CStr(cbSearchList.pageNum) + vbCrLf
             tmp = tmp + "pageCount (페이지 개수) : " + CStr(cbSearchList.pageCount) + vbCrLf
 
-
             For Each cbInfo As CashbillInfo In cbSearchList.list
                 tmp += "itemKey (아이템키) : " + cbInfo.itemKey + vbCrLf
                 tmp += "mgtKey (문서관리번호) : " + cbInfo.mgtKey + vbCrLf
@@ -774,11 +765,9 @@ Public Class frmExample
                 tmp += "stateMemo (상태메모) : " + cbInfo.stateMemo + vbCrLf
                 tmp += "stateCode (상태코드) : " + cbInfo.stateCode.ToString + vbCrLf
                 tmp += "stateDT (상태변경일시) : " + cbInfo.stateDT + vbCrLf
-
                 tmp += "identityNum (식별번호) : " + cbInfo.identityNum + vbCrLf
                 tmp += "itemName (주문상품명) : " + cbInfo.itemName + vbCrLf
                 tmp += "customerName (주문자명) : " + cbInfo.customerName + vbCrLf
-
                 tmp += "confirmNum (국세청승인번호) : " + cbInfo.confirmNum + vbCrLf
                 tmp += "orgConfirmNum (원본 현금영수증 국세청승인번호) : " + cbInfo.orgConfirmNum + vbCrLf
                 tmp += "orgTradeDate (원본 현금영수증 거래일자) : " + cbInfo.orgTradeDate + vbCrLf
@@ -795,7 +784,6 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
 
     '=========================================================================
     ' 현금영수증 상태 변경이력을 확인합니다.
@@ -877,7 +865,6 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
 
     '=========================================================================
     ' 1건의 현금영수증 보기 팝업 URL을 반환합니다.
@@ -963,7 +950,6 @@ Public Class frmExample
 
     End Sub
 
-
     '=========================================================================
     ' 팝빌(www.popbill.com)에 로그인된 팝빌 URL을 반환합니다.
     ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
@@ -995,7 +981,6 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
 
     '=========================================================================
     ' 알림문자를 전송합니다. (단문/SMS - 한글 최대 45자)
@@ -1151,7 +1136,6 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
-
 
     '=========================================================================
     ' 현금영수증 발행단가를 확인합니다.

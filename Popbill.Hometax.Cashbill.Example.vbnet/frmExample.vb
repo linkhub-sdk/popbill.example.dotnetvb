@@ -105,10 +105,8 @@ Public Class frmExample
         Try
             Dim jobList As List(Of HTCashbillJobState) = htCashbillService.ListActiveJob(txtCorpNum.Text)
 
-
             Dim tmp As String = "작업아이디(jobID) | 수집상태(jobState) | 수집유형(queryType) | 일자유형(queryDateType) | 시작일자(queryStDate) | 종료일자(queryEnDate) | "
             tmp += "오류코드(errorCode) | 오류메시지(errorReason) | 작업 시작일시(jobStartDT) | 작업 종료일시(jobEndDT) | 수집개수(collectCount) | 수집 요청일시(regDT) " + vbCrLf
-
 
             For Each info As HTCashbillJobState In jobList
                 tmp += CStr(info.jobID) + " | "
@@ -246,7 +244,6 @@ Public Class frmExample
 
         End Try
     End Sub
-
 
     '=========================================================================
     ' 홈택스 인증관리 팝업 URL을 반환합니다.
