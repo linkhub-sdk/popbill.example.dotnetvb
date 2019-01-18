@@ -39,8 +39,7 @@ Public Class frmExample
         If String.IsNullOrEmpty(txtReserveDT.Text) = False Then
 
             Return _
-                DateTime.ParseExact(txtReserveDT.Text, "yyyyMMddHHmmss",
-                                    System.Globalization.CultureInfo.InvariantCulture)
+                DateTime.ParseExact(txtReserveDT.Text, "yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture)
         End If
     End Function
 
@@ -101,8 +100,7 @@ Public Class frmExample
     Private Sub btnGetSenderNumberList_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnGetSenderNumberList.Click
         Try
-            Dim senderNumberList As List(Of SenderNumber) = kakaoService.GetSenderNumberList(txtCorpNum.Text,
-                                                                                             txtUserId.Text)
+            Dim senderNumberList As List(Of SenderNumber) = kakaoService.GetSenderNumberList(txtCorpNum.Text,txtUserId.Text)
 
             Dim tmp As String = "number(발신번호) | representYN(대표번호여부) | state(인증상태)" + vbCrLf
 
@@ -199,9 +197,7 @@ Public Class frmExample
         Dim requestNum = ""
 
         Try
-            Dim receiptNum As String = kakaoService.SendATS(txtCorpNum.Text, templateCode, senderNum, altSendType,
-                                                            getReserveDT(),
-                                                            receiveNum, receiveName, content, altContent, requestNum)
+            Dim receiptNum As String = kakaoService.SendATS(txtCorpNum.Text, templateCode, senderNum, altSendType, getReserveDT(), receiveNum, receiveName, content, altContent, requestNum)
 
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
@@ -244,8 +240,7 @@ Public Class frmExample
         Next
 
         Try
-            Dim receiptNum As String = kakaoService.SendATS(txtCorpNum.Text, templateCode, senderNum, altSendType,
-                                                            getReserveDT(), receiverList, txtUserId.Text, requestNum)
+            Dim receiptNum As String = kakaoService.SendATS(txtCorpNum.Text, templateCode, senderNum, altSendType, getReserveDT(), receiverList, txtUserId.Text, requestNum)
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
         Catch ex As PopbillException
@@ -290,10 +285,7 @@ Public Class frmExample
         Next
 
         Try
-            Dim receiptNum As String = kakaoService.SendATS(txtCorpNum.Text, templateCode, senderNum, content,
-                                                            altContent,
-                                                            altSendType, getReserveDT(), receiverList, txtUserId.Text,
-                                                            requestNum)
+            Dim receiptNum As String = kakaoService.SendATS(txtCorpNum.Text, templateCode, senderNum, content, altContent, altSendType, getReserveDT(), receiverList, txtUserId.Text, requestNum)
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
         Catch ex As PopbillException
@@ -347,10 +339,8 @@ Public Class frmExample
         buttonList.Add(btnInfo)
 
         Try
-            Dim receiptNum As String = kakaoService.SendFTS(txtCorpNum.Text, plusFriendID, senderNum, content,
-                                                            altContent, altSendType,
-                                                            receiverNum, receiverName, adsYN, getReserveDT(), buttonList,
-                                                            txtUserId.Text, requestNum)
+            Dim receiptNum As String = kakaoService.SendFTS(txtCorpNum.Text, plusFriendID, senderNum, content, altContent, altSendType, receiverNum, _
+                                                            receiverName, adsYN, getReserveDT(), buttonList, txtUserId.Text, requestNum)
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
         Catch ex As PopbillException
@@ -404,8 +394,7 @@ Public Class frmExample
         buttonList.Add(btnInfo)
 
         Try
-            Dim receiptNum As String = kakaoService.SendFTS(txtCorpNum.Text, plusFriendID, senderNum,
-                                                            altSendType, adsYN, getReserveDT(), receiverList, buttonList,
+            Dim receiptNum As String = kakaoService.SendFTS(txtCorpNum.Text, plusFriendID, senderNum, altSendType, adsYN, getReserveDT(), receiverList, buttonList, _
                                                             txtUserId.Text, requestNum)
 
             MsgBox("접수번호 : " + receiptNum)
@@ -465,10 +454,8 @@ Public Class frmExample
         buttonList.Add(btnInfo)
 
         Try
-            Dim receiptNum As String = kakaoService.SendFTS(txtCorpNum.Text, plusFriendID, senderNum, content,
-                                                            altContent, altSendType,
-                                                            adsYN, getReserveDT(), receiverList, buttonList,
-                                                            txtUserId.Text, requestNum)
+            Dim receiptNum As String = kakaoService.SendFTS(txtCorpNum.Text, plusFriendID, senderNum, content, altContent, altSendType, _
+                                                            adsYN, getReserveDT(), receiverList, buttonList, txtUserId.Text, requestNum)
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
         Catch ex As PopbillException
@@ -530,10 +517,8 @@ Public Class frmExample
             buttonList.Add(btnInfo)
 
             Try
-                Dim receiptNum As String = kakaoService.SendFMS(txtCorpNum.Text, plusFriendID, senderNum,
-                                                                content, altContent, altSendType, receiverNum,
-                                                                receiverName, adsYN, getReserveDT(), buttonList,
-                                                                strFileName, imageURL,
+                Dim receiptNum As String = kakaoService.SendFMS(txtCorpNum.Text, plusFriendID, senderNum, content, altContent, altSendType, receiverNum, _
+                                                                receiverName, adsYN, getReserveDT(), buttonList, strFileName, imageURL, _
                                                                 txtUserId.Text, requestNum)
                 MsgBox("접수번호 : " + receiptNum)
                 txtReceiptNum.Text = receiptNum
@@ -600,10 +585,8 @@ Public Class frmExample
             buttonList.Add(btnInfo)
 
             Try
-                Dim receiptNum As String = kakaoService.SendFMS(txtCorpNum.Text, plusFriendID, senderNum,
-                                                                altSendType, adsYN, getReserveDT(), receiverList,
-                                                                buttonList, strFileName, imageURL, txtUserId.Text,
-                                                                requestNum)
+                Dim receiptNum As String = kakaoService.SendFMS(txtCorpNum.Text, plusFriendID, senderNum, altSendType, adsYN, getReserveDT(), receiverList, _
+                                                                buttonList, strFileName, imageURL, txtUserId.Text, requestNum)
                 MsgBox("접수번호 : " + receiptNum)
                 txtReceiptNum.Text = receiptNum
 
@@ -673,10 +656,8 @@ Public Class frmExample
             buttonList.Add(btnInfo)
 
             Try
-                Dim receiptNum As String = kakaoService.SendFMS(txtCorpNum.Text, plusFriendID, senderNum, content,
-                                                                altContent, altSendType,
-                                                                adsYN, getReserveDT(), receiverList, buttonList,
-                                                                strFileName, imageURL, txtUserId.Text, requestNum)
+                Dim receiptNum As String = kakaoService.SendFMS(txtCorpNum.Text, plusFriendID, senderNum, content, altContent, altSendType, _
+                                                                adsYN, getReserveDT(), receiverList, buttonList, strFileName, imageURL, txtUserId.Text, requestNum)
                 MsgBox("접수번호 : " + receiptNum)
                 txtReceiptNum.Text = receiptNum
             Catch ex As PopbillException
@@ -758,11 +739,9 @@ Public Class frmExample
             MsgBox(tmp)
 
             '전송결과 정보 리스트
-            Dim rowStr As String =
-                    "state(전송상태 코드) | sendDT(전송일시) | receiveNum(수신번호) | receiveName(수신자명) | content(내용) | "
+            Dim rowStr As String = "state(전송상태 코드) | sendDT(전송일시) | receiveNum(수신번호) | receiveName(수신자명) | content(내용) | "
             rowSTR += "result(전송결과 코드) | resultDT(전송결과 수신일시) | altContnet(대체문자 내용) | altContentType(대체문자 전송유형) | "
-            rowStr +=
-                "altSendDT(대체문자 전송일시) | altReult(대체문자 전송결과 코드) | altResultDT(대체문자 전송결과 수신일시) | receiptNum(접수번호) | requestNum(요청번호)"
+            rowStr += "altSendDT(대체문자 전송일시) | altReult(대체문자 전송결과 코드) | altResultDT(대체문자 전송결과 수신일시) | receiptNum(접수번호) | requestNum(요청번호)"
 
             ListBox1.Items.Add(rowStr)
 
@@ -828,11 +807,9 @@ Public Class frmExample
             MsgBox(tmp)
 
             '전송결과 정보 리스트
-            Dim rowStr As String =
-                    "state(전송상태 코드) | sendDT(전송일시) | receiveNum(수신번호) | receiveName(수신자명) | content(내용) | "
+            Dim rowStr As String = "state(전송상태 코드) | sendDT(전송일시) | receiveNum(수신번호) | receiveName(수신자명) | content(내용) | "
             rowSTR += "result(전송결과 코드) | resultDT(전송결과 수신일시) | altContnet(대체문자 내용) | altContentType(대체문자 전송유형) | "
-            rowStr +=
-                "altSendDT(대체문자 전송일시) | altReult(대체문자 전송결과 코드) | altResultDT(대체문자 전송결과 수신일시) | receiptNum(접수번호) | requestNum(요청번호)"
+            rowStr += "altSendDT(대체문자 전송일시) | altReult(대체문자 전송결과 코드) | altResultDT(대체문자 전송결과 수신일시) | receiptNum(접수번호) | requestNum(요청번호)"
 
             ListBox1.Items.Add(rowStr)
 
@@ -908,8 +885,7 @@ Public Class frmExample
 
         ListBox1.Items.Clear()
         Try
-            Dim msgSearchList As KakaoSearchResult = kakaoService.Search(txtCorpNum.Text, SDate, EDate, State,
-                                                                         item, ReserveYN, SenderYN, Order, Page, PerPage,
+            Dim msgSearchList As KakaoSearchResult = kakaoService.Search(txtCorpNum.Text, SDate, EDate, State, item, ReserveYN, SenderYN, Order, Page, PerPage, _
                                                                          txtUserId.Text, QString)
 
             Dim tmp As String
@@ -923,11 +899,9 @@ Public Class frmExample
 
             MsgBox(tmp)
 
-            Dim rowStr As String =
-                    "state(전송상태 코드) | sendDT(전송일시) | receiveNum(수신번호) | receiveName(수신자명) | content(내용) | "
+            Dim rowStr As String = "state(전송상태 코드) | sendDT(전송일시) | receiveNum(수신번호) | receiveName(수신자명) | content(내용) | "
             rowSTR += "result(전송결과 코드) | resultDT(전송결과 수신일시) | altContnet(대체문자 내용) | altContentType(대체문자 전송유형) | "
-            rowStr +=
-                "altSendDT(대체문자 전송일시) | altReult(대체문자 전송결과 코드) | altResultDT(대체문자 전송결과 수신일시) | receiptNum(접수번호) | requestNum(요청번호)"
+            rowStr += "altSendDT(대체문자 전송일시) | altReult(대체문자 전송결과 코드) | altResultDT(대체문자 전송결과 수신일시) | receiptNum(접수번호) | requestNum(요청번호)"
 
             ListBox1.Items.Add(rowStr)
 
@@ -1330,10 +1304,8 @@ Public Class frmExample
             tmp += "regDT(등록일시) | searchAllAllowYN(회사조회 여부) | mgrYN(관리자 여부) | state(상태)" + vbCrLf
 
             For Each info As Contact In contactList
-                tmp += info.id + " | " + info.personName + " | " + info.email + " | " + info.hp + " | " + info.fax +
-                       " | " + info.tel + " | "
-                tmp += info.regDT.ToString() + " | " + info.searchAllAllowYN.ToString() + " | " + info.mgrYN.ToString() +
-                       " | " + info.state + vbCrLf
+                tmp += info.id + " | " + info.personName + " | " + info.email + " | " + info.hp + " | " + info.fax + " | " + info.tel + " | "
+                tmp += info.regDT.ToString() + " | " + info.searchAllAllowYN.ToString() + " | " + info.mgrYN.ToString() + " | " + info.state + vbCrLf
             Next
 
             MsgBox(tmp)

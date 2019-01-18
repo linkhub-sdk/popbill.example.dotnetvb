@@ -520,8 +520,7 @@ Public Class frmExample
         Dim writeSpecification As Boolean = False
 
         Try
-            Dim response As Response = taxinvoiceService.Register(txtCorpNum.Text, taxinvoice, txtUserId.Text,
-                                                                  writeSpecification)
+            Dim response As Response = taxinvoiceService.Register(txtCorpNum.Text, taxinvoice, txtUserId.Text, writeSpecification)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
@@ -984,8 +983,7 @@ Public Class frmExample
 
 
         Try
-            Dim response As Response = taxinvoiceService.Update(txtCorpNum.Text, KeyType, txtMgtKey.Text, taxinvoice,
-                                                                txtUserId.Text)
+            Dim response As Response = taxinvoiceService.Update(txtCorpNum.Text, KeyType, txtMgtKey.Text, taxinvoice, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
@@ -1217,8 +1215,7 @@ Public Class frmExample
         taxinvoice.addContactList.Add(addContact)
 
         Try
-            Dim response As Response = taxinvoiceService.Update(txtCorpNum.Text, KeyType, txtMgtKey.Text, taxinvoice,
-                                                                txtUserId.Text)
+            Dim response As Response = taxinvoiceService.Update(txtCorpNum.Text, KeyType, txtMgtKey.Text, taxinvoice,txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
@@ -1245,8 +1242,7 @@ Public Class frmExample
         Dim forceIssue As Boolean = False
 
         Try
-            Dim response As Response = taxinvoiceService.Issue(txtCorpNum.Text, KeyType, txtMgtKey.Text, memo,
-                                                               forceIssue, txtUserId.Text)
+            Dim response As Response = taxinvoiceService.Issue(txtCorpNum.Text, KeyType, txtMgtKey.Text, memo, forceIssue, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
@@ -1274,8 +1270,7 @@ Public Class frmExample
         Dim forceIssue As Boolean = False
 
         Try
-            Dim response As Response = taxinvoiceService.Issue(txtCorpNum.Text, KeyType, txtMgtKey.Text, memo,
-                                                               forceIssue, txtUserId.Text)
+            Dim response As Response = taxinvoiceService.Issue(txtCorpNum.Text, KeyType, txtMgtKey.Text, memo, forceIssue, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
@@ -1301,8 +1296,7 @@ Public Class frmExample
         Dim memo As String = "발행취소메모"
 
         Try
-            Dim response As Response = taxinvoiceService.CancelIssue(txtCorpNum.Text, KeyType, txtMgtKey.Text, memo,
-                                                                     txtUserId.Text)
+            Dim response As Response = taxinvoiceService.CancelIssue(txtCorpNum.Text, KeyType, txtMgtKey.Text, memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
@@ -1328,8 +1322,7 @@ Public Class frmExample
         Dim memo As String = "발행취소메모"
 
         Try
-            Dim response As Response = taxinvoiceService.CancelIssue(txtCorpNum.Text, KeyType, txtMgtKey.Text, memo,
-                                                                     txtUserId.Text)
+            Dim response As Response = taxinvoiceService.CancelIssue(txtCorpNum.Text, KeyType, txtMgtKey.Text, memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
@@ -1355,8 +1348,7 @@ Public Class frmExample
         Dim memo As String = "발행취소메모"
 
         Try
-            Dim response As Response = taxinvoiceService.CancelIssue(txtCorpNum.Text, KeyType, txtMgtKey.Text, memo,
-                                                                     txtUserId.Text)
+            Dim response As Response = taxinvoiceService.CancelIssue(txtCorpNum.Text, KeyType, txtMgtKey.Text, memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
@@ -1383,8 +1375,7 @@ Public Class frmExample
         Dim EmailSubject As String = "발행예정 메일제목 테스트 dotent 3.5"
 
         Try
-            Dim response As Response = taxinvoiceService.Send(txtCorpNum.Text, KeyType, txtMgtKey.Text, Memo,
-                                                              EmailSubject, txtUserId.Text)
+            Dim response As Response = taxinvoiceService.Send(txtCorpNum.Text, KeyType, txtMgtKey.Text, Memo, EmailSubject, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
@@ -1409,8 +1400,7 @@ Public Class frmExample
         Dim Memo As String = "발행예정 취소 메모"
 
         Try
-            Dim response As Response = taxinvoiceService.CancelSend(txtCorpNum.Text, KeyType, txtMgtKey.Text, Memo,
-                                                                    txtUserId.Text)
+            Dim response As Response = taxinvoiceService.CancelSend(txtCorpNum.Text, KeyType, txtMgtKey.Text, Memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
@@ -1427,12 +1417,11 @@ Public Class frmExample
         '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
-        '승인대기 메모
+        '승인대기 승인 메모
         Dim Memo As String = "승인 메모"
 
         Try
-            Dim response As Response = taxinvoiceService.Accept(txtCorpNum.Text, KeyType, txtMgtKey.Text, Memo,
-                                                                txtUserId.Text)
+            Dim response As Response = taxinvoiceService.Accept(txtCorpNum.Text, KeyType, txtMgtKey.Text, Memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
@@ -1455,8 +1444,7 @@ Public Class frmExample
         Dim Memo As String = "승인대기 거부 메모"
 
         Try
-            Dim response As Response = taxinvoiceService.Deny(txtCorpNum.Text, KeyType, txtMgtKey.Text, Memo,
-                                                              txtUserId.Text)
+            Dim response As Response = taxinvoiceService.Deny(txtCorpNum.Text, KeyType, txtMgtKey.Text, Memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
@@ -1717,8 +1705,7 @@ Public Class frmExample
         Dim Memo As String = "역발행 요청 메모"
 
         Try
-            Dim response As Response = taxinvoiceService.Request(txtCorpNum.Text, KeyType, txtMgtKey.Text, Memo,
-                                                                 txtUserId.Text)
+            Dim response As Response = taxinvoiceService.Request(txtCorpNum.Text, KeyType, txtMgtKey.Text, Memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
@@ -1740,8 +1727,7 @@ Public Class frmExample
         Dim Memo As String = "역발행 요청 취소 메모"
 
         Try
-            Dim response As Response = taxinvoiceService.CancelRequest(txtCorpNum.Text, KeyType, txtMgtKey.Text, Memo,
-                                                                       txtUserId.Text)
+            Dim response As Response = taxinvoiceService.CancelRequest(txtCorpNum.Text, KeyType, txtMgtKey.Text, Memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
@@ -1764,8 +1750,7 @@ Public Class frmExample
         Dim Memo As String = "역발행 요청 취소 메모"
 
         Try
-            Dim response As Response = taxinvoiceService.CancelRequest(txtCorpNum.Text, KeyType, txtMgtKey.Text, Memo,
-                                                                       txtUserId.Text)
+            Dim response As Response = taxinvoiceService.CancelRequest(txtCorpNum.Text, KeyType, txtMgtKey.Text, Memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
@@ -1786,8 +1771,7 @@ Public Class frmExample
         Dim Memo As String = "역발행 요청 거부 메모"
 
         Try
-            Dim response As Response = taxinvoiceService.Refuse(txtCorpNum.Text, KeyType, txtMgtKey.Text, Memo,
-                                                                txtUserId.Text)
+            Dim response As Response = taxinvoiceService.Refuse(txtCorpNum.Text, KeyType, txtMgtKey.Text, Memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
@@ -1809,8 +1793,7 @@ Public Class frmExample
         Dim Memo As String = "역발행 요청 거부 메모"
 
         Try
-            Dim response As Response = taxinvoiceService.Refuse(txtCorpNum.Text, KeyType, txtMgtKey.Text, Memo,
-                                                                txtUserId.Text)
+            Dim response As Response = taxinvoiceService.Refuse(txtCorpNum.Text, KeyType, txtMgtKey.Text, Memo, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
@@ -1891,8 +1874,7 @@ Public Class frmExample
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
         Try
-            Dim response As Response = taxinvoiceService.SendToNTS(txtCorpNum.Text, KeyType, txtMgtKey.Text,
-                                                                   txtUserId.Text)
+            Dim response As Response = taxinvoiceService.SendToNTS(txtCorpNum.Text, KeyType, txtMgtKey.Text, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
@@ -1975,8 +1957,7 @@ Public Class frmExample
         MgtKeyList.Add("20190111-002")
 
         Try
-            Dim taxinvoiceInfoList As List(Of TaxinvoiceInfo) = taxinvoiceService.GetInfos(txtCorpNum.Text, KeyType,
-                                                                                           MgtKeyList)
+            Dim taxinvoiceInfoList As List(Of TaxinvoiceInfo) = taxinvoiceService.GetInfos(txtCorpNum.Text, KeyType, MgtKeyList)
 
             Dim tmp As String = ""
 
@@ -2199,12 +2180,9 @@ Public Class frmExample
         Dim interOPYN As String = ""
 
         Try
-            Dim tiSearchList As TISearchResult = taxinvoiceService.Search(txtCorpNum.Text, KeyType, DType, SDate, EDate,
-                                                                          State, TType,
-                                                                          taxType, IssueType, LateOnly, TaxRegIDYN,
-                                                                          TaxRegIDType, TaxRegID, QString, Order, Page,
-                                                                          PerPage,
-                                                                          interOPYN, txtUserId.Text)
+            Dim tiSearchList As TISearchResult = taxinvoiceService.Search(txtCorpNum.Text, KeyType, DType, SDate, EDate, State, TType, _
+                                                                          taxType, IssueType, LateOnly, TaxRegIDYN, TaxRegIDType, TaxRegID, QString, Order, Page, _
+                                                                          PerPage, interOPYN, txtUserId.Text)
 
 
             Dim tmp As String
@@ -2283,8 +2261,7 @@ Public Class frmExample
             tmp += "procMemo(처리메모) | regDT(등록일시) | ip(아이피)" + vbCrLf + vbCrLf
 
             For Each log As TaxinvoiceLog In logList
-                tmp += log.docLogType.ToString + " | " + log.log + " | " + log.procType + " | " + log.procCorpName +
-                       " | " + log.procContactName + " | " + log.procMemo + " | " + log.regDT + " | " + log.ip + vbCrLf
+                tmp += log.docLogType.ToString + " | " + log.log + " | " + log.procType + " | " + log.procCorpName + " | " + log.procContactName + " | " + log.procMemo + " | " + log.regDT + " | " + log.ip + vbCrLf
             Next
 
             MsgBox(tmp)
@@ -2518,8 +2495,7 @@ Public Class frmExample
             Dim strFileName As String = fileDialog.FileName
 
             Try
-                Dim response As Response = taxinvoiceService.AttachFile(txtCorpNum.Text, KeyType, txtMgtKey.Text,
-                                                                        strFileName, txtUserId.Text)
+                Dim response As Response = taxinvoiceService.AttachFile(txtCorpNum.Text, KeyType, txtMgtKey.Text, strFileName, txtUserId.Text)
 
                 MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
             Catch ex As PopbillException
@@ -2541,8 +2517,7 @@ Public Class frmExample
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
         Try
-            Dim response As Response = taxinvoiceService.DeleteFile(txtCorpNum.Text, KeyType, txtMgtKey.Text,
-                                                                    txtFileID.Text, txtUserId.Text)
+            Dim response As Response = taxinvoiceService.DeleteFile(txtCorpNum.Text, KeyType, txtMgtKey.Text, txtFileID.Text, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
@@ -2567,8 +2542,7 @@ Public Class frmExample
             Dim tmp As String = "serialNum(일련번호) | displayName(첨부파일명) | attachedFile(파일아이디) | regDT(등록일자)" + vbCrLf
 
             For Each file As AttachedFile In fileList
-                tmp += file.serialNum.ToString() + " | " + file.displayName + " | " + file.attachedFile + " | " +
-                       file.regDT + vbCrLf
+                tmp += file.serialNum.ToString() + " | " + file.displayName + " | " + file.attachedFile + " | " + file.regDT + vbCrLf
 
             Next
             MsgBox(tmp)
@@ -2590,11 +2564,10 @@ Public Class frmExample
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
         '수신자 이메일주소
-        Dim Receiver As String = "test@test.com" ;
+        Dim Receiver As String = "test@test.com"
 
         Try
-            Dim response As Response = taxinvoiceService.SendEmail(txtCorpNum.Text, KeyType, txtMgtKey.Text, Receiver,
-                                                                   txtUserId.Text)
+            Dim response As Response = taxinvoiceService.SendEmail(txtCorpNum.Text, KeyType, txtMgtKey.Text, Receiver, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
@@ -2622,8 +2595,7 @@ Public Class frmExample
         Dim contents As String = "발신문자 메시지 내용"
 
         Try
-            Dim response As Response = taxinvoiceService.SendSMS(txtCorpNum.Text, KeyType, txtMgtKey.Text, sendNum,
-                                                                 receiveNum, contents, txtUserId.Text)
+            Dim response As Response = taxinvoiceService.SendSMS(txtCorpNum.Text, KeyType, txtMgtKey.Text, sendNum, receiveNum, contents, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
@@ -2648,8 +2620,7 @@ Public Class frmExample
         Dim receiveNum As String = "010-1111-2222"
 
         Try
-            Dim response As Response = taxinvoiceService.SendFAX(txtCorpNum.Text, KeyType, txtMgtKey.Text, sendNum,
-                                                                 receiveNum, txtUserId.Text)
+            Dim response As Response = taxinvoiceService.SendFAX(txtCorpNum.Text, KeyType, txtMgtKey.Text, sendNum, receiveNum, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
@@ -2673,8 +2644,7 @@ Public Class frmExample
         Dim docMgtKey As String = "20171117-02"
 
         Try
-            Dim response As Response = taxinvoiceService.AttachStatement(txtCorpNum.Text, KeyType, txtMgtKey.Text,
-                                                                         docItemCode, docMgtKey)
+            Dim response As Response = taxinvoiceService.AttachStatement(txtCorpNum.Text, KeyType, txtMgtKey.Text, docItemCode, docMgtKey)
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
@@ -2696,8 +2666,7 @@ Public Class frmExample
         Dim docMgtKey As String = "20171117-02"
 
         Try
-            Dim response As Response = taxinvoiceService.DetachStatement(txtCorpNum.Text, KeyType, txtMgtKey.Text,
-                                                                         docItemCode, docMgtKey)
+            Dim response As Response = taxinvoiceService.DetachStatement(txtCorpNum.Text, KeyType, txtMgtKey.Text, docItemCode, docMgtKey)
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
@@ -2737,8 +2706,7 @@ Public Class frmExample
         Dim mgtKey As String = "20190111-A00"
 
         Try
-            Dim response As Response = taxinvoiceService.AssignMgtKey(txtCorpNum.Text, KeyType, itemKey, mgtKey,
-                                                                      txtUserId.Text)
+            Dim response As Response = taxinvoiceService.AssignMgtKey(txtCorpNum.Text, KeyType, itemKey, mgtKey,txtUserId.Text)
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
@@ -2751,8 +2719,7 @@ Public Class frmExample
     Private Sub btnListEmailConfig_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnListEmailConfig.Click
         Try
-            Dim emailConfigList As List(Of EmailConfig) = taxinvoiceService.ListEmailConfig(txtCorpNum.Text,
-                                                                                            txtUserId.Text)
+            Dim emailConfigList As List(Of EmailConfig) = taxinvoiceService.ListEmailConfig(txtCorpNum.Text, txtUserId.Text)
 
             Dim tmp As String = "메일전송유형 | 전송여부 " + vbCrLf
 
@@ -2790,20 +2757,17 @@ Public Class frmExample
                 If info.emailType = "TAX_TRUST_CANCEL_ISSUE" Then _
                     tmp += "[위수탁발행] TAX_TRUST_CANCEL_ISSUE (공급받는자에게 전자세금계산서 발행취소 메일) | " + info.sendYN.ToString + vbCrLf
                 If info.emailType = "TAX_TRUST_CANCEL_ISSUE_INVOICER" Then _
-                    tmp += "[위수탁발행] TAX_TRUST_CANCEL_ISSUE_INVOICER (공급자에게 전자세금계산서 발행취소 메일) | " + info.sendYN.ToString +
-                           vbCrLf
+                    tmp += "[위수탁발행] TAX_TRUST_CANCEL_ISSUE_INVOICER (공급자에게 전자세금계산서 발행취소 메일) | " + info.sendYN.ToString + vbCrLf
                 If info.emailType = "TAX_TRUST_SEND" Then _
                     tmp += "[위수탁 발행예정] TAX_TRUST_SEND (공급받는자에게 [발행예정] 세금계산서 발송 메일) | " + info.sendYN.ToString + vbCrLf
                 If info.emailType = "TAX_TRUST_ACCEPT" Then _
                     tmp += "[위수탁 발행예정] TAX_TRUST_ACCEPT (수탁자에게 [발행예정] 세금계산서 승인 메일) | " + info.sendYN.ToString + vbCrLf
                 If info.emailType = "TAX_TRUST_ACCEPT_ISSUE" Then _
-                    tmp += "[위수탁 발행예정] TAX_TRUST_ACCEPT_ISSUE (수탁자에게 [발행예정] 세금계산서 자동발행 메일) | " + info.sendYN.ToString +
-                           vbCrLf
+                    tmp += "[위수탁 발행예정] TAX_TRUST_ACCEPT_ISSUE (수탁자에게 [발행예정] 세금계산서 자동발행 메일) | " + info.sendYN.ToString + vbCrLf
                 If info.emailType = "TAX_TRUST_DENY" Then _
                     tmp += "[위수탁 발행예정] TAX_TRUST_DENY (수탁자에게 [발행예정] 세금계산서 거부 메일) | " + info.sendYN.ToString + vbCrLf
                 If info.emailType = "TAX_TRUST_CANCEL_SEND" Then _
-                    tmp += "[위수탁 발행예정] TAX_TRUST_CANCEL_SEND (공급받는자에게 [발행예정] 세금계산서 취소 메일) | " + info.sendYN.ToString +
-                           vbCrLf
+                    tmp += "[위수탁 발행예정] TAX_TRUST_CANCEL_SEND (공급받는자에게 [발행예정] 세금계산서 취소 메일) | " + info.sendYN.ToString + vbCrLf
                 If info.emailType = "TAX_CLOSEDOWN" Then _
                     tmp += "[처리결과] TAX_CLOSEDOWN (거래처의 휴폐업 여부 확인 메일) | " + info.sendYN.ToString + vbCrLf
                 If info.emailType = "TAX_NTSFAIL_INVOICER" Then _
@@ -2872,8 +2836,7 @@ Public Class frmExample
             '전송여부 (True-전송, False-미전송)
             Dim sendYN As Boolean = True
 
-            Dim response As Response = taxinvoiceService.UpdateEmailConfig(txtCorpNum.Text, emailType, sendYN,
-                                                                           txtUserId.Text)
+            Dim response As Response = taxinvoiceService.UpdateEmailConfig(txtCorpNum.Text, emailType, sendYN,txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
@@ -3236,10 +3199,8 @@ Public Class frmExample
             tmp += "regDT(등록일시) | searchAllAllowYN(회사조회 여부) | mgrYN(관리자 여부) | state(상태)" + vbCrLf
 
             For Each info As Contact In contactList
-                tmp += info.id + " | " + info.personName + " | " + info.email + " | " + info.hp + " | " + info.fax +
-                       " | " + info.tel + " | "
-                tmp += info.regDT.ToString() + " | " + info.searchAllAllowYN.ToString() + " | " + info.mgrYN.ToString() +
-                       " | " + info.state + vbCrLf
+                tmp += info.id + " | " + info.personName + " | " + info.email + " | " + info.hp + " | " + info.fax + " | " + info.tel + " | "
+                tmp += info.regDT.ToString() + " | " + info.searchAllAllowYN.ToString() + " | " + info.mgrYN.ToString() + " | " + info.state + vbCrLf
             Next
 
             MsgBox(tmp)

@@ -835,7 +835,7 @@ Public Class frmExample
     Private Sub btnGetURL_SBOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_PBOX.Click
 
         'TBOX-임시문서함 / PBOX-발행문서함 / WRITE-현금영수증 신규 작성
-        Dim TOGO As String = "TBOX"
+        Dim TOGO As String = "PBOX"
 
         Try
             Dim url As String = cashbillService.GetURL(txtCorpNum.Text, txtUserId.Text, TOGO)
@@ -854,7 +854,7 @@ Public Class frmExample
     Private Sub btnGetURL_WRITE_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_WRITE.Click
 
         'TBOX-임시문서함 / PBOX-발행문서함 / WRITE-현금영수증 신규 작성
-        Dim TOGO As String = "TBOX"
+        Dim TOGO As String = "WRITE"
 
         Try
             Dim url As String = cashbillService.GetURL(txtCorpNum.Text, txtUserId.Text, TOGO)
