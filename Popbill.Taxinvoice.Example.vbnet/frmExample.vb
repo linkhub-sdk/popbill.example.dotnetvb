@@ -68,7 +68,7 @@ Public Class frmExample
         Dim taxinvoice As Taxinvoice = New Taxinvoice
 
         '[필수] 작성일자, 표시형식 (yyyyMMdd) ex) 20190111
-        taxinvoice.writeDate = "20190111"
+        taxinvoice.writeDate = "20190226"
 
         '[필수] 발행형태, [정발행, 역발행, 위수탁] 중 기재
         taxinvoice.issueType = "정발행"
@@ -287,9 +287,9 @@ Public Class frmExample
         Dim memo As String = "즉시발행 메모"
 
         Try
-            Dim response As Response = taxinvoiceService.RegistIssue(txtCorpNum.Text, taxinvoice, forceIssue, memo)
+            Dim response As IssueResponse = taxinvoiceService.RegistIssue(txtCorpNum.Text, taxinvoice, forceIssue, memo)
 
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message + vbCrLf + "국세청승인번호(ntsConfirmNum) : " + response.ntsConfirmNum)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -306,7 +306,7 @@ Public Class frmExample
         Dim taxinvoice As Taxinvoice = New Taxinvoice
 
         '[필수] 작성일자, 표시형식 (yyyyMMdd) ex) 20190111
-        taxinvoice.writeDate = "20190111"
+        taxinvoice.writeDate = "20190226"
 
         '[필수] 발행형태, [정발행, 역발행, 위수탁] 중 기재
         taxinvoice.issueType = "정발행"
@@ -1242,9 +1242,9 @@ Public Class frmExample
         Dim forceIssue As Boolean = False
 
         Try
-            Dim response As Response = taxinvoiceService.Issue(txtCorpNum.Text, KeyType, txtMgtKey.Text, memo, forceIssue, txtUserId.Text)
+            Dim response As IssueResponse = taxinvoiceService.Issue(txtCorpNum.Text, KeyType, txtMgtKey.Text, memo, forceIssue, txtUserId.Text)
 
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message + vbCrLf + "국세청승인번호(ntsConfirmNum) : " + response.ntsConfirmNum)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
@@ -1270,9 +1270,9 @@ Public Class frmExample
         Dim forceIssue As Boolean = False
 
         Try
-            Dim response As Response = taxinvoiceService.Issue(txtCorpNum.Text, KeyType, txtMgtKey.Text, memo, forceIssue, txtUserId.Text)
+            Dim response As IssueResponse = taxinvoiceService.Issue(txtCorpNum.Text, KeyType, txtMgtKey.Text, memo, forceIssue, txtUserId.Text)
 
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message + vbCrLf + "국세청승인번호(ntsConfirmNum) : " + response.ntsConfirmNum)
 
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
