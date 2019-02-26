@@ -172,13 +172,18 @@ Public Class frmExample
         Handles btnSendATS_one.Click
 
         '알림톡 템플릿 코드, 알림톡 템플릿 목록확인(ListATSTemplate) API 반환항목중 templateCode로 확인
-        Dim templateCode As String = "018110000047"
+        Dim templateCode As String = "019020000163"
 
         '팝빌에 사전등록된 발신번호
         Dim senderNum As String = "07043042991"
 
         '알림톡 템플릿 내용 (최대 1000자)
-        Dim content As String = "[테스트] 테스트 템플릿입니다."
+        Dim content As String = "[ 팝빌 ]" + vbCrLf
+        content += "신청하신 #{템플릿코드}에 대한 심사가 완료되어 승인 처리되었습니다." + vbCrLf
+        content += "해당 템플릿으로 전송 가능합니다." + vbCrLf + vbCrLf
+        content += "문의사항 있으시면 파트너센터로 편하게 연락주시기 바랍니다." + vbCrLf + vbCrLf
+        content += "팝빌 파트너센터 : 1600-8536" + vbCrLf
+        content += "support@linkhub.co.kr"
 
         '대체문자 메시지 내용 (최대 2000byte)
         Dim altContent As String = "대체문자 메시지 내용"
@@ -196,8 +201,21 @@ Public Class frmExample
         '최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
         Dim requestNum = ""
 
+        '버튼정보를 수정하지 않고 템플릿 신청시 기재한 정보로 전송하는 경우 null 처리
+        Dim buttonList As List(Of KakaoButton) = New List(Of KakaoButton)
+
+        '버튼링크 URL 에 #{템플릿변수}를 기재하여 승인받은경우 URL 수정하여 전송
+        'Dim buttonList As List(Of KakaoButton) = New List(Of KakaoButton)
+        'Dim btnInfo As KakaoButton = New KakaoButton
+        'btnInfo.n = "버튼명"                        '버튼명
+        'btnInfo.t = "WL"                            '버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
+        'btnInfo.u1 = "https://www.linkhub.co.kr"     '버튼링크1 [앱링크] Android / [웹링크] Mobile
+        'btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] IOS / [웹링크] PC URL
+        'buttonList.Add(btnInfo)
+
         Try
-            Dim receiptNum As String = kakaoService.SendATS(txtCorpNum.Text, templateCode, senderNum, altSendType, getReserveDT(), receiveNum, receiveName, content, altContent, requestNum)
+            Dim receiptNum As String = kakaoService.SendATS(txtCorpNum.Text, templateCode, senderNum, _
+                                                            altSendType, getReserveDT(), receiveNum, receiveName, content, altContent, requestNum, buttonList)
 
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
@@ -215,7 +233,15 @@ Public Class frmExample
         Handles btnSendATS_multi.Click
 
         '알림톡 템플릿 코드, 알림톡 템플릿 목록확인(ListATSTemplate) API 반환항목중 templateCode로 확인
-        Dim templateCode As String = "018110000047"
+        Dim templateCode As String = "019020000163"
+
+        '알림톡 템플릿 내용 (최대 1000자)
+        Dim content As String = "[ 팝빌 ]" + vbCrLf
+        content += "신청하신 #{템플릿코드}에 대한 심사가 완료되어 승인 처리되었습니다." + vbCrLf
+        content += "해당 템플릿으로 전송 가능합니다." + vbCrLf + vbCrLf
+        content += "문의사항 있으시면 파트너센터로 편하게 연락주시기 바랍니다." + vbCrLf + vbCrLf
+        content += "팝빌 파트너센터 : 1600-8536" + vbCrLf
+        content += "support@linkhub.co.kr"
 
         '팝빌에 사전등록된 발신번호
         Dim senderNum As String = "07043042991"
@@ -234,13 +260,26 @@ Public Class frmExample
             Dim msg As KakaoReceiver = New KakaoReceiver
             msg.rcv = "010111222" '수신번호
             msg.rcvnm = "수신자명칭_" + CStr(i) '수신자명
-            msg.msg = "[테스트] 테스트 템플릿입니다." '알림톡 템플릿 내용 (최대 1000자)
+            msg.msg = content '알림톡 템플릿 내용 (최대 1000자)
             msg.altmsg = "대체문자 메시지 내용" '대체문자 내용 (최대 2000byte)
             receiverList.Add(msg)
         Next
 
+        '버튼정보를 수정하지 않고 템플릿 신청시 기재한 정보로 전송하는 경우 null 처리
+        Dim buttonList As List(Of KakaoButton) = New List(Of KakaoButton)
+
+        '버튼링크 URL 에 #{템플릿변수}를 기재하여 승인받은경우 URL 수정하여 전송
+        'Dim buttonList As List(Of KakaoButton) = New List(Of KakaoButton)
+        'Dim btnInfo As KakaoButton = New KakaoButton
+        'btnInfo.n = "버튼명"                        '버튼명
+        'btnInfo.t = "WL"                            '버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
+        'btnInfo.u1 = "https://www.linkhub.co.kr"     '버튼링크1 [앱링크] Android / [웹링크] Mobile
+        'btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] IOS / [웹링크] PC URL
+        'buttonList.Add(btnInfo)
+
         Try
-            Dim receiptNum As String = kakaoService.SendATS(txtCorpNum.Text, templateCode, senderNum, altSendType, getReserveDT(), receiverList, txtUserId.Text, requestNum)
+            Dim receiptNum As String = kakaoService.SendATS(txtCorpNum.Text, templateCode, senderNum, _
+                                                            altSendType, getReserveDT(), receiverList, txtUserId.Text, requestNum, buttonList)
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
         Catch ex As PopbillException
@@ -256,13 +295,18 @@ Public Class frmExample
         Handles btnSendATS_same.Click
 
         '알림톡 템플릿 코드, 알림톡 템플릿 목록확인(ListATSTemplate) API 반환항목중 templateCode로 확인
-        Dim templateCode As String = "018110000047"
+        Dim templateCode As String = "019020000163"
 
         '팝빌에 사전등록된 발신번호
         Dim senderNum As String = "07043042991"
 
         '알림톡 템플릿 내용 (최대 1000자)
-        Dim content As String = "[테스트] 테스트 템플릿입니다."
+        Dim content As String = "[ 팝빌 ]" + vbCrLf
+        content += "신청하신 #{템플릿코드}에 대한 심사가 완료되어 승인 처리되었습니다." + vbCrLf
+        content += "해당 템플릿으로 전송 가능합니다." + vbCrLf + vbCrLf
+        content += "문의사항 있으시면 파트너센터로 편하게 연락주시기 바랍니다." + vbCrLf + vbCrLf
+        content += "팝빌 파트너센터 : 1600-8536" + vbCrLf
+        content += "support@linkhub.co.kr"
 
         '대체문자 메시지 내용 (최대 2000byte)
         Dim altContent As String = "대체문자 메시지 내용"
@@ -284,8 +328,21 @@ Public Class frmExample
             receiverList.Add(msg)
         Next
 
+        '버튼정보를 수정하지 않고 템플릿 신청시 기재한 정보로 전송하는 경우 null 처리
+        Dim buttonList As List(Of KakaoButton) = New List(Of KakaoButton)
+
+        '버튼링크 URL 에 #{템플릿변수}를 기재하여 승인받은경우 URL 수정하여 전송
+        'Dim buttonList As List(Of KakaoButton) = New List(Of KakaoButton)
+        'Dim btnInfo As KakaoButton = New KakaoButton
+        'btnInfo.n = "버튼명"                        '버튼명
+        'btnInfo.t = "WL"                            '버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
+        'btnInfo.u1 = "https://www.linkhub.co.kr"     '버튼링크1 [앱링크] Android / [웹링크] Mobile
+        'btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] IOS / [웹링크] PC URL
+        'buttonList.Add(btnInfo)
+
         Try
-            Dim receiptNum As String = kakaoService.SendATS(txtCorpNum.Text, templateCode, senderNum, content, altContent, altSendType, getReserveDT(), receiverList, txtUserId.Text, requestNum)
+            Dim receiptNum As String = kakaoService.SendATS(txtCorpNum.Text, templateCode, senderNum, content, _
+                                                            altContent, altSendType, getReserveDT(), receiverList, txtUserId.Text, requestNum, buttonList)
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
         Catch ex As PopbillException
