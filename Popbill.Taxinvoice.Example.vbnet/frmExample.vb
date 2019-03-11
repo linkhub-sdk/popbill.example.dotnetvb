@@ -68,7 +68,7 @@ Public Class frmExample
         Dim taxinvoice As Taxinvoice = New Taxinvoice
 
         '[필수] 작성일자, 표시형식 (yyyyMMdd) ex) 20190111
-        taxinvoice.writeDate = "20190226"
+        taxinvoice.writeDate = "20190311"
 
         '[필수] 발행형태, [정발행, 역발행, 위수탁] 중 기재
         taxinvoice.issueType = "정발행"
@@ -3248,6 +3248,23 @@ Public Class frmExample
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 1건의 전자세금계산서 보기 팝업 URL을 반환합니다. (메뉴/버튼 출력되지 않음)
+    ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    '=========================================================================
+    Private Sub btnGetViewURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetViewURL.Click
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
+        Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
+
+        Try
+            Dim url As String = taxinvoiceService.GetViewURL(txtCorpNum.Text, KeyType, txtMgtKey.Text, txtUserId.Text)
+
+            MsgBox(url)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 End Class
