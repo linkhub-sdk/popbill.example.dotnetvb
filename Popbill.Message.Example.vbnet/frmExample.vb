@@ -3,7 +3,7 @@
 ' 팝빌 문자 API VB.Net SDK Example
 '
 ' - VB.Net 연동환경 설정방법 안내 : http://blog.linkhub.co.kr/4453/
-' - 업데이트 일자 :  2019-01-11
+' - 업데이트 일자 :  2019-09-18
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -797,10 +797,10 @@ Public Class frmExample
 
         '최대 검색기간 : 6개월 이내
         '[필수] 시작일자, yyyyMMdd
-        Dim SDate As String = "20181201"
+        Dim SDate As String = "20190901"
 
         '[필수] 종료일자, yyyyMMdd
-        Dim EDate As String = "20190111"
+        Dim EDate As String = "20191231"
 
         '전송상태값 배열, 1-대기, 2-성공, 3-실패, 4-취소
         State(0) = "1"

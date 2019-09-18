@@ -3,7 +3,7 @@
 ' 팝빌 홈택스 현금영수증 매입매출 API VB.Net SDK Example
 '
 ' - VB.Net SDK 연동환경 설정방법 안내 : http://blog.linkhub.co.kr/4453/
-' - 업데이트 일자 : 2019-01-11
+' - 업데이트 일자 : 2019-09-18
 ' - 연동 기술지원 연락처 : 1600-8536 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -49,10 +49,10 @@ Public Class frmExample
         Dim tiKeyType As KeyType = KeyType.BUY
 
         '시작일자, 표시형식(yyyyMMdd)
-        Dim SDate As String = "20180201"
+        Dim SDate As String = "20190901"
 
         '종료일자, 표시형식(yyyyMMdd)
-        Dim EDate As String = "20190100"
+        Dim EDate As String = "20191231"
 
         Try
             Dim jobID As String = htCashbillService.RequestJob(txtCorpNum.Text, tiKeyType, SDate, EDate)

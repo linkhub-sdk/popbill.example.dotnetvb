@@ -3,7 +3,7 @@
 ' 팝빌 현금영수증 API VB.Net  SDK Example
 '
 ' - VB.Net SDK 연동환경 설정방법 안내 : http://blog.linkhub.co.kr/4453/
-' - 업데이트 일자 : 2019-01-11
+' - 업데이트 일자 : 2019-09-18
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -698,10 +698,10 @@ Public Class frmExample
         Dim DType As String = "T"
 
         '[필수] 시작일자, 형식(yyyyMMdd)
-        Dim SDate As String = "20181201"
+        Dim SDate As String = "20190901"
 
         '[필수] 종료일자, 형식(yyyyMMdd)
-        Dim EDate As String = "20190110"
+        Dim EDate As String = "20191231"
 
         '전송상태코드 배열, 미기재시 전체조회, 2,3번째 자리 와일드카드(*) 가능
         '[참조] 현금영수증 API 연동매뉴열 "5.1. 현금영수증 상태코드"

@@ -3,7 +3,7 @@
 ' 팝빌 휴폐업조회 API VB.Net SDK Example
 '
 ' - VB.Net SDK 연동환경 설정방법 안내 : http://blog.linkhub.co.kr/4453/
-' - 업데이트 일자 : 2019-01-11
+' - 업데이트 일자 : 2019-09-18
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4504-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -69,7 +69,7 @@ Public Class frmExample
         Dim corpNumList As List(Of String) = New List(Of String)
         corpNumList.Add("6798700433")
         corpNumList.Add("1234567890")
-        corpNumList.Add("8888888888")
+        corpNumList.Add("1231212312")
 
         Try
             Dim corpInfoList As List(Of CorpState) = closedownService.checkCorpNums(txtCorpNum.Text, corpNumList)

@@ -52,10 +52,10 @@ Public Class frmExample
         Dim DType As String = "S"
 
         '시작일자, 표시형식(yyyyMMdd)
-        Dim SDate As String = "20190101"
+        Dim SDate As String = "2019091"
 
         '종료일자, 표시형식(yyyyMMdd)
-        Dim EDate As String = "20190111"
+        Dim EDate As String = "20191231"
 
         Try
             Dim jobID As String = htTaxinvoiceService.RequestJob(txtCorpNum.Text, tiKeyType, DType, SDate, EDate)
