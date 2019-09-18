@@ -49,7 +49,7 @@ Public Class frmExample
         Dim tiKeyType As KeyType = KeyType.SELL
 
         '일자유형, W-작성일자, I-발행일자, S-전송일자
-        Dim DType As String = "I"
+        Dim DType As String = "S"
 
         '시작일자, 표시형식(yyyyMMdd)
         Dim SDate As String = "20190101"

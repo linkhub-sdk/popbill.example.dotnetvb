@@ -735,22 +735,6 @@ Public Class frmExample
 
         taxinvoice.detailList.Add(detail)
 
-        '=========================================================================
-        '                              추가담당자 정보
-        ' - 세금계산서 발행안내 메일을 수신받을 공급받는자 담당자가 다수인 경우
-        ' 담당자 정보를 추가하여 발행안내메일을 다수에게 전송할 수 있습니다.
-        '=========================================================================
-
-        taxinvoice.addContactList = New List(Of TaxinvoiceAddContact)
-
-        Dim addContact As TaxinvoiceAddContact = New TaxinvoiceAddContact
-
-        addContact.serialNum = 1                        '일련번호, 1부터 순차기재
-        addContact.contactName = "추가담당자명"         '담당자 성명
-        addContact.email = "test2@invoicee.com"         '담당자 메일주소
-
-        taxinvoice.addContactList.Add(addContact)
-
         Try
             Dim response As Response = taxinvoiceService.Register(txtCorpNum.Text, taxinvoice, txtUserId.Text)
 
@@ -1198,22 +1182,6 @@ Public Class frmExample
 
         taxinvoice.detailList.Add(detail)
 
-        '=========================================================================
-        '                              추가담당자 정보
-        ' - 세금계산서 발행안내 메일을 수신받을 공급받는자 담당자가 다수인 경우
-        ' 담당자 정보를 추가하여 발행안내메일을 다수에게 전송할 수 있습니다.
-        '=========================================================================
-
-        taxinvoice.addContactList = New List(Of TaxinvoiceAddContact)
-
-        Dim addContact As TaxinvoiceAddContact = New TaxinvoiceAddContact
-
-        addContact.serialNum = 1                        '일련번호, 1부터 순차기재
-        addContact.contactName = "추가담당자명"         '담당자 성명
-        addContact.email = "test2@invoicee.com"         '담당자 메일주소
-
-        taxinvoice.addContactList.Add(addContact)
-
         Try
             Dim response As Response = taxinvoiceService.Update(txtCorpNum.Text, KeyType, txtMgtKey.Text, taxinvoice,txtUserId.Text)
 
@@ -1363,7 +1331,7 @@ Public Class frmExample
     ' - 발행예정이란 공급자와 공급받는자 사이에 세금계산서 확인 후 발행하는 방법입니다.
     ' - "[전자세금계산서 API 연동매뉴얼] > 1.2.1. 정발행 > 다. 임시저장 발행예정" 의 프로세스를 참조하시기 바랍니다.
     '=========================================================================
-    Private Sub btnSend_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSend.Click
+    Private Sub btnSend_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
         '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
@@ -1390,8 +1358,8 @@ Public Class frmExample
     ' [승인대기] 상태의 세금계산서를 [공급자]가 [취소]합니다.
     ' - [취소]된 세금계산서를 삭제(Delete API)하면 등록된 문서관리번호를 재사용할 수 있습니다.
     '=========================================================================
-    Private Sub btnCancelSend_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnCancelSend.Click
+    Private Sub btnCancelSend_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+
 
         '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
@@ -1412,7 +1380,7 @@ Public Class frmExample
     '=========================================================================
     ' [승인대기] 상태의 세금계산서를 [공급받는자]가 [승인]합니다.
     '=========================================================================
-    Private Sub btnAccept_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAccept.Click
+    Private Sub btnAccept_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
         '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
@@ -1435,7 +1403,7 @@ Public Class frmExample
     ' [승인대기] 상태의 세금계산서를 [공급받는자]가 [거부]합니다.
     ' - [거부]처리된 세금계산서를 삭제(Delete API)하면 등록된 문서관리번호를 재사용할 수 있습니다.
     '=========================================================================
-    Private Sub btnDeny_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeny.Click
+    Private Sub btnDeny_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
         '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
@@ -1661,21 +1629,6 @@ Public Class frmExample
 
         taxinvoice.detailList.Add(detail)
 
-        '=========================================================================
-        '                              추가담당자 정보
-        ' - 세금계산서 발행안내 메일을 수신받을 공급받는자 담당자가 다수인 경우
-        ' 담당자 정보를 추가하여 발행안내메일을 다수에게 전송할 수 있습니다.
-        '=========================================================================
-
-        taxinvoice.addContactList = New List(Of TaxinvoiceAddContact)
-
-        Dim addContact As TaxinvoiceAddContact = New TaxinvoiceAddContact
-
-        addContact.serialNum = 1                        '일련번호, 1부터 순차기재
-        addContact.contactName = "추가담당자명"         '담당자 성명
-        addContact.email = "test2@invoicee.com"         '담당자 메일주소
-
-        taxinvoice.addContactList.Add(addContact)
 
         '즉시요청 메모
         Dim Memo As String = "즉시요청 메모"
@@ -1907,7 +1860,6 @@ Public Class frmExample
             tmp += "purposeType (영수/청구) : " + tiInfo.purposeType + vbCrLf
             tmp += "issueDT (발행일시) : " + tiInfo.issueDT + vbCrLf
             tmp += "lateIssueYN (지연발행 여부) : " + CStr(tiInfo.lateIssueYN) + vbCrLf
-            tmp += "preIssueDT (발행예정일시) : " + tiInfo.preIssueDT + vbCrLf
             tmp += "openYN (개봉 여부) : " + CStr(tiInfo.openYN) + vbCrLf
             tmp += "openDT (개봉 일시) : " + CStr(tiInfo.openDT) + vbCrLf
             tmp += "stateMemo (상태메모) : " + tiInfo.stateMemo + vbCrLf
@@ -1989,7 +1941,6 @@ Public Class frmExample
                 tmp += "supplyCostTotal (공급가액 합계) : " + tiInfo.supplyCostTotal + vbCrLf
                 tmp += "taxTotal (세액 합계) : " + tiInfo.taxTotal + vbCrLf
                 tmp += "issueDT (발행일시) : " + tiInfo.issueDT + vbCrLf
-                tmp += "preIssueDT (발행예정일시) : " + tiInfo.preIssueDT + vbCrLf
                 tmp += "stateDT (상태 변경일시) : " + tiInfo.stateDT + vbCrLf
                 tmp += "openYN (개봉 여부) : " + tiInfo.openYN.ToString + vbCrLf
                 tmp += "openDT (개봉 일시) : " + tiInfo.openDT + vbCrLf
@@ -2207,7 +2158,6 @@ Public Class frmExample
                 tmp = tmp + "purposeType (영수/청구) : " + tiInfo.purposeType + vbCrLf
                 tmp = tmp + "issueDT (발행일시) : " + tiInfo.issueDT + vbCrLf
                 tmp = tmp + "lateIssueYN (지연발행 여부) : " + tiInfo.lateIssueYN.ToString + vbCrLf
-                tmp = tmp + "preIssueDT (발행예정일시) : " + tiInfo.preIssueDT + vbCrLf
                 tmp = tmp + "openYN (개봉 여부) : " + tiInfo.openYN.ToString + vbCrLf
                 tmp = tmp + "openDT (개봉 일시) : " + tiInfo.openDT + vbCrLf
                 tmp = tmp + "stateMemo (상태메모) : " + tiInfo.stateMemo + vbCrLf
