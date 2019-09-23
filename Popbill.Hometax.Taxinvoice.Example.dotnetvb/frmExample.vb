@@ -35,6 +35,9 @@ Public Class frmExample
 
         '연동환경 설정값 (True-개발용, False-상업용)
         htTaxinvoiceService.IsTest = True
+
+        '인증토큰의 IP제한기능 사용여부, (True-권장)
+        htTaxinvoiceService.IPRestrictOnOff = True
     End Sub
 
     '=========================================================================
@@ -52,7 +55,7 @@ Public Class frmExample
         Dim DType As String = "S"
 
         '시작일자, 표시형식(yyyyMMdd)
-        Dim SDate As String = "2019091"
+        Dim SDate As String = "20190901"
 
         '종료일자, 표시형식(yyyyMMdd)
         Dim EDate As String = "20191231"

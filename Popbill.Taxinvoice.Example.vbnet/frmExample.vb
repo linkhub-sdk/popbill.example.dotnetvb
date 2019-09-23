@@ -37,6 +37,9 @@ Public Class frmExample
 
         '연동환경 설정값 (True-개발용, False-상업용)
         taxinvoiceService.IsTest = True
+
+        '인증토큰의 IP제한기능 사용여부, (True-권장)
+        taxinvoiceService.IPRestrictOnOff = True
     End Sub
 
     '=========================================================================

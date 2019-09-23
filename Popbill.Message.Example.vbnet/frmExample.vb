@@ -35,6 +35,9 @@ Public Class frmExample
         '연동환경 설정값 (True-개발용, False-상업용)
         messageService.IsTest = True
 
+        '인증토큰의 IP제한기능 사용여부, (True-권장)
+        messageService.IPRestrictOnOff = True
+
     End Sub
 
     Private Function getReserveDT() As DateTime?
