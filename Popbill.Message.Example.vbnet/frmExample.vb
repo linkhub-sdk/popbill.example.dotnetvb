@@ -513,7 +513,7 @@ Public Class frmExample
     '=========================================================================
     ' MMS(포토)를 전송합니다.
     '  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
-    '  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1500px 이하 권장
+    '  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1000px 이하 권장
     '=========================================================================
     Private Sub btnSendMMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendMMS_one.Click
         If fileDialog.ShowDialog(Me) = DialogResult.OK Then
@@ -562,7 +562,7 @@ Public Class frmExample
     '===========================================================================
     ' [대랑전송] MMS(포토)를 전송합니다.
     '  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
-    '  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1500px 이하 권장
+    '  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1000px 이하 권장
     '===========================================================================
     Private Sub btnSendMMS_hundered_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendMMS_hundered.Click
         If fileDialog.ShowDialog(Me) = DialogResult.OK Then
@@ -617,7 +617,7 @@ Public Class frmExample
     '=========================================================================
     ' [동보전송] MMS(포토)를 전송합니다.
     '  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
-    '  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1500px 이하 권장
+    '  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1000px 이하 권장
     '=========================================================================
     Private Sub btnSendMMS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendMMS_same.Click
         If fileDialog.ShowDialog(Me) = DialogResult.OK Then

@@ -98,7 +98,7 @@ Public Class frmExample
         '[필수] 전자명세서 종류코드
         statement.itemCode = selectedItemCode()
 
-        '[필수] 문서관리번호, 숫자, 영문, '-', '_' 조합 (최대24자리)으로 사업자별로 중복되지 않도록 구성
+        '[필수] 문서번호, 숫자, 영문, '-', '_' 조합 (최대24자리)으로 사업자별로 중복되지 않도록 구성
         statement.mgtKey = txtMgtKey.Text
 
 
@@ -172,6 +172,8 @@ Public Class frmExample
         statement.receiverTEL = "070-1234-1234"
 
         '수신자 메일주소
+        '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        '실제 거래처의 메일주소가 기재되지 않도록 주의
         statement.receiverEmail = "test@test.com"
 
         '=========================================================================
@@ -283,7 +285,7 @@ Public Class frmExample
         '[필수] 전자명세서 종류코드
         statement.itemCode = selectedItemCode()
 
-        '[필수] 문서관리번호, 숫자, 영문, '-', '_' 조합 (최대24자리)으로 사업자별로 중복되지 않도록 구성
+        '[필수] 문서번호, 숫자, 영문, '-', '_' 조합 (최대24자리)으로 사업자별로 중복되지 않도록 구성
         statement.mgtKey = txtMgtKey.Text
 
 
@@ -357,6 +359,8 @@ Public Class frmExample
         statement.receiverTEL = "070-1234-1234"
 
         '수신자 메일주소
+        '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        '실제 거래처의 메일주소가 기재되지 않도록 주의
         statement.receiverEmail = "test@receiver.com"
 
         '=========================================================================
@@ -463,7 +467,7 @@ Public Class frmExample
         '[필수] 전자명세서 종류코드
         statement.itemCode = selectedItemCode()
 
-        '[필수] 문서관리번호, 숫자, 영문, '-', '_' 조합 (최대24자리)으로 사업자별로 중복되지 않도록 구성
+        '[필수] 문서번호, 숫자, 영문, '-', '_' 조합 (최대24자리)으로 사업자별로 중복되지 않도록 구성
         statement.mgtKey = txtMgtKey.Text
 
 
@@ -537,6 +541,8 @@ Public Class frmExample
         statement.receiverTEL = "070-1234-1234"
 
         '수신자 메일주소
+        '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        '실제 거래처의 메일주소가 기재되지 않도록 주의
         statement.receiverEmail = "test@receiver.com"
 
         '=========================================================================
@@ -674,7 +680,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 1건의 전자명세서를 [삭제]합니다.
-    ' - 전자명세서를 삭제하면 사용된 문서관리번호(mgtKey)를 재사용할 수 있습니다.
+    ' - 전자명세서를 삭제하면 사용된 문서번호(mgtKey)를 재사용할 수 있습니다.
     ' - 삭제가능한 문서 상태 : [임시저장], [발행취소]
     '=========================================================================
     Private Sub btnDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDelete.Click
@@ -689,7 +695,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 1건의 전자명세서를 [삭제]합니다.
-    ' - 전자명세서를 삭제하면 사용된 문서관리번호(mgtKey)를 재사용할 수 있습니다.
+    ' - 전자명세서를 삭제하면 사용된 문서번호(mgtKey)를 재사용할 수 있습니다.
     ' - 삭제가능한 문서 상태 : [임시저장], [발행취소]
     '=========================================================================
     Private Sub btnDeleteSub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteSub.Click
@@ -716,7 +722,7 @@ Public Class frmExample
 
             tmp = tmp + "itemKey (팝빌 관리번호) : " + docInfo.itemKey + vbCrLf
             tmp = tmp + "invoiceNum (문서고유번호) : " + docInfo.invoiceNum + vbCrLf
-            tmp = tmp + "mgtKey (문서관리번호) : " + docInfo.mgtKey + vbCrLf
+            tmp = tmp + "mgtKey (문서번호) : " + docInfo.mgtKey + vbCrLf
             tmp = tmp + "taxType (세금형태) : " + docInfo.taxType + vbCrLf
             tmp = tmp + "writeDate (작성일자) : " + docInfo.writeDate + vbCrLf
             tmp = tmp + "regDT (임시저장일시) : " + docInfo.regDT + vbCrLf
@@ -751,7 +757,7 @@ Public Class frmExample
 
         Dim MgtKeyList As List(Of String) = New List(Of String)
 
-        '문서관리번호 배열, 최대 1000건
+        '문서번호 배열, 최대 1000건
         MgtKeyList.Add("20190111-01")
         MgtKeyList.Add("20190111-02")
 
@@ -763,7 +769,7 @@ Public Class frmExample
             For Each docInfo As StatementInfo In statementInfoList
                 tmp = tmp + "itemKey (팝빌 관리번호) : " + docInfo.itemKey + vbCrLf
                 tmp = tmp + "invoiceNum (문서고유번호) : " + docInfo.invoiceNum + vbCrLf
-                tmp = tmp + "mgtKey (문서관리번호) : " + docInfo.mgtKey + vbCrLf
+                tmp = tmp + "mgtKey (문서번호) : " + docInfo.mgtKey + vbCrLf
                 tmp = tmp + "taxType (세금형태) : " + docInfo.taxType + vbCrLf
                 tmp = tmp + "writeDate (작성일자) : " + docInfo.writeDate + vbCrLf
                 tmp = tmp + "regDT (임시저장일시) : " + docInfo.regDT + vbCrLf
@@ -1058,7 +1064,7 @@ Public Class frmExample
 
         Dim MgtKeyList As List(Of String) = New List(Of String)
 
-        '문서관리번호 배열 (최대 100건)
+        '문서번호 배열 (최대 100건)
         MgtKeyList.Add("20190111-01")
         MgtKeyList.Add("20190111-02")
 
@@ -1244,7 +1250,7 @@ Public Class frmExample
     '=========================================================================
     ' 팝빌에 전자명세서를 등록하지 않고 수신자에게 팩스전송합니다.
     ' - 팩스 전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
-    ' - 팩스 발행 요청시 작성한 문서관리번호는 팩스전송 파일명으로 사용됩니다.
+    ' - 팩스 발행 요청시 작성한 문서번호는 팩스전송 파일명으로 사용됩니다.
     ' - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인할 수 있습니다.
     ' - 팩스 전송결과를 확인하기 위해서는 선팩스 전송 요청 시 반환받은 접수번호를 이용하여
     '   팩스 API의 전송결과 확인 (GetFaxDetail) API를 이용하면 됩니다.
@@ -1275,7 +1281,7 @@ Public Class frmExample
         '[필수] 전자명세서 종류코드
         statement.itemCode = selectedItemCode()
 
-        '[필수] 문서관리번호, 숫자, 영문, '-', '_' 조합 (최대24자리)으로 사업자별로 중복되지 않도록 구성
+        '[필수] 문서번호, 숫자, 영문, '-', '_' 조합 (최대24자리)으로 사업자별로 중복되지 않도록 구성
         statement.mgtKey = txtMgtKey.Text
 
 
@@ -1349,6 +1355,8 @@ Public Class frmExample
         statement.receiverTEL = "070-1234-1234"
 
         '수신자 메일주소
+        '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        '실제 거래처의 메일주소가 기재되지 않도록 주의
         statement.receiverEmail = "test@receiver.com"
 
         '=========================================================================

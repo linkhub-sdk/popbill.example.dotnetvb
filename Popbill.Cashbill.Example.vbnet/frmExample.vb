@@ -131,6 +131,8 @@ Public Class frmExample
         cashbill.orderNumber = "주문번호"
 
         '주문자 이메일
+        '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        '실제 거래처의 메일주소가 기재되지 않도록 주의
         cashbill.email = ""
 
         '주문자 휴대폰번호
@@ -143,7 +145,7 @@ Public Class frmExample
         Dim memo As String = "즉시발행 메모"
 
         '안내메일 제목, 공백처리시 기본양식으로 전송
-        Dim emailSubject As String = "메일 제목 테스트"
+        Dim emailSubject As String = ""
 
         Try
             Dim response As Response = cashbillService.RegistIssue(txtCorpNum.Text, cashbill, memo, txtUserId.Text, emailSubject)
@@ -228,6 +230,8 @@ Public Class frmExample
         cashbill.orderNumber = "주문번호"
 
         '주문자 이메일
+        '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        '실제 거래처의 메일주소가 기재되지 않도록 주의
         cashbill.email = "test@test.com"
 
         '주문자 휴대폰번호
@@ -320,6 +324,8 @@ Public Class frmExample
         cashbill.orderNumber = "주문번호"
 
         '주문자 이메일
+        '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        '실제 거래처의 메일주소가 기재되지 않도록 주의
         cashbill.email = "test@test.com"
 
         '주문자 휴대폰번호
@@ -420,7 +426,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 1건의 현금영수증을 [삭제]합니다.
-    ' - 현금영수증을 삭제하면 사용된 문서관리번호(mgtKey)를 재사용할 수 있습니다.
+    ' - 현금영수증을 삭제하면 사용된 문서번호(mgtKey)를 재사용할 수 있습니다.
     ' - 삭제가능한 문서 상태 : [임시저장], [발행취소]
     '=========================================================================
     Private Sub btnDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -437,7 +443,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 1건의 현금영수증을 [삭제]합니다.
-    ' - 현금영수증을 삭제하면 사용된 문서관리번호(mgtKey)를 재사용할 수 있습니다.
+    ' - 현금영수증을 삭제하면 사용된 문서번호(mgtKey)를 재사용할 수 있습니다.
     ' - 삭제가능한 문서 상태 : [임시저장], [발행취소]
     '=========================================================================
     Private Sub btnDeleteSub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteSub.Click
@@ -454,7 +460,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 1건의 현금영수증을 [삭제]합니다.
-    ' - 현금영수증을 삭제하면 사용된 문서관리번호(mgtKey)를 재사용할 수 있습니다.
+    ' - 현금영수증을 삭제하면 사용된 문서번호(mgtKey)를 재사용할 수 있습니다.
     ' - 삭제가능한 문서 상태 : [임시저장], [발행취소]
     '=========================================================================
     Private Sub btnDelete02_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDelete02.Click
@@ -558,7 +564,7 @@ Public Class frmExample
 
             Dim tmp As String = ""
             tmp += "itemKey (아이템키) : " + cbInfo.itemKey + vbCrLf
-            tmp += "mgtKey (문서관리번호) : " + cbInfo.mgtKey + vbCrLf
+            tmp += "mgtKey (문서번호) : " + cbInfo.mgtKey + vbCrLf
             tmp += "tradeDate (거래일자) : " + cbInfo.tradeDate + vbCrLf
             tmp += "tradeType (문서형태) : " + cbInfo.tradeType + vbCrLf
             tmp += "tradeUsage (거래구분) : " + cbInfo.tradeUsage + vbCrLf
@@ -598,7 +604,7 @@ Public Class frmExample
 
         Dim MgtKeyList As List(Of String) = New List(Of String)
 
-        '문서관리번호 배열, 최대 1000건.
+        '문서번호 배열, 최대 1000건.
         MgtKeyList.Add("20190117-001")
         MgtKeyList.Add("20190117-002")
 
@@ -609,7 +615,7 @@ Public Class frmExample
 
             For Each cbInfo As CashbillInfo In cashbillInfoList
                 tmp += "itemKey (아이템키) : " + cbInfo.itemKey + vbCrLf
-                tmp += "mgtKey (문서관리번호) : " + cbInfo.mgtKey + vbCrLf
+                tmp += "mgtKey (문서번호) : " + cbInfo.mgtKey + vbCrLf
                 tmp += "tradeDate (거래일자) : " + cbInfo.tradeDate + vbCrLf
                 tmp += "tradeType (문서형태) : " + cbInfo.tradeType + vbCrLf
                 tmp += "tradeUsage (거래구분) : " + cbInfo.tradeUsage + vbCrLf
@@ -759,7 +765,7 @@ Public Class frmExample
 
             For Each cbInfo As CashbillInfo In cbSearchList.list
                 tmp += "itemKey (아이템키) : " + cbInfo.itemKey + vbCrLf
-                tmp += "mgtKey (문서관리번호) : " + cbInfo.mgtKey + vbCrLf
+                tmp += "mgtKey (문서번호) : " + cbInfo.mgtKey + vbCrLf
                 tmp += "tradeDate (거래일자) : " + cbInfo.tradeDate + vbCrLf
                 tmp += "tradeType (문서형태) : " + cbInfo.tradeType + vbCrLf
                 tmp += "tradeUsage (거래구분) : " + cbInfo.tradeUsage + vbCrLf

@@ -103,7 +103,7 @@ Public Class frmExample
         '[필수] 공급자 상호
         taxinvoice.invoicerCorpName = "공급자 상호"
 
-        '[필수] 공급자 문서관리번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로
+        '[필수] 공급자 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로
         '사업자 별로 중복되지 않도록 구성
         taxinvoice.invoicerMgtKey = txtMgtKey.Text
 
@@ -148,7 +148,7 @@ Public Class frmExample
         '[필수] 공급자받는자 상호
         taxinvoice.invoiceeCorpName = "공급받는자 상호"
 
-        '[역발행시 필수] 공급받는자 문서관리번호(역발행시 필수)
+        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수)
         taxinvoice.invoiceeMgtKey = ""
 
         '[필수] 공급받는자 대표자 성명
@@ -167,7 +167,10 @@ Public Class frmExample
         taxinvoice.invoiceeContactName1 = "공급받는자 담당자명"
 
         '공급받는자 담당자 메일주소
+        '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        '실제 거래처의 메일주소가 기재되지 않도록 주의
         taxinvoice.invoiceeEmail1 = "test@invoicee.com"
+
 
         '공급받는자 담당자 연락처
         taxinvoice.invoiceeTEL1 = "070-111-222"
@@ -227,14 +230,14 @@ Public Class frmExample
         '=========================================================================
         '         수정세금계산서 정보 (수정세금계산서 작성시에만 기재
         ' - 수정세금계산서 관련 정보는 연동매뉴얼 또는 개발가이드 링크 참조
-        ' - [참고] 수정세금계산서 작성방법 안내 - http://blog.linkhub.co.kr/650
+        ' - [참고] 수정세금계산서 작성방법 안내 - https://docs.popbill.com/taxinvoice/modify?lang=dotnet
         '========================================================================='
 
         ' 수정사유코드, 수정사유에 따라 1~6중 선택기재
         taxinvoice.modifyCode = Nothing
 
-        ' 원본세금계산서의 ItemKey, 문서확인 (GetInfo API)의 응답결과(ItemKey 항목) 확인
-        taxinvoice.originalTaxinvoiceKey = ""
+        ' 원본세금계산서의 국세청승인번호
+        taxinvoice.orgNTSConfirmNum = ""
 
 
         '=========================================================================
@@ -342,7 +345,7 @@ Public Class frmExample
         '[필수] 공급자 상호
         taxinvoice.invoicerCorpName = "공급자 상호"
 
-        '[필수] 공급자 문서관리번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로
+        '[필수] 공급자 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로
         '사업자 별로 중복되지 않도록 구성
         taxinvoice.invoicerMgtKey = txtMgtKey.Text
 
@@ -388,7 +391,7 @@ Public Class frmExample
         '[필수] 공급자받는자 상호
         taxinvoice.invoiceeCorpName = "공급받는자 상호"
 
-        '[역발행시 필수] 공급받는자 문서관리번호(역발행시 필수)
+        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수)
         taxinvoice.invoiceeMgtKey = ""
 
         '[필수] 공급받는자 대표자 성명
@@ -407,6 +410,8 @@ Public Class frmExample
         taxinvoice.invoiceeContactName1 = "공급받는자 담당자명"
 
         '공급받는자 담당자 메일주소
+        '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        '실제 거래처의 메일주소가 기재되지 않도록 주의
         taxinvoice.invoiceeEmail1 = "test@invoicee.com"
 
         '공급받는자 담당자 연락처
@@ -467,14 +472,14 @@ Public Class frmExample
         '=========================================================================
         '         수정세금계산서 정보 (수정세금계산서 작성시에만 기재
         ' - 수정세금계산서 관련 정보는 연동매뉴얼 또는 개발가이드 링크 참조
-        ' - [참고] 수정세금계산서 작성방법 안내 - http://blog.linkhub.co.kr/650
+        ' - [참고] 수정세금계산서 작성방법 안내 - https://docs.popbill.com/taxinvoice/modify?lang=dotnet
         '========================================================================='
 
         ' 수정사유코드, 수정사유에 따라 1~6중 선택기재
         taxinvoice.modifyCode = Nothing
 
-        ' 원본세금계산서의 ItemKey, 문서확인 (GetInfo API)의 응답결과(ItemKey 항목) 확인
-        taxinvoice.originalTaxinvoiceKey = ""
+        ' 원본세금계산서의 국세청승인번호
+        taxinvoice.orgNTSConfirmNum = ""
 
         '=========================================================================
         '                            상세항목(품목) 정보
@@ -576,7 +581,7 @@ Public Class frmExample
         '[필수] 공급자 상호
         taxinvoice.invoicerCorpName = "공급자 상호"
 
-        '공급자 문서관리번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로
+        '공급자 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로
         '사업자 별로 중복되지 않도록 구성
         taxinvoice.invoicerMgtKey = ""
 
@@ -622,7 +627,7 @@ Public Class frmExample
         '[필수] 공급자받는자 상호
         taxinvoice.invoiceeCorpName = "공급받는자 상호"
 
-        '[역발행시 필수] 공급받는자 문서관리번호(역발행시 필수)
+        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수)
         taxinvoice.invoiceeMgtKey = txtMgtKey.Text
 
         '[필수] 공급받는자 대표자 성명
@@ -641,6 +646,8 @@ Public Class frmExample
         taxinvoice.invoiceeContactName1 = "공급받는자 담당자명"
 
         '공급받는자 담당자 메일주소
+        '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        '실제 거래처의 메일주소가 기재되지 않도록 주의
         taxinvoice.invoiceeEmail1 = "test@invoicee.com"
 
         '공급받는자 담당자 연락처
@@ -701,14 +708,14 @@ Public Class frmExample
         '=========================================================================
         '         수정세금계산서 정보 (수정세금계산서 작성시에만 기재
         ' - 수정세금계산서 관련 정보는 연동매뉴얼 또는 개발가이드 링크 참조
-        ' - [참고] 수정세금계산서 작성방법 안내 - http://blog.linkhub.co.kr/650
+        ' - [참고] 수정세금계산서 작성방법 안내 - https://docs.popbill.com/taxinvoice/modify?lang=dotnet
         '=========================================================================
 
         ' 수정사유코드, 수정사유에 따라 1~6중 선택기재
         taxinvoice.modifyCode = Nothing
 
-        ' 원본세금계산서의 ItemKey, 문서확인 (GetInfo API)의 응답결과(ItemKey 항목) 확인
-        taxinvoice.originalTaxinvoiceKey = ""
+        ' 원본세금계산서의 국세청승인번호
+        taxinvoice.orgNTSConfirmNum = ""
 
 
         '=========================================================================
@@ -791,7 +798,7 @@ Public Class frmExample
         '[필수] 공급자 상호
         taxinvoice.invoicerCorpName = "공급자 상호"
 
-        '[필수] 공급자 문서관리번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로
+        '[필수] 공급자 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로
         '사업자 별로 중복되지 않도록 구성
         taxinvoice.invoicerMgtKey = txtMgtKey.Text
 
@@ -837,7 +844,7 @@ Public Class frmExample
         '[필수] 공급자받는자 상호
         taxinvoice.invoiceeCorpName = "공급받는자 상호"
 
-        '[역발행시 필수] 공급받는자 문서관리번호(역발행시 필수)
+        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수)
         taxinvoice.invoiceeMgtKey = ""
 
         '[필수] 공급받는자 대표자 성명
@@ -856,6 +863,8 @@ Public Class frmExample
         taxinvoice.invoiceeContactName1 = "공급받는자 담당자명"
 
         '공급받는자 담당자 메일주소
+        '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        '실제 거래처의 메일주소가 기재되지 않도록 주의
         taxinvoice.invoiceeEmail1 = "test@invoicee.com"
 
         '공급받는자 담당자 연락처
@@ -916,14 +925,14 @@ Public Class frmExample
         '=========================================================================
         '         수정세금계산서 정보 (수정세금계산서 작성시에만 기재
         ' - 수정세금계산서 관련 정보는 연동매뉴얼 또는 개발가이드 링크 참조
-        ' - [참고] 수정세금계산서 작성방법 안내 - http://blog.linkhub.co.kr/650
+        ' - [참고] 수정세금계산서 작성방법 안내 - https://docs.popbill.com/taxinvoice/modify?lang=dotnet
         '========================================================================='
 
         ' 수정사유코드, 수정사유에 따라 1~6중 선택기재
         taxinvoice.modifyCode = Nothing
 
-        ' 원본세금계산서의 ItemKey, 문서확인 (GetInfo API)의 응답결과(ItemKey 항목) 확인
-        taxinvoice.originalTaxinvoiceKey = ""
+        ' 원본세금계산서의 국세청승인번호
+        taxinvoice.orgNTSConfirmNum = ""
 
         '=========================================================================
         '                            상세항목(품목) 정보
@@ -1024,7 +1033,7 @@ Public Class frmExample
         '[필수] 공급자 상호
         taxinvoice.invoicerCorpName = "공급자 상호"
 
-        '[필수] 공급자 문서관리번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로
+        '[필수] 공급자 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로
         '사업자 별로 중복되지 않도록 구성
         taxinvoice.invoicerMgtKey = txtMgtKey.Text
 
@@ -1070,7 +1079,7 @@ Public Class frmExample
         '[필수] 공급자받는자 상호
         taxinvoice.invoiceeCorpName = "공급받는자 상호"
 
-        '[역발행시 필수] 공급받는자 문서관리번호(역발행시 필수)
+        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수)
         taxinvoice.invoiceeMgtKey = ""
 
         '[필수] 공급받는자 대표자 성명
@@ -1089,6 +1098,8 @@ Public Class frmExample
         taxinvoice.invoiceeContactName1 = "공급받는자 담당자명"
 
         '공급받는자 담당자 메일주소
+        '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        '실제 거래처의 메일주소가 기재되지 않도록 주의
         taxinvoice.invoiceeEmail1 = "test@invoicee.com"
 
         '공급받는자 담당자 연락처
@@ -1149,14 +1160,14 @@ Public Class frmExample
         '=========================================================================
         '         수정세금계산서 정보 (수정세금계산서 작성시에만 기재
         ' - 수정세금계산서 관련 정보는 연동매뉴얼 또는 개발가이드 링크 참조
-        ' - [참고] 수정세금계산서 작성방법 안내 - http://blog.linkhub.co.kr/650
+        ' - [참고] 수정세금계산서 작성방법 안내 - https://docs.popbill.com/taxinvoice/modify?lang=dotnet
         '=========================================================================
 
         ' 수정사유코드, 수정사유에 따라 1~6중 선택기재
         taxinvoice.modifyCode = Nothing
 
-        ' 원본세금계산서의 ItemKey, 문서확인 (GetInfo API)의 응답결과(ItemKey 항목) 확인
-        taxinvoice.originalTaxinvoiceKey = ""
+        ' 원본세금계산서의 국세청승인번호
+        taxinvoice.orgNTSConfirmNum = ""
 
         '=========================================================================
         '                            상세항목(품목) 정보
@@ -1186,7 +1197,7 @@ Public Class frmExample
         taxinvoice.detailList.Add(detail)
 
         Try
-            Dim response As Response = taxinvoiceService.Update(txtCorpNum.Text, KeyType, txtMgtKey.Text, taxinvoice,txtUserId.Text)
+            Dim response As Response = taxinvoiceService.Update(txtCorpNum.Text, KeyType, txtMgtKey.Text, taxinvoice, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
@@ -1255,7 +1266,7 @@ Public Class frmExample
     ' [발행완료] 상태의 세금계산서를 [공급자]가 [발행취소]합니다.
     ' - [발행취소]는 국세청 전송전에만 가능합니다.
     ' - 발행취소된 세금계산서는 국세청에 전송되지 않습니다.
-    ' - 발행취소 세금계산서에 사용된 문서관리번호를 재사용 하기 위해서는 삭제(Delete API)를 호출하여 해당세금계산서를 삭제해야 합니다.
+    ' - 발행취소 세금계산서에 사용된 문서번호를 재사용 하기 위해서는 삭제(Delete API)를 호출하여 해당세금계산서를 삭제해야 합니다.
     '=========================================================================
     Private Sub btnCancelIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnCancelIssue.Click, btnCancelIssue_Reverse.Click
@@ -1281,7 +1292,7 @@ Public Class frmExample
     ' [발행완료] 상태의 세금계산서를 [공급자]가 [발행취소]합니다.
     ' - [발행취소]는 국세청 전송전에만 가능합니다.
     ' - 발행취소된 세금계산서는 국세청에 전송되지 않습니다.
-    ' - 발행취소 세금계산서에 사용된 문서관리번호를 재사용 하기 위해서는 삭제(Delete API)를 호출하여 해당세금계산서를 삭제해야 합니다.
+    ' - 발행취소 세금계산서에 사용된 문서번호를 재사용 하기 위해서는 삭제(Delete API)를 호출하여 해당세금계산서를 삭제해야 합니다.
     '=========================================================================
     Private Sub btnCancelIssue_Sub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnCancelIssue_Sub.Click
@@ -1307,7 +1318,7 @@ Public Class frmExample
     ' [발행완료] 상태의 세금계산서를 [공급자]가 [발행취소]합니다.
     ' - [발행취소]는 국세청 전송전에만 가능합니다.
     ' - 발행취소된 세금계산서는 국세청에 전송되지 않습니다.
-    ' - 발행취소 세금계산서에 사용된 문서관리번호를 재사용 하기 위해서는 삭제(Delete API)를 호출하여 해당세금계산서를 삭제해야 합니다.
+    ' - 발행취소 세금계산서에 사용된 문서번호를 재사용 하기 위해서는 삭제(Delete API)를 호출하여 해당세금계산서를 삭제해야 합니다.
     '=========================================================================
     Private Sub btnCancelIssue_Reverse_sub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnCancelIssue_Reverse_sub.Click
@@ -1359,7 +1370,7 @@ Public Class frmExample
 
     '=========================================================================
     ' [승인대기] 상태의 세금계산서를 [공급자]가 [취소]합니다.
-    ' - [취소]된 세금계산서를 삭제(Delete API)하면 등록된 문서관리번호를 재사용할 수 있습니다.
+    ' - [취소]된 세금계산서를 삭제(Delete API)하면 등록된 문서번호를 재사용할 수 있습니다.
     '=========================================================================
     Private Sub btnCancelSend_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
@@ -1404,7 +1415,7 @@ Public Class frmExample
 
     '=========================================================================
     ' [승인대기] 상태의 세금계산서를 [공급받는자]가 [거부]합니다.
-    ' - [거부]처리된 세금계산서를 삭제(Delete API)하면 등록된 문서관리번호를 재사용할 수 있습니다.
+    ' - [거부]처리된 세금계산서를 삭제(Delete API)하면 등록된 문서번호를 재사용할 수 있습니다.
     '=========================================================================
     Private Sub btnDeny_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
@@ -1471,7 +1482,7 @@ Public Class frmExample
         '[필수] 공급자 상호
         taxinvoice.invoicerCorpName = "공급자 상호"
 
-        '공급자 문서관리번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로
+        '공급자 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로
         '사업자 별로 중복되지 않도록 구성
         taxinvoice.invoicerMgtKey = ""
 
@@ -1512,7 +1523,7 @@ Public Class frmExample
         '[필수] 공급자받는자 상호
         taxinvoice.invoiceeCorpName = "공급받는자 상호"
 
-        '[역발행시 필수] 공급받는자 문서관리번호
+        '[역발행시 필수] 공급받는자 문서번호
         taxinvoice.invoiceeMgtKey = txtMgtKey.Text
 
         '[필수] 공급받는자 대표자 성명
@@ -1531,6 +1542,8 @@ Public Class frmExample
         taxinvoice.invoiceeContactName1 = "공급받는자 담당자명"
 
         '공급받는자 담당자 메일주소
+        '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        '실제 거래처의 메일주소가 기재되지 않도록 주의
         taxinvoice.invoiceeEmail1 = "test@invoicee.com"
 
         '공급받는자 담당자 연락처
@@ -1596,14 +1609,14 @@ Public Class frmExample
         '=========================================================================
         '         수정세금계산서 정보 (수정세금계산서 작성시에만 기재
         ' - 수정세금계산서 관련 정보는 연동매뉴얼 또는 개발가이드 링크 참조
-        ' - [참고] 수정세금계산서 작성방법 안내 - http://blog.linkhub.co.kr/650
+        ' - [참고] 수정세금계산서 작성방법 안내 - https://docs.popbill.com/taxinvoice/modify?lang=dotnet
         '=========================================================================
 
         ' 수정사유코드, 수정사유에 따라 1~6중 선택기재
         taxinvoice.modifyCode = Nothing
 
-        ' 원본세금계산서의 ItemKey, 문서확인 (GetInfo API)의 응답결과(ItemKey 항목) 확인
-        taxinvoice.originalTaxinvoiceKey = ""
+        ' 원본세금계산서의 국세청승인번호
+        taxinvoice.orgNTSConfirmNum = ""
 
         '=========================================================================
         '                            상세항목(품목) 정보
@@ -1671,7 +1684,7 @@ Public Class frmExample
 
     '=========================================================================
     ' [공급받는자]가 역)발행대기 상태의 세금계산서를 [취소]합니다. 
-    ' - [취소]한 세금계산서의 문서관리번호를 재사용하기 위해서는 삭제 (Delete API)를 호출해야 합니다.
+    ' - [취소]한 세금계산서의 문서번호를 재사용하기 위해서는 삭제 (Delete API)를 호출해야 합니다.
     '=========================================================================
     Private Sub btnCancelRequest_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnCancelRequest.Click
@@ -1694,7 +1707,7 @@ Public Class frmExample
 
     '=========================================================================
     ' [공급받는자]가 역)발행대기 상태의 세금계산서를 [취소]합니다. 
-    ' - [취소]한 세금계산서의 문서관리번호를 재사용하기 위해서는 삭제 (Delete API)를 호출해야 합니다.
+    ' - [취소]한 세금계산서의 문서번호를 재사용하기 위해서는 삭제 (Delete API)를 호출해야 합니다.
     '=========================================================================
     Private Sub btnCancelRequest_sub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnCancelRequest_sub.Click
@@ -1716,7 +1729,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 공급받는자에게 요청받은 역)발행대기 상태의 세금계산서를 [공급자]가 [거부]합니다.
-    ' - 세금계산서의 문서관리번호를 재사용하기 위해서는 삭제 (Delete API)를 호출하여 [삭제] 처리해야 합니다.
+    ' - 세금계산서의 문서번호를 재사용하기 위해서는 삭제 (Delete API)를 호출하여 [삭제] 처리해야 합니다.
     '=========================================================================
     Private Sub btnRefuse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRefuse.Click
 
@@ -1737,7 +1750,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 공급받는자에게 요청받은 역)발행대기 상태의 세금계산서를 [공급자]가 [거부]합니다.
-    ' - 세금계산서의 문서관리번호를 재사용하기 위해서는 삭제 (Delete API)를 호출하여 [삭제] 처리해야 합니다.
+    ' - 세금계산서의 문서번호를 재사용하기 위해서는 삭제 (Delete API)를 호출하여 [삭제] 처리해야 합니다.
     '=========================================================================
     Private Sub btnRefuse_sub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnRefuse_sub.Click
@@ -1759,7 +1772,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 1건의 전자세금계산서를 [삭제]합니다.
-    ' - 세금계산서를 삭제해야만 문서관리번호(mgtKey)를 재사용할 수 있습니다.
+    ' - 세금계산서를 삭제해야만 문서번호(mgtKey)를 재사용할 수 있습니다.
     ' - 삭제가능한 문서 상태 : [임시저장], [발행취소], [발행예정 취소], [발행예정 거부]
     '=========================================================================
     Private Sub btnDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1779,7 +1792,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 1건의 전자세금계산서를 [삭제]합니다.
-    ' - 세금계산서를 삭제해야만 문서관리번호(mgtKey)를 재사용할 수 있습니다.
+    ' - 세금계산서를 삭제해야만 문서번호(mgtKey)를 재사용할 수 있습니다.
     ' - 삭제가능한 문서 상태 : [임시저장], [발행취소], [발행예정 취소], [발행예정 거부]
     '=========================================================================
     Private Sub btnDelete_Sub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1799,7 +1812,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 1건의 전자세금계산서를 [삭제]합니다.
-    ' - 세금계산서를 삭제해야만 문서관리번호(mgtKey)를 재사용할 수 있습니다.
+    ' - 세금계산서를 삭제해야만 문서번호(mgtKey)를 재사용할 수 있습니다.
     ' - 삭제가능한 문서 상태 : [임시저장], [발행취소], [발행예정 취소], [발행예정 거부]
     '=========================================================================
     Private Sub btnDelete_Reverse_sub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1875,16 +1888,16 @@ Public Class frmExample
             tmp += "interOPYN (연동문서 여부) : " + CStr(tiInfo.interOPYN) + vbCrLf
             tmp += "invoicerCorpName (공급자 상호) : " + tiInfo.invoicerCorpName + vbCrLf
             tmp += "invoicerCorpNum (공급자 사업자번호) : " + tiInfo.invoicerCorpNum + vbCrLf
-            tmp += "invoicerMgtKey (공급자 문서관리번호) : " + tiInfo.invoicerMgtKey + vbCrLf
+            tmp += "invoicerMgtKey (공급자 문서번호) : " + tiInfo.invoicerMgtKey + vbCrLf
             tmp += "invoicerPrintYN (공급자 인쇄여부) : " + CStr(tiInfo.invoicerPrintYN) + vbCrLf
             tmp += "invoiceeCorpName (공급받는자 상호) : " + tiInfo.invoiceeCorpName + vbCrLf
             tmp += "invoiceeCorpNum (공급받는자 사업자번호) : " + tiInfo.invoiceeCorpNum + vbCrLf
-            tmp += "invoiceePrintYN (공급받는자 문서관리번호) : " + CStr(tiInfo.invoiceePrintYN) + vbCrLf
+            tmp += "invoiceePrintYN (공급받는자 문서번호) : " + CStr(tiInfo.invoiceePrintYN) + vbCrLf
             tmp += "closeDownState (공급받는자 휴폐업상태) : " + CStr(tiInfo.closeDownState) + vbCrLf
             tmp += "closeDownStateDate (공급받는자 휴폐업일자) : " + CStr(tiInfo.closeDownStateDate) + vbCrLf
             tmp += "trusteeCorpName (수탁자 상호) : " + tiInfo.trusteeCorpName + vbCrLf
             tmp += "trusteeCorpNum (수탁자 사업자번호) : " + tiInfo.trusteeCorpNum + vbCrLf
-            tmp += "trusteeMgtKey (수탁자 문서관리번호) : " + tiInfo.trusteeMgtKey + vbCrLf
+            tmp += "trusteeMgtKey (수탁자 문서번호) : " + tiInfo.trusteeMgtKey + vbCrLf
             tmp += "trusteePrintYN (수탁자 인쇄여부) : " + CStr(tiInfo.trusteePrintYN) + vbCrLf
 
             MsgBox(tmp)
@@ -1907,7 +1920,7 @@ Public Class frmExample
 
         Dim MgtKeyList As List(Of String) = New List(Of String)
 
-        '문서관리번호 배열, 최대 1000건
+        '문서번호 배열, 최대 1000건
         MgtKeyList.Add("20190111-001")
         MgtKeyList.Add("20190111-002")
 
@@ -1929,17 +1942,17 @@ Public Class frmExample
                 tmp += "writeDate (작성일자) : " + tiInfo.writeDate + vbCrLf
                 tmp += "invoicerCorpName (공급자 상호) : " + tiInfo.invoicerCorpName + vbCrLf
                 tmp += "invoicerCorpNum (공급자 사업자번호) : " + tiInfo.invoicerCorpNum + vbCrLf
-                tmp += "invoicerMgtKey (공급자 문서관리번호) : " + tiInfo.invoicerMgtKey + vbCrLf
+                tmp += "invoicerMgtKey (공급자 문서번호) : " + tiInfo.invoicerMgtKey + vbCrLf
                 tmp += "invoicerPrintYN (공급자 인쇄여부) : " + tiInfo.invoicerPrintYN.ToString + vbCrLf
                 tmp += "invoiceeCorpName (공급받는자 상호) : " + tiInfo.invoiceeCorpName + vbCrLf
                 tmp += "invoiceeCorpNum (공급받는자 사업자번호) : " + tiInfo.invoiceeCorpNum + vbCrLf
-                tmp += "invoiceeMgtKey (공급받는자 문서관리번호) : " + tiInfo.invoiceeMgtKey + vbCrLf
+                tmp += "invoiceeMgtKey (공급받는자 문서번호) : " + tiInfo.invoiceeMgtKey + vbCrLf
                 tmp += "invoiceePrintYN (공급받는지 인쇄여부) : " + tiInfo.invoiceePrintYN.ToString + vbCrLf
                 tmp += "closeDownState (공급받는자 휴폐업상태) : " + tiInfo.closeDownState.ToString + vbCrLf
                 tmp += "closeDownStateDate (공급받는자 휴폐업일자) : " + tiInfo.closeDownStateDate + vbCrLf
                 tmp += "trusteeCorpName (수탁자 상호) : " + tiInfo.trusteeCorpName + vbCrLf
                 tmp += "trusteeCorpNum (수탁자 사업자번호) : " + tiInfo.trusteeCorpNum + vbCrLf
-                tmp += "trusteeMgtKey (수탁자 문서관리번호) : " + tiInfo.trusteeMgtKey + vbCrLf
+                tmp += "trusteeMgtKey (수탁자 문서번호) : " + tiInfo.trusteeMgtKey + vbCrLf
                 tmp += "trusteePrintYN (수탁자 인쇄여부) : " + tiInfo.trusteePrintYN.ToString + vbCrLf
                 tmp += "supplyCostTotal (공급가액 합계) : " + tiInfo.supplyCostTotal + vbCrLf
                 tmp += "taxTotal (세액 합계) : " + tiInfo.taxTotal + vbCrLf
@@ -2012,7 +2025,7 @@ Public Class frmExample
             tmp += "invoicerEmail (담당자 이메일) : " + tiDetailInfo.invoicerEmail + vbCrLf
             tmp += "invoicerSMSSendYN (문자전송 여부) : " + CStr(tiDetailInfo.invoicerSMSSendYN) + vbCrLf
 
-            tmp += "invoiceeMgtKey (공급받는자 문서관리번호) : " + tiDetailInfo.invoiceeMgtKey + vbCrLf
+            tmp += "invoiceeMgtKey (공급받는자 문서번호) : " + tiDetailInfo.invoiceeMgtKey + vbCrLf
             tmp += "invoiceeType (공급받는자 구분) : " + tiDetailInfo.invoiceeType + vbCrLf
             tmp += "invoiceeCorpNum (공급받는자 사업자번호) : " + tiDetailInfo.invoiceeCorpNum + vbCrLf
             tmp += "invoiceeTaxRegID (공급받는자 종사업장 식별번호) : " + tiDetailInfo.invoiceeTaxRegID + vbCrLf
@@ -2030,7 +2043,7 @@ Public Class frmExample
 
             tmp += "orgNTSConfirmNum (원본 국세청승인번호) : " + tiDetailInfo.orgNTSConfirmNum + vbCrLf
             tmp += "originalTaxinvoiceKey (원본 팝빌 관리번호) : " + tiDetailInfo.originalTaxinvoiceKey + vbCrLf
-            
+
             If Not tiDetailInfo.detailList Is Nothing Then
                 For Each detailList As TaxinvoiceDetail In tiDetailInfo.detailList
                     tmp += "[상세항목(품목)]" + vbCrLf
@@ -2046,7 +2059,7 @@ Public Class frmExample
                 Next
                 tmp += vbCrLf + vbCrLf
             End If
-            
+
             If Not tiDetailInfo.addContactList Is Nothing Then
                 For Each addContact As TaxinvoiceAddContact In tiDetailInfo.addContactList
                     tmp += "[추가담당자]" + vbCrLf
@@ -2056,7 +2069,7 @@ Public Class frmExample
                 Next
                 tmp += vbCrLf + vbCrLf
             End If
-            
+
             MsgBox(tmp)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
@@ -2169,17 +2182,17 @@ Public Class frmExample
                 tmp = tmp + "interOPYN (연동문서 여부) : " + tiInfo.interOPYN.ToString + vbCrLf
                 tmp = tmp + "invoicerCorpName (공급자 상호) : " + tiInfo.invoicerCorpName + vbCrLf
                 tmp = tmp + "invoicerCorpNum (공급자 사업자번호) : " + tiInfo.invoicerCorpNum + vbCrLf
-                tmp = tmp + "invoicerMgtKey (공급자 문서관리번호) : " + tiInfo.invoicerMgtKey + vbCrLf
+                tmp = tmp + "invoicerMgtKey (공급자 문서번호) : " + tiInfo.invoicerMgtKey + vbCrLf
                 tmp = tmp + "invoicerPrintYN (공급자 인쇄여부) : " + tiInfo.invoicerPrintYN.ToString + vbCrLf
                 tmp = tmp + "invoiceeCorpName (공급받는자 상호) : " + tiInfo.invoiceeCorpName + vbCrLf
                 tmp = tmp + "invoiceeCorpNum (공급받는자 사업자번호) : " + tiInfo.invoiceeCorpNum + vbCrLf
-                tmp = tmp + "invoiceeMgtKey (공급받는자 문서관리번호) : " + tiInfo.invoiceeMgtKey + vbCrLf
+                tmp = tmp + "invoiceeMgtKey (공급받는자 문서번호) : " + tiInfo.invoiceeMgtKey + vbCrLf
                 tmp = tmp + "invoiceePrintYN (공급받는지 인쇄여부) : " + tiInfo.invoiceePrintYN.ToString + vbCrLf
                 tmp = tmp + "closeDownState (공급받는자 휴폐업상태) : " + tiInfo.closeDownState.ToString + vbCrLf
                 tmp = tmp + "closeDownStateDate (공급받는자 휴폐업일자) : " + tiInfo.closeDownStateDate + vbCrLf
                 tmp = tmp + "trusteeCorpName (수탁자 상호) : " + tiInfo.trusteeCorpName + vbCrLf
                 tmp = tmp + "trusteeCorpNum (수탁자 사업자번호) : " + tiInfo.trusteeCorpNum + vbCrLf
-                tmp = tmp + "trusteeMgtKey (수탁자 문서관리번호) : " + tiInfo.trusteeMgtKey + vbCrLf
+                tmp = tmp + "trusteeMgtKey (수탁자 문서번호) : " + tiInfo.trusteeMgtKey + vbCrLf
                 tmp = tmp + "trusteePrintYN (수탁자 인쇄여부) : " + tiInfo.trusteePrintYN.ToString + vbCrLf
                 tmp = tmp + "stateDT (상태 변경일시) : " + tiInfo.stateDT + vbCrLf
                 tmp = tmp + "ntsresult (국세청 전송결과) : " + tiInfo.ntsresult + vbCrLf
@@ -2369,7 +2382,7 @@ Public Class frmExample
         '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
-        '문서관리번호 배열, 최대 100건
+        '문서번호 배열, 최대 100건
         Dim MgtKeyList As List(Of String) = New List(Of String)
         MgtKeyList.Add("1234")
         MgtKeyList.Add("12345")
@@ -2643,7 +2656,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌사이트에서 작성된 세금계산서에 파트너 문서관리번호를 할당합니다.
+    ' 팝빌사이트에서 작성된 세금계산서에 파트너 문서번호를 할당합니다.
     '=========================================================================
     Private Sub btnAssignMgtKey_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnAssignMgtKey.Click
@@ -2654,12 +2667,12 @@ Public Class frmExample
         '세금계산서 아이템키, 목록조회(Search) API의 반환항목중 ItemKey 참조
         Dim itemKey As String = "018041823295700001"
 
-        '관리번호가 없는 문서에 할당할 문서관리번호
+        '관리번호가 없는 문서에 할당할 문서번호
         '- 관리번호는 1~24자리로 숫자, 영문 '-', '_' 조합으로 구성할 수 있습니다.
         Dim mgtKey As String = "20190111-A00"
 
         Try
-            Dim response As Response = taxinvoiceService.AssignMgtKey(txtCorpNum.Text, KeyType, itemKey, mgtKey,txtUserId.Text)
+            Dim response As Response = taxinvoiceService.AssignMgtKey(txtCorpNum.Text, KeyType, itemKey, mgtKey, txtUserId.Text)
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
