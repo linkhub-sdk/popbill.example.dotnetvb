@@ -211,9 +211,9 @@ Public Class frmExample
         'Dim buttonList As List(Of KakaoButton) = New List(Of KakaoButton)
         'Dim btnInfo As KakaoButton = New KakaoButton
         'btnInfo.n = "버튼명"                        '버튼명
-        'btnInfo.t = "WL"                            '버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
-        'btnInfo.u1 = "https://www.linkhub.co.kr"     '버튼링크1 [앱링크] Android / [웹링크] Mobile
-        'btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] IOS / [웹링크] PC URL
+        'btnInfo.t = "WL"                            '버튼유형 (DS - 배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
+        'btnInfo.u1 = "https://www.linkhub.co.kr"     '버튼링크1 [앱링크] iOS / [웹링크] Mobile
+        'btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] Android / [웹링크] PC URL
         'buttonList.Add(btnInfo)
 
         Try
@@ -275,9 +275,9 @@ Public Class frmExample
         'Dim buttonList As List(Of KakaoButton) = New List(Of KakaoButton)
         'Dim btnInfo As KakaoButton = New KakaoButton
         'btnInfo.n = "버튼명"                        '버튼명
-        'btnInfo.t = "WL"                            '버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
-        'btnInfo.u1 = "https://www.linkhub.co.kr"     '버튼링크1 [앱링크] Android / [웹링크] Mobile
-        'btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] IOS / [웹링크] PC URL
+        'btnInfo.t = "WL"                            '버튼유형 (DS - 배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
+        'btnInfo.u1 = "https://www.linkhub.co.kr"     '버튼링크1 [앱링크] iOS / [웹링크] Mobile
+        'btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] Android / [웹링크] PC URL
         'buttonList.Add(btnInfo)
 
         Try
@@ -338,9 +338,9 @@ Public Class frmExample
         'Dim buttonList As List(Of KakaoButton) = New List(Of KakaoButton)
         'Dim btnInfo As KakaoButton = New KakaoButton
         'btnInfo.n = "버튼명"                        '버튼명
-        'btnInfo.t = "WL"                            '버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
-        'btnInfo.u1 = "https://www.linkhub.co.kr"     '버튼링크1 [앱링크] Android / [웹링크] Mobile
-        'btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] IOS / [웹링크] PC URL
+        'btnInfo.t = "WL"                            '버튼유형 (DS - 배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
+        'btnInfo.u1 = "https://www.linkhub.co.kr"     '버튼링크1 [앱링크] iOS / [웹링크] Mobile
+        'btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] Android / [웹링크] PC URL
         'buttonList.Add(btnInfo)
 
         Try
@@ -393,9 +393,9 @@ Public Class frmExample
 
         Dim btnInfo As KakaoButton = New KakaoButton
         btnInfo.n = "버튼명"                        '버튼명
-        btnInfo.t = "WL"                            '버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
-        btnInfo.u1 = "http://www.linkhub.co.kr"     '버튼링크1 [앱링크] Android / [웹링크] Mobile
-        btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] IOS / [웹링크] PC URL
+        btnInfo.t = "WL"                            '버튼유형 (DS - 배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
+        btnInfo.u1 = "http://www.linkhub.co.kr"     '버튼링크1 [앱링크] iOS / [웹링크] Mobile
+        btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] Android / [웹링크] PC URL
         buttonList.Add(btnInfo)
 
         Try
@@ -448,9 +448,9 @@ Public Class frmExample
 
         Dim btnInfo As KakaoButton = New KakaoButton
         btnInfo.n = "버튼명"                        '버튼명
-        btnInfo.t = "WL"                            '버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
-        btnInfo.u1 = "http://www.linkhub.co.kr"     '버튼링크1 [앱링크] Android / [웹링크] Mobile
-        btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] IOS / [웹링크] PC URL
+        btnInfo.t = "WL"                            '버튼유형 (DS - 배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
+        btnInfo.u1 = "http://www.linkhub.co.kr"     '버튼링크1 [앱링크] iOS / [웹링크] Mobile
+        btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] Android / [웹링크] PC URL
         buttonList.Add(btnInfo)
 
         Try
@@ -508,9 +508,9 @@ Public Class frmExample
 
         Dim btnInfo As KakaoButton = New KakaoButton
         btnInfo.n = "버튼명"                        '버튼명
-        btnInfo.t = "WL"                            '버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
-        btnInfo.u1 = "http://www.linkhub.co.kr"     '버튼링크1 [앱링크] Android / [웹링크] Mobile
-        btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] IOS / [웹링크] PC URL
+        btnInfo.t = "WL"                            '버튼유형 (DS - 배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
+        btnInfo.u1 = "http://www.linkhub.co.kr"     '버튼링크1 [앱링크] iOS / [웹링크] Mobile
+        btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] Android / [웹링크] PC URL
         buttonList.Add(btnInfo)
 
         Try
@@ -571,9 +571,9 @@ Public Class frmExample
 
             Dim btnInfo As KakaoButton = New KakaoButton
             btnInfo.n = "버튼명"                        '버튼명
-            btnInfo.t = "WL"                            '버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
-            btnInfo.u1 = "http://www.linkhub.co.kr"     '버튼링크1 [앱링크] Android / [웹링크] Mobile
-            btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] IOS / [웹링크] PC URL
+            btnInfo.t = "WL"                            '버튼유형 (DS - 배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
+            btnInfo.u1 = "http://www.linkhub.co.kr"     '버튼링크1 [앱링크] iOS / [웹링크] Mobile
+            btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] Android / [웹링크] PC URL
             buttonList.Add(btnInfo)
 
             Try
@@ -639,9 +639,9 @@ Public Class frmExample
 
             Dim btnInfo As KakaoButton = New KakaoButton
             btnInfo.n = "버튼명"                        '버튼명
-            btnInfo.t = "WL"                            '버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
-            btnInfo.u1 = "http://www.linkhub.co.kr"     '버튼링크1 [앱링크] Android / [웹링크] Mobile
-            btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] IOS / [웹링크] PC URL
+            btnInfo.t = "WL"                            '버튼유형 (DS - 배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
+            btnInfo.u1 = "http://www.linkhub.co.kr"     '버튼링크1 [앱링크] iOS / [웹링크] Mobile
+            btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] Android / [웹링크] PC URL
             buttonList.Add(btnInfo)
 
             Try
@@ -710,9 +710,9 @@ Public Class frmExample
 
             Dim btnInfo As KakaoButton = New KakaoButton
             btnInfo.n = "버튼명"                        '버튼명
-            btnInfo.t = "WL"                            '버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
-            btnInfo.u1 = "http://www.linkhub.co.kr"     '버튼링크1 [앱링크] Android / [웹링크] Mobile
-            btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] IOS / [웹링크] PC URL
+            btnInfo.t = "WL"                            '버튼유형 (DS - 배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
+            btnInfo.u1 = "http://www.linkhub.co.kr"     '버튼링크1 [앱링크] iOS / [웹링크] Mobile
+            btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] Android / [웹링크] PC URL
             buttonList.Add(btnInfo)
 
             Try
