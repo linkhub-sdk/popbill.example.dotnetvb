@@ -2,8 +2,8 @@
 '
 ' 팝빌 휴폐업조회 API VB.Net SDK Example
 '
-' - VB.Net SDK 연동환경 설정방법 안내 : http://blog.linkhub.co.kr/4453/
-' - 업데이트 일자 : 2019-09-18
+' - VB.Net SDK 연동환경 설정방법 안내 : https://docs.popbill.com/closedown/tutorial/dotnet_vb
+' - 업데이트 일자 : 2019-10-23
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4504-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '

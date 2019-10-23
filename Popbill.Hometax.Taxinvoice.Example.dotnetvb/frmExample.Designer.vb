@@ -78,6 +78,7 @@ Partial Class frmExample
         Me.btnRequestJob = New System.Windows.Forms.Button
         Me.btnGetJobState = New System.Windows.Forms.Button
         Me.btnListActiveJob = New System.Windows.Forms.Button
+        Me.btnGetPrintURL = New System.Windows.Forms.Button
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -360,7 +361,7 @@ Partial Class frmExample
         Me.groupBox7.Controls.Add(Me.groupBox8)
         Me.groupBox7.Location = New System.Drawing.Point(10, 215)
         Me.groupBox7.Name = "groupBox7"
-        Me.groupBox7.Size = New System.Drawing.Size(1082, 456)
+        Me.groupBox7.Size = New System.Drawing.Size(1082, 507)
         Me.groupBox7.TabIndex = 34
         Me.groupBox7.TabStop = False
         Me.groupBox7.Text = "홈택스 전자(세금)계산서 연계 관련 API"
@@ -451,7 +452,7 @@ Partial Class frmExample
         Me.groupBox11.Controls.Add(Me.btnGetFlatRatePopUpURL)
         Me.groupBox11.Location = New System.Drawing.Point(706, 21)
         Me.groupBox11.Name = "groupBox11"
-        Me.groupBox11.Size = New System.Drawing.Size(177, 159)
+        Me.groupBox11.Size = New System.Drawing.Size(177, 193)
         Me.groupBox11.TabIndex = 7
         Me.groupBox11.TabStop = False
         Me.groupBox11.Text = "부가기능"
@@ -476,6 +477,7 @@ Partial Class frmExample
         '
         'groupBox10
         '
+        Me.groupBox10.Controls.Add(Me.btnGetPrintURL)
         Me.groupBox10.Controls.Add(Me.btnGetPopUpURL)
         Me.groupBox10.Controls.Add(Me.label6)
         Me.groupBox10.Controls.Add(Me.btnGetXML)
@@ -484,7 +486,7 @@ Partial Class frmExample
         Me.groupBox10.Controls.Add(Me.label5)
         Me.groupBox10.Location = New System.Drawing.Point(389, 21)
         Me.groupBox10.Name = "groupBox10"
-        Me.groupBox10.Size = New System.Drawing.Size(305, 159)
+        Me.groupBox10.Size = New System.Drawing.Size(305, 193)
         Me.groupBox10.TabIndex = 6
         Me.groupBox10.TabStop = False
         Me.groupBox10.Text = "전자(세금)계산서 상세정보 조회"
@@ -543,7 +545,7 @@ Partial Class frmExample
         'label4
         '
         Me.label4.AutoSize = True
-        Me.label4.Location = New System.Drawing.Point(286, 197)
+        Me.label4.Location = New System.Drawing.Point(279, 223)
         Me.label4.Name = "label4"
         Me.label4.Size = New System.Drawing.Size(259, 12)
         Me.label4.TabIndex = 5
@@ -553,7 +555,7 @@ Partial Class frmExample
         '
         Me.listBox1.FormattingEnabled = True
         Me.listBox1.ItemHeight = 12
-        Me.listBox1.Location = New System.Drawing.Point(24, 226)
+        Me.listBox1.Location = New System.Drawing.Point(17, 252)
         Me.listBox1.Name = "listBox1"
         Me.listBox1.Size = New System.Drawing.Size(859, 220)
         Me.listBox1.TabIndex = 4
@@ -564,7 +566,7 @@ Partial Class frmExample
         Me.groupBox9.Controls.Add(Me.btnSearch)
         Me.groupBox9.Location = New System.Drawing.Point(200, 21)
         Me.groupBox9.Name = "groupBox9"
-        Me.groupBox9.Size = New System.Drawing.Size(177, 159)
+        Me.groupBox9.Size = New System.Drawing.Size(177, 193)
         Me.groupBox9.TabIndex = 3
         Me.groupBox9.TabStop = False
         Me.groupBox9.Text = "매출/매입 수집결과 조회"
@@ -589,7 +591,7 @@ Partial Class frmExample
         '
         'txtJobID
         '
-        Me.txtJobID.Location = New System.Drawing.Point(148, 194)
+        Me.txtJobID.Location = New System.Drawing.Point(141, 220)
         Me.txtJobID.Name = "txtJobID"
         Me.txtJobID.Size = New System.Drawing.Size(134, 21)
         Me.txtJobID.TabIndex = 2
@@ -597,7 +599,7 @@ Partial Class frmExample
         'label3
         '
         Me.label3.AutoSize = True
-        Me.label3.Location = New System.Drawing.Point(27, 197)
+        Me.label3.Location = New System.Drawing.Point(20, 223)
         Me.label3.Name = "label3"
         Me.label3.Size = New System.Drawing.Size(115, 12)
         Me.label3.TabIndex = 1
@@ -610,7 +612,7 @@ Partial Class frmExample
         Me.groupBox8.Controls.Add(Me.btnListActiveJob)
         Me.groupBox8.Location = New System.Drawing.Point(11, 21)
         Me.groupBox8.Name = "groupBox8"
-        Me.groupBox8.Size = New System.Drawing.Size(177, 159)
+        Me.groupBox8.Size = New System.Drawing.Size(177, 193)
         Me.groupBox8.TabIndex = 0
         Me.groupBox8.TabStop = False
         Me.groupBox8.Text = "매출/매입 내역 수집"
@@ -642,11 +644,20 @@ Partial Class frmExample
         Me.btnListActiveJob.Text = "수집 상태 목록 확인"
         Me.btnListActiveJob.UseVisualStyleBackColor = True
         '
+        'btnGetPrintURL
+        '
+        Me.btnGetPrintURL.Location = New System.Drawing.Point(154, 152)
+        Me.btnGetPrintURL.Name = "btnGetPrintURL"
+        Me.btnGetPrintURL.Size = New System.Drawing.Size(142, 29)
+        Me.btnGetPrintURL.TabIndex = 6
+        Me.btnGetPrintURL.Text = "세금계산서 인쇄 팝업"
+        Me.btnGetPrintURL.UseVisualStyleBackColor = True
+        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1104, 683)
+        Me.ClientSize = New System.Drawing.Size(1104, 734)
         Me.Controls.Add(Me.groupBox7)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.txtUserId)
@@ -732,5 +743,6 @@ Partial Class frmExample
     Friend WithEvents btnCheckDeptUser As System.Windows.Forms.Button
     Friend WithEvents btnRegistDeptUser As System.Windows.Forms.Button
     Friend WithEvents btnCheckCertValidation As System.Windows.Forms.Button
+    Friend WithEvents btnGetPrintURL As System.Windows.Forms.Button
 
 End Class

@@ -2,8 +2,8 @@
 '
 ' 팝빌 홈택스 전자세금계산서 매입매출 조회 API VB.Net SDK Example
 '
-' - VB.Net SDK 연동환경 설정방법 안내 : http://blog.linkhub.co.kr/4453/
-' - 업데이트 일자 : 2019-01-11
+' - VB.Net SDK 연동환경 설정방법 안내 : https://docs.popbill.com/httaxinvoice/tutorial/dotnet_vb
+' - 업데이트 일자 : 2019-10-23
 ' - 연동 기술지원 연락처 : 1600-8536 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -881,6 +881,27 @@ Public Class frmExample
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 홈택스 전자세금계산서 인쇄 팝업 URL을 반환합니다.
+    ' - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+    '=========================================================================
+    Private Sub btnGetPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPrintURL.Click
+
+        ' 인쇄할 전자세금계산서 국세청승인번호
+        Dim NTSConfirmNum As String = txtNTSconfirmNum.Text
+
+        Try
+            Dim url As String = htTaxinvoiceService.GetPrintURL(txtCorpNum.Text, NTSConfirmNum)
+
+            MsgBox(url)
+
+            txtUserId.Text = url
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 End Class
