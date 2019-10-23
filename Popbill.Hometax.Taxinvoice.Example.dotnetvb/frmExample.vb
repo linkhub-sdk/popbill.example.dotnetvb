@@ -183,11 +183,15 @@ Public Class frmExample
         '정렬 방향, D-내림차순, A-오름차순
         Dim Order As String = "D"
 
+        '조회 검색어, 거래처 사업자번호 또는 거래처명 like 검색
+        Dim SearchString As String = ""
+
         Try
             listBox1.Items.Clear()
 
             Dim searchList As HTTaxinvoiceSearch = htTaxinvoiceService.Search(txtCorpNum.Text, txtJobID.Text, tiType, _
-                                                                              taxType, purposeType, TaxRegIDYN, TaxRegIDTYpe, TaxRegID, Page, PerPage, Order)
+                                                                              taxType, purposeType, TaxRegIDYN, TaxRegIDTYpe, _
+                                                                                TaxRegID, Page, PerPage, Order, txtUserId.Text, SearchString)
 
             Dim tmp As String = "code (응답코드) : " + CStr(searchList.code) + vbCrLf
             tmp += "message (응답메시지) : " + searchList.message + vbCrLf
@@ -263,8 +267,13 @@ Public Class frmExample
         '종사업장번호 콤마(,)로 구분하여 구성 ex) "0001,0002"
         Dim TaxRegID As String = ""
 
+        '조회 검색어, 거래처 사업자번호 또는 거래처명 like 검색
+        Dim SearchString As String = ""
+
         Try
-            Dim summaryInfo As HTTaxinvoiceSummary = htTaxinvoiceService.Summary(txtCorpNum.Text, txtJobID.Text, tiType, taxType, purposeType, TaxRegIDYN, TaxRegIDTYpe, TaxRegID)
+            Dim summaryInfo As HTTaxinvoiceSummary = htTaxinvoiceService.Summary(txtCorpNum.Text, txtJobID.Text, _
+                                                     tiType, taxType, purposeType, TaxRegIDYN, TaxRegIDTYpe, TaxRegID, _
+                                                     txtUserId.Text, SearchString)
 
             Dim tmp As String = "count (수집결과건수) : " + CStr(summaryInfo.count) + vbCrLf
             tmp += "supplyCostTotal (공급가액 합계) : " + CStr(summaryInfo.supplyCostTotal) + vbCrLf
