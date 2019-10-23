@@ -70,7 +70,7 @@ Public Class frmExample
         Dim taxinvoice As Taxinvoice = New Taxinvoice
 
         '[필수] 작성일자, 표시형식 (yyyyMMdd) ex) 20190111
-        taxinvoice.writeDate = "20190311"
+        taxinvoice.writeDate = "20191023"
 
         '[필수] 발행형태, [정발행, 역발행, 위수탁] 중 기재
         taxinvoice.issueType = "정발행"

@@ -131,7 +131,7 @@ Public Class frmExample
         cashbill.orderNumber = "주문번호"
 
         '주문자 이메일
-        cashbill.email = "test@test.com"
+        cashbill.email = ""
 
         '주문자 휴대폰번호
         cashbill.hp = "010-111-222"
@@ -142,8 +142,11 @@ Public Class frmExample
         '메모
         Dim memo As String = "즉시발행 메모"
 
+        '안내메일 제목, 공백처리시 기본양식으로 전송
+        Dim emailSubject As String = "메일 제목 테스트"
+
         Try
-            Dim response As Response = cashbillService.RegistIssue(txtCorpNum.Text, cashbill, memo)
+            Dim response As Response = cashbillService.RegistIssue(txtCorpNum.Text, cashbill, memo, txtUserId.Text, emailSubject)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException

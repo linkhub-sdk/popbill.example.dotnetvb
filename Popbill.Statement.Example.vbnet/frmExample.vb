@@ -84,7 +84,7 @@ Public Class frmExample
         Dim statement As New Statement
 
         '[필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
-        statement.writeDate = "20190111"
+        statement.writeDate = "20191023"
 
         '[필수] {영수, 청구} 중 기재
         statement.purposeType = "영수"
@@ -172,7 +172,7 @@ Public Class frmExample
         statement.receiverTEL = "070-1234-1234"
 
         '수신자 메일주소
-        statement.receiverEmail = "test@receiver.com"
+        statement.receiverEmail = "test@test.com"
 
         '=========================================================================
         '                     전자명세서 기재사항
@@ -249,8 +249,11 @@ Public Class frmExample
         '메모
         Dim memo As String = "즉시발행 메모"
 
+        '안내메일 제목
+        Dim emailSubject As String = ""
+
         Try
-            Dim response As Response = statementService.RegistIssue(txtCorpNum.Text, statement, memo, txtUserId.Text)
+            Dim response As Response = statementService.RegistIssue(txtCorpNum.Text, statement, memo, txtUserId.Text, emailSubject)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
