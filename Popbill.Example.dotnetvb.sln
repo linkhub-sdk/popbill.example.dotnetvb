@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Popbill", "Popbill\Popbill.
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Popbill.Kakao.Example.vbnet", "Popbill.Kakao.Example.vbnet\Popbill.Kakao.Example.vbnet.vbproj", "{026D85ED-F428-41A9-B26E-F5F03F7575F9}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Popbill.EasyFin.Bank.Example.vbnet", "Popbill.EasyFin.Bank.Example.vbnet\Popbill.EasyFin.Bank.Example.vbnet.vbproj", "{4EF8186F-84AA-49F3-8A72-5FAFB61925E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,10 @@ Global
 		{026D85ED-F428-41A9-B26E-F5F03F7575F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{026D85ED-F428-41A9-B26E-F5F03F7575F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{026D85ED-F428-41A9-B26E-F5F03F7575F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EF8186F-84AA-49F3-8A72-5FAFB61925E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EF8186F-84AA-49F3-8A72-5FAFB61925E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EF8186F-84AA-49F3-8A72-5FAFB61925E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EF8186F-84AA-49F3-8A72-5FAFB61925E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
