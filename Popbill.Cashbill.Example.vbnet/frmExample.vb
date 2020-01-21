@@ -2,8 +2,8 @@
 '
 ' 팝빌 현금영수증 API VB.Net  SDK Example
 '
-' - VB.Net SDK 연동환경 설정방법 안내 : https://docs.popbill.com/cashbill/tutorial/dotnet_vb
-' - 업데이트 일자 : 2019-10-23
+' - VB.Net SDK 연동환경 설정방법 안내 : https://docs.popbill.com/cashbill/tutorial/dotnet#vb
+' - 업데이트 일자 : 2020-01-21
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -44,6 +44,7 @@ Public Class frmExample
     '=========================================================================
     ' 현금영수증 관리번호 중복여부를 확인합니다.
     ' - 관리번호는 1~24자리로 숫자, 영문 '-', '_' 조합으로 구성할 수 있습니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#CheckMgtKeyInUse
     '=========================================================================
     Private Sub btnCheckMgtKeyInUse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckMgtKeyInUse.Click
 
@@ -61,7 +62,7 @@ Public Class frmExample
     '=========================================================================
     ' 1건의 현금영수증을 [즉시발행]합니다.
     ' - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
-    ' - 현금영수증 국세청 전송 정책에 대한 정보는 "[현금영수증 API 연동매뉴얼] > 1.3. 국세청 전송정책"을 참조하시기 바랍니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#RegistIssue
     '=========================================================================
     Private Sub btnRegistIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistIssue.Click
         Dim cashbill As Cashbill = New Cashbill
@@ -160,7 +161,7 @@ Public Class frmExample
     ' 1건의 현금영수증을 [임시저장]합니다.
     ' - [임시저장] 상태의 현금영수증은 발행(Issue API)을 호출해야만 국세청에 전송됩니다.
     ' - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
-    ' - 현금영수증 국세청 전송 정책에 대한 정보는 "[현금영수증 API 연동매뉴얼] > 1.3. 국세청 전송정책"을 참조하시기 바랍니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#Register
     '=========================================================================
     Private Sub btnRegister_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim cashbill As Cashbill = New Cashbill
@@ -253,7 +254,7 @@ Public Class frmExample
     '=========================================================================
     ' 1건의 현금영수증을 [수정]합니다.
     ' - [임시저장] 상태의 현금영수증만 수정할 수 있습니다.
-    ' - 국세청에 신고된 현금영수증은 수정할 수 없으며, 취소 현금영수증을 발행하여 취소처리 할 수 있습니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#Update
     '=========================================================================
     Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
@@ -346,7 +347,7 @@ Public Class frmExample
     '=========================================================================
     ' 1건의 [임시저장] 현금영수증을 [발행]합니다.
     ' - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
-    ' - 현금영수증 국세청 전송 정책에 대한 정보는 "[현금영수증 API 연동매뉴얼] > 1.3. 국세청 전송정책"을 참조하시기 바랍니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#CBIssue
     '=========================================================================
     Private Sub btnIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
@@ -368,6 +369,7 @@ Public Class frmExample
     ' [발행완료] 상태의 현금영수증을 [발행취소]합니다.
     ' - 발행취소는 국세청 전송전에만 가능합니다.
     ' - 발행취소된 현금영수증은 국세청에 전송되지 않습니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#CancelIssue
     '=========================================================================
     Private Sub btnCancelIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
@@ -388,6 +390,7 @@ Public Class frmExample
     ' [발행완료] 상태의 현금영수증을 [발행취소]합니다.
     ' - 발행취소는 국세청 전송전에만 가능합니다.
     ' - 발행취소된 현금영수증은 국세청에 전송되지 않습니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#CancelIssue
     '=========================================================================
     Private Sub btnCancelIssue02_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelIssue02.Click
 
@@ -408,6 +411,7 @@ Public Class frmExample
     ' [발행완료] 상태의 현금영수증을 [발행취소]합니다.
     ' - 발행취소는 국세청 전송전에만 가능합니다.
     ' - 발행취소된 현금영수증은 국세청에 전송되지 않습니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#CancelIssue
     '=========================================================================
     Private Sub btnCancelIssueSub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelIssueSub.Click
 
@@ -428,6 +432,7 @@ Public Class frmExample
     ' 1건의 현금영수증을 [삭제]합니다.
     ' - 현금영수증을 삭제하면 사용된 문서번호(mgtKey)를 재사용할 수 있습니다.
     ' - 삭제가능한 문서 상태 : [임시저장], [발행취소]
+    ' - https://docs.popbill.com/cashbill/dotnet/api#Delete
     '=========================================================================
     Private Sub btnDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
@@ -445,6 +450,7 @@ Public Class frmExample
     ' 1건의 현금영수증을 [삭제]합니다.
     ' - 현금영수증을 삭제하면 사용된 문서번호(mgtKey)를 재사용할 수 있습니다.
     ' - 삭제가능한 문서 상태 : [임시저장], [발행취소]
+    ' - https://docs.popbill.com/cashbill/dotnet/api#Delete
     '=========================================================================
     Private Sub btnDeleteSub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteSub.Click
 
@@ -462,6 +468,7 @@ Public Class frmExample
     ' 1건의 현금영수증을 [삭제]합니다.
     ' - 현금영수증을 삭제하면 사용된 문서번호(mgtKey)를 재사용할 수 있습니다.
     ' - 삭제가능한 문서 상태 : [임시저장], [발행취소]
+    ' - https://docs.popbill.com/cashbill/dotnet/api#Delete
     '=========================================================================
     Private Sub btnDelete02_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDelete02.Click
         Try
@@ -477,8 +484,7 @@ Public Class frmExample
     '=========================================================================
     ' 1건의 취소현금영수증을 [즉시발행]합니다.
     ' - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
-    ' - 현금영수증 국세청 전송 정책에 대한 정보는 "[현금영수증 API 연동매뉴얼] > 1.3. 국세청 전송정책"을 참조하시기 바랍니다.
-    ' - 취소현금영수증 작성방법 안내 - http://blog.linkhub.co.kr/702
+    ' - https://docs.popbill.com/cashbill/dotnet/api#RevokeRegistIssue
     '=========================================================================
     Private Sub btnRevokRegistIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRevokRegistIssue.Click
 
@@ -507,7 +513,7 @@ Public Class frmExample
     '=========================================================================
     ' 1건의 (부분)취소현금영수증을 [즉시발행]합니다.
     ' - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
-    ' - 현금영수증 국세청 전송 정책에 대한 정보는 "[현금영수증 API 연동매뉴얼] > 1.3. 국세청 전송정책"을 참조하시기 바랍니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#RevokeRegistIssue
     '=========================================================================
     Private Sub btnRevokeRegistIssue_part_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRevokeRegistIssue_part.Click
 
@@ -556,7 +562,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 1건의 현금영수증 상태/요약 정보를 확인합니다.
-    ' - 응답항목에 대한 자세한 정보는 "[현금영수증 API 연동매뉴얼] > 4.2. 현금영수증 상태정보 구성"을 참조하시기 바랍니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#GetInfo
     '=========================================================================
     Private Sub btnGetInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetInfo.Click
         Try
@@ -598,7 +604,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 대량의 현금영수증 상태/요약 정보를 확인합니다. (최대 1000건)
-    ' - 응답항목에 대한 자세한 정보는 "[현금영수증 API 연동매뉴얼] > 4.2. 현금영수증 상태정보 구성"을 참조하시기 바랍니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#GetInfos
     '=========================================================================
     Private Sub btnGetInfos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetInfos.Click
 
@@ -649,7 +655,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 현금영수증 1건의 상세정보를 조회합니다.
-    ' - 응답항목에 대한 자세한 사항은 "[현금영수증 API 연동매뉴얼] > 4.1. 현금영수증 구성" 을 참조하시기 바랍니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#GetDetailInfo
     '=========================================================================
     Private Sub btnGetDetailInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetDetailInfo.Click
 
@@ -696,7 +702,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 검색조건을 사용하여 현금영수증 목록을 조회합니다.
-    ' - 응답항목에 대한 자세한 사항은 "[현금영수증 API 연동매뉴얼] > 4.2. 현금영수증 상태정보 구성" 을 참조하시기 바랍니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#Search
     '=========================================================================
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
 
@@ -799,8 +805,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 현금영수증 상태 변경이력을 확인합니다.
-    ' - 상태 변경이력 확인(GetLogs API) 응답항목에 대한 자세한 정보는
-    '   "[현금영수증 API 연동매뉴얼] > 3.3.5 상태 변경이력 확인" 을 참조하시기 바랍니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#GetLogs
     '=========================================================================
     Private Sub btnGetLogs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetLogs.Click
         Try
@@ -823,6 +828,7 @@ Public Class frmExample
     '=========================================================================
     ' 팝빌 > 현금영수증 > 임시(연동)문서함 팝업 URL을 반환합니다.
     ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#GetURL
     '=========================================================================
     Private Sub btnGetURL_TBOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_TBOX.Click
 
@@ -843,6 +849,7 @@ Public Class frmExample
     '=========================================================================
     ' 팝빌 > 현금영수증 > 발행문서함 팝업 URL을 반환합니다.
     ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#GetURL
     '=========================================================================
     Private Sub btnGetURL_SBOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_PBOX.Click
 
@@ -862,6 +869,7 @@ Public Class frmExample
     '=========================================================================
     ' 팝빌 > 현금영수증 > 현금영수증 작성 팝업 URL을 반환합니다.
     ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#GetURL
     '=========================================================================
     Private Sub btnGetURL_WRITE_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_WRITE.Click
 
@@ -881,6 +889,7 @@ Public Class frmExample
     '=========================================================================
     ' 1건의 현금영수증 보기 팝업 URL을 반환합니다.
     ' - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#GetPopUpURL
     '=========================================================================
     Private Sub btnGetPopUpURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPopUpURL.Click
 
@@ -898,6 +907,7 @@ Public Class frmExample
     '=========================================================================
     ' 1건의 현금영수증 인쇄팝업 URL을 반환합니다.
     ' - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#GetPrintURL
     '=========================================================================
     Private Sub btnGetPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPrintURL.Click
         Try
@@ -913,6 +923,7 @@ Public Class frmExample
     '=========================================================================
     ' 현금영수증 인쇄(공급받는자) URL을 반환합니다.
     ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#GetPrintURL
     '=========================================================================
     Private Sub btnEPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEPrintURL.Click
 
@@ -929,6 +940,7 @@ Public Class frmExample
     '=========================================================================
     ' 대량의 현금영수증 인쇄팝업 URL을 반환합니다. (최대 100건)
     ' - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#GetMassPrintURL
     '=========================================================================
     Private Sub btnGetMassPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMassPrintURL.Click
         Dim MgtKeyList As List(Of String) = New List(Of String)
@@ -950,6 +962,7 @@ Public Class frmExample
     '=========================================================================
     ' 현금영수증 수신메일 링크주소를 반환합니다.
     ' - 메일링크 URL은 유효시간이 존재하지 않습니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#GetMailURL
     '=========================================================================
     Private Sub btnGetEmailURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetEmailURL.Click
         Try
@@ -965,6 +978,7 @@ Public Class frmExample
     '=========================================================================
     ' 팝빌(www.popbill.com)에 로그인된 팝빌 URL을 반환합니다.
     ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#GetAccessURL
     '=========================================================================
     Private Sub btnGetAccessURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetAccessURL.Click
         Try
@@ -979,6 +993,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 발행 안내메일을 재전송합니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#SendEmail
     '=========================================================================
     Private Sub btnSendEmail_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendEmail.Click
         
@@ -999,6 +1014,7 @@ Public Class frmExample
     ' 알림문자를 전송합니다. (단문/SMS - 한글 최대 45자)
     ' - 알림문자 전송시 포인트가 차감됩니다. (전송실패시 환불처리)
     ' - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [문자] > [전송내역] 탭에서 전송결과를 확인할 수 있습니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#SendSMS
     '=========================================================================
     Private Sub btnSendSMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendSMS.Click
 
@@ -1025,6 +1041,7 @@ Public Class frmExample
     ' 현금영수증을 팩스전송합니다.
     ' - 팩스 전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
     ' - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인할 수 있습니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#SendFAX
     '=========================================================================
     Private Sub btnSendFAX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendFAX.Click
 
@@ -1046,6 +1063,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 현금영수증 메일전송 항목에 대한 전송여부를 목록으로 반환합니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#ListEmailConfig
     '=========================================================================
     Private Sub btnListEmailConfig_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListEmailConfig.Click
         Try
@@ -1066,10 +1084,12 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    '현금영수증 메일전송 항목에 대한 전송여부를 수정합니다.
-    '메일전송유형
-    'CSH_ISSUE : 고객에게 현금영수증이 발행 되었음을 알려주는 메일 입니다.
-    'CSH_CANCEL : 고객에게 현금영수증 발행취소 되었음을 알려주는 메일 입니다.
+    ' 현금영수증 메일전송 항목에 대한 전송여부를 수정합니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#UpdateEmailConfig
+    '
+    ' 메일전송유형
+    ' CSH_ISSUE : 고객에게 현금영수증이 발행 되었음을 알려주는 메일 입니다.
+    ' CSH_CANCEL : 고객에게 현금영수증 발행취소 되었음을 알려주는 메일 입니다.
     '=========================================================================
     Private Sub btnUpdateEmailConfig_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateEmailConfig.Click
         Try
@@ -1091,6 +1111,7 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원의 잔여포인트를 확인합니다.
     ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트(GetPartnerBalance API) 를 통해 확인하시기 바랍니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#GetBalance
     '=========================================================================
     Private Sub btnGetBalance_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetBalance.Click
         Try
@@ -1106,6 +1127,7 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원 포인트 충전 URL을 반환합니다.
     ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#GetChargeURL
     '=========================================================================
     Private Sub btnGetChargeURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeURL.Click
         Try
@@ -1120,6 +1142,7 @@ Public Class frmExample
     '=========================================================================
     ' 파트너의 잔여포인트를 확인합니다.
     ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#GetPartnerBalance
     '=========================================================================
     Private Sub btnGetPartnerPoint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerPoint.Click
         Try
@@ -1136,6 +1159,7 @@ Public Class frmExample
     '=========================================================================
     ' 파트너 포인트 충전 팝업 URL을 반환합니다.
     ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#GetPartnerURL
     '=========================================================================
     Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerURL.Click
         Try
@@ -1152,6 +1176,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 현금영수증 발행단가를 확인합니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#GetUnitCost
     '=========================================================================
     Private Sub btnGetUnitCost_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetUnitCost.Click
         Try
@@ -1167,6 +1192,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 현금영수증 API 서비스 과금정보를 확인합니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#GetChargeInfo
     '=========================================================================
     Private Sub btnGetChargeInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo.Click
         Try
@@ -1185,7 +1211,8 @@ Public Class frmExample
 
     '=========================================================================
     ' 해당 사업자의 파트너 연동회원 가입여부를 확인합니다.
-    ' - LinkID는 인증정보로 설정되어 있는 링크아이디 값입니다.
+    ' - LinkID는 인증정보로 설정되어 있는 링크아이디 입니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#CheckIsMember
     '=========================================================================
     Private Sub btnCheckIsMember_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckIsMember.Click
         Try
@@ -1200,6 +1227,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 팝빌 회원아이디 중복여부를 확인합니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#CheckID
     '=========================================================================
     Private Sub btnCheckID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckID.Click
         Try
@@ -1214,6 +1242,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 파트너의 연동회원으로 회원가입을 요청합니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#JoinMember
     '=========================================================================
     Private Sub btnJoinMember_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnJoinMember.Click
         Dim joinInfo As JoinForm = New JoinForm
@@ -1273,6 +1302,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 담당자를 신규로 등록합니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#RegistContact
     '=========================================================================
     Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistContact.Click
 
@@ -1319,6 +1349,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 담당자 목록을 확인합니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#ListContact
     '=========================================================================
     Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListContact.Click
         Try
@@ -1341,6 +1372,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 담당자 정보를 수정합니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#UpdateContact
     '=========================================================================
     Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateContact.Click
 
@@ -1384,6 +1416,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 회사정보를 확인합니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#GetCorpInfo
     '=========================================================================
     Private Sub btnGetCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetCorpInfo.Click
         Try
@@ -1403,7 +1436,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 회사정보를 수정합니다
+    ' 연동회원의 회사정보를 수정합니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#UpdateCorpInfo
     '=========================================================================
     Private Sub btnUpdateCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateCorpInfo.Click
         Dim corpInfo As New CorpInfo

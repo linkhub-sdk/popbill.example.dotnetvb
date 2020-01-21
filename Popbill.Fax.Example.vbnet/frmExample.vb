@@ -2,8 +2,8 @@
 '
 ' 팝빌 팩스 API VB.Net SDK Example
 '
-'' - VB.Net SDK 연동환경 설정방법 안내 : https://docs.popbill.com/fax/tutorial/dotnet_vb
-' - 업데이트 일자 : 2019-10-23
+'' - VB.Net SDK 연동환경 설정방법 안내 : https://docs.popbill.com/fax/tutorial/dotnet#vb
+' - 업데이트 일자 : 2020-01-21
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -48,6 +48,7 @@ Public Class frmExample
     '=========================================================================
     ' 팩스 발신번호 관리 팝업 URL을 반합니다.
     ' - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+    ' - https://docs.popbill.com/fax/dotnet/api#GetSenderNumberMgtURL
     '=========================================================================
     Private Sub btnGetSenderNumberMgtURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSenderNumberMgtURL.Click
         Try
@@ -61,6 +62,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 팩스 발신번호 목록을 반환합니다.
+    ' - https://docs.popbill.com/fax/dotnet/api#GetSenderNumberList
     '=========================================================================
     Private Sub btnGetSenderNumberList_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSenderNumberList.Click
         Try
@@ -80,7 +82,8 @@ Public Class frmExample
 
     '=========================================================================
     ' 팩스를 전송합니다. (전송할 파일 개수는 최대 20개까지 가능)
-    ' - 팩스전송 문서 파일포맷 안내 : http://blog.linkhub.co.kr/2561
+    ' - 팩스전송 문서 파일포맷 안내 : https://docs.popbill.com/fax/format?lang=dotnet
+    ' - https://docs.popbill.com/fax/dotnet/api#SendFAX
     '=========================================================================
     Private Sub btnSenFax_1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSenFax_1.Click
 
@@ -122,6 +125,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 다수의 수신자에게 단건파일 팩스를 전송합니다.
+    ' - https://docs.popbill.com/fax/dotnet/api#SendFAX_Same
     '=========================================================================
     Private Sub btnSenFax_2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSenFax_2.Click
         If fileDialog.ShowDialog(Me) = DialogResult.OK Then
@@ -166,6 +170,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 다수 파일 팩스를 전송합니다. (전송할 파일 개수는 최대 20개까지 가능)
+    ' - https://docs.popbill.com/fax/dotnet/api#SendFAX_Multi
     '=========================================================================
     Private Sub btnSenFax_3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSenFax_3.Click
         Dim filepaths As List(Of String) = New List(Of String)
@@ -212,6 +217,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 다수의 수신자에게 다수 파일 팩스를 전송합니다. (전송할 파일 개수는 최대 20개까지 가능)
+    ' - https://docs.popbill.com/fax/dotnet/api#SendFAX_Multi_Same
     '=========================================================================
     Private Sub btnSenFax_4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSenFax_4.Click
         Dim filepaths As List(Of String) = New List(Of String)
@@ -263,6 +269,7 @@ Public Class frmExample
     ' 팩스를 재전송합니다.
     ' - 접수일로부터 60일이 경과된 경우 재전송할 수 없습니다.
     ' - 팩스 재전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
+    ' - https://docs.popbill.com/fax/dotnet/api#ResendFAX
     '=========================================================================
     Private Sub btnResendFAX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnResendFAX.Click
 
@@ -300,6 +307,7 @@ Public Class frmExample
     ' 다수의 수신자에게 팩스를 재전송합니다.
     ' - 접수일로부터 60일이 경과된 경우 재전송할 수 없습니다.
     ' - 팩스 재전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
+    ' - https://docs.popbill.com/fax/dotnet/api#ResendFAX
     '=========================================================================
     Private Sub btnResendFAX_Multi_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnResendFAX_Multi.Click
 
@@ -346,6 +354,7 @@ Public Class frmExample
     ' 전송요청번호(requestNum)을 할당한 팩스를 재전송합니다.
     ' - 접수일로부터 60일이 경과된 경우 재전송할 수 없습니다.
     ' - 팩스 재전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
+    ' - https://docs.popbill.com/fax/dotnet/api#ResendFAXRN
     '=========================================================================
     Private Sub btnResendFAXRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnResendFAXRN.Click
         Try
@@ -387,6 +396,7 @@ Public Class frmExample
     ' [대량전송] 전송요청번호(requestNum)을 할당한 팩스를 재전송합니다.
     ' - 접수일로부터 60일이 경과된 경우 재전송할 수 없습니다.
     ' - 팩스 재전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
+    ' - https://docs.popbill.com/fax/dotnet/api#ResendFAXRN_Same
     '=========================================================================
     Private Sub btnResendFAXRN_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnResendFAXRN_same.Click
         ' 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
@@ -432,6 +442,7 @@ Public Class frmExample
     '=========================================================================
     ' 팩스전송요청시 발급받은 접수번호(receiptNum)로 팩스 예약전송건을 취소합니다.
     ' - 예약전송 취소는 예약전송시간 10분전까지 가능하며, 팩스변환 이후 가능합니다.
+    ' - https://docs.popbill.com/fax/dotnet/api#CancelReserve
     '=========================================================================
     Private Sub btnCancelReserve_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelReserve.Click
         Try
@@ -449,6 +460,7 @@ Public Class frmExample
     '=========================================================================
     ' 팩스전송요청시 할당한 전송요청번호(requestNum)로 팩스 예약전송건을 취소합니다.
     ' - 예약전송 취소는 예약전송시간 10분전까지 가능하며, 팩스변환 이후 가능합니다.
+    '  - https://docs.popbill.com/fax/dotnet/api#CancelReserveRN
     '=========================================================================
     Private Sub btnCancelReserveRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelReserveRN.Click
         Try
@@ -464,7 +476,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 팩스전송요청시 발급받은 접수번호(receiptNum)로 전송결과를 확인합니다
-    ' - 응답항목에 대한 자세한 사항은 "[팩스 API 연동매뉴얼] >  3.3.1 GetFaxDetail (전송내역 및 전송상태 확인)을 참조하시기 바랍니다.
+    ' - https://docs.popbill.com/fax/dotnet/api#GetFaxResult
     '=========================================================================
     Private Sub btnGetFaxResult_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFaxResult.Click
         ListBox1.Items.Clear()
@@ -520,7 +532,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 팩스전송요청시 할당한 전송요청번호(requestNum)으로 전송결과를 확인합니다
-    ' - 응답항목에 대한 자세한 사항은 "[팩스 API 연동매뉴얼] >  3.3.2 GetFaxDetailRN (전송내역 및 전송상태 확인 - 요청번호 할당)을 참조하시기 바랍니다.
+    ' - https://docs.popbill.com/fax/dotnet/api#GetFaxResultRN
     '=========================================================================
     Private Sub btnGetFaxResultRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFaxResultRN.Click
         ListBox1.Items.Clear()
@@ -576,6 +588,7 @@ Public Class frmExample
     '=========================================================================
     ' 검색조건을 사용하여 팩스전송 내역을 조회합니다.
     ' - 최대 검색기간 : 6개월 이내
+    ' - https://docs.popbill.com/fax/dotnet/api#Search
     '=========================================================================
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
         Dim State(4) As String
@@ -676,6 +689,7 @@ Public Class frmExample
     '=========================================================================
     ' 팩스 전송내역 목록 팝업 URL을 반환합니다.
     ' 보안정책으로 인해 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' - https://docs.popbill.com/fax/dotnet/api#GetSentListURL
     '=========================================================================
     Private Sub btnGetSentListURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSentListURL.Click
         Try
@@ -692,6 +706,7 @@ Public Class frmExample
     '=========================================================================
     '접수한 팩스 전송건에 대한 미리보기 팝업 URL을 반환합니다.
     ' - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+    ' - https://docs.popbill.com/fax/dotnet/api#GetPreviewURL
     '=========================================================================
     Private Sub btnGetPreviewURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPreviewURL.Click
         Try
@@ -706,6 +721,7 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원의 잔여포인트를 확인합니다.
     ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트(GetPartnerBalance API) 를 통해 확인하시기 바랍니다.
+    ' - https://docs.popbill.com/fax/dotnet/api#GetBalance
     '=========================================================================
     Private Sub btnGetBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetBalance.Click
         Try
@@ -722,6 +738,7 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원 포인트 충전 URL을 반환합니다.
     ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' - https://docs.popbill.com/fax/dotnet/api#GetChargeURL
     '=========================================================================
     Private Sub btnGetChargeURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeURL.Click
         Try
@@ -736,6 +753,7 @@ Public Class frmExample
     '=========================================================================
     ' 파트너의 잔여포인트를 확인합니다.
     ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
+    ' - https://docs.popbill.com/fax/dotnet/api#GetPartnerBalance
     '=========================================================================
     Private Sub btnGetPartnerBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerBalance.Click
         Try
@@ -751,6 +769,7 @@ Public Class frmExample
     '=========================================================================
     ' 파트너 포인트 충전 팝업 URL을 반환합니다.
     ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' - https://docs.popbill.com/fax/dotnet/api#GetPartnerURL
     '=========================================================================
     Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerURL.Click
         Try
@@ -767,6 +786,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 팩스 전송단가를 확인합니다.
+    ' - https://docs.popbill.com/fax/dotnet/api#GetUnitCost
     '=========================================================================
     Private Sub btnUnitCost_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUnitCost.Click
         Try
@@ -782,6 +802,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 팩스 API 서비스 과금정보를 확인합니다.
+    ' - https://docs.popbill.com/fax/dotnet/api#GetChargeInfo
     '=========================================================================
     Private Sub btnGetChargeInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo.Click
         Try
@@ -801,6 +822,7 @@ Public Class frmExample
     '=========================================================================
     ' 해당 사업자의 파트너 연동회원 가입여부를 확인합니다.
     ' - LinkID는 인증정보로 설정되어 있는 링크아이디 값입니다.
+    ' - https://docs.popbill.com/fax/dotnet/api#CheckIsMember
     '=========================================================================
     Private Sub btnCheckIsMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckIsMember.Click
         Try
@@ -815,6 +837,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 팝빌 회원아이디 중복여부를 확인합니다.
+    ' - https://docs.popbill.com/fax/dotnet/api#CheckID
     '=========================================================================
     Private Sub btnCheckID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckID.Click
         Try
@@ -829,6 +852,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 팝빌 연동회원 가입을 요청합니다.
+    ' - https://docs.popbill.com/fax/dotnet/api#JoinMember
     '=========================================================================
     Private Sub btnJoinMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnJoinMember.Click
 
@@ -890,6 +914,7 @@ Public Class frmExample
     '=========================================================================
     ' 팝빌(www.popbill.com)에 로그인된 팝빌 URL을 반환합니다.
     ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' - https://docs.popbill.com/fax/dotnet/api#GetAccessURL
     '=========================================================================
     Private Sub btnGetAccessURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetAccessURL.Click
         Try
@@ -903,6 +928,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 담당자를 신규로 등록합니다.
+    ' - https://docs.popbill.com/fax/dotnet/api#RegistContact
     '=========================================================================
     Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistContact.Click
 
@@ -950,6 +976,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 담당자 목록을 확인합니다.
+    ' - https://docs.popbill.com/fax/dotnet/api#ListContact
     '=========================================================================
     Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListContact.Click
         Try
@@ -972,6 +999,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 담당자 정보를 수정합니다.
+    ' - https://docs.popbill.com/fax/dotnet/api#UpdateContact
     '=========================================================================
     Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateContact.Click
 
@@ -1015,6 +1043,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 회사정보를 확인합니다.
+    ' - https://docs.popbill.com/fax/dotnet/api#GetCorpInfo
     '=========================================================================
     Private Sub btnGetCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetCorpInfo.Click
 
@@ -1037,6 +1066,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 회사정보를 수정합니다
+    ' - https://docs.popbill.com/fax/dotnet/api#UpdateCorpInfo
     '=========================================================================
     Private Sub btnUpdateCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateCorpInfo.Click
         Dim corpInfo As New CorpInfo

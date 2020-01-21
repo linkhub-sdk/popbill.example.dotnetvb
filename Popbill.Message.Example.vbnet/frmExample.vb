@@ -2,8 +2,8 @@
 '
 ' 팝빌 문자 API VB.Net SDK Example
 '
-' - VB.Net 연동환경 설정방법 안내 : https://docs.popbill.com/message/tutorial/dotnet_vb
-' - 업데이트 일자 : 2019-10-23
+' - VB.Net 연동환경 설정방법 안내 : https://docs.popbill.com/message/tutorial/dotnet#vb
+' - 업데이트 일자 : 2020-01-21
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -52,6 +52,7 @@ Public Class frmExample
     '=========================================================================
     ' 발신번호 관리 팝업 URL을 반환합니다.
     ' - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+    ' - https://docs.popbill.com/message/dotnet/api#GetSenderNumberMgtURL
     '=========================================================================
     Private Sub btnGetSenderNumberMgtURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSenderNumberMgtURL.Click
         Try
@@ -66,6 +67,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 팝빌에 등록된 문자 발신번호 목록을 조회합니다.
+    ' - https://docs.popbill.com/message/dotnet/api#GetSenderNumberList
     '=========================================================================
     Private Sub btnGetSenderNumberList_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSenderNumberList.Click
         Try
@@ -85,7 +87,8 @@ Public Class frmExample
 
     '=========================================================================
     ' SMS(단문)를 전송합니다.
-    '  - 메시지 내용이 90Byte 초과시 메시지 내용은 자동으로 제거됩니다.
+    ' - 메시지 내용이 90Byte 초과시 메시지 내용은 자동으로 제거됩니다.
+    ' - https://docs.popbill.com/message/dotnet/api#SendSMS
     '=========================================================================
     Private Sub btnSendSMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendSMS_one.Click
 
@@ -127,7 +130,7 @@ Public Class frmExample
     '=========================================================================
     ' [대량전송] SMS(단문)를 전송합니다.
     '  - 메시지 내용이 90Byte 초과시 메시지 내용은 자동으로 제거됩니다.
-    '  - 단건/대량 전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.1 SendSMS(단문전송)"을 참조하시기 바랍니다.
+    '  - https://docs.popbill.com/message/dotnet/api#SendSMS_Multi
     '=========================================================================
     Private Sub btn_SendSMS_hund_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_SendSMS_hund.Click
 
@@ -177,7 +180,7 @@ Public Class frmExample
     '=========================================================================
     ' [동보전송] SMS(단문)를 전송합니다.
     '  - 메시지 내용이 90Byte 초과시 메시지 내용은 자동으로 제거됩니다.
-    '  - 단건/대량 전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.1 SendSMS(단문전송)"을 참조하시기 바랍니다.
+    '  - https://docs.popbill.com/message/dotnet/api#SendSMS_Same
     '=========================================================================
     Private Sub btnSendSMS_Same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendSMS_Same.Click
 
@@ -222,6 +225,7 @@ Public Class frmExample
     '=========================================================================
     ' LMS(장문)를 전송합니다.
     '  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
+    '  - https://docs.popbill.com/message/dotnet/api#SendLMS
     '=========================================================================
     Private Sub btnSendLMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendLMS_one.Click
 
@@ -265,7 +269,7 @@ Public Class frmExample
     '=========================================================================
     ' [대량전송] LMS(장문)를 전송합니다.
     '  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
-    '  - 단건/대량 전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.2 SendLMS(장문전송)"을 참조하시기 바랍니다.
+    '  - https://docs.popbill.com/message/dotnet/api#SendLMS_Multi
     '=========================================================================
     Private Sub btnSendLMS_hund_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendLMS_hund.Click
 
@@ -317,7 +321,7 @@ Public Class frmExample
     '=========================================================================
     ' [동보전송] LNS(장문)를 전송합니다.
     '  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
-    '  - 단건/대량 전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.2 SendLMS(장문전송)"을 참조하시기 바랍니다.
+    '  - https://docs.popbill.com/message/dotnet/api#SendLMS_Same
     '=========================================================================
     Private Sub btnSendLMS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendLMS_same.Click
 
@@ -366,7 +370,7 @@ Public Class frmExample
     '=========================================================================
     ' XMS(단문/장문 자동인식)를 전송합니다.
     '  - 메시지 내용의 길이(90byte)에 따라 SMS/LMS(단문/장문)를 자동인식하여 전송합니다.
-    '  - 90byte 초과시 LMS(장문)으로 인식 합니다.
+    '  - https://docs.popbill.com/message/dotnet/api#SendXMS
     '=========================================================================
     Private Sub btnSendXMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendXMS_one.Click
 
@@ -409,8 +413,7 @@ Public Class frmExample
     '=========================================================================
     ' [대량전송] XMS(단문/장문 자동인식)를 전송합니다.
     '  - 메시지 내용의 길이(90byte)에 따라 SMS/LMS(단문/장문)를 자동인식하여 전송합니다.
-    '  - 90byte 초과시 LMS(장문)으로 인식 합니다.
-    '  - 단건/대량 전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.4 SendXMS(단문/장문 자동인식 전송)"을 참조하시기 바랍니다.
+    '  - https://docs.popbill.com/message/dotnet/api#SendXMS_Multi
     '=========================================================================
     Private Sub btnSendXMS_hund_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendXMS_hund.Click
 
@@ -462,8 +465,7 @@ Public Class frmExample
     '=========================================================================
     ' [동보전송] XMS(단문/장문 자동인식)를 전송합니다.
     '  - 메시지 내용의 길이(90byte)에 따라 SMS/LMS(단문/장문)를 자동인식하여 전송합니다.
-    '  - 90byte 초과시 LMS(장문)으로 인식 합니다.
-    '  - 단건/대량 전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.4 SendXMS(단문/장문 자동인식 전송)"을 참조하시기 바랍니다.
+    '  - https://docs.popbill.com/message/dotnet/api#SendXMS_Same
     '=========================================================================
     Private Sub btnSendXMS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendXMS_same.Click
 
@@ -514,6 +516,7 @@ Public Class frmExample
     ' MMS(포토)를 전송합니다.
     '  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
     '  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1000px 이하 권장
+    '  - https://docs.popbill.com/message/dotnet/api#SendMMS
     '=========================================================================
     Private Sub btnSendMMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendMMS_one.Click
         If fileDialog.ShowDialog(Me) = DialogResult.OK Then
@@ -563,6 +566,7 @@ Public Class frmExample
     ' [대랑전송] MMS(포토)를 전송합니다.
     '  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
     '  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1000px 이하 권장
+    '  - https://docs.popbill.com/message/dotnet/api#SendMMS_Same
     '===========================================================================
     Private Sub btnSendMMS_hundered_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendMMS_hundered.Click
         If fileDialog.ShowDialog(Me) = DialogResult.OK Then
@@ -618,6 +622,7 @@ Public Class frmExample
     ' [동보전송] MMS(포토)를 전송합니다.
     '  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
     '  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1000px 이하 권장
+    '  - https://docs.popbill.com/message/dotnet/api#SendMMS_Same
     '=========================================================================
     Private Sub btnSendMMS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendMMS_same.Click
         If fileDialog.ShowDialog(Me) = DialogResult.OK Then
@@ -672,6 +677,7 @@ Public Class frmExample
     '=========================================================================
     ' 예약문자전송을 취소합니다.
     ' - 예약취소는 예약전송시간 10분전까지만 가능합니다.
+    ' - https://docs.popbill.com/message/dotnet/api#CancelReserve
     '=========================================================================
     Private Sub btnCancelReserve_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelReserve.Click
         Try
@@ -688,6 +694,7 @@ Public Class frmExample
     '=========================================================================
     ' 전송요청번호를 할당한 예약문자전송을 취소합니다.
     ' - 예약취소는 예약전송시간 10분전까지만 가능합니다.
+    ' - https://docs.popbill.com/message/dotnet/api#CancelReserveRN
     '=========================================================================
     Private Sub btnCancelReserveRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelReserveRN.Click
         Try
@@ -703,7 +710,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 문자전송요청시 발급받은 접수번호(receiptNum)로 전송상태를 확인합니다
-    ' - 응답항목에 대한 자세한 사항은 "[문자 API 연동매뉴얼] >  3.3.1. GetMessages (전송내역 확인)을 참조하시기 바랍니다.
+    ' - https://docs.popbill.com/message/dotnet/api#GetMessageResult
     '=========================================================================
     Private Sub btnGetMessageResult_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMessageResult.Click
         ListBox1.Items.Clear()
@@ -732,7 +739,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 문자전송요청시 할당한 전송요청번호(requestNum)로 전송상태를 확인합니다
-    ' - 응답항목에 대한 자세한 사항은 "[문자 API 연동매뉴얼] > 3.3.2. GetMessagesRN (전송내역 확인 - 요청번호 할당)을 참조하시기 바랍니다.
+    ' - https://docs.popbill.com/message/dotnet/api#GetMessageResultRN
     '=========================================================================
     Private Sub btnGetMessageResultRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMessageResultRN.Click
         ListBox1.Items.Clear()
@@ -759,9 +766,9 @@ Public Class frmExample
         End Try
     End Sub
 
-
     '=========================================================================
     ' 문자 전송내역 요약정보를 확인합니다. (최대 1000건)
+    ' - https://docs.popbill.com/message/dotnet/api#GetStates
     '=========================================================================
     Private Sub btnGetStates_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetStates.Click
         Dim ReciptNumList As List(Of String) = New List(Of String)
@@ -793,6 +800,7 @@ Public Class frmExample
     '=========================================================================
     ' 검색조건을 사용하여 문자전송 내역을 조회합니다.
     ' - 최대 검색기간 : 6개월 이내
+    ' - https://docs.popbill.com/message/dotnet/api#Search
     '=========================================================================
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
         Dim State(4) As String
@@ -873,6 +881,7 @@ Public Class frmExample
     '=========================================================================
     ' 문자메시지 전송내역 팝업 URL을 반환합니다.
     ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' - https://docs.popbill.com/message/dotnet/api#GetSentListURL
     '=========================================================================
     Private Sub btnGetSentListURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSentListURL.Click
         Try
@@ -887,6 +896,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 080 서비스 수신거부 목록을 확인합니다.
+    ' - https://docs.popbill.com/message/dotnet/api#GetAutoDenyList
     '=========================================================================
     Private Sub btnGetAutoDenyList_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetAutoDenyList.Click
         Try
@@ -906,6 +916,7 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원의 잔여포인트를 확인합니다.
     ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트(GetPartnerBalance API) 를 통해 확인하시기 바랍니다.
+    ' - https://docs.popbill.com/message/dotnet/api#GetBalance
     '=========================================================================
     Private Sub btnGetBalance_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetBalance.Click
 
@@ -923,6 +934,7 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원 포인트 충전 URL을 반환합니다.
     ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' - https://docs.popbill.com/message/dotnet/api#GetChargeURL
     '=========================================================================
     Private Sub btnGetChargeURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeURL.Click
         Try
@@ -938,6 +950,7 @@ Public Class frmExample
     '=========================================================================
     ' 파트너의 잔여포인트를 확인합니다.
     ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
+    ' - https://docs.popbill.com/message/dotnet/api#GetPartnerBalance
     '=========================================================================
     Private Sub btnGetPartnerBalance_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerBalance.Click
         Try
@@ -952,6 +965,7 @@ Public Class frmExample
     '=========================================================================
     ' 파트너 포인트 충전 팝업 URL을 반환합니다.
     ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' - https://docs.popbill.com/message/dotnet/api#GetPartnerURL
     '=========================================================================
     Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerURL.Click
         Try
@@ -968,6 +982,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 단문(SMS) 전송단가를 확인합니다.
+    ' - https://docs.popbill.com/message/dotnet/api#GetUnitCost
     '=========================================================================
     Private Sub btnUnitCost_SMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUnitCost_SMS.Click
 
@@ -986,6 +1001,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 장문(LMS) 전송단가를 확인합니다.
+    ' - https://docs.popbill.com/message/dotnet/api#GetUnitCost
     '=========================================================================
     Private Sub btnGetUnitCost_LMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetUnitCost_LMS.Click
 
@@ -1004,6 +1020,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 포문(MMS) 전송단가를 확인합니다.
+    ' - https://docs.popbill.com/message/dotnet/api#GetUnitCost
     '=========================================================================
     Private Sub btnGetUnitCost_MMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetUnitCost_MMS.Click
 
@@ -1020,9 +1037,9 @@ Public Class frmExample
         End Try
     End Sub
 
-
     '=========================================================================
     ' 연동회원의 문자 - 단문 API 서비스 과금정보를 확인합니다.
+    ' - https://docs.popbill.com/message/dotnet/api#GetChargeInfo
     '=========================================================================
     Private Sub btnGetChargeInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo_SMS.Click
 
@@ -1046,6 +1063,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 문자 - 장문 API 서비스 과금정보를 확인합니다.
+    ' - https://docs.popbill.com/message/dotnet/api#GetChargeInfo
     '=========================================================================
     Private Sub btnGetChargeInfo_LMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo_LMS.Click
 
@@ -1068,6 +1086,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 문자 - 포토 API 서비스 과금정보를 확인합니다.
+    ' - https://docs.popbill.com/message/dotnet/api#GetChargeInfo
     '=========================================================================
     Private Sub btnGetChargeInfo_MMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo_MMS.Click
 
@@ -1091,6 +1110,7 @@ Public Class frmExample
     '=========================================================================
     ' 해당 사업자의 파트너 연동회원 가입여부를 확인합니다.
     ' - LinkID는 인증정보로 설정되어 있는 링크아이디 값입니다.
+    ' - https://docs.popbill.com/message/dotnet/api#CheckIsMember
     '=========================================================================
     Private Sub btnCheckIsMember_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckIsMember.Click
         Try
@@ -1105,6 +1125,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 팝빌 회원아이디 중복여부를 확인합니다.
+    ' - https://docs.popbill.com/message/dotnet/api#CheckID
     '=========================================================================
     Private Sub btnCheckID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckID.Click
         Try
@@ -1119,6 +1140,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 파트너의 연동회원으로 회원가입을 요청합니다.
+    ' - https://docs.popbill.com/message/dotnet/api#JoinMember
     '=========================================================================
     Private Sub btnJoinMember_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnJoinMember.Click
         Dim joinInfo As JoinForm = New JoinForm
@@ -1179,6 +1201,7 @@ Public Class frmExample
     '=========================================================================
     ' 팝빌(www.popbill.com)에 로그인된 팝빌 URL을 반환합니다.
     ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' - https://docs.popbill.com/message/dotnet/api#GetAccessURL
     '=========================================================================
     Private Sub btnGetAccessURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetAccessURL.Click
         Try
@@ -1192,6 +1215,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 담당자를 신규로 등록합니다.
+    ' - https://docs.popbill.com/message/dotnet/api#RegistContact
     '=========================================================================
     Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistContact.Click
 
@@ -1238,6 +1262,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 담당자 목록을 확인합니다.
+    ' - https://docs.popbill.com/message/dotnet/api#ListContact
     '=========================================================================
     Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListContact.Click
         Try
@@ -1259,6 +1284,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 담당자 정보를 수정합니다.
+    ' - https://docs.popbill.com/message/dotnet/api#UpdateContact
     '=========================================================================
     Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateContact.Click
 
@@ -1301,6 +1327,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 회사정보를 확인합니다.
+    ' - https://docs.popbill.com/message/dotnet/api#GetCorpInfo
     '=========================================================================
     Private Sub btnGetCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetCorpInfo.Click
         Try
@@ -1320,7 +1347,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 회사정보를 수정합니다
+    ' 연동회원의 회사정보를 수정합니다. 
+    ' - https://docs.popbill.com/message/dotnet/api#UpdateCorpInfo
     '=========================================================================
     Private Sub btnUpdateCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateCorpInfo.Click
         Dim corpInfo As New CorpInfo

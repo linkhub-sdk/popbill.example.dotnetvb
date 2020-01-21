@@ -561,7 +561,7 @@ Partial Class frmExample
         Me.btnListPlusFriendID.Name = "btnListPlusFriendID"
         Me.btnListPlusFriendID.Size = New System.Drawing.Size(180, 35)
         Me.btnListPlusFriendID.TabIndex = 1
-        Me.btnListPlusFriendID.Text = "플러스친구 목록 확인"
+        Me.btnListPlusFriendID.Text = "카카오톡채널 목록 확인"
         Me.btnListPlusFriendID.UseVisualStyleBackColor = True
         '
         'btnGetPlusFriendMgtURL
@@ -570,7 +570,7 @@ Partial Class frmExample
         Me.btnGetPlusFriendMgtURL.Name = "btnGetPlusFriendMgtURL"
         Me.btnGetPlusFriendMgtURL.Size = New System.Drawing.Size(180, 35)
         Me.btnGetPlusFriendMgtURL.TabIndex = 0
-        Me.btnGetPlusFriendMgtURL.Text = "플러스친구 계정관리 팝업 URL"
+        Me.btnGetPlusFriendMgtURL.Text = "카카오톡채널 관리 팝업 URL"
         Me.btnGetPlusFriendMgtURL.UseVisualStyleBackColor = True
         '
         'GroupBox8

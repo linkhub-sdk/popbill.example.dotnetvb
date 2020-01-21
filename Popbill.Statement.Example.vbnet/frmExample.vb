@@ -2,8 +2,8 @@
 '
 ' 팝빌 전자명세서 API VB.NET SDK Example
 '
-' - VB.NET SDK 연동환경 설정방법 안내 : https://docs.popbill.com/statement/tutorial/dotnet_vb
-' - 업데이트 일자 : 2019-10-23
+' - VB.NET SDK 연동환경 설정방법 안내 : https://docs.popbill.com/statement/tutorial/dotnet#vb
+' - 업데이트 일자 : 2020-01-21
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -64,6 +64,7 @@ Public Class frmExample
     '=========================================================================
     ' 전자명세서 관리번호 중복여부를 확인합니다.
     ' - 관리번호는 1~24자리로 숫자, 영문 '-', '_' 조합으로 구성할 수 있습니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#CheckMgtKeyInUse
     '=========================================================================
     Private Sub btnCheckMgtKeyInUse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckMgtKeyInUse.Click
 
@@ -79,6 +80,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 1건의 전자명세서를 [즉시발행]합니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#RegistIssue
     '=========================================================================
     Private Sub btnRegistIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistIssue.Click
         Dim statement As New Statement
@@ -266,6 +268,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 1건의 전자명세서를 [임시저장]합니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#Register
     '=========================================================================
     Private Sub btnRegister_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegister.Click
         Dim statement As New Statement
@@ -447,6 +450,7 @@ Public Class frmExample
     '=========================================================================
     ' 1건의 전자명세서를 [수정]합니다.
     ' - [임시저장] 상태의 전자명세서만 수정할 수 있습니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#Update
     '=========================================================================
     Private Sub btnUpdate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdate.Click
 
@@ -626,9 +630,9 @@ Public Class frmExample
         End Try
     End Sub
 
-
     '=========================================================================
     ' 1건의 [임시저장] 상태의 전자명세서를 [발행]합니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#StmIssue
     '=========================================================================
     Private Sub btnIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnIssue.Click
 
@@ -646,6 +650,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 1건의 전자명세서를 [발행취소]합니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#CancelIssue
     '=========================================================================
     Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
 
@@ -663,6 +668,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 1건의 전자명세서를 [발행취소]합니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#CancelIssue
     '=========================================================================
     Private Sub btnCancelIssueSub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelIssueSub.Click
 
@@ -682,6 +688,7 @@ Public Class frmExample
     ' 1건의 전자명세서를 [삭제]합니다.
     ' - 전자명세서를 삭제하면 사용된 문서번호(mgtKey)를 재사용할 수 있습니다.
     ' - 삭제가능한 문서 상태 : [임시저장], [발행취소]
+    ' - https://docs.popbill.com/statement/dotnet/api#Delete
     '=========================================================================
     Private Sub btnDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDelete.Click
         Try
@@ -697,6 +704,7 @@ Public Class frmExample
     ' 1건의 전자명세서를 [삭제]합니다.
     ' - 전자명세서를 삭제하면 사용된 문서번호(mgtKey)를 재사용할 수 있습니다.
     ' - 삭제가능한 문서 상태 : [임시저장], [발행취소]
+    ' - https://docs.popbill.com/statement/dotnet/api#Delete
     '=========================================================================
     Private Sub btnDeleteSub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteSub.Click
         Try
@@ -711,7 +719,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 1건의 전자명세서 상태/요약 정보를 확인합니다.
-    ' - 응답항목에 대한 자세한 정보는 "[전자명세서 API 연동매뉴얼] > 3.2.1. GetInfo (상태 확인)"을 참조하시기 바랍니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#GetInfo
     '=========================================================================
     Private Sub btnGetInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetInfo.Click
 
@@ -751,7 +759,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 다수건의 전자명세서 상태/요약 정보를 확인합니다.
-    ' - 응답항목에 대한 자세한 정보는 "[전자명세서 API 연동매뉴얼] > 3.2.2. GetInfos (상태 대량 확인)"을 참조하시기 바랍니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#GetInfos
     '=========================================================================
     Private Sub btnGetInfos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetInfos.Click
 
@@ -798,7 +806,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 전자명세서 1건의 상세정보를 조회합니다.
-    ' - 응답항목에 대한 자세한 사항은 "[전자명세서 API 연동매뉴얼] > 4.1. 전자명세서 구성" 을 참조하시기 바랍니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#GetDetailInfo
     '=========================================================================
     Private Sub btnGetDetailInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetDetailInfo.Click
 
@@ -875,7 +883,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 검색조건을 사용하여 전자명세서 목록을 조회합니다.
-    ' - 응답항목에 대한 자세한 사항은 "[전자명세서 API 연동매뉴얼] > 3.2.4. Search (목록 조회)" 를 참조하시기 바랍니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#Search
     '=========================================================================
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
         Dim State(3) As String
@@ -959,8 +967,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 전자명세서 상태 변경이력을 확인합니다.
-    ' - 상태 변경이력 확인(GetLogs API) 응답항목에 대한 자세한 정보는
-    '  "[전자명세서 API 연동매뉴얼] > 3.2.5 GetLogs (상태 변경이력 확인)" 을 참조하시기 바랍니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#GetLogs
     '=========================================================================
     Private Sub btnGetLogs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetLogs.Click
 
@@ -985,6 +992,7 @@ Public Class frmExample
     '=========================================================================
     ' 팝빌 > 전자명세서 > 임시(연동)문서함 팝업 URL을 반환합니다.
     ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#GetURL
     '=========================================================================
     Private Sub btnGetURL_TBOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_TBOX.Click
         Try
@@ -999,6 +1007,7 @@ Public Class frmExample
     '=========================================================================
     ' 팝빌 > 전자명세서 > 발행문서함 팝업 URL을 반환합니다.
     ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#GetURL
     '=========================================================================
     Private Sub btnGetURL_SBOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_SBOX.Click
         Try
@@ -1014,6 +1023,7 @@ Public Class frmExample
     '=========================================================================
     ' 1건의 전자명세서 보기 팝업 URL을 반환합니다.
     ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#GetPopUpURL
     '=========================================================================
     Private Sub btnGetPopUpURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPopUpURL.Click
 
@@ -1029,6 +1039,7 @@ Public Class frmExample
     '=========================================================================
     ' 1건의 전자명세서 인쇄팝업 URL을 반환합니다.
     ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#GetPrintURL
     '=========================================================================
     Private Sub btnGetPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPrintURL.Click
 
@@ -1044,6 +1055,7 @@ Public Class frmExample
     '=========================================================================
     ' 전자명세서 인쇄(수신자) URL을 반환합니다.
     ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#GetEPrintURL
     '=========================================================================
     Private Sub btnGetEPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetEPrintURL.Click
 
@@ -1059,6 +1071,7 @@ Public Class frmExample
     '=========================================================================
     ' 다수건의 전자명세서 인쇄팝업 URL을 반환합니다.
     ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#GetMassPrintURL
     '=========================================================================
     Private Sub btnGetMassPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMassPrintURL.Click
 
@@ -1080,6 +1093,7 @@ Public Class frmExample
     '=========================================================================
     ' 수신자 메일링크 URL을 반환합니다.
     ' - 메일링크 URL은 유효시간이 존재하지 않습니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#GetMailURL
     '=========================================================================
     Private Sub btnGetMailURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMailURL.Click
         Try
@@ -1094,6 +1108,7 @@ Public Class frmExample
     '=========================================================================
     ' 팝빌(www.popbill.com)에 로그인된 팝빌 URL을 반환합니다.
     ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#GetAccessURL
     '=========================================================================
     Private Sub btnGetAccessURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetAccessURL.Click
         Try
@@ -1123,6 +1138,7 @@ Public Class frmExample
     ' 전자명세서에 첨부파일을 등록합니다.
     ' - 첨부파일 등록은 전자명세서가 [임시저장] 상태인 경우에만 가능합니다.
     ' - 첨부파일은 최대 5개까지 등록할 수 있습니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#AttachFile
     '=========================================================================
     Private Sub btnAttachFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAttachFile.Click
         If fileDialog.ShowDialog(Me) = DialogResult.OK Then
@@ -1144,6 +1160,7 @@ Public Class frmExample
     ' 전자명세서에 첨부된 파일을 삭제합니다.
     ' - 파일을 식별하는 파일아이디는 첨부파일 목록(GetFileList API) 의 응답항목
     '   중 파일아이디(AttachedFile) 값을 통해 확인할 수 있습니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#DeleteFile
     '=========================================================================
     Private Sub btnDeleteFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteFile.Click
         Try
@@ -1161,6 +1178,7 @@ Public Class frmExample
     ' 전자명세서에 첨부된 파일의 목록을 확인합니다.
     ' - 응답항목 중 파일아이디(AttachedFile) 항목은 파일삭제(DeleteFile API)
     '   호출시 이용할 수 있습니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#GetFiles
     '=========================================================================
     Private Sub btnGetFiles_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFiles.Click
 
@@ -1184,6 +1202,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 발행 안내메일을 재전송합니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#SendEmail
     '=========================================================================
     Private Sub btnSendEmail_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendEmail.Click
 
@@ -1204,6 +1223,7 @@ Public Class frmExample
     ' 알림문자를 전송합니다. (단문/SMS- 한글 최대 45자)
     ' - 알림문자 전송시 포인트가 차감됩니다. (전송실패시 환불처리)
     ' - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [문자] > [전송내역] 탭에서 전송결과를 확인할 수 있습니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#SendSMS
     '=========================================================================
     Private Sub btnSendSMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendSMS.Click
 
@@ -1229,6 +1249,7 @@ Public Class frmExample
     ' 전자명세서를 팩스전송합니다.
     ' - 팩스 전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
     ' - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인할 수 있습니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#SendFAX
     '=========================================================================
     Private Sub btnSendFAX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendFAX.Click
 
@@ -1254,6 +1275,7 @@ Public Class frmExample
     ' - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인할 수 있습니다.
     ' - 팩스 전송결과를 확인하기 위해서는 선팩스 전송 요청 시 반환받은 접수번호를 이용하여
     '   팩스 API의 전송결과 확인 (GetFaxDetail) API를 이용하면 됩니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#FAXSend
     '=========================================================================
     Private Sub btnFAXSend_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnFAXSend.Click
 
@@ -1443,6 +1465,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 전자명세서에 다른 전자명세서 1건을 첨부합니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#AttachStatement
     '=========================================================================
     Private Sub btnAttachStmt_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAttachStmt.Click
 
@@ -1463,6 +1486,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 전자명세서에 첨부된 다른 전자명세서를 첨부해제합니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#DetachStatement
     '=========================================================================
     Private Sub btnDetachStmt_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDetachStmt.Click
 
@@ -1483,6 +1507,7 @@ Public Class frmExample
 
     '=========================================================================
     '전자명세서 메일전송 항목에 대한 전송여부를 목록으로 반환합니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#ListEmailConfig
     '=========================================================================
     Private Sub btnListEmailConfig_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListEmailConfig.Click
         Try
@@ -1510,13 +1535,15 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    '전자명세서 메일전송 항목에 대한 전송여부를 수정합니다.
-    '메일전송유형
-    'SMT_ISSUE : 수신자에게 전자명세서가 발행 되었음을 알려주는 메일입니다.
-    'SMT_ACCEPT : 발신자에게 전자명세서가 승인 되었음을 알려주는 메일입니다.
-    'SMT_DENY : 발신자게에 전자명세서가 거부 되었음을 알려주는 메일입니다.
-    'SMT_CANCEL : 수신자게에 전자명세서가 취소 되었음을 알려주는 메일입니다.
-    'SMT_CANCEL_ISSUE : 수신자에게 전자명세서가 발행취소 되었음을 알려주는 메일입니다.
+    ' 전자명세서 메일전송 항목에 대한 전송여부를 수정합니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#UpdateEmailConfig
+    '
+    ' 메일전송유형
+    ' SMT_ISSUE : 수신자에게 전자명세서가 발행 되었음을 알려주는 메일입니다.
+    ' SMT_ACCEPT : 발신자에게 전자명세서가 승인 되었음을 알려주는 메일입니다.
+    ' SMT_DENY : 발신자게에 전자명세서가 거부 되었음을 알려주는 메일입니다.
+    ' SMT_CANCEL : 수신자게에 전자명세서가 취소 되었음을 알려주는 메일입니다.
+    ' SMT_CANCEL_ISSUE : 수신자에게 전자명세서가 발행취소 되었음을 알려주는 메일입니다.
     '=========================================================================
     Private Sub btnUpdateEmailConfig_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnUpdateEmailConfig.Click
@@ -1538,6 +1565,7 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원의 잔여포인트를 확인합니다.
     ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트(GetPartnerBalance API)를 통해 확인하시기 바랍니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#GetBalance
     '=========================================================================
     Private Sub btnGetBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnGetBalance.Click
@@ -1553,6 +1581,7 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원 포인트 충전 URL을 반환합니다.
     ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#GetChargeURL
     '=========================================================================
     Private Sub btnGetChargeURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeURL.Click
 
@@ -1569,6 +1598,7 @@ Public Class frmExample
     ' 파트너의 잔여포인트를 확인합니다.
     ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를
     '   이용하시기 바랍니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#GetPartnerBalance
     '=========================================================================
     Private Sub btnGetPartnerBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerBalance.Click
         Try
@@ -1583,6 +1613,7 @@ Public Class frmExample
     '=========================================================================
     ' 파트너 포인트 충전 팝업 URL을 반환합니다.
     ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#GetPartnerURL
     '=========================================================================
     Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerURL.Click
         Try
@@ -1599,6 +1630,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 전자명세서 발행단가를 확인합니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#GetUnitCost
     '=========================================================================
     Private Sub btnUnitCost_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUnitCost.Click
         Try
@@ -1612,6 +1644,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 전자명세서 API 서비스 과금정보를 확인합니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#GetChargeInfo
     '=========================================================================
     Private Sub btnGetChargeInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo.Click
 
@@ -1631,6 +1664,7 @@ Public Class frmExample
     '=========================================================================
     ' 해당 사업자의 파트너 연동회원 가입여부를 확인합니다.
     ' - LinkID는 인증정보로 설정되어 있는 링크아이디 값입니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#CheckIsMember
     '=========================================================================
     Private Sub btnCheckIsMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckIsMember.Click
         Try
@@ -1645,6 +1679,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 팝빌 회원아이디 중복여부를 확인합니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#CheckID
     '=========================================================================
     Private Sub btnCheckID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckID.Click
         Try
@@ -1659,6 +1694,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 파트너의 연동회원으로 회원가입을 요청합니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#JoinMember
     '=========================================================================
     Private Sub btnJoinMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnJoinMember.Click
         Dim joinInfo As JoinForm = New JoinForm
@@ -1718,6 +1754,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 회사정보를 확인합니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#GetCorpInfo
     '=========================================================================
     Private Sub btnGetCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetCorpInfo.Click
         Try
@@ -1739,6 +1776,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 회사정보를 수정합니다
+    ' - https://docs.popbill.com/statement/dotnet/api#UpdateCorpInfo
     '=========================================================================
     Private Sub btnUpdateCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateCorpInfo.Click
         Dim corpInfo As New CorpInfo
@@ -1770,6 +1808,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 담당자를 신규로 등록합니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#RegistContact
     '=========================================================================
     Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistContact.Click
 
@@ -1814,6 +1853,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 담당자 목록을 확인합니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#ListContact
     '=========================================================================
     Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListContact.Click
         Try
@@ -1835,6 +1875,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 담당자 정보를 수정합니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#UpdateContact
     '=========================================================================
     Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateContact.Click
 
