@@ -58,6 +58,11 @@ Partial Class frmExample
         Me.btnGetFlatRateState = New System.Windows.Forms.Button
         Me.btnFlatRatePopUpURL = New System.Windows.Forms.Button
         Me.GroupBox9 = New System.Windows.Forms.GroupBox
+        Me.btnRevokeCloseBankAccount = New System.Windows.Forms.Button
+        Me.btnCloseBankAccount = New System.Windows.Forms.Button
+        Me.btnGetBankAccountInfo = New System.Windows.Forms.Button
+        Me.btnUpdateBankAccount = New System.Windows.Forms.Button
+        Me.btnRegistBankAccount = New System.Windows.Forms.Button
         Me.btnListBankAccount = New System.Windows.Forms.Button
         Me.btnBankAccountMgtURL = New System.Windows.Forms.Button
         Me.GroupBox8 = New System.Windows.Forms.GroupBox
@@ -399,7 +404,7 @@ Partial Class frmExample
         '
         Me.GroupBox10.Controls.Add(Me.btnGetFlatRateState)
         Me.GroupBox10.Controls.Add(Me.btnFlatRatePopUpURL)
-        Me.GroupBox10.Location = New System.Drawing.Point(480, 20)
+        Me.GroupBox10.Location = New System.Drawing.Point(748, 20)
         Me.GroupBox10.Name = "GroupBox10"
         Me.GroupBox10.Size = New System.Drawing.Size(169, 135)
         Me.GroupBox10.TabIndex = 3
@@ -426,18 +431,68 @@ Partial Class frmExample
         '
         'GroupBox9
         '
+        Me.GroupBox9.Controls.Add(Me.btnRevokeCloseBankAccount)
+        Me.GroupBox9.Controls.Add(Me.btnCloseBankAccount)
+        Me.GroupBox9.Controls.Add(Me.btnGetBankAccountInfo)
+        Me.GroupBox9.Controls.Add(Me.btnUpdateBankAccount)
+        Me.GroupBox9.Controls.Add(Me.btnRegistBankAccount)
         Me.GroupBox9.Controls.Add(Me.btnListBankAccount)
         Me.GroupBox9.Controls.Add(Me.btnBankAccountMgtURL)
         Me.GroupBox9.Location = New System.Drawing.Point(324, 20)
         Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(150, 135)
+        Me.GroupBox9.Size = New System.Drawing.Size(418, 135)
         Me.GroupBox9.TabIndex = 2
         Me.GroupBox9.TabStop = False
         Me.GroupBox9.Text = "계좌 관리"
         '
+        'btnRevokeCloseBankAccount
+        '
+        Me.btnRevokeCloseBankAccount.Location = New System.Drawing.Point(281, 58)
+        Me.btnRevokeCloseBankAccount.Name = "btnRevokeCloseBankAccount"
+        Me.btnRevokeCloseBankAccount.Size = New System.Drawing.Size(131, 30)
+        Me.btnRevokeCloseBankAccount.TabIndex = 10
+        Me.btnRevokeCloseBankAccount.Text = "정액제 해지신청 취소"
+        Me.btnRevokeCloseBankAccount.UseVisualStyleBackColor = True
+        '
+        'btnCloseBankAccount
+        '
+        Me.btnCloseBankAccount.Location = New System.Drawing.Point(281, 20)
+        Me.btnCloseBankAccount.Name = "btnCloseBankAccount"
+        Me.btnCloseBankAccount.Size = New System.Drawing.Size(131, 30)
+        Me.btnCloseBankAccount.TabIndex = 9
+        Me.btnCloseBankAccount.Text = "계좌 정액제 해지신청"
+        Me.btnCloseBankAccount.UseVisualStyleBackColor = True
+        '
+        'btnGetBankAccountInfo
+        '
+        Me.btnGetBankAccountInfo.Location = New System.Drawing.Point(143, 20)
+        Me.btnGetBankAccountInfo.Name = "btnGetBankAccountInfo"
+        Me.btnGetBankAccountInfo.Size = New System.Drawing.Size(131, 30)
+        Me.btnGetBankAccountInfo.TabIndex = 8
+        Me.btnGetBankAccountInfo.Text = "계좌 정보 확인"
+        Me.btnGetBankAccountInfo.UseVisualStyleBackColor = True
+        '
+        'btnUpdateBankAccount
+        '
+        Me.btnUpdateBankAccount.Location = New System.Drawing.Point(6, 56)
+        Me.btnUpdateBankAccount.Name = "btnUpdateBankAccount"
+        Me.btnUpdateBankAccount.Size = New System.Drawing.Size(131, 32)
+        Me.btnUpdateBankAccount.TabIndex = 7
+        Me.btnUpdateBankAccount.Text = "계좌 정보 수정"
+        Me.btnUpdateBankAccount.UseVisualStyleBackColor = True
+        '
+        'btnRegistBankAccount
+        '
+        Me.btnRegistBankAccount.Location = New System.Drawing.Point(6, 20)
+        Me.btnRegistBankAccount.Name = "btnRegistBankAccount"
+        Me.btnRegistBankAccount.Size = New System.Drawing.Size(131, 32)
+        Me.btnRegistBankAccount.TabIndex = 6
+        Me.btnRegistBankAccount.Text = "계좌 등록"
+        Me.btnRegistBankAccount.UseVisualStyleBackColor = True
+        '
         'btnListBankAccount
         '
-        Me.btnListBankAccount.Location = New System.Drawing.Point(10, 57)
+        Me.btnListBankAccount.Location = New System.Drawing.Point(143, 57)
         Me.btnListBankAccount.Name = "btnListBankAccount"
         Me.btnListBankAccount.Size = New System.Drawing.Size(131, 31)
         Me.btnListBankAccount.TabIndex = 5
@@ -446,7 +501,7 @@ Partial Class frmExample
         '
         'btnBankAccountMgtURL
         '
-        Me.btnBankAccountMgtURL.Location = New System.Drawing.Point(10, 20)
+        Me.btnBankAccountMgtURL.Location = New System.Drawing.Point(6, 94)
         Me.btnBankAccountMgtURL.Name = "btnBankAccountMgtURL"
         Me.btnBankAccountMgtURL.Size = New System.Drawing.Size(131, 31)
         Me.btnBankAccountMgtURL.TabIndex = 4
@@ -609,5 +664,10 @@ Partial Class frmExample
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents txtTID As System.Windows.Forms.TextBox
     Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
+    Friend WithEvents btnRegistBankAccount As System.Windows.Forms.Button
+    Friend WithEvents btnGetBankAccountInfo As System.Windows.Forms.Button
+    Friend WithEvents btnUpdateBankAccount As System.Windows.Forms.Button
+    Friend WithEvents btnRevokeCloseBankAccount As System.Windows.Forms.Button
+    Friend WithEvents btnCloseBankAccount As System.Windows.Forms.Button
 
 End Class
