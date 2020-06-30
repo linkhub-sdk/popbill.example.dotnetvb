@@ -22,7 +22,7 @@ Public Class frmExample
     '비밀키
     Private SecretKey As String = "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I="
 
-    '휴폐업조회 서비스 변수 선언
+    '예금주조회 서비스 변수 선언
     Private accountCheckService As AccountCheckService
 
 
