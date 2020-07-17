@@ -3,7 +3,7 @@
 ' 팝빌 전자세금계산서 API VB.Net SDK Example
 '
 ' - VB.NET SDK 연동환경 설정방법 안내 : https://docs.popbill.com/taxinvoice/tutorial/dotnet#vb
-' - 업데이트 일자 : 2020-06-01
+' - 업데이트 일자 : 2020-07-17
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -83,10 +83,6 @@ Public Class frmExample
 
         '[필수] 영수/청구, [영수, 청구] 중 기재
         taxinvoice.purposeType = "영수"
-
-        '[필수] 발행시점, [직접발행, 승인시자동발행] 중 기재
-        ' 발행예정(Send API) 프로세스를 구현하지 않는경우 '직접발행' 기재
-        taxinvoice.issueTiming = "직접발행"
 
         '[필수] 과세형태, [과세, 영세, 면세] 중 기재
         taxinvoice.taxType = "과세"
@@ -324,10 +320,6 @@ Public Class frmExample
         '[필수] 영수/청구, [영수, 청구] 중 기재
         taxinvoice.purposeType = "영수"
 
-        '[필수] 발행시점, [직접발행, 승인시자동발행] 중 기재
-        ' 발행예정(Send API) 프로세스를 구현하지 않는경우 '직접발행' 기재
-        taxinvoice.issueTiming = "직접발행"
-
         '[필수] 과세형태, [과세, 영세, 면세] 중 기재
         taxinvoice.taxType = "과세"
 
@@ -559,10 +551,6 @@ Public Class frmExample
         '[필수] 영수/청구, [영수, 청구] 중 기재
         taxinvoice.purposeType = "영수"
 
-        '[필수] 발행시점, [직접발행, 승인시자동발행] 중 기재
-        ' 발행예정(Send API) 프로세스를 구현하지 않는경우 '직접발행' 기재
-        taxinvoice.issueTiming = "직접발행"
-
         '[필수] 과세형태, [과세, 영세, 면세] 중 기재
         taxinvoice.taxType = "과세"
 
@@ -775,10 +763,6 @@ Public Class frmExample
 
         '[필수] 영수/청구, [영수, 청구] 중 기재
         taxinvoice.purposeType = "영수"
-
-        '[필수] 발행시점, [직접발행, 승인시자동발행] 중 기재
-        ' 발행예정(Send API) 프로세스를 구현하지 않는경우 '직접발행' 기재
-        taxinvoice.issueTiming = "직접발행"
 
         '[필수] 과세형태, [과세, 영세, 면세] 중 기재
         taxinvoice.taxType = "과세"
@@ -1009,10 +993,6 @@ Public Class frmExample
 
         '[필수] 영수/청구, [영수, 청구] 중 기재
         taxinvoice.purposeType = "영수"
-
-        '[필수] 발행시점, [직접발행, 승인시자동발행] 중 기재
-        ' 발행예정(Send API) 프로세스를 구현하지 않는경우 '직접발행' 기재
-        taxinvoice.issueTiming = "직접발행"
 
         '[필수] 과세형태, [과세, 영세, 면세] 중 기재
         taxinvoice.taxType = "과세"
@@ -1458,10 +1438,6 @@ Public Class frmExample
 
         '[필수] 영수/청구, [영수, 청구] 중 기재
         taxinvoice.purposeType = "영수"
-
-        '[필수] 발행시점, [직접발행, 승인시자동발행] 중 기재
-        ' 발행예정(Send API) 프로세스를 구현하지 않는경우 '직접발행' 기재
-        taxinvoice.issueTiming = "직접발행"
 
         '[필수] 과세형태, [과세, 영세, 면세] 중 기재
         taxinvoice.taxType = "과세"
@@ -1996,7 +1972,6 @@ Public Class frmExample
             tmp += "ntsconfirmNum (국세청승인번호) : " + tiDetailInfo.ntsconfirmNum + vbCrLf
             tmp += "issueType (발행형태) : " + tiDetailInfo.issueType + vbCrLf
             tmp += "taxType (과세형태) : " + tiDetailInfo.taxType + vbCrLf
-            tmp += "issueTiming (발행시점) : " + tiDetailInfo.issueTiming + vbCrLf
             tmp += "chargeDirection (과금방향) : " + tiDetailInfo.chargeDirection + vbCrLf
             tmp += "serialNum (일련번호) : " + tiDetailInfo.serialNum + vbCrLf
             tmp += "kwon (권) : " + CStr(tiDetailInfo.kwon) + vbCrLf
