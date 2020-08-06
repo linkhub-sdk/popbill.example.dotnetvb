@@ -2067,15 +2067,17 @@ Public Class frmExample
         Dim TType(2) As String
         Dim taxType(3) As String
         Dim IssueType(3) As String
+        Dim RegType(2) As String
+        Dim CloseDownState(5) As String
 
         '[필수] 일자유형, R-등록일시 W-작성일자 I-발행일시 중 택1
         Dim DType As String = "W"
 
         '[필수] 시작일자, yyyyMMdd
-        Dim SDate As String = "20181201"
+        Dim SDate As String = "20200701"
 
         '[필수] 종료일자, yyyyMMdd
-        Dim EDate As String = "20190110"
+        Dim EDate As String = "20200731"
 
         '상태코드 배열, 미기재시 전체상태조회, 문서상태값 3자리숫자 작성
         '2,3번째 와일드카드 가능
@@ -2096,6 +2098,18 @@ Public Class frmExample
         IssueType(0) = "N"
         IssueType(1) = "R"
         IssueType(2) = "T"
+
+        '등록유형 배열, P-팝빌, H-홈택스 또는 외부ASP
+        RegType(0) = "P"
+        RegType(1) = "H"
+
+        '공급받는자 휴폐업상태 배열, N-미확인, 0-미등록, 1-사업중, 2-폐업, 3-휴업
+        CloseDownState(0) = "N"
+        CloseDownState(1) = "0"
+        CloseDownState(2) = "1"
+        CloseDownState(3) = "2"
+        CloseDownState(4) = "3"
+
 
         '지연발행 여부, False - 정상발행분만 조회 / True - 지연발행분만조회 / Nothing - 전체조회
         Dim LateOnly As Boolean = Nothing
@@ -2121,13 +2135,16 @@ Public Class frmExample
         '거래처 조회, 거래처 상호 또는 거래처 사업자등록번호 조회, 공백처리시 전체조회
         Dim QString As String = ""
 
+        '문서번호 또는 국세청승인번호 조회
+        Dim MgtKey As String = ""
+
         '연동문서 여부, 공백-전체조회, 0-일반문서 조회, 1-연동문서 조회
         Dim interOPYN As String = ""
 
         Try
             Dim tiSearchList As TISearchResult = taxinvoiceService.Search(txtCorpNum.Text, KeyType, DType, SDate, EDate, State, TType, _
                                                                           taxType, IssueType, LateOnly, TaxRegIDYN, TaxRegIDType, TaxRegID, QString, Order, Page, _
-                                                                          PerPage, interOPYN, txtUserId.Text)
+                                                                          PerPage, interOPYN, txtUserId.Text, RegType, CloseDownState, MgtKey)
 
 
             Dim tmp As String

@@ -73,9 +73,9 @@ Public Class frmExample
         Try
             Dim senderList As List(Of SenderNumber) = messageService.GetSenderNumberList(txtCorpNum.Text)
 
-            Dim tmp As String = "number(발신번호) | representYN(대표번호여부) | state(인증상태)" + vbCrLf
+            Dim tmp As String = "number(발신번호) | representYN(대표번호여부) | state(인증상태) | memo(메모)" + vbCrLf
             For Each info As SenderNumber In senderList
-                tmp += info.number + " | " + CStr(info.representYN) + " | " + CStr(info.state) + vbCrLf
+                tmp += info.number + " | " + CStr(info.representYN) + " | " + CStr(info.state) + " | " + info.memo + vbCrLf
             Next
 
             MsgBox(tmp)

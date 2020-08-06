@@ -493,7 +493,7 @@ Partial Class frmExample
         '
         'btnUpdateEmailConfig
         '
-        Me.btnUpdateEmailConfig.Location = New System.Drawing.Point(205, 112)
+        Me.btnUpdateEmailConfig.Location = New System.Drawing.Point(155, 112)
         Me.btnUpdateEmailConfig.Name = "btnUpdateEmailConfig"
         Me.btnUpdateEmailConfig.Size = New System.Drawing.Size(185, 29)
         Me.btnUpdateEmailConfig.TabIndex = 8
@@ -502,7 +502,7 @@ Partial Class frmExample
         '
         'btnListEmailConfig
         '
-        Me.btnListEmailConfig.Location = New System.Drawing.Point(205, 82)
+        Me.btnListEmailConfig.Location = New System.Drawing.Point(155, 82)
         Me.btnListEmailConfig.Name = "btnListEmailConfig"
         Me.btnListEmailConfig.Size = New System.Drawing.Size(185, 29)
         Me.btnListEmailConfig.TabIndex = 7
@@ -1196,9 +1196,9 @@ Partial Class frmExample
         Me.GroupBox13.Controls.Add(Me.btnGetURL_PBOX)
         Me.GroupBox13.Controls.Add(Me.btnGetURL_SBOX)
         Me.GroupBox13.Controls.Add(Me.btnGetURL_TBOX)
-        Me.GroupBox13.Location = New System.Drawing.Point(1099, 365)
+        Me.GroupBox13.Location = New System.Drawing.Point(1144, 363)
         Me.GroupBox13.Name = "GroupBox13"
-        Me.GroupBox13.Size = New System.Drawing.Size(217, 204)
+        Me.GroupBox13.Size = New System.Drawing.Size(166, 208)
         Me.GroupBox13.TabIndex = 12
         Me.GroupBox13.TabStop = False
         Me.GroupBox13.Text = "기타 URL"
@@ -1207,7 +1207,7 @@ Partial Class frmExample
         '
         Me.btnGetURL_WRITE.Location = New System.Drawing.Point(16, 112)
         Me.btnGetURL_WRITE.Name = "btnGetURL_WRITE"
-        Me.btnGetURL_WRITE.Size = New System.Drawing.Size(185, 29)
+        Me.btnGetURL_WRITE.Size = New System.Drawing.Size(136, 29)
         Me.btnGetURL_WRITE.TabIndex = 11
         Me.btnGetURL_WRITE.Text = "매출작성"
         Me.btnGetURL_WRITE.UseVisualStyleBackColor = True
@@ -1216,7 +1216,7 @@ Partial Class frmExample
         '
         Me.btnGetURL_PBOX.Location = New System.Drawing.Point(16, 82)
         Me.btnGetURL_PBOX.Name = "btnGetURL_PBOX"
-        Me.btnGetURL_PBOX.Size = New System.Drawing.Size(185, 29)
+        Me.btnGetURL_PBOX.Size = New System.Drawing.Size(136, 29)
         Me.btnGetURL_PBOX.TabIndex = 10
         Me.btnGetURL_PBOX.Text = "매입보관함"
         Me.btnGetURL_PBOX.UseVisualStyleBackColor = True
@@ -1225,7 +1225,7 @@ Partial Class frmExample
         '
         Me.btnGetURL_SBOX.Location = New System.Drawing.Point(16, 52)
         Me.btnGetURL_SBOX.Name = "btnGetURL_SBOX"
-        Me.btnGetURL_SBOX.Size = New System.Drawing.Size(185, 29)
+        Me.btnGetURL_SBOX.Size = New System.Drawing.Size(136, 29)
         Me.btnGetURL_SBOX.TabIndex = 9
         Me.btnGetURL_SBOX.Text = "매출보관함"
         Me.btnGetURL_SBOX.UseVisualStyleBackColor = True
@@ -1234,7 +1234,7 @@ Partial Class frmExample
         '
         Me.btnGetURL_TBOX.Location = New System.Drawing.Point(16, 20)
         Me.btnGetURL_TBOX.Name = "btnGetURL_TBOX"
-        Me.btnGetURL_TBOX.Size = New System.Drawing.Size(185, 29)
+        Me.btnGetURL_TBOX.Size = New System.Drawing.Size(136, 29)
         Me.btnGetURL_TBOX.TabIndex = 8
         Me.btnGetURL_TBOX.Text = "연동문서함"
         Me.btnGetURL_TBOX.UseVisualStyleBackColor = True
@@ -1247,16 +1247,16 @@ Partial Class frmExample
         Me.GroupBox12.Controls.Add(Me.btnEPrintURL)
         Me.GroupBox12.Controls.Add(Me.btnGetPrintURL)
         Me.GroupBox12.Controls.Add(Me.btnGetPopUpURL)
-        Me.GroupBox12.Location = New System.Drawing.Point(876, 365)
+        Me.GroupBox12.Location = New System.Drawing.Point(723, 363)
         Me.GroupBox12.Name = "GroupBox12"
-        Me.GroupBox12.Size = New System.Drawing.Size(217, 204)
+        Me.GroupBox12.Size = New System.Drawing.Size(408, 209)
         Me.GroupBox12.TabIndex = 11
         Me.GroupBox12.TabStop = False
         Me.GroupBox12.Text = "문서관련 URL 기능"
         '
         'btnGetViewURL
         '
-        Me.btnGetViewURL.Location = New System.Drawing.Point(16, 53)
+        Me.btnGetViewURL.Location = New System.Drawing.Point(12, 53)
         Me.btnGetViewURL.Name = "btnGetViewURL"
         Me.btnGetViewURL.Size = New System.Drawing.Size(185, 29)
         Me.btnGetViewURL.TabIndex = 14
@@ -1265,7 +1265,7 @@ Partial Class frmExample
         '
         'btnGetEmailURL
         '
-        Me.btnGetEmailURL.Location = New System.Drawing.Point(16, 173)
+        Me.btnGetEmailURL.Location = New System.Drawing.Point(12, 173)
         Me.btnGetEmailURL.Name = "btnGetEmailURL"
         Me.btnGetEmailURL.Size = New System.Drawing.Size(185, 29)
         Me.btnGetEmailURL.TabIndex = 13
@@ -1274,7 +1274,7 @@ Partial Class frmExample
         '
         'btnGetMassPrintURL
         '
-        Me.btnGetMassPrintURL.Location = New System.Drawing.Point(16, 143)
+        Me.btnGetMassPrintURL.Location = New System.Drawing.Point(12, 143)
         Me.btnGetMassPrintURL.Name = "btnGetMassPrintURL"
         Me.btnGetMassPrintURL.Size = New System.Drawing.Size(185, 29)
         Me.btnGetMassPrintURL.TabIndex = 12
@@ -1283,7 +1283,7 @@ Partial Class frmExample
         '
         'btnEPrintURL
         '
-        Me.btnEPrintURL.Location = New System.Drawing.Point(16, 113)
+        Me.btnEPrintURL.Location = New System.Drawing.Point(12, 113)
         Me.btnEPrintURL.Name = "btnEPrintURL"
         Me.btnEPrintURL.Size = New System.Drawing.Size(185, 29)
         Me.btnEPrintURL.TabIndex = 11
@@ -1292,7 +1292,7 @@ Partial Class frmExample
         '
         'btnGetPrintURL
         '
-        Me.btnGetPrintURL.Location = New System.Drawing.Point(16, 83)
+        Me.btnGetPrintURL.Location = New System.Drawing.Point(12, 83)
         Me.btnGetPrintURL.Name = "btnGetPrintURL"
         Me.btnGetPrintURL.Size = New System.Drawing.Size(185, 29)
         Me.btnGetPrintURL.TabIndex = 10
@@ -1301,7 +1301,7 @@ Partial Class frmExample
         '
         'btnGetPopUpURL
         '
-        Me.btnGetPopUpURL.Location = New System.Drawing.Point(16, 20)
+        Me.btnGetPopUpURL.Location = New System.Drawing.Point(12, 20)
         Me.btnGetPopUpURL.Name = "btnGetPopUpURL"
         Me.btnGetPopUpURL.Size = New System.Drawing.Size(185, 29)
         Me.btnGetPopUpURL.TabIndex = 9
@@ -1315,9 +1315,9 @@ Partial Class frmExample
         Me.GroupBox9.Controls.Add(Me.btnGetLogs)
         Me.GroupBox9.Controls.Add(Me.btnGetInfo)
         Me.GroupBox9.Controls.Add(Me.btnGetDetailInfo)
-        Me.GroupBox9.Location = New System.Drawing.Point(243, 366)
+        Me.GroupBox9.Location = New System.Drawing.Point(200, 366)
         Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(217, 204)
+        Me.GroupBox9.Size = New System.Drawing.Size(147, 204)
         Me.GroupBox9.TabIndex = 8
         Me.GroupBox9.TabStop = False
         Me.GroupBox9.Text = "문서 정보"
@@ -1326,7 +1326,7 @@ Partial Class frmExample
         '
         Me.btnSearch.Location = New System.Drawing.Point(16, 142)
         Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(185, 29)
+        Me.btnSearch.Size = New System.Drawing.Size(117, 29)
         Me.btnSearch.TabIndex = 10
         Me.btnSearch.Text = "문서목록 조회"
         Me.btnSearch.UseVisualStyleBackColor = True
@@ -1335,7 +1335,7 @@ Partial Class frmExample
         '
         Me.btnGetInfos.Location = New System.Drawing.Point(16, 112)
         Me.btnGetInfos.Name = "btnGetInfos"
-        Me.btnGetInfos.Size = New System.Drawing.Size(185, 29)
+        Me.btnGetInfos.Size = New System.Drawing.Size(117, 29)
         Me.btnGetInfos.TabIndex = 9
         Me.btnGetInfos.Text = "문서정보(대량)"
         Me.btnGetInfos.UseVisualStyleBackColor = True
@@ -1344,7 +1344,7 @@ Partial Class frmExample
         '
         Me.btnGetLogs.Location = New System.Drawing.Point(16, 82)
         Me.btnGetLogs.Name = "btnGetLogs"
-        Me.btnGetLogs.Size = New System.Drawing.Size(185, 29)
+        Me.btnGetLogs.Size = New System.Drawing.Size(117, 29)
         Me.btnGetLogs.TabIndex = 8
         Me.btnGetLogs.Text = "문서이력"
         Me.btnGetLogs.UseVisualStyleBackColor = True
@@ -1353,7 +1353,7 @@ Partial Class frmExample
         '
         Me.btnGetInfo.Location = New System.Drawing.Point(16, 20)
         Me.btnGetInfo.Name = "btnGetInfo"
-        Me.btnGetInfo.Size = New System.Drawing.Size(185, 29)
+        Me.btnGetInfo.Size = New System.Drawing.Size(117, 29)
         Me.btnGetInfo.TabIndex = 7
         Me.btnGetInfo.Text = "문서정보"
         Me.btnGetInfo.UseVisualStyleBackColor = True
@@ -1362,7 +1362,7 @@ Partial Class frmExample
         '
         Me.btnGetDetailInfo.Location = New System.Drawing.Point(16, 52)
         Me.btnGetDetailInfo.Name = "btnGetDetailInfo"
-        Me.btnGetDetailInfo.Size = New System.Drawing.Size(185, 29)
+        Me.btnGetDetailInfo.Size = New System.Drawing.Size(117, 29)
         Me.btnGetDetailInfo.TabIndex = 6
         Me.btnGetDetailInfo.Text = "문서상세정보"
         Me.btnGetDetailInfo.UseVisualStyleBackColor = True
@@ -1377,25 +1377,25 @@ Partial Class frmExample
         Me.GroupBox11.Controls.Add(Me.btnSendFAX)
         Me.GroupBox11.Controls.Add(Me.btnSendSMS)
         Me.GroupBox11.Controls.Add(Me.btnSendEmail)
-        Me.GroupBox11.Location = New System.Drawing.Point(466, 366)
+        Me.GroupBox11.Location = New System.Drawing.Point(356, 363)
         Me.GroupBox11.Name = "GroupBox11"
-        Me.GroupBox11.Size = New System.Drawing.Size(404, 204)
+        Me.GroupBox11.Size = New System.Drawing.Size(352, 208)
         Me.GroupBox11.TabIndex = 10
         Me.GroupBox11.TabStop = False
-        Me.GroupBox11.Text = "부가서비스"
+        Me.GroupBox11.Text = "부가 기능"
         '
         'btnAssignMgtKey
         '
         Me.btnAssignMgtKey.Location = New System.Drawing.Point(14, 112)
         Me.btnAssignMgtKey.Name = "btnAssignMgtKey"
-        Me.btnAssignMgtKey.Size = New System.Drawing.Size(185, 29)
+        Me.btnAssignMgtKey.Size = New System.Drawing.Size(129, 29)
         Me.btnAssignMgtKey.TabIndex = 13
-        Me.btnAssignMgtKey.Text = "관리번호 할당"
+        Me.btnAssignMgtKey.Text = "문서번호 할당"
         Me.btnAssignMgtKey.UseVisualStyleBackColor = True
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(206, 52)
+        Me.Button1.Location = New System.Drawing.Point(156, 52)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(185, 29)
         Me.Button1.TabIndex = 12
@@ -1404,7 +1404,7 @@ Partial Class frmExample
         '
         'btnAttachStatement
         '
-        Me.btnAttachStatement.Location = New System.Drawing.Point(206, 20)
+        Me.btnAttachStatement.Location = New System.Drawing.Point(156, 20)
         Me.btnAttachStatement.Name = "btnAttachStatement"
         Me.btnAttachStatement.Size = New System.Drawing.Size(185, 29)
         Me.btnAttachStatement.TabIndex = 11
@@ -1415,7 +1415,7 @@ Partial Class frmExample
         '
         Me.btnSendFAX.Location = New System.Drawing.Point(14, 82)
         Me.btnSendFAX.Name = "btnSendFAX"
-        Me.btnSendFAX.Size = New System.Drawing.Size(185, 29)
+        Me.btnSendFAX.Size = New System.Drawing.Size(129, 29)
         Me.btnSendFAX.TabIndex = 10
         Me.btnSendFAX.Text = "팩스 전송"
         Me.btnSendFAX.UseVisualStyleBackColor = True
@@ -1424,7 +1424,7 @@ Partial Class frmExample
         '
         Me.btnSendSMS.Location = New System.Drawing.Point(14, 52)
         Me.btnSendSMS.Name = "btnSendSMS"
-        Me.btnSendSMS.Size = New System.Drawing.Size(185, 29)
+        Me.btnSendSMS.Size = New System.Drawing.Size(129, 29)
         Me.btnSendSMS.TabIndex = 9
         Me.btnSendSMS.Text = "문자 전송"
         Me.btnSendSMS.UseVisualStyleBackColor = True
@@ -1433,7 +1433,7 @@ Partial Class frmExample
         '
         Me.btnSendEmail.Location = New System.Drawing.Point(14, 20)
         Me.btnSendEmail.Name = "btnSendEmail"
-        Me.btnSendEmail.Size = New System.Drawing.Size(185, 29)
+        Me.btnSendEmail.Size = New System.Drawing.Size(129, 29)
         Me.btnSendEmail.TabIndex = 8
         Me.btnSendEmail.Text = "이메일 전송"
         Me.btnSendEmail.UseVisualStyleBackColor = True
@@ -1447,7 +1447,7 @@ Partial Class frmExample
         Me.GroupBox10.Controls.Add(Me.btnGetFiles)
         Me.GroupBox10.Location = New System.Drawing.Point(20, 366)
         Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(217, 204)
+        Me.GroupBox10.Size = New System.Drawing.Size(165, 204)
         Me.GroupBox10.TabIndex = 9
         Me.GroupBox10.TabStop = False
         Me.GroupBox10.Text = "첨부파일"
@@ -1456,7 +1456,7 @@ Partial Class frmExample
         '
         Me.txtFileID.Location = New System.Drawing.Point(16, 115)
         Me.txtFileID.Name = "txtFileID"
-        Me.txtFileID.Size = New System.Drawing.Size(185, 21)
+        Me.txtFileID.Size = New System.Drawing.Size(136, 21)
         Me.txtFileID.TabIndex = 12
         '
         'Label4
@@ -1472,7 +1472,7 @@ Partial Class frmExample
         '
         Me.btnDeleteFile.Location = New System.Drawing.Point(16, 142)
         Me.btnDeleteFile.Name = "btnDeleteFile"
-        Me.btnDeleteFile.Size = New System.Drawing.Size(185, 29)
+        Me.btnDeleteFile.Size = New System.Drawing.Size(136, 29)
         Me.btnDeleteFile.TabIndex = 10
         Me.btnDeleteFile.Text = "첨부파일 삭제"
         Me.btnDeleteFile.UseVisualStyleBackColor = True
@@ -1481,7 +1481,7 @@ Partial Class frmExample
         '
         Me.btnAttachFile.Location = New System.Drawing.Point(16, 52)
         Me.btnAttachFile.Name = "btnAttachFile"
-        Me.btnAttachFile.Size = New System.Drawing.Size(185, 29)
+        Me.btnAttachFile.Size = New System.Drawing.Size(136, 29)
         Me.btnAttachFile.TabIndex = 9
         Me.btnAttachFile.Text = "파일첨부"
         Me.btnAttachFile.UseVisualStyleBackColor = True
@@ -1490,7 +1490,7 @@ Partial Class frmExample
         '
         Me.btnGetFiles.Location = New System.Drawing.Point(16, 20)
         Me.btnGetFiles.Name = "btnGetFiles"
-        Me.btnGetFiles.Size = New System.Drawing.Size(185, 29)
+        Me.btnGetFiles.Size = New System.Drawing.Size(136, 29)
         Me.btnGetFiles.TabIndex = 8
         Me.btnGetFiles.Text = "첨부파일 목록"
         Me.btnGetFiles.UseVisualStyleBackColor = True

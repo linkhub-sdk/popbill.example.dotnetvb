@@ -109,10 +109,10 @@ Public Class frmExample
         Try
             Dim senderNumberList As List(Of SenderNumber) = kakaoService.GetSenderNumberList(txtCorpNum.Text, txtUserId.Text)
 
-            Dim tmp As String = "number(발신번호) | representYN(대표번호여부) | state(인증상태)" + vbCrLf
+            Dim tmp As String = "number(발신번호) | representYN(대표번호여부) | state(인증상태) | memo(메모)" + vbCrLf
 
             For Each info As SenderNumber In senderNumberList
-                tmp += info.number + " | " + CStr(info.state) + " | " + CStr(info.representYN) + vbCrLf
+                tmp += info.number + " | " + CStr(info.state) + " | " + CStr(info.representYN) + " | " + info.memo + vbCrLf
             Next
 
             MsgBox(tmp)
