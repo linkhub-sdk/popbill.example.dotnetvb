@@ -3,7 +3,7 @@
 ' 팝빌 현금영수증 API VB.Net  SDK Example
 '
 ' - VB.Net SDK 연동환경 설정방법 안내 : https://docs.popbill.com/cashbill/tutorial/dotnet#vb
-' - 업데이트 일자 : 2020-06-01
+' - 업데이트 일자 : 2020-08-06
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -42,8 +42,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 현금영수증 관리번호 중복여부를 확인합니다.
-    ' - 관리번호는 1~24자리로 숫자, 영문 '-', '_' 조합으로 구성할 수 있습니다.
+    ' 현금영수증 문서번호 중복여부를 확인합니다.
+    ' - 문서번호는 1~24자리로 숫자, 영문 '-', '_' 조합으로 구성할 수 있습니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#CheckMgtKeyInUse
     '=========================================================================
     Private Sub btnCheckMgtKeyInUse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckMgtKeyInUse.Click
@@ -67,7 +67,7 @@ Public Class frmExample
     Private Sub btnRegistIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistIssue.Click
         Dim cashbill As Cashbill = New Cashbill
 
-        '현금영수증 관리번호, 1~24자리 영문,숫자조합으로 사업자별로 중복되지 않도록 구성
+        '현금영수증 문서번호, 1~24자리 영문,숫자조합으로 사업자별로 중복되지 않도록 구성
         cashbill.mgtKey = txtMgtKey.Text
 
         '[취소거래시 필수] 원본 현금영수증 국세청승인번호
@@ -166,7 +166,7 @@ Public Class frmExample
     Private Sub btnRegister_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim cashbill As Cashbill = New Cashbill
 
-        '현금영수증 관리번호, 1~24자리 영문,숫자조합으로 사업자별로 중복되지 않도록 구성
+        '현금영수증 문서번호, 1~24자리 영문,숫자조합으로 사업자별로 중복되지 않도록 구성
         cashbill.mgtKey = txtMgtKey.Text
 
         '[취소거래시 필수] 원본 현금영수증 국세청승인번호
@@ -260,7 +260,7 @@ Public Class frmExample
 
         Dim cashbill As Cashbill = New Cashbill
 
-        '현금영수증 관리번호, 1~24자리 영문,숫자조합으로 사업자별로 중복되지 않도록 구성
+        '현금영수증 문서번호, 1~24자리 영문,숫자조합으로 사업자별로 중복되지 않도록 구성
         cashbill.mgtKey = txtMgtKey.Text
 
         '[취소거래시 필수] 원본 현금영수증 국세청승인번호
@@ -666,7 +666,7 @@ Public Class frmExample
 
             Dim tmp As String = ""
 
-            tmp += "mgtKey (관리번호) : " + cbDetailInfo.mgtKey + vbCrLf
+            tmp += "mgtKey (문서번호) : " + cbDetailInfo.mgtKey + vbCrLf
             tmp += "confirmNum (국세청승인번호) : " + cbDetailInfo.confirmNum + vbCrLf
             tmp += "orgConfirmNum (원본 현금영수증 국세청승인번호) : " + cbDetailInfo.orgConfirmNum + vbCrLf
             tmp += "orgTradeDate (원본 현금영수증 거래일자) : " + cbDetailInfo.orgTradeDate + vbCrLf
@@ -945,7 +945,7 @@ Public Class frmExample
     Private Sub btnGetMassPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMassPrintURL.Click
         Dim MgtKeyList As List(Of String) = New List(Of String)
 
-        '문서 관리번호 배열, 최대 100건.
+        '문서 문서번호 배열, 최대 100건.
         MgtKeyList.Add("20190119-001")
         MgtKeyList.Add("20190119-002")
 
@@ -1478,6 +1478,26 @@ Public Class frmExample
             Dim url As String = cashbillService.GetPDFURL(txtCorpNum.Text, txtMgtKey.Text, txtUserId.Text)
 
             MsgBox(url)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 팝빌사이트에서 작성된 현금영수증에 파트너 문서번호를 할당합니다.
+    '=========================================================================
+    Private Sub btnAssignMgtKey_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAssignMgtKey.Click
+
+        '현금영수증 아이템키, 목록조회(Search) API의 반환항목중 ItemKey 참조
+        Dim itemKey As String = "020080617004800001"
+
+        '문서번호가 없는 문서에 할당할 문서번호
+        '- 문서번호는 1~24자리로 숫자, 영문 '-', '_' 조합으로 구성할 수 있습니다.
+        Dim mgtKey As String = "20200906-001"
+
+        Try
+            Dim response As Response = cashbillService.AssignMgtKey(txtCorpNum.Text, itemKey, mgtKey, txtUserId.Text)
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try

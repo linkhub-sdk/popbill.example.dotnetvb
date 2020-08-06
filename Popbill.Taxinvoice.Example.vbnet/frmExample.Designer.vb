@@ -153,7 +153,6 @@ Partial Class frmExample
         Me.txtMgtKey = New System.Windows.Forms.TextBox
         Me.Label3 = New System.Windows.Forms.Label
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
-        Me.Button2 = New System.Windows.Forms.Button
         Me.btnGetPDFURL = New System.Windows.Forms.Button
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
@@ -1313,7 +1312,6 @@ Partial Class frmExample
         '
         'GroupBox9
         '
-        Me.GroupBox9.Controls.Add(Me.Button2)
         Me.GroupBox9.Controls.Add(Me.btnSearch)
         Me.GroupBox9.Controls.Add(Me.btnGetInfos)
         Me.GroupBox9.Controls.Add(Me.btnGetLogs)
@@ -1547,15 +1545,6 @@ Partial Class frmExample
         '
         Me.fileDialog.FileName = "OpenFileDialog1"
         '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(24, 150)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 11
-        Me.Button2.Text = "Button2"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
         'btnGetPDFURL
         '
         Me.btnGetPDFURL.Location = New System.Drawing.Point(229, 20)
@@ -1743,6 +1732,5 @@ Partial Class frmExample
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents btnGetViewURL As System.Windows.Forms.Button
     Friend WithEvents btnGetPDFURL As System.Windows.Forms.Button
-    Friend WithEvents Button2 As System.Windows.Forms.Button
 
 End Class

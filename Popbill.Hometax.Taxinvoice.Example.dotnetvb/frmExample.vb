@@ -3,7 +3,7 @@
 ' 팝빌 홈택스 전자세금계산서 매입매출 조회 API VB.Net SDK Example
 '
 ' - VB.Net SDK 연동환경 설정방법 안내 : https://docs.popbill.com/httaxinvoice/tutorial/dotnet#vb
-' - 업데이트 일자 : 2020-06-01
+' - 업데이트 일자 : 2020-08-06
 ' - 연동 기술지원 연락처 : 1600-8536 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '

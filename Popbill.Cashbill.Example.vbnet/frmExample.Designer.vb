@@ -92,6 +92,7 @@ Partial Class frmExample
         Me.btnCheckIsMember = New System.Windows.Forms.Button
         Me.btnJoinMember = New System.Windows.Forms.Button
         Me.btnGetPDFURL = New System.Windows.Forms.Button
+        Me.btnAssignMgtKey = New System.Windows.Forms.Button
         Me.GroupBox7.SuspendLayout()
         Me.GroupBox13.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -157,7 +158,7 @@ Partial Class frmExample
         Me.GroupBox7.Controls.Add(Me.Label3)
         Me.GroupBox7.Location = New System.Drawing.Point(14, 218)
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(808, 452)
+        Me.GroupBox7.Size = New System.Drawing.Size(1028, 452)
         Me.GroupBox7.TabIndex = 6
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "현금영수증 관련 API"
@@ -176,7 +177,7 @@ Partial Class frmExample
         Me.GroupBox13.Controls.Add(Me.btnGetURL_WRITE)
         Me.GroupBox13.Controls.Add(Me.btnGetURL_PBOX)
         Me.GroupBox13.Controls.Add(Me.btnGetURL_TBOX)
-        Me.GroupBox13.Location = New System.Drawing.Point(645, 243)
+        Me.GroupBox13.Location = New System.Drawing.Point(776, 243)
         Me.GroupBox13.Name = "GroupBox13"
         Me.GroupBox13.Size = New System.Drawing.Size(115, 184)
         Me.GroupBox13.TabIndex = 12
@@ -383,7 +384,7 @@ Partial Class frmExample
         Me.GroupBox12.Controls.Add(Me.btnEPrintURL)
         Me.GroupBox12.Controls.Add(Me.btnGetPrintURL)
         Me.GroupBox12.Controls.Add(Me.btnGetPopUpURL)
-        Me.GroupBox12.Location = New System.Drawing.Point(311, 243)
+        Me.GroupBox12.Location = New System.Drawing.Point(434, 243)
         Me.GroupBox12.Name = "GroupBox12"
         Me.GroupBox12.Size = New System.Drawing.Size(328, 184)
         Me.GroupBox12.TabIndex = 11
@@ -437,6 +438,7 @@ Partial Class frmExample
         '
         'GroupBox11
         '
+        Me.GroupBox11.Controls.Add(Me.btnAssignMgtKey)
         Me.GroupBox11.Controls.Add(Me.btnUpdateEmailConfig)
         Me.GroupBox11.Controls.Add(Me.btnListEmailConfig)
         Me.GroupBox11.Controls.Add(Me.btnSendFAX)
@@ -444,10 +446,10 @@ Partial Class frmExample
         Me.GroupBox11.Controls.Add(Me.btnSendEmail)
         Me.GroupBox11.Location = New System.Drawing.Point(132, 243)
         Me.GroupBox11.Name = "GroupBox11"
-        Me.GroupBox11.Size = New System.Drawing.Size(171, 184)
+        Me.GroupBox11.Size = New System.Drawing.Size(296, 184)
         Me.GroupBox11.TabIndex = 10
         Me.GroupBox11.TabStop = False
-        Me.GroupBox11.Text = "부가서비스"
+        Me.GroupBox11.Text = "부가 기능"
         '
         'btnUpdateEmailConfig
         '
@@ -816,6 +818,15 @@ Partial Class frmExample
         Me.btnGetPDFURL.Text = "PDF 다운로드 URL"
         Me.btnGetPDFURL.UseVisualStyleBackColor = True
         '
+        'btnAssignMgtKey
+        '
+        Me.btnAssignMgtKey.Location = New System.Drawing.Point(169, 19)
+        Me.btnAssignMgtKey.Name = "btnAssignMgtKey"
+        Me.btnAssignMgtKey.Size = New System.Drawing.Size(121, 27)
+        Me.btnAssignMgtKey.TabIndex = 11
+        Me.btnAssignMgtKey.Text = "문서번호 할당"
+        Me.btnAssignMgtKey.UseVisualStyleBackColor = True
+        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
@@ -920,5 +931,6 @@ Partial Class frmExample
     Friend WithEvents btnUpdateEmailConfig As System.Windows.Forms.Button
     Friend WithEvents btnListEmailConfig As System.Windows.Forms.Button
     Friend WithEvents btnGetPDFURL As System.Windows.Forms.Button
+    Friend WithEvents btnAssignMgtKey As System.Windows.Forms.Button
 
 End Class
