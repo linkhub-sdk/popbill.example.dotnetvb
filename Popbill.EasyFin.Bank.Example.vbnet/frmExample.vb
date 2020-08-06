@@ -522,7 +522,8 @@ Public Class frmExample
             tmp += "total (총 검색결과 건수) : " + CStr(searchList.total) + vbCrLf
             tmp += "perPage (페이지당 검색개수) : " + CStr(searchList.perPage) + vbCrLf
             tmp += "pageNum (페이지 번호) : " + CStr(searchList.pageNum) + vbCrLf
-            tmp += "pageCount (페이지 개수) : " + CStr(searchList.pageCount) + vbCrLf + vbCrLf
+            tmp += "pageCount (페이지 개수) : " + CStr(searchList.pageCount) + vbCrLf
+            tmp += "lastScrapDT (최종 조회일시) : " + CStr(searchList.lastScrapDT) + vbCrLf + vbCrLf
 
             MsgBox(tmp)
 
