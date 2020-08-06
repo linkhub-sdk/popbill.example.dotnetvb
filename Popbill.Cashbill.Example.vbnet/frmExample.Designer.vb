@@ -91,6 +91,7 @@ Partial Class frmExample
         Me.btnCheckID = New System.Windows.Forms.Button
         Me.btnCheckIsMember = New System.Windows.Forms.Button
         Me.btnJoinMember = New System.Windows.Forms.Button
+        Me.btnGetPDFURL = New System.Windows.Forms.Button
         Me.GroupBox7.SuspendLayout()
         Me.GroupBox13.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -175,7 +176,7 @@ Partial Class frmExample
         Me.GroupBox13.Controls.Add(Me.btnGetURL_WRITE)
         Me.GroupBox13.Controls.Add(Me.btnGetURL_PBOX)
         Me.GroupBox13.Controls.Add(Me.btnGetURL_TBOX)
-        Me.GroupBox13.Location = New System.Drawing.Point(509, 243)
+        Me.GroupBox13.Location = New System.Drawing.Point(645, 243)
         Me.GroupBox13.Name = "GroupBox13"
         Me.GroupBox13.Size = New System.Drawing.Size(115, 184)
         Me.GroupBox13.TabIndex = 12
@@ -376,6 +377,7 @@ Partial Class frmExample
         '
         'GroupBox12
         '
+        Me.GroupBox12.Controls.Add(Me.btnGetPDFURL)
         Me.GroupBox12.Controls.Add(Me.btnGetEmailURL)
         Me.GroupBox12.Controls.Add(Me.btnGetMassPrintURL)
         Me.GroupBox12.Controls.Add(Me.btnEPrintURL)
@@ -383,7 +385,7 @@ Partial Class frmExample
         Me.GroupBox12.Controls.Add(Me.btnGetPopUpURL)
         Me.GroupBox12.Location = New System.Drawing.Point(311, 243)
         Me.GroupBox12.Name = "GroupBox12"
-        Me.GroupBox12.Size = New System.Drawing.Size(192, 184)
+        Me.GroupBox12.Size = New System.Drawing.Size(328, 184)
         Me.GroupBox12.TabIndex = 11
         Me.GroupBox12.TabStop = False
         Me.GroupBox12.Text = "문서관련 URL 기능"
@@ -805,6 +807,15 @@ Partial Class frmExample
         Me.btnJoinMember.Text = "회원 가입"
         Me.btnJoinMember.UseVisualStyleBackColor = True
         '
+        'btnGetPDFURL
+        '
+        Me.btnGetPDFURL.Location = New System.Drawing.Point(192, 20)
+        Me.btnGetPDFURL.Name = "btnGetPDFURL"
+        Me.btnGetPDFURL.Size = New System.Drawing.Size(130, 26)
+        Me.btnGetPDFURL.TabIndex = 14
+        Me.btnGetPDFURL.Text = "PDF 다운로드 URL"
+        Me.btnGetPDFURL.UseVisualStyleBackColor = True
+        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
@@ -908,5 +919,6 @@ Partial Class frmExample
     Friend WithEvents btnSearch As System.Windows.Forms.Button
     Friend WithEvents btnUpdateEmailConfig As System.Windows.Forms.Button
     Friend WithEvents btnListEmailConfig As System.Windows.Forms.Button
+    Friend WithEvents btnGetPDFURL As System.Windows.Forms.Button
 
 End Class

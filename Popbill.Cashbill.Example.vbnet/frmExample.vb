@@ -1468,4 +1468,18 @@ Public Class frmExample
         End Try
     End Sub
 
+    '=========================================================================
+    ' 1건의 현금영수증 PDF 다운로드 URL을 반환합니다.
+    ' - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+    '=========================================================================
+    Private Sub btnGetPDFURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPDFURL.Click
+
+        Try
+            Dim url As String = cashbillService.GetPDFURL(txtCorpNum.Text, txtMgtKey.Text, txtUserId.Text)
+
+            MsgBox(url)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
 End Class

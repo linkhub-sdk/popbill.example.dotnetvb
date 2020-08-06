@@ -1915,4 +1915,21 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
+
+    '=========================================================================
+    ' 1건의 전자명세서 보기 팝업 URL을 반환합니다. (메뉴/버튼 제외)
+    ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    '=========================================================================
+    Private Sub btnGetViewURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetViewURL.Click
+
+        Try
+            Dim url As String = statementService.GetViewURL(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, txtUserId.Text)
+
+            txtUserId.Text = url
+
+            MsgBox(url)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
 End Class
