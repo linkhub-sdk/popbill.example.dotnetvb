@@ -310,7 +310,7 @@ Public Class frmExample
         Dim templateCode As String = "019020000163"
 
         '팝빌에 사전등록된 발신번호
-        Dim senderNum As String = "07043042991"
+        Dim senderNum As String = "01043245117"
 
         '알림톡 템플릿 내용 (최대 1000자)
         Dim content As String = "[ 팝빌 ]" + vbCrLf
@@ -337,6 +337,8 @@ Public Class frmExample
             Dim msg As KakaoReceiver = New KakaoReceiver
             msg.rcv = "010111222" '수신번호
             msg.rcvnm = "수신자명칭_" + CStr(i) '수신자명
+            msg.interOPRefKey = "20200806-" + CStr(i) '파트너 지정키, 수신자 구별용 메모.
+
             receiverList.Add(msg)
         Next
 
@@ -819,7 +821,7 @@ Public Class frmExample
             '전송결과 정보 리스트
             Dim rowStr As String = "state(전송상태 코드) | sendDT(전송일시) | receiveNum(수신번호) | receiveName(수신자명) | content(내용) | "
             rowStr += "result(전송결과 코드) | resultDT(전송결과 수신일시) | altContnet(대체문자 내용) | altContentType(대체문자 전송유형) | "
-            rowStr += "altSendDT(대체문자 전송일시) | altReult(대체문자 전송결과 코드) | altResultDT(대체문자 전송결과 수신일시) | receiptNum(접수번호) | requestNum(요청번호)"
+            rowStr += "altSendDT(대체문자 전송일시) | altReult(대체문자 전송결과 코드) | altResultDT(대체문자 전송결과 수신일시) | receiptNum(접수번호) | requestNum(요청번호) | interOPRefKey (파트너 지정키)"
 
             ListBox1.Items.Add(rowStr)
 
@@ -838,7 +840,8 @@ Public Class frmExample
                 rowStr += Result.altResult + " | "
                 rowStr += Result.altResultDT + " | "
                 rowStr += Result.receiptNum + " | "
-                rowStr += Result.requestNum
+                rowStr += Result.requestNum + " | "
+                rowStr += Result.interOPRefKey
 
                 ListBox1.Items.Add(rowStr)
             Next
