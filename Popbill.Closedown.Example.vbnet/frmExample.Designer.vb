@@ -54,6 +54,8 @@ Partial Class frmExample
         Me.btnCheckCorpNum = New System.Windows.Forms.Button
         Me.Label3 = New System.Windows.Forms.Label
         Me.txtTargetCorpNum = New System.Windows.Forms.TextBox
+        Me.Label4 = New System.Windows.Forms.Label
+        Me.txtURL = New System.Windows.Forms.TextBox
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -192,7 +194,7 @@ Partial Class frmExample
         '
         Me.btnGetPartnerBalance.Location = New System.Drawing.Point(6, 18)
         Me.btnGetPartnerBalance.Name = "btnGetPartnerBalance"
-        Me.btnGetPartnerBalance.Size = New System.Drawing.Size(118, 31)
+        Me.btnGetPartnerBalance.Size = New System.Drawing.Size(118, 30)
         Me.btnGetPartnerBalance.TabIndex = 3
         Me.btnGetPartnerBalance.Text = "파트너포인트 확인"
         Me.btnGetPartnerBalance.UseVisualStyleBackColor = True
@@ -221,7 +223,7 @@ Partial Class frmExample
         '
         Me.btnGetBalance.Location = New System.Drawing.Point(7, 19)
         Me.btnGetBalance.Name = "btnGetBalance"
-        Me.btnGetBalance.Size = New System.Drawing.Size(118, 29)
+        Me.btnGetBalance.Size = New System.Drawing.Size(118, 30)
         Me.btnGetBalance.TabIndex = 2
         Me.btnGetBalance.Text = "잔여포인트 확인"
         Me.btnGetBalance.UseVisualStyleBackColor = True
@@ -250,7 +252,7 @@ Partial Class frmExample
         '
         Me.btnUnitCost.Location = New System.Drawing.Point(6, 51)
         Me.btnUnitCost.Name = "btnUnitCost"
-        Me.btnUnitCost.Size = New System.Drawing.Size(118, 29)
+        Me.btnUnitCost.Size = New System.Drawing.Size(118, 30)
         Me.btnUnitCost.TabIndex = 3
         Me.btnUnitCost.Text = "요금 단가 확인"
         Me.btnUnitCost.UseVisualStyleBackColor = True
@@ -280,7 +282,7 @@ Partial Class frmExample
         '
         Me.btnCheckIsMember.Location = New System.Drawing.Point(6, 19)
         Me.btnCheckIsMember.Name = "btnCheckIsMember"
-        Me.btnCheckIsMember.Size = New System.Drawing.Size(118, 29)
+        Me.btnCheckIsMember.Size = New System.Drawing.Size(118, 30)
         Me.btnCheckIsMember.TabIndex = 2
         Me.btnCheckIsMember.Text = "가입여부 확인"
         Me.btnCheckIsMember.UseVisualStyleBackColor = True
@@ -289,7 +291,7 @@ Partial Class frmExample
         '
         Me.btnJoinMember.Location = New System.Drawing.Point(6, 84)
         Me.btnJoinMember.Name = "btnJoinMember"
-        Me.btnJoinMember.Size = New System.Drawing.Size(118, 31)
+        Me.btnJoinMember.Size = New System.Drawing.Size(118, 30)
         Me.btnJoinMember.TabIndex = 1
         Me.btnJoinMember.Text = "회원 가입"
         Me.btnJoinMember.UseVisualStyleBackColor = True
@@ -364,9 +366,9 @@ Partial Class frmExample
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(13, 28)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(105, 12)
+        Me.Label3.Size = New System.Drawing.Size(101, 12)
         Me.Label3.TabIndex = 1
-        Me.Label3.Text = "조회 사업자번호 : "
+        Me.Label3.Text = "조회 사업자번호 :"
         '
         'txtTargetCorpNum
         '
@@ -375,11 +377,29 @@ Partial Class frmExample
         Me.txtTargetCorpNum.Size = New System.Drawing.Size(122, 21)
         Me.txtTargetCorpNum.TabIndex = 0
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(670, 22)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(64, 12)
+        Me.Label4.TabIndex = 4
+        Me.Label4.Text = "응답 URL :"
+        '
+        'txtURL
+        '
+        Me.txtURL.Location = New System.Drawing.Point(740, 18)
+        Me.txtURL.Name = "txtURL"
+        Me.txtURL.Size = New System.Drawing.Size(279, 21)
+        Me.txtURL.TabIndex = 4
+        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1040, 294)
+        Me.Controls.Add(Me.txtURL)
+        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.txtUserId)
         Me.Controls.Add(Me.Label2)
@@ -435,5 +455,7 @@ Partial Class frmExample
     Friend WithEvents txtTargetCorpNum As System.Windows.Forms.TextBox
     Friend WithEvents btnCheckCorpNum As System.Windows.Forms.Button
     Friend WithEvents btnCheckCorpNums As System.Windows.Forms.Button
+    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents txtURL As System.Windows.Forms.TextBox
 
 End Class

@@ -91,6 +91,8 @@ Partial Class frmExample
         Me.txtCorpNum = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
+        Me.Label6 = New System.Windows.Forms.Label
+        Me.txtURL = New System.Windows.Forms.TextBox
         Me.groupBox7.SuspendLayout()
         Me.groupBox8.SuspendLayout()
         Me.groupBox6.SuspendLayout()
@@ -493,7 +495,7 @@ Partial Class frmExample
         Me.GroupBox17.Controls.Add(Me.btnGetCorpInfo)
         Me.GroupBox17.Location = New System.Drawing.Point(1028, 17)
         Me.GroupBox17.Name = "GroupBox17"
-        Me.GroupBox17.Size = New System.Drawing.Size(134, 125)
+        Me.GroupBox17.Size = New System.Drawing.Size(134, 126)
         Me.GroupBox17.TabIndex = 6
         Me.GroupBox17.TabStop = False
         Me.GroupBox17.Text = "회사정보 관련"
@@ -587,7 +589,7 @@ Partial Class frmExample
         '
         'btnGetPartnerURL
         '
-        Me.btnGetPartnerURL.Location = New System.Drawing.Point(6, 51)
+        Me.btnGetPartnerURL.Location = New System.Drawing.Point(6, 52)
         Me.btnGetPartnerURL.Name = "btnGetPartnerURL"
         Me.btnGetPartnerURL.Size = New System.Drawing.Size(118, 30)
         Me.btnGetPartnerURL.TabIndex = 6
@@ -596,9 +598,9 @@ Partial Class frmExample
         '
         'btnGetPartnerBalance
         '
-        Me.btnGetPartnerBalance.Location = New System.Drawing.Point(6, 18)
+        Me.btnGetPartnerBalance.Location = New System.Drawing.Point(6, 19)
         Me.btnGetPartnerBalance.Name = "btnGetPartnerBalance"
-        Me.btnGetPartnerBalance.Size = New System.Drawing.Size(118, 31)
+        Me.btnGetPartnerBalance.Size = New System.Drawing.Size(118, 30)
         Me.btnGetPartnerBalance.TabIndex = 3
         Me.btnGetPartnerBalance.Text = "파트너포인트 확인"
         Me.btnGetPartnerBalance.UseVisualStyleBackColor = True
@@ -616,7 +618,7 @@ Partial Class frmExample
         '
         'btnGetChargeURL
         '
-        Me.btnGetChargeURL.Location = New System.Drawing.Point(6, 50)
+        Me.btnGetChargeURL.Location = New System.Drawing.Point(7, 52)
         Me.btnGetChargeURL.Name = "btnGetChargeURL"
         Me.btnGetChargeURL.Size = New System.Drawing.Size(118, 30)
         Me.btnGetChargeURL.TabIndex = 5
@@ -627,7 +629,7 @@ Partial Class frmExample
         '
         Me.btnGetBalance.Location = New System.Drawing.Point(7, 19)
         Me.btnGetBalance.Name = "btnGetBalance"
-        Me.btnGetBalance.Size = New System.Drawing.Size(118, 29)
+        Me.btnGetBalance.Size = New System.Drawing.Size(118, 30)
         Me.btnGetBalance.TabIndex = 2
         Me.btnGetBalance.Text = "잔여포인트 확인"
         Me.btnGetBalance.UseVisualStyleBackColor = True
@@ -669,7 +671,7 @@ Partial Class frmExample
         '
         Me.btnGetUnitCost_MMS.Location = New System.Drawing.Point(18, 86)
         Me.btnGetUnitCost_MMS.Name = "btnGetUnitCost_MMS"
-        Me.btnGetUnitCost_MMS.Size = New System.Drawing.Size(126, 29)
+        Me.btnGetUnitCost_MMS.Size = New System.Drawing.Size(126, 30)
         Me.btnGetUnitCost_MMS.TabIndex = 6
         Me.btnGetUnitCost_MMS.Text = "포토 요금단가 확인"
         Me.btnGetUnitCost_MMS.UseVisualStyleBackColor = True
@@ -678,7 +680,7 @@ Partial Class frmExample
         '
         Me.btnGetUnitCost_LMS.Location = New System.Drawing.Point(18, 52)
         Me.btnGetUnitCost_LMS.Name = "btnGetUnitCost_LMS"
-        Me.btnGetUnitCost_LMS.Size = New System.Drawing.Size(126, 29)
+        Me.btnGetUnitCost_LMS.Size = New System.Drawing.Size(126, 30)
         Me.btnGetUnitCost_LMS.TabIndex = 5
         Me.btnGetUnitCost_LMS.Text = "장문 요금단가 확인"
         Me.btnGetUnitCost_LMS.UseVisualStyleBackColor = True
@@ -696,7 +698,7 @@ Partial Class frmExample
         '
         Me.btnUnitCost_SMS.Location = New System.Drawing.Point(18, 19)
         Me.btnUnitCost_SMS.Name = "btnUnitCost_SMS"
-        Me.btnUnitCost_SMS.Size = New System.Drawing.Size(126, 29)
+        Me.btnUnitCost_SMS.Size = New System.Drawing.Size(126, 30)
         Me.btnUnitCost_SMS.TabIndex = 3
         Me.btnUnitCost_SMS.Text = "단문 요금단가 확인"
         Me.btnUnitCost_SMS.UseVisualStyleBackColor = True
@@ -726,7 +728,7 @@ Partial Class frmExample
         '
         Me.btnCheckIsMember.Location = New System.Drawing.Point(6, 19)
         Me.btnCheckIsMember.Name = "btnCheckIsMember"
-        Me.btnCheckIsMember.Size = New System.Drawing.Size(118, 29)
+        Me.btnCheckIsMember.Size = New System.Drawing.Size(118, 30)
         Me.btnCheckIsMember.TabIndex = 2
         Me.btnCheckIsMember.Text = "가입여부 확인"
         Me.btnCheckIsMember.UseVisualStyleBackColor = True
@@ -735,7 +737,7 @@ Partial Class frmExample
         '
         Me.btnJoinMember.Location = New System.Drawing.Point(6, 84)
         Me.btnJoinMember.Name = "btnJoinMember"
-        Me.btnJoinMember.Size = New System.Drawing.Size(118, 31)
+        Me.btnJoinMember.Size = New System.Drawing.Size(118, 30)
         Me.btnJoinMember.TabIndex = 1
         Me.btnJoinMember.Text = "회원 가입"
         Me.btnJoinMember.UseVisualStyleBackColor = True
@@ -778,11 +780,29 @@ Partial Class frmExample
         '
         Me.fileDialog.FileName = "fileDialog"
         '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(822, 14)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(64, 12)
+        Me.Label6.TabIndex = 36
+        Me.Label6.Text = "응답 URL :"
+        '
+        'txtURL
+        '
+        Me.txtURL.Location = New System.Drawing.Point(892, 11)
+        Me.txtURL.Name = "txtURL"
+        Me.txtURL.Size = New System.Drawing.Size(285, 21)
+        Me.txtURL.TabIndex = 36
+        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1213, 665)
+        Me.Controls.Add(Me.txtURL)
+        Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.txtUserId)
         Me.Controls.Add(Me.Label2)
@@ -880,5 +900,7 @@ Partial Class frmExample
     Private WithEvents GroupBox13 As System.Windows.Forms.GroupBox
     Private WithEvents GroupBox12 As System.Windows.Forms.GroupBox
     Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents txtURL As System.Windows.Forms.TextBox
 
 End Class

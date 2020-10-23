@@ -23,6 +23,8 @@ Partial Class frmExample
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox
+        Me.Label4 = New System.Windows.Forms.Label
+        Me.txtAccountNumber = New System.Windows.Forms.TextBox
         Me.btnCheckCorpNum = New System.Windows.Forms.Button
         Me.Label3 = New System.Windows.Forms.Label
         Me.txtBankCode = New System.Windows.Forms.TextBox
@@ -53,8 +55,8 @@ Partial Class frmExample
         Me.btnCheckID = New System.Windows.Forms.Button
         Me.btnCheckIsMember = New System.Windows.Forms.Button
         Me.btnJoinMember = New System.Windows.Forms.Button
-        Me.Label4 = New System.Windows.Forms.Label
-        Me.txtAccountNumber = New System.Windows.Forms.TextBox
+        Me.Label5 = New System.Windows.Forms.Label
+        Me.txtURL = New System.Windows.Forms.TextBox
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
@@ -79,6 +81,23 @@ Partial Class frmExample
         Me.GroupBox4.TabIndex = 40
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "예금주조회 API"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(13, 52)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(65, 12)
+        Me.Label4.TabIndex = 4
+        Me.Label4.Text = "계좌번호 : "
+        '
+        'txtAccountNumber
+        '
+        Me.txtAccountNumber.Location = New System.Drawing.Point(84, 47)
+        Me.txtAccountNumber.Name = "txtAccountNumber"
+        Me.txtAccountNumber.Size = New System.Drawing.Size(155, 21)
+        Me.txtAccountNumber.TabIndex = 3
+        Me.txtAccountNumber.Text = "9432451175835"
         '
         'btnCheckCorpNum
         '
@@ -369,28 +388,29 @@ Partial Class frmExample
         Me.btnJoinMember.Text = "회원 가입"
         Me.btnJoinMember.UseVisualStyleBackColor = True
         '
-        'Label4
+        'Label5
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(13, 52)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(65, 12)
-        Me.Label4.TabIndex = 4
-        Me.Label4.Text = "계좌번호 : "
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(674, 23)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(64, 12)
+        Me.Label5.TabIndex = 41
+        Me.Label5.Text = "응답 URL :"
         '
-        'txtAccountNumber
+        'txtURL
         '
-        Me.txtAccountNumber.Location = New System.Drawing.Point(84, 47)
-        Me.txtAccountNumber.Name = "txtAccountNumber"
-        Me.txtAccountNumber.Size = New System.Drawing.Size(155, 21)
-        Me.txtAccountNumber.TabIndex = 3
-        Me.txtAccountNumber.Text = "9432451175835"
+        Me.txtURL.Location = New System.Drawing.Point(744, 18)
+        Me.txtURL.Name = "txtURL"
+        Me.txtURL.Size = New System.Drawing.Size(271, 21)
+        Me.txtURL.TabIndex = 5
         '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1037, 325)
+        Me.Controls.Add(Me.txtURL)
+        Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.txtUserId)
         Me.Controls.Add(Me.Label2)
@@ -446,5 +466,7 @@ Partial Class frmExample
     Friend WithEvents btnJoinMember As System.Windows.Forms.Button
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents txtAccountNumber As System.Windows.Forms.TextBox
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents txtURL As System.Windows.Forms.TextBox
 
 End Class

@@ -3,7 +3,7 @@
 ' 팝빌 문자 API VB.Net SDK Example
 '
 ' - VB.Net 연동환경 설정방법 안내 : https://docs.popbill.com/message/tutorial/dotnet#vb
-' - 업데이트 일자 : 2020-08-06
+' - 업데이트 일자 : 2020-10-23
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -38,6 +38,9 @@ Public Class frmExample
         '인증토큰의 IP제한기능 사용여부, (True-권장)
         messageService.IPRestrictOnOff = True
 
+        '로컬PC 시간 사용 여부 True(사용), False(기본값) - 미사용
+        messageService.UseLocalTimeYN = False
+
     End Sub
 
     Private Function getReserveDT() As DateTime?
@@ -59,7 +62,7 @@ Public Class frmExample
             Dim url As String = messageService.GetSenderNumberMgtURL(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox(url)
-
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -888,7 +891,7 @@ Public Class frmExample
             Dim url As String = messageService.GetSentListURL(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox(url)
-
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -941,6 +944,7 @@ Public Class frmExample
             Dim url As String = messageService.GetChargeURL(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -975,6 +979,7 @@ Public Class frmExample
             Dim url As String = messageService.GetPartnerURL(txtCorpNum.Text, TOGO)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1208,6 +1213,7 @@ Public Class frmExample
             Dim url As String = messageService.GetAccessURL(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try

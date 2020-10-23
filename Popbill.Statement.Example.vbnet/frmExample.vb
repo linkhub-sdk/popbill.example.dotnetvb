@@ -3,7 +3,7 @@
 ' 팝빌 전자명세서 API VB.NET SDK Example
 '
 ' - VB.NET SDK 연동환경 설정방법 안내 : https://docs.popbill.com/statement/tutorial/dotnet#vb
-' - 업데이트 일자 : 2020-08-06
+' - 업데이트 일자 : 2020-10-23
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -37,6 +37,10 @@ Public Class frmExample
 
         '인증토큰의 IP제한기능 사용여부, (True-권장)
         statementService.IPRestrictOnOff = True
+
+        '로컬PC 시간 사용 여부 True(사용), False(기본값) - 미사용
+        statementService.UseLocalTimeYN = False
+
     End Sub
 
     ' 명세서 종류코드 반환
@@ -86,7 +90,7 @@ Public Class frmExample
         Dim statement As New Statement
 
         '[필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
-        statement.writeDate = "20191023"
+        statement.writeDate = "20201023"
 
         '[필수] {영수, 청구} 중 기재
         statement.purposeType = "영수"
@@ -214,7 +218,7 @@ Public Class frmExample
         Dim newDetail As StatementDetail = New StatementDetail
 
         newDetail.serialNum = 1             '일련번호 1부터 순차 기재
-        newDetail.purchaseDT = "20190111"   '거래일자  yyyyMMdd
+        newDetail.purchaseDT = "20201023"   '거래일자  yyyyMMdd
         newDetail.itemName = "품명"         '품목명
         newDetail.spec = "규격"             '규격
         newDetail.unit = "단위"             '단위
@@ -234,7 +238,7 @@ Public Class frmExample
         newDetail = New StatementDetail
 
         newDetail.serialNum = 2             '일련번호 1부터 순차 기재
-        newDetail.purchaseDT = "20190111"   '거래일자  yyyyMMdd
+        newDetail.purchaseDT = "20201023"   '거래일자  yyyyMMdd
         newDetail.itemName = "품명"         '품목명
         newDetail.spec = "규격"             '규격
 
@@ -274,7 +278,7 @@ Public Class frmExample
         Dim statement As New Statement
 
         '[필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
-        statement.writeDate = "20190111"
+        statement.writeDate = "20201023"
 
         '[필수] {영수, 청구} 중 기재
         statement.purposeType = "영수"
@@ -402,7 +406,7 @@ Public Class frmExample
         Dim newDetail As StatementDetail = New StatementDetail
 
         newDetail.serialNum = 1             '일련번호 1부터 순차 기재
-        newDetail.purchaseDT = "20190111"   '거래일자  yyyyMMdd
+        newDetail.purchaseDT = "20201023"   '거래일자  yyyyMMdd
         newDetail.itemName = "품명"         '품목명
         newDetail.spec = "규격"             '규격
         newDetail.unit = "단위"             '단위
@@ -422,7 +426,7 @@ Public Class frmExample
         newDetail = New StatementDetail
 
         newDetail.serialNum = 2             '일련번호 1부터 순차 기재
-        newDetail.purchaseDT = "20190111"   '거래일자  yyyyMMdd
+        newDetail.purchaseDT = "20201023"   '거래일자  yyyyMMdd
         newDetail.itemName = "품명"         '품목명
         newDetail.spec = "규격"             '규격
 
@@ -457,7 +461,7 @@ Public Class frmExample
         Dim statement As New Statement
 
         '[필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
-        statement.writeDate = "20190111"
+        statement.writeDate = "20201023"
 
         '[필수] {영수, 청구} 중 기재
         statement.purposeType = "영수"
@@ -585,7 +589,7 @@ Public Class frmExample
         Dim newDetail As StatementDetail = New StatementDetail
 
         newDetail.serialNum = 1             '일련번호 1부터 순차 기재
-        newDetail.purchaseDT = "20190111"   '거래일자  yyyyMMdd
+        newDetail.purchaseDT = "20201023"   '거래일자  yyyyMMdd
         newDetail.itemName = "품명"         '품목명
         newDetail.spec = "규격"             '규격
         newDetail.unit = "단위"             '단위
@@ -605,7 +609,7 @@ Public Class frmExample
         newDetail = New StatementDetail
 
         newDetail.serialNum = 2             '일련번호 1부터 순차 기재
-        newDetail.purchaseDT = "20190111"   '거래일자  yyyyMMdd
+        newDetail.purchaseDT = "20201023"   '거래일자  yyyyMMdd
         newDetail.itemName = "품명"         '품목명
         newDetail.spec = "규격"             '규격
 
@@ -893,10 +897,10 @@ Public Class frmExample
         Dim DType As String = "W"
 
         '[필수] 시작일자, yyyyMMdd
-        Dim SDate As String = "20190901"
+        Dim SDate As String = "20201020"
 
         '[필수] 종료일자, yyyyMMdd
-        Dim EDate As String = "20191231"
+        Dim EDate As String = "20201023"
 
         '전송상태값 배열, 미기재시 전체상태조회, 문서상태값 3자리숫자 작성
         '2,3번째 와일드카드 가능
@@ -999,6 +1003,7 @@ Public Class frmExample
             Dim url As String = statementService.GetURL(txtCorpNum.Text, txtUserId.Text, "TBOX")
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1014,6 +1019,7 @@ Public Class frmExample
             Dim url As String = statementService.GetURL(txtCorpNum.Text, txtUserId.Text, "SBOX")
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1031,6 +1037,7 @@ Public Class frmExample
             Dim url As String = statementService.GetPopUpURL(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1047,6 +1054,7 @@ Public Class frmExample
             Dim url As String = statementService.GetPrintURL(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1063,6 +1071,7 @@ Public Class frmExample
             Dim url As String = statementService.GetEPrintURL(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1085,6 +1094,7 @@ Public Class frmExample
             Dim url As String = statementService.GetMassPrintURL(txtCorpNum.Text, selectedItemCode, MgtKeyList, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1100,6 +1110,7 @@ Public Class frmExample
             Dim url As String = statementService.GetMailURL(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1115,6 +1126,7 @@ Public Class frmExample
             Dim url As String = statementService.GetAccessURL(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1129,6 +1141,7 @@ Public Class frmExample
             Dim url As String = statementService.GetSealURL(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1289,7 +1302,7 @@ Public Class frmExample
         Dim statement As New Statement
 
         '[필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
-        statement.writeDate = "20190111"
+        statement.writeDate = "20201023"
 
         '[필수] {영수, 청구} 중 기재
         statement.purposeType = "영수"
@@ -1417,7 +1430,7 @@ Public Class frmExample
         Dim newDetail As StatementDetail = New StatementDetail
 
         newDetail.serialNum = 1             '일련번호 1부터 순차 기재
-        newDetail.purchaseDT = "20190111"   '거래일자  yyyyMMdd
+        newDetail.purchaseDT = "20201023"   '거래일자  yyyyMMdd
         newDetail.itemName = "품명"         '품목명
         newDetail.spec = "규격"             '규격
         newDetail.unit = "단위"             '단위
@@ -1437,7 +1450,7 @@ Public Class frmExample
         newDetail = New StatementDetail
 
         newDetail.serialNum = 2             '일련번호 1부터 순차 기재
-        newDetail.purchaseDT = "20190111"   '거래일자  yyyyMMdd
+        newDetail.purchaseDT = "20201023"   '거래일자  yyyyMMdd
         newDetail.itemName = "품명"         '품목명
         newDetail.spec = "규격"             '규격
 
@@ -1473,7 +1486,7 @@ Public Class frmExample
         Dim subItemCode As Integer = 121
 
         '첨부할 전자명세서 관리번호
-        Dim subMgtKey As String = "20190111-02"
+        Dim subMgtKey As String = "20201023-02"
 
         Try
             Dim response As Response = statementService.AttachStatement(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, subItemCode, subMgtKey)
@@ -1589,6 +1602,7 @@ Public Class frmExample
             Dim url As String = statementService.GetChargeURL(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1623,6 +1637,7 @@ Public Class frmExample
             Dim url As String = statementService.GetPartnerURL(txtCorpNum.Text, TOGO)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1925,9 +1940,8 @@ Public Class frmExample
         Try
             Dim url As String = statementService.GetViewURL(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, txtUserId.Text)
 
-            txtUserId.Text = url
-
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try

@@ -61,6 +61,7 @@ Partial Class frmExample
         Me.btnGetFlatRateState = New System.Windows.Forms.Button
         Me.btnGetFlatRatePopUpURL = New System.Windows.Forms.Button
         Me.groupBox10 = New System.Windows.Forms.GroupBox
+        Me.btnGetPrintURL = New System.Windows.Forms.Button
         Me.btnGetPopUpURL = New System.Windows.Forms.Button
         Me.label6 = New System.Windows.Forms.Label
         Me.btnGetXML = New System.Windows.Forms.Button
@@ -78,7 +79,8 @@ Partial Class frmExample
         Me.btnRequestJob = New System.Windows.Forms.Button
         Me.btnGetJobState = New System.Windows.Forms.Button
         Me.btnListActiveJob = New System.Windows.Forms.Button
-        Me.btnGetPrintURL = New System.Windows.Forms.Button
+        Me.Label7 = New System.Windows.Forms.Label
+        Me.txtURL = New System.Windows.Forms.TextBox
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -491,6 +493,15 @@ Partial Class frmExample
         Me.groupBox10.TabStop = False
         Me.groupBox10.Text = "전자(세금)계산서 상세정보 조회"
         '
+        'btnGetPrintURL
+        '
+        Me.btnGetPrintURL.Location = New System.Drawing.Point(154, 152)
+        Me.btnGetPrintURL.Name = "btnGetPrintURL"
+        Me.btnGetPrintURL.Size = New System.Drawing.Size(142, 29)
+        Me.btnGetPrintURL.TabIndex = 6
+        Me.btnGetPrintURL.Text = "세금계산서 인쇄 팝업"
+        Me.btnGetPrintURL.UseVisualStyleBackColor = True
+        '
         'btnGetPopUpURL
         '
         Me.btnGetPopUpURL.Location = New System.Drawing.Point(154, 120)
@@ -644,20 +655,29 @@ Partial Class frmExample
         Me.btnListActiveJob.Text = "수집 상태 목록 확인"
         Me.btnListActiveJob.UseVisualStyleBackColor = True
         '
-        'btnGetPrintURL
+        'Label7
         '
-        Me.btnGetPrintURL.Location = New System.Drawing.Point(154, 152)
-        Me.btnGetPrintURL.Name = "btnGetPrintURL"
-        Me.btnGetPrintURL.Size = New System.Drawing.Size(142, 29)
-        Me.btnGetPrintURL.TabIndex = 6
-        Me.btnGetPrintURL.Text = "세금계산서 인쇄 팝업"
-        Me.btnGetPrintURL.UseVisualStyleBackColor = True
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(716, 19)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(64, 12)
+        Me.Label7.TabIndex = 35
+        Me.Label7.Text = "응답 URL :"
+        '
+        'txtURL
+        '
+        Me.txtURL.Location = New System.Drawing.Point(786, 15)
+        Me.txtURL.Name = "txtURL"
+        Me.txtURL.Size = New System.Drawing.Size(295, 21)
+        Me.txtURL.TabIndex = 7
         '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1104, 734)
+        Me.Controls.Add(Me.txtURL)
+        Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.groupBox7)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.txtUserId)
@@ -744,5 +764,7 @@ Partial Class frmExample
     Friend WithEvents btnRegistDeptUser As System.Windows.Forms.Button
     Friend WithEvents btnCheckCertValidation As System.Windows.Forms.Button
     Friend WithEvents btnGetPrintURL As System.Windows.Forms.Button
+    Friend WithEvents Label7 As System.Windows.Forms.Label
+    Private WithEvents txtURL As System.Windows.Forms.TextBox
 
 End Class

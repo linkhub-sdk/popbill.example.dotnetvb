@@ -71,6 +71,8 @@ Partial Class frmExample
         Me.btnRequestJob = New System.Windows.Forms.Button
         Me.btnGetJobState = New System.Windows.Forms.Button
         Me.btnListActiveJob = New System.Windows.Forms.Button
+        Me.Label5 = New System.Windows.Forms.Label
+        Me.txtURL = New System.Windows.Forms.TextBox
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -108,7 +110,7 @@ Partial Class frmExample
         Me.GroupBox17.Controls.Add(Me.btnGetCorpInfo)
         Me.GroupBox17.Location = New System.Drawing.Point(873, 17)
         Me.GroupBox17.Name = "GroupBox17"
-        Me.GroupBox17.Size = New System.Drawing.Size(134, 125)
+        Me.GroupBox17.Size = New System.Drawing.Size(134, 126)
         Me.GroupBox17.TabIndex = 6
         Me.GroupBox17.TabStop = False
         Me.GroupBox17.Text = "회사정보 관련"
@@ -124,7 +126,7 @@ Partial Class frmExample
         '
         'btnGetCorpInfo
         '
-        Me.btnGetCorpInfo.Location = New System.Drawing.Point(6, 18)
+        Me.btnGetCorpInfo.Location = New System.Drawing.Point(6, 19)
         Me.btnGetCorpInfo.Name = "btnGetCorpInfo"
         Me.btnGetCorpInfo.Size = New System.Drawing.Size(122, 30)
         Me.btnGetCorpInfo.TabIndex = 7
@@ -145,7 +147,7 @@ Partial Class frmExample
         '
         'btnUpdateContact
         '
-        Me.btnUpdateContact.Location = New System.Drawing.Point(8, 84)
+        Me.btnUpdateContact.Location = New System.Drawing.Point(8, 86)
         Me.btnUpdateContact.Name = "btnUpdateContact"
         Me.btnUpdateContact.Size = New System.Drawing.Size(122, 30)
         Me.btnUpdateContact.TabIndex = 7
@@ -163,7 +165,7 @@ Partial Class frmExample
         '
         'btnRegistContact
         '
-        Me.btnRegistContact.Location = New System.Drawing.Point(8, 20)
+        Me.btnRegistContact.Location = New System.Drawing.Point(8, 19)
         Me.btnRegistContact.Name = "btnRegistContact"
         Me.btnRegistContact.Size = New System.Drawing.Size(122, 30)
         Me.btnRegistContact.TabIndex = 5
@@ -213,7 +215,7 @@ Partial Class frmExample
         '
         Me.btnGetPartnerBalance.Location = New System.Drawing.Point(6, 18)
         Me.btnGetPartnerBalance.Name = "btnGetPartnerBalance"
-        Me.btnGetPartnerBalance.Size = New System.Drawing.Size(118, 31)
+        Me.btnGetPartnerBalance.Size = New System.Drawing.Size(118, 30)
         Me.btnGetPartnerBalance.TabIndex = 3
         Me.btnGetPartnerBalance.Text = "파트너포인트 확인"
         Me.btnGetPartnerBalance.UseVisualStyleBackColor = True
@@ -231,7 +233,7 @@ Partial Class frmExample
         '
         'btnGetChargeURL
         '
-        Me.btnGetChargeURL.Location = New System.Drawing.Point(6, 50)
+        Me.btnGetChargeURL.Location = New System.Drawing.Point(6, 51)
         Me.btnGetChargeURL.Name = "btnGetChargeURL"
         Me.btnGetChargeURL.Size = New System.Drawing.Size(118, 30)
         Me.btnGetChargeURL.TabIndex = 5
@@ -242,7 +244,7 @@ Partial Class frmExample
         '
         Me.btnGetBalance.Location = New System.Drawing.Point(7, 19)
         Me.btnGetBalance.Name = "btnGetBalance"
-        Me.btnGetBalance.Size = New System.Drawing.Size(118, 29)
+        Me.btnGetBalance.Size = New System.Drawing.Size(118, 30)
         Me.btnGetBalance.TabIndex = 2
         Me.btnGetBalance.Text = "잔여포인트 확인"
         Me.btnGetBalance.UseVisualStyleBackColor = True
@@ -291,7 +293,7 @@ Partial Class frmExample
         '
         Me.btnCheckIsMember.Location = New System.Drawing.Point(6, 19)
         Me.btnCheckIsMember.Name = "btnCheckIsMember"
-        Me.btnCheckIsMember.Size = New System.Drawing.Size(118, 29)
+        Me.btnCheckIsMember.Size = New System.Drawing.Size(118, 30)
         Me.btnCheckIsMember.TabIndex = 2
         Me.btnCheckIsMember.Text = "가입여부 확인"
         Me.btnCheckIsMember.UseVisualStyleBackColor = True
@@ -300,7 +302,7 @@ Partial Class frmExample
         '
         Me.btnJoinMember.Location = New System.Drawing.Point(6, 84)
         Me.btnJoinMember.Name = "btnJoinMember"
-        Me.btnJoinMember.Size = New System.Drawing.Size(118, 31)
+        Me.btnJoinMember.Size = New System.Drawing.Size(118, 30)
         Me.btnJoinMember.TabIndex = 1
         Me.btnJoinMember.Text = "회원 가입"
         Me.btnJoinMember.UseVisualStyleBackColor = True
@@ -568,11 +570,29 @@ Partial Class frmExample
         Me.btnListActiveJob.Text = "수집 상태 목록 확인"
         Me.btnListActiveJob.UseVisualStyleBackColor = True
         '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(675, 21)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(64, 12)
+        Me.Label5.TabIndex = 40
+        Me.Label5.Text = "응답 URL :"
+        '
+        'txtURL
+        '
+        Me.txtURL.Location = New System.Drawing.Point(745, 16)
+        Me.txtURL.Name = "txtURL"
+        Me.txtURL.Size = New System.Drawing.Size(279, 21)
+        Me.txtURL.TabIndex = 9
+        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1056, 721)
+        Me.Controls.Add(Me.txtURL)
+        Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.groupBox7)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.txtUserId)
@@ -649,5 +669,7 @@ Partial Class frmExample
     Friend WithEvents btnCheckDeptUser As System.Windows.Forms.Button
     Friend WithEvents btnRegistDeptUser As System.Windows.Forms.Button
     Friend WithEvents btnCheckCertValidation As System.Windows.Forms.Button
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Private WithEvents txtURL As System.Windows.Forms.TextBox
 
 End Class

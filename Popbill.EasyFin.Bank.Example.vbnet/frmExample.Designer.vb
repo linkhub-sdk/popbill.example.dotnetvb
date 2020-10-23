@@ -73,6 +73,8 @@ Partial Class frmExample
         Me.btnListActiveJob = New System.Windows.Forms.Button
         Me.btnGetJobState = New System.Windows.Forms.Button
         Me.btnRequestJob = New System.Windows.Forms.Button
+        Me.Label5 = New System.Windows.Forms.Label
+        Me.txtURL = New System.Windows.Forms.TextBox
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -147,7 +149,7 @@ Partial Class frmExample
         '
         'btnUpdateContact
         '
-        Me.btnUpdateContact.Location = New System.Drawing.Point(6, 82)
+        Me.btnUpdateContact.Location = New System.Drawing.Point(6, 84)
         Me.btnUpdateContact.Name = "btnUpdateContact"
         Me.btnUpdateContact.Size = New System.Drawing.Size(135, 30)
         Me.btnUpdateContact.TabIndex = 7
@@ -300,7 +302,7 @@ Partial Class frmExample
         '
         'btnJoinMember
         '
-        Me.btnJoinMember.Location = New System.Drawing.Point(6, 82)
+        Me.btnJoinMember.Location = New System.Drawing.Point(6, 83)
         Me.btnJoinMember.Name = "btnJoinMember"
         Me.btnJoinMember.Size = New System.Drawing.Size(135, 30)
         Me.btnJoinMember.TabIndex = 1
@@ -309,7 +311,7 @@ Partial Class frmExample
         '
         'txtUserId
         '
-        Me.txtUserId.Location = New System.Drawing.Point(415, 11)
+        Me.txtUserId.Location = New System.Drawing.Point(415, 12)
         Me.txtUserId.Name = "txtUserId"
         Me.txtUserId.Size = New System.Drawing.Size(143, 21)
         Me.txtUserId.TabIndex = 37
@@ -318,7 +320,7 @@ Partial Class frmExample
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(310, 16)
+        Me.Label2.Location = New System.Drawing.Point(310, 17)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(101, 12)
         Me.Label2.TabIndex = 36
@@ -586,11 +588,29 @@ Partial Class frmExample
         Me.btnRequestJob.Text = "수집 요청"
         Me.btnRequestJob.UseVisualStyleBackColor = True
         '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(719, 19)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(64, 12)
+        Me.Label5.TabIndex = 9
+        Me.Label5.Text = "응답 URL :"
+        '
+        'txtURL
+        '
+        Me.txtURL.Location = New System.Drawing.Point(789, 14)
+        Me.txtURL.Name = "txtURL"
+        Me.txtURL.Size = New System.Drawing.Size(302, 21)
+        Me.txtURL.TabIndex = 9
+        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1110, 665)
+        Me.Controls.Add(Me.txtURL)
+        Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.txtUserId)
@@ -669,5 +689,7 @@ Partial Class frmExample
     Friend WithEvents btnUpdateBankAccount As System.Windows.Forms.Button
     Friend WithEvents btnRevokeCloseBankAccount As System.Windows.Forms.Button
     Friend WithEvents btnCloseBankAccount As System.Windows.Forms.Button
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents txtURL As System.Windows.Forms.TextBox
 
 End Class
