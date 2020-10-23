@@ -72,7 +72,7 @@ Public Class frmExample
         Dim taxinvoice As Taxinvoice = New Taxinvoice
 
         '[필수] 작성일자, 표시형식 (yyyyMMdd) ex) 20190111
-        taxinvoice.writeDate = "20191023"
+        taxinvoice.writeDate = "20201022"
 
         '[필수] 발행형태, [정발행, 역발행, 위수탁] 중 기재
         taxinvoice.issueType = "정발행"
@@ -245,7 +245,7 @@ Public Class frmExample
         Dim detail As TaxinvoiceDetail = New TaxinvoiceDetail
 
         detail.serialNum = 1                            '일련번호, 1부터 순차기재
-        detail.purchaseDT = "20190111"                 '거래일자, yyyyMMdd
+        detail.purchaseDT = "20201022"                 '거래일자, yyyyMMdd
         detail.itemName = "품목명"                      '품목명
         detail.spec = "규격"                            '규격
         detail.qty = "1"                                '수량
@@ -308,7 +308,7 @@ Public Class frmExample
         Dim taxinvoice As Taxinvoice = New Taxinvoice
 
         '[필수] 작성일자, 표시형식 (yyyyMMdd) ex) 20190111
-        taxinvoice.writeDate = "20190226"
+        taxinvoice.writeDate = "20201022"
 
         '[필수] 발행형태, [정발행, 역발행, 위수탁] 중 기재
         taxinvoice.issueType = "정발행"
@@ -481,7 +481,7 @@ Public Class frmExample
         Dim detail As TaxinvoiceDetail = New TaxinvoiceDetail
 
         detail.serialNum = 1                            '일련번호, 1부터 순차기재
-        detail.purchaseDT = "20190111"                  '거래일자, yyyyMMdd
+        detail.purchaseDT = "20201022"                  '거래일자, yyyyMMdd
         detail.itemName = "품목명"                      '품목명
         detail.spec = "규격"                            '규격
         detail.qty = "1"                                '수량
@@ -539,7 +539,7 @@ Public Class frmExample
         Dim taxinvoice As Taxinvoice = New Taxinvoice
 
         '[필수] 작성일자, 표시형식 (yyyyMMdd) ex) 20190111
-        taxinvoice.writeDate = "20190111"
+        taxinvoice.writeDate = "20201022"
 
         '[필수] 발행형태, [정발행, 역발행, 위수탁] 중 기재
         taxinvoice.issueType = "역발행"
@@ -713,7 +713,7 @@ Public Class frmExample
         Dim detail As TaxinvoiceDetail = New TaxinvoiceDetail
 
         detail.serialNum = 1                            '일련번호, 1부터 순차기재
-        detail.purchaseDT = "20190111"                 '거래일자, yyyyMMdd
+        detail.purchaseDT = "20201022"                 '거래일자, yyyyMMdd
         detail.itemName = "품목명"                      '품목명
         detail.spec = "규격"                            '규격
         detail.qty = "1"                                '수량
@@ -752,7 +752,7 @@ Public Class frmExample
         Dim taxinvoice As Taxinvoice = New Taxinvoice
 
         '[필수] 작성일자, 표시형식 (yyyyMMdd) ex) 20190111
-        taxinvoice.writeDate = "20190111"
+        taxinvoice.writeDate = "20201022"
 
         '[필수] 발행형태, [정발행, 역발행, 위수탁] 중 기재
         taxinvoice.issueType = "정발행"
@@ -924,7 +924,7 @@ Public Class frmExample
         Dim detail As TaxinvoiceDetail = New TaxinvoiceDetail
 
         detail.serialNum = 1                            '일련번호, 1부터 순차기재
-        detail.purchaseDT = "20190111"                 '거래일자, yyyyMMdd
+        detail.purchaseDT = "20201022"                 '거래일자, yyyyMMdd
         detail.itemName = "품목명"                      '품목명
         detail.spec = "규격"                            '규격
         detail.qty = "1"                                '수량
@@ -982,7 +982,7 @@ Public Class frmExample
         Dim taxinvoice As Taxinvoice = New Taxinvoice
 
         '[필수] 작성일자, 표시형식 (yyyyMMdd) ex) 20190111
-        taxinvoice.writeDate = "20190111"
+        taxinvoice.writeDate = "20201022"
 
         '[필수] 발행형태, [정발행, 역발행, 위수탁] 중 기재
         taxinvoice.issueType = "역발행"
@@ -1154,7 +1154,7 @@ Public Class frmExample
         Dim detail As TaxinvoiceDetail = New TaxinvoiceDetail
 
         detail.serialNum = 1                            '일련번호, 1부터 순차기재
-        detail.purchaseDT = "20190111"                 '거래일자, yyyyMMdd
+        detail.purchaseDT = "20201022"                 '거래일자, yyyyMMdd
         detail.itemName = "품목명"                      '품목명
         detail.spec = "규격"                            '규격
         detail.qty = "1"                                '수량
@@ -1427,7 +1427,7 @@ Public Class frmExample
         Dim taxinvoice As Taxinvoice = New Taxinvoice
 
         '[필수] 작성일자, 표시형식 (yyyyMMdd) ex) 20190111
-        taxinvoice.writeDate = "20190111"
+        taxinvoice.writeDate = "20201022"
 
         '[필수] 발행형태, [정발행, 역발행, 위수탁] 중 기재
         taxinvoice.issueType = "역발행"
@@ -1600,7 +1600,7 @@ Public Class frmExample
         Dim detail As TaxinvoiceDetail = New TaxinvoiceDetail
 
         detail.serialNum = 1                            '일련번호, 1부터 순차기재
-        detail.purchaseDT = "20190111"                  '거래일자, yyyyMMdd
+        detail.purchaseDT = "20201022"                  '거래일자, yyyyMMdd
         detail.itemName = "품목명"                      '품목명
         detail.spec = "규격"                            '규격
         detail.qty = "1"                                '수량
@@ -1900,8 +1900,8 @@ Public Class frmExample
         Dim MgtKeyList As List(Of String) = New List(Of String)
 
         '문서번호 배열, 최대 1000건
-        MgtKeyList.Add("20190111-001")
-        MgtKeyList.Add("20190111-002")
+        MgtKeyList.Add("20201022-001")
+        MgtKeyList.Add("20201022-002")
 
         Try
             Dim taxinvoiceInfoList As List(Of TaxinvoiceInfo) = taxinvoiceService.GetInfos(txtCorpNum.Text, KeyType, MgtKeyList)
@@ -2244,6 +2244,7 @@ Public Class frmExample
             Dim url As String = taxinvoiceService.GetURL(txtCorpNum.Text, txtUserId.Text, TOGO)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -2264,6 +2265,7 @@ Public Class frmExample
             Dim url As String = taxinvoiceService.GetURL(txtCorpNum.Text, txtUserId.Text, TOGO)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -2284,6 +2286,7 @@ Public Class frmExample
             Dim url As String = taxinvoiceService.GetURL(txtCorpNum.Text, txtUserId.Text, TOGO)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -2304,6 +2307,7 @@ Public Class frmExample
             Dim url As String = taxinvoiceService.GetURL(txtCorpNum.Text, txtUserId.Text, TOGO)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -2324,6 +2328,7 @@ Public Class frmExample
             Dim url As String = taxinvoiceService.GetPopUpURL(txtCorpNum.Text, KeyType, txtMgtKey.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -2344,6 +2349,28 @@ Public Class frmExample
             Dim url As String = taxinvoiceService.GetPrintURL(txtCorpNum.Text, KeyType, txtMgtKey.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 1건의 전자세금계산서 인쇄팝업 URL을 반환합니다.
+    ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetOldPrintURL
+    '=========================================================================
+    Private Sub btnGetOldPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnGetOldPrintURL.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
+        Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
+
+        Try
+            Dim url As String = taxinvoiceService.GetOldPrintURL(txtCorpNum.Text, KeyType, txtMgtKey.Text, txtUserId.Text)
+
+            MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -2364,6 +2391,7 @@ Public Class frmExample
             Dim url As String = taxinvoiceService.GetEPrintURL(txtCorpNum.Text, KeyType, txtMgtKey.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -2389,6 +2417,7 @@ Public Class frmExample
             Dim url As String = taxinvoiceService.GetMassPrintURL(txtCorpNum.Text, KeyType, MgtKeyList, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -2410,6 +2439,7 @@ Public Class frmExample
             Dim url As String = taxinvoiceService.GetMailURL(txtCorpNum.Text, KeyType, txtMgtKey.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -2427,6 +2457,7 @@ Public Class frmExample
             Dim url As String = taxinvoiceService.GetAccessURL(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -2443,6 +2474,7 @@ Public Class frmExample
             Dim url As String = taxinvoiceService.GetSealURL(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -2839,7 +2871,7 @@ Public Class frmExample
             Dim url As String = taxinvoiceService.GetTaxCertURL(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox(url)
-
+            txtURL.Text = url
             '=====================================================================
             '공인인증서 등록시에는 Internet Explorer 브라우저만 이용이 가능합니다. 
             '- IE에서만 공인인증서 ActiveX 툴킷 구동가능 
@@ -2925,6 +2957,7 @@ Public Class frmExample
             Dim url As String = taxinvoiceService.GetChargeURL(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -2962,6 +2995,7 @@ Public Class frmExample
             Dim url As String = taxinvoiceService.GetPartnerURL(txtCorpNum.Text, TOGO)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -3279,6 +3313,7 @@ Public Class frmExample
             Dim url As String = taxinvoiceService.GetViewURL(txtCorpNum.Text, KeyType, txtMgtKey.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -3287,6 +3322,7 @@ Public Class frmExample
     '=========================================================================
     ' 1건의 전자세금계산서 PDF 다운로드 URL을 반환합니다.
     ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetPDFURL
     '=========================================================================
     Private Sub btnGetPDFURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPDFURL.Click
 
@@ -3297,6 +3333,32 @@ Public Class frmExample
             Dim url As String = taxinvoiceService.GetPDFURL(txtCorpNum.Text, KeyType, txtMgtKey.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 1건의 전자세금계산서를 PDF 파일로 저장하기 위한 Byte Array를 반환합니다.
+    ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetPDF
+    '=========================================================================
+    Private Sub btnGetPDF_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPDF.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
+        Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
+
+        Dim path As String = "C:\Users\wjkim\Desktop/Taxinvoiec_20201022-01.pdf"
+
+        Try
+            Dim btPDF() As Byte = taxinvoiceService.GetPDF(txtCorpNum.Text, KeyType, txtMgtKey.Text, txtUserId.Text)
+
+            Dim fileStream As System.IO.FileStream
+            fileStream = New System.IO.FileStream(path, System.IO.FileMode.Create)
+            fileStream.Write(btPDF, 0, btPDF.Length)
+            fileStream.Close()
+
+            MsgBox("응답코드 : 1" + vbCrLf + "다운로드파일 경로 : " + path)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
