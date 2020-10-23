@@ -3,7 +3,7 @@
 ' 팝빌 카카오톡 API VB.Net SDK Example
 '
 ' - VB.Net 연동환경 설정방법 안내 : https://docs.popbill.com/kakao/tutorial/dotnet#vb
-' - 업데이트 일자 : 2020-08-06
+' - 업데이트 일자 : 2020-10-23
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -57,6 +57,7 @@ Public Class frmExample
             Dim url As String = kakaoService.GetPlusFriendMgtURL(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -95,6 +96,7 @@ Public Class frmExample
             Dim url As String = kakaoService.GetSenderNumberMgtURL(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -132,6 +134,7 @@ Public Class frmExample
             Dim url As String = kakaoService.GetATSTemplateMgtURL(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -273,10 +276,35 @@ Public Class frmExample
             msg.rcvnm = "수신자명칭_" + CStr(i) '수신자명
             msg.msg = content '알림톡 템플릿 내용 (최대 1000자)
             msg.altmsg = "대체문자 메시지 내용" '대체문자 내용 (최대 2000byte)
+            msg.interOPRefKey = "20201023-" + CStr(i) '파트너 지정키, 대량전송시, 수신자 구별용 메모
+
+            '수신자별 개별 버튼정보 전송하는 경우
+            '개별 버튼의 개수는 템플릿 신청 시 승인받은 버튼의 개수와 동일하게 생성, 다를경우 실패 처리
+            '버튼링크URL에 #{템플릿변수}를 기재하여 승인받은 경우 URL 수정가능
+            '버튼 표시명, 버튼 유형 수정 불가능
+            'Dim btns As List(Of KakaoButton) = New List(Of KakaoButton) '수신자별 개별 버튼정보 리스트 생성
+
+            'Dim btnInfo1 As KakaoButton = New KakaoButton     '개별 버튼정보 생성
+            'btnInfo1.n = "템플릿 안내"                        '버튼명
+            'btnInfo1.t = "WL"                                 '버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
+            'btnInfo1.u1 = "https://www.popbill.com"           '버튼링크1 [앱링크] Android / [웹링크] Mobile
+            'btnInfo1.u2 = "http://test.popbill.com" + CStr(i) '버튼링크2 [앱링크] IOS / [웹링크] PC URL
+            'btns.Add(btnInfo1)                                '개별 버튼정보 리스트에 개별 버튼정보 추가
+
+            'Dim btnInfo2 As KakaoButton = New KakaoButton     '개별 버튼정보 생성
+            'btnInfo2.n = "템플릿 안내"                        '버튼명
+            'btnInfo2.t = "WL"                                 '버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
+            'btnInfo2.u1 = "https://www.test.com"              '버튼링크1 [앱링크] Android / [웹링크] Mobile
+            'btnInfo2.u2 = "http://test.test.com" + CStr(i)    '버튼링크2 [앱링크] IOS / [웹링크] PC URL
+            'btns.Add(btnInfo2)                                '개별 버튼정보 리스트에 개별 버튼정보 추가
+
+            'msg.btns = btns '수신자 정보에 개별 버튼정보 리스트 추가
+
             receiverList.Add(msg)
         Next
 
         '버튼정보를 수정하지 않고 템플릿 신청시 기재한 정보로 전송하는 경우 null 처리
+        '개별 버튼정보 전송하는 경우 null 처리
         Dim buttonList As List(Of KakaoButton) = New List(Of KakaoButton)
 
         '버튼링크 URL 에 #{템플릿변수}를 기재하여 승인받은경우 URL 수정하여 전송
@@ -453,12 +481,35 @@ Public Class frmExample
             msg.rcvnm = "수신자명칭_" + CStr(i) '수신자명
             msg.msg = "친구톡 내용입니다." + CStr(i) '친구톡 내용 (최대 1000자)
             msg.altmsg = "대체문자 메시지 내용" + CStr(i) '대체문자 내용 (최대 2000byte)
+            msg.interOPRefKey = "20201023-" + CStr(i) '파트너 지정키, 대량전송시, 수신자 구별용 메모
+
+            '수신자별 개별 버튼정보 전송하는 경우
+            '생성 가능 개수 최대 5개
+            'Dim btns As List(Of KakaoButton) = New List(Of KakaoButton) '수신자별 개별 버튼정보 리스트 생성
+
+            'Dim btnInfo1 As KakaoButton = New KakaoButton     '개별 버튼정보 생성
+            'btnInfo1.n = "템플릿 안내"                        '버튼명
+            'btnInfo1.t = "WL"                                 '버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
+            'btnInfo1.u1 = "https://www.popbill.com"           '버튼링크1 [앱링크] Android / [웹링크] Mobile
+            'btnInfo1.u2 = "http://test.popbill.com" + CStr(i) '버튼링크2 [앱링크] IOS / [웹링크] PC URL
+            'btns.Add(btnInfo1)                                '개별 버튼정보 리스트에 개별 버튼정보 추가
+
+            'Dim btnInfo2 As KakaoButton = New KakaoButton     '개별 버튼정보 생성
+            'btnInfo2.n = "템플릿 안내"                        '버튼명
+            'btnInfo2.t = "WL"                                 '버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
+            'btnInfo2.u1 = "https://www.test.com"              '버튼링크1 [앱링크] Android / [웹링크] Mobile
+            'btnInfo2.u2 = "http://test.test.com" + CStr(i)    '버튼링크2 [앱링크] IOS / [웹링크] PC URL
+            'btns.Add(btnInfo2)                                '개별 버튼정보 리스트에 개별 버튼정보 추가
+
+            'msg.btns = btns '수신자 정보에 개별 버튼정보 리스트 추가
+
             receiverList.Add(msg)
         Next
 
-        '버튼 배열 최대 5개
+        '동일 버튼정보, 수신자멸 동일 버튼정보 전송하는 경우
+        '개별 버튼정보 전송하는 경우, null 처리
         Dim buttonList As List(Of KakaoButton) = New List(Of KakaoButton)
-
+        '생성 가능 개수 최대 5개
         Dim btnInfo As KakaoButton = New KakaoButton
         btnInfo.n = "버튼명"                        '버튼명
         btnInfo.t = "WL"                            '버튼유형 (DS - 배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
@@ -646,13 +697,36 @@ Public Class frmExample
                 msg.rcvnm = "수신자명칭_" + CStr(i) '수신자명
                 msg.msg = "친구톡 내용입니다." + CStr(i) '친구톡 내용 (최대 400자)
                 msg.altmsg = "대체문자 메시지 내용" + CStr(i) '대체문자 내용 (최대 2000byte)
+                msg.interOPRefKey = "20201023-" + CStr(i) '파트너 지정키, 대량전송시, 수신자 구별용 메모
+
+                '수신자별 개별 버튼정보 전송하는 경우
+                '생성 가능 개수 최대 5개
+                'Dim btns As List(Of KakaoButton) = New List(Of KakaoButton) '수신자별 개별 버튼정보 리스트 생성
+
+                'Dim btnInfo1 As KakaoButton = New KakaoButton     '개별 버튼정보 생성
+                'btnInfo1.n = "템플릿 안내"                        '버튼명
+                'btnInfo1.t = "WL"                                 '버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
+                'btnInfo1.u1 = "https://www.popbill.com"           '버튼링크1 [앱링크] Android / [웹링크] Mobile
+                'btnInfo1.u2 = "http://test.popbill.com" + CStr(i) '버튼링크2 [앱링크] IOS / [웹링크] PC URL
+                'btns.Add(btnInfo1)                                '개별 버튼정보 리스트에 개별 버튼정보 추가
+
+                'Dim btnInfo2 As KakaoButton = New KakaoButton     '개별 버튼정보 생성
+                'btnInfo2.n = "템플릿 안내"                        '버튼명
+                'btnInfo2.t = "WL"                                 '버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
+                'btnInfo2.u1 = "https://www.test.com"              '버튼링크1 [앱링크] Android / [웹링크] Mobile
+                'btnInfo2.u2 = "http://test.test.com" + CStr(i)    '버튼링크2 [앱링크] IOS / [웹링크] PC URL
+                'btns.Add(btnInfo2)                                '개별 버튼정보 리스트에 개별 버튼정보 추가
+
+                'msg.btns = btns '수신자 정보에 개별 버튼정보 리스트 추가
+
                 receiverList.Add(msg)
             Next
 
 
-            '버튼 배열 최대 5개
+            '동일 버튼정보, 수신자멸 동일 버튼정보 전송하는 경우
+            '개별 버튼정보 전송하는 경우, null 처리
             Dim buttonList As List(Of KakaoButton) = New List(Of KakaoButton)
-
+            '생성 가능 개수 최대 5개
             Dim btnInfo As KakaoButton = New KakaoButton
             btnInfo.n = "버튼명"                        '버튼명
             btnInfo.t = "WL"                            '버튼유형 (DS - 배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
@@ -1023,6 +1097,7 @@ Public Class frmExample
             Dim url As String = kakaoService.GetSentListURL(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1057,6 +1132,7 @@ Public Class frmExample
             Dim url As String = kakaoService.GetChargeURL(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1093,6 +1169,7 @@ Public Class frmExample
             Dim url As String = kakaoService.GetPartnerURL(txtCorpNum.Text, TOGO)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1337,6 +1414,7 @@ Public Class frmExample
             Dim url As String = kakaoService.GetAccessURL(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try

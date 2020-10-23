@@ -89,6 +89,8 @@ Partial Class frmExample
         Me.btnCancelReserve = New System.Windows.Forms.Button
         Me.btnGetMessages = New System.Windows.Forms.Button
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
+        Me.Label6 = New System.Windows.Forms.Label
+        Me.txtURL = New System.Windows.Forms.TextBox
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -126,9 +128,9 @@ Partial Class frmExample
         '
         Me.GroupBox17.Controls.Add(Me.btnUpdateCorpInfo)
         Me.GroupBox17.Controls.Add(Me.btnGetCorpInfo)
-        Me.GroupBox17.Location = New System.Drawing.Point(969, 19)
+        Me.GroupBox17.Location = New System.Drawing.Point(969, 20)
         Me.GroupBox17.Name = "GroupBox17"
-        Me.GroupBox17.Size = New System.Drawing.Size(110, 125)
+        Me.GroupBox17.Size = New System.Drawing.Size(110, 126)
         Me.GroupBox17.TabIndex = 6
         Me.GroupBox17.TabStop = False
         Me.GroupBox17.Text = "회사정보 관련"
@@ -137,7 +139,7 @@ Partial Class frmExample
         '
         Me.btnUpdateCorpInfo.Location = New System.Drawing.Point(6, 54)
         Me.btnUpdateCorpInfo.Name = "btnUpdateCorpInfo"
-        Me.btnUpdateCorpInfo.Size = New System.Drawing.Size(98, 30)
+        Me.btnUpdateCorpInfo.Size = New System.Drawing.Size(98, 29)
         Me.btnUpdateCorpInfo.TabIndex = 8
         Me.btnUpdateCorpInfo.Text = "회사정보 수정"
         Me.btnUpdateCorpInfo.UseVisualStyleBackColor = True
@@ -146,7 +148,7 @@ Partial Class frmExample
         '
         Me.btnGetCorpInfo.Location = New System.Drawing.Point(6, 20)
         Me.btnGetCorpInfo.Name = "btnGetCorpInfo"
-        Me.btnGetCorpInfo.Size = New System.Drawing.Size(98, 30)
+        Me.btnGetCorpInfo.Size = New System.Drawing.Size(98, 29)
         Me.btnGetCorpInfo.TabIndex = 7
         Me.btnGetCorpInfo.Text = "회사정보 조회"
         Me.btnGetCorpInfo.UseVisualStyleBackColor = True
@@ -165,27 +167,27 @@ Partial Class frmExample
         '
         'btnUpdateContact
         '
-        Me.btnUpdateContact.Location = New System.Drawing.Point(8, 84)
+        Me.btnUpdateContact.Location = New System.Drawing.Point(6, 87)
         Me.btnUpdateContact.Name = "btnUpdateContact"
-        Me.btnUpdateContact.Size = New System.Drawing.Size(111, 30)
+        Me.btnUpdateContact.Size = New System.Drawing.Size(111, 29)
         Me.btnUpdateContact.TabIndex = 7
         Me.btnUpdateContact.Text = "담당자 정보 수정"
         Me.btnUpdateContact.UseVisualStyleBackColor = True
         '
         'btnListContact
         '
-        Me.btnListContact.Location = New System.Drawing.Point(8, 52)
+        Me.btnListContact.Location = New System.Drawing.Point(6, 53)
         Me.btnListContact.Name = "btnListContact"
-        Me.btnListContact.Size = New System.Drawing.Size(111, 30)
+        Me.btnListContact.Size = New System.Drawing.Size(111, 29)
         Me.btnListContact.TabIndex = 6
         Me.btnListContact.Text = "담당자 목록 조회"
         Me.btnListContact.UseVisualStyleBackColor = True
         '
         'btnRegistContact
         '
-        Me.btnRegistContact.Location = New System.Drawing.Point(8, 20)
+        Me.btnRegistContact.Location = New System.Drawing.Point(6, 20)
         Me.btnRegistContact.Name = "btnRegistContact"
-        Me.btnRegistContact.Size = New System.Drawing.Size(111, 30)
+        Me.btnRegistContact.Size = New System.Drawing.Size(111, 29)
         Me.btnRegistContact.TabIndex = 5
         Me.btnRegistContact.Text = "담당자 추가"
         Me.btnRegistContact.UseVisualStyleBackColor = True
@@ -202,9 +204,9 @@ Partial Class frmExample
         '
         'btnGetAccessURL
         '
-        Me.btnGetAccessURL.Location = New System.Drawing.Point(6, 19)
+        Me.btnGetAccessURL.Location = New System.Drawing.Point(6, 20)
         Me.btnGetAccessURL.Name = "btnGetAccessURL"
-        Me.btnGetAccessURL.Size = New System.Drawing.Size(115, 30)
+        Me.btnGetAccessURL.Size = New System.Drawing.Size(115, 29)
         Me.btnGetAccessURL.TabIndex = 6
         Me.btnGetAccessURL.Text = "팝빌 로그인 URL"
         Me.btnGetAccessURL.UseVisualStyleBackColor = True
@@ -222,18 +224,18 @@ Partial Class frmExample
         '
         'btnGetPartnerURL
         '
-        Me.btnGetPartnerURL.Location = New System.Drawing.Point(6, 51)
+        Me.btnGetPartnerURL.Location = New System.Drawing.Point(6, 52)
         Me.btnGetPartnerURL.Name = "btnGetPartnerURL"
-        Me.btnGetPartnerURL.Size = New System.Drawing.Size(118, 30)
+        Me.btnGetPartnerURL.Size = New System.Drawing.Size(118, 29)
         Me.btnGetPartnerURL.TabIndex = 6
         Me.btnGetPartnerURL.Text = "포인트 충전 URL"
         Me.btnGetPartnerURL.UseVisualStyleBackColor = True
         '
         'btnGetPartnerBalance
         '
-        Me.btnGetPartnerBalance.Location = New System.Drawing.Point(6, 18)
+        Me.btnGetPartnerBalance.Location = New System.Drawing.Point(6, 19)
         Me.btnGetPartnerBalance.Name = "btnGetPartnerBalance"
-        Me.btnGetPartnerBalance.Size = New System.Drawing.Size(118, 31)
+        Me.btnGetPartnerBalance.Size = New System.Drawing.Size(118, 29)
         Me.btnGetPartnerBalance.TabIndex = 3
         Me.btnGetPartnerBalance.Text = "파트너포인트 확인"
         Me.btnGetPartnerBalance.UseVisualStyleBackColor = True
@@ -251,9 +253,9 @@ Partial Class frmExample
         '
         'btnGetChargeURL
         '
-        Me.btnGetChargeURL.Location = New System.Drawing.Point(6, 50)
+        Me.btnGetChargeURL.Location = New System.Drawing.Point(6, 52)
         Me.btnGetChargeURL.Name = "btnGetChargeURL"
-        Me.btnGetChargeURL.Size = New System.Drawing.Size(105, 30)
+        Me.btnGetChargeURL.Size = New System.Drawing.Size(105, 29)
         Me.btnGetChargeURL.TabIndex = 5
         Me.btnGetChargeURL.Text = "포인트 충전 URL"
         Me.btnGetChargeURL.UseVisualStyleBackColor = True
@@ -286,7 +288,7 @@ Partial Class frmExample
         '
         Me.btnGetChargeInfo_FMS.Location = New System.Drawing.Point(156, 86)
         Me.btnGetChargeInfo_FMS.Name = "btnGetChargeInfo_FMS"
-        Me.btnGetChargeInfo_FMS.Size = New System.Drawing.Size(144, 30)
+        Me.btnGetChargeInfo_FMS.Size = New System.Drawing.Size(144, 29)
         Me.btnGetChargeInfo_FMS.TabIndex = 8
         Me.btnGetChargeInfo_FMS.Text = "친구톡 이미지 과금정보"
         Me.btnGetChargeInfo_FMS.UseVisualStyleBackColor = True
@@ -295,7 +297,7 @@ Partial Class frmExample
         '
         Me.btnGetChargeInfo_FTS.Location = New System.Drawing.Point(156, 52)
         Me.btnGetChargeInfo_FTS.Name = "btnGetChargeInfo_FTS"
-        Me.btnGetChargeInfo_FTS.Size = New System.Drawing.Size(144, 30)
+        Me.btnGetChargeInfo_FTS.Size = New System.Drawing.Size(144, 29)
         Me.btnGetChargeInfo_FTS.TabIndex = 7
         Me.btnGetChargeInfo_FTS.Text = "친구톡 텍스트 과금정보"
         Me.btnGetChargeInfo_FTS.UseVisualStyleBackColor = True
@@ -322,7 +324,7 @@ Partial Class frmExample
         '
         Me.btnGetChargeInfo_ATS.Location = New System.Drawing.Point(156, 19)
         Me.btnGetChargeInfo_ATS.Name = "btnGetChargeInfo_ATS"
-        Me.btnGetChargeInfo_ATS.Size = New System.Drawing.Size(144, 30)
+        Me.btnGetChargeInfo_ATS.Size = New System.Drawing.Size(144, 29)
         Me.btnGetChargeInfo_ATS.TabIndex = 4
         Me.btnGetChargeInfo_ATS.Text = "알림톡 과금정보"
         Me.btnGetChargeInfo_ATS.UseVisualStyleBackColor = True
@@ -350,16 +352,16 @@ Partial Class frmExample
         '
         'btnCheckID
         '
-        Me.btnCheckID.Location = New System.Drawing.Point(6, 51)
+        Me.btnCheckID.Location = New System.Drawing.Point(6, 53)
         Me.btnCheckID.Name = "btnCheckID"
-        Me.btnCheckID.Size = New System.Drawing.Size(106, 30)
+        Me.btnCheckID.Size = New System.Drawing.Size(106, 29)
         Me.btnCheckID.TabIndex = 3
         Me.btnCheckID.Text = "ID 중복 확인"
         Me.btnCheckID.UseVisualStyleBackColor = True
         '
         'btnCheckIsMember
         '
-        Me.btnCheckIsMember.Location = New System.Drawing.Point(6, 19)
+        Me.btnCheckIsMember.Location = New System.Drawing.Point(6, 20)
         Me.btnCheckIsMember.Name = "btnCheckIsMember"
         Me.btnCheckIsMember.Size = New System.Drawing.Size(106, 29)
         Me.btnCheckIsMember.TabIndex = 2
@@ -368,16 +370,16 @@ Partial Class frmExample
         '
         'btnJoinMember
         '
-        Me.btnJoinMember.Location = New System.Drawing.Point(6, 84)
+        Me.btnJoinMember.Location = New System.Drawing.Point(6, 86)
         Me.btnJoinMember.Name = "btnJoinMember"
-        Me.btnJoinMember.Size = New System.Drawing.Size(106, 31)
+        Me.btnJoinMember.Size = New System.Drawing.Size(106, 29)
         Me.btnJoinMember.TabIndex = 1
         Me.btnJoinMember.Text = "회원 가입"
         Me.btnJoinMember.UseVisualStyleBackColor = True
         '
         'txtUserId
         '
-        Me.txtUserId.Location = New System.Drawing.Point(408, 10)
+        Me.txtUserId.Location = New System.Drawing.Point(408, 11)
         Me.txtUserId.Name = "txtUserId"
         Me.txtUserId.Size = New System.Drawing.Size(143, 21)
         Me.txtUserId.TabIndex = 32
@@ -386,7 +388,7 @@ Partial Class frmExample
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(303, 15)
+        Me.Label2.Location = New System.Drawing.Point(303, 16)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(101, 12)
         Me.Label2.TabIndex = 31
@@ -455,15 +457,15 @@ Partial Class frmExample
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(13, 26)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(65, 12)
+        Me.Label5.Size = New System.Drawing.Size(61, 12)
         Me.Label5.TabIndex = 5
-        Me.Label5.Text = "요청번호 : "
+        Me.Label5.Text = "요청번호 :"
         '
         'txtRequestNum
         '
-        Me.txtRequestNum.Location = New System.Drawing.Point(74, 20)
+        Me.txtRequestNum.Location = New System.Drawing.Point(80, 21)
         Me.txtRequestNum.Name = "txtRequestNum"
-        Me.txtRequestNum.Size = New System.Drawing.Size(189, 21)
+        Me.txtRequestNum.Size = New System.Drawing.Size(182, 21)
         Me.txtRequestNum.TabIndex = 6
         '
         'btnCancelReserveRN
@@ -724,15 +726,15 @@ Partial Class frmExample
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(13, 26)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(65, 12)
+        Me.Label4.Size = New System.Drawing.Size(61, 12)
         Me.Label4.TabIndex = 5
-        Me.Label4.Text = "접수번호 : "
+        Me.Label4.Text = "접수번호 :"
         '
         'txtReceiptNum
         '
-        Me.txtReceiptNum.Location = New System.Drawing.Point(74, 20)
+        Me.txtReceiptNum.Location = New System.Drawing.Point(76, 20)
         Me.txtReceiptNum.Name = "txtReceiptNum"
-        Me.txtReceiptNum.Size = New System.Drawing.Size(189, 21)
+        Me.txtReceiptNum.Size = New System.Drawing.Size(187, 21)
         Me.txtReceiptNum.TabIndex = 6
         '
         'btnCancelReserve
@@ -757,11 +759,29 @@ Partial Class frmExample
         '
         Me.fileDialog.FileName = "fileDialob"
         '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(719, 17)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(64, 12)
+        Me.Label6.TabIndex = 9
+        Me.Label6.Text = "응답 URL :"
+        '
+        'txtURL
+        '
+        Me.txtURL.Location = New System.Drawing.Point(789, 13)
+        Me.txtURL.Name = "txtURL"
+        Me.txtURL.Size = New System.Drawing.Size(296, 21)
+        Me.txtURL.TabIndex = 9
+        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1109, 723)
+        Me.Controls.Add(Me.txtURL)
+        Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.txtUserId)
@@ -860,5 +880,7 @@ Partial Class frmExample
     Friend WithEvents btnCancelReserveRN As System.Windows.Forms.Button
     Friend WithEvents btnGetMessagesRN As System.Windows.Forms.Button
     Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents txtURL As System.Windows.Forms.TextBox
 
 End Class
