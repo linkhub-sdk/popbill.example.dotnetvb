@@ -3,7 +3,7 @@
 ' 팝빌 현금영수증 API VB.Net  SDK Example
 '
 ' - VB.Net SDK 연동환경 설정방법 안내 : https://docs.popbill.com/cashbill/tutorial/dotnet#vb
-' - 업데이트 일자 : 2020-08-06
+' - 업데이트 일자 : 2020-10-23
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -839,6 +839,7 @@ Public Class frmExample
             Dim url As String = cashbillService.GetURL(txtCorpNum.Text, txtUserId.Text, TOGO)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
 
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
@@ -860,6 +861,7 @@ Public Class frmExample
             Dim url As String = cashbillService.GetURL(txtCorpNum.Text, txtUserId.Text, TOGO)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
 
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
@@ -880,6 +882,7 @@ Public Class frmExample
             Dim url As String = cashbillService.GetURL(txtCorpNum.Text, txtUserId.Text, TOGO)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
 
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
@@ -897,7 +900,7 @@ Public Class frmExample
             Dim url As String = cashbillService.GetPopUpURL(txtCorpNum.Text, txtMgtKey.Text, txtUserId.Text)
 
             MsgBox(url)
-
+            txtURL.Text = url
         Catch ex As PopbillException
 
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
@@ -914,6 +917,7 @@ Public Class frmExample
             Dim url As String = cashbillService.GetPrintURL(txtCorpNum.Text, txtMgtKey.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -931,6 +935,7 @@ Public Class frmExample
             Dim url As String = cashbillService.GetEPrintURL(txtCorpNum.Text, txtMgtKey.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -946,13 +951,14 @@ Public Class frmExample
         Dim MgtKeyList As List(Of String) = New List(Of String)
 
         '문서 문서번호 배열, 최대 100건.
-        MgtKeyList.Add("20190119-001")
-        MgtKeyList.Add("20190119-002")
+        MgtKeyList.Add("20201023-001")
+        MgtKeyList.Add("20201023-002")
 
         Try
             Dim url As String = cashbillService.GetMassPrintURL(txtCorpNum.Text, MgtKeyList, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -969,6 +975,7 @@ Public Class frmExample
             Dim url As String = cashbillService.GetMailURL(txtCorpNum.Text, txtMgtKey.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -985,6 +992,7 @@ Public Class frmExample
             Dim url As String = cashbillService.GetAccessURL(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1134,6 +1142,7 @@ Public Class frmExample
             Dim url As String = cashbillService.GetChargeURL(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1169,6 +1178,7 @@ Public Class frmExample
             Dim url As String = cashbillService.GetPartnerURL(txtCorpNum.Text, TOGO)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1471,6 +1481,7 @@ Public Class frmExample
     '=========================================================================
     ' 1건의 현금영수증 PDF 다운로드 URL을 반환합니다.
     ' - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#GetPDFURL
     '=========================================================================
     Private Sub btnGetPDFURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPDFURL.Click
 
@@ -1478,6 +1489,7 @@ Public Class frmExample
             Dim url As String = cashbillService.GetPDFURL(txtCorpNum.Text, txtMgtKey.Text, txtUserId.Text)
 
             MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1485,6 +1497,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 팝빌사이트에서 작성된 현금영수증에 파트너 문서번호를 할당합니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#AssignMgtKey
     '=========================================================================
     Private Sub btnAssignMgtKey_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAssignMgtKey.Click
 
@@ -1498,6 +1511,28 @@ Public Class frmExample
         Try
             Dim response As Response = cashbillService.AssignMgtKey(txtCorpNum.Text, itemKey, mgtKey, txtUserId.Text)
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 1건의 현금영수증을 PDF 파일로 저장하기 위한 Byte Array를 반환합니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#GetPDF
+    '=========================================================================
+    Private Sub btnGetPDF_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPDF.Click
+
+        Dim path As String = "C:\Users\wjkim\Desktop/Cashbill_20201022-01.pdf"
+
+        Try
+            Dim btPDF() As Byte = cashbillService.GetPDF(txtCorpNum.Text, txtMgtKey.Text, txtUserId.Text)
+
+            Dim fileStream As System.IO.FileStream
+            fileStream = New System.IO.FileStream(path, System.IO.FileMode.Create)
+            fileStream.Write(btPDF, 0, btPDF.Length)
+            fileStream.Close()
+
+            MsgBox("응답코드 : 1" + vbCrLf + "다운로드파일 경로 : " + path)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
