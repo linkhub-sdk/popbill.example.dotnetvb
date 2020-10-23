@@ -39,6 +39,9 @@ Public Class frmExample
         '인증토큰의 IP제한기능 사용여부, (True-권장)
         cashbillService.IPRestrictOnOff = True
 
+        '로컬PC 시간 사용 여부 True(사용), False(기본값) - 미사용
+        cashbillService.UseLocalTimeYN = False
+
     End Sub
 
     '=========================================================================
