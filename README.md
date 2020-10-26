@@ -18,4 +18,4 @@ popbill.example.dotnetvb
 10. 팩스
 11. 카카오톡(알림톡/친구톡)
 
-[VB.NET SDK 적용방법](https://docs.popbill.com/taxinvoice/tutorial/dotnet/)
+[VB.NET SDK 적용방법](https://docs.popbill.com/taxinvoice/tutorial/dotnet)
