@@ -64,7 +64,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 1건의 현금영수증을 [즉시발행]합니다.
-    ' - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
+    ' - 현금영수증 국세청 전송 정책 : https://docs.popbill.com/cashbill/ntsSendPolicy?lang=dotnet
     ' - https://docs.popbill.com/cashbill/dotnet/api#RegistIssue
     '=========================================================================
     Private Sub btnRegistIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistIssue.Click
@@ -163,7 +163,7 @@ Public Class frmExample
     '=========================================================================
     ' 1건의 현금영수증을 [임시저장]합니다.
     ' - [임시저장] 상태의 현금영수증은 발행(Issue API)을 호출해야만 국세청에 전송됩니다.
-    ' - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
+    ' - 현금영수증 국세청 전송 정책 : https://docs.popbill.com/cashbill/ntsSendPolicy?lang=dotnet
     ' - https://docs.popbill.com/cashbill/dotnet/api#Register
     '=========================================================================
     Private Sub btnRegister_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -349,7 +349,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 1건의 [임시저장] 현금영수증을 [발행]합니다.
-    ' - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
+    ' - 현금영수증 국세청 전송 정책 : https://docs.popbill.com/cashbill/ntsSendPolicy?lang=dotnet
     ' - https://docs.popbill.com/cashbill/dotnet/api#CBIssue
     '=========================================================================
     Private Sub btnIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -486,7 +486,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 1건의 취소현금영수증을 [즉시발행]합니다.
-    ' - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
+    ' - 현금영수증 국세청 전송 정책 : https://docs.popbill.com/cashbill/ntsSendPolicy?lang=dotnet
     ' - https://docs.popbill.com/cashbill/dotnet/api#RevokeRegistIssue
     '=========================================================================
     Private Sub btnRevokRegistIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRevokRegistIssue.Click
@@ -515,7 +515,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 1건의 (부분)취소현금영수증을 [즉시발행]합니다.
-    ' - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
+    ' - 현금영수증 국세청 전송 정책 : https://docs.popbill.com/cashbill/ntsSendPolicy?lang=dotnet
     ' - https://docs.popbill.com/cashbill/dotnet/api#RevokeRegistIssue
     '=========================================================================
     Private Sub btnRevokeRegistIssue_part_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRevokeRegistIssue_part.Click
