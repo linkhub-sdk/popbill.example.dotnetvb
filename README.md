@@ -1,10 +1,10 @@
-popbill.example.dotnetvb
+﻿popbill.example.dotnetvb
 ======================
 
 팝빌 SDK Example for VB.NET
 
 + SDK 개발환경은 .NET Framework V3.x 이상 또는 v2.x 기반에서 제작
-+ API 호출과 응답에 사용되는 메시지 인코딩 방식은 “UTF-8 Character-Set” 적용
++ API 호출과 응답에 사용되는 메시지 인코딩 방식은 “UTF-8 Character-Set”적용
 
 1. 전자세금계산서
 2. 전자명세서
