@@ -261,7 +261,7 @@ Public Class frmExample
         Dim emailSubject As String = ""
 
         Try
-            Dim response As Response = statementService.RegistIssue(txtCorpNum.Text, statement, memo, txtUserId.Text, emailSubject)
+            Dim response As STMIssueResponse = statementService.RegistIssue(txtCorpNum.Text, statement, memo, txtUserId.Text, emailSubject)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
