@@ -50,8 +50,8 @@ Public Class frmExample
     End Function
 
     '=========================================================================
-    ' 카카오톡채널 계정관리 팝업 URL을 확인합니다.
-    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' 카카오톡 채널을 등록하고 내역을 확인하는 카카오톡 채널 관리 페이지 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#GetPlusFriendMgtURL
     '=========================================================================
     Private Sub btnGetPlusFriendMgtURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -68,7 +68,7 @@ Public Class frmExample
 
 
     '=========================================================================
-    ' 팝빌에 등록된 카카오톡채널 계정 목록을 반환한다.
+    ' 팝빌에 등록한 연동회원의 카카오톡 발신번호 목록을 확인합니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#ListPlusFriendID
     '=========================================================================
     Private Sub btnListPlusFriendID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -89,8 +89,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 발신번호 관리 팝업 URL을 확인합니다.
-    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' 발신번호를 등록하고 내역을 확인하는 카카오톡 발신번호 관리 페이지 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#GetSenderNumberMgtURL
     '=========================================================================
     Private Sub btnGetSenderNumberMgtURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -106,7 +106,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌에 등록된 발신번호 목록을 반환한다.
+    ' 팝빌에 등록한 연동회원의 카카오톡 발신번호 목록을 확인합니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#GetSenderNumberList
     '=========================================================================
     Private Sub btnGetSenderNumberList_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -127,8 +127,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 알림톡 템플릿 관리 팝업 URL을 확인합니다.
-    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' 알림톡 템플릿을 신청하고 승인심사 결과를 확인하며 등록 내역을 확인하는 알림톡 템플릿 관리 페이지 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#GetATSTemplateMgtURL
     '=========================================================================
     Private Sub btnGetATSTemplateMgtURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -144,7 +144,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' (주)카카오로부터 심사후 승인된 알림톡 템플릿 목록을 반환한다.
+    ' 승인된 알림톡 템플릿 목록을 확인합니다.
+    ' - 반환항목중 템플릿코드(templateCode)는 알림톡 전송시 사용됩니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#ListATSTemplate
     '=========================================================================
     Private Sub btnListATSTemplate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -180,8 +181,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 알림톡 전송을 요청합니다.
-    ' 사전에 승인된 템플릿의 내용과 알림톡 전송내용(content)이 다를 경우 전송실패 처리됩니다.
+    ' 승인된 템플릿의 내용을 작성하여 1건의 알림톡 전송을 팝빌에 접수합니다.
+    ' - 사전에 승인된 템플릿의 내용과 알림톡 전송내용(content)이 다를 경우 전송실패 처리됩니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#SendATS
     '=========================================================================
     Private Sub btnSendATS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -242,8 +243,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' [대량전송] 알림톡 전송을 요청합니다.
-    ' 사전에 승인된 템플릿의 내용과 알림톡 전송내용(content)이 다를 경우 전송실패 처리됩니다.
+    ' 승인된 템플릿의 내용을 작성하여 다수건의 알림톡 전송을 팝빌에 접수하며, 수신자 별로 개별 내용을 전송합니다. (최대 1,000건)
+    ' - 사전에 승인된 템플릿의 내용과 알림톡 전송내용(content)이 다를 경우 전송실패 처리됩니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#SendATS_Multi
     '=========================================================================
     Private Sub btnSendATS_multi_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -279,7 +280,7 @@ Public Class frmExample
             msg.rcvnm = "수신자명칭_" + CStr(i) '수신자명
             msg.msg = content '알림톡 템플릿 내용 (최대 1000자)
             msg.altmsg = "대체문자 메시지 내용" '대체문자 내용 (최대 2000byte)
-            msg.interOPRefKey = "20201023-" + CStr(i) '파트너 지정키, 대량전송시, 수신자 구별용 메모
+            msg.interOPRefKey = "20210701-" + CStr(i) '파트너 지정키, 대량전송시, 수신자 구별용 메모
 
             '수신자별 개별 버튼정보 전송하는 경우
             '개별 버튼의 개수는 템플릿 신청 시 승인받은 버튼의 개수와 동일하게 생성, 다를경우 실패 처리
@@ -330,8 +331,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' [동보전송] 알림톡 전송을 요청합니다.
-    ' 사전에 승인된 템플릿의 내용과 알림톡 전송내용(content)이 다를 경우 전송실패 처리됩니다.
+    ' 승인된 템플릿 내용을 작성하여 다수건의 알림톡 전송을 팝빌에 접수하며, 모든 수신자에게 동일 내용을 전송합니다. (최대 1,000건)
+    ' - 사전에 승인된 템플릿의 내용과 알림톡 전송내용(content)이 다를 경우 전송실패 처리됩니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#SendATS_Same
     '=========================================================================
     Private Sub btnSendATS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -368,7 +369,7 @@ Public Class frmExample
             Dim msg As KakaoReceiver = New KakaoReceiver
             msg.rcv = "010111222" '수신번호
             msg.rcvnm = "수신자명칭_" + CStr(i) '수신자명
-            msg.interOPRefKey = "20200806-" + CStr(i) '파트너 지정키, 수신자 구별용 메모.
+            msg.interOPRefKey = "20210701-" + CStr(i) '파트너 지정키, 수신자 구별용 메모.
 
             receiverList.Add(msg)
         Next
@@ -396,8 +397,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 친구톡(텍스트) 전송을 요청합니다.
-    ' - 친구톡은 심야 전송(20:00~08:00)이 제한됩니다.
+    ' 텍스트로 구성된 1건의 친구톡 전송을 팝빌에 접수합니다.
+    ' - 친구톡의 경우 야간 전송은 제한됩니다. (20:00 ~ 익일 08:00)
     ' - https://docs.popbill.com/kakao/dotnet/api#SendFTS
     '=========================================================================
     Private Sub btnSendFTS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -452,8 +453,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' [대량전송] 친구톡(텍스트) 전송을 요청합니다.
-    ' - 친구톡은 심야 전송(20:00~08:00)이 제한됩니다.
+    ' 텍스트로 구성된 다수건의 친구톡 전송을 팝빌에 접수하며, 수신자 별로 개별 내용을 전송합니다. (최대 1,000건)
+    ' - 친구톡의 경우 야간 전송은 제한됩니다. (20:00 ~ 익일 08:00)
     ' - https://docs.popbill.com/kakao/dotnet/api#SendFTS_Multi
     '=========================================================================
     Private Sub btnSendFTS_multi_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -484,7 +485,7 @@ Public Class frmExample
             msg.rcvnm = "수신자명칭_" + CStr(i) '수신자명
             msg.msg = "친구톡 내용입니다." + CStr(i) '친구톡 내용 (최대 1000자)
             msg.altmsg = "대체문자 메시지 내용" + CStr(i) '대체문자 내용 (최대 2000byte)
-            msg.interOPRefKey = "20201023-" + CStr(i) '파트너 지정키, 대량전송시, 수신자 구별용 메모
+            msg.interOPRefKey = "20210701-" + CStr(i) '파트너 지정키, 대량전송시, 수신자 구별용 메모
 
             '수신자별 개별 버튼정보 전송하는 경우
             '생성 가능 개수 최대 5개
@@ -532,8 +533,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' [동보전송] 친구톡(텍스트) 전송을 요청합니다.
-    ' - 친구톡은 심야 전송(20:00~08:00)이 제한됩니다.
+    ' 텍스트로 구성된 다수건의 친구톡 전송을 팝빌에 접수하며, 모든 수신자에게 동일 내용을 전송합니다. (최대 1,000건)
+    ' - 친구톡의 경우 야간 전송은 제한됩니다. (20:00 ~ 익일 08:00)
     ' - https://docs.popbill.com/kakao/dotnet/api#SendFTS_Same
     '=========================================================================
     Private Sub btnSendFTS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -592,9 +593,9 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 친구톡(이미지) 전송을 요청합니다.
-    ' - 친구톡은 심야 전송(20:00~08:00)이 제한됩니다.
-    ' - 이미지 전송규격 / jpg 포맷, 용량 최대 500KByte, 이미지 높이/너비 비율 1.333 이하, 1/2 이상
+    ' 이미지가 첨부된 1건의 친구톡 전송을 팝빌에 접수합니다.
+    ' - 친구톡의 경우 야간 전송은 제한됩니다. (20:00 ~ 익일 08:00)
+    ' - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
     ' - https://docs.popbill.com/kakao/dotnet/api#SendFMS
     '=========================================================================
     Private Sub btnSendFMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -659,9 +660,9 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' [대량전송] 친구톡(이미지) 전송을 요청합니다.
-    ' - 친구톡은 심야 전송(20:00~08:00)이 제한됩니다.
-    ' - 이미지 전송규격 / jpg 포맷, 용량 최대 500KByte, 이미지 높이/너비 비율 1.333 이하, 1/2 이상
+    ' 이미지가 첨부된 다수건의 친구톡 전송을 팝빌에 접수하며, 수신자 별로 개별 내용을 전송합니다. (최대 1,000건)
+    ' - 친구톡의 경우 야간 전송은 제한됩니다. (20:00 ~ 익일 08:00)
+    ' - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
     ' - https://docs.popbill.com/kakao/dotnet/api#SendFMS_Multi
     '=========================================================================
     Private Sub btnSendFMS_multi_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -700,7 +701,7 @@ Public Class frmExample
                 msg.rcvnm = "수신자명칭_" + CStr(i) '수신자명
                 msg.msg = "친구톡 내용입니다." + CStr(i) '친구톡 내용 (최대 400자)
                 msg.altmsg = "대체문자 메시지 내용" + CStr(i) '대체문자 내용 (최대 2000byte)
-                msg.interOPRefKey = "20201023-" + CStr(i) '파트너 지정키, 대량전송시, 수신자 구별용 메모
+                msg.interOPRefKey = "20210701-" + CStr(i) '파트너 지정키, 대량전송시, 수신자 구별용 메모
 
                 '수신자별 개별 버튼정보 전송하는 경우
                 '생성 가능 개수 최대 5개
@@ -751,9 +752,9 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' [동보전송] 친구톡(이미지) 전송을 요청합니다.
-    ' - 친구톡은 심야 전송(20:00~08:00)이 제한됩니다.
-    ' - 이미지 전송규격 / jpg 포맷, 용량 최대 500KByte, 이미지 높이/너비 비율 1.333 이하, 1/2 이상
+    ' 이미지가 첨부된 다수건의 친구톡 전송을 팝빌에 접수하며, 모든 수신자에게 동일 내용을 전송합니다. (최대 1,000건)
+    ' - 친구톡의 경우 야간 전송은 제한됩니다. (20:00 ~ 익일 08:00)
+    ' - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
     ' - https://docs.popbill.com/kakao/dotnet/api#SendFMS_Same
     '=========================================================================
     Private Sub btnSendFMS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -822,8 +823,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 알림톡/친구톡 전송요청시 발급받은 접수번호(receiptNum)로 예약전송건을 취소합니다.
-    ' - 예약취소는 예약전송시간 10분전까지만 가능합니다.
+    ' 팝빌에서 반환받은 접수번호를 통해 예약접수된 카카오톡을 전송 취소합니다. (예약시간 10분 전까지 가능)
     ' - https://docs.popbill.com/kakao/dotnet/api#CancelReserve
     '=========================================================================
     Private Sub btnCancelReserve_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -840,8 +840,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 전송요청번호(requestNum)를 할당한 알림톡/친구톡 예약전송건을 취소합니다.
-    ' - 예약전송 취소는 예약시간 10분전까지만 가능합니다.
+    ' 파트너가 할당한 전송요청 번호를 통해 예약접수된 카카오톡을 전송 취소합니다. (예약시간 10분 전까지 가능)
     ' - https://docs.popbill.com/kakao/dotnet/api#CancelReserveRN
     '=========================================================================
     Private Sub btnCancelReserveRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -858,7 +857,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 알림톡/친구톡 전송요청시 발급받은 접수번호(receiptNum)로 전송결과를 확인합니다.
+    ' 팝빌에서 반환받은 접수번호를 통해 알림톡/친구톡 전송상태 및 결과를 확인합니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#GetMessages
     '=========================================================================
     Private Sub btnGetMessages_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -928,7 +927,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 전송요청번호(requestNum)를 할당한 알림톡/친구톡 전송내역 및 전송상태를 확인합니다.
+    ' 파트너가 할당한 전송요청 번호를 통해 알림톡/친구톡 전송상태 및 결과를 확인합니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#GetMessagesRN
     '=========================================================================
     Private Sub btnGetMessagesRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -997,8 +996,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 검색조건을 사용하여 알림톡/친구톡 전송 내역을 조회합니다.
-    ' - 최대 검색기간 : 6개월 이내
+    ' 검색조건에 해당하는 카카오톡 전송내역을 조회합니다. (최대 검색기간 : 6개월)
     ' - https://docs.popbill.com/kakao/dotnet/api#Search
     '=========================================================================
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
@@ -1007,10 +1005,10 @@ Public Class frmExample
 
         '최대 검색기간 : 6개월 이내
         '[필수] 시작일자, yyyyMMdd
-        Dim SDate As String = "20190901"
+        Dim SDate As String = "20210701"
 
         '[필수] 종료일자, yyyyMMdd
-        Dim EDate As String = "20191231"
+        Dim EDate As String = "20210730"
 
         '전송상태값 배열, 0-대기, 1-전송중, 2-성공, 3-대체, 4-실패, 5-취소
         State(0) = "0"
@@ -1090,8 +1088,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 카카오톡 전송내역 팝업 URL을 확인합니다.
-    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' 팝빌 사이트와 동일한 카카오톡 전송내역을 확인하는 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#GetSentListURL
     '=========================================================================
     Private Sub btnGetSentListURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1107,7 +1105,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원 잔여포인트를 확인합니다.
+    ' 연동회원의 잔여포인트를 확인합니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#GetBalance
     '=========================================================================
     Private Sub btnGetBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1125,8 +1123,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원 포인트충전 팝업 URL을 확인합니다.
-    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' 연동회원 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#GetChargeURL
     '=========================================================================
     Private Sub btnGetChargeURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1158,8 +1156,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 파트너 포인트충전 팝업 URL을 확인합니다.
-    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#GetPartnerURL
     '=========================================================================
     Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1179,10 +1177,10 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 알림톡(ATS) 전송단가를 확인합니다
+    ' 카카오톡(알림톡) 전송시 과금되는 포인트 단가를 확인합니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#GetUnitCost
     '=========================================================================
-    Private Sub btnUnitCost_SMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+    Private Sub btnUnitCost_ATS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnUnitCost_ATS.Click
 
         '카카오톡 전송유형, ATS-알림톡, FTS-친구톡 텍스트, FMS-친구톡 이미지
@@ -1200,7 +1198,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 친구톡 텍스트(FTS) 전송단가를 조회합니다.
+    ' 카카오톡(FTS) 전송시 과금되는 포인트 단가를 확인합니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#GetUnitCost
     '=========================================================================
     Private Sub btnGetUnitCost_FTS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1221,7 +1219,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 친구톡 이미지(FMS) 전송단가를 조회합니다.
+    ' 카카오톡(FMS) 전송시 과금되는 포인트 단가를 확인합니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#GetUnitCost
     '=========================================================================
     Private Sub btnGetUnitCost_FMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1242,7 +1240,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 알림톡(ATS) 과금정보를 확인합니다.
+    ' 팝빌 카카오톡(ATS) API 서비스 과금정보를 확인합니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#GetChargeInfo
     '=========================================================================
     Private Sub btnGetChargeInfo_ATS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1266,7 +1264,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 친구톡 텍스트(FTS) 과금정보를 확인합니다.
+    ' 팝빌 카카오톡(FTS) API 서비스 과금정보를 확인합니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#GetChargeInfo
     '=========================================================================
     Private Sub btnGetChargeInfo_FTS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1290,7 +1288,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 친구톡 이미지(FMS) 과금정보를 확인합니다.
+    ' 팝빌 카카오톡(FMS) API 서비스 과금정보를 확인합니다.
+    ' - https://docs.popbill.com/kakao/dotnet/api#GetChargeInfo
     '=========================================================================
     Private Sub btnGetChargeInfo_FMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnGetChargeInfo_FMS.Click
@@ -1313,8 +1312,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 해당사업자의 회원가입 여부를 확인합니다.
-    ' - 사업자번호는 '-'를 제외한 10자리 숫자 문자열입니다.
+    ' 사업자번호를 조회하여 연동회원 가입여부를 확인합니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#CheckIsMember
     '=========================================================================
     Private Sub btnCheckIsMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1330,7 +1328,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 회원아이디 중복여부를 확인합니다.
+    ' 사용하고자 하는 아이디의 중복여부를 확인합니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#CheckID
     '=========================================================================
     Private Sub btnCheckID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckID.Click
@@ -1345,7 +1343,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원 신규가입을 요청합니다.
+    ' 사용자를 연동회원으로 가입처리합니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#JoinMember
     '=========================================================================
     Private Sub btnJoinMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1407,8 +1405,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌(www.popbill.com)에 로그인된 팝빌 URL을 반환합니다.
-    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' 팝빌 사이트에 로그인 상태로 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#GetAccessURL
     '=========================================================================
     Private Sub btnGetAccessURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1424,7 +1422,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 담당자를 추가로 등록합니다.
+    ' 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#RegistContact
     '=========================================================================
     Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1472,7 +1470,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 담당자 목록을 조회합니다.
+    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#ListContact
     '=========================================================================
     Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1495,7 +1493,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 담당자 정보를 수정합니다.
+    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#UpdateContact
     '=========================================================================
     Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1540,7 +1538,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 회사정보를 조회합니다.
+    ' 연동회원의 회사정보를 확인합니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#GetCorpInfo
     '=========================================================================
     Private Sub btnGetCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _

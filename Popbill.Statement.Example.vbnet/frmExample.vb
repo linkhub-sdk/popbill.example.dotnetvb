@@ -66,8 +66,8 @@ Public Class frmExample
     End Function
 
     '=========================================================================
-    ' 전자명세서 관리번호 중복여부를 확인합니다.
-    ' - 관리번호는 1~24자리로 숫자, 영문 '-', '_' 조합으로 구성할 수 있습니다.
+    ' 파트너가 전자명세서 관리 목적으로 할당하는 문서번호의 사용여부를 확인합니다.
+    ' - 최대 24자, 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
     ' - https://docs.popbill.com/statement/dotnet/api#CheckMgtKeyInUse
     '=========================================================================
     Private Sub btnCheckMgtKeyInUse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckMgtKeyInUse.Click
@@ -83,14 +83,15 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 전자명세서를 [즉시발행]합니다.
+    ' 작성된 전자명세서 데이터를 팝빌에 저장과 동시에 발행하여, "발행완료" 상태로 처리합니다.
+    ' - 팝빌 사이트 [전자명세서] > [환경설정] > [전자명세서 관리] 메뉴의 발행시 자동승인 옵션 설정을 통해 전자명세서를 "발행완료" 상태가 아닌 "승인대기" 상태로 발행 처리 할 수 있습니다.
     ' - https://docs.popbill.com/statement/dotnet/api#RegistIssue
     '=========================================================================
     Private Sub btnRegistIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistIssue.Click
         Dim statement As New Statement
 
         '[필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
-        statement.writeDate = "20201023"
+        statement.writeDate = "20210701"
 
         '[필수] {영수, 청구} 중 기재
         statement.purposeType = "영수"
@@ -104,7 +105,7 @@ Public Class frmExample
         '[필수] 전자명세서 종류코드
         statement.itemCode = selectedItemCode()
 
-        '[필수] 문서번호, 숫자, 영문, '-', '_' 조합 (최대24자리)으로 사업자별로 중복되지 않도록 구성
+        '[필수] 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
         statement.mgtKey = txtMgtKey.Text
 
 
@@ -218,7 +219,7 @@ Public Class frmExample
         Dim newDetail As StatementDetail = New StatementDetail
 
         newDetail.serialNum = 1             '일련번호 1부터 순차 기재
-        newDetail.purchaseDT = "20201023"   '거래일자  yyyyMMdd
+        newDetail.purchaseDT = "20210701"   '거래일자  yyyyMMdd
         newDetail.itemName = "품명"         '품목명
         newDetail.spec = "규격"             '규격
         newDetail.unit = "단위"             '단위
@@ -238,7 +239,7 @@ Public Class frmExample
         newDetail = New StatementDetail
 
         newDetail.serialNum = 2             '일련번호 1부터 순차 기재
-        newDetail.purchaseDT = "20201023"   '거래일자  yyyyMMdd
+        newDetail.purchaseDT = "20210701"   '거래일자  yyyyMMdd
         newDetail.itemName = "품명"         '품목명
         newDetail.spec = "규격"             '규격
 
@@ -271,14 +272,14 @@ Public Class frmExample
 
 
     '=========================================================================
-    ' 1건의 전자명세서를 [임시저장]합니다.
+    ' 작성된 전자명세서 데이터를 팝빌에 저장합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#Register
     '=========================================================================
     Private Sub btnRegister_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegister.Click
         Dim statement As New Statement
 
         '[필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
-        statement.writeDate = "20201023"
+        statement.writeDate = "20210701"
 
         '[필수] {영수, 청구} 중 기재
         statement.purposeType = "영수"
@@ -292,7 +293,7 @@ Public Class frmExample
         '[필수] 전자명세서 종류코드
         statement.itemCode = selectedItemCode()
 
-        '[필수] 문서번호, 숫자, 영문, '-', '_' 조합 (최대24자리)으로 사업자별로 중복되지 않도록 구성
+        '[필수] 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
         statement.mgtKey = txtMgtKey.Text
 
 
@@ -406,7 +407,7 @@ Public Class frmExample
         Dim newDetail As StatementDetail = New StatementDetail
 
         newDetail.serialNum = 1             '일련번호 1부터 순차 기재
-        newDetail.purchaseDT = "20201023"   '거래일자  yyyyMMdd
+        newDetail.purchaseDT = "20210701"   '거래일자  yyyyMMdd
         newDetail.itemName = "품명"         '품목명
         newDetail.spec = "규격"             '규격
         newDetail.unit = "단위"             '단위
@@ -426,7 +427,7 @@ Public Class frmExample
         newDetail = New StatementDetail
 
         newDetail.serialNum = 2             '일련번호 1부터 순차 기재
-        newDetail.purchaseDT = "20201023"   '거래일자  yyyyMMdd
+        newDetail.purchaseDT = "20210701"   '거래일자  yyyyMMdd
         newDetail.itemName = "품명"         '품목명
         newDetail.spec = "규격"             '규격
 
@@ -452,8 +453,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 전자명세서를 [수정]합니다.
-    ' - [임시저장] 상태의 전자명세서만 수정할 수 있습니다.
+    ' "임시저장" 상태의 전자명세서를 수정합니다.건의 전자명세서를 [수정]합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#Update
     '=========================================================================
     Private Sub btnUpdate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdate.Click
@@ -461,7 +461,7 @@ Public Class frmExample
         Dim statement As New Statement
 
         '[필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
-        statement.writeDate = "20201023"
+        statement.writeDate = "20210701"
 
         '[필수] {영수, 청구} 중 기재
         statement.purposeType = "영수"
@@ -475,7 +475,7 @@ Public Class frmExample
         '[필수] 전자명세서 종류코드
         statement.itemCode = selectedItemCode()
 
-        '[필수] 문서번호, 숫자, 영문, '-', '_' 조합 (최대24자리)으로 사업자별로 중복되지 않도록 구성
+        '[필수] 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
         statement.mgtKey = txtMgtKey.Text
 
 
@@ -589,7 +589,7 @@ Public Class frmExample
         Dim newDetail As StatementDetail = New StatementDetail
 
         newDetail.serialNum = 1             '일련번호 1부터 순차 기재
-        newDetail.purchaseDT = "20201023"   '거래일자  yyyyMMdd
+        newDetail.purchaseDT = "20210701"   '거래일자  yyyyMMdd
         newDetail.itemName = "품명"         '품목명
         newDetail.spec = "규격"             '규격
         newDetail.unit = "단위"             '단위
@@ -609,7 +609,7 @@ Public Class frmExample
         newDetail = New StatementDetail
 
         newDetail.serialNum = 2             '일련번호 1부터 순차 기재
-        newDetail.purchaseDT = "20201023"   '거래일자  yyyyMMdd
+        newDetail.purchaseDT = "20210701"   '거래일자  yyyyMMdd
         newDetail.itemName = "품명"         '품목명
         newDetail.spec = "규격"             '규격
 
@@ -635,7 +635,9 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 [임시저장] 상태의 전자명세서를 [발행]합니다.
+    ' "임시저장" 상태의 전자명세서를 발행하여, "발행완료" 상태로 처리합니다.
+    ' - 팝빌 사이트 [전자명세서] > [환경설정] > [전자명세서 관리] 메뉴의 발행시 자동승인 옵션 설정을 통해 전자명세서를 "발행완료" 상태가 아닌 "승인대기" 상태로 발행 처리 할 수 있습니다.
+    ' - 전자명세서 발행 함수 호출시 포인트가 과금되며, 수신자에게 발행 안내 메일이 발송됩니다.
     ' - https://docs.popbill.com/statement/dotnet/api#StmIssue
     '=========================================================================
     Private Sub btnIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnIssue.Click
@@ -653,7 +655,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 전자명세서를 [발행취소]합니다.
+    ' 발신자가 발행한 전자명세서를 발행취소합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#CancelIssue
     '=========================================================================
     Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
@@ -671,7 +673,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 전자명세서를 [발행취소]합니다.
+    ' 발신자가 발행한 전자명세서를 발행취소합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#CancelIssue
     '=========================================================================
     Private Sub btnCancelIssueSub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelIssueSub.Click
@@ -689,9 +691,9 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 전자명세서를 [삭제]합니다.
+    ' 삭제 가능한 상태의 전자명세서를 삭제합니다.
+    ' - 삭제 가능한 상태: "임시저장", "취소", "승인거부", "발행취소"
     ' - 전자명세서를 삭제하면 사용된 문서번호(mgtKey)를 재사용할 수 있습니다.
-    ' - 삭제가능한 문서 상태 : [임시저장], [발행취소]
     ' - https://docs.popbill.com/statement/dotnet/api#Delete
     '=========================================================================
     Private Sub btnDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDelete.Click
@@ -705,9 +707,9 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 전자명세서를 [삭제]합니다.
+    ' 삭제 가능한 상태의 전자명세서를 삭제합니다.
+    ' - 삭제 가능한 상태: "임시저장", "취소", "승인거부", "발행취소"
     ' - 전자명세서를 삭제하면 사용된 문서번호(mgtKey)를 재사용할 수 있습니다.
-    ' - 삭제가능한 문서 상태 : [임시저장], [발행취소]
     ' - https://docs.popbill.com/statement/dotnet/api#Delete
     '=========================================================================
     Private Sub btnDeleteSub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteSub.Click
@@ -722,7 +724,7 @@ Public Class frmExample
 
 
     '=========================================================================
-    ' 1건의 전자명세서 상태/요약 정보를 확인합니다.
+    ' 전자명세서의 1건의 상태 및 요약정보 확인합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetInfo
     '=========================================================================
     Private Sub btnGetInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetInfo.Click
@@ -732,7 +734,7 @@ Public Class frmExample
 
             Dim tmp As String = ""
 
-            tmp = tmp + "itemKey (팝빌 관리번호) : " + docInfo.itemKey + vbCrLf
+            tmp = tmp + "itemKey (팝빌번호) : " + docInfo.itemKey + vbCrLf
             tmp = tmp + "invoiceNum (문서고유번호) : " + docInfo.invoiceNum + vbCrLf
             tmp = tmp + "mgtKey (문서번호) : " + docInfo.mgtKey + vbCrLf
             tmp = tmp + "taxType (세금형태) : " + docInfo.taxType + vbCrLf
@@ -770,8 +772,8 @@ Public Class frmExample
         Dim MgtKeyList As List(Of String) = New List(Of String)
 
         '문서번호 배열, 최대 1000건
-        MgtKeyList.Add("20190111-01")
-        MgtKeyList.Add("20190111-02")
+        MgtKeyList.Add("20210701-01")
+        MgtKeyList.Add("20210701-02")
 
         Try
             Dim statementInfoList As List(Of StatementInfo) = statementService.GetInfos(txtCorpNum.Text, selectedItemCode, MgtKeyList)
@@ -779,7 +781,7 @@ Public Class frmExample
             Dim tmp As String = ""
 
             For Each docInfo As StatementInfo In statementInfoList
-                tmp = tmp + "itemKey (팝빌 관리번호) : " + docInfo.itemKey + vbCrLf
+                tmp = tmp + "itemKey (팝빌번호) : " + docInfo.itemKey + vbCrLf
                 tmp = tmp + "invoiceNum (문서고유번호) : " + docInfo.invoiceNum + vbCrLf
                 tmp = tmp + "mgtKey (문서번호) : " + docInfo.mgtKey + vbCrLf
                 tmp = tmp + "taxType (세금형태) : " + docInfo.taxType + vbCrLf
@@ -809,7 +811,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 전자명세서 1건의 상세정보를 조회합니다.
+    ' 전자명세서 1건의 상세정보 확인합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetDetailInfo
     '=========================================================================
     Private Sub btnGetDetailInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetDetailInfo.Click
@@ -821,7 +823,7 @@ Public Class frmExample
             Dim docDetailInfo As Statement = statementService.GetDetailInfo(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text)
 
             tmp = tmp + "itemCode(문서종류코드) : " + CStr(docDetailInfo.itemCode) + vbCrLf
-            tmp = tmp + "mgtKey(관리번호) : " + docDetailInfo.mgtKey + vbCrLf
+            tmp = tmp + "mgtKey(문서번호) : " + docDetailInfo.mgtKey + vbCrLf
             tmp = tmp + "invoiceNum(문서고유번호) : " + docDetailInfo.invoiceNum + vbCrLf
             tmp = tmp + "formCode(맞춤양식 코드) : " + docDetailInfo.formCode + vbCrLf
             tmp = tmp + "writeDate(작성일자) : " + docDetailInfo.writeDate + vbCrLf
@@ -886,7 +888,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 검색조건을 사용하여 전자명세서 목록을 조회합니다.
+    ' 검색조건에 해당하는 세금계산서를 조회합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#Search
     '=========================================================================
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
@@ -897,10 +899,10 @@ Public Class frmExample
         Dim DType As String = "W"
 
         '[필수] 시작일자, yyyyMMdd
-        Dim SDate As String = "20201020"
+        Dim SDate As String = "20210701"
 
         '[필수] 종료일자, yyyyMMdd
-        Dim EDate As String = "20201023"
+        Dim EDate As String = "20210730"
 
         '전송상태값 배열, 미기재시 전체상태조회, 문서상태값 3자리숫자 작성
         '2,3번째 와일드카드 가능
@@ -942,7 +944,7 @@ Public Class frmExample
             Dim docInfo As StatementInfo
 
             For Each docInfo In stmtSearchList.list
-                tmp = tmp + "itemKey (팝빌관리번호) : " + docInfo.itemKey + vbCrLf
+                tmp = tmp + "itemKey (팝빌번호) : " + docInfo.itemKey + vbCrLf
                 tmp = tmp + "stateCode (상태코드) : " + docInfo.stateCode.ToString + vbCrLf
                 tmp = tmp + "taxType (세금형태) : " + docInfo.taxType + vbCrLf
                 tmp = tmp + "purposeType (영수/청구) : " + docInfo.purposeType + vbCrLf
@@ -970,7 +972,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 전자명세서 상태 변경이력을 확인합니다.
+    ' 전자명세서의 상태에 대한 변경이력을 확인합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetLogs
     '=========================================================================
     Private Sub btnGetLogs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetLogs.Click
@@ -994,8 +996,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 > 전자명세서 > 임시(연동)문서함 팝업 URL을 반환합니다.
-    ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    ' 로그인 상태로 팝빌 사이트의 전자명세서 임시문서함 메뉴에 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetURL
     '=========================================================================
     Private Sub btnGetURL_TBOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_TBOX.Click
@@ -1010,8 +1012,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 > 전자명세서 > 발행문서함 팝업 URL을 반환합니다.
-    ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    ' 로그인 상태로 팝빌 사이트의 전자명세서 발행문서함 메뉴에 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetURL
     '=========================================================================
     Private Sub btnGetURL_SBOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_SBOX.Click
@@ -1027,8 +1029,8 @@ Public Class frmExample
 
 
     '=========================================================================
-    ' 1건의 전자명세서 보기 팝업 URL을 반환합니다.
-    ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    ' 팝빌 사이트와 동일한 전자명세서 1건의 상세 정보 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetPopUpURL
     '=========================================================================
     Private Sub btnGetPopUpURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPopUpURL.Click
@@ -1044,7 +1046,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 전자명세서 인쇄팝업 URL을 반환합니다.
+    ' 전자명세서 1건을 인쇄하기 위한 페이지의 팝업 URL을 반환하며, 페이지내에서 인쇄 설정값을 "공급자" / "공급받는자" / "공급자+공급받는자"용 중 하나로 지정할 수 있습니다.
     ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetPrintURL
     '=========================================================================
@@ -1061,8 +1063,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 전자명세서 인쇄(수신자) URL을 반환합니다.
-    ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' "공급받는자" 용 세금계산서 1건을 인쇄하기 위한 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetEPrintURL
     '=========================================================================
     Private Sub btnGetEPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetEPrintURL.Click
@@ -1078,8 +1080,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 다수건의 전자명세서 인쇄팝업 URL을 반환합니다.
-    ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    ' 다수건의 전자명세서를 인쇄하기 위한 페이지의 팝업 URL을 반환합니다. (최대 100건)
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetMassPrintURL
     '=========================================================================
     Private Sub btnGetMassPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMassPrintURL.Click
@@ -1087,8 +1089,8 @@ Public Class frmExample
         Dim MgtKeyList As List(Of String) = New List(Of String)
 
         '문서번호 배열 (최대 100건)
-        MgtKeyList.Add("20190111-01")
-        MgtKeyList.Add("20190111-02")
+        MgtKeyList.Add("20210701-01")
+        MgtKeyList.Add("20210701-02")
 
         Try
             Dim url As String = statementService.GetMassPrintURL(txtCorpNum.Text, selectedItemCode, MgtKeyList, txtUserId.Text)
@@ -1101,8 +1103,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 수신자 메일링크 URL을 반환합니다.
-    ' - 메일링크 URL은 유효시간이 존재하지 않습니다.
+    ' 안내메일과 관련된 전자명세서를 확인 할 수 있는 상세 페이지의 팝업 URL을 반환하며, 해당 URL은 메일 하단의 파란색 버튼의 링크와 같습니다.
+    ' - 함수 호출로 반환 받은 URL에는 유효시간이 없습니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetMailURL
     '=========================================================================
     Private Sub btnGetMailURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMailURL.Click
@@ -1117,8 +1119,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌(www.popbill.com)에 로그인된 팝빌 URL을 반환합니다.
-    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' 팝빌 사이트에 로그인 상태로 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetAccessURL
     '=========================================================================
     Private Sub btnGetAccessURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetAccessURL.Click
@@ -1148,9 +1150,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 전자명세서에 첨부파일을 등록합니다.
-    ' - 첨부파일 등록은 전자명세서가 [임시저장] 상태인 경우에만 가능합니다.
-    ' - 첨부파일은 최대 5개까지 등록할 수 있습니다.
+    ' "임시저장" 상태의 명세서에 1개의 파일을 첨부합니다. (최대 5개)
     ' - https://docs.popbill.com/statement/dotnet/api#AttachFile
     '=========================================================================
     Private Sub btnAttachFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAttachFile.Click
@@ -1170,9 +1170,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 전자명세서에 첨부된 파일을 삭제합니다.
-    ' - 파일을 식별하는 파일아이디는 첨부파일 목록(GetFileList API) 의 응답항목
-    '   중 파일아이디(AttachedFile) 값을 통해 확인할 수 있습니다.
+    ' "임시저장" 상태의 전자명세서에 첨부된 1개의 파일을 삭제합니다.
+    ' - 파일을 식별하는 파일아이디는 첨부파일 목록(GetFiles API) 의 응답항목 중 파일아이디(AttachedFile) 값을 통해 확인할 수 있습니다.
     ' - https://docs.popbill.com/statement/dotnet/api#DeleteFile
     '=========================================================================
     Private Sub btnDeleteFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteFile.Click
@@ -1188,9 +1187,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 전자명세서에 첨부된 파일의 목록을 확인합니다.
-    ' - 응답항목 중 파일아이디(AttachedFile) 항목은 파일삭제(DeleteFile API)
-    '   호출시 이용할 수 있습니다.
+    ' 전자명세서에 첨부된 파일목록을 확인합니다.
+    ' - 응답항목 중 파일아이디(AttachedFile) 항목은 파일삭제(DeleteFile API) 호출시 이용할 수 있습니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetFiles
     '=========================================================================
     Private Sub btnGetFiles_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFiles.Click
@@ -1214,7 +1212,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 발행 안내메일을 재전송합니다.
+    ' "승인대기", "발행완료" 상태의 전자명세서와 관련된 발행 안내 메일을 재전송 합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#SendEmail
     '=========================================================================
     Private Sub btnSendEmail_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendEmail.Click
@@ -1233,9 +1231,9 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 알림문자를 전송합니다. (단문/SMS- 한글 최대 45자)
-    ' - 알림문자 전송시 포인트가 차감됩니다. (전송실패시 환불처리)
-    ' - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [문자] > [전송내역] 탭에서 전송결과를 확인할 수 있습니다.
+    ' 전자명세서와 관련된 안내 SMS(단문) 문자를 재전송하는 함수로, 팝빌 사이트 [문자·팩스] > [문자] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다.
+    ' - 메시지는 최대 90byte까지 입력 가능하고, 초과한 내용은 자동으로 삭제되어 전송합니다. (한글 최대 45자)
+    ' - 함수 호출시 포인트가 과금됩니다.
     ' - https://docs.popbill.com/statement/dotnet/api#SendSMS
     '=========================================================================
     Private Sub btnSendSMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendSMS.Click
@@ -1259,9 +1257,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 전자명세서를 팩스전송합니다.
-    ' - 팩스 전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
-    ' - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인할 수 있습니다.
+    ' 전자명세서를 팩스로 전송하는 함수로, 팝빌 사이트 [문자·팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다.
+    ' - 함수 호출시 포인트가 과금됩니다.
     ' - https://docs.popbill.com/statement/dotnet/api#SendFAX
     '=========================================================================
     Private Sub btnSendFAX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendFAX.Click
@@ -1282,12 +1279,11 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌에 전자명세서를 등록하지 않고 수신자에게 팩스전송합니다.
-    ' - 팩스 전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
+    ' 전자명세서를 팩스로 전송하는 함수로, 팝빌에 데이터를 저장하는 과정이 없습니다.
+    ' - 팝빌 사이트 [문자·팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다.
+    ' - 함수 호출시 포인트가 과금됩니다.
     ' - 팩스 발행 요청시 작성한 문서번호는 팩스전송 파일명으로 사용됩니다.
-    ' - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인할 수 있습니다.
-    ' - 팩스 전송결과를 확인하기 위해서는 선팩스 전송 요청 시 반환받은 접수번호를 이용하여
-    '   팩스 API의 전송결과 확인 (GetFaxDetail) API를 이용하면 됩니다.
+    ' - 팩스 전송결과를 확인하기 위해서는 선팩스 전송 요청 시 반환받은 접수번호를 이용하여 팩스 API의 전송결과 확인 (GetFaxDetail) API를 이용하면 됩니다.
     ' - https://docs.popbill.com/statement/dotnet/api#FAXSend
     '=========================================================================
     Private Sub btnFAXSend_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnFAXSend.Click
@@ -1302,7 +1298,7 @@ Public Class frmExample
         Dim statement As New Statement
 
         '[필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
-        statement.writeDate = "20201023"
+        statement.writeDate = "20210701"
 
         '[필수] {영수, 청구} 중 기재
         statement.purposeType = "영수"
@@ -1316,7 +1312,7 @@ Public Class frmExample
         '[필수] 전자명세서 종류코드
         statement.itemCode = selectedItemCode()
 
-        '[필수] 문서번호, 숫자, 영문, '-', '_' 조합 (최대24자리)으로 사업자별로 중복되지 않도록 구성
+        '[필수] 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
         statement.mgtKey = txtMgtKey.Text
 
 
@@ -1430,7 +1426,7 @@ Public Class frmExample
         Dim newDetail As StatementDetail = New StatementDetail
 
         newDetail.serialNum = 1             '일련번호 1부터 순차 기재
-        newDetail.purchaseDT = "20201023"   '거래일자  yyyyMMdd
+        newDetail.purchaseDT = "20210701"   '거래일자  yyyyMMdd
         newDetail.itemName = "품명"         '품목명
         newDetail.spec = "규격"             '규격
         newDetail.unit = "단위"             '단위
@@ -1450,7 +1446,7 @@ Public Class frmExample
         newDetail = New StatementDetail
 
         newDetail.serialNum = 2             '일련번호 1부터 순차 기재
-        newDetail.purchaseDT = "20201023"   '거래일자  yyyyMMdd
+        newDetail.purchaseDT = "20210701"   '거래일자  yyyyMMdd
         newDetail.itemName = "품명"         '품목명
         newDetail.spec = "규격"             '규격
 
@@ -1477,7 +1473,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 전자명세서에 다른 전자명세서 1건을 첨부합니다.
+    ' 하나의 전자명세서에 다른 전자명세서를 첨부합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#AttachStatement
     '=========================================================================
     Private Sub btnAttachStmt_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAttachStmt.Click
@@ -1485,8 +1481,8 @@ Public Class frmExample
         '첨부할 전자명세서 종류코드, 121-거래명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표,126-영수증
         Dim subItemCode As Integer = 121
 
-        '첨부할 전자명세서 관리번호
-        Dim subMgtKey As String = "20201023-02"
+        '첨부할 전자명세서 문서번호
+        Dim subMgtKey As String = "20210701-02"
 
         Try
             Dim response As Response = statementService.AttachStatement(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, subItemCode, subMgtKey)
@@ -1498,7 +1494,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 전자명세서에 첨부된 다른 전자명세서를 첨부해제합니다.
+    ' 하나의 전자명세서에 첨부된 다른 전자명세서를 해제합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#DetachStatement
     '=========================================================================
     Private Sub btnDetachStmt_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDetachStmt.Click
@@ -1506,8 +1502,8 @@ Public Class frmExample
         '첨부해제 대상 전자명세서 종류코드, 121-거래명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표,126-영수증
         Dim subItemCode As Integer = 121
 
-        '첨부해제 대상 전자명세서 관리번호
-        Dim subMgtKey As String = "20190111-02"
+        '첨부해제 대상 전자명세서 문서번호
+        Dim subMgtKey As String = "20210701-02"
 
         Try
             Dim response As Response = statementService.DetachStatement(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, subItemCode, subMgtKey)
@@ -1519,7 +1515,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    '전자명세서 메일전송 항목에 대한 전송여부를 목록으로 반환합니다.
+    ' 전자명세서 관련 메일 항목에 대한 발송설정을 확인합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#ListEmailConfig
     '=========================================================================
     Private Sub btnListEmailConfig_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListEmailConfig.Click
@@ -1548,7 +1544,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 전자명세서 메일전송 항목에 대한 전송여부를 수정합니다.
+    ' 전자명세서 관련 메일 항목에 대한 발송설정을 수정합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#UpdateEmailConfig
     '
     ' 메일전송유형
@@ -1592,8 +1588,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원 포인트 충전 URL을 반환합니다.
-    ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' 연동회원 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetChargeURL
     '=========================================================================
     Private Sub btnGetChargeURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeURL.Click
@@ -1610,8 +1606,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 파트너의 잔여포인트를 확인합니다.
-    ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를
-    '   이용하시기 바랍니다.
+    ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetPartnerBalance
     '=========================================================================
     Private Sub btnGetPartnerBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerBalance.Click
@@ -1625,8 +1620,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 파트너 포인트 충전 팝업 URL을 반환합니다.
-    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetPartnerURL
     '=========================================================================
     Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerURL.Click
@@ -1644,7 +1639,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 전자명세서 발행단가를 확인합니다.
+    ' 전자명세서 발행시 과금되는 포인트 단가를 확인합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetUnitCost
     '=========================================================================
     Private Sub btnUnitCost_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUnitCost.Click
@@ -1658,7 +1653,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 전자명세서 API 서비스 과금정보를 확인합니다.
+    ' 팝빌 전자명세서 API 서비스 과금정보를 확인합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetChargeInfo
     '=========================================================================
     Private Sub btnGetChargeInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo.Click
@@ -1677,8 +1672,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 해당 사업자의 파트너 연동회원 가입여부를 확인합니다.
-    ' - LinkID는 인증정보로 설정되어 있는 링크아이디 값입니다.
+    ' 사업자번호를 조회하여 연동회원 가입여부를 확인합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#CheckIsMember
     '=========================================================================
     Private Sub btnCheckIsMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckIsMember.Click
@@ -1693,7 +1687,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 회원아이디 중복여부를 확인합니다.
+    ' 사용하고자 하는 아이디의 중복여부를 확인합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#CheckID
     '=========================================================================
     Private Sub btnCheckID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckID.Click
@@ -1708,7 +1702,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 파트너의 연동회원으로 회원가입을 요청합니다.
+    ' 사용자를 연동회원으로 가입처리합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#JoinMember
     '=========================================================================
     Private Sub btnJoinMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnJoinMember.Click
@@ -1822,7 +1816,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 담당자를 신규로 등록합니다.
+    ' 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#RegistContact
     '=========================================================================
     Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistContact.Click
@@ -1867,7 +1861,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 담당자 목록을 확인합니다.
+    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#ListContact
     '=========================================================================
     Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListContact.Click
@@ -1889,7 +1883,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 담당자 정보를 수정합니다.
+    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#UpdateContact
     '=========================================================================
     Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateContact.Click
@@ -1932,8 +1926,10 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 전자명세서 보기 팝업 URL을 반환합니다. (메뉴/버튼 제외)
+    ' 팝빌 사이트와 동일한 전자명세서 1건의 상세 정보 페이지(사이트 상단, 좌측 메뉴 및 버튼 제외)의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#GetViewURL
     '=========================================================================
     Private Sub btnGetViewURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetViewURL.Click
 

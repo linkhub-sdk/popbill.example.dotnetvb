@@ -45,8 +45,9 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 현금영수증 문서번호 중복여부를 확인합니다.
-    ' - 문서번호는 1~24자리로 숫자, 영문 '-', '_' 조합으로 구성할 수 있습니다.
+    ' 파트너가 현금영수증 관리 목적으로 할당하는 문서번호 사용여부를 확인합니다.
+    ' - 이미 사용 중인 문서번호는 중복 사용이 불가하고, 현금영수증이 삭제된 경우에만 문서번호의 재사용이 가능합니다.
+    ' - 문서번호는 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
     ' - https://docs.popbill.com/cashbill/dotnet/api#CheckMgtKeyInUse
     '=========================================================================
     Private Sub btnCheckMgtKeyInUse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckMgtKeyInUse.Click
@@ -63,14 +64,14 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 현금영수증을 [즉시발행]합니다.
+    ' 현금영수증 데이터를 팝빌에 전송하여 발행합니다.
     ' - 현금영수증 국세청 전송 정책 : https://docs.popbill.com/cashbill/ntsSendPolicy?lang=dotnet
     ' - https://docs.popbill.com/cashbill/dotnet/api#RegistIssue
     '=========================================================================
     Private Sub btnRegistIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistIssue.Click
         Dim cashbill As Cashbill = New Cashbill
 
-        '현금영수증 문서번호, 1~24자리 영문,숫자조합으로 사업자별로 중복되지 않도록 구성
+        '현금영수증 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
         cashbill.mgtKey = txtMgtKey.Text
 
         '[취소거래시 필수] 원본 현금영수증 국세청승인번호
@@ -169,7 +170,7 @@ Public Class frmExample
     Private Sub btnRegister_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim cashbill As Cashbill = New Cashbill
 
-        '현금영수증 문서번호, 1~24자리 영문,숫자조합으로 사업자별로 중복되지 않도록 구성
+        '현금영수증 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
         cashbill.mgtKey = txtMgtKey.Text
 
         '[취소거래시 필수] 원본 현금영수증 국세청승인번호
@@ -263,7 +264,7 @@ Public Class frmExample
 
         Dim cashbill As Cashbill = New Cashbill
 
-        '현금영수증 문서번호, 1~24자리 영문,숫자조합으로 사업자별로 중복되지 않도록 구성
+        '현금영수증 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
         cashbill.mgtKey = txtMgtKey.Text
 
         '[취소거래시 필수] 원본 현금영수증 국세청승인번호
@@ -369,7 +370,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' [발행완료] 상태의 현금영수증을 [발행취소]합니다.
+    ' 국세청 전송 이전 "발행완료" 상태의 현금영수증을 "발행취소"하고 국세청 전송 대상에서 제외됩니다.
     ' - 발행취소는 국세청 전송전에만 가능합니다.
     ' - 발행취소된 현금영수증은 국세청에 전송되지 않습니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#CancelIssue
@@ -390,7 +391,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' [발행완료] 상태의 현금영수증을 [발행취소]합니다.
+    ' 국세청 전송 이전 "발행완료" 상태의 현금영수증을 "발행취소"하고 국세청 전송 대상에서 제외됩니다.
     ' - 발행취소는 국세청 전송전에만 가능합니다.
     ' - 발행취소된 현금영수증은 국세청에 전송되지 않습니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#CancelIssue
@@ -411,7 +412,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' [발행완료] 상태의 현금영수증을 [발행취소]합니다.
+    ' 국세청 전송 이전 "발행완료" 상태의 현금영수증을 "발행취소"하고 국세청 전송 대상에서 제외됩니다.
     ' - 발행취소는 국세청 전송전에만 가능합니다.
     ' - 발행취소된 현금영수증은 국세청에 전송되지 않습니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#CancelIssue
@@ -432,9 +433,9 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 현금영수증을 [삭제]합니다.
+    ' 삭제 가능한 상태의 현금영수증을 삭제합니다.
+    ' - 삭제 가능한 상태: "임시저장", "발행취소", "전송실패"
     ' - 현금영수증을 삭제하면 사용된 문서번호(mgtKey)를 재사용할 수 있습니다.
-    ' - 삭제가능한 문서 상태 : [임시저장], [발행취소]
     ' - https://docs.popbill.com/cashbill/dotnet/api#Delete
     '=========================================================================
     Private Sub btnDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -450,9 +451,9 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 현금영수증을 [삭제]합니다.
+    ' 삭제 가능한 상태의 현금영수증을 삭제합니다.
+    ' - 삭제 가능한 상태: "임시저장", "발행취소", "전송실패"
     ' - 현금영수증을 삭제하면 사용된 문서번호(mgtKey)를 재사용할 수 있습니다.
-    ' - 삭제가능한 문서 상태 : [임시저장], [발행취소]
     ' - https://docs.popbill.com/cashbill/dotnet/api#Delete
     '=========================================================================
     Private Sub btnDeleteSub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteSub.Click
@@ -468,9 +469,9 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 현금영수증을 [삭제]합니다.
+    ' 삭제 가능한 상태의 현금영수증을 삭제합니다.
+    ' - 삭제 가능한 상태: "임시저장", "발행취소", "전송실패"
     ' - 현금영수증을 삭제하면 사용된 문서번호(mgtKey)를 재사용할 수 있습니다.
-    ' - 삭제가능한 문서 상태 : [임시저장], [발행취소]
     ' - https://docs.popbill.com/cashbill/dotnet/api#Delete
     '=========================================================================
     Private Sub btnDelete02_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDelete02.Click
@@ -485,7 +486,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 취소현금영수증을 [즉시발행]합니다.
+    ' 취소 현금영수증을 발행하며 취소 현금영수증의 금액은 원본 금액을 넘을 수 없습니다.
     ' - 현금영수증 국세청 전송 정책 : https://docs.popbill.com/cashbill/ntsSendPolicy?lang=dotnet
     ' - https://docs.popbill.com/cashbill/dotnet/api#RevokeRegistIssue
     '=========================================================================
@@ -495,7 +496,7 @@ Public Class frmExample
         Dim orgConfirmNum As String = "820116333"
 
         '원본현금영수증 거래일자
-        Dim orgTradeDate As String = "20170711"
+        Dim orgTradeDate As String = "20210701"
 
         '발행 안내문자 전송여부
         Dim smssendYN As Boolean = False
@@ -514,7 +515,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 (부분)취소현금영수증을 [즉시발행]합니다.
+    ' (부분)취소 현금영수증을 발행하며 취소 현금영수증의 금액은 원본 금액을 넘을 수 없습니다.
     ' - 현금영수증 국세청 전송 정책 : https://docs.popbill.com/cashbill/ntsSendPolicy?lang=dotnet
     ' - https://docs.popbill.com/cashbill/dotnet/api#RevokeRegistIssue
     '=========================================================================
@@ -524,7 +525,7 @@ Public Class frmExample
         Dim orgConfirmNum As String = "820116333"
 
         '원본현금영수증 거래일자
-        Dim orgTradeDate As String = "20170711"
+        Dim orgTradeDate As String = "20210701"
 
         '발행안내문자 전송여부
         Dim smssendYN As Boolean = False
@@ -564,7 +565,7 @@ Public Class frmExample
 
 
     '=========================================================================
-    ' 1건의 현금영수증 상태/요약 정보를 확인합니다.
+    ' 현금영수증 1건의 상태 및 요약정보를 확인합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetInfo
     '=========================================================================
     Private Sub btnGetInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetInfo.Click
@@ -572,7 +573,7 @@ Public Class frmExample
             Dim cbInfo As CashbillInfo = cashbillService.GetInfo(txtCorpNum.Text, txtMgtKey.Text)
 
             Dim tmp As String = ""
-            tmp += "itemKey (아이템키) : " + cbInfo.itemKey + vbCrLf
+            tmp += "itemKey (팝빌번호) : " + cbInfo.itemKey + vbCrLf
             tmp += "mgtKey (문서번호) : " + cbInfo.mgtKey + vbCrLf
             tmp += "tradeDate (거래일자) : " + cbInfo.tradeDate + vbCrLf
             tmp += "tradeType (문서형태) : " + cbInfo.tradeType + vbCrLf
@@ -606,7 +607,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 대량의 현금영수증 상태/요약 정보를 확인합니다. (최대 1000건)
+    ' 다수건의 현금영수증 상태 및 요약 정보를 확인합니다. (1회 호출 시 최대 1,000건 확인 가능)
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetInfos
     '=========================================================================
     Private Sub btnGetInfos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetInfos.Click
@@ -614,8 +615,8 @@ Public Class frmExample
         Dim MgtKeyList As List(Of String) = New List(Of String)
 
         '문서번호 배열, 최대 1000건.
-        MgtKeyList.Add("20190117-001")
-        MgtKeyList.Add("20190117-002")
+        MgtKeyList.Add("20210701-001")
+        MgtKeyList.Add("20210701-002")
 
         Try
             Dim cashbillInfoList As List(Of CashbillInfo) = cashbillService.GetInfos(txtCorpNum.Text, MgtKeyList)
@@ -623,7 +624,7 @@ Public Class frmExample
             Dim tmp As String = ""
 
             For Each cbInfo As CashbillInfo In cashbillInfoList
-                tmp += "itemKey (아이템키) : " + cbInfo.itemKey + vbCrLf
+                tmp += "itemKey (팝빌번호) : " + cbInfo.itemKey + vbCrLf
                 tmp += "mgtKey (문서번호) : " + cbInfo.mgtKey + vbCrLf
                 tmp += "tradeDate (거래일자) : " + cbInfo.tradeDate + vbCrLf
                 tmp += "tradeType (문서형태) : " + cbInfo.tradeType + vbCrLf
@@ -657,7 +658,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 현금영수증 1건의 상세정보를 조회합니다.
+    ' 현금영수증 1건의 상세정보를 확인합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetDetailInfo
     '=========================================================================
     Private Sub btnGetDetailInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetDetailInfo.Click
@@ -704,7 +705,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 검색조건을 사용하여 현금영수증 목록을 조회합니다.
+    ' 검색조건에 해당하는 현금영수증을 조회합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#Search
     '=========================================================================
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
@@ -719,10 +720,10 @@ Public Class frmExample
         Dim DType As String = "T"
 
         '[필수] 시작일자, 형식(yyyyMMdd)
-        Dim SDate As String = "20190901"
+        Dim SDate As String = "20210701"
 
         '[필수] 종료일자, 형식(yyyyMMdd)
-        Dim EDate As String = "20191231"
+        Dim EDate As String = "20210730"
 
         '전송상태코드 배열, 미기재시 전체조회, 2,3번째 자리 와일드카드(*) 가능
         '[참조] 현금영수증 API 연동매뉴열 "5.1. 현금영수증 상태코드"
@@ -773,7 +774,7 @@ Public Class frmExample
             tmp = tmp + "pageCount (페이지 개수) : " + CStr(cbSearchList.pageCount) + vbCrLf
 
             For Each cbInfo As CashbillInfo In cbSearchList.list
-                tmp += "itemKey (아이템키) : " + cbInfo.itemKey + vbCrLf
+                tmp += "itemKey (팝빌번호) : " + cbInfo.itemKey + vbCrLf
                 tmp += "mgtKey (문서번호) : " + cbInfo.mgtKey + vbCrLf
                 tmp += "tradeDate (거래일자) : " + cbInfo.tradeDate + vbCrLf
                 tmp += "tradeType (문서형태) : " + cbInfo.tradeType + vbCrLf
@@ -807,7 +808,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 현금영수증 상태 변경이력을 확인합니다.
+    ' 현금영수증의 상태에 대한 변경이력을 확인합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetLogs
     '=========================================================================
     Private Sub btnGetLogs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetLogs.Click
@@ -829,8 +830,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 > 현금영수증 > 임시(연동)문서함 팝업 URL을 반환합니다.
-    ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    ' 팝빌 현금영수증 임시문서함 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetURL
     '=========================================================================
     Private Sub btnGetURL_TBOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_TBOX.Click
@@ -851,8 +852,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 > 현금영수증 > 발행문서함 팝업 URL을 반환합니다.
-    ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    ' 팝빌 현금영수증 발행문서함 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetURL
     '=========================================================================
     Private Sub btnGetURL_SBOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_PBOX.Click
@@ -872,8 +873,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 > 현금영수증 > 현금영수증 작성 팝업 URL을 반환합니다.
-    ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    ' 팝빌 현금영수증 매출문서작성 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetURL
     '=========================================================================
     Private Sub btnGetURL_WRITE_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_WRITE.Click
@@ -893,8 +894,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 현금영수증 보기 팝업 URL을 반환합니다.
-    ' - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+    ' 팝빌 사이트와 동일한 현금영수증 1건의 상세 정보 페이지의 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetPopUpURL
     '=========================================================================
     Private Sub btnGetPopUpURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPopUpURL.Click
@@ -911,8 +912,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 현금영수증 인쇄팝업 URL을 반환합니다.
-    ' - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+    ' 현금영수증 1건을 인쇄하기 위한 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetPrintURL
     '=========================================================================
     Private Sub btnGetPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPrintURL.Click
@@ -928,9 +929,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 현금영수증 인쇄(공급받는자) URL을 반환합니다.
-    ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
-    ' - https://docs.popbill.com/cashbill/dotnet/api#GetPrintURL
+    ' 1건의 현금영수증 인쇄 팝업 URL을 반환합니다. (공급받는자용)
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     '=========================================================================
     Private Sub btnEPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEPrintURL.Click
 
@@ -946,16 +946,16 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 대량의 현금영수증 인쇄팝업 URL을 반환합니다. (최대 100건)
-    ' - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+    ' 다수건의 현금영수증을 인쇄하기 위한 페이지의 팝업 URL을 반환합니다. (최대 100건)
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetMassPrintURL
     '=========================================================================
     Private Sub btnGetMassPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMassPrintURL.Click
         Dim MgtKeyList As List(Of String) = New List(Of String)
 
         '문서 문서번호 배열, 최대 100건.
-        MgtKeyList.Add("20201023-001")
-        MgtKeyList.Add("20201023-002")
+        MgtKeyList.Add("20210701-001")
+        MgtKeyList.Add("20210701-002")
 
         Try
             Dim url As String = cashbillService.GetMassPrintURL(txtCorpNum.Text, MgtKeyList, txtUserId.Text)
@@ -969,8 +969,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 현금영수증 수신메일 링크주소를 반환합니다.
-    ' - 메일링크 URL은 유효시간이 존재하지 않습니다.
+    ' 구매자가 수신하는 현금영수증 안내 메일의 하단에 버튼 URL 주소를 반환합니다.
+    ' - 함수 호출로 반환 받은 URL에는 유효시간이 없습니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetMailURL
     '=========================================================================
     Private Sub btnGetEmailURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetEmailURL.Click
@@ -986,8 +986,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌(www.popbill.com)에 로그인된 팝빌 URL을 반환합니다.
-    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' 팝빌 사이트에 로그인 상태로 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetAccessURL
     '=========================================================================
     Private Sub btnGetAccessURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetAccessURL.Click
@@ -1003,7 +1003,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 발행 안내메일을 재전송합니다.
+    ' 현금영수증과 관련된 안내 메일을 재전송 합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#SendEmail
     '=========================================================================
     Private Sub btnSendEmail_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendEmail.Click
@@ -1022,9 +1022,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 알림문자를 전송합니다. (단문/SMS - 한글 최대 45자)
+    ' 현금영수증과 관련된 안내 SMS(단문) 문자를 재전송하는 함수로, 팝빌 사이트 [문자·팩스] > [문자] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다.
     ' - 알림문자 전송시 포인트가 차감됩니다. (전송실패시 환불처리)
-    ' - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [문자] > [전송내역] 탭에서 전송결과를 확인할 수 있습니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#SendSMS
     '=========================================================================
     Private Sub btnSendSMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendSMS.Click
@@ -1049,9 +1048,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 현금영수증을 팩스전송합니다.
+    ' 현금영수증을 팩스로 전송하는 함수로, 팝빌 사이트 [문자·팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다.
     ' - 팩스 전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
-    ' - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인할 수 있습니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#SendFAX
     '=========================================================================
     Private Sub btnSendFAX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendFAX.Click
@@ -1073,7 +1071,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 현금영수증 메일전송 항목에 대한 전송여부를 목록으로 반환합니다.
+    ' 현금영수증 관련 메일 항목에 대한 발송설정을 확인합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#ListEmailConfig
     '=========================================================================
     Private Sub btnListEmailConfig_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListEmailConfig.Click
@@ -1095,7 +1093,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 현금영수증 메일전송 항목에 대한 전송여부를 수정합니다.
+    ' 현금영수증 관련 메일 항목에 대한 발송설정을 수정합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#UpdateEmailConfig
     '
     ' 메일전송유형
@@ -1121,7 +1119,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 잔여포인트를 확인합니다.
-    ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트(GetPartnerBalance API) 를 통해 확인하시기 바랍니다.
+    ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트(GetPartnerBalance API)를 통해 확인하시기 바랍니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetBalance
     '=========================================================================
     Private Sub btnGetBalance_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetBalance.Click
@@ -1136,8 +1134,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원 포인트 충전 URL을 반환합니다.
-    ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' 연동회원 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetChargeURL
     '=========================================================================
     Private Sub btnGetChargeURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeURL.Click
@@ -1169,8 +1167,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 파트너 포인트 충전 팝업 URL을 반환합니다.
-    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetPartnerURL
     '=========================================================================
     Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerURL.Click
@@ -1188,7 +1186,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 현금영수증 발행단가를 확인합니다.
+    ' 현금영수증 발행시 과금되는 포인트 단가를 확인합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetUnitCost
     '=========================================================================
     Private Sub btnGetUnitCost_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetUnitCost.Click
@@ -1204,7 +1202,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 현금영수증 API 서비스 과금정보를 확인합니다.
+    ' 팝빌 현금영수증 API 서비스 과금정보를 확인합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetChargeInfo
     '=========================================================================
     Private Sub btnGetChargeInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo.Click
@@ -1223,8 +1221,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 해당 사업자의 파트너 연동회원 가입여부를 확인합니다.
-    ' - LinkID는 인증정보로 설정되어 있는 링크아이디 입니다.
+    ' 사업자번호를 조회하여 연동회원 가입여부를 확인합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#CheckIsMember
     '=========================================================================
     Private Sub btnCheckIsMember_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckIsMember.Click
@@ -1239,7 +1236,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 회원아이디 중복여부를 확인합니다.
+    ' 사용하고자 하는 아이디의 중복여부를 확인합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#CheckID
     '=========================================================================
     Private Sub btnCheckID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckID.Click
@@ -1254,7 +1251,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 파트너의 연동회원으로 회원가입을 요청합니다.
+    ' 사용자를 연동회원으로 가입처리합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#JoinMember
     '=========================================================================
     Private Sub btnJoinMember_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnJoinMember.Click
@@ -1314,7 +1311,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 담당자를 신규로 등록합니다.
+    ' 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#RegistContact
     '=========================================================================
     Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistContact.Click
@@ -1361,7 +1358,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 담당자 목록을 확인합니다.
+    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#ListContact
     '=========================================================================
     Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListContact.Click
@@ -1384,7 +1381,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 담당자 정보를 수정합니다.
+    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#UpdateContact
     '=========================================================================
     Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateContact.Click
@@ -1482,8 +1479,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 현금영수증 PDF 다운로드 URL을 반환합니다.
-    ' - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+    ' 현금영수증 PDF 파일을 다운 받을 수 있는 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetPDFURL
     '=========================================================================
     Private Sub btnGetPDFURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPDFURL.Click
@@ -1499,43 +1496,21 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌사이트에서 작성된 현금영수증에 파트너 문서번호를 할당합니다.
+    ' 팝빌 사이트를 통해 발행하였지만 문서번호가 존재하지 않는 현금영수증에 문서번호를 할당합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#AssignMgtKey
     '=========================================================================
     Private Sub btnAssignMgtKey_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAssignMgtKey.Click
 
-        '현금영수증 아이템키, 목록조회(Search) API의 반환항목중 ItemKey 참조
+        '팝빌번호, 목록조회(Search) API의 반환항목중 ItemKey 참조
         Dim itemKey As String = "020080617004800001"
 
         '문서번호가 없는 문서에 할당할 문서번호
-        '- 문서번호는 1~24자리로 숫자, 영문 '-', '_' 조합으로 구성할 수 있습니다.
-        Dim mgtKey As String = "20200906-001"
+        '- 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
+        Dim mgtKey As String = "20210701-001"
 
         Try
             Dim response As Response = cashbillService.AssignMgtKey(txtCorpNum.Text, itemKey, mgtKey, txtUserId.Text)
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 1건의 현금영수증을 PDF 파일로 저장하기 위한 Byte Array를 반환합니다.
-    ' - https://docs.popbill.com/cashbill/dotnet/api#GetPDF
-    '=========================================================================
-    Private Sub btnGetPDF_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPDF.Click
-
-        Dim path As String = "C:\Users\wjkim\Desktop/Cashbill_20201022-01.pdf"
-
-        Try
-            Dim btPDF() As Byte = cashbillService.GetPDF(txtCorpNum.Text, txtMgtKey.Text, txtUserId.Text)
-
-            Dim fileStream As System.IO.FileStream
-            fileStream = New System.IO.FileStream(path, System.IO.FileMode.Create)
-            fileStream.Write(btPDF, 0, btPDF.Length)
-            fileStream.Close()
-
-            MsgBox("응답코드 : 1" + vbCrLf + "다운로드파일 경로 : " + path)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try

@@ -95,7 +95,6 @@ Partial Class frmExample
         Me.btnJoinMember = New System.Windows.Forms.Button
         Me.Label5 = New System.Windows.Forms.Label
         Me.txtURL = New System.Windows.Forms.TextBox
-        Me.btnGetPDF = New System.Windows.Forms.Button
         Me.GroupBox7.SuspendLayout()
         Me.GroupBox13.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -450,7 +449,6 @@ Partial Class frmExample
         '
         'GroupBox11
         '
-        Me.GroupBox11.Controls.Add(Me.btnGetPDF)
         Me.GroupBox11.Controls.Add(Me.btnAssignMgtKey)
         Me.GroupBox11.Controls.Add(Me.btnUpdateEmailConfig)
         Me.GroupBox11.Controls.Add(Me.btnListEmailConfig)
@@ -847,15 +845,6 @@ Partial Class frmExample
         Me.txtURL.Size = New System.Drawing.Size(278, 21)
         Me.txtURL.TabIndex = 24
         '
-        'btnGetPDF
-        '
-        Me.btnGetPDF.Location = New System.Drawing.Point(169, 52)
-        Me.btnGetPDF.Name = "btnGetPDF"
-        Me.btnGetPDF.Size = New System.Drawing.Size(121, 26)
-        Me.btnGetPDF.TabIndex = 12
-        Me.btnGetPDF.Text = "PDF 다운로드"
-        Me.btnGetPDF.UseVisualStyleBackColor = True
-        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
@@ -965,6 +954,5 @@ Partial Class frmExample
     Friend WithEvents btnAssignMgtKey As System.Windows.Forms.Button
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents txtURL As System.Windows.Forms.TextBox
-    Friend WithEvents btnGetPDF As System.Windows.Forms.Button
 
 End Class

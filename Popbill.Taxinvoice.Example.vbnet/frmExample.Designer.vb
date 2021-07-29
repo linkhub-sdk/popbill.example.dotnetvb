@@ -123,7 +123,6 @@ Partial Class frmExample
         Me.btnGetURL_TBOX = New System.Windows.Forms.Button
         Me.GroupBox12 = New System.Windows.Forms.GroupBox
         Me.btnGetOldPrintURL = New System.Windows.Forms.Button
-        Me.btnGetPDF = New System.Windows.Forms.Button
         Me.btnGetPDFURL = New System.Windows.Forms.Button
         Me.btnGetViewURL = New System.Windows.Forms.Button
         Me.btnGetEmailURL = New System.Windows.Forms.Button
@@ -1270,15 +1269,6 @@ Partial Class frmExample
         Me.btnGetOldPrintURL.Text = "(구)인쇄 팝업 URL"
         Me.btnGetOldPrintURL.UseVisualStyleBackColor = True
         '
-        'btnGetPDF
-        '
-        Me.btnGetPDF.Location = New System.Drawing.Point(14, 150)
-        Me.btnGetPDF.Name = "btnGetPDF"
-        Me.btnGetPDF.Size = New System.Drawing.Size(129, 29)
-        Me.btnGetPDF.TabIndex = 16
-        Me.btnGetPDF.Text = "PDF 다운로드"
-        Me.btnGetPDF.UseVisualStyleBackColor = True
-        '
         'btnGetPDFURL
         '
         Me.btnGetPDFURL.Location = New System.Drawing.Point(229, 52)
@@ -1404,7 +1394,6 @@ Partial Class frmExample
         'GroupBox11
         '
         Me.GroupBox11.Controls.Add(Me.btnUpdateEmailConfig)
-        Me.GroupBox11.Controls.Add(Me.btnGetPDF)
         Me.GroupBox11.Controls.Add(Me.btnListEmailConfig)
         Me.GroupBox11.Controls.Add(Me.btnAssignMgtKey)
         Me.GroupBox11.Controls.Add(Me.Button1)
@@ -1775,7 +1764,6 @@ Partial Class frmExample
     Friend WithEvents btnGetViewURL As System.Windows.Forms.Button
     Friend WithEvents btnGetPDFURL As System.Windows.Forms.Button
     Friend WithEvents btnGetOldPrintURL As System.Windows.Forms.Button
-    Friend WithEvents btnGetPDF As System.Windows.Forms.Button
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents txtURL As System.Windows.Forms.TextBox
 

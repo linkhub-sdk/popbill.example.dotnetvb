@@ -37,8 +37,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 해당 사업자의 파트너 연동회원 가입여부를 확인합니다.
-    ' - LinkID는 인증정보로 설정되어 있는 링크아이디 값입니다.
+    ' 사업자번호를 조회하여 연동회원 가입여부를 확인합니다.
     ' - https://docs.popbill.com/easyfinbank/dotnet/api#CheckIsMember
     '=========================================================================
     Private Sub btnCheckIsMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckIsMember.Click
@@ -53,7 +52,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 회원아이디 중복여부를 확인합니다.
+    ' 사용하고자 하는 아이디의 중복여부를 확인합니다.
     ' - https://docs.popbill.com/easyfinbank/dotnet/api#CheckID
     '=========================================================================
     Private Sub btnCheckID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckID.Click
@@ -68,7 +67,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 파트너의 연동회원으로 회원가입을 요청합니다.
+    ' 사용자를 연동회원으로 가입처리합니다.
     ' - https://docs.popbill.com/easyfinbank/dotnet/api#JoinMember
     '=========================================================================
     Private Sub btnJoinMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnJoinMember.Click
@@ -129,7 +128,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 계좌조회 API 서비스 과금정보를 확인합니다.
+    ' 팝빌 계좌조회 API 서비스 과금정보를 확인합니다.
     ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetChargeInfo
     '=========================================================================
     Private Sub btnGetChargeInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo.Click
@@ -165,8 +164,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원 포인트 충전 URL을 반환합니다.
-    ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' 연동회원 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetChargeURL
     '=========================================================================
     Private Sub btnGetChargeURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeURL.Click
@@ -199,8 +198,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 파트너 포인트 충전 팝업 URL을 반환합니다.
-    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetPartnerURL
     '=========================================================================
     Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerURL.Click
@@ -218,8 +217,9 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌(www.popbill.com)에 로그인된 팝빌 URL을 반환합니다.
-    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' 팝빌 사이트에 로그인 상태로 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetAccessURL
     '=========================================================================
     Private Sub btnGetAccessURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetAccessURL.Click
         Try
@@ -233,7 +233,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 담당자를 신규로 등록합니다.
+    ' 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
     ' - https://docs.popbill.com/easyfinbank/dotnet/api#RegistContact
     '=========================================================================
     Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistContact.Click
@@ -280,7 +280,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 담당자 목록을 확인합니다.
+    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
     ' - https://docs.popbill.com/easyfinbank/dotnet/api#ListContact
     '=========================================================================
     Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListContact.Click
@@ -303,7 +303,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 담당자 정보를 수정합니다.
+    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
     ' - https://docs.popbill.com/easyfinbank/dotnet/api#UpdateContact
     '=========================================================================
     Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateContact.Click
@@ -404,8 +404,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 계좌 거래내역 수집을 요청한다
-    ' - 검색기간은 현재일 기준 90일 이내로만 요청할 수 있다.
+    ' 계좌 거래내역을 확인하기 위해 팝빌에 수집요청을 합니다. 조회기간은 당일 기준으로 90일 이내로만 지정 가능합니다.
+    ' - 반환 받은 작업아이디는 함수 호출 시점부터 1시간 동안 유효합니다.
     ' - https://docs.popbill.com/easyfinbank/dotnet/api#RequestJob
     '=========================================================================
     Private Sub btnRequestJob_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRequestJob.Click
@@ -417,10 +417,10 @@ Public Class frmExample
         Dim AccountNumber As String = "131020538645"
 
         ' 시작일자, 표시형식(yyyyMMdd)
-        Dim SDate As String = "20191001"
+        Dim SDate As String = "20200701"
 
         ' 종료일자, 표시형식(yyyyMMdd)
-        Dim EDate As String = "20191230"
+        Dim EDate As String = "20200730"
 
         Try
 
@@ -436,7 +436,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    '계좌조회 수집 상태를 확인한다.
+    ' RequestJob(수집 요청)를 통해 반환 받은 작업아이디의 상태를 확인합니다.
     ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetJobState
     '=========================================================================
     Private Sub btnGetJobState_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetJobState.Click
@@ -463,7 +463,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1시간 이내 수집 요청 목록을 반환한다.
+    ' RequestJob(수집 요청)를 통해 반환 받은 작업아이디의 목록을 확인합니다.
+    ' - 수집 요청 후 1시간이 경과한 수집 요청건은 상태정보가 반환되지 않습니다.
     ' - https://docs.popbill.com/easyfinbank/dotnet/api#ListActiveJob
     '=========================================================================
     Private Sub btnListActiveJob_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListActiveJob.Click
@@ -495,7 +496,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 계좌 거래내역을 조회한다.
+    ' GetJobState(수집 상태 확인)를 통해 상태 정보가 확인된 작업아이디를 활용하여 계좌 거래 내역을 조회합니다.
     ' - https://docs.popbill.com/easyfinbank/dotnet/api#Search
     '=========================================================================
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
@@ -562,7 +563,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 거래 내역 요약정보를 조회한다.
+    ' GetJobState(수집 상태 확인)를 통해 상태 정보가 확인된 작업아이디를 활용하여 계좌 거래내역의 요약 정보를 조회합니다.
     ' - https://docs.popbill.com/easyfinbank/dotnet/api#Summary
     '=========================================================================
     Private Sub btnSummary_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSummary.Click
@@ -595,13 +596,13 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 계좌 거래내역에 메모를 저장한다.
+    ' 한 건의 거래 내역에 메모를 저장합니다.
     ' - https://docs.popbill.com/easyfinbank/dotnet/api#SaveMemo
     '=========================================================================
     Private Sub btnSaveMemo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSaveMemo.Click
 
         '거래내역 메모
-        Dim Memo As String = "20191230-테스트"
+        Dim Memo As String = "20200701-테스트"
 
         Try
 
@@ -616,7 +617,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 은행 계좌 관리 팝업 URL을 반환한다.
+    ' 계좌 등록, 수정 및 삭제할 수 있는 계좌 관리 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetBankAccountMgtURL
     '=========================================================================
     Private Sub btnBankAccountMgtURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBankAccountMgtURL.Click
@@ -631,7 +633,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 정액제 서비스 신청 URL을 반환한다.  
+    ' 계좌조회 정액제 서비스 신청 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetFlatRatePopUpURL
     '=========================================================================
     Private Sub btnFlatRatePopUpURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnFlatRatePopUpURL.Click
@@ -675,7 +678,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 정액제 서비스 상태를 확인한다
+    ' 계좌조회 정액제 서비스 상태를 확인합니다.
     ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetFlatRateState
     '=========================================================================
     Private Sub btnGetFlatRateState_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFlatRateState.Click
@@ -708,7 +711,8 @@ Public Class frmExample
     Private Sub btnRegistBankAccount_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistBankAccount.Click
 
         '=========================================================================
-        ' 계좌조회 서비스를 이용할 은행계좌를 등록한다.
+        ' 계좌조회 서비스를 이용할 계좌를 팝빌에 등록합니다.
+        ' - https://docs.popbill.com/easyfinbank/dotnet/api#RegistBankAccount
         '=========================================================================
 
         Dim accountInfo As New EasyFinBankAccountForm
@@ -768,7 +772,8 @@ Public Class frmExample
     Private Sub btnUpdateBankAccount_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateBankAccount.Click
 
         '=========================================================================
-        ' 팝빌에 등록된 은행 계좌정보를 수정합니다.
+        ' 팝빌에 등록된 계좌정보를 수정합니다.
+        ' - https://docs.popbill.com/easyfinbank/dotnet/api#UpdateBankAccount
         '=========================================================================
 
         Dim accountInfo As New EasyFinBankAccountForm
@@ -815,7 +820,8 @@ Public Class frmExample
     Private Sub btnGetBankAccountInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetBankAccountInfo.Click
 
         '=========================================================================
-        ' 팝빌에 등록된 은행 계좌정보를 확인합니다.
+        ' 팝빌에 등록된 계좌 정보를 확인합니다.
+        ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetBankAccountInfo
         '=========================================================================
 
         ' [필수] 은행코드
@@ -860,7 +866,8 @@ Public Class frmExample
     Private Sub btnCloseBankAccount_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCloseBankAccount.Click
 
         '=========================================================================
-        ' 팝빌에 등록된 은행계좌의 정액제 해지를 요청합니다.
+        ' 계좌의 정액제 해지를 요청합니다.
+        ' - https://docs.popbill.com/easyfinbank/dotnet/api#CloseBankAccount
         '=========================================================================
 
         ' [필수] 은행코드
@@ -892,7 +899,8 @@ Public Class frmExample
     Private Sub btnRevokeCloseBankAccount_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRevokeCloseBankAccount.Click
 
         '=========================================================================
-        ' 계좌 정액제 해지 요청을 취소합니다.
+        ' 신청한 정액제 해지요청을 취소합니다.
+        ' - https://docs.popbill.com/easyfinbank/dotnet/api#RevokeCloseBankAccount
         '=========================================================================
 
         ' [필수] 은행코드

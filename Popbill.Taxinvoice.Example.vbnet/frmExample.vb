@@ -48,8 +48,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 세금계산서 관리번호 중복여부를 확인합니다.
-    ' - 관리번호는 1~24자리로 숫자, 영문 '-', '_' 조합으로 구성할 수 있습니다.
+    ' 파트너가 세금계산서 관리 목적으로 할당하는 문서번호의 사용여부를 확인합니다.
+    ' - 문서번호는 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')로 구성 합니다. 
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#CheckMgtKeyInUse
     '=========================================================================
     Private Sub btnCheckMgtKeyInUse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -68,15 +68,16 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 세금계산서를 [즉시발행]합니다.
+    ' 작성된 세금계산서 데이터를 팝빌에 저장과 동시에 발행(전자서명)하여 "발행완료" 상태로 처리합니다.
+    ' - 세금계산서 국세청 전송 정책 : https://docs.popbill.com/taxinvoice/ntsSendPolicy?lang=java
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#RegistIssue
     '=========================================================================
     Private Sub btnRegistIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnRegistIssue.Click
         Dim taxinvoice As Taxinvoice = New Taxinvoice
 
-        '[필수] 작성일자, 표시형식 (yyyyMMdd) ex) 20190111
-        taxinvoice.writeDate = "20201022"
+        '[필수] 작성일자, 표시형식 (yyyyMMdd) ex) 20210701
+        taxinvoice.writeDate = "20210701"
 
         '[필수] 발행형태, [정발행, 역발행, 위수탁] 중 기재
         taxinvoice.issueType = "정발행"
@@ -104,7 +105,7 @@ Public Class frmExample
         '[필수] 공급자 상호
         taxinvoice.invoicerCorpName = "공급자 상호"
 
-        '[필수] 공급자 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로
+        '[필수] 공급자 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
         '사업자 별로 중복되지 않도록 구성
         taxinvoice.invoicerMgtKey = txtMgtKey.Text
 
@@ -149,7 +150,7 @@ Public Class frmExample
         '[필수] 공급자받는자 상호
         taxinvoice.invoiceeCorpName = "공급받는자 상호"
 
-        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수)
+        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수), 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
         taxinvoice.invoiceeMgtKey = ""
 
         '[필수] 공급받는자 대표자 성명
@@ -249,7 +250,7 @@ Public Class frmExample
         Dim detail As TaxinvoiceDetail = New TaxinvoiceDetail
 
         detail.serialNum = 1                            '일련번호, 1부터 순차기재
-        detail.purchaseDT = "20201022"                 '거래일자, yyyyMMdd
+        detail.purchaseDT = "20210701"                 '거래일자, yyyyMMdd
         detail.itemName = "품목명"                      '품목명
         detail.spec = "규격"                            '규격
         detail.qty = "1"                                '수량
@@ -302,8 +303,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 세금계산서를 [임시저장]합니다.
-    ' - 세금계산서 임시저장(Register API) 호출후에는 발행(Issue API)을 호출해야만 국세청으로 전송됩니다.
+    ' 작성된 세금계산서 데이터를 팝빌에 저장합니다.
+    ' - "임시저장" 상태의 세금계산서는 발행(Issue)함수를 호출하여 "발행완료" 처리한 경우에만 국세청으로 전송됩니다.
     ' - 정발행시 임시저장(Register)과 발행(Issue)을 한번의 호출로 처리하는 즉시발행(RegistIssue API) 프로세스 연동을 권장합니다.
     ' - 역발행시 임시저장(Register)과 역발행요청(Request)을 한번의 호출로 처리하는 즉시요청(RegistRequest API) 프로세스 연동을 권장합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#Register
@@ -311,8 +312,8 @@ Public Class frmExample
     Private Sub btnRegister_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegister.Click
         Dim taxinvoice As Taxinvoice = New Taxinvoice
 
-        '[필수] 작성일자, 표시형식 (yyyyMMdd) ex) 20190111
-        taxinvoice.writeDate = "20201022"
+        '[필수] 작성일자, 표시형식 (yyyyMMdd) ex) 20210701
+        taxinvoice.writeDate = "20210701"
 
         '[필수] 발행형태, [정발행, 역발행, 위수탁] 중 기재
         taxinvoice.issueType = "정발행"
@@ -341,7 +342,7 @@ Public Class frmExample
         '[필수] 공급자 상호
         taxinvoice.invoicerCorpName = "공급자 상호"
 
-        '[필수] 공급자 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로
+        '[필수] 공급자 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
         '사업자 별로 중복되지 않도록 구성
         taxinvoice.invoicerMgtKey = txtMgtKey.Text
 
@@ -387,7 +388,7 @@ Public Class frmExample
         '[필수] 공급자받는자 상호
         taxinvoice.invoiceeCorpName = "공급받는자 상호"
 
-        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수)
+        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수), 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
         taxinvoice.invoiceeMgtKey = ""
 
         '[필수] 공급받는자 대표자 성명
@@ -485,7 +486,7 @@ Public Class frmExample
         Dim detail As TaxinvoiceDetail = New TaxinvoiceDetail
 
         detail.serialNum = 1                            '일련번호, 1부터 순차기재
-        detail.purchaseDT = "20201022"                  '거래일자, yyyyMMdd
+        detail.purchaseDT = "20210701"                  '거래일자, yyyyMMdd
         detail.itemName = "품목명"                      '품목명
         detail.spec = "규격"                            '규격
         detail.qty = "1"                                '수량
@@ -532,18 +533,15 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 세금계산서를 [임시저장]합니다.
-    ' - 세금계산서 임시저장(Register API) 호출후에는 발행(Issue API)을 호출해야만 국세청으로 전송됩니다.
-    ' - 정발행시 임시저장(Register)과 발행(Issue)을 한번의 호출로 처리하는 즉시발행(RegistIssue API) 프로세스 연동을 권장합니다.
-    ' - 역발행시 임시저장(Register)과 역발행요청(Request)을 한번의 호출로 처리하는 즉시요청(RegistRequest API) 프로세스 연동을 권장합니다.
+    ' 작성된 역발행 세금계산서 데이터를 팝빌에 저장합니다. 
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#Register
     '=========================================================================
     Private Sub btnRegister_Reverse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnRegister_Reverse.Click
         Dim taxinvoice As Taxinvoice = New Taxinvoice
 
-        '[필수] 작성일자, 표시형식 (yyyyMMdd) ex) 20190111
-        taxinvoice.writeDate = "20201022"
+        '[필수] 작성일자, 표시형식 (yyyyMMdd) ex) 20210701
+        taxinvoice.writeDate = "20210701"
 
         '[필수] 발행형태, [정발행, 역발행, 위수탁] 중 기재
         taxinvoice.issueType = "역발행"
@@ -572,7 +570,7 @@ Public Class frmExample
         '[필수] 공급자 상호
         taxinvoice.invoicerCorpName = "공급자 상호"
 
-        '공급자 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로
+        '공급자 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
         '사업자 별로 중복되지 않도록 구성
         taxinvoice.invoicerMgtKey = ""
 
@@ -618,7 +616,7 @@ Public Class frmExample
         '[필수] 공급자받는자 상호
         taxinvoice.invoiceeCorpName = "공급받는자 상호"
 
-        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수)
+        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수), 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
         taxinvoice.invoiceeMgtKey = txtMgtKey.Text
 
         '[필수] 공급받는자 대표자 성명
@@ -717,7 +715,7 @@ Public Class frmExample
         Dim detail As TaxinvoiceDetail = New TaxinvoiceDetail
 
         detail.serialNum = 1                            '일련번호, 1부터 순차기재
-        detail.purchaseDT = "20201022"                 '거래일자, yyyyMMdd
+        detail.purchaseDT = "20210701"                 '거래일자, yyyyMMdd
         detail.itemName = "품목명"                      '품목명
         detail.spec = "규격"                            '규격
         detail.qty = "1"                                '수량
@@ -745,7 +743,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' [임시저장] 상태의 세금계산서의 항목을 [수정]합니다.
+    ' "임시저장" 상태의 세금계산서를 수정합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#Update
     '=========================================================================
     Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
@@ -755,8 +753,8 @@ Public Class frmExample
 
         Dim taxinvoice As Taxinvoice = New Taxinvoice
 
-        '[필수] 작성일자, 표시형식 (yyyyMMdd) ex) 20190111
-        taxinvoice.writeDate = "20201022"
+        '[필수] 작성일자, 표시형식 (yyyyMMdd) ex) 20210701
+        taxinvoice.writeDate = "20210701"
 
         '[필수] 발행형태, [정발행, 역발행, 위수탁] 중 기재
         taxinvoice.issueType = "정발행"
@@ -784,7 +782,7 @@ Public Class frmExample
         '[필수] 공급자 상호
         taxinvoice.invoicerCorpName = "공급자 상호"
 
-        '[필수] 공급자 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로
+        '[필수] 공급자 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
         '사업자 별로 중복되지 않도록 구성
         taxinvoice.invoicerMgtKey = txtMgtKey.Text
 
@@ -830,7 +828,7 @@ Public Class frmExample
         '[필수] 공급자받는자 상호
         taxinvoice.invoiceeCorpName = "공급받는자 상호"
 
-        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수)
+        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수), 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
         taxinvoice.invoiceeMgtKey = ""
 
         '[필수] 공급받는자 대표자 성명
@@ -928,7 +926,7 @@ Public Class frmExample
         Dim detail As TaxinvoiceDetail = New TaxinvoiceDetail
 
         detail.serialNum = 1                            '일련번호, 1부터 순차기재
-        detail.purchaseDT = "20201022"                 '거래일자, yyyyMMdd
+        detail.purchaseDT = "20210701"                 '거래일자, yyyyMMdd
         detail.itemName = "품목명"                      '품목명
         detail.spec = "규격"                            '규격
         detail.qty = "1"                                '수량
@@ -974,7 +972,7 @@ Public Class frmExample
 
 
     '=========================================================================
-    ' [임시저장] 상태의 세금계산서의 항목을 [수정]합니다.
+    ' "임시저장" 상태의 세금계산서를 수정합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#Update
     '=========================================================================
     Private Sub btnUpdate_Reverse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -985,8 +983,8 @@ Public Class frmExample
 
         Dim taxinvoice As Taxinvoice = New Taxinvoice
 
-        '[필수] 작성일자, 표시형식 (yyyyMMdd) ex) 20190111
-        taxinvoice.writeDate = "20201022"
+        '[필수] 작성일자, 표시형식 (yyyyMMdd) ex) 20210701
+        taxinvoice.writeDate = "20210701"
 
         '[필수] 발행형태, [정발행, 역발행, 위수탁] 중 기재
         taxinvoice.issueType = "역발행"
@@ -1014,7 +1012,7 @@ Public Class frmExample
         '[필수] 공급자 상호
         taxinvoice.invoicerCorpName = "공급자 상호"
 
-        '[필수] 공급자 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로
+        '[필수] 공급자 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
         '사업자 별로 중복되지 않도록 구성
         taxinvoice.invoicerMgtKey = txtMgtKey.Text
 
@@ -1060,7 +1058,7 @@ Public Class frmExample
         '[필수] 공급자받는자 상호
         taxinvoice.invoiceeCorpName = "공급받는자 상호"
 
-        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수)
+        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수), 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
         taxinvoice.invoiceeMgtKey = ""
 
         '[필수] 공급받는자 대표자 성명
@@ -1158,7 +1156,7 @@ Public Class frmExample
         Dim detail As TaxinvoiceDetail = New TaxinvoiceDetail
 
         detail.serialNum = 1                            '일련번호, 1부터 순차기재
-        detail.purchaseDT = "20201022"                 '거래일자, yyyyMMdd
+        detail.purchaseDT = "20210701"                 '거래일자, yyyyMMdd
         detail.itemName = "품목명"                      '품목명
         detail.spec = "규격"                            '규격
         detail.qty = "1"                                '수량
@@ -1186,7 +1184,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' [임시저장] 또는 [발행대기] 상태의 세금계산서를 [공급자]가 [발행]합니다.
+    ' "임시저장" 상태의 세금계산서를 발행(전자서명)하며, "발행완료" 상태로 처리합니다.
+    ' - 세금계산서 국세청 전송정책 : https://docs.popbill.com/taxinvoice/ntsSendPolicy?lang=php
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#TIIssue
     '=========================================================================
     Private Sub btnIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1214,7 +1213,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' [(역)발행대기] 상태의 세금계산서를 [발행] 합니다.
+    ' "(역)발행대기" 상태의 세금계산서를 발행(전자서명)하며, "발행완료" 상태로 처리합니다.
+    ' - 세금계산서 국세청 전송정책 : https://docs.popbill.com/taxinvoice/ntsSendPolicy?lang=php
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#TIIssue
     '=========================================================================
     Private Sub btnIssue_Reverse_sub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1243,10 +1243,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' [발행완료] 상태의 세금계산서를 [공급자]가 [발행취소]합니다.
-    ' - [발행취소]는 국세청 전송전에만 가능합니다.
-    ' - 발행취소된 세금계산서는 국세청에 전송되지 않습니다.
-    ' - 발행취소 세금계산서에 사용된 문서번호를 재사용 하기 위해서는 삭제(Delete API)를 호출하여 해당세금계산서를 삭제해야 합니다.
+    ' 국세청 전송 이전 "발행완료" 상태의 전자세금계산서를 "발행취소"하고, 해당 건은 국세청 신고 대상에서 제외됩니다.
+    ' - Delete(삭제)함수를 호출하여 "발행취소" 상태의 전자세금계산서를 삭제하면, 문서번호 재사용이 가능합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#CancelIssue
     '=========================================================================
     Private Sub btnCancelIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1270,10 +1268,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' [발행완료] 상태의 세금계산서를 [공급자]가 [발행취소]합니다.
-    ' - [발행취소]는 국세청 전송전에만 가능합니다.
-    ' - 발행취소된 세금계산서는 국세청에 전송되지 않습니다.
-    ' - 발행취소 세금계산서에 사용된 문서번호를 재사용 하기 위해서는 삭제(Delete API)를 호출하여 해당세금계산서를 삭제해야 합니다.
+    ' 국세청 전송 이전 "발행완료" 상태의 전자세금계산서를 "발행취소"하고, 해당 건은 국세청 신고 대상에서 제외됩니다.
+    ' - Delete(삭제)함수를 호출하여 "발행취소" 상태의 전자세금계산서를 삭제하면, 문서번호 재사용이 가능합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#CancelIssue
     '=========================================================================
     Private Sub btnCancelIssue_Sub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1297,10 +1293,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' [발행완료] 상태의 세금계산서를 [공급자]가 [발행취소]합니다.
-    ' - [발행취소]는 국세청 전송전에만 가능합니다.
-    ' - 발행취소된 세금계산서는 국세청에 전송되지 않습니다.
-    ' - 발행취소 세금계산서에 사용된 문서번호를 재사용 하기 위해서는 삭제(Delete API)를 호출하여 해당세금계산서를 삭제해야 합니다.
+    ' 국세청 전송 이전 "발행완료" 상태의 전자세금계산서를 "발행취소"하고, 해당 건은 국세청 신고 대상에서 제외됩니다.
+    ' - Delete(삭제)함수를 호출하여 "발행취소" 상태의 전자세금계산서를 삭제하면, 문서번호 재사용이 가능합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#CancelIssue
     '=========================================================================
     Private Sub btnCancelIssue_Reverse_sub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1419,10 +1413,9 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' [공급받는자]가 공급자에게 역발행 세금계산서를 [즉시 요청]합니다.
-    ' - 역발행 세금계산서 프로세스를 구현하기 위해서는 공급자/공급받는자가 모두 팝빌에 회원이여야 합니다.
-    ' - 역발행 즉시요청후 공급자가 [발행] 처리시 포인트가 차감되며 역발행 세금계산서 항목중 과금방향(ChargeDirection)에 기재한 값에 따라
-    '   정과금(공급자과금) 또는 역과금(공급받는자과금) 처리됩니다.
+    ' 공급받는자가 작성한 세금계산서 데이터를 팝빌에 저장하고 공급자에게 송부하여 발행을 요청합니다.
+    ' - 역발행 세금계산서 프로세스를 구현하기위해서는 공급자/공급받는자가 모두 팝빌에 회원이여야 합니다.
+    ' - 역발행 즉시요청후 공급자가 [발행] 처리시 포인트가 차감되며 역발행 세금계산서 항목중 과금방향(ChargeDirection)에 기재한 값에 따라 정과금(공급자과금) 또는 역과금(공급받는자과금) 처리됩니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#RegistRequest
     '=========================================================================
     Private Sub btnRegistRequest_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1430,8 +1423,8 @@ Public Class frmExample
 
         Dim taxinvoice As Taxinvoice = New Taxinvoice
 
-        '[필수] 작성일자, 표시형식 (yyyyMMdd) ex) 20190111
-        taxinvoice.writeDate = "20201022"
+        '[필수] 작성일자, 표시형식 (yyyyMMdd) ex) 20210701
+        taxinvoice.writeDate = "20210701"
 
         '[필수] 발행형태, [정발행, 역발행, 위수탁] 중 기재
         taxinvoice.issueType = "역발행"
@@ -1460,7 +1453,7 @@ Public Class frmExample
         '[필수] 공급자 상호
         taxinvoice.invoicerCorpName = "공급자 상호"
 
-        '공급자 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로
+        '공급자 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
         '사업자 별로 중복되지 않도록 구성
         taxinvoice.invoicerMgtKey = ""
 
@@ -1501,7 +1494,7 @@ Public Class frmExample
         '[필수] 공급자받는자 상호
         taxinvoice.invoiceeCorpName = "공급받는자 상호"
 
-        '[역발행시 필수] 공급받는자 문서번호
+        '[역발행시 필수] 공급받는자 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
         taxinvoice.invoiceeMgtKey = txtMgtKey.Text
 
         '[필수] 공급받는자 대표자 성명
@@ -1604,7 +1597,7 @@ Public Class frmExample
         Dim detail As TaxinvoiceDetail = New TaxinvoiceDetail
 
         detail.serialNum = 1                            '일련번호, 1부터 순차기재
-        detail.purchaseDT = "20201022"                  '거래일자, yyyyMMdd
+        detail.purchaseDT = "20210701"                  '거래일자, yyyyMMdd
         detail.itemName = "품목명"                      '품목명
         detail.spec = "규격"                            '규격
         detail.qty = "1"                                '수량
@@ -1637,10 +1630,9 @@ Public Class frmExample
 
 
     '=========================================================================
-    ' [공급받는자]가 임시저장 상태의 역발행 세금계산서를 공급자에게 [발행요청] 합니다. 
+    ' 공급받는자가 저장된 역발행 세금계산서를 공급자에게 송부하여 발행 요청합니다.
     ' - 역발행 세금계산서 프로세스를 구현하기 위해서는 공급자/공급받는자가 모두 팝빌에 회원이여야 합니다.
-    ' - 역발행 요청후 공급자가 [발행] 처리시 포인트가 차감되며 역발행 세금계산서 항목중 과금방향(ChargeDirection)에 기재한 값에 따라
-    '   정과금(공급자과금) 또는 역과금(공급받는자과금) 처리됩니다.
+    ' - 역발행 요청후 공급자가 [발행] 처리시 포인트가 차감되며 역발행 세금계산서 항목중 과금방향(ChargeDirection)에 기재한 값에 따라 정과금(공급자과금) 또는 역과금(공급받는자과금) 처리됩니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#Request
     '=========================================================================
     Private Sub btnRequest_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRequest.Click
@@ -1661,7 +1653,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' [공급받는자]가 역)발행대기 상태의 세금계산서를 [취소]합니다. 
+    ' 공급자가 요청받은 역발행 세금계산서를 발행하기 전, 공급받는자가 역발행요청을 취소합니다.
     ' - [취소]한 세금계산서의 문서번호를 재사용하기 위해서는 삭제 (Delete API)를 호출해야 합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#CancelRequest
     '=========================================================================
@@ -1685,7 +1677,7 @@ Public Class frmExample
 
 
     '=========================================================================
-    ' [공급받는자]가 역)발행대기 상태의 세금계산서를 [취소]합니다. 
+    ' 공급자가 요청받은 역발행 세금계산서를 발행하기 전, 공급받는자가 역발행요청을 취소합니다.
     ' - [취소]한 세금계산서의 문서번호를 재사용하기 위해서는 삭제 (Delete API)를 호출해야 합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#CancelRequest
     '=========================================================================
@@ -1708,7 +1700,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 공급받는자에게 요청받은 역)발행대기 상태의 세금계산서를 [공급자]가 [거부]합니다.
+    ' 공급자가 공급받는자에게 역발행 요청 받은 세금계산서의 발행을 거부합니다.
     ' - 세금계산서의 문서번호를 재사용하기 위해서는 삭제 (Delete API)를 호출하여 [삭제] 처리해야 합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#Refuse
     '=========================================================================
@@ -1730,7 +1722,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 공급받는자에게 요청받은 역)발행대기 상태의 세금계산서를 [공급자]가 [거부]합니다.
+    ' 공급자가 공급받는자에게 역발행 요청 받은 세금계산서의 발행을 거부합니다.
     ' - 세금계산서의 문서번호를 재사용하기 위해서는 삭제 (Delete API)를 호출하여 [삭제] 처리해야 합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#Refuse
     '=========================================================================
@@ -1753,9 +1745,9 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 전자세금계산서를 [삭제]합니다.
+    ' 삭제 가능한 상태의 세금계산서를 삭제합니다.
+    ' - 삭제 가능한 상태: "임시저장", "발행취소", "역발행거부", "역발행취소", "전송실패"
     ' - 세금계산서를 삭제해야만 문서번호(mgtKey)를 재사용할 수 있습니다.
-    ' - 삭제가능한 문서 상태 : [임시저장], [발행취소], [발행예정 취소], [발행예정 거부]
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#Delete
     '=========================================================================
     Private Sub btnDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1774,9 +1766,9 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 전자세금계산서를 [삭제]합니다.
+    ' 삭제 가능한 상태의 세금계산서를 삭제합니다.
+    ' - 삭제 가능한 상태: "임시저장", "발행취소", "역발행거부", "역발행취소", "전송실패"
     ' - 세금계산서를 삭제해야만 문서번호(mgtKey)를 재사용할 수 있습니다.
-    ' - 삭제가능한 문서 상태 : [임시저장], [발행취소], [발행예정 취소], [발행예정 거부]
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#Delete
     '=========================================================================
     Private Sub btnDelete_Sub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1795,9 +1787,9 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 전자세금계산서를 [삭제]합니다.
+    ' 삭제 가능한 상태의 세금계산서를 삭제합니다.
+    ' - 삭제 가능한 상태: "임시저장", "발행취소", "역발행거부", "역발행취소", "전송실패"
     ' - 세금계산서를 삭제해야만 문서번호(mgtKey)를 재사용할 수 있습니다.
-    ' - 삭제가능한 문서 상태 : [임시저장], [발행취소], [발행예정 취소], [발행예정 거부]
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#Delete
     '=========================================================================
     Private Sub btnDelete_Reverse_sub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1816,7 +1808,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' [발행완료] 상태의 세금계산서를 국세청으로 [즉시전송]합니다.
+    ' 공급자가 "발행완료" 상태의 전자세금계산서를 국세청에 즉시 전송하며, 함수 호출 후 최대 30분 이내에 전송 처리가 완료됩니다.
     ' - 국세청 즉시전송을 호출하지 않은 세금계산서는 발행일 기준 익일 오후 3시에 팝빌 시스템에서 일괄적으로 국세청으로 전송합니다.
     ' - 익일전송시 전송일이 법정공휴일인 경우 다음 영업일에 전송됩니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#SendToNTS
@@ -1837,7 +1829,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 세금계산서 상태/요약 정보를 확인합니다.
+    ' 세금계산서 1건의 상태 및 요약정보를 확인합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetInfo
     '=========================================================================
     Private Sub btnGetInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetInfo.Click
@@ -1850,7 +1842,7 @@ Public Class frmExample
 
             Dim tmp As String = ""
 
-            tmp += "itemKey (팝빌 관리번호) : " + tiInfo.itemKey + vbCrLf
+            tmp += "itemKey (팝빌번호) : " + tiInfo.itemKey + vbCrLf
             tmp += "taxType (과세형태) : " + tiInfo.taxType + vbCrLf
             tmp += "writeDate (작성일자) : " + tiInfo.writeDate + vbCrLf
             tmp += "regDT (임시저장 일자) : " + tiInfo.regDT + vbCrLf
@@ -1893,7 +1885,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 대량의 세금계산서 상태/요약 정보를 확인합니다. (최대 1000건)
+    ' 다수건의 세금계산서 상태 및 요약 정보를 확인합니다. (1회 호출 시 최대 1,000건 확인 가능) 
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetInfos
     '=========================================================================
     Private Sub btnGetInfos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetInfos.Click
@@ -1904,8 +1896,8 @@ Public Class frmExample
         Dim MgtKeyList As List(Of String) = New List(Of String)
 
         '문서번호 배열, 최대 1000건
-        MgtKeyList.Add("20201022-001")
-        MgtKeyList.Add("20201022-002")
+        MgtKeyList.Add("20210701-001")
+        MgtKeyList.Add("20210701-002")
 
         Try
             Dim taxinvoiceInfoList As List(Of TaxinvoiceInfo) = taxinvoiceService.GetInfos(txtCorpNum.Text, KeyType, MgtKeyList)
@@ -1914,7 +1906,7 @@ Public Class frmExample
 
             For Each tiInfo As TaxinvoiceInfo In taxinvoiceInfoList
 
-                tmp += "itemKey (세금계산서 아이템키) : " + tiInfo.itemKey + vbCrLf
+                tmp += "itemKey (팝빌번호) : " + tiInfo.itemKey + vbCrLf
                 tmp += "stateCode (상태코드) : " + tiInfo.stateCode.ToString + vbCrLf
                 tmp += "taxType (과세형태) : " + tiInfo.taxType + vbCrLf
                 tmp += "purposeType (영수/청구) : " + tiInfo.purposeType + vbCrLf
@@ -1959,7 +1951,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 세금계산서 상세정보를 확인합니다.
+    ' 세금계산서 1건의 상세정보를 확인합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetDetailInfo
     '=========================================================================
     Private Sub btnGetDetailInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1993,7 +1985,7 @@ Public Class frmExample
             tmp += "remark2 (비고2) : " + tiDetailInfo.remark2 + vbCrLf
             tmp += "remakr3 (비고3) : " + tiDetailInfo.remark3 + vbCrLf
 
-            tmp += "invoicerMgtKey (공급자 관리번호) : " + tiDetailInfo.invoicerMgtKey + vbCrLf
+            tmp += "invoicerMgtKey (공급자 문서번호) : " + tiDetailInfo.invoicerMgtKey + vbCrLf
             tmp += "invoicerCorpNum (공급자 사업자번호) : " + tiDetailInfo.invoicerCorpNum + vbCrLf
             tmp += "invoicerTaxRegID (공급자 종사업장 식별번호) : " + tiDetailInfo.invoicerTaxRegID + vbCrLf
             tmp += "invoicerCorpName (공급자 상호) : " + tiDetailInfo.invoicerCorpName + vbCrLf
@@ -2024,7 +2016,6 @@ Public Class frmExample
             tmp += "invoiceeEmail1 (담당자 이메일) : " + tiDetailInfo.invoiceeEmail1 + vbCrLf
 
             tmp += "orgNTSConfirmNum (원본 국세청승인번호) : " + tiDetailInfo.orgNTSConfirmNum + vbCrLf
-            tmp += "originalTaxinvoiceKey (원본 팝빌 관리번호) : " + tiDetailInfo.originalTaxinvoiceKey + vbCrLf
 
             If Not tiDetailInfo.detailList Is Nothing Then
                 For Each detailList As TaxinvoiceDetail In tiDetailInfo.detailList
@@ -2059,7 +2050,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 검색조건을 사용하여 세금계산서 목록을 조회합니다.
+    ' 검색조건에 해당하는 세금계산서를 조회합니다. 
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#Search
     '=========================================================================
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
@@ -2078,10 +2069,10 @@ Public Class frmExample
         Dim DType As String = "W"
 
         '[필수] 시작일자, yyyyMMdd
-        Dim SDate As String = "20200701"
+        Dim SDate As String = "20210701"
 
         '[필수] 종료일자, yyyyMMdd
-        Dim EDate As String = "20200731"
+        Dim EDate As String = "20210730"
 
         '상태코드 배열, 미기재시 전체상태조회, 문서상태값 3자리숫자 작성
         '2,3번째 와일드카드 가능
@@ -2163,7 +2154,7 @@ Public Class frmExample
             Dim tiInfo As TaxinvoiceInfo
 
             For Each tiInfo In tiSearchList.list
-                tmp = tmp + "itemKey (세금계산서 아이템키) : " + tiInfo.itemKey + vbCrLf
+                tmp = tmp + "itemKey (팝빌번호) : " + tiInfo.itemKey + vbCrLf
                 tmp = tmp + "taxType (과세형태) : " + tiInfo.taxType + vbCrLf
                 tmp = tmp + "writeDate (작성일자) : " + tiInfo.writeDate + vbCrLf
                 tmp = tmp + "regDT (임시저장 일자) : " + tiInfo.regDT + vbCrLf
@@ -2209,7 +2200,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 세금계산서 상태 변경이력을 확인합니다.
+    ' 세금계산서의 상태에 대한 변경이력을 확인합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetLogs
     '=========================================================================
     Private Sub btnGetLogs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetLogs.Click
@@ -2235,13 +2226,14 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 > 전자세금계산서 > 임시(연동)문서함 팝업 URL을 반환합니다.
+    ' 로그인 상태로 팝빌 사이트의 전자세금계산서 임시문서함 메뉴에 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetURL
     '=========================================================================
     Private Sub btnGetURL_TBOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnGetURL_TBOX.Click
 
-        'TBOX-임시문서함 / SBOX-매출문서함 / PBOX-매입문서함 / WRITE-매출문서함
+        'TBOX-임시문서함 / SBOX-매출문서함 / PBOX-매입문서함 / WRITE-매출문서작성
         Dim TOGO As String = "TBOX"
 
         Try
@@ -2255,13 +2247,14 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 > 전자세금계산서 > 매출 문서함 팝업 URL을 반환합니다.
+    ' 로그인 상태로 팝빌 사이트의 전자세금계산서 매출서함 메뉴에 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetURL
     '=========================================================================
     Private Sub btnGetURL_SBOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnGetURL_SBOX.Click
 
-        'TBOX-임시문서함 / SBOX-매출문서함 / PBOX-매입문서함 / WRITE-매출문서함
+        'TBOX-임시문서함 / SBOX-매출문서함 / PBOX-매입문서함 / WRITE-매출문서작성
         Dim TOGO As String = "SBOX"
 
         Try
@@ -2276,13 +2269,14 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 > 전자세금계산서 > 매입 문서함 팝업 URL을 반환합니다.
+    ' 로그인 상태로 팝빌 사이트의 전자세금계산서 매출문서함 메뉴에 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetURL
     '=========================================================================
     Private Sub btnGetURL_PBOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnGetURL_PBOX.Click
 
-        'TBOX-임시문서함 / SBOX-매출문서함 / PBOX-매입문서함 / WRITE-매출문서함
+        'TBOX-임시문서함 / SBOX-매출문서함 / PBOX-매입문서함 / WRITE-매출문서작성
         Dim TOGO As String = "PBOX"
 
         Try
@@ -2297,13 +2291,14 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 > 전자세금계산서 > 매출 문서작성 팝업 URL을 반환합니다.
+    ' 로그인 상태로 팝빌 사이트의 전자세금계산서 매출문서작성 메뉴에 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetURL
     '=========================================================================
     Private Sub btnGetURL_WRITE_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnGetURL_WRITE.Click
 
-        'TBOX-임시문서함 / SBOX-매출문서함 / PBOX-매입문서함 / WRITE-매출문서함
+        'TBOX-임시문서함 / SBOX-매출문서함 / PBOX-매입문서함 / WRITE-매출문서작성
         Dim TOGO As String = "WRITE"
 
         Try
@@ -2318,8 +2313,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 전자세금계산서 보기 팝업 URL을 반환합니다.
-    ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    ' 팝빌 사이트와 동일한 세금계산서 1건의 상세 정보 페이지의 팝업 URL을 반환합니다. 
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetPopUpURL
     '=========================================================================
     Private Sub btnGetPopUpURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -2339,8 +2334,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 전자세금계산서 인쇄팝업 URL을 반환합니다.
-    ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    ' 세금계산서 1건을 인쇄하기 위한 페이지의 팝업 URL을 반환하며, 페이지내에서 인쇄 설정값을 "공급자" / "공급받는자" / "공급자+공급받는자"용 중 하나로 지정할 수 있습니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetPrintURL
     '=========================================================================
     Private Sub btnGetPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -2360,8 +2355,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 전자세금계산서 구버전 양식 인쇄팝업 URL을 반환합니다.
-    ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    ' 세금계산서 1건을 구버전 양식으로 인쇄하기 위한 페이지의 팝업 URL을 반환하며, 페이지내에서 인쇄 설정값을 "공급자" / "공급받는자" / "공급자+공급받는자"용 중 하나로 지정할 수 있습니다..
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetOldPrintURL
     '=========================================================================
     Private Sub btnGetOldPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -2381,8 +2376,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 세금계산서 인쇄(공급받는자) URL을 반환합니다.
-    ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' "공급받는자" 용 세금계산서 1건을 인쇄하기 위한 페이지의 팝업 URL을 반환합니다. 
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetEPrintURL
     '=========================================================================
     Private Sub btnEPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -2402,8 +2397,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 대량의 세금계산서 인쇄팝업 URL을 반환합니다. (최대 100건)
-    ' - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+    ' 다수건의 세금계산서를 인쇄하기 위한 페이지의 팝업 URL을 반환합니다. (최대 100건) 
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetMassPrintURL
     '=========================================================================
     Private Sub btnGetMassPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -2429,8 +2424,8 @@ Public Class frmExample
 
 
     '=========================================================================
-    ' 공급받는자 메일링크 URL을 반환합니다.
-    ' - 메일링크 URL은 유효시간이 존재하지 않습니다.
+    ' 안내메일과 관련된 전자세금계산서를 확인 할 수 있는 상세 페이지의 팝업 URL을 반환하며, 해당 URL은 메일 하단의 "전자세금계산서 보기" 버튼의 링크와 같습니다.
+    ' - 함수 호출로 반환 받은 URL에는 유효시간이 없습니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetMailURL
     '=========================================================================
     Private Sub btnGetEmailURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -2450,8 +2445,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌에 로그인 상태로 접근할 수 있는 팝업 URL을 반환합니다.
-    ' - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+    ' 팝빌 사이트에 로그인 상태로 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetAccessURL
     '=========================================================================
     Private Sub btnGetAccessURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -2468,8 +2463,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 인감 및 첨부문서 등록 URL을 반환합니다.
-    ' - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+    ' 세금계산서에 첨부할 인감, 사업자등록증, 통장사본을 등록하는 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetSealURL
     '=========================================================================
     Private Sub btnGetSealURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -2485,9 +2480,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 세금계산서에 첨부파일을 등록합니다.
-    ' - [임시저장] 상태의 세금계산서만 파일을 첨부할수 있습니다.
-    ' - 첨부파일은 최대 5개까지 등록할 수 있습니다.
+    ' "임시저장" 상태의 세금계산서에 1개의 파일을 첨부합니다. (최대 5개)
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#AttachFile
     '=========================================================================
     Private Sub btnAttachFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -2512,8 +2505,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 세금계산서에 첨부된 파일을 삭제합니다.
-    ' - 파일을 식별하는 파일아이디는 첨부파일 목록(GetFiles API) 의 응답항목 중 파일아이디(AttachedFile) 값을 통해 확인할 수 있습니다.
+    ' "임시저장" 상태의 세금계산서에 첨부된 1개의 파일을 삭제합니다. 
+    ' - 파일을 식별하는 파일아이디는 첨부파일 목록(GetFiles API) 의 응답항목 중 파일아이디(AttachedFile) 값을 통해 확인할 수 있습니다. 
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#DeleteFile
     '=========================================================================
     Private Sub btnDeleteFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -2534,8 +2527,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 세금계산서 첨부파일 목록을 확인합니다.
-    ' - 응답항목 중 파일아이디(AttachedFile) 항목은 파일삭제(DeleteFile API) 호출시 이용할 수 있습니다.
+    ' 세금계산서에 첨부된 파일목록을 확인합니다.
+    ' - 응답항목 중 파일아이디(AttachedFile) 항목은 파일삭제(DeleteFile API) 호출시 이용할 수 있습니다. 
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetFiles
     '=========================================================================
     Private Sub btnGetFiles_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFiles.Click
@@ -2561,7 +2554,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 세금계산서 발행안내 메일을 재전송합니다.
+    ' 세금계산서와 관련된 안내 메일을 재전송 합니다. 
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#SendEmail
     '=========================================================================
     Private Sub btnSendEmail_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -2583,9 +2576,9 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 알림문자를 전송합니다. (단문/SMS - 한글 최대 45자)
-    ' - 알림문자 전송시 포인트가 차감됩니다. (전송실패시 환불처리)
-    ' - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [문자] > [전송내역] 메뉴에서 전송결과를 확인할 수 있습니다.
+    ' 세금계산서와 관련된 안내 SMS(단문) 문자를 재전송하는 함수로, 팝빌 사이트 [문자·팩스] > [문자] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다. 
+    ' - 메시지는 최대 90byte까지 입력 가능하고, 초과한 내용은 자동으로 삭제되어 전송합니다. (한글 최대 45자) 
+    ' - 함수 호출시 포인트가 과금됩니다. 
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#SendSMS
     '=========================================================================
     Private Sub btnSendSMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendSMS.Click
@@ -2612,9 +2605,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 전자세금계산서를 팩스전송합니다.
-    ' - 팩스 전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
-    ' - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인할 수 있습니다.
+    ' 세금계산서를 팩스로 전송하는 함수로, 팝빌 사이트 [문자·팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다.
+    ' - 함수 호출시 포인트가 과금됩니다. 
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#SendFAX
     '=========================================================================
     Private Sub btnSendFAX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendFAX.Click
@@ -2638,7 +2630,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 전자명세서를 세금계산서에 첨부합니다.
+    ' 팝빌 전자명세서 API를 통해 발행한 전자명세서를 세금계산서에 첨부합니다. 
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#AttachStatement
     '=========================================================================
     Private Sub btnAttachStatement_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -2650,8 +2642,8 @@ Public Class frmExample
         '첨부 대상 전자명세서 종류코드, 121-거래명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표,126-영수증
         Dim docItemCode As Integer = 121
 
-        '첨부 대상 전자명세서 관리번호
-        Dim docMgtKey As String = "20171117-02"
+        '첨부 대상 전자명세서 문서번호
+        Dim docMgtKey As String = "20210701-02"
 
         Try
             Dim response As Response = taxinvoiceService.AttachStatement(txtCorpNum.Text, KeyType, txtMgtKey.Text, docItemCode, docMgtKey)
@@ -2662,7 +2654,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 세금계산서에 첨부된 전자명세서 1건을 첨부해제합니다.
+    ' 세금계산서에 첨부된 전자명세서를 해제합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#DetachStatement
     '=========================================================================
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
@@ -2673,8 +2665,8 @@ Public Class frmExample
         '첨부해제 대상 전자명세서 종류코드, 121-거래명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표,126-영수증
         Dim docItemCode As Integer = 121
 
-        '첨부해제 대상 전자명세서 관리번호
-        Dim docMgtKey As String = "20171117-02"
+        '첨부해제 대상 전자명세서 문서번호
+        Dim docMgtKey As String = "20210701-02"
 
         Try
             Dim response As Response = taxinvoiceService.DetachStatement(txtCorpNum.Text, KeyType, txtMgtKey.Text, docItemCode, docMgtKey)
@@ -2685,7 +2677,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 대용량 연계사업자 유통메일주소 목록을 반환합니다.
+    ' 전자세금계산서 유통사업자의 메일 목록을 확인합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetEmailPublicKeys
     '=========================================================================
     Private Sub btnGetEmailPublicKey_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -2702,7 +2694,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌사이트에서 작성된 세금계산서에 파트너 문서번호를 할당합니다.
+    ' 팝빌 사이트를 통해 발행하였지만 문서번호가 존재하지 않는 세금계산서에 문서번호를 할당합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#AssignMgtKey
     '=========================================================================
     Private Sub btnAssignMgtKey_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -2711,12 +2703,12 @@ Public Class frmExample
         '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
         Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
 
-        '세금계산서 아이템키, 목록조회(Search) API의 반환항목중 ItemKey 참조
+        '팝빌번호, 목록조회(Search) API의 반환항목중 ItemKey 참조
         Dim itemKey As String = "018041823295700001"
 
-        '관리번호가 없는 문서에 할당할 문서번호
-        '- 관리번호는 1~24자리로 숫자, 영문 '-', '_' 조합으로 구성할 수 있습니다.
-        Dim mgtKey As String = "20190111-A00"
+        '문서번호가 없는 문서에 할당할 문서번호
+        '- 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
+        Dim mgtKey As String = "20210701-A00"
 
         Try
             Dim response As Response = taxinvoiceService.AssignMgtKey(txtCorpNum.Text, KeyType, itemKey, mgtKey, txtUserId.Text)
@@ -2727,7 +2719,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 전자세금계산서 메일전송 항목에 대한 전송여부를 목록으로 반환합니다.
+    ' 세금계산서 관련 메일 항목에 대한 발송설정을 확인합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#ListEmailConfig
     '=========================================================================
     Private Sub btnListEmailConfig_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -2800,7 +2792,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 전자세금계산서 메일전송 항목에 대한 전송여부를 수정합니다.
+    ' 세금계산서 관련 메일 항목에 대한 발송설정을 수정합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#UpdateEmailConfig
     '메일전송유형
     '[정발행]
@@ -2862,10 +2854,9 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 회원의 공인인증서를 등록하는 팝업 URL을 반환합니다.
-    ' - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
-    ' - 팝빌에 등록된 공인인증서가 유효하지 않은 경우 (비밀번호 변경, 인증서 재발급/갱신, 만료일 경과)
-    '   인증서를 재등록해야 정상적으로 전자세금계산서 발행이 가능합니다.
+    ' 전자세금계산서 발행에 필요한 인증서를 팝빌 인증서버에 등록하기 위한 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    ' - 인증서 갱신/재발급/비밀번호 변경한 경우, 변경된 인증서를 팝빌 인증서버에 재등록 해야합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetTaxCertURL
     '=========================================================================
     Private Sub btnGetTaxCertURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -2899,9 +2890,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌에 등록되어 있는 공인인증서의 만료일자를 확인합니다.
-    ' - 공인인증서가 갱신/재발급/비밀번호 변경이 되는 경우 해당 인증서를
-    '   재등록 하셔야 정상적으로 세금계산서를 발행할 수 있습니다.
+    ' 팝빌 인증서버에 등록된 인증서의 만료일을 확인합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetCertificateExpireDate
     '=========================================================================
     Private Sub Button1_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -2917,7 +2906,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌에 등록된 공인인증서의 유효성을 확인합니다.
+    ' 팝빌 인증서버에 등록된 인증서의 유효성을 확인합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#CheckCertValidation
     '=========================================================================
     Private Sub btnCheckCertValidation_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -2950,8 +2939,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원 포인트 충전 URL을 반환합니다.
-    ' - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' 연동회원 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetChargeURL
     '=========================================================================
     Private Sub btnGetChargeURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -2985,8 +2974,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 파트너 포인트 충전 팝업 URL을 반환합니다.
-    ' - 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+    ' 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetPartnerURL
     '=========================================================================
     Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -3022,7 +3011,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 전자세금계산서 API 서비스 과금정보를 확인합니다.
+    ' 팝빌 전자세금계산서 API 서비스 과금정보를 확인합니다. 
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetChargeInfo
     '=========================================================================
     Private Sub btnGetChargeInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -3042,8 +3031,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 해당 사업자의 파트너 연동회원 가입여부를 확인합니다.
-    ' - LinkID는 인증정보로 설정되어 있는 링크아이디 값입니다.
+    ' 사업자번호를 조회하여 연동회원 가입여부를 확인합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#CheckIsMember
     '=========================================================================
     Private Sub btnCheckIsMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -3059,7 +3047,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 회원아이디 중복여부를 확인합니다.
+    ' 사용하고자 하는 아이디의 중복여부를 확인합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#CheckID
     '=========================================================================
     Private Sub btnCheckID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckID.Click
@@ -3074,7 +3062,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 파트너의 연동회원으로 회원가입을 요청합니다.
+    ' 사용자를 연동회원으로 가입처리합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#JoinMember
     '=========================================================================
     Private Sub btnJoinMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -3190,7 +3178,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 담당자를 신규로 등록합니다.
+    ' 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#RegistContact
     '=========================================================================
     Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -3236,7 +3224,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 담당자 목록을 확인합니다.
+    '  연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#ListContact
     '=========================================================================
     Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -3260,7 +3248,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 담당자 정보를 수정합니다.
+    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#UpdateContact
     '=========================================================================
     Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -3304,8 +3292,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 전자세금계산서 보기 팝업 URL을 반환합니다. (메뉴/버튼 출력되지 않음)
-    ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    ' 팝빌 사이트와 동일한 세금계산서 1건의 상세정보 페이지(사이트 상단, 좌측 메뉴 및 버튼 제외)의 팝업 URL을 반환합니다. 
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다. 
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetViewURL
     '=========================================================================
     Private Sub btnGetViewURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetViewURL.Click
@@ -3324,8 +3312,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 전자세금계산서 PDF 다운로드 URL을 반환합니다.
-    ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    ' 전자세금계산서 PDF 파일을 다운 받을 수 있는 URL을 반환합니다. 
+    ' - 반환되는 URL은 보안정책상 30초의 유효시간을 갖으며, 유효시간 이후 호출시 정상적으로 페이지가 호출되지 않습니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetPDFURL
     '=========================================================================
     Private Sub btnGetPDFURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPDFURL.Click
@@ -3338,31 +3326,6 @@ Public Class frmExample
 
             MsgBox(url)
             txtURL.Text = url
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 1건의 전자세금계산서를 PDF 파일로 저장하기 위한 Byte Array를 반환합니다.
-    ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetPDF
-    '=========================================================================
-    Private Sub btnGetPDF_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPDF.Click
-
-        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
-        Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
-
-        Dim path As String = "C:\Users\wjkim\Desktop/Taxinvoiec_20201022-01.pdf"
-
-        Try
-            Dim btPDF() As Byte = taxinvoiceService.GetPDF(txtCorpNum.Text, KeyType, txtMgtKey.Text, txtUserId.Text)
-
-            Dim fileStream As System.IO.FileStream
-            fileStream = New System.IO.FileStream(path, System.IO.FileMode.Create)
-            fileStream.Write(btPDF, 0, btPDF.Length)
-            fileStream.Close()
-
-            MsgBox("응답코드 : 1" + vbCrLf + "다운로드파일 경로 : " + path)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try

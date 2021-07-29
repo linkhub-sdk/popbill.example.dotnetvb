@@ -25,7 +25,7 @@ Partial Class frmExample
         Me.GroupBox4 = New System.Windows.Forms.GroupBox
         Me.Label4 = New System.Windows.Forms.Label
         Me.txtAccountNumber = New System.Windows.Forms.TextBox
-        Me.btnCheckCorpNum = New System.Windows.Forms.Button
+        Me.btnCheckAccountInfo = New System.Windows.Forms.Button
         Me.Label3 = New System.Windows.Forms.Label
         Me.txtBankCode = New System.Windows.Forms.TextBox
         Me.txtUserId = New System.Windows.Forms.TextBox
@@ -72,7 +72,7 @@ Partial Class frmExample
         '
         Me.GroupBox4.Controls.Add(Me.Label4)
         Me.GroupBox4.Controls.Add(Me.txtAccountNumber)
-        Me.GroupBox4.Controls.Add(Me.btnCheckCorpNum)
+        Me.GroupBox4.Controls.Add(Me.btnCheckAccountInfo)
         Me.GroupBox4.Controls.Add(Me.Label3)
         Me.GroupBox4.Controls.Add(Me.txtBankCode)
         Me.GroupBox4.Location = New System.Drawing.Point(8, 217)
@@ -99,14 +99,14 @@ Partial Class frmExample
         Me.txtAccountNumber.TabIndex = 3
         Me.txtAccountNumber.Text = "9432451175835"
         '
-        'btnCheckCorpNum
+        'btnCheckAccountInfo
         '
-        Me.btnCheckCorpNum.Location = New System.Drawing.Point(248, 21)
-        Me.btnCheckCorpNum.Name = "btnCheckCorpNum"
-        Me.btnCheckCorpNum.Size = New System.Drawing.Size(110, 49)
-        Me.btnCheckCorpNum.TabIndex = 2
-        Me.btnCheckCorpNum.Text = "예금주성명 조회 "
-        Me.btnCheckCorpNum.UseVisualStyleBackColor = True
+        Me.btnCheckAccountInfo.Location = New System.Drawing.Point(248, 21)
+        Me.btnCheckAccountInfo.Name = "btnCheckAccountInfo"
+        Me.btnCheckAccountInfo.Size = New System.Drawing.Size(110, 49)
+        Me.btnCheckAccountInfo.TabIndex = 2
+        Me.btnCheckAccountInfo.Text = "예금주성명 조회 "
+        Me.btnCheckAccountInfo.UseVisualStyleBackColor = True
         '
         'Label3
         '
@@ -434,7 +434,7 @@ Partial Class frmExample
 
     End Sub
     Friend WithEvents GroupBox4 As System.Windows.Forms.GroupBox
-    Friend WithEvents btnCheckCorpNum As System.Windows.Forms.Button
+    Friend WithEvents btnCheckAccountInfo As System.Windows.Forms.Button
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents txtBankCode As System.Windows.Forms.TextBox
     Friend WithEvents txtUserId As System.Windows.Forms.TextBox
