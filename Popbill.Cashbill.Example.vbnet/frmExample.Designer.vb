@@ -98,6 +98,7 @@ Partial Class frmExample
         Me.btnJoinMember = New System.Windows.Forms.Button
         Me.Label5 = New System.Windows.Forms.Label
         Me.txtURL = New System.Windows.Forms.TextBox
+        Me.btnGetViewURL = New System.Windows.Forms.Button
         Me.GroupBox7.SuspendLayout()
         Me.GroupBox13.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -182,7 +183,7 @@ Partial Class frmExample
         Me.GroupBox13.Controls.Add(Me.btnGetURL_WRITE)
         Me.GroupBox13.Controls.Add(Me.btnGetURL_PBOX)
         Me.GroupBox13.Controls.Add(Me.btnGetURL_TBOX)
-        Me.GroupBox13.Location = New System.Drawing.Point(776, 243)
+        Me.GroupBox13.Location = New System.Drawing.Point(828, 243)
         Me.GroupBox13.Name = "GroupBox13"
         Me.GroupBox13.Size = New System.Drawing.Size(115, 184)
         Me.GroupBox13.TabIndex = 12
@@ -383,6 +384,7 @@ Partial Class frmExample
         '
         'GroupBox12
         '
+        Me.GroupBox12.Controls.Add(Me.btnGetViewURL)
         Me.GroupBox12.Controls.Add(Me.btnGetPDFURL)
         Me.GroupBox12.Controls.Add(Me.btnGetEmailURL)
         Me.GroupBox12.Controls.Add(Me.btnGetMassPrintURL)
@@ -391,23 +393,23 @@ Partial Class frmExample
         Me.GroupBox12.Controls.Add(Me.btnGetPopUpURL)
         Me.GroupBox12.Location = New System.Drawing.Point(434, 243)
         Me.GroupBox12.Name = "GroupBox12"
-        Me.GroupBox12.Size = New System.Drawing.Size(328, 184)
+        Me.GroupBox12.Size = New System.Drawing.Size(388, 184)
         Me.GroupBox12.TabIndex = 11
         Me.GroupBox12.TabStop = False
         Me.GroupBox12.Text = "문서관련 URL 기능"
         '
         'btnGetPDFURL
         '
-        Me.btnGetPDFURL.Location = New System.Drawing.Point(192, 20)
+        Me.btnGetPDFURL.Location = New System.Drawing.Point(202, 52)
         Me.btnGetPDFURL.Name = "btnGetPDFURL"
-        Me.btnGetPDFURL.Size = New System.Drawing.Size(130, 26)
+        Me.btnGetPDFURL.Size = New System.Drawing.Size(180, 26)
         Me.btnGetPDFURL.TabIndex = 14
         Me.btnGetPDFURL.Text = "PDF 다운로드 URL"
         Me.btnGetPDFURL.UseVisualStyleBackColor = True
         '
         'btnGetEmailURL
         '
-        Me.btnGetEmailURL.Location = New System.Drawing.Point(6, 148)
+        Me.btnGetEmailURL.Location = New System.Drawing.Point(202, 20)
         Me.btnGetEmailURL.Name = "btnGetEmailURL"
         Me.btnGetEmailURL.Size = New System.Drawing.Size(180, 26)
         Me.btnGetEmailURL.TabIndex = 13
@@ -416,27 +418,27 @@ Partial Class frmExample
         '
         'btnGetMassPrintURL
         '
-        Me.btnGetMassPrintURL.Location = New System.Drawing.Point(6, 116)
+        Me.btnGetMassPrintURL.Location = New System.Drawing.Point(6, 146)
         Me.btnGetMassPrintURL.Name = "btnGetMassPrintURL"
-        Me.btnGetMassPrintURL.Size = New System.Drawing.Size(180, 26)
+        Me.btnGetMassPrintURL.Size = New System.Drawing.Size(190, 26)
         Me.btnGetMassPrintURL.TabIndex = 12
         Me.btnGetMassPrintURL.Text = "대량인쇄 팝업 URL"
         Me.btnGetMassPrintURL.UseVisualStyleBackColor = True
         '
         'btnEPrintURL
         '
-        Me.btnEPrintURL.Location = New System.Drawing.Point(6, 84)
+        Me.btnEPrintURL.Location = New System.Drawing.Point(6, 114)
         Me.btnEPrintURL.Name = "btnEPrintURL"
-        Me.btnEPrintURL.Size = New System.Drawing.Size(180, 26)
+        Me.btnEPrintURL.Size = New System.Drawing.Size(190, 26)
         Me.btnEPrintURL.TabIndex = 11
         Me.btnEPrintURL.Text = "공급받는자 인쇄 팝업 URL"
         Me.btnEPrintURL.UseVisualStyleBackColor = True
         '
         'btnGetPrintURL
         '
-        Me.btnGetPrintURL.Location = New System.Drawing.Point(6, 52)
+        Me.btnGetPrintURL.Location = New System.Drawing.Point(7, 84)
         Me.btnGetPrintURL.Name = "btnGetPrintURL"
-        Me.btnGetPrintURL.Size = New System.Drawing.Size(180, 26)
+        Me.btnGetPrintURL.Size = New System.Drawing.Size(189, 26)
         Me.btnGetPrintURL.TabIndex = 10
         Me.btnGetPrintURL.Text = "인쇄 팝업 URL"
         Me.btnGetPrintURL.UseVisualStyleBackColor = True
@@ -445,7 +447,7 @@ Partial Class frmExample
         '
         Me.btnGetPopUpURL.Location = New System.Drawing.Point(6, 20)
         Me.btnGetPopUpURL.Name = "btnGetPopUpURL"
-        Me.btnGetPopUpURL.Size = New System.Drawing.Size(180, 26)
+        Me.btnGetPopUpURL.Size = New System.Drawing.Size(190, 26)
         Me.btnGetPopUpURL.TabIndex = 9
         Me.btnGetPopUpURL.Text = "문서 내용보기 팝업 URL"
         Me.btnGetPopUpURL.UseVisualStyleBackColor = True
@@ -878,6 +880,15 @@ Partial Class frmExample
         Me.txtURL.Size = New System.Drawing.Size(278, 21)
         Me.txtURL.TabIndex = 24
         '
+        'btnGetViewURL
+        '
+        Me.btnGetViewURL.Location = New System.Drawing.Point(7, 52)
+        Me.btnGetViewURL.Name = "btnGetViewURL"
+        Me.btnGetViewURL.Size = New System.Drawing.Size(189, 26)
+        Me.btnGetViewURL.TabIndex = 15
+        Me.btnGetViewURL.Text = "문서 내용보기 팝업 URL(메뉴x)"
+        Me.btnGetViewURL.UseVisualStyleBackColor = True
+        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
@@ -990,5 +1001,6 @@ Partial Class frmExample
     Friend WithEvents btnGetUseHistoryURL As System.Windows.Forms.Button
     Friend WithEvents btnGetPaymentURL As System.Windows.Forms.Button
     Friend WithEvents btnGetContactInfo As System.Windows.Forms.Button
+    Friend WithEvents btnGetViewURL As System.Windows.Forms.Button
 
 End Class

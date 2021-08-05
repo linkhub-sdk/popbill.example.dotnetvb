@@ -912,6 +912,24 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
+    ' 팝빌 사이트와 동일한 현금영수증 1건의 상세 정보 페이지(사이트 상단, 좌측 메뉴 및 버튼 제외)의 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#GetViewURL
+    '=========================================================================
+    Private Sub btnGetViewURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetViewURL.Click
+
+        Try
+            Dim url As String = cashbillService.GetViewURL(txtCorpNum.Text, txtMgtKey.Text, txtUserId.Text)
+
+            MsgBox(url)
+            txtURL.Text = url
+        Catch ex As PopbillException
+
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
     ' 현금영수증 1건을 인쇄하기 위한 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetPrintURL
