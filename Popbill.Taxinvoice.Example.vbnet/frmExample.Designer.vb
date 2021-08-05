@@ -165,6 +165,7 @@ Partial Class frmExample
         Me.Label8 = New System.Windows.Forms.Label
         Me.txtURL = New System.Windows.Forms.TextBox
         Me.btnGetContactInfo = New System.Windows.Forms.Button
+        Me.btnGetSendToNTSConfig = New System.Windows.Forms.Button
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -1278,7 +1279,7 @@ Partial Class frmExample
         '
         'btnGetURL_WRITE
         '
-        Me.btnGetURL_WRITE.Location = New System.Drawing.Point(16, 112)
+        Me.btnGetURL_WRITE.Location = New System.Drawing.Point(16, 118)
         Me.btnGetURL_WRITE.Name = "btnGetURL_WRITE"
         Me.btnGetURL_WRITE.Size = New System.Drawing.Size(136, 29)
         Me.btnGetURL_WRITE.TabIndex = 11
@@ -1287,7 +1288,7 @@ Partial Class frmExample
         '
         'btnGetURL_PBOX
         '
-        Me.btnGetURL_PBOX.Location = New System.Drawing.Point(16, 82)
+        Me.btnGetURL_PBOX.Location = New System.Drawing.Point(16, 86)
         Me.btnGetURL_PBOX.Name = "btnGetURL_PBOX"
         Me.btnGetURL_PBOX.Size = New System.Drawing.Size(136, 29)
         Me.btnGetURL_PBOX.TabIndex = 10
@@ -1296,7 +1297,7 @@ Partial Class frmExample
         '
         'btnGetURL_SBOX
         '
-        Me.btnGetURL_SBOX.Location = New System.Drawing.Point(16, 51)
+        Me.btnGetURL_SBOX.Location = New System.Drawing.Point(16, 53)
         Me.btnGetURL_SBOX.Name = "btnGetURL_SBOX"
         Me.btnGetURL_SBOX.Size = New System.Drawing.Size(136, 29)
         Me.btnGetURL_SBOX.TabIndex = 9
@@ -1331,7 +1332,7 @@ Partial Class frmExample
         '
         'btnGetOldPrintURL
         '
-        Me.btnGetOldPrintURL.Location = New System.Drawing.Point(12, 117)
+        Me.btnGetOldPrintURL.Location = New System.Drawing.Point(12, 118)
         Me.btnGetOldPrintURL.Name = "btnGetOldPrintURL"
         Me.btnGetOldPrintURL.Size = New System.Drawing.Size(207, 29)
         Me.btnGetOldPrintURL.TabIndex = 17
@@ -1349,7 +1350,7 @@ Partial Class frmExample
         '
         'btnGetViewURL
         '
-        Me.btnGetViewURL.Location = New System.Drawing.Point(12, 52)
+        Me.btnGetViewURL.Location = New System.Drawing.Point(12, 53)
         Me.btnGetViewURL.Name = "btnGetViewURL"
         Me.btnGetViewURL.Size = New System.Drawing.Size(207, 29)
         Me.btnGetViewURL.TabIndex = 14
@@ -1367,7 +1368,7 @@ Partial Class frmExample
         '
         'btnGetMassPrintURL
         '
-        Me.btnGetMassPrintURL.Location = New System.Drawing.Point(12, 180)
+        Me.btnGetMassPrintURL.Location = New System.Drawing.Point(12, 183)
         Me.btnGetMassPrintURL.Name = "btnGetMassPrintURL"
         Me.btnGetMassPrintURL.Size = New System.Drawing.Size(207, 29)
         Me.btnGetMassPrintURL.TabIndex = 12
@@ -1376,7 +1377,7 @@ Partial Class frmExample
         '
         'btnEPrintURL
         '
-        Me.btnEPrintURL.Location = New System.Drawing.Point(12, 148)
+        Me.btnEPrintURL.Location = New System.Drawing.Point(12, 151)
         Me.btnEPrintURL.Name = "btnEPrintURL"
         Me.btnEPrintURL.Size = New System.Drawing.Size(207, 29)
         Me.btnEPrintURL.TabIndex = 11
@@ -1385,7 +1386,7 @@ Partial Class frmExample
         '
         'btnGetPrintURL
         '
-        Me.btnGetPrintURL.Location = New System.Drawing.Point(12, 85)
+        Me.btnGetPrintURL.Location = New System.Drawing.Point(12, 86)
         Me.btnGetPrintURL.Name = "btnGetPrintURL"
         Me.btnGetPrintURL.Size = New System.Drawing.Size(207, 29)
         Me.btnGetPrintURL.TabIndex = 10
@@ -1418,7 +1419,7 @@ Partial Class frmExample
         '
         'btnGetBulkResult
         '
-        Me.btnGetBulkResult.Location = New System.Drawing.Point(16, 185)
+        Me.btnGetBulkResult.Location = New System.Drawing.Point(16, 183)
         Me.btnGetBulkResult.Name = "btnGetBulkResult"
         Me.btnGetBulkResult.Size = New System.Drawing.Size(131, 29)
         Me.btnGetBulkResult.TabIndex = 11
@@ -1427,7 +1428,7 @@ Partial Class frmExample
         '
         'btnSearch
         '
-        Me.btnSearch.Location = New System.Drawing.Point(16, 150)
+        Me.btnSearch.Location = New System.Drawing.Point(16, 151)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(131, 29)
         Me.btnSearch.TabIndex = 10
@@ -1436,7 +1437,7 @@ Partial Class frmExample
         '
         'btnGetInfos
         '
-        Me.btnGetInfos.Location = New System.Drawing.Point(16, 117)
+        Me.btnGetInfos.Location = New System.Drawing.Point(16, 118)
         Me.btnGetInfos.Name = "btnGetInfos"
         Me.btnGetInfos.Size = New System.Drawing.Size(131, 29)
         Me.btnGetInfos.TabIndex = 9
@@ -1463,7 +1464,7 @@ Partial Class frmExample
         '
         'btnGetDetailInfo
         '
-        Me.btnGetDetailInfo.Location = New System.Drawing.Point(16, 53)
+        Me.btnGetDetailInfo.Location = New System.Drawing.Point(16, 52)
         Me.btnGetDetailInfo.Name = "btnGetDetailInfo"
         Me.btnGetDetailInfo.Size = New System.Drawing.Size(131, 29)
         Me.btnGetDetailInfo.TabIndex = 6
@@ -1472,6 +1473,7 @@ Partial Class frmExample
         '
         'GroupBox11
         '
+        Me.GroupBox11.Controls.Add(Me.btnGetSendToNTSConfig)
         Me.GroupBox11.Controls.Add(Me.btnUpdateEmailConfig)
         Me.GroupBox11.Controls.Add(Me.btnListEmailConfig)
         Me.GroupBox11.Controls.Add(Me.btnAssignMgtKey)
@@ -1671,6 +1673,15 @@ Partial Class frmExample
         Me.btnGetContactInfo.Text = "담당자 정보 확인"
         Me.btnGetContactInfo.UseVisualStyleBackColor = True
         '
+        'btnGetSendToNTSConfig
+        '
+        Me.btnGetSendToNTSConfig.Location = New System.Drawing.Point(156, 151)
+        Me.btnGetSendToNTSConfig.Name = "btnGetSendToNTSConfig"
+        Me.btnGetSendToNTSConfig.Size = New System.Drawing.Size(185, 29)
+        Me.btnGetSendToNTSConfig.TabIndex = 14
+        Me.btnGetSendToNTSConfig.Text = " 국세청 전송 설정 확인"
+        Me.btnGetSendToNTSConfig.UseVisualStyleBackColor = True
+        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
@@ -1864,5 +1875,6 @@ Partial Class frmExample
     Friend WithEvents btnGetUseHistoryURL As System.Windows.Forms.Button
     Friend WithEvents btnGetPaymentURL As System.Windows.Forms.Button
     Friend WithEvents btnGetContactInfo As System.Windows.Forms.Button
+    Friend WithEvents btnGetSendToNTSConfig As System.Windows.Forms.Button
 
 End Class
