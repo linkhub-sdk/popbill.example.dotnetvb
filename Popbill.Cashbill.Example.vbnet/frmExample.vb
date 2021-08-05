@@ -47,7 +47,7 @@ Public Class frmExample
     '=========================================================================
     ' 파트너가 현금영수증 관리 목적으로 할당하는 문서번호 사용여부를 확인합니다.
     ' - 이미 사용 중인 문서번호는 중복 사용이 불가하고, 현금영수증이 삭제된 경우에만 문서번호의 재사용이 가능합니다.
-    ' - 문서번호는 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
+    ' - 문서번호는 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
     ' - https://docs.popbill.com/cashbill/dotnet/api#CheckMgtKeyInUse
     '=========================================================================
     Private Sub btnCheckMgtKeyInUse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckMgtKeyInUse.Click
@@ -71,7 +71,7 @@ Public Class frmExample
     Private Sub btnRegistIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistIssue.Click
         Dim cashbill As Cashbill = New Cashbill
 
-        '현금영수증 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
+        '현금영수증 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
         cashbill.mgtKey = txtMgtKey.Text
 
         '[취소거래시 필수] 원본 현금영수증 국세청승인번호
@@ -171,7 +171,7 @@ Public Class frmExample
     Private Sub btnRegister_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim cashbill As Cashbill = New Cashbill
 
-        '현금영수증 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
+        '현금영수증 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
         cashbill.mgtKey = txtMgtKey.Text
 
         '[취소거래시 필수] 원본 현금영수증 국세청승인번호
@@ -265,7 +265,7 @@ Public Class frmExample
 
         Dim cashbill As Cashbill = New Cashbill
 
-        '현금영수증 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
+        '현금영수증 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
         cashbill.mgtKey = txtMgtKey.Text
 
         '[취소거래시 필수] 원본 현금영수증 국세청승인번호
@@ -1027,7 +1027,7 @@ Public Class frmExample
     ' - https://docs.popbill.com/cashbill/dotnet/api#SendEmail
     '=========================================================================
     Private Sub btnSendEmail_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendEmail.Click
-        
+
         '수자 이메일주소
         Dim receiverMail = "test@test.com"
 
@@ -1584,7 +1584,7 @@ Public Class frmExample
         Dim itemKey As String = "020080617004800001"
 
         '문서번호가 없는 문서에 할당할 문서번호
-        '- 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
+        '- 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
         Dim mgtKey As String = "20210701-001"
 
         Try

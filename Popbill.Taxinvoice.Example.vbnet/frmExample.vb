@@ -49,7 +49,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 파트너가 세금계산서 관리 목적으로 할당하는 문서번호의 사용여부를 확인합니다.
-    ' - 문서번호는 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')로 구성 합니다. 
+    ' - 문서번호는 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')로 구성 합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#CheckMgtKeyInUse
     '=========================================================================
     Private Sub btnCheckMgtKeyInUse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -105,8 +105,7 @@ Public Class frmExample
         '[필수] 공급자 상호
         taxinvoice.invoicerCorpName = "공급자 상호"
 
-        '[필수] 공급자 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
-        '사업자 별로 중복되지 않도록 구성
+        '[필수] 공급자 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
         taxinvoice.invoicerMgtKey = txtMgtKey.Text
 
         '[필수] 공급자 대표자 성명
@@ -150,7 +149,7 @@ Public Class frmExample
         '[필수] 공급자받는자 상호
         taxinvoice.invoiceeCorpName = "공급받는자 상호"
 
-        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수), 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
+        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수), 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
         taxinvoice.invoiceeMgtKey = ""
 
         '[필수] 공급받는자 대표자 성명
@@ -348,8 +347,7 @@ Public Class frmExample
             '[필수] 공급자 상호
             taxinvoice.invoicerCorpName = "공급자 "
 
-            '[필수] 공급자 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
-            '사업자 별로 중복되지 않도록 구성
+            '[필수] 공급자 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
             taxinvoice.invoicerMgtKey = txtSubmitID.Text + i.ToString()
 
             '[필수] 공급자 대표자 성명
@@ -393,7 +391,7 @@ Public Class frmExample
             '[필수] 공급자받는자 상호
             taxinvoice.invoiceeCorpName = "공급받는자 상호"
 
-            '[역발행시 필수] 공급받는자 문서번호(역발행시 필수), 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
+            '[역발행시 필수] 공급받는자 문서번호(역발행시 필수), 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
             taxinvoice.invoiceeMgtKey = ""
 
             '[필수] 공급받는자 대표자 성명
@@ -622,8 +620,7 @@ Public Class frmExample
         '[필수] 공급자 상호
         taxinvoice.invoicerCorpName = "공급자 상호"
 
-        '[필수] 공급자 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
-        '사업자 별로 중복되지 않도록 구성
+        '[필수] 공급자 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
         taxinvoice.invoicerMgtKey = txtMgtKey.Text
 
         '[필수] 공급자 대표자 성명
@@ -668,7 +665,7 @@ Public Class frmExample
         '[필수] 공급자받는자 상호
         taxinvoice.invoiceeCorpName = "공급받는자 상호"
 
-        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수), 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
+        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수), 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
         taxinvoice.invoiceeMgtKey = ""
 
         '[필수] 공급받는자 대표자 성명
@@ -813,7 +810,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 작성된 역발행 세금계산서 데이터를 팝빌에 저장합니다. 
+    ' 작성된 역발행 세금계산서 데이터를 팝빌에 저장합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#Register
     '=========================================================================
     Private Sub btnRegister_Reverse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -850,8 +847,7 @@ Public Class frmExample
         '[필수] 공급자 상호
         taxinvoice.invoicerCorpName = "공급자 상호"
 
-        '공급자 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
-        '사업자 별로 중복되지 않도록 구성
+        '공급자 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
         taxinvoice.invoicerMgtKey = ""
 
         '[필수] 공급자 대표자 성명
@@ -896,7 +892,7 @@ Public Class frmExample
         '[필수] 공급자받는자 상호
         taxinvoice.invoiceeCorpName = "공급받는자 상호"
 
-        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수), 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
+        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수), 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
         taxinvoice.invoiceeMgtKey = txtMgtKey.Text
 
         '[필수] 공급받는자 대표자 성명
@@ -1062,8 +1058,7 @@ Public Class frmExample
         '[필수] 공급자 상호
         taxinvoice.invoicerCorpName = "공급자 상호"
 
-        '[필수] 공급자 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
-        '사업자 별로 중복되지 않도록 구성
+        '[필수] 공급자 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
         taxinvoice.invoicerMgtKey = txtMgtKey.Text
 
         '[필수] 공급자 대표자 성명
@@ -1108,7 +1103,7 @@ Public Class frmExample
         '[필수] 공급자받는자 상호
         taxinvoice.invoiceeCorpName = "공급받는자 상호"
 
-        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수), 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
+        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수), 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
         taxinvoice.invoiceeMgtKey = ""
 
         '[필수] 공급받는자 대표자 성명
@@ -1292,8 +1287,7 @@ Public Class frmExample
         '[필수] 공급자 상호
         taxinvoice.invoicerCorpName = "공급자 상호"
 
-        '[필수] 공급자 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
-        '사업자 별로 중복되지 않도록 구성
+        '[필수] 공급자 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
         taxinvoice.invoicerMgtKey = txtMgtKey.Text
 
         '[필수] 공급자 대표자 성명
@@ -1338,7 +1332,7 @@ Public Class frmExample
         '[필수] 공급자받는자 상호
         taxinvoice.invoiceeCorpName = "공급받는자 상호"
 
-        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수), 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
+        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수), 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
         taxinvoice.invoiceeMgtKey = ""
 
         '[필수] 공급받는자 대표자 성명
@@ -1733,8 +1727,7 @@ Public Class frmExample
         '[필수] 공급자 상호
         taxinvoice.invoicerCorpName = "공급자 상호"
 
-        '공급자 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
-        '사업자 별로 중복되지 않도록 구성
+        '공급자 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
         taxinvoice.invoicerMgtKey = ""
 
         '[필수] 공급자 대표자 성명
@@ -1774,7 +1767,7 @@ Public Class frmExample
         '[필수] 공급자받는자 상호
         taxinvoice.invoiceeCorpName = "공급받는자 상호"
 
-        '[역발행시 필수] 공급받는자 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
+        '[역발행시 필수] 공급받는자 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
         taxinvoice.invoiceeMgtKey = txtMgtKey.Text
 
         '[필수] 공급받는자 대표자 성명
@@ -2165,7 +2158,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 다수건의 세금계산서 상태 및 요약 정보를 확인합니다. (1회 호출 시 최대 1,000건 확인 가능) 
+    ' 다수건의 세금계산서 상태 및 요약 정보를 확인합니다. (1회 호출 시 최대 1,000건 확인 가능)
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetInfos
     '=========================================================================
     Private Sub btnGetInfos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetInfos.Click
@@ -2330,7 +2323,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 검색조건에 해당하는 세금계산서를 조회합니다. 
+    ' 검색조건에 해당하는 세금계산서를 조회합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#Search
     '=========================================================================
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
@@ -2593,7 +2586,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 사이트와 동일한 세금계산서 1건의 상세 정보 페이지의 팝업 URL을 반환합니다. 
+    ' 팝빌 사이트와 동일한 세금계산서 1건의 상세 정보 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetPopUpURL
     '=========================================================================
@@ -2656,7 +2649,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' "공급받는자" 용 세금계산서 1건을 인쇄하기 위한 페이지의 팝업 URL을 반환합니다. 
+    ' "공급받는자" 용 세금계산서 1건을 인쇄하기 위한 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetEPrintURL
     '=========================================================================
@@ -2677,7 +2670,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 다수건의 세금계산서를 인쇄하기 위한 페이지의 팝업 URL을 반환합니다. (최대 100건) 
+    ' 다수건의 세금계산서를 인쇄하기 위한 페이지의 팝업 URL을 반환합니다. (최대 100건)
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetMassPrintURL
     '=========================================================================
@@ -2785,8 +2778,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' "임시저장" 상태의 세금계산서에 첨부된 1개의 파일을 삭제합니다. 
-    ' - 파일을 식별하는 파일아이디는 첨부파일 목록(GetFiles API) 의 응답항목 중 파일아이디(AttachedFile) 값을 통해 확인할 수 있습니다. 
+    ' "임시저장" 상태의 세금계산서에 첨부된 1개의 파일을 삭제합니다.
+    ' - 파일을 식별하는 파일아이디는 첨부파일 목록(GetFiles API) 의 응답항목 중 파일아이디(AttachedFile) 값을 통해 확인할 수 있습니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#DeleteFile
     '=========================================================================
     Private Sub btnDeleteFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -2808,7 +2801,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 세금계산서에 첨부된 파일목록을 확인합니다.
-    ' - 응답항목 중 파일아이디(AttachedFile) 항목은 파일삭제(DeleteFile API) 호출시 이용할 수 있습니다. 
+    ' - 응답항목 중 파일아이디(AttachedFile) 항목은 파일삭제(DeleteFile API) 호출시 이용할 수 있습니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetFiles
     '=========================================================================
     Private Sub btnGetFiles_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFiles.Click
@@ -2834,7 +2827,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 세금계산서와 관련된 안내 메일을 재전송 합니다. 
+    ' 세금계산서와 관련된 안내 메일을 재전송 합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#SendEmail
     '=========================================================================
     Private Sub btnSendEmail_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -2856,9 +2849,9 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 세금계산서와 관련된 안내 SMS(단문) 문자를 재전송하는 함수로, 팝빌 사이트 [문자·팩스] > [문자] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다. 
-    ' - 메시지는 최대 90byte까지 입력 가능하고, 초과한 내용은 자동으로 삭제되어 전송합니다. (한글 최대 45자) 
-    ' - 함수 호출시 포인트가 과금됩니다. 
+    ' 세금계산서와 관련된 안내 SMS(단문) 문자를 재전송하는 함수로, 팝빌 사이트 [문자·팩스] > [문자] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다.
+    ' - 메시지는 최대 90byte까지 입력 가능하고, 초과한 내용은 자동으로 삭제되어 전송합니다. (한글 최대 45자)
+    ' - 함수 호출시 포인트가 과금됩니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#SendSMS
     '=========================================================================
     Private Sub btnSendSMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendSMS.Click
@@ -2886,7 +2879,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 세금계산서를 팩스로 전송하는 함수로, 팝빌 사이트 [문자·팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다.
-    ' - 함수 호출시 포인트가 과금됩니다. 
+    ' - 함수 호출시 포인트가 과금됩니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#SendFAX
     '=========================================================================
     Private Sub btnSendFAX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendFAX.Click
@@ -2910,7 +2903,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 전자명세서 API를 통해 발행한 전자명세서를 세금계산서에 첨부합니다. 
+    ' 팝빌 전자명세서 API를 통해 발행한 전자명세서를 세금계산서에 첨부합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#AttachStatement
     '=========================================================================
     Private Sub btnAttachStatement_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -2987,7 +2980,7 @@ Public Class frmExample
         Dim itemKey As String = "018041823295700001"
 
         '문서번호가 없는 문서에 할당할 문서번호
-        '- 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
+        '- 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
         Dim mgtKey As String = "20210701-A00"
 
         Try
@@ -3163,11 +3156,11 @@ Public Class frmExample
             MsgBox(url)
             txtURL.Text = url
             '=====================================================================
-            '공인인증서 등록시에는 Internet Explorer 브라우저만 이용이 가능합니다. 
-            '- IE에서만 공인인증서 ActiveX 툴킷 구동가능 
+            '공인인증서 등록시에는 Internet Explorer 브라우저만 이용이 가능합니다.
+            '- IE에서만 공인인증서 ActiveX 툴킷 구동가능
             '=====================================================================
 
-            'Internet Explorer Process 선언 
+            'Internet Explorer Process 선언
             Dim ie As New System.Diagnostics.ProcessStartInfo("iexplore")
 
             '팝빌로부터 반환받은 팝업 URL 주소 지정
@@ -3340,7 +3333,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 전자세금계산서 API 서비스 과금정보를 확인합니다. 
+    ' 팝빌 전자세금계산서 API 서비스 과금정보를 확인합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetChargeInfo
     '=========================================================================
     Private Sub btnGetChargeInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -3648,8 +3641,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 사이트와 동일한 세금계산서 1건의 상세정보 페이지(사이트 상단, 좌측 메뉴 및 버튼 제외)의 팝업 URL을 반환합니다. 
-    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다. 
+    ' 팝빌 사이트와 동일한 세금계산서 1건의 상세정보 페이지(사이트 상단, 좌측 메뉴 및 버튼 제외)의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetViewURL
     '=========================================================================
     Private Sub btnGetViewURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetViewURL.Click
@@ -3668,7 +3661,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 전자세금계산서 PDF 파일을 다운 받을 수 있는 URL을 반환합니다. 
+    ' 전자세금계산서 PDF 파일을 다운 받을 수 있는 URL을 반환합니다.
     ' - 반환되는 URL은 보안정책상 30초의 유효시간을 갖으며, 유효시간 이후 호출시 정상적으로 페이지가 호출되지 않습니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetPDFURL
     '=========================================================================

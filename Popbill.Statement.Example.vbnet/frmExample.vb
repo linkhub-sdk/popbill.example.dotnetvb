@@ -105,7 +105,7 @@ Public Class frmExample
         '[필수] 전자명세서 종류코드
         statement.itemCode = selectedItemCode()
 
-        '[필수] 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
+        '[필수] 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
         statement.mgtKey = txtMgtKey.Text
 
 
@@ -293,7 +293,7 @@ Public Class frmExample
         '[필수] 전자명세서 종류코드
         statement.itemCode = selectedItemCode()
 
-        '[필수] 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
+        '[필수] 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
         statement.mgtKey = txtMgtKey.Text
 
 
@@ -475,7 +475,7 @@ Public Class frmExample
         '[필수] 전자명세서 종류코드
         statement.itemCode = selectedItemCode()
 
-        '[필수] 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
+        '[필수] 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
         statement.mgtKey = txtMgtKey.Text
 
 
@@ -1312,7 +1312,7 @@ Public Class frmExample
         '[필수] 전자명세서 종류코드
         statement.itemCode = selectedItemCode()
 
-        '[필수] 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
+        '[필수] 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
         statement.mgtKey = txtMgtKey.Text
 
 
