@@ -924,4 +924,33 @@ Public Class frmExample
 
 
     End Sub
+
+    Private Sub btnDeleteBankAccount_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteBankAccount.Click
+
+        '=========================================================================
+        ' 등록된 계좌를 삭제합니다.
+        ' - 정액제가 아닌 종량제 이용 시에만 등록된 계좌를 삭제할 수 있습니다.
+        ' - https://docs.popbill.com/easyfinbank/dotnet/api#DeleteBankAccount
+        '=========================================================================
+
+        ' [필수] 은행코드
+        ' 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
+        ' SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
+        ' 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
+        Dim BankCode = ""
+
+        ' [필수] 계좌번호, 하이픈('-') 제외
+        Dim AccountNumber = ""
+
+        Try
+            Dim response As Response = easyFinBankService.DeleteBankAccount(txtCorpNum.Text, BankCode, AccountNumber, txtUserId.Text)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+
+    End Sub
 End Class

@@ -75,6 +75,7 @@ Partial Class frmExample
         Me.btnRequestJob = New System.Windows.Forms.Button
         Me.Label5 = New System.Windows.Forms.Label
         Me.txtURL = New System.Windows.Forms.TextBox
+        Me.btnDeleteBankAccount = New System.Windows.Forms.Button
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -433,6 +434,7 @@ Partial Class frmExample
         '
         'GroupBox9
         '
+        Me.GroupBox9.Controls.Add(Me.btnDeleteBankAccount)
         Me.GroupBox9.Controls.Add(Me.btnRevokeCloseBankAccount)
         Me.GroupBox9.Controls.Add(Me.btnCloseBankAccount)
         Me.GroupBox9.Controls.Add(Me.btnGetBankAccountInfo)
@@ -604,6 +606,15 @@ Partial Class frmExample
         Me.txtURL.Size = New System.Drawing.Size(302, 21)
         Me.txtURL.TabIndex = 9
         '
+        'btnDeleteBankAccount
+        '
+        Me.btnDeleteBankAccount.Location = New System.Drawing.Point(281, 94)
+        Me.btnDeleteBankAccount.Name = "btnDeleteBankAccount"
+        Me.btnDeleteBankAccount.Size = New System.Drawing.Size(131, 30)
+        Me.btnDeleteBankAccount.TabIndex = 11
+        Me.btnDeleteBankAccount.Text = "종량제 계좌 삭제"
+        Me.btnDeleteBankAccount.UseVisualStyleBackColor = True
+        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
@@ -691,5 +702,6 @@ Partial Class frmExample
     Friend WithEvents btnCloseBankAccount As System.Windows.Forms.Button
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents txtURL As System.Windows.Forms.TextBox
+    Friend WithEvents btnDeleteBankAccount As System.Windows.Forms.Button
 
 End Class
