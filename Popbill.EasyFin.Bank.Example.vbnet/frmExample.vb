@@ -77,8 +77,8 @@ Public Class frmExample
         '아이디, 6자이상 50자 미만
         joinInfo.ID = "userid"
 
-        '비밀번호, 6자이상 20자 미만
-        joinInfo.PWD = "pwd_must_be_long_enough"
+        '비밀번호, 8자 이상 20자 이하(영문, 숫자, 특수문자 조합)
+        joinInfo.Password = "asdf8536!@#"
 
         '링크아이디
         joinInfo.LinkID = LinkID
@@ -244,8 +244,8 @@ Public Class frmExample
         '아이디 (6자이상 50자미만)
         joinData.id = "testkorea1120"
 
-        '비밀번호 (6자이상 20자미만)
-        joinData.pwd = "password"
+        '비밀번호, 8자 이상 20자 이하(영문, 숫자, 특수문자 조합)
+        joinData.Password = "asdf8536!@#"
 
         '담당자 성명 (최대 100자)
         joinData.personName = "담당자명"
