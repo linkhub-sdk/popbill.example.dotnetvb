@@ -3538,6 +3538,39 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
+    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보을 확인합니다.
+    ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetContactInfo
+    '=========================================================================
+    Private Sub btnGetContactInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetContactInfo.Click
+
+        '확인할 담당자 아이디
+        Dim contactID As String = "DONETVB_CONTACT"
+
+        Dim tmp As String = ""
+
+        Try
+            Dim contactInfo As Contact = taxinvoiceService.GetContactInfo(txtCorpNum.Text, contactID, txtUserId.Text)
+
+            tmp += "id (담당자 아이디) : " + contactInfo.id + vbCrLf
+            tmp += "personName (담당자명) : " + contactInfo.personName + vbCrLf
+            tmp += "email (담당자 이메일) : " + contactInfo.email + vbCrLf
+            tmp += "hp (휴대폰번호) : " + contactInfo.hp + vbCrLf
+            tmp += "searchRole (담당자 권한) : " + contactInfo.searchRole.ToString() + vbCrLf
+            tmp += "tel (연락처) : " + contactInfo.tel + vbCrLf
+            tmp += "fax (팩스번호) : " + contactInfo.fax + vbCrLf
+            tmp += "mgrYN (관리자 여부) : " + contactInfo.mgrYN.ToString() + vbCrLf
+            tmp += "regDT (등록일시) : " + contactInfo.regDT + vbCrLf
+            tmp += "state (상태) : " + contactInfo.state + vbCrLf
+
+            tmp += vbCrLf
+
+            MsgBox(tmp)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
     '  연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#ListContact
     '=========================================================================

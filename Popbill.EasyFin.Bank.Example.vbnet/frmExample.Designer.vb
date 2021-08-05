@@ -27,6 +27,7 @@ Partial Class frmExample
         Me.btnUpdateCorpInfo = New System.Windows.Forms.Button
         Me.btnGetCorpInfo = New System.Windows.Forms.Button
         Me.GroupBox16 = New System.Windows.Forms.GroupBox
+        Me.btnGetContactInfo = New System.Windows.Forms.Button
         Me.btnUpdateContact = New System.Windows.Forms.Button
         Me.btnListContact = New System.Windows.Forms.Button
         Me.btnRegistContact = New System.Windows.Forms.Button
@@ -36,6 +37,8 @@ Partial Class frmExample
         Me.btnGetPartnerURL = New System.Windows.Forms.Button
         Me.btnGetPartnerBalance = New System.Windows.Forms.Button
         Me.GroupBox2 = New System.Windows.Forms.GroupBox
+        Me.btnGetUseHistoryURL = New System.Windows.Forms.Button
+        Me.btnGetPaymentURL = New System.Windows.Forms.Button
         Me.btnGetChargeURL = New System.Windows.Forms.Button
         Me.btnGetBalance = New System.Windows.Forms.Button
         Me.GroupBox3 = New System.Windows.Forms.GroupBox
@@ -76,8 +79,6 @@ Partial Class frmExample
         Me.btnRequestJob = New System.Windows.Forms.Button
         Me.Label5 = New System.Windows.Forms.Label
         Me.txtURL = New System.Windows.Forms.TextBox
-        Me.btnGetPaymentURL = New System.Windows.Forms.Button
-        Me.btnGetUseHistoryURL = New System.Windows.Forms.Button
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -140,6 +141,7 @@ Partial Class frmExample
         '
         'GroupBox16
         '
+        Me.GroupBox16.Controls.Add(Me.btnGetContactInfo)
         Me.GroupBox16.Controls.Add(Me.btnUpdateContact)
         Me.GroupBox16.Controls.Add(Me.btnListContact)
         Me.GroupBox16.Controls.Add(Me.btnRegistContact)
@@ -150,9 +152,18 @@ Partial Class frmExample
         Me.GroupBox16.TabStop = False
         Me.GroupBox16.Text = "담당자 관련"
         '
+        'btnGetContactInfo
+        '
+        Me.btnGetContactInfo.Location = New System.Drawing.Point(6, 51)
+        Me.btnGetContactInfo.Name = "btnGetContactInfo"
+        Me.btnGetContactInfo.Size = New System.Drawing.Size(135, 30)
+        Me.btnGetContactInfo.TabIndex = 8
+        Me.btnGetContactInfo.Text = "담당자 정보 확인"
+        Me.btnGetContactInfo.UseVisualStyleBackColor = True
+        '
         'btnUpdateContact
         '
-        Me.btnUpdateContact.Location = New System.Drawing.Point(6, 84)
+        Me.btnUpdateContact.Location = New System.Drawing.Point(6, 114)
         Me.btnUpdateContact.Name = "btnUpdateContact"
         Me.btnUpdateContact.Size = New System.Drawing.Size(135, 30)
         Me.btnUpdateContact.TabIndex = 7
@@ -161,7 +172,7 @@ Partial Class frmExample
         '
         'btnListContact
         '
-        Me.btnListContact.Location = New System.Drawing.Point(6, 51)
+        Me.btnListContact.Location = New System.Drawing.Point(6, 83)
         Me.btnListContact.Name = "btnListContact"
         Me.btnListContact.Size = New System.Drawing.Size(135, 30)
         Me.btnListContact.TabIndex = 6
@@ -237,6 +248,24 @@ Partial Class frmExample
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "연동과금 포인트"
+        '
+        'btnGetUseHistoryURL
+        '
+        Me.btnGetUseHistoryURL.Location = New System.Drawing.Point(6, 114)
+        Me.btnGetUseHistoryURL.Name = "btnGetUseHistoryURL"
+        Me.btnGetUseHistoryURL.Size = New System.Drawing.Size(135, 30)
+        Me.btnGetUseHistoryURL.TabIndex = 7
+        Me.btnGetUseHistoryURL.Text = "포인트 사용내역 URL"
+        Me.btnGetUseHistoryURL.UseVisualStyleBackColor = True
+        '
+        'btnGetPaymentURL
+        '
+        Me.btnGetPaymentURL.Location = New System.Drawing.Point(6, 83)
+        Me.btnGetPaymentURL.Name = "btnGetPaymentURL"
+        Me.btnGetPaymentURL.Size = New System.Drawing.Size(135, 30)
+        Me.btnGetPaymentURL.TabIndex = 6
+        Me.btnGetPaymentURL.Text = "포인트 결재내역 URL"
+        Me.btnGetPaymentURL.UseVisualStyleBackColor = True
         '
         'btnGetChargeURL
         '
@@ -464,7 +493,7 @@ Partial Class frmExample
         '
         'btnRevokeCloseBankAccount
         '
-        Me.btnRevokeCloseBankAccount.Location = New System.Drawing.Point(281, 58)
+        Me.btnRevokeCloseBankAccount.Location = New System.Drawing.Point(281, 57)
         Me.btnRevokeCloseBankAccount.Name = "btnRevokeCloseBankAccount"
         Me.btnRevokeCloseBankAccount.Size = New System.Drawing.Size(131, 30)
         Me.btnRevokeCloseBankAccount.TabIndex = 10
@@ -491,7 +520,7 @@ Partial Class frmExample
         '
         'btnUpdateBankAccount
         '
-        Me.btnUpdateBankAccount.Location = New System.Drawing.Point(6, 56)
+        Me.btnUpdateBankAccount.Location = New System.Drawing.Point(6, 57)
         Me.btnUpdateBankAccount.Name = "btnUpdateBankAccount"
         Me.btnUpdateBankAccount.Size = New System.Drawing.Size(131, 32)
         Me.btnUpdateBankAccount.TabIndex = 7
@@ -619,24 +648,6 @@ Partial Class frmExample
         Me.txtURL.Size = New System.Drawing.Size(302, 21)
         Me.txtURL.TabIndex = 9
         '
-        'btnGetPaymentURL
-        '
-        Me.btnGetPaymentURL.Location = New System.Drawing.Point(6, 83)
-        Me.btnGetPaymentURL.Name = "btnGetPaymentURL"
-        Me.btnGetPaymentURL.Size = New System.Drawing.Size(135, 30)
-        Me.btnGetPaymentURL.TabIndex = 6
-        Me.btnGetPaymentURL.Text = "포인트 결재내역 URL"
-        Me.btnGetPaymentURL.UseVisualStyleBackColor = True
-        '
-        'btnGetUseHistoryURL
-        '
-        Me.btnGetUseHistoryURL.Location = New System.Drawing.Point(6, 114)
-        Me.btnGetUseHistoryURL.Name = "btnGetUseHistoryURL"
-        Me.btnGetUseHistoryURL.Size = New System.Drawing.Size(135, 30)
-        Me.btnGetUseHistoryURL.TabIndex = 7
-        Me.btnGetUseHistoryURL.Text = "포인트 사용내역 URL"
-        Me.btnGetUseHistoryURL.UseVisualStyleBackColor = True
-        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
@@ -727,5 +738,6 @@ Partial Class frmExample
     Friend WithEvents btnDeleteBankAccount As System.Windows.Forms.Button
     Friend WithEvents btnGetUseHistoryURL As System.Windows.Forms.Button
     Friend WithEvents btnGetPaymentURL As System.Windows.Forms.Button
+    Friend WithEvents btnGetContactInfo As System.Windows.Forms.Button
 
 End Class
