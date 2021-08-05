@@ -37,6 +37,8 @@ Partial Class frmExample
         Me.btnGetPartnerURL = New System.Windows.Forms.Button
         Me.btnGetPartnerBalance = New System.Windows.Forms.Button
         Me.GroupBox4 = New System.Windows.Forms.GroupBox
+        Me.btnGetUseHistoryURL = New System.Windows.Forms.Button
+        Me.btnGetPaymentURL = New System.Windows.Forms.Button
         Me.btnGetChargeURL = New System.Windows.Forms.Button
         Me.btnGetBalance = New System.Windows.Forms.Button
         Me.GroupBox3 = New System.Windows.Forms.GroupBox
@@ -142,7 +144,7 @@ Partial Class frmExample
         Me.GroupBox1.Controls.Add(Me.GroupBox2)
         Me.GroupBox1.Location = New System.Drawing.Point(6, 34)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1030, 155)
+        Me.GroupBox1.Size = New System.Drawing.Size(1036, 181)
         Me.GroupBox1.TabIndex = 10
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "팝빌 기본 API"
@@ -151,9 +153,9 @@ Partial Class frmExample
         '
         Me.GroupBox17.Controls.Add(Me.btnUpdateCorpInfo)
         Me.GroupBox17.Controls.Add(Me.btnGetCorpInfo)
-        Me.GroupBox17.Location = New System.Drawing.Point(873, 17)
+        Me.GroupBox17.Location = New System.Drawing.Point(885, 17)
         Me.GroupBox17.Name = "GroupBox17"
-        Me.GroupBox17.Size = New System.Drawing.Size(134, 126)
+        Me.GroupBox17.Size = New System.Drawing.Size(134, 157)
         Me.GroupBox17.TabIndex = 6
         Me.GroupBox17.TabStop = False
         Me.GroupBox17.Text = "회사정보 관련"
@@ -181,9 +183,9 @@ Partial Class frmExample
         Me.GroupBox16.Controls.Add(Me.btnUpdateContact)
         Me.GroupBox16.Controls.Add(Me.btnListContact)
         Me.GroupBox16.Controls.Add(Me.btnRegistContact)
-        Me.GroupBox16.Location = New System.Drawing.Point(728, 17)
+        Me.GroupBox16.Location = New System.Drawing.Point(740, 17)
         Me.GroupBox16.Name = "GroupBox16"
-        Me.GroupBox16.Size = New System.Drawing.Size(138, 126)
+        Me.GroupBox16.Size = New System.Drawing.Size(138, 157)
         Me.GroupBox16.TabIndex = 5
         Me.GroupBox16.TabStop = False
         Me.GroupBox16.Text = "담당자 관련"
@@ -219,9 +221,9 @@ Partial Class frmExample
         '
         Me.GroupBox15.Controls.Add(Me.btnGetPopbillURL_SEAL)
         Me.GroupBox15.Controls.Add(Me.btnGetAccessURL)
-        Me.GroupBox15.Location = New System.Drawing.Point(560, 17)
+        Me.GroupBox15.Location = New System.Drawing.Point(572, 17)
         Me.GroupBox15.Name = "GroupBox15"
-        Me.GroupBox15.Size = New System.Drawing.Size(162, 126)
+        Me.GroupBox15.Size = New System.Drawing.Size(162, 157)
         Me.GroupBox15.TabIndex = 4
         Me.GroupBox15.TabStop = False
         Me.GroupBox15.Text = "팝빌 기본 URL"
@@ -248,9 +250,9 @@ Partial Class frmExample
         '
         Me.GroupBox5.Controls.Add(Me.btnGetPartnerURL)
         Me.GroupBox5.Controls.Add(Me.btnGetPartnerBalance)
-        Me.GroupBox5.Location = New System.Drawing.Point(423, 17)
+        Me.GroupBox5.Location = New System.Drawing.Point(435, 17)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(131, 125)
+        Me.GroupBox5.Size = New System.Drawing.Size(131, 156)
         Me.GroupBox5.TabIndex = 2
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "파트너과금 포인트"
@@ -275,20 +277,40 @@ Partial Class frmExample
         '
         'GroupBox4
         '
+        Me.GroupBox4.Controls.Add(Me.btnGetUseHistoryURL)
+        Me.GroupBox4.Controls.Add(Me.btnGetPaymentURL)
         Me.GroupBox4.Controls.Add(Me.btnGetChargeURL)
         Me.GroupBox4.Controls.Add(Me.btnGetBalance)
         Me.GroupBox4.Location = New System.Drawing.Point(284, 17)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(131, 125)
+        Me.GroupBox4.Size = New System.Drawing.Size(145, 156)
         Me.GroupBox4.TabIndex = 1
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "연동과금 포인트"
+        '
+        'btnGetUseHistoryURL
+        '
+        Me.btnGetUseHistoryURL.Location = New System.Drawing.Point(6, 116)
+        Me.btnGetUseHistoryURL.Name = "btnGetUseHistoryURL"
+        Me.btnGetUseHistoryURL.Size = New System.Drawing.Size(133, 30)
+        Me.btnGetUseHistoryURL.TabIndex = 7
+        Me.btnGetUseHistoryURL.Text = "포인트 사용내역 URL"
+        Me.btnGetUseHistoryURL.UseVisualStyleBackColor = True
+        '
+        'btnGetPaymentURL
+        '
+        Me.btnGetPaymentURL.Location = New System.Drawing.Point(6, 84)
+        Me.btnGetPaymentURL.Name = "btnGetPaymentURL"
+        Me.btnGetPaymentURL.Size = New System.Drawing.Size(133, 30)
+        Me.btnGetPaymentURL.TabIndex = 6
+        Me.btnGetPaymentURL.Text = "포인트 결제내역 URL"
+        Me.btnGetPaymentURL.UseVisualStyleBackColor = True
         '
         'btnGetChargeURL
         '
         Me.btnGetChargeURL.Location = New System.Drawing.Point(6, 52)
         Me.btnGetChargeURL.Name = "btnGetChargeURL"
-        Me.btnGetChargeURL.Size = New System.Drawing.Size(118, 30)
+        Me.btnGetChargeURL.Size = New System.Drawing.Size(133, 30)
         Me.btnGetChargeURL.TabIndex = 5
         Me.btnGetChargeURL.Text = "포인트 충전 URL"
         Me.btnGetChargeURL.UseVisualStyleBackColor = True
@@ -297,7 +319,7 @@ Partial Class frmExample
         '
         Me.btnGetBalance.Location = New System.Drawing.Point(7, 19)
         Me.btnGetBalance.Name = "btnGetBalance"
-        Me.btnGetBalance.Size = New System.Drawing.Size(118, 30)
+        Me.btnGetBalance.Size = New System.Drawing.Size(132, 30)
         Me.btnGetBalance.TabIndex = 2
         Me.btnGetBalance.Text = "잔여포인트 확인"
         Me.btnGetBalance.UseVisualStyleBackColor = True
@@ -308,7 +330,7 @@ Partial Class frmExample
         Me.GroupBox3.Controls.Add(Me.btnUnitCost)
         Me.GroupBox3.Location = New System.Drawing.Point(145, 17)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(131, 125)
+        Me.GroupBox3.Size = New System.Drawing.Size(131, 156)
         Me.GroupBox3.TabIndex = 1
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "포인트 관련"
@@ -338,7 +360,7 @@ Partial Class frmExample
         Me.GroupBox2.Controls.Add(Me.btnJoinMember)
         Me.GroupBox2.Location = New System.Drawing.Point(6, 17)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(131, 125)
+        Me.GroupBox2.Size = New System.Drawing.Size(131, 156)
         Me.GroupBox2.TabIndex = 0
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "회원 정보"
@@ -438,9 +460,9 @@ Partial Class frmExample
         Me.groupBox12.Controls.Add(Me.txtFormCode)
         Me.groupBox12.Controls.Add(Me.cboItemCode)
         Me.groupBox12.Controls.Add(Me.btnCheckMgtKeyInUse)
-        Me.groupBox12.Location = New System.Drawing.Point(6, 206)
+        Me.groupBox12.Location = New System.Drawing.Point(6, 226)
         Me.groupBox12.Name = "groupBox12"
-        Me.groupBox12.Size = New System.Drawing.Size(1030, 527)
+        Me.groupBox12.Size = New System.Drawing.Size(1036, 527)
         Me.groupBox12.TabIndex = 54
         Me.groupBox12.TabStop = False
         Me.groupBox12.Text = "전자명세서 관련 API"
@@ -1021,7 +1043,7 @@ Partial Class frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1058, 755)
+        Me.ClientSize = New System.Drawing.Size(1060, 762)
         Me.Controls.Add(Me.txtURL)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.groupBox12)
@@ -1148,5 +1170,7 @@ Partial Class frmExample
     Friend WithEvents btnGetViewURL As System.Windows.Forms.Button
     Private WithEvents Label13 As System.Windows.Forms.Label
     Private WithEvents txtURL As System.Windows.Forms.TextBox
+    Friend WithEvents btnGetUseHistoryURL As System.Windows.Forms.Button
+    Friend WithEvents btnGetPaymentURL As System.Windows.Forms.Button
 
 End Class

@@ -58,6 +58,7 @@ Partial Class frmExample
         Me.btnGetFlatRateState = New System.Windows.Forms.Button
         Me.btnFlatRatePopUpURL = New System.Windows.Forms.Button
         Me.GroupBox9 = New System.Windows.Forms.GroupBox
+        Me.btnDeleteBankAccount = New System.Windows.Forms.Button
         Me.btnRevokeCloseBankAccount = New System.Windows.Forms.Button
         Me.btnCloseBankAccount = New System.Windows.Forms.Button
         Me.btnGetBankAccountInfo = New System.Windows.Forms.Button
@@ -75,7 +76,8 @@ Partial Class frmExample
         Me.btnRequestJob = New System.Windows.Forms.Button
         Me.Label5 = New System.Windows.Forms.Label
         Me.txtURL = New System.Windows.Forms.TextBox
-        Me.btnDeleteBankAccount = New System.Windows.Forms.Button
+        Me.btnGetPaymentURL = New System.Windows.Forms.Button
+        Me.btnGetUseHistoryURL = New System.Windows.Forms.Button
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -102,7 +104,7 @@ Partial Class frmExample
         Me.GroupBox1.Controls.Add(Me.GroupBox6)
         Me.GroupBox1.Location = New System.Drawing.Point(13, 41)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1082, 155)
+        Me.GroupBox1.Size = New System.Drawing.Size(1082, 173)
         Me.GroupBox1.TabIndex = 38
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "팝빌 기본 API"
@@ -113,7 +115,7 @@ Partial Class frmExample
         Me.GroupBox17.Controls.Add(Me.btnGetCorpInfo)
         Me.GroupBox17.Location = New System.Drawing.Point(930, 17)
         Me.GroupBox17.Name = "GroupBox17"
-        Me.GroupBox17.Size = New System.Drawing.Size(148, 126)
+        Me.GroupBox17.Size = New System.Drawing.Size(148, 150)
         Me.GroupBox17.TabIndex = 6
         Me.GroupBox17.TabStop = False
         Me.GroupBox17.Text = "회사정보 관련"
@@ -143,7 +145,7 @@ Partial Class frmExample
         Me.GroupBox16.Controls.Add(Me.btnRegistContact)
         Me.GroupBox16.Location = New System.Drawing.Point(776, 17)
         Me.GroupBox16.Name = "GroupBox16"
-        Me.GroupBox16.Size = New System.Drawing.Size(148, 126)
+        Me.GroupBox16.Size = New System.Drawing.Size(148, 150)
         Me.GroupBox16.TabIndex = 5
         Me.GroupBox16.TabStop = False
         Me.GroupBox16.Text = "담당자 관련"
@@ -180,7 +182,7 @@ Partial Class frmExample
         Me.GroupBox15.Controls.Add(Me.btnGetAccessURL)
         Me.GroupBox15.Location = New System.Drawing.Point(622, 17)
         Me.GroupBox15.Name = "GroupBox15"
-        Me.GroupBox15.Size = New System.Drawing.Size(148, 126)
+        Me.GroupBox15.Size = New System.Drawing.Size(148, 150)
         Me.GroupBox15.TabIndex = 4
         Me.GroupBox15.TabStop = False
         Me.GroupBox15.Text = "팝빌 기본 URL"
@@ -200,7 +202,7 @@ Partial Class frmExample
         Me.GroupBox5.Controls.Add(Me.btnGetPartnerBalance)
         Me.GroupBox5.Location = New System.Drawing.Point(468, 17)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(148, 126)
+        Me.GroupBox5.Size = New System.Drawing.Size(148, 150)
         Me.GroupBox5.TabIndex = 2
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "파트너과금 포인트"
@@ -225,11 +227,13 @@ Partial Class frmExample
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.btnGetUseHistoryURL)
+        Me.GroupBox2.Controls.Add(Me.btnGetPaymentURL)
         Me.GroupBox2.Controls.Add(Me.btnGetChargeURL)
         Me.GroupBox2.Controls.Add(Me.btnGetBalance)
         Me.GroupBox2.Location = New System.Drawing.Point(314, 17)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(148, 126)
+        Me.GroupBox2.Size = New System.Drawing.Size(148, 150)
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "연동과금 포인트"
@@ -257,7 +261,7 @@ Partial Class frmExample
         Me.GroupBox3.Controls.Add(Me.btnGetChargeInfo)
         Me.GroupBox3.Location = New System.Drawing.Point(160, 17)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(148, 126)
+        Me.GroupBox3.Size = New System.Drawing.Size(148, 150)
         Me.GroupBox3.TabIndex = 1
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "포인트 관련"
@@ -278,7 +282,7 @@ Partial Class frmExample
         Me.GroupBox6.Controls.Add(Me.btnJoinMember)
         Me.GroupBox6.Location = New System.Drawing.Point(6, 17)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(148, 126)
+        Me.GroupBox6.Size = New System.Drawing.Size(148, 150)
         Me.GroupBox6.TabIndex = 0
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "회원 정보"
@@ -355,7 +359,7 @@ Partial Class frmExample
         Me.GroupBox4.Controls.Add(Me.GroupBox9)
         Me.GroupBox4.Controls.Add(Me.GroupBox8)
         Me.GroupBox4.Controls.Add(Me.GroupBox7)
-        Me.GroupBox4.Location = New System.Drawing.Point(13, 202)
+        Me.GroupBox4.Location = New System.Drawing.Point(13, 220)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(1082, 433)
         Me.GroupBox4.TabIndex = 39
@@ -448,6 +452,15 @@ Partial Class frmExample
         Me.GroupBox9.TabIndex = 2
         Me.GroupBox9.TabStop = False
         Me.GroupBox9.Text = "계좌 관리"
+        '
+        'btnDeleteBankAccount
+        '
+        Me.btnDeleteBankAccount.Location = New System.Drawing.Point(281, 94)
+        Me.btnDeleteBankAccount.Name = "btnDeleteBankAccount"
+        Me.btnDeleteBankAccount.Size = New System.Drawing.Size(131, 30)
+        Me.btnDeleteBankAccount.TabIndex = 11
+        Me.btnDeleteBankAccount.Text = "종량제 계좌 삭제"
+        Me.btnDeleteBankAccount.UseVisualStyleBackColor = True
         '
         'btnRevokeCloseBankAccount
         '
@@ -606,14 +619,23 @@ Partial Class frmExample
         Me.txtURL.Size = New System.Drawing.Size(302, 21)
         Me.txtURL.TabIndex = 9
         '
-        'btnDeleteBankAccount
+        'btnGetPaymentURL
         '
-        Me.btnDeleteBankAccount.Location = New System.Drawing.Point(281, 94)
-        Me.btnDeleteBankAccount.Name = "btnDeleteBankAccount"
-        Me.btnDeleteBankAccount.Size = New System.Drawing.Size(131, 30)
-        Me.btnDeleteBankAccount.TabIndex = 11
-        Me.btnDeleteBankAccount.Text = "종량제 계좌 삭제"
-        Me.btnDeleteBankAccount.UseVisualStyleBackColor = True
+        Me.btnGetPaymentURL.Location = New System.Drawing.Point(6, 83)
+        Me.btnGetPaymentURL.Name = "btnGetPaymentURL"
+        Me.btnGetPaymentURL.Size = New System.Drawing.Size(135, 30)
+        Me.btnGetPaymentURL.TabIndex = 6
+        Me.btnGetPaymentURL.Text = "포인트 결재내역 URL"
+        Me.btnGetPaymentURL.UseVisualStyleBackColor = True
+        '
+        'btnGetUseHistoryURL
+        '
+        Me.btnGetUseHistoryURL.Location = New System.Drawing.Point(6, 114)
+        Me.btnGetUseHistoryURL.Name = "btnGetUseHistoryURL"
+        Me.btnGetUseHistoryURL.Size = New System.Drawing.Size(135, 30)
+        Me.btnGetUseHistoryURL.TabIndex = 7
+        Me.btnGetUseHistoryURL.Text = "포인트 사용내역 URL"
+        Me.btnGetUseHistoryURL.UseVisualStyleBackColor = True
         '
         'frmExample
         '
@@ -703,5 +725,7 @@ Partial Class frmExample
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents txtURL As System.Windows.Forms.TextBox
     Friend WithEvents btnDeleteBankAccount As System.Windows.Forms.Button
+    Friend WithEvents btnGetUseHistoryURL As System.Windows.Forms.Button
+    Friend WithEvents btnGetPaymentURL As System.Windows.Forms.Button
 
 End Class

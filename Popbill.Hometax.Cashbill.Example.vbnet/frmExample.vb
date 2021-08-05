@@ -3,7 +3,7 @@
 ' 팝빌 홈택스 현금영수증 매입매출 API VB.Net SDK Example
 '
 ' - VB.Net SDK 연동환경 설정방법 안내 : https://docs.popbill.com/htcashbill/tutorial/dotnet#vb
-' - 업데이트 일자 : 2020-10-23
+' - 업데이트 일자 : 2021-08-05
 ' - 연동 기술지원 연락처 : 1600-8536 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -387,6 +387,38 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
+    ' 연동회원 포인트 결제내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    ' - https://docs.popbill.com/htcashbill/dotnet/api#GetPaymentURL
+    '=========================================================================
+    Private Sub btnGetPaymentURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPaymentURL.Click
+        Try
+            Dim url As String = htCashbillService.GetPaymentURL(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox(url)
+            txtURL.Text = url
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원 포인트 사용내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    ' - https://docs.popbill.com/htcashbill/dotnet/api#GetUseHistoryURL
+    '=========================================================================
+    Private Sub btnGetUseHistoryURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetUseHistoryURL.Click
+        Try
+            Dim url As String = htCashbillService.GetUseHistoryURL(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox(url)
+            txtURL.Text = url
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
     ' 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/htcashbill/dotnet/api#GetPartnerURL
@@ -758,5 +790,4 @@ Public Class frmExample
 
         End Try
     End Sub
-
 End Class
