@@ -157,6 +157,11 @@ Partial Class frmExample
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
         Me.Label8 = New System.Windows.Forms.Label
         Me.txtURL = New System.Windows.Forms.TextBox
+        Me.GroupBox24 = New System.Windows.Forms.GroupBox
+        Me.Label10 = New System.Windows.Forms.Label
+        Me.txtSubmitID = New System.Windows.Forms.TextBox
+        Me.btnBulkSubmit = New System.Windows.Forms.Button
+        Me.btnGetBulkResult = New System.Windows.Forms.Button
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -180,6 +185,7 @@ Partial Class frmExample
         Me.GroupBox9.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
         Me.GroupBox10.SuspendLayout()
+        Me.GroupBox24.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnGetTaxCertURL
@@ -928,6 +934,7 @@ Partial Class frmExample
         '
         'GroupBox20
         '
+        Me.GroupBox20.Controls.Add(Me.GroupBox24)
         Me.GroupBox20.Controls.Add(Me.GroupBox22)
         Me.GroupBox20.Controls.Add(Me.GroupBox18)
         Me.GroupBox20.Controls.Add(Me.btnSendToNTS)
@@ -945,7 +952,7 @@ Partial Class frmExample
         Me.GroupBox22.Controls.Add(Me.Panel2)
         Me.GroupBox22.Controls.Add(Me.Label35)
         Me.GroupBox22.Controls.Add(Me.Panel1)
-        Me.GroupBox22.Location = New System.Drawing.Point(334, 8)
+        Me.GroupBox22.Location = New System.Drawing.Point(326, 12)
         Me.GroupBox22.Name = "GroupBox22"
         Me.GroupBox22.Size = New System.Drawing.Size(261, 44)
         Me.GroupBox22.TabIndex = 17
@@ -1071,9 +1078,9 @@ Partial Class frmExample
         'btnSendToNTS
         '
         Me.btnSendToNTS.BackColor = System.Drawing.Color.LightCoral
-        Me.btnSendToNTS.Location = New System.Drawing.Point(112, 260)
+        Me.btnSendToNTS.Location = New System.Drawing.Point(449, 265)
         Me.btnSendToNTS.Name = "btnSendToNTS"
-        Me.btnSendToNTS.Size = New System.Drawing.Size(313, 27)
+        Me.btnSendToNTS.Size = New System.Drawing.Size(138, 27)
         Me.btnSendToNTS.TabIndex = 13
         Me.btnSendToNTS.Text = "국세청 즉시 전송"
         Me.btnSendToNTS.UseVisualStyleBackColor = False
@@ -1089,7 +1096,7 @@ Partial Class frmExample
         Me.GroupBox8.Controls.Add(Me.Label6)
         Me.GroupBox8.Controls.Add(Me.Label7)
         Me.GroupBox8.Controls.Add(Me.Label9)
-        Me.GroupBox8.Location = New System.Drawing.Point(259, 62)
+        Me.GroupBox8.Location = New System.Drawing.Point(307, 62)
         Me.GroupBox8.Name = "GroupBox8"
         Me.GroupBox8.Size = New System.Drawing.Size(280, 188)
         Me.GroupBox8.TabIndex = 7
@@ -1202,7 +1209,7 @@ Partial Class frmExample
         Me.GroupBox13.Controls.Add(Me.btnGetURL_TBOX)
         Me.GroupBox13.Location = New System.Drawing.Point(1144, 366)
         Me.GroupBox13.Name = "GroupBox13"
-        Me.GroupBox13.Size = New System.Drawing.Size(166, 218)
+        Me.GroupBox13.Size = New System.Drawing.Size(166, 223)
         Me.GroupBox13.TabIndex = 12
         Me.GroupBox13.TabStop = False
         Me.GroupBox13.Text = "기타 URL"
@@ -1255,7 +1262,7 @@ Partial Class frmExample
         Me.GroupBox12.Controls.Add(Me.btnGetPopUpURL)
         Me.GroupBox12.Location = New System.Drawing.Point(723, 366)
         Me.GroupBox12.Name = "GroupBox12"
-        Me.GroupBox12.Size = New System.Drawing.Size(408, 218)
+        Me.GroupBox12.Size = New System.Drawing.Size(408, 223)
         Me.GroupBox12.TabIndex = 11
         Me.GroupBox12.TabStop = False
         Me.GroupBox12.Text = "문서관련 URL 기능"
@@ -1334,6 +1341,7 @@ Partial Class frmExample
         '
         'GroupBox9
         '
+        Me.GroupBox9.Controls.Add(Me.btnGetBulkResult)
         Me.GroupBox9.Controls.Add(Me.btnSearch)
         Me.GroupBox9.Controls.Add(Me.btnGetInfos)
         Me.GroupBox9.Controls.Add(Me.btnGetLogs)
@@ -1341,7 +1349,7 @@ Partial Class frmExample
         Me.GroupBox9.Controls.Add(Me.btnGetDetailInfo)
         Me.GroupBox9.Location = New System.Drawing.Point(200, 366)
         Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(147, 218)
+        Me.GroupBox9.Size = New System.Drawing.Size(159, 223)
         Me.GroupBox9.TabIndex = 8
         Me.GroupBox9.TabStop = False
         Me.GroupBox9.Text = "문서 정보"
@@ -1350,7 +1358,7 @@ Partial Class frmExample
         '
         Me.btnSearch.Location = New System.Drawing.Point(16, 150)
         Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(117, 29)
+        Me.btnSearch.Size = New System.Drawing.Size(131, 29)
         Me.btnSearch.TabIndex = 10
         Me.btnSearch.Text = "문서목록 조회"
         Me.btnSearch.UseVisualStyleBackColor = True
@@ -1359,7 +1367,7 @@ Partial Class frmExample
         '
         Me.btnGetInfos.Location = New System.Drawing.Point(16, 117)
         Me.btnGetInfos.Name = "btnGetInfos"
-        Me.btnGetInfos.Size = New System.Drawing.Size(117, 29)
+        Me.btnGetInfos.Size = New System.Drawing.Size(131, 29)
         Me.btnGetInfos.TabIndex = 9
         Me.btnGetInfos.Text = "문서정보(대량)"
         Me.btnGetInfos.UseVisualStyleBackColor = True
@@ -1368,7 +1376,7 @@ Partial Class frmExample
         '
         Me.btnGetLogs.Location = New System.Drawing.Point(16, 85)
         Me.btnGetLogs.Name = "btnGetLogs"
-        Me.btnGetLogs.Size = New System.Drawing.Size(117, 29)
+        Me.btnGetLogs.Size = New System.Drawing.Size(131, 29)
         Me.btnGetLogs.TabIndex = 8
         Me.btnGetLogs.Text = "문서이력"
         Me.btnGetLogs.UseVisualStyleBackColor = True
@@ -1377,7 +1385,7 @@ Partial Class frmExample
         '
         Me.btnGetInfo.Location = New System.Drawing.Point(16, 20)
         Me.btnGetInfo.Name = "btnGetInfo"
-        Me.btnGetInfo.Size = New System.Drawing.Size(117, 29)
+        Me.btnGetInfo.Size = New System.Drawing.Size(131, 29)
         Me.btnGetInfo.TabIndex = 7
         Me.btnGetInfo.Text = "문서정보"
         Me.btnGetInfo.UseVisualStyleBackColor = True
@@ -1386,7 +1394,7 @@ Partial Class frmExample
         '
         Me.btnGetDetailInfo.Location = New System.Drawing.Point(16, 53)
         Me.btnGetDetailInfo.Name = "btnGetDetailInfo"
-        Me.btnGetDetailInfo.Size = New System.Drawing.Size(117, 29)
+        Me.btnGetDetailInfo.Size = New System.Drawing.Size(131, 29)
         Me.btnGetDetailInfo.TabIndex = 6
         Me.btnGetDetailInfo.Text = "문서상세정보"
         Me.btnGetDetailInfo.UseVisualStyleBackColor = True
@@ -1401,9 +1409,9 @@ Partial Class frmExample
         Me.GroupBox11.Controls.Add(Me.btnSendFAX)
         Me.GroupBox11.Controls.Add(Me.btnSendSMS)
         Me.GroupBox11.Controls.Add(Me.btnSendEmail)
-        Me.GroupBox11.Location = New System.Drawing.Point(356, 366)
+        Me.GroupBox11.Location = New System.Drawing.Point(365, 366)
         Me.GroupBox11.Name = "GroupBox11"
-        Me.GroupBox11.Size = New System.Drawing.Size(352, 218)
+        Me.GroupBox11.Size = New System.Drawing.Size(352, 223)
         Me.GroupBox11.TabIndex = 10
         Me.GroupBox11.TabStop = False
         Me.GroupBox11.Text = "부가 기능"
@@ -1471,7 +1479,7 @@ Partial Class frmExample
         Me.GroupBox10.Controls.Add(Me.btnGetFiles)
         Me.GroupBox10.Location = New System.Drawing.Point(20, 366)
         Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(165, 218)
+        Me.GroupBox10.Size = New System.Drawing.Size(165, 223)
         Me.GroupBox10.TabIndex = 9
         Me.GroupBox10.TabStop = False
         Me.GroupBox10.Text = "첨부파일"
@@ -1583,11 +1591,58 @@ Partial Class frmExample
         Me.txtURL.Size = New System.Drawing.Size(419, 21)
         Me.txtURL.TabIndex = 25
         '
+        'GroupBox24
+        '
+        Me.GroupBox24.Controls.Add(Me.btnBulkSubmit)
+        Me.GroupBox24.Controls.Add(Me.txtSubmitID)
+        Me.GroupBox24.Controls.Add(Me.Label10)
+        Me.GroupBox24.Location = New System.Drawing.Point(29, 255)
+        Me.GroupBox24.Name = "GroupBox24"
+        Me.GroupBox24.Size = New System.Drawing.Size(414, 41)
+        Me.GroupBox24.TabIndex = 18
+        Me.GroupBox24.TabStop = False
+        Me.GroupBox24.Text = "초대량 발행"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(8, 17)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(137, 12)
+        Me.Label10.TabIndex = 25
+        Me.Label10.Text = "제출아이디(SubmitID) : "
+        '
+        'txtSubmitID
+        '
+        Me.txtSubmitID.Location = New System.Drawing.Point(146, 13)
+        Me.txtSubmitID.Name = "txtSubmitID"
+        Me.txtSubmitID.Size = New System.Drawing.Size(136, 21)
+        Me.txtSubmitID.TabIndex = 25
+        '
+        'btnBulkSubmit
+        '
+        Me.btnBulkSubmit.BackColor = System.Drawing.Color.LightCoral
+        Me.btnBulkSubmit.Location = New System.Drawing.Point(297, 10)
+        Me.btnBulkSubmit.Name = "btnBulkSubmit"
+        Me.btnBulkSubmit.Size = New System.Drawing.Size(111, 27)
+        Me.btnBulkSubmit.TabIndex = 26
+        Me.btnBulkSubmit.Text = "초대량 발행 접수"
+        Me.btnBulkSubmit.UseVisualStyleBackColor = False
+        '
+        'btnGetBulkResult
+        '
+        Me.btnGetBulkResult.Location = New System.Drawing.Point(16, 185)
+        Me.btnGetBulkResult.Name = "btnGetBulkResult"
+        Me.btnGetBulkResult.Size = New System.Drawing.Size(131, 29)
+        Me.btnGetBulkResult.TabIndex = 11
+        Me.btnGetBulkResult.Text = "초대량 접수결과 확인"
+        Me.btnGetBulkResult.UseVisualStyleBackColor = True
+        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1363, 815)
+        Me.ClientSize = New System.Drawing.Size(1362, 810)
         Me.Controls.Add(Me.txtURL)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.GroupBox7)
@@ -1627,6 +1682,8 @@ Partial Class frmExample
         Me.GroupBox11.ResumeLayout(False)
         Me.GroupBox10.ResumeLayout(False)
         Me.GroupBox10.PerformLayout()
+        Me.GroupBox24.ResumeLayout(False)
+        Me.GroupBox24.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1766,5 +1823,10 @@ Partial Class frmExample
     Friend WithEvents btnGetOldPrintURL As System.Windows.Forms.Button
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents txtURL As System.Windows.Forms.TextBox
+    Friend WithEvents GroupBox24 As System.Windows.Forms.GroupBox
+    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents btnBulkSubmit As System.Windows.Forms.Button
+    Friend WithEvents txtSubmitID As System.Windows.Forms.TextBox
+    Friend WithEvents btnGetBulkResult As System.Windows.Forms.Button
 
 End Class
