@@ -476,10 +476,10 @@ Public Class frmExample
         Dim AccountNumber As String = "131020538645"
 
         ' 시작일자, 표시형식(yyyyMMdd)
-        Dim SDate As String = "20200701"
+        Dim SDate As String = "20210701"
 
         ' 종료일자, 표시형식(yyyyMMdd)
-        Dim EDate As String = "20200730"
+        Dim EDate As String = "20210730"
 
         Try
 
@@ -594,7 +594,7 @@ Public Class frmExample
             MsgBox(tmp)
 
             Dim rowStr As String = "tid (거래내역 아이디) | trdate(거래일자) | trserial(거래일자별 일련번호) | trdt(거래일시) | accIn(입금액) | accOut(출금액) | "
-            rowStr += "balance(잔액) | remark1(비고1) | remark2(비고2) | remark3(비고3) | memo(메모)" 
+            rowStr += "balance(잔액) | remark1(비고1) | remark2(비고2) | remark3(비고3) | memo(메모)"
 
             ListBox1.Items.Add(rowStr)
 
@@ -661,7 +661,7 @@ Public Class frmExample
     Private Sub btnSaveMemo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSaveMemo.Click
 
         '거래내역 메모
-        Dim Memo As String = "20200701-테스트"
+        Dim Memo As String = "20210701-테스트"
 
         Try
 
@@ -814,7 +814,7 @@ Public Class frmExample
 
         ' 메모
         accountInfo.Memo = ""
-       
+
 
         Try
 

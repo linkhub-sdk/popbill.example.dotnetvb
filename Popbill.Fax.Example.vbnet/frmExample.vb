@@ -139,7 +139,7 @@ Public Class frmExample
             '발신번호
             Dim sendNum As String = "070-4304-2991"
 
-            '수신정보배열, 최대 1000건 
+            '수신정보배열, 최대 1000건
             Dim receivers As List(Of FaxReceiver) = New List(Of FaxReceiver)
 
             For i As Integer = 0 To 99
@@ -238,7 +238,7 @@ Public Class frmExample
             '발신번호
             Dim sendNum As String = "070-4304-2991"
 
-            '수신정보배열, 최대 1000건 
+            '수신정보배열, 최대 1000건
             Dim receivers As List(Of FaxReceiver) = New List(Of FaxReceiver)
 
             For i As Integer = 0 To 99
@@ -598,10 +598,10 @@ Public Class frmExample
 
         '최대 검색기간 : 2개월 이내
         '[필수] 시작일자, yyyyMMdd
-        Dim SDate As String = "20190901"
+        Dim SDate As String = "20210801"
 
         '[필수] 종료일자, yyyyMMdd
-        Dim EDate As String = "20191231"
+        Dim EDate As String = "20210805"
 
         '전송상태값 배열, 1-대기, 2-성공, 3-실패, 4-취소
         State(0) = "1"

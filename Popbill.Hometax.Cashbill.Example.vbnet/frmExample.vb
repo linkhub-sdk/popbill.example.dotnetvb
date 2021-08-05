@@ -54,10 +54,10 @@ Public Class frmExample
         Dim tiKeyType As KeyType = KeyType.BUY
 
         '시작일자, 표시형식(yyyyMMdd)
-        Dim SDate As String = "20200701"
+        Dim SDate As String = "20210701"
 
         '종료일자, 표시형식(yyyyMMdd)
-        Dim EDate As String = "20200730"
+        Dim EDate As String = "20210730"
 
         Try
             Dim jobID As String = htCashbillService.RequestJob(txtCorpNum.Text, tiKeyType, SDate, EDate)
