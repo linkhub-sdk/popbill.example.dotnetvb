@@ -294,11 +294,8 @@ Public Class frmExample
         '담당자 이메일 (최대 100자)
         joinData.email = "test@test.com"
 
-        '회사조회 권한여부, True-회사조회, False-개인조회
-        joinData.searchAllAllowYN = False
-
-        '관리자 여부, True-관리자, False-사용자
-        joinData.mgrYN = False
+        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
+        joinData.searchRole = 3
 
         Try
             Dim response As Response = easyFinBankService.RegistContact(txtCorpNum.Text, joinData, txtUserId.Text)
@@ -353,11 +350,11 @@ Public Class frmExample
             Dim contactList As List(Of Contact) = easyFinBankService.ListContact(txtCorpNum.Text, txtUserId.Text)
 
             Dim tmp As String = "id(아이디) | personName(담당자명) | email(메일주소) | hp(휴대폰번호) | fax(팩스) | tel(연락처) |"
-            tmp += "regDT(등록일시) | searchAllAllowYN(회사조회 여부) | mgrYN(관리자 여부) | state(상태)" + vbCrLf
+            tmp += "regDT(등록일시) | searchRole(담당자 권한) | mgrYN(관리자 여부) | state(상태)" + vbCrLf
 
             For Each info As Contact In contactList
                 tmp += info.id + " | " + info.personName + " | " + info.email + " | " + info.hp + " | " + info.fax + " | " + info.tel + " | "
-                tmp += info.regDT.ToString() + " | " + info.searchAllAllowYN.ToString() + " | " + info.mgrYN.ToString() + " | " + info.state + vbCrLf
+                tmp += info.regDT.ToString() + " | " + info.searchRole.ToString() + " | " + info.mgrYN.ToString() + " | " + info.state + vbCrLf
             Next
 
             MsgBox(tmp)
@@ -394,11 +391,8 @@ Public Class frmExample
         '담당자 이메일 (최대 100자)
         joinData.email = "test@test.com"
 
-        '회사조회 권한여부, True-회사조회, False-개인조회
-        joinData.searchAllAllowYN = False
-
-        '관리자 여부, True-관리자, False-사용자
-        joinData.mgrYN = False
+        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
+        joinData.searchRole = 3
 
         Try
             Dim response As Response = easyFinBankService.UpdateContact(txtCorpNum.Text, joinData, txtUserId.Text)
