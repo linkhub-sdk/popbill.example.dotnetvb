@@ -3,7 +3,7 @@
 ' 팝빌 카카오톡 API VB.Net SDK Example
 '
 ' - VB.Net 연동환경 설정방법 안내 : https://docs.popbill.com/kakao/tutorial/dotnet#vb
-' - 업데이트 일자 : 2020-10-23
+' - 업데이트 일자 : 2021-08-05
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -138,6 +138,43 @@ Public Class frmExample
 
             MsgBox(url)
             txtURL.Text = url
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 승인된 알림톡 템플릿 정보를 확인합니다.
+    ' - https://docs.popbill.com/kakao/dotnet/api#getATSTemplate
+    '=========================================================================
+    Private Sub btnGetATSTemplate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnGetATSTemplate.Click
+
+        '확인할 템플릿 코드
+        Dim templateCode As String = ""
+
+        Try
+            Dim template As ATSTemplate = kakaoService.GetATSTemplate(txtCorpNum.Text, templateCode, txtUserId.Text)
+
+            Dim tmp As String = ""
+
+            tmp += "[템플릿 정보]" + vbCrLf
+            tmp += "templateCode(템플릿 코드) : " + template.templateCode + vbCrLf
+            tmp += "templateName(템플릿 제목) : " + template.templateName + vbCrLf
+            tmp += "template(템플릿 내용) : " + template.template + vbCrLf
+            tmp += "plusFriendID(카카오톡채널 아이디) : " + template.plusFriendID + vbCrLf
+
+            If Not template.btns Is Nothing Then
+                For Each btnInfo As KakaoButton In template.btns
+                    tmp += "[버튼정보]" + vbCrLf
+                    tmp += "n(버튼명) : " + btnInfo.n + vbCrLf
+                    tmp += "t(버튼유형) : " + btnInfo.t + vbCrLf
+                    tmp += "u1(버튼링크1() : " + btnInfo.u1 + vbCrLf
+                    tmp += "u2(버튼링크2() : " + btnInfo.u2 + vbCrLf
+                Next
+                tmp += vbCrLf
+            End If
+            MsgBox(tmp)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try

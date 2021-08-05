@@ -91,6 +91,7 @@ Partial Class frmExample
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
         Me.Label6 = New System.Windows.Forms.Label
         Me.txtURL = New System.Windows.Forms.TextBox
+        Me.btnGetATSTemplate = New System.Windows.Forms.Button
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -488,6 +489,7 @@ Partial Class frmExample
         '
         'GroupBox10
         '
+        Me.GroupBox10.Controls.Add(Me.btnGetATSTemplate)
         Me.GroupBox10.Controls.Add(Me.btnSearch)
         Me.GroupBox10.Controls.Add(Me.btnGetSentListURL)
         Me.GroupBox10.Controls.Add(Me.btnGetSenderNumberList)
@@ -498,7 +500,7 @@ Partial Class frmExample
         Me.GroupBox10.Controls.Add(Me.btnGetPlusFriendMgtURL)
         Me.GroupBox10.Location = New System.Drawing.Point(689, 20)
         Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(351, 190)
+        Me.GroupBox10.Size = New System.Drawing.Size(351, 257)
         Me.GroupBox10.TabIndex = 9
         Me.GroupBox10.TabStop = False
         Me.GroupBox10.Text = "카카오톡 관리"
@@ -541,7 +543,7 @@ Partial Class frmExample
         '
         'btnListATSTemplate
         '
-        Me.btnListATSTemplate.Location = New System.Drawing.Point(10, 143)
+        Me.btnListATSTemplate.Location = New System.Drawing.Point(10, 184)
         Me.btnListATSTemplate.Name = "btnListATSTemplate"
         Me.btnListATSTemplate.Size = New System.Drawing.Size(180, 35)
         Me.btnListATSTemplate.TabIndex = 3
@@ -775,6 +777,15 @@ Partial Class frmExample
         Me.txtURL.Size = New System.Drawing.Size(296, 21)
         Me.txtURL.TabIndex = 9
         '
+        'btnGetATSTemplate
+        '
+        Me.btnGetATSTemplate.Location = New System.Drawing.Point(10, 143)
+        Me.btnGetATSTemplate.Name = "btnGetATSTemplate"
+        Me.btnGetATSTemplate.Size = New System.Drawing.Size(180, 35)
+        Me.btnGetATSTemplate.TabIndex = 8
+        Me.btnGetATSTemplate.Text = "알림톡 템플릿 정보 확인"
+        Me.btnGetATSTemplate.UseVisualStyleBackColor = True
+        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
@@ -882,5 +893,6 @@ Partial Class frmExample
     Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents txtURL As System.Windows.Forms.TextBox
+    Friend WithEvents btnGetATSTemplate As System.Windows.Forms.Button
 
 End Class
