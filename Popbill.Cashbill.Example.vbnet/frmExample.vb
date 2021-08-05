@@ -64,7 +64,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 현금영수증 데이터를 팝빌에 전송하여 발행합니다.
+    ' 작성된 현금영수증 데이터를 팝빌에 저장과 동시에 발행하여 "발행완료" 상태로 처리합니다.
     ' - 현금영수증 국세청 전송 정책 : https://docs.popbill.com/cashbill/ntsSendPolicy?lang=dotnet
     ' - https://docs.popbill.com/cashbill/dotnet/api#RegistIssue
     '=========================================================================
@@ -153,9 +153,10 @@ Public Class frmExample
         Dim emailSubject As String = ""
 
         Try
-            Dim response As Response = cashbillService.RegistIssue(txtCorpNum.Text, cashbill, memo, txtUserId.Text, emailSubject)
+            Dim response As CBIssueResponse = cashbillService.RegistIssue(txtCorpNum.Text, cashbill, memo, txtUserId.Text, emailSubject)
 
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message + vbCrLf _
+                   + "국세청 승인번호(confirmNum) : " + response.confirmNum + vbCrLf + "거래일자(tradeDate) : " + response.tradeDate)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -360,9 +361,10 @@ Public Class frmExample
 
         Try
 
-            Dim response As Response = cashbillService.Issue(txtCorpNum.Text, txtMgtKey.Text, Memo, txtUserId.Text)
+            Dim response As CBIssueResponse = cashbillService.Issue(txtCorpNum.Text, txtMgtKey.Text, Memo, txtUserId.Text)
 
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message + vbCrLf _
+                + "국세청 승인번호(confirmNum) : " + response.confirmNum + vbCrLf + "거래일자(tradeDate) : " + response.tradeDate)
 
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
@@ -370,9 +372,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 국세청 전송 이전 "발행완료" 상태의 현금영수증을 "발행취소"하고 국세청 전송 대상에서 제외됩니다.
-    ' - 발행취소는 국세청 전송전에만 가능합니다.
-    ' - 발행취소된 현금영수증은 국세청에 전송되지 않습니다.
+    ' 국세청 전송 이전 "발행완료" 상태의 현금영수증을 "발행취소"하고 국세청 신고 대상에서 제외합니다.
+    ' - Delete(삭제)함수를 호출하여 "발행취소" 상태의 현금영수증을 삭제하면, 문서번호 재사용이 가능합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#CancelIssue
     '=========================================================================
     Private Sub btnCancelIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -391,9 +392,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 국세청 전송 이전 "발행완료" 상태의 현금영수증을 "발행취소"하고 국세청 전송 대상에서 제외됩니다.
-    ' - 발행취소는 국세청 전송전에만 가능합니다.
-    ' - 발행취소된 현금영수증은 국세청에 전송되지 않습니다.
+    ' 국세청 전송 이전 "발행완료" 상태의 현금영수증을 "발행취소"하고 국세청 신고 대상에서 제외합니다.
+    ' - Delete(삭제)함수를 호출하여 "발행취소" 상태의 현금영수증을 삭제하면, 문서번호 재사용이 가능합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#CancelIssue
     '=========================================================================
     Private Sub btnCancelIssue02_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelIssue02.Click
@@ -412,9 +412,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 국세청 전송 이전 "발행완료" 상태의 현금영수증을 "발행취소"하고 국세청 전송 대상에서 제외됩니다.
-    ' - 발행취소는 국세청 전송전에만 가능합니다.
-    ' - 발행취소된 현금영수증은 국세청에 전송되지 않습니다.
+    ' 국세청 전송 이전 "발행완료" 상태의 현금영수증을 "발행취소"하고 국세청 신고 대상에서 제외합니다.
+    ' - Delete(삭제)함수를 호출하여 "발행취소" 상태의 현금영수증을 삭제하면, 문서번호 재사용이 가능합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#CancelIssue
     '=========================================================================
     Private Sub btnCancelIssueSub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelIssueSub.Click
@@ -486,17 +485,17 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 취소 현금영수증을 발행하며 취소 현금영수증의 금액은 원본 금액을 넘을 수 없습니다.
+    ' 취소 현금영수증 데이터를 팝빌에 저장과 동시에 발행하여 "발행완료" 상태로 처리합니다.
     ' - 현금영수증 국세청 전송 정책 : https://docs.popbill.com/cashbill/ntsSendPolicy?lang=dotnet
     ' - https://docs.popbill.com/cashbill/dotnet/api#RevokeRegistIssue
     '=========================================================================
     Private Sub btnRevokRegistIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRevokRegistIssue.Click
 
         '원본현금영수증 국세청 승인번호
-        Dim orgConfirmNum As String = "820116333"
+        Dim orgConfirmNum As String = "TB0000013"
 
         '원본현금영수증 거래일자
-        Dim orgTradeDate As String = "20210701"
+        Dim orgTradeDate As String = "20210804"
 
         '발행 안내문자 전송여부
         Dim smssendYN As Boolean = False
@@ -505,9 +504,10 @@ Public Class frmExample
         Dim memo As String = "취소현금영수증 발행 메모"
 
         Try
-            Dim response As Response = cashbillService.RevokeRegistIssue(txtCorpNum.Text, txtMgtKey.Text, orgConfirmNum, orgTradeDate, smssendYN, memo)
+            Dim response As CBIssueResponse = cashbillService.RevokeRegistIssue(txtCorpNum.Text, txtMgtKey.Text, orgConfirmNum, orgTradeDate, smssendYN, memo)
 
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message + vbCrLf _
+                + "국세청 승인번호(confirmNum) : " + response.confirmNum + vbCrLf + "거래일자(tradeDate) : " + response.tradeDate)
 
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
@@ -515,17 +515,18 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' (부분)취소 현금영수증을 발행하며 취소 현금영수증의 금액은 원본 금액을 넘을 수 없습니다.
+    ' 작성된 (부분)취소 현금영수증 데이터를 팝빌에 저장과 동시에 발행하여 "발행완료" 상태로 처리합니다.
+    ' - 취소 현금영수증의 금액은 원본 금액을 넘을 수 없습니다.
     ' - 현금영수증 국세청 전송 정책 : https://docs.popbill.com/cashbill/ntsSendPolicy?lang=dotnet
     ' - https://docs.popbill.com/cashbill/dotnet/api#RevokeRegistIssue
     '=========================================================================
     Private Sub btnRevokeRegistIssue_part_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRevokeRegistIssue_part.Click
 
         '원본현금영수증 국세청 승인번호
-        Dim orgConfirmNum As String = "820116333"
+        Dim orgConfirmNum As String = "TB0000013"
 
         '원본현금영수증 거래일자
-        Dim orgTradeDate As String = "20210701"
+        Dim orgTradeDate As String = "20210804"
 
         '발행안내문자 전송여부
         Dim smssendYN As Boolean = False
@@ -552,11 +553,12 @@ Public Class frmExample
         Dim totalAmount As String = "2200"
 
         Try
-            Dim response As Response = cashbillService.RevokeRegistIssue(txtCorpNum.Text, txtMgtKey.Text, orgConfirmNum, orgTradeDate, _
+            Dim response As CBIssueResponse = cashbillService.RevokeRegistIssue(txtCorpNum.Text, txtMgtKey.Text, orgConfirmNum, orgTradeDate, _
                                                                          smssendYN, memo, txtUserId.Text, isPartCancel, cancelType, supplyCost, _
                                                                          tax, serviceFee, totalAmount)
 
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message + vbCrLf _
+                + "국세청 승인번호(confirmNum) : " + response.confirmNum + vbCrLf + "거래일자(tradeDate) : " + response.tradeDate)
 
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
