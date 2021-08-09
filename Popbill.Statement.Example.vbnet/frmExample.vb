@@ -264,7 +264,7 @@ Public Class frmExample
         Try
             Dim response As STMIssueResponse = statementService.RegistIssue(txtCorpNum.Text, statement, memo, txtUserId.Text, emailSubject)
 
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message + vbCrLf + "팝빌 승인번호(invoiceNum) : " + response.invoiceNum)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
