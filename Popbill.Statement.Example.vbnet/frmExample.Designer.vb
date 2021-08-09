@@ -203,7 +203,7 @@ Partial Class frmExample
         '
         'btnUpdateContact
         '
-        Me.btnUpdateContact.Location = New System.Drawing.Point(8, 116)
+        Me.btnUpdateContact.Location = New System.Drawing.Point(8, 118)
         Me.btnUpdateContact.Name = "btnUpdateContact"
         Me.btnUpdateContact.Size = New System.Drawing.Size(122, 30)
         Me.btnUpdateContact.TabIndex = 7
@@ -212,7 +212,7 @@ Partial Class frmExample
         '
         'btnListContact
         '
-        Me.btnListContact.Location = New System.Drawing.Point(8, 84)
+        Me.btnListContact.Location = New System.Drawing.Point(8, 85)
         Me.btnListContact.Name = "btnListContact"
         Me.btnListContact.Size = New System.Drawing.Size(122, 30)
         Me.btnListContact.TabIndex = 6
@@ -301,7 +301,7 @@ Partial Class frmExample
         '
         'btnGetUseHistoryURL
         '
-        Me.btnGetUseHistoryURL.Location = New System.Drawing.Point(6, 116)
+        Me.btnGetUseHistoryURL.Location = New System.Drawing.Point(6, 118)
         Me.btnGetUseHistoryURL.Name = "btnGetUseHistoryURL"
         Me.btnGetUseHistoryURL.Size = New System.Drawing.Size(133, 30)
         Me.btnGetUseHistoryURL.TabIndex = 7
@@ -310,7 +310,7 @@ Partial Class frmExample
         '
         'btnGetPaymentURL
         '
-        Me.btnGetPaymentURL.Location = New System.Drawing.Point(6, 84)
+        Me.btnGetPaymentURL.Location = New System.Drawing.Point(6, 85)
         Me.btnGetPaymentURL.Name = "btnGetPaymentURL"
         Me.btnGetPaymentURL.Size = New System.Drawing.Size(133, 30)
         Me.btnGetPaymentURL.TabIndex = 6
@@ -396,7 +396,7 @@ Partial Class frmExample
         '
         'btnJoinMember
         '
-        Me.btnJoinMember.Location = New System.Drawing.Point(6, 84)
+        Me.btnJoinMember.Location = New System.Drawing.Point(6, 85)
         Me.btnJoinMember.Name = "btnJoinMember"
         Me.btnJoinMember.Size = New System.Drawing.Size(118, 30)
         Me.btnJoinMember.TabIndex = 1

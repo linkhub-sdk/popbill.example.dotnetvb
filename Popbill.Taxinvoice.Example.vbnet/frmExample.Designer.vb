@@ -32,6 +32,7 @@ Partial Class frmExample
         Me.btnUpdateCorpInfo = New System.Windows.Forms.Button
         Me.btnGetCorpInfo = New System.Windows.Forms.Button
         Me.GroupBox16 = New System.Windows.Forms.GroupBox
+        Me.btnGetContactInfo = New System.Windows.Forms.Button
         Me.btnUpdateContact = New System.Windows.Forms.Button
         Me.btnListContact = New System.Windows.Forms.Button
         Me.btnRegistContact = New System.Windows.Forms.Button
@@ -144,6 +145,7 @@ Partial Class frmExample
         Me.btnGetInfo = New System.Windows.Forms.Button
         Me.btnGetDetailInfo = New System.Windows.Forms.Button
         Me.GroupBox11 = New System.Windows.Forms.GroupBox
+        Me.btnGetSendToNTSConfig = New System.Windows.Forms.Button
         Me.btnAssignMgtKey = New System.Windows.Forms.Button
         Me.Button1 = New System.Windows.Forms.Button
         Me.btnAttachStatement = New System.Windows.Forms.Button
@@ -164,8 +166,6 @@ Partial Class frmExample
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
         Me.Label8 = New System.Windows.Forms.Label
         Me.txtURL = New System.Windows.Forms.TextBox
-        Me.btnGetContactInfo = New System.Windows.Forms.Button
-        Me.btnGetSendToNTSConfig = New System.Windows.Forms.Button
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -293,6 +293,15 @@ Partial Class frmExample
         Me.GroupBox16.TabIndex = 5
         Me.GroupBox16.TabStop = False
         Me.GroupBox16.Text = "담당자 관련"
+        '
+        'btnGetContactInfo
+        '
+        Me.btnGetContactInfo.Location = New System.Drawing.Point(6, 51)
+        Me.btnGetContactInfo.Name = "btnGetContactInfo"
+        Me.btnGetContactInfo.Size = New System.Drawing.Size(150, 29)
+        Me.btnGetContactInfo.TabIndex = 8
+        Me.btnGetContactInfo.Text = "담당자 정보 확인"
+        Me.btnGetContactInfo.UseVisualStyleBackColor = True
         '
         'btnUpdateContact
         '
@@ -1341,7 +1350,7 @@ Partial Class frmExample
         '
         'btnGetPDFURL
         '
-        Me.btnGetPDFURL.Location = New System.Drawing.Point(229, 52)
+        Me.btnGetPDFURL.Location = New System.Drawing.Point(229, 53)
         Me.btnGetPDFURL.Name = "btnGetPDFURL"
         Me.btnGetPDFURL.Size = New System.Drawing.Size(170, 29)
         Me.btnGetPDFURL.TabIndex = 15
@@ -1446,7 +1455,7 @@ Partial Class frmExample
         '
         'btnGetLogs
         '
-        Me.btnGetLogs.Location = New System.Drawing.Point(16, 85)
+        Me.btnGetLogs.Location = New System.Drawing.Point(16, 86)
         Me.btnGetLogs.Name = "btnGetLogs"
         Me.btnGetLogs.Size = New System.Drawing.Size(131, 29)
         Me.btnGetLogs.TabIndex = 8
@@ -1464,7 +1473,7 @@ Partial Class frmExample
         '
         'btnGetDetailInfo
         '
-        Me.btnGetDetailInfo.Location = New System.Drawing.Point(16, 52)
+        Me.btnGetDetailInfo.Location = New System.Drawing.Point(16, 53)
         Me.btnGetDetailInfo.Name = "btnGetDetailInfo"
         Me.btnGetDetailInfo.Size = New System.Drawing.Size(131, 29)
         Me.btnGetDetailInfo.TabIndex = 6
@@ -1488,6 +1497,15 @@ Partial Class frmExample
         Me.GroupBox11.TabIndex = 10
         Me.GroupBox11.TabStop = False
         Me.GroupBox11.Text = "부가 기능"
+        '
+        'btnGetSendToNTSConfig
+        '
+        Me.btnGetSendToNTSConfig.Location = New System.Drawing.Point(155, 151)
+        Me.btnGetSendToNTSConfig.Name = "btnGetSendToNTSConfig"
+        Me.btnGetSendToNTSConfig.Size = New System.Drawing.Size(185, 29)
+        Me.btnGetSendToNTSConfig.TabIndex = 14
+        Me.btnGetSendToNTSConfig.Text = " 국세청 전송 설정 확인"
+        Me.btnGetSendToNTSConfig.UseVisualStyleBackColor = True
         '
         'btnAssignMgtKey
         '
@@ -1663,24 +1681,6 @@ Partial Class frmExample
         Me.txtURL.Name = "txtURL"
         Me.txtURL.Size = New System.Drawing.Size(419, 21)
         Me.txtURL.TabIndex = 25
-        '
-        'btnGetContactInfo
-        '
-        Me.btnGetContactInfo.Location = New System.Drawing.Point(6, 51)
-        Me.btnGetContactInfo.Name = "btnGetContactInfo"
-        Me.btnGetContactInfo.Size = New System.Drawing.Size(150, 29)
-        Me.btnGetContactInfo.TabIndex = 8
-        Me.btnGetContactInfo.Text = "담당자 정보 확인"
-        Me.btnGetContactInfo.UseVisualStyleBackColor = True
-        '
-        'btnGetSendToNTSConfig
-        '
-        Me.btnGetSendToNTSConfig.Location = New System.Drawing.Point(156, 151)
-        Me.btnGetSendToNTSConfig.Name = "btnGetSendToNTSConfig"
-        Me.btnGetSendToNTSConfig.Size = New System.Drawing.Size(185, 29)
-        Me.btnGetSendToNTSConfig.TabIndex = 14
-        Me.btnGetSendToNTSConfig.Text = " 국세청 전송 설정 확인"
-        Me.btnGetSendToNTSConfig.UseVisualStyleBackColor = True
         '
         'frmExample
         '

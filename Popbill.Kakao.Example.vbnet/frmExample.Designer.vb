@@ -27,6 +27,7 @@ Partial Class frmExample
         Me.btnUpdateCorpInfo = New System.Windows.Forms.Button
         Me.btnGetCorpInfo = New System.Windows.Forms.Button
         Me.GroupBox16 = New System.Windows.Forms.GroupBox
+        Me.btnGetContactInfo = New System.Windows.Forms.Button
         Me.btnUpdateContact = New System.Windows.Forms.Button
         Me.btnListContact = New System.Windows.Forms.Button
         Me.btnRegistContact = New System.Windows.Forms.Button
@@ -94,7 +95,6 @@ Partial Class frmExample
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
         Me.Label6 = New System.Windows.Forms.Label
         Me.txtURL = New System.Windows.Forms.TextBox
-        Me.btnGetContactInfo = New System.Windows.Forms.Button
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -141,7 +141,7 @@ Partial Class frmExample
         '
         'btnUpdateCorpInfo
         '
-        Me.btnUpdateCorpInfo.Location = New System.Drawing.Point(6, 54)
+        Me.btnUpdateCorpInfo.Location = New System.Drawing.Point(6, 52)
         Me.btnUpdateCorpInfo.Name = "btnUpdateCorpInfo"
         Me.btnUpdateCorpInfo.Size = New System.Drawing.Size(98, 29)
         Me.btnUpdateCorpInfo.TabIndex = 8
@@ -150,7 +150,7 @@ Partial Class frmExample
         '
         'btnGetCorpInfo
         '
-        Me.btnGetCorpInfo.Location = New System.Drawing.Point(6, 20)
+        Me.btnGetCorpInfo.Location = New System.Drawing.Point(6, 19)
         Me.btnGetCorpInfo.Name = "btnGetCorpInfo"
         Me.btnGetCorpInfo.Size = New System.Drawing.Size(98, 29)
         Me.btnGetCorpInfo.TabIndex = 7
@@ -170,9 +170,18 @@ Partial Class frmExample
         Me.GroupBox16.TabStop = False
         Me.GroupBox16.Text = "담당자 관련"
         '
+        'btnGetContactInfo
+        '
+        Me.btnGetContactInfo.Location = New System.Drawing.Point(6, 52)
+        Me.btnGetContactInfo.Name = "btnGetContactInfo"
+        Me.btnGetContactInfo.Size = New System.Drawing.Size(111, 29)
+        Me.btnGetContactInfo.TabIndex = 8
+        Me.btnGetContactInfo.Text = "담당자 정보 확인"
+        Me.btnGetContactInfo.UseVisualStyleBackColor = True
+        '
         'btnUpdateContact
         '
-        Me.btnUpdateContact.Location = New System.Drawing.Point(6, 119)
+        Me.btnUpdateContact.Location = New System.Drawing.Point(6, 118)
         Me.btnUpdateContact.Name = "btnUpdateContact"
         Me.btnUpdateContact.Size = New System.Drawing.Size(111, 29)
         Me.btnUpdateContact.TabIndex = 7
@@ -190,7 +199,7 @@ Partial Class frmExample
         '
         'btnRegistContact
         '
-        Me.btnRegistContact.Location = New System.Drawing.Point(6, 20)
+        Me.btnRegistContact.Location = New System.Drawing.Point(6, 19)
         Me.btnRegistContact.Name = "btnRegistContact"
         Me.btnRegistContact.Size = New System.Drawing.Size(111, 29)
         Me.btnRegistContact.TabIndex = 5
@@ -209,7 +218,7 @@ Partial Class frmExample
         '
         'btnGetAccessURL
         '
-        Me.btnGetAccessURL.Location = New System.Drawing.Point(6, 20)
+        Me.btnGetAccessURL.Location = New System.Drawing.Point(6, 19)
         Me.btnGetAccessURL.Name = "btnGetAccessURL"
         Me.btnGetAccessURL.Size = New System.Drawing.Size(115, 29)
         Me.btnGetAccessURL.TabIndex = 6
@@ -311,7 +320,7 @@ Partial Class frmExample
         '
         'btnGetChargeInfo_FMS
         '
-        Me.btnGetChargeInfo_FMS.Location = New System.Drawing.Point(156, 86)
+        Me.btnGetChargeInfo_FMS.Location = New System.Drawing.Point(156, 85)
         Me.btnGetChargeInfo_FMS.Name = "btnGetChargeInfo_FMS"
         Me.btnGetChargeInfo_FMS.Size = New System.Drawing.Size(144, 29)
         Me.btnGetChargeInfo_FMS.TabIndex = 8
@@ -329,7 +338,7 @@ Partial Class frmExample
         '
         'btnGetUnitCost_FMS
         '
-        Me.btnGetUnitCost_FMS.Location = New System.Drawing.Point(10, 86)
+        Me.btnGetUnitCost_FMS.Location = New System.Drawing.Point(10, 85)
         Me.btnGetUnitCost_FMS.Name = "btnGetUnitCost_FMS"
         Me.btnGetUnitCost_FMS.Size = New System.Drawing.Size(141, 29)
         Me.btnGetUnitCost_FMS.TabIndex = 6
@@ -377,7 +386,7 @@ Partial Class frmExample
         '
         'btnCheckID
         '
-        Me.btnCheckID.Location = New System.Drawing.Point(6, 53)
+        Me.btnCheckID.Location = New System.Drawing.Point(6, 52)
         Me.btnCheckID.Name = "btnCheckID"
         Me.btnCheckID.Size = New System.Drawing.Size(106, 29)
         Me.btnCheckID.TabIndex = 3
@@ -395,7 +404,7 @@ Partial Class frmExample
         '
         'btnJoinMember
         '
-        Me.btnJoinMember.Location = New System.Drawing.Point(6, 86)
+        Me.btnJoinMember.Location = New System.Drawing.Point(6, 85)
         Me.btnJoinMember.Name = "btnJoinMember"
         Me.btnJoinMember.Size = New System.Drawing.Size(106, 29)
         Me.btnJoinMember.TabIndex = 1
@@ -809,15 +818,6 @@ Partial Class frmExample
         Me.txtURL.Name = "txtURL"
         Me.txtURL.Size = New System.Drawing.Size(296, 21)
         Me.txtURL.TabIndex = 9
-        '
-        'btnGetContactInfo
-        '
-        Me.btnGetContactInfo.Location = New System.Drawing.Point(6, 53)
-        Me.btnGetContactInfo.Name = "btnGetContactInfo"
-        Me.btnGetContactInfo.Size = New System.Drawing.Size(111, 29)
-        Me.btnGetContactInfo.TabIndex = 8
-        Me.btnGetContactInfo.Text = "담당자 정보 확인"
-        Me.btnGetContactInfo.UseVisualStyleBackColor = True
         '
         'frmExample
         '
