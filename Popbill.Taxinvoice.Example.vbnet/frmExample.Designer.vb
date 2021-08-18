@@ -60,6 +60,10 @@ Partial Class frmExample
         Me.btnUpdateEmailConfig = New System.Windows.Forms.Button
         Me.btnListEmailConfig = New System.Windows.Forms.Button
         Me.GroupBox7 = New System.Windows.Forms.GroupBox
+        Me.GroupBox24 = New System.Windows.Forms.GroupBox
+        Me.btnBulkSubmit = New System.Windows.Forms.Button
+        Me.txtSubmitID = New System.Windows.Forms.TextBox
+        Me.Label10 = New System.Windows.Forms.Label
         Me.GroupBox21 = New System.Windows.Forms.GroupBox
         Me.GroupBox19 = New System.Windows.Forms.GroupBox
         Me.btnRefuse_sub = New System.Windows.Forms.Button
@@ -90,12 +94,12 @@ Partial Class frmExample
         Me.Label21 = New System.Windows.Forms.Label
         Me.Label22 = New System.Windows.Forms.Label
         Me.Label23 = New System.Windows.Forms.Label
-        Me.GroupBox20 = New System.Windows.Forms.GroupBox
         Me.GroupBox22 = New System.Windows.Forms.GroupBox
         Me.Label36 = New System.Windows.Forms.Label
         Me.Panel2 = New System.Windows.Forms.Panel
         Me.Label35 = New System.Windows.Forms.Label
         Me.Panel1 = New System.Windows.Forms.Panel
+        Me.GroupBox20 = New System.Windows.Forms.GroupBox
         Me.GroupBox18 = New System.Windows.Forms.GroupBox
         Me.btnCancelIssue_Sub = New System.Windows.Forms.Button
         Me.btnDelete_Sub = New System.Windows.Forms.Button
@@ -157,10 +161,6 @@ Partial Class frmExample
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
         Me.Label8 = New System.Windows.Forms.Label
         Me.txtURL = New System.Windows.Forms.TextBox
-        Me.GroupBox24 = New System.Windows.Forms.GroupBox
-        Me.btnBulkSubmit = New System.Windows.Forms.Button
-        Me.txtSubmitID = New System.Windows.Forms.TextBox
-        Me.Label10 = New System.Windows.Forms.Label
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -171,11 +171,12 @@ Partial Class frmExample
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
+        Me.GroupBox24.SuspendLayout()
         Me.GroupBox21.SuspendLayout()
         Me.GroupBox19.SuspendLayout()
         Me.GroupBox14.SuspendLayout()
-        Me.GroupBox20.SuspendLayout()
         Me.GroupBox22.SuspendLayout()
+        Me.GroupBox20.SuspendLayout()
         Me.GroupBox18.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
         Me.GroupBox13.SuspendLayout()
@@ -183,7 +184,6 @@ Partial Class frmExample
         Me.GroupBox9.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
         Me.GroupBox10.SuspendLayout()
-        Me.GroupBox24.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnGetTaxCertURL
@@ -570,6 +570,44 @@ Partial Class frmExample
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "전자세금계산서 관련 API"
         '
+        'GroupBox24
+        '
+        Me.GroupBox24.Controls.Add(Me.btnBulkSubmit)
+        Me.GroupBox24.Controls.Add(Me.txtSubmitID)
+        Me.GroupBox24.Controls.Add(Me.Label10)
+        Me.GroupBox24.Location = New System.Drawing.Point(20, 309)
+        Me.GroupBox24.Name = "GroupBox24"
+        Me.GroupBox24.Size = New System.Drawing.Size(615, 51)
+        Me.GroupBox24.TabIndex = 25
+        Me.GroupBox24.TabStop = False
+        Me.GroupBox24.Text = "초대량 발행"
+        '
+        'btnBulkSubmit
+        '
+        Me.btnBulkSubmit.BackColor = System.Drawing.Color.LightCoral
+        Me.btnBulkSubmit.Location = New System.Drawing.Point(449, 15)
+        Me.btnBulkSubmit.Name = "btnBulkSubmit"
+        Me.btnBulkSubmit.Size = New System.Drawing.Size(160, 27)
+        Me.btnBulkSubmit.TabIndex = 26
+        Me.btnBulkSubmit.Text = "초대량 발행 접수"
+        Me.btnBulkSubmit.UseVisualStyleBackColor = False
+        '
+        'txtSubmitID
+        '
+        Me.txtSubmitID.Location = New System.Drawing.Point(146, 18)
+        Me.txtSubmitID.Name = "txtSubmitID"
+        Me.txtSubmitID.Size = New System.Drawing.Size(297, 21)
+        Me.txtSubmitID.TabIndex = 25
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(8, 22)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(137, 12)
+        Me.Label10.TabIndex = 25
+        Me.Label10.Text = "제출아이디(SubmitID) : "
+        '
         'GroupBox21
         '
         Me.GroupBox21.Controls.Add(Me.GroupBox19)
@@ -913,18 +951,6 @@ Partial Class frmExample
         Me.Label23.TabIndex = 19
         Me.Label23.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'GroupBox20
-        '
-        Me.GroupBox20.Controls.Add(Me.GroupBox18)
-        Me.GroupBox20.Controls.Add(Me.btnSendToNTS)
-        Me.GroupBox20.Controls.Add(Me.GroupBox8)
-        Me.GroupBox20.Location = New System.Drawing.Point(20, 49)
-        Me.GroupBox20.Name = "GroupBox20"
-        Me.GroupBox20.Size = New System.Drawing.Size(615, 254)
-        Me.GroupBox20.TabIndex = 23
-        Me.GroupBox20.TabStop = False
-        Me.GroupBox20.Text = "정발행 프로세스"
-        '
         'GroupBox22
         '
         Me.GroupBox22.Controls.Add(Me.Label36)
@@ -972,6 +998,18 @@ Partial Class frmExample
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(30, 15)
         Me.Panel1.TabIndex = 0
+        '
+        'GroupBox20
+        '
+        Me.GroupBox20.Controls.Add(Me.GroupBox18)
+        Me.GroupBox20.Controls.Add(Me.btnSendToNTS)
+        Me.GroupBox20.Controls.Add(Me.GroupBox8)
+        Me.GroupBox20.Location = New System.Drawing.Point(20, 49)
+        Me.GroupBox20.Name = "GroupBox20"
+        Me.GroupBox20.Size = New System.Drawing.Size(615, 254)
+        Me.GroupBox20.TabIndex = 23
+        Me.GroupBox20.TabStop = False
+        Me.GroupBox20.Text = "정발행 프로세스"
         '
         'GroupBox18
         '
@@ -1057,7 +1095,7 @@ Partial Class frmExample
         'btnSendToNTS
         '
         Me.btnSendToNTS.BackColor = System.Drawing.Color.LightCoral
-        Me.btnSendToNTS.Location = New System.Drawing.Point(29, 222)
+        Me.btnSendToNTS.Location = New System.Drawing.Point(177, 222)
         Me.btnSendToNTS.Name = "btnSendToNTS"
         Me.btnSendToNTS.Size = New System.Drawing.Size(206, 27)
         Me.btnSendToNTS.TabIndex = 13
@@ -1589,44 +1627,6 @@ Partial Class frmExample
         Me.txtURL.Size = New System.Drawing.Size(419, 21)
         Me.txtURL.TabIndex = 25
         '
-        'GroupBox24
-        '
-        Me.GroupBox24.Controls.Add(Me.btnBulkSubmit)
-        Me.GroupBox24.Controls.Add(Me.txtSubmitID)
-        Me.GroupBox24.Controls.Add(Me.Label10)
-        Me.GroupBox24.Location = New System.Drawing.Point(20, 309)
-        Me.GroupBox24.Name = "GroupBox24"
-        Me.GroupBox24.Size = New System.Drawing.Size(542, 41)
-        Me.GroupBox24.TabIndex = 25
-        Me.GroupBox24.TabStop = False
-        Me.GroupBox24.Text = "초대량 발행"
-        '
-        'btnBulkSubmit
-        '
-        Me.btnBulkSubmit.BackColor = System.Drawing.Color.LightCoral
-        Me.btnBulkSubmit.Location = New System.Drawing.Point(389, 10)
-        Me.btnBulkSubmit.Name = "btnBulkSubmit"
-        Me.btnBulkSubmit.Size = New System.Drawing.Size(145, 27)
-        Me.btnBulkSubmit.TabIndex = 26
-        Me.btnBulkSubmit.Text = "초대량 발행 접수"
-        Me.btnBulkSubmit.UseVisualStyleBackColor = False
-        '
-        'txtSubmitID
-        '
-        Me.txtSubmitID.Location = New System.Drawing.Point(146, 13)
-        Me.txtSubmitID.Name = "txtSubmitID"
-        Me.txtSubmitID.Size = New System.Drawing.Size(237, 21)
-        Me.txtSubmitID.TabIndex = 25
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(8, 17)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(137, 12)
-        Me.Label10.TabIndex = 25
-        Me.Label10.Text = "제출아이디(SubmitID) : "
-        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
@@ -1654,13 +1654,15 @@ Partial Class frmExample
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox7.ResumeLayout(False)
         Me.GroupBox7.PerformLayout()
+        Me.GroupBox24.ResumeLayout(False)
+        Me.GroupBox24.PerformLayout()
         Me.GroupBox21.ResumeLayout(False)
         Me.GroupBox19.ResumeLayout(False)
         Me.GroupBox19.PerformLayout()
         Me.GroupBox14.ResumeLayout(False)
-        Me.GroupBox20.ResumeLayout(False)
         Me.GroupBox22.ResumeLayout(False)
         Me.GroupBox22.PerformLayout()
+        Me.GroupBox20.ResumeLayout(False)
         Me.GroupBox18.ResumeLayout(False)
         Me.GroupBox8.ResumeLayout(False)
         Me.GroupBox13.ResumeLayout(False)
@@ -1669,8 +1671,6 @@ Partial Class frmExample
         Me.GroupBox11.ResumeLayout(False)
         Me.GroupBox10.ResumeLayout(False)
         Me.GroupBox10.PerformLayout()
-        Me.GroupBox24.ResumeLayout(False)
-        Me.GroupBox24.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
