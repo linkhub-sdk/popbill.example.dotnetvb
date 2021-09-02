@@ -111,18 +111,15 @@ Public Class frmExample
     '=========================================================================
     ' 파트너의 잔여포인트를 확인합니다.
     ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
-    ' - https://docs.popbill.com/accountcheck/dotnet/api#GetPartnerURL
+    ' - https://docs.popbill.com/accountcheck/dotnet/api#GetPartnerBalance
     '=========================================================================
     Private Sub btnGetPartnerBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerBalance.Click
 
         Try
-            '파트너 포인트충전 URL
-            Dim TOGO As String = "CHRG"
+            Dim remainPoint As Double = accountCheckService.GetPartnerBalance(txtCorpNum.Text)
 
-            Dim url As String = accountCheckService.GetPartnerURL(txtCorpNum.Text, TOGO)
+            MsgBox("파트너 잔여포인트 : " + remainPoint.ToString())
 
-            MsgBox(url)
-            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try

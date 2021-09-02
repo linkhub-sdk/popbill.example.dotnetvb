@@ -764,7 +764,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 다수건의 전자명세서 상태/요약 정보를 확인합니다.
+    ' 다수건의 전자명세서 상태 및 요약정보 확인합니다. (1회 호출 시 최대 1,000건 확인 가능)
     ' - https://docs.popbill.com/statement/dotnet/api#GetInfos
     '=========================================================================
     Private Sub btnGetInfos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetInfos.Click
@@ -888,7 +888,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 검색조건에 해당하는 세금계산서를 조회합니다.
+    ' 검색조건에 해당하는 전자명세서를 조회합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#Search
     '=========================================================================
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
@@ -1012,7 +1012,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 로그인 상태로 팝빌 사이트의 전자명세서 발행문서함 메뉴에 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
+    ' 로그인 상태로 팝빌 사이트의 전자명세서 매출문서함 메뉴에 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetURL
     '=========================================================================
@@ -1047,7 +1047,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 전자명세서 1건을 인쇄하기 위한 페이지의 팝업 URL을 반환하며, 페이지내에서 인쇄 설정값을 "공급자" / "공급받는자" / "공급자+공급받는자"용 중 하나로 지정할 수 있습니다.
-    ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetPrintURL
     '=========================================================================
     Private Sub btnGetPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPrintURL.Click
@@ -1063,7 +1063,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' "공급받는자" 용 세금계산서 1건을 인쇄하기 위한 페이지의 팝업 URL을 반환합니다.
+    ' "공급받는자" 용 전자명세서 1건을 인쇄하기 위한 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetEPrintURL
     '=========================================================================
@@ -1989,7 +1989,6 @@ Public Class frmExample
     '=========================================================================
     ' 팝빌 사이트와 동일한 전자명세서 1건의 상세 정보 페이지(사이트 상단, 좌측 메뉴 및 버튼 제외)의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetViewURL
     '=========================================================================
     Private Sub btnGetViewURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetViewURL.Click

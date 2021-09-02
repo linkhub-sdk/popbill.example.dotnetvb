@@ -783,7 +783,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 연동회원의 회사정보를 수정합니다
+    ' 연동회원의 회사정보를 수정합니다.
     ' - https://docs.popbill.com/htcashbill/dotnet/api#UpdateCorpInfo
     '=========================================================================
     Private Sub btnUpdateCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateCorpInfo.Click

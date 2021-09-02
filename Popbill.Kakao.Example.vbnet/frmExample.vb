@@ -1143,6 +1143,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 잔여포인트를 확인합니다.
+    ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트(GetPartnerBalance API)를 통해 확인하시기 바랍니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#GetBalance
     '=========================================================================
     Private Sub btnGetBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1248,7 +1249,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 카카오톡(알림톡) 전송시 과금되는 포인트 단가를 확인합니다.
+    ' 카카오톡(ATS) 전송시 과금되는 포인트 단가를 확인합니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#GetUnitCost
     '=========================================================================
     Private Sub btnUnitCost_ATS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _

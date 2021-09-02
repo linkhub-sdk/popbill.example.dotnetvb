@@ -464,8 +464,8 @@ Public Class frmExample
 
     '=========================================================================
     ' 메시지 크기(90byte)에 따라 단문/장문(SMS/LMS)을 자동으로 인식하여 다수건의 메시지 전송을 팝빌에 접수합니다. (최대 1,000건)
-    '  - 모든 수신자에게 동일한 내용을 전송합니다(동보전송).
-    '  - https://docs.popbill.com/message/dotnet/api#SendXMS_Same
+    ' - 모든 수신자에게 동일한 내용을 전송합니다(동보전송).
+    ' - https://docs.popbill.com/message/dotnet/api#SendXMS_Same
     '=========================================================================
     Private Sub btnSendXMS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendXMS_same.Click
 
