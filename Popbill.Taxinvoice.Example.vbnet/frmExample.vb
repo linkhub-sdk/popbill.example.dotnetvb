@@ -2323,7 +2323,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 검색조건에 해당하는 세금계산서를 조회합니다.
+    ' 검색조건에 해당하는 세금계산서를 조회합니다. (조회기간 단위 : 최대 6개월)
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#Search
     '=========================================================================
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
