@@ -38,6 +38,9 @@ Public Class frmExample
         '인증토큰의 IP제한기능 사용여부, (True-권장)
         statementService.IPRestrictOnOff = True
 
+        '팝빌 API 서비스 고정 IP 사용여부, True-사용, False-미사용(기본값)
+        statementService.UseStaticIP = False
+
         '로컬PC 시간 사용 여부 True(사용), False(기본값) - 미사용
         statementService.UseLocalTimeYN = False
 
