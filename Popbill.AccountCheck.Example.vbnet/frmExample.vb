@@ -226,6 +226,7 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnGetChargeInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo.Click
 
+        ' 서비스 유형(성명/실명)
         Dim serviceType As String = "성명"
 
         Try
@@ -248,6 +249,7 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnUnitCost_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUnitCost.Click
 
+        ' 서비스 유형(성명/실명)
         Dim serviceType As String = "성명"
 
         Try
