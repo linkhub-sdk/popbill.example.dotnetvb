@@ -112,6 +112,9 @@ Public Class frmExample
         '가맹점 사업자번호, "-" 제외 10자리
         cashbill.franchiseCorpNum = txtCorpNum.Text
 
+        '가맹점 종사업장 식별번호
+        cashbill.franchiseTaxRegID = "0003"
+
         '가맹점 상호명
         cashbill.franchiseCorpName = "발행자 상호"
 
@@ -211,6 +214,9 @@ Public Class frmExample
 
         '가맹점 사업자번호, "-" 제외 10자리
         cashbill.franchiseCorpNum = txtCorpNum.Text
+
+        '가맹점 종사업장 식별번호
+        cashbill.franchiseTaxRegID = ""
 
         '가맹점 상호명
         cashbill.franchiseCorpName = "발행자 상호"
@@ -689,6 +695,7 @@ Public Class frmExample
             tmp += "tax (부가세) : " + cbDetailInfo.tax + vbCrLf
             tmp += "serviceFee (봉사료) : " + cbDetailInfo.serviceFee + vbCrLf
             tmp += "franchiseCorpNum (가맹점 사업자번호) : " + cbDetailInfo.franchiseCorpNum + vbCrLf
+            tmp += "franchiseTaxRegID (가맹점 종사업장 식별번호) : " + cbDetailInfo.franchiseTaxRegID + vbCrLf
             tmp += "franchiseCorpName (가맹점 상호) : " + cbDetailInfo.franchiseCorpName + vbCrLf
             tmp += "franchiseCEOName (가맹점 대표자 성명) : " + cbDetailInfo.franchiseCEOName + vbCrLf
             tmp += "franchiseAddr (가맹점 주소) : " + cbDetailInfo.franchiseAddr + vbCrLf
@@ -725,10 +732,10 @@ Public Class frmExample
         Dim DType As String = "T"
 
         '[필수] 시작일자, 형식(yyyyMMdd)
-        Dim SDate As String = "20210701"
+        Dim SDate As String = "20211201"
 
         '[필수] 종료일자, 형식(yyyyMMdd)
-        Dim EDate As String = "20210730"
+        Dim EDate As String = "20211220"
 
         '전송상태코드 배열, 미기재시 전체조회, 2,3번째 자리 와일드카드(*) 가능
         '[참조] 현금영수증 API 연동매뉴열 "5.1. 현금영수증 상태코드"
@@ -765,9 +772,12 @@ Public Class frmExample
         '정렬방향 D-내림차순(기본값), A-오름차순
         Dim Order As String = "D"
 
+        '가맹점 종사업장 번호, 다수건 검색시 콤마(",")로 구분. 예) 1234,1000
+        Dim FranchiseTaxRegID = "0002"
+
         Try
             Dim cbSearchList As CBSearchResult = cashbillService.Search(txtCorpNum.Text, DType, SDate, EDate, State, _
-                                                                tradeType, tradeUsage, tradeOpt, taxationType, QString, Order, Page, PerPage)
+                                                                tradeType, tradeUsage, tradeOpt, taxationType, QString, Order, Page, PerPage, FranchiseTaxRegID)
 
             Dim tmp As String
 
