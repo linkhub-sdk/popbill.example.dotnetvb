@@ -3,7 +3,7 @@
 ' 팝빌 카카오톡 API VB.Net SDK Example
 '
 ' - VB.Net 연동환경 설정방법 안내 : https://docs.popbill.com/kakao/tutorial/dotnet#vb
-' - 업데이트 일자 : 2021-08-05
+' - 업데이트 일자 : 2021-12-17
 ' - 연동 기술지원 연락처 : 1600-9854 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -154,7 +154,7 @@ Public Class frmExample
         Handles btnGetATSTemplate.Click
 
         '확인할 템플릿 코드
-        Dim templateCode As String = ""
+        Dim templateCode As String = "021010000076"
 
         Try
             Dim template As ATSTemplate = kakaoService.GetATSTemplate(txtCorpNum.Text, templateCode, txtUserId.Text)
@@ -166,6 +166,8 @@ Public Class frmExample
             tmp += "templateName(템플릿 제목) : " + template.templateName + vbCrLf
             tmp += "template(템플릿 내용) : " + template.template + vbCrLf
             tmp += "plusFriendID(카카오톡채널 아이디) : " + template.plusFriendID + vbCrLf
+            tmp += "ads(광고 메시지) : " + template.ads + vbCrLf
+            tmp += "appendix(부가 메시지) : " + template.appendix + vbCrLf
 
             If Not template.btns Is Nothing Then
                 For Each btnInfo As KakaoButton In template.btns
@@ -201,6 +203,8 @@ Public Class frmExample
                 tmp += "templateName(템플릿 제목) : " + info.templateName + vbCrLf
                 tmp += "template(템플릿 내용) : " + info.template + vbCrLf
                 tmp += "plusFriendID(카카오톡채널 아이디) : " + info.plusFriendID + vbCrLf
+                tmp += "ads(광고 메시지) : " + info.ads + vbCrLf
+                tmp += "appendix(부가 메시지) : " + info.appendix + vbCrLf
 
                 If Not info.btns Is Nothing Then
                     For Each btnInfo As KakaoButton In info.btns

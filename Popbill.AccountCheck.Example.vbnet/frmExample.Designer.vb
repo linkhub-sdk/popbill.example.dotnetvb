@@ -37,6 +37,7 @@ Partial Class frmExample
         Me.btnUpdateCorpInfo = New System.Windows.Forms.Button
         Me.btnGetCorpInfo = New System.Windows.Forms.Button
         Me.GroupBox16 = New System.Windows.Forms.GroupBox
+        Me.btnGetContactInfo = New System.Windows.Forms.Button
         Me.btnUpdateContact = New System.Windows.Forms.Button
         Me.btnListContact = New System.Windows.Forms.Button
         Me.btnRegistContact = New System.Windows.Forms.Button
@@ -59,7 +60,17 @@ Partial Class frmExample
         Me.btnJoinMember = New System.Windows.Forms.Button
         Me.Label5 = New System.Windows.Forms.Label
         Me.txtURL = New System.Windows.Forms.TextBox
-        Me.btnGetContactInfo = New System.Windows.Forms.Button
+        Me.GroupBox7 = New System.Windows.Forms.GroupBox
+        Me.GroupBox8 = New System.Windows.Forms.GroupBox
+        Me.Label6 = New System.Windows.Forms.Label
+        Me.txtAccountNumberDC = New System.Windows.Forms.TextBox
+        Me.btnCheckDepositorInfo = New System.Windows.Forms.Button
+        Me.Label7 = New System.Windows.Forms.Label
+        Me.txtBankCodeDC = New System.Windows.Forms.TextBox
+        Me.Label8 = New System.Windows.Forms.Label
+        Me.txtIdentityNumDC = New System.Windows.Forms.TextBox
+        Me.txtIdentityNumTypeDC = New System.Windows.Forms.TextBox
+        Me.Label9 = New System.Windows.Forms.Label
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
@@ -69,6 +80,8 @@ Partial Class frmExample
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
+        Me.GroupBox7.SuspendLayout()
+        Me.GroupBox8.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox4
@@ -78,12 +91,12 @@ Partial Class frmExample
         Me.GroupBox4.Controls.Add(Me.btnCheckAccountInfo)
         Me.GroupBox4.Controls.Add(Me.Label3)
         Me.GroupBox4.Controls.Add(Me.txtBankCode)
-        Me.GroupBox4.Location = New System.Drawing.Point(8, 237)
+        Me.GroupBox4.Location = New System.Drawing.Point(66, 30)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(378, 85)
         Me.GroupBox4.TabIndex = 40
         Me.GroupBox4.TabStop = False
-        Me.GroupBox4.Text = "예금주조회 API"
+        Me.GroupBox4.Text = "예금주성명 API"
         '
         'Label4
         '
@@ -219,6 +232,15 @@ Partial Class frmExample
         Me.GroupBox16.TabIndex = 5
         Me.GroupBox16.TabStop = False
         Me.GroupBox16.Text = "담당자 관련"
+        '
+        'btnGetContactInfo
+        '
+        Me.btnGetContactInfo.Location = New System.Drawing.Point(8, 50)
+        Me.btnGetContactInfo.Name = "btnGetContactInfo"
+        Me.btnGetContactInfo.Size = New System.Drawing.Size(122, 30)
+        Me.btnGetContactInfo.TabIndex = 8
+        Me.btnGetContactInfo.Text = "담당자 정보 확인"
+        Me.btnGetContactInfo.UseVisualStyleBackColor = True
         '
         'btnUpdateContact
         '
@@ -428,23 +450,120 @@ Partial Class frmExample
         Me.txtURL.Size = New System.Drawing.Size(271, 21)
         Me.txtURL.TabIndex = 5
         '
-        'btnGetContactInfo
+        'GroupBox7
         '
-        Me.btnGetContactInfo.Location = New System.Drawing.Point(8, 50)
-        Me.btnGetContactInfo.Name = "btnGetContactInfo"
-        Me.btnGetContactInfo.Size = New System.Drawing.Size(122, 30)
-        Me.btnGetContactInfo.TabIndex = 8
-        Me.btnGetContactInfo.Text = "담당자 정보 확인"
-        Me.btnGetContactInfo.UseVisualStyleBackColor = True
+        Me.GroupBox7.Controls.Add(Me.GroupBox8)
+        Me.GroupBox7.Controls.Add(Me.GroupBox4)
+        Me.GroupBox7.Location = New System.Drawing.Point(8, 246)
+        Me.GroupBox7.Name = "GroupBox7"
+        Me.GroupBox7.Size = New System.Drawing.Size(1024, 181)
+        Me.GroupBox7.TabIndex = 42
+        Me.GroupBox7.TabStop = False
+        Me.GroupBox7.Text = "예금주 조회 API"
+        '
+        'GroupBox8
+        '
+        Me.GroupBox8.Controls.Add(Me.Label9)
+        Me.GroupBox8.Controls.Add(Me.txtIdentityNumTypeDC)
+        Me.GroupBox8.Controls.Add(Me.txtIdentityNumDC)
+        Me.GroupBox8.Controls.Add(Me.Label8)
+        Me.GroupBox8.Controls.Add(Me.Label6)
+        Me.GroupBox8.Controls.Add(Me.txtAccountNumberDC)
+        Me.GroupBox8.Controls.Add(Me.btnCheckDepositorInfo)
+        Me.GroupBox8.Controls.Add(Me.Label7)
+        Me.GroupBox8.Controls.Add(Me.txtBankCodeDC)
+        Me.GroupBox8.Location = New System.Drawing.Point(568, 29)
+        Me.GroupBox8.Name = "GroupBox8"
+        Me.GroupBox8.Size = New System.Drawing.Size(378, 139)
+        Me.GroupBox8.TabIndex = 41
+        Me.GroupBox8.TabStop = False
+        Me.GroupBox8.Text = "예금주실명 API"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(13, 52)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(65, 12)
+        Me.Label6.TabIndex = 4
+        Me.Label6.Text = "계좌번호 : "
+        '
+        'txtAccountNumberDC
+        '
+        Me.txtAccountNumberDC.Location = New System.Drawing.Point(84, 47)
+        Me.txtAccountNumberDC.Name = "txtAccountNumberDC"
+        Me.txtAccountNumberDC.Size = New System.Drawing.Size(155, 21)
+        Me.txtAccountNumberDC.TabIndex = 3
+        Me.txtAccountNumberDC.Text = "9432451175835"
+        '
+        'btnCheckDepositorInfo
+        '
+        Me.btnCheckDepositorInfo.Location = New System.Drawing.Point(248, 21)
+        Me.btnCheckDepositorInfo.Name = "btnCheckDepositorInfo"
+        Me.btnCheckDepositorInfo.Size = New System.Drawing.Size(110, 49)
+        Me.btnCheckDepositorInfo.TabIndex = 2
+        Me.btnCheckDepositorInfo.Text = "예금주실명 조회 "
+        Me.btnCheckDepositorInfo.UseVisualStyleBackColor = True
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(13, 28)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(65, 12)
+        Me.Label7.TabIndex = 1
+        Me.Label7.Text = "기관코드 : "
+        '
+        'txtBankCodeDC
+        '
+        Me.txtBankCodeDC.Location = New System.Drawing.Point(84, 23)
+        Me.txtBankCodeDC.Name = "txtBankCodeDC"
+        Me.txtBankCodeDC.Size = New System.Drawing.Size(155, 21)
+        Me.txtBankCodeDC.TabIndex = 0
+        Me.txtBankCodeDC.Text = "0004"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(13, 77)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(65, 12)
+        Me.Label8.TabIndex = 22
+        Me.Label8.Text = "등록번호 : "
+        '
+        'txtIdentityNumDC
+        '
+        Me.txtIdentityNumDC.Location = New System.Drawing.Point(84, 74)
+        Me.txtIdentityNumDC.Name = "txtIdentityNumDC"
+        Me.txtIdentityNumDC.Size = New System.Drawing.Size(155, 21)
+        Me.txtIdentityNumDC.TabIndex = 23
+        Me.txtIdentityNumDC.Text = "921102"
+        '
+        'txtIdentityNumTypeDC
+        '
+        Me.txtIdentityNumTypeDC.Location = New System.Drawing.Point(112, 101)
+        Me.txtIdentityNumTypeDC.Name = "txtIdentityNumTypeDC"
+        Me.txtIdentityNumTypeDC.Size = New System.Drawing.Size(127, 21)
+        Me.txtIdentityNumTypeDC.TabIndex = 25
+        Me.txtIdentityNumTypeDC.Text = "P"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(13, 106)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(93, 12)
+        Me.Label9.TabIndex = 26
+        Me.Label9.Text = "등록번호 유형 : "
         '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1045, 334)
+        Me.ClientSize = New System.Drawing.Size(1045, 450)
+        Me.Controls.Add(Me.GroupBox7)
         Me.Controls.Add(Me.txtURL)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.txtUserId)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.txtCorpNum)
@@ -462,6 +581,9 @@ Partial Class frmExample
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox6.ResumeLayout(False)
+        Me.GroupBox7.ResumeLayout(False)
+        Me.GroupBox8.ResumeLayout(False)
+        Me.GroupBox8.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -504,5 +626,16 @@ Partial Class frmExample
     Friend WithEvents btnGetUseHistoryURL As System.Windows.Forms.Button
     Friend WithEvents btnGetPaymentURL As System.Windows.Forms.Button
     Friend WithEvents btnGetContactInfo As System.Windows.Forms.Button
+    Friend WithEvents GroupBox7 As System.Windows.Forms.GroupBox
+    Friend WithEvents GroupBox8 As System.Windows.Forms.GroupBox
+    Private WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents txtAccountNumberDC As System.Windows.Forms.TextBox
+    Friend WithEvents btnCheckDepositorInfo As System.Windows.Forms.Button
+    Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents txtBankCodeDC As System.Windows.Forms.TextBox
+    Private WithEvents Label9 As System.Windows.Forms.Label
+    Private WithEvents txtIdentityNumTypeDC As System.Windows.Forms.TextBox
+    Private WithEvents txtIdentityNumDC As System.Windows.Forms.TextBox
 
 End Class

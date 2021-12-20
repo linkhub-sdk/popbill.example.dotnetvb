@@ -491,7 +491,7 @@ Public Class frmExample
         Try
             Dim ResultList As List(Of FaxResult) = faxService.GetFaxResult(txtCorpNum.Text, txtReceiptNum.Text)
 
-            Dim rowStr As String = "state(전송상태 코드) | result(전송결과 코드) | sendNum(발신번호) | senderName(발신자명) | receiveName(수신번호) | receiveName(수신자명) | "
+            Dim rowStr As String = "state(전송상태 코드) | result(전송결과 코드) | sendNum(발신번호) | senderName(발신자명) | receiveName(수신번호) | receiveName(수신자명) | receiveNumType(수신번호 유형) | "
             rowStr += "title(팩스제목) | sendPageCnt(전체 페이지수) | successPageCnt(성공 페이지수) | failPageCnt(실패 페이지수) | refundPageCnt(환불 페이지수) | cancelPageCnt(취소 페이지수) | "
             rowStr += "reserveDT(예약시간) | receiptNum(접수시간) | sendDT(발송시간) | resultDT(전송결과 수신시간) | fileNames(전송 파일명 리스트) | receiptNum(접수번호) | "
             rowStr += "requestNum(요청번호) | chargePageCnt(과금 페이지수) | tiffFileSize(변환파일용량(단위:Byte))"
@@ -506,6 +506,7 @@ Public Class frmExample
                 rowStr += Result.senderName + " | "
                 rowStr += Result.receiveNum + " | "
                 rowStr += Result.receiveName + " | "
+                rowStr += Result.receiveNumType + " | "
                 rowStr += Result.title + " | "
                 rowStr += Result.sendPageCnt.ToString + " | "
                 rowStr += Result.successPageCnt.ToString + " | "
@@ -547,7 +548,7 @@ Public Class frmExample
         Try
             Dim ResultList As List(Of FaxResult) = faxService.GetFaxResultRN(txtCorpNum.Text, txtRequestNum.Text)
 
-            Dim rowStr As String = "state(전송상태 코드) | result(전송결과 코드) | sendNum(발신번호) | senderName(발신자명) | receiveName(수신번호) | receiveName(수신자명) | "
+            Dim rowStr As String = "state(전송상태 코드) | result(전송결과 코드) | sendNum(발신번호) | senderName(발신자명) | receiveName(수신번호) | receiveName(수신자명) | receiveNumType(수신번호 유형) | "
             rowStr += "title(팩스제목) | sendPageCnt(전체 페이지수) | successPageCnt(성공 페이지수) | failPageCnt(실패 페이지수) | refundPageCnt(환불 페이지수) | cancelPageCnt(취소 페이지수) | "
             rowStr += "reserveDT(예약시간) | receiptNum(접수시간) | sendDT(발송시간) | resultDT(전송결과 수신시간) | fileNames(전송 파일명 리스트) | receiptNum(접수번호) | "
             rowStr += "requestNum(요청번호) | chargePageCnt(과금 페이지수) | tiffFileSize(변환파일용량(단위:Byte))"
@@ -562,6 +563,7 @@ Public Class frmExample
                 rowStr += Result.senderName + " | "
                 rowStr += Result.receiveNum + " | "
                 rowStr += Result.receiveName + " | "
+                rowStr += Result.receiveNumType + " | "
                 rowStr += Result.title + " | "
                 rowStr += Result.sendPageCnt.ToString + " | "
                 rowStr += Result.successPageCnt.ToString + " | "
@@ -645,7 +647,7 @@ Public Class frmExample
             tmp = tmp + "pageCount (페이지 개수) : " + CStr(faxSearchList.pageCount) + vbCrLf
             tmp = tmp + "message (응답메시지) : " + faxSearchList.message + vbCrLf + vbCrLf
 
-            Dim rowStr As String = "state(전송상태 코드) | result(전송결과 코드) | sendNum(발신번호) | senderName(발신자명) | receiveName(수신번호) | receiveName(수신자명) | "
+            Dim rowStr As String = "state(전송상태 코드) | result(전송결과 코드) | sendNum(발신번호) | senderName(발신자명) | receiveName(수신번호) | receiveName(수신자명) | receiveNumType(수신번호 유형) |"
             rowStr += "title(팩스제목) | sendPageCnt(전체 페이지수) | successPageCnt(성공 페이지수) | failPageCnt(실패 페이지수) | refundPageCnt(환불 페이지수) | cancelPageCnt(취소 페이지수) | "
             rowStr += "reserveDT(예약시간) | receiptNum(접수시간) | sendDT(발송시간) | resultDT(전송결과 수신시간) | fileNames(전송 파일명 리스트) | receiptNum(접수번호) | "
             rowStr += "requestNum(요청번호) | chargePageCnt(과금 페이지수) | tiffFileSize(변환파일용량(단위:Byte))"
@@ -660,6 +662,7 @@ Public Class frmExample
                 rowStr += Result.senderName + " | "
                 rowStr += Result.receiveNum + " | "
                 rowStr += Result.receiveName + " | "
+                rowStr += Result.receiveNumType + " | "
                 rowStr += Result.title + " | "
                 rowStr += Result.sendPageCnt.ToString + " | "
                 rowStr += Result.successPageCnt.ToString + " | "

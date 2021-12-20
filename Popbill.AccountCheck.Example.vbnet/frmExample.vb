@@ -226,8 +226,10 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnGetChargeInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo.Click
 
+        Dim serviceType As String = "성명"
+
         Try
-            Dim ChargeInfo As ChargeInfo = accountCheckService.GetChargeInfo(txtCorpNum.Text)
+            Dim ChargeInfo As ChargeInfo = accountCheckService.GetChargeInfo(txtCorpNum.Text, txtUserId.Text, serviceType)
 
             Dim tmp As String = "unitCost (조회단가) : " + ChargeInfo.unitCost + vbCrLf
             tmp += "chargeMethod (과금유형) : " + ChargeInfo.chargeMethod + vbCrLf
@@ -241,15 +243,17 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 예금주 성명 조회시 과금되는 포인트 단가를 확인합니다.
+    ' 예금주 성명/실명 조회시 과금되는 포인트 단가를 확인합니다.
     ' - https://docs.popbill.com/accountcheck/dotnet/api#GetUnitCost
     '=========================================================================
     Private Sub btnUnitCost_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUnitCost.Click
 
-        Try
-            Dim unitCost As Single = accountCheckService.GetUnitCost(txtCorpNum.Text)
+        Dim serviceType As String = "성명"
 
-            MsgBox("예금주조회 단가(unitCost) : " + unitCost.ToString())
+        Try
+            Dim unitCost As Single = accountCheckService.GetUnitCost(txtCorpNum.Text, serviceType, txtUserId.Text)
+
+            MsgBox(serviceType + " 조회 단가(unitCost) : " + unitCost.ToString())
 
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
@@ -509,7 +513,33 @@ Public Class frmExample
             tmp += "accountNumber (계좌번호) : " + accountInfo.accountNumber + vbCrLf
             tmp += "accountName (예금주 성명) : " + accountInfo.accountName + vbCrLf
             tmp += "checkDate (확인일시) : " + accountInfo.checkDate + vbCrLf
-            tmp += "resultCode (응답코드) : " + accountInfo.resultCode + vbCrLf
+            tmp += "result (응답코드) : " + accountInfo.result + vbCrLf
+            tmp += "resultMessage (응답메시지) : " + accountInfo.resultMessage + vbCrLf
+
+            MsgBox(tmp)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 1건의 예금주성명을 조회합니다.
+    ' - https://docs.popbill.com/accountcheck/dotnet/api#CheckDepositorInfo
+    '=========================================================================
+    Private Sub btnCheckDepositorInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckDepositorInfo.Click
+        Try
+            Dim accountInfo As DepositorCheckInfo = accountCheckService.CheckDepositorInfo(txtCorpNum.Text, txtBankCode.Text, txtAccountNumber.Text, txtIdentityNumTypeDC.Text, txtIdentityNumDC.Text)
+
+            Dim tmp As String = ""
+
+            tmp += "bankCode (기관코드) : " + accountInfo.bankCode + vbCrLf
+            tmp += "accountNumber (계좌번호) : " + accountInfo.accountNumber + vbCrLf
+            tmp += "accountName (예금주 성명) : " + accountInfo.accountName + vbCrLf
+            tmp += "checkDate (확인일시) : " + accountInfo.checkDate + vbCrLf
+            tmp += "identityNumType (등록번호 유형) : " + accountInfo.identityNumType + vbCrLf
+            tmp += "identityNum (등록번호) : " + accountInfo.identityNum + vbCrLf
+            tmp += "result (응답코드) : " + accountInfo.result + vbCrLf
             tmp += "resultMessage (응답메시지) : " + accountInfo.resultMessage + vbCrLf
 
             MsgBox(tmp)
