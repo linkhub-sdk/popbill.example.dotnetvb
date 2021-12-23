@@ -776,7 +776,7 @@ Public Class frmExample
         Dim Order As String = "D"
 
         '가맹점 종사업장 번호, 다수건 검색시 콤마(",")로 구분. 예) 1234,1000
-        Dim FranchiseTaxRegID = "0002"
+        Dim FranchiseTaxRegID = ""
 
         Try
             Dim cbSearchList As CBSearchResult = cashbillService.Search(txtCorpNum.Text, DType, SDate, EDate, State, _
