@@ -113,7 +113,7 @@ Public Class frmExample
         cashbill.franchiseCorpNum = txtCorpNum.Text
 
         '가맹점 종사업장 식별번호
-        cashbill.franchiseTaxRegID = "0003"
+        cashbill.franchiseTaxRegID = ""
 
         '가맹점 상호명
         cashbill.franchiseCorpName = "발행자 상호"
@@ -311,6 +311,9 @@ Public Class frmExample
 
         '가맹점 사업자번호, "-" 제외 10자리
         cashbill.franchiseCorpNum = txtCorpNum.Text
+
+        '가맹점 종사업장 식별번호
+        cashbill.franchiseTaxRegID = ""
 
         '가맹점 상호명
         cashbill.franchiseCorpName = "발행자 상호"
