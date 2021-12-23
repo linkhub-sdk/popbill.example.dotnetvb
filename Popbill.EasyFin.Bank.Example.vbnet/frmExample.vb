@@ -3,7 +3,7 @@
 ' 팝빌 계좌조회 API VB.Net SDK Example
 '
 ' - VB.Net SDK 연동환경 설정방법 안내 : https://docs.popbill.com/easyfinbank/tutorial/dotnet#vb
-' - 업데이트 일자 : 2021-08-05
+' - 업데이트 일자 : 2021-12-23
 ' - 연동 기술지원 연락처 : 1600-8536 / 070-4304-2991
 ' - 연동 기술지원 이메일 : code@linkhub.co.kr
 '
@@ -473,7 +473,7 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnRequestJob_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRequestJob.Click
 
-        '은행코드
+        '기관코드
         Dim BankCode As String = "0048"
 
         '은행 계좌번호
@@ -720,7 +720,7 @@ Public Class frmExample
         Try
             Dim bankAccountList As List(Of EasyFinBankAccount) = easyFinBankService.ListBankAccount(txtCorpNum.Text, txtUserId.Text)
 
-            Dim tmp As String = "bankCode (은행코드) | accountNumber (계좌번호) | accountName (계좌별칭) | accountType (계좌유형) | state (정액제 상태) |"
+            Dim tmp As String = "bankCode (기관코드) | accountNumber (계좌번호) | accountName (계좌별칭) | accountType (계좌유형) | state (정액제 상태) |"
             tmp += " regDT (등록일시)  | contractDT (정액제 서비스 시작일시) | useEndDate (정액제 서비스 종료일자) | baseDate (자동연장 결제일) |"
             tmp += " contractState (정액제 서비스 상태) | closeRequestYN (정액제 해지신청 여부) | useRestrictYN (정액제 사용제한 여부) | closeOnExpired (정액제 만료시 해지여부) |"
             tmp += " unPaidYN (미수금 보유 여부) | memo (메모) " + vbCrLf + vbCrLf
@@ -746,7 +746,7 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnGetFlatRateState_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFlatRateState.Click
 
-        '은행코드
+        '기관코드
         Dim BankCode As String = ""
 
         '은행 계좌번호
@@ -780,7 +780,7 @@ Public Class frmExample
 
         Dim accountInfo As New EasyFinBankAccountForm
 
-        ' [필수] 은행코드
+        ' [필수] 기관코드
         ' 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
         ' SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
         ' 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
@@ -841,7 +841,7 @@ Public Class frmExample
 
         Dim accountInfo As New EasyFinBankAccountForm
 
-        ' [필수] 은행코드
+        ' [필수] 기관코드
         ' 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
         ' SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
         ' 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
@@ -887,7 +887,7 @@ Public Class frmExample
         ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetBankAccountInfo
         '=========================================================================
 
-        ' [필수] 은행코드
+        ' [필수] 기관코드
         ' 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
         ' SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
         ' 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
@@ -900,7 +900,7 @@ Public Class frmExample
         Try
             Dim bankAccountInfo As EasyFinBankAccount = easyFinBankService.GetBankAccountInfo(txtCorpNum.Text, BankCode, AccountNumber)
 
-            Dim tmp As String = "bankCode (은행코드) : " + bankAccountInfo.bankCode + vbCrLf
+            Dim tmp As String = "bankCode (기관코드) : " + bankAccountInfo.bankCode + vbCrLf
             tmp += "accountNumber (계좌번호) : " + bankAccountInfo.accountNumber + vbCrLf
             tmp += "accountName (계좌별칭) : " + bankAccountInfo.accountName + vbCrLf
             tmp += "accountType (계좌유형) : " + bankAccountInfo.accountType + vbCrLf
@@ -933,7 +933,7 @@ Public Class frmExample
         ' - https://docs.popbill.com/easyfinbank/dotnet/api#CloseBankAccount
         '=========================================================================
 
-        ' [필수] 은행코드
+        ' [필수] 기관코드
         ' 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
         ' SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
         ' 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
@@ -966,7 +966,7 @@ Public Class frmExample
         ' - https://docs.popbill.com/easyfinbank/dotnet/api#RevokeCloseBankAccount
         '=========================================================================
 
-        ' [필수] 은행코드
+        ' [필수] 기관코드
         ' 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
         ' SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
         ' 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
@@ -996,7 +996,7 @@ Public Class frmExample
         ' - https://docs.popbill.com/easyfinbank/dotnet/api#DeleteBankAccount
         '=========================================================================
 
-        ' [필수] 은행코드
+        ' [필수] 기관코드
         ' 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
         ' SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
         ' 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
