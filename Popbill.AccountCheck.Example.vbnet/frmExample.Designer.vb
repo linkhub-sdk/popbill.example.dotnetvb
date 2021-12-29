@@ -62,15 +62,15 @@ Partial Class frmExample
         Me.txtURL = New System.Windows.Forms.TextBox
         Me.GroupBox7 = New System.Windows.Forms.GroupBox
         Me.GroupBox8 = New System.Windows.Forms.GroupBox
+        Me.Label9 = New System.Windows.Forms.Label
+        Me.txtIdentityNumTypeDC = New System.Windows.Forms.TextBox
+        Me.txtIdentityNumDC = New System.Windows.Forms.TextBox
+        Me.Label8 = New System.Windows.Forms.Label
         Me.Label6 = New System.Windows.Forms.Label
         Me.txtAccountNumberDC = New System.Windows.Forms.TextBox
         Me.btnCheckDepositorInfo = New System.Windows.Forms.Button
         Me.Label7 = New System.Windows.Forms.Label
         Me.txtBankCodeDC = New System.Windows.Forms.TextBox
-        Me.Label8 = New System.Windows.Forms.Label
-        Me.txtIdentityNumDC = New System.Windows.Forms.TextBox
-        Me.txtIdentityNumTypeDC = New System.Windows.Forms.TextBox
-        Me.Label9 = New System.Windows.Forms.Label
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
@@ -96,7 +96,7 @@ Partial Class frmExample
         Me.GroupBox4.Size = New System.Drawing.Size(378, 85)
         Me.GroupBox4.TabIndex = 40
         Me.GroupBox4.TabStop = False
-        Me.GroupBox4.Text = "예금주성명 API"
+        Me.GroupBox4.Text = "계좌성명조회 API"
         '
         'Label4
         '
@@ -121,7 +121,7 @@ Partial Class frmExample
         Me.btnCheckAccountInfo.Name = "btnCheckAccountInfo"
         Me.btnCheckAccountInfo.Size = New System.Drawing.Size(110, 49)
         Me.btnCheckAccountInfo.TabIndex = 2
-        Me.btnCheckAccountInfo.Text = "예금주성명 조회 "
+        Me.btnCheckAccountInfo.Text = "계좌성명조회"
         Me.btnCheckAccountInfo.UseVisualStyleBackColor = True
         '
         'Label3
@@ -477,7 +477,41 @@ Partial Class frmExample
         Me.GroupBox8.Size = New System.Drawing.Size(378, 139)
         Me.GroupBox8.TabIndex = 41
         Me.GroupBox8.TabStop = False
-        Me.GroupBox8.Text = "예금주실명 API"
+        Me.GroupBox8.Text = "계좌실명조회 API"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(13, 106)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(93, 12)
+        Me.Label9.TabIndex = 26
+        Me.Label9.Text = "등록번호 유형 : "
+        '
+        'txtIdentityNumTypeDC
+        '
+        Me.txtIdentityNumTypeDC.Location = New System.Drawing.Point(112, 101)
+        Me.txtIdentityNumTypeDC.Name = "txtIdentityNumTypeDC"
+        Me.txtIdentityNumTypeDC.Size = New System.Drawing.Size(127, 21)
+        Me.txtIdentityNumTypeDC.TabIndex = 25
+        Me.txtIdentityNumTypeDC.Text = "P"
+        '
+        'txtIdentityNumDC
+        '
+        Me.txtIdentityNumDC.Location = New System.Drawing.Point(84, 74)
+        Me.txtIdentityNumDC.Name = "txtIdentityNumDC"
+        Me.txtIdentityNumDC.Size = New System.Drawing.Size(155, 21)
+        Me.txtIdentityNumDC.TabIndex = 23
+        Me.txtIdentityNumDC.Text = "921102"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(13, 77)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(65, 12)
+        Me.Label8.TabIndex = 22
+        Me.Label8.Text = "등록번호 : "
         '
         'Label6
         '
@@ -502,7 +536,7 @@ Partial Class frmExample
         Me.btnCheckDepositorInfo.Name = "btnCheckDepositorInfo"
         Me.btnCheckDepositorInfo.Size = New System.Drawing.Size(110, 49)
         Me.btnCheckDepositorInfo.TabIndex = 2
-        Me.btnCheckDepositorInfo.Text = "예금주실명 조회 "
+        Me.btnCheckDepositorInfo.Text = "계좌실명조회"
         Me.btnCheckDepositorInfo.UseVisualStyleBackColor = True
         '
         'Label7
@@ -521,40 +555,6 @@ Partial Class frmExample
         Me.txtBankCodeDC.Size = New System.Drawing.Size(155, 21)
         Me.txtBankCodeDC.TabIndex = 0
         Me.txtBankCodeDC.Text = "0004"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(13, 77)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(65, 12)
-        Me.Label8.TabIndex = 22
-        Me.Label8.Text = "등록번호 : "
-        '
-        'txtIdentityNumDC
-        '
-        Me.txtIdentityNumDC.Location = New System.Drawing.Point(84, 74)
-        Me.txtIdentityNumDC.Name = "txtIdentityNumDC"
-        Me.txtIdentityNumDC.Size = New System.Drawing.Size(155, 21)
-        Me.txtIdentityNumDC.TabIndex = 23
-        Me.txtIdentityNumDC.Text = "921102"
-        '
-        'txtIdentityNumTypeDC
-        '
-        Me.txtIdentityNumTypeDC.Location = New System.Drawing.Point(112, 101)
-        Me.txtIdentityNumTypeDC.Name = "txtIdentityNumTypeDC"
-        Me.txtIdentityNumTypeDC.Size = New System.Drawing.Size(127, 21)
-        Me.txtIdentityNumTypeDC.TabIndex = 25
-        Me.txtIdentityNumTypeDC.Text = "P"
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(13, 106)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(93, 12)
-        Me.Label9.TabIndex = 26
-        Me.Label9.Text = "등록번호 유형 : "
         '
         'frmExample
         '
