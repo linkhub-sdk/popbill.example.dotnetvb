@@ -3,7 +3,7 @@
 ' 팝빌 현금영수증 API VB.Net  SDK Example
 '
 ' - VB.Net SDK 연동환경 설정방법 안내 : https://docs.popbill.com/cashbill/tutorial/dotnet#vb
-' - 업데이트 일자 : 2021-12-23
+' - 업데이트 일자 : 2022-03-18
 ' - 연동 기술지원 연락처 : 1600-9854
 ' - 연동 기술지원 이메일 : code@linkhubcorp.com
 '
@@ -1699,12 +1699,6 @@ Public Class frmExample
 
             '현금영수증 발행 알림문자 전송여부, 미기재시 "false"
             cashbill.smssendYN = False
-
-            '메모
-            Dim memo As String = "즉시발행 메모"
-
-            '안내메일 제목, 공백처리시 기본양식으로 전송
-            Dim emailSubject As String = ""
 
             cashbillList.Add(cashbill)
         Next
