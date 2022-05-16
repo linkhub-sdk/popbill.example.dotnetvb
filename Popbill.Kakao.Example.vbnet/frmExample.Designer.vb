@@ -64,6 +64,7 @@ Partial Class frmExample
         Me.btnCancelReserveRN = New System.Windows.Forms.Button
         Me.btnGetMessagesRN = New System.Windows.Forms.Button
         Me.GroupBox10 = New System.Windows.Forms.GroupBox
+        Me.btnCheckSenderNumber = New System.Windows.Forms.Button
         Me.btnGetATSTemplate = New System.Windows.Forms.Button
         Me.btnSearch = New System.Windows.Forms.Button
         Me.btnGetSentListURL = New System.Windows.Forms.Button
@@ -522,6 +523,7 @@ Partial Class frmExample
         '
         'GroupBox10
         '
+        Me.GroupBox10.Controls.Add(Me.btnCheckSenderNumber)
         Me.GroupBox10.Controls.Add(Me.btnGetATSTemplate)
         Me.GroupBox10.Controls.Add(Me.btnSearch)
         Me.GroupBox10.Controls.Add(Me.btnGetSentListURL)
@@ -538,48 +540,57 @@ Partial Class frmExample
         Me.GroupBox10.TabStop = False
         Me.GroupBox10.Text = "카카오톡 관리"
         '
+        'btnCheckSenderNumber
+        '
+        Me.btnCheckSenderNumber.Location = New System.Drawing.Point(196, 20)
+        Me.btnCheckSenderNumber.Name = "btnCheckSenderNumber"
+        Me.btnCheckSenderNumber.Size = New System.Drawing.Size(147, 35)
+        Me.btnCheckSenderNumber.TabIndex = 5
+        Me.btnCheckSenderNumber.Text = "발신번호 등록여부 확인"
+        Me.btnCheckSenderNumber.UseVisualStyleBackColor = True
+        '
         'btnGetATSTemplate
         '
         Me.btnGetATSTemplate.Location = New System.Drawing.Point(10, 143)
         Me.btnGetATSTemplate.Name = "btnGetATSTemplate"
         Me.btnGetATSTemplate.Size = New System.Drawing.Size(180, 35)
-        Me.btnGetATSTemplate.TabIndex = 8
+        Me.btnGetATSTemplate.TabIndex = 3
         Me.btnGetATSTemplate.Text = "알림톡 템플릿 정보 확인"
         Me.btnGetATSTemplate.UseVisualStyleBackColor = True
         '
         'btnSearch
         '
-        Me.btnSearch.Location = New System.Drawing.Point(196, 143)
+        Me.btnSearch.Location = New System.Drawing.Point(196, 185)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(147, 35)
-        Me.btnSearch.TabIndex = 7
+        Me.btnSearch.TabIndex = 9
         Me.btnSearch.Text = "전송내역 목록조회"
         Me.btnSearch.UseVisualStyleBackColor = True
         '
         'btnGetSentListURL
         '
-        Me.btnGetSentListURL.Location = New System.Drawing.Point(196, 102)
+        Me.btnGetSentListURL.Location = New System.Drawing.Point(196, 143)
         Me.btnGetSentListURL.Name = "btnGetSentListURL"
         Me.btnGetSentListURL.Size = New System.Drawing.Size(147, 35)
-        Me.btnGetSentListURL.TabIndex = 6
+        Me.btnGetSentListURL.TabIndex = 8
         Me.btnGetSentListURL.Text = "전송내역 조회 팝업 URL"
         Me.btnGetSentListURL.UseVisualStyleBackColor = True
         '
         'btnGetSenderNumberList
         '
-        Me.btnGetSenderNumberList.Location = New System.Drawing.Point(196, 61)
+        Me.btnGetSenderNumberList.Location = New System.Drawing.Point(196, 102)
         Me.btnGetSenderNumberList.Name = "btnGetSenderNumberList"
         Me.btnGetSenderNumberList.Size = New System.Drawing.Size(147, 35)
-        Me.btnGetSenderNumberList.TabIndex = 5
+        Me.btnGetSenderNumberList.TabIndex = 7
         Me.btnGetSenderNumberList.Text = "발신번호 목록 확인"
         Me.btnGetSenderNumberList.UseVisualStyleBackColor = True
         '
         'btnGetSenderNumberMgtURL
         '
-        Me.btnGetSenderNumberMgtURL.Location = New System.Drawing.Point(196, 20)
+        Me.btnGetSenderNumberMgtURL.Location = New System.Drawing.Point(196, 61)
         Me.btnGetSenderNumberMgtURL.Name = "btnGetSenderNumberMgtURL"
         Me.btnGetSenderNumberMgtURL.Size = New System.Drawing.Size(147, 35)
-        Me.btnGetSenderNumberMgtURL.TabIndex = 4
+        Me.btnGetSenderNumberMgtURL.TabIndex = 6
         Me.btnGetSenderNumberMgtURL.Text = "발신번호 관리 팝업 URL"
         Me.btnGetSenderNumberMgtURL.UseVisualStyleBackColor = True
         '
@@ -588,7 +599,7 @@ Partial Class frmExample
         Me.btnListATSTemplate.Location = New System.Drawing.Point(10, 184)
         Me.btnListATSTemplate.Name = "btnListATSTemplate"
         Me.btnListATSTemplate.Size = New System.Drawing.Size(180, 35)
-        Me.btnListATSTemplate.TabIndex = 3
+        Me.btnListATSTemplate.TabIndex = 4
         Me.btnListATSTemplate.Text = "알림톡 템플릿 목록 확인"
         Me.btnListATSTemplate.UseVisualStyleBackColor = True
         '
@@ -930,5 +941,6 @@ Partial Class frmExample
     Friend WithEvents btnGetUseHistoryURL As System.Windows.Forms.Button
     Friend WithEvents btnGetPaymentURL As System.Windows.Forms.Button
     Friend WithEvents btnGetContactInfo As System.Windows.Forms.Button
+    Friend WithEvents btnCheckSenderNumber As System.Windows.Forms.Button
 
 End Class

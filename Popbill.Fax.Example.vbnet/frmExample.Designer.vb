@@ -37,6 +37,7 @@ Partial Class frmExample
         Me.btnResendFAX = New System.Windows.Forms.Button
         Me.btnCancelReserveRN = New System.Windows.Forms.Button
         Me.GroupBox8 = New System.Windows.Forms.GroupBox
+        Me.btnCheckSenderNumber = New System.Windows.Forms.Button
         Me.btnGetSenderNumberMgtURL = New System.Windows.Forms.Button
         Me.btnGetSenderNumberList = New System.Windows.Forms.Button
         Me.btnGetFaxResultRN = New System.Windows.Forms.Button
@@ -245,30 +246,40 @@ Partial Class frmExample
         '
         'GroupBox8
         '
+        Me.GroupBox8.Controls.Add(Me.btnCheckSenderNumber)
         Me.GroupBox8.Controls.Add(Me.btnGetSenderNumberMgtURL)
         Me.GroupBox8.Controls.Add(Me.btnGetSenderNumberList)
         Me.GroupBox8.Location = New System.Drawing.Point(767, 23)
         Me.GroupBox8.Name = "GroupBox8"
-        Me.GroupBox8.Size = New System.Drawing.Size(136, 101)
+        Me.GroupBox8.Size = New System.Drawing.Size(168, 144)
         Me.GroupBox8.TabIndex = 34
         Me.GroupBox8.TabStop = False
         Me.GroupBox8.Text = "발신번호 관리"
+        '
+        'btnCheckSenderNumber
+        '
+        Me.btnCheckSenderNumber.Location = New System.Drawing.Point(6, 22)
+        Me.btnCheckSenderNumber.Name = "btnCheckSenderNumber"
+        Me.btnCheckSenderNumber.Size = New System.Drawing.Size(152, 32)
+        Me.btnCheckSenderNumber.TabIndex = 21
+        Me.btnCheckSenderNumber.Text = "발신번호 등록여부 확인"
+        Me.btnCheckSenderNumber.UseVisualStyleBackColor = True
         '
         'btnGetSenderNumberMgtURL
         '
         Me.btnGetSenderNumberMgtURL.Location = New System.Drawing.Point(8, 60)
         Me.btnGetSenderNumberMgtURL.Name = "btnGetSenderNumberMgtURL"
-        Me.btnGetSenderNumberMgtURL.Size = New System.Drawing.Size(121, 32)
+        Me.btnGetSenderNumberMgtURL.Size = New System.Drawing.Size(152, 32)
         Me.btnGetSenderNumberMgtURL.TabIndex = 22
         Me.btnGetSenderNumberMgtURL.Text = "발신번호 관리 팝업"
         Me.btnGetSenderNumberMgtURL.UseVisualStyleBackColor = True
         '
         'btnGetSenderNumberList
         '
-        Me.btnGetSenderNumberList.Location = New System.Drawing.Point(8, 22)
+        Me.btnGetSenderNumberList.Location = New System.Drawing.Point(8, 98)
         Me.btnGetSenderNumberList.Name = "btnGetSenderNumberList"
-        Me.btnGetSenderNumberList.Size = New System.Drawing.Size(121, 32)
-        Me.btnGetSenderNumberList.TabIndex = 21
+        Me.btnGetSenderNumberList.Size = New System.Drawing.Size(152, 32)
+        Me.btnGetSenderNumberList.TabIndex = 23
         Me.btnGetSenderNumberList.Text = "발신번호 목록 조회"
         Me.btnGetSenderNumberList.UseVisualStyleBackColor = True
         '
@@ -788,5 +799,6 @@ Partial Class frmExample
     Friend WithEvents btnGetUseHistoryURL As System.Windows.Forms.Button
     Friend WithEvents btnGetPaymentURL As System.Windows.Forms.Button
     Friend WithEvents btnGetContactInfo As System.Windows.Forms.Button
+    Private WithEvents btnCheckSenderNumber As System.Windows.Forms.Button
 
 End Class

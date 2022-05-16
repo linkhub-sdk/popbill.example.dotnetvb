@@ -69,6 +69,23 @@ Public Class frmExample
         End Try
     End Sub
 
+    '=========================================================================
+    ' 카카오톡 발신번호 등록여부를 확인합니다.
+    ' - 발신번호 상태가 '승인'인 경우에만 리턴값 'Response'의 변수 'code'가 1로 반환됩니다.
+    ' - https://docs.popbill.com/kakao/dotnet/api#CheckSenderNumber
+    '=========================================================================
+    Private Sub btnCheckSenderNumber_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckSenderNumber.Click
+        Try
+            Dim response As Response
+            Dim senderNumber As String = ""
+
+            response = kakaoService.CheckSenderNumber(txtCorpNum.Text, senderNumber, txtUserId.Text)
+
+            MsgBox(response.message)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
 
     '=========================================================================
     ' 팝빌에 등록한 연동회원의 카카오톡 발신번호 목록을 확인합니다.

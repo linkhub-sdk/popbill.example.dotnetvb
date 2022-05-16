@@ -54,6 +54,7 @@ Partial Class frmExample
         Me.btnSendMMS_hundered = New System.Windows.Forms.Button
         Me.btnSendMMS_one = New System.Windows.Forms.Button
         Me.GroupBox10 = New System.Windows.Forms.GroupBox
+        Me.btnCheckSenderNumber = New System.Windows.Forms.Button
         Me.btnGetSenderNumberMgtURL = New System.Windows.Forms.Button
         Me.btnGetSenderNumberList = New System.Windows.Forms.Button
         Me.btnSearch = New System.Windows.Forms.Button
@@ -64,6 +65,7 @@ Partial Class frmExample
         Me.btnUpdateCorpInfo = New System.Windows.Forms.Button
         Me.btnGetCorpInfo = New System.Windows.Forms.Button
         Me.GroupBox16 = New System.Windows.Forms.GroupBox
+        Me.btnGetContactInfo = New System.Windows.Forms.Button
         Me.btnUpdateContact = New System.Windows.Forms.Button
         Me.btnListContact = New System.Windows.Forms.Button
         Me.btnRegistContact = New System.Windows.Forms.Button
@@ -95,7 +97,6 @@ Partial Class frmExample
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
         Me.Label6 = New System.Windows.Forms.Label
         Me.txtURL = New System.Windows.Forms.TextBox
-        Me.btnGetContactInfo = New System.Windows.Forms.Button
         Me.groupBox7.SuspendLayout()
         Me.groupBox8.SuspendLayout()
         Me.groupBox6.SuspendLayout()
@@ -422,30 +423,40 @@ Partial Class frmExample
         '
         'GroupBox10
         '
+        Me.GroupBox10.Controls.Add(Me.btnCheckSenderNumber)
         Me.GroupBox10.Controls.Add(Me.btnGetSenderNumberMgtURL)
         Me.GroupBox10.Controls.Add(Me.btnGetSenderNumberList)
         Me.GroupBox10.Location = New System.Drawing.Point(747, 58)
         Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(146, 100)
+        Me.GroupBox10.Size = New System.Drawing.Size(176, 138)
         Me.GroupBox10.TabIndex = 26
         Me.GroupBox10.TabStop = False
         Me.GroupBox10.Text = "발신번호 관리"
+        '
+        'btnCheckSenderNumber
+        '
+        Me.btnCheckSenderNumber.Location = New System.Drawing.Point(12, 18)
+        Me.btnCheckSenderNumber.Name = "btnCheckSenderNumber"
+        Me.btnCheckSenderNumber.Size = New System.Drawing.Size(151, 33)
+        Me.btnCheckSenderNumber.TabIndex = 0
+        Me.btnCheckSenderNumber.Text = "발신번호 등록여부 확인"
+        Me.btnCheckSenderNumber.UseVisualStyleBackColor = True
         '
         'btnGetSenderNumberMgtURL
         '
         Me.btnGetSenderNumberMgtURL.Location = New System.Drawing.Point(12, 57)
         Me.btnGetSenderNumberMgtURL.Name = "btnGetSenderNumberMgtURL"
-        Me.btnGetSenderNumberMgtURL.Size = New System.Drawing.Size(126, 33)
+        Me.btnGetSenderNumberMgtURL.Size = New System.Drawing.Size(151, 33)
         Me.btnGetSenderNumberMgtURL.TabIndex = 1
         Me.btnGetSenderNumberMgtURL.Text = "발신번호 관리 팝업"
         Me.btnGetSenderNumberMgtURL.UseVisualStyleBackColor = True
         '
         'btnGetSenderNumberList
         '
-        Me.btnGetSenderNumberList.Location = New System.Drawing.Point(12, 18)
+        Me.btnGetSenderNumberList.Location = New System.Drawing.Point(12, 96)
         Me.btnGetSenderNumberList.Name = "btnGetSenderNumberList"
-        Me.btnGetSenderNumberList.Size = New System.Drawing.Size(126, 33)
-        Me.btnGetSenderNumberList.TabIndex = 0
+        Me.btnGetSenderNumberList.Size = New System.Drawing.Size(151, 33)
+        Me.btnGetSenderNumberList.TabIndex = 2
         Me.btnGetSenderNumberList.Text = "발신번호 목록 조회"
         Me.btnGetSenderNumberList.UseVisualStyleBackColor = True
         '
@@ -533,6 +544,15 @@ Partial Class frmExample
         Me.GroupBox16.TabIndex = 5
         Me.GroupBox16.TabStop = False
         Me.GroupBox16.Text = "담당자 관련"
+        '
+        'btnGetContactInfo
+        '
+        Me.btnGetContactInfo.Location = New System.Drawing.Point(8, 53)
+        Me.btnGetContactInfo.Name = "btnGetContactInfo"
+        Me.btnGetContactInfo.Size = New System.Drawing.Size(122, 30)
+        Me.btnGetContactInfo.TabIndex = 8
+        Me.btnGetContactInfo.Text = "담당자 정보 확인"
+        Me.btnGetContactInfo.UseVisualStyleBackColor = True
         '
         'btnUpdateContact
         '
@@ -820,15 +840,6 @@ Partial Class frmExample
         Me.txtURL.Size = New System.Drawing.Size(285, 21)
         Me.txtURL.TabIndex = 36
         '
-        'btnGetContactInfo
-        '
-        Me.btnGetContactInfo.Location = New System.Drawing.Point(8, 53)
-        Me.btnGetContactInfo.Name = "btnGetContactInfo"
-        Me.btnGetContactInfo.Size = New System.Drawing.Size(122, 30)
-        Me.btnGetContactInfo.TabIndex = 8
-        Me.btnGetContactInfo.Text = "담당자 정보 확인"
-        Me.btnGetContactInfo.UseVisualStyleBackColor = True
-        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
@@ -938,5 +949,6 @@ Partial Class frmExample
     Friend WithEvents btnGetUseHistoryURL As System.Windows.Forms.Button
     Friend WithEvents btnGetPaymentURL As System.Windows.Forms.Button
     Friend WithEvents btnGetContactInfo As System.Windows.Forms.Button
+    Friend WithEvents btnCheckSenderNumber As System.Windows.Forms.Button
 
 End Class

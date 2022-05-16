@@ -54,6 +54,23 @@ Public Class frmExample
 
     End Function
 
+    '=========================================================================
+    ' 문자 발신번호 등록여부를 확인합니다.
+    ' - 발신번호 상태가 '승인'인 경우에만 리턴값 'Response'의 변수 'code'가 1로 반환됩니다.
+    ' - https://docs.popbill.com/message/dotnet/api#CheckSenderNumber
+    '=========================================================================
+    Private Sub btnCheckSenderNumber_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckSenderNumber.Click
+        Try
+            Dim response As Response
+            Dim senderNumber As String = ""
+
+            response = messageService.CheckSenderNumber(txtCorpNum.Text, senderNumber, txtUserId.Text)
+
+            MsgBox(response.message)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
 
     '=========================================================================
     ' 발신번호를 등록하고 내역을 확인하는 문자 발신번호 관리 페이지 팝업 URL을 반환합니다.
@@ -98,13 +115,13 @@ Public Class frmExample
     Private Sub btnSendSMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendSMS_one.Click
 
         '발신번호
-        Dim sendNum As String = "07043042991"
+        Dim sendNum As String = ""
 
         '발신자명
         Dim sendName As String = "발신자명"
 
         '수신번호
-        Dim receiveNum As String = "010111222"
+        Dim receiveNum As String = ""
 
         '수신자명
         Dim receiveName As String = "수신자명칭"
@@ -166,7 +183,7 @@ Public Class frmExample
             msg.senderName = "발신자명"
 
             '수신번호
-            msg.receiveNum = "11122223333"
+            msg.receiveNum = ""
 
             '수신자명
             msg.receiveName = "수신자명칭_" + CStr(i)
