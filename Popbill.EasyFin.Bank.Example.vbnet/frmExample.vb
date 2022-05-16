@@ -2,8 +2,8 @@
 '
 ' 팝빌 계좌조회 API VB.Net SDK Example
 '
-' - VB.Net SDK 연동환경 설정방법 안내 : https://docs.popbill.com/easyfinbank/tutorial/dotnet#vb
-' - 업데이트 일자 : 2021-12-23
+' - VB.Net SDK 연동환경 설정방법 안내 : https://docs.popbill.com/easyfinbank/tutorial/dotnet_vb
+' - 업데이트 일자 : 2022-05-13
 ' - 연동 기술지원 연락처 : 1600-8536
 ' - 연동 기술지원 이메일 : code@linkhubcorp.com
 '
@@ -25,18 +25,708 @@ Public Class frmExample
         '서비스 객체 초기화
         easyFinBankService = New EasyFinBankService(LinkID, SecretKey)
 
-        '연동환경 설정값 (True-개발용, False-상업용)
+        '연동환경 설정값, True-개발용, False-상업용
         easyFinBankService.IsTest = True
 
-        '인증토큰의 IP제한기능 사용여부, (True-권장)
+        '인증토큰 발급 IP 제한 On/Off, True-사용, False-미사용, 기본값(True)
         easyFinBankService.IPRestrictOnOff = True
 
-        '팝빌 API 서비스 고정 IP 사용여부, True-사용, False-미사용(기본값)
+        '팝빌 API 서비스 고정 IP 사용여부, True-사용, False-미사용, 기본값(False)
         easyFinBankService.UseStaticIP = False
 
-        '로컬PC 시간 사용 여부 True(사용), False(기본값) - 미사용
+        '로컬시스템 시간 사용여부, True-사용, False-미사용, 기본값(False)
         easyFinBankService.UseLocalTimeYN = False
 
+    End Sub
+
+    '=========================================================================
+    ' 계좌조회 서비스를 이용할 계좌를 팝빌에 등록합니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#RegistBankAccount
+    '=========================================================================
+    Private Sub btnRegistBankAccount_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistBankAccount.Click
+
+        Dim accountInfo As New EasyFinBankAccountForm
+
+        ' 기관코드
+        ' 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
+        ' SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
+        ' 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
+        accountInfo.BankCode = ""
+
+        ' 계좌번호, 하이픈('-') 제외
+        accountInfo.AccountNumber = ""
+
+        ' 계좌비밀번호
+        accountInfo.AccountPWD = ""
+
+        ' 계좌유형, "법인" 또는 "개인" 입력
+        accountInfo.AccountType = ""
+
+        ' 예금주 식별정보 ('-' 제외)
+        ' 계좌유형이 “법인”인 경우 : 사업자번호(10자리)
+        ' 계좌유형이 “개인”인 경우 : 예금주 생년월일 (6자리-YYMMDD)
+        accountInfo.IdentityNumber = ""
+
+        ' 계좌 별칭
+        accountInfo.AccountName = ""
+
+        ' 인터넷뱅킹 아이디 (국민은행 필수)
+        accountInfo.BankID = ""
+
+        ' 조회전용 계정 아이디 (대구은행, 신협, 신한은행 필수)
+        accountInfo.FastID = ""
+
+        ' 조회전용 계정 비밀번호 (대구은행, 신협, 신한은행 필수)
+        accountInfo.FastPWD = ""
+
+        ' 정액제 이용할 개월수, 1~12 입력가능
+        ' - 미입력시 기본값 1개월 처리
+        ' - 파트너 과금방식의 경우 입력값에 관계없이 1개월 처리
+        accountInfo.UsePeriod = "1"
+
+        ' 메모
+        accountInfo.Memo = ""
+
+
+        Try
+
+            Dim response As Response = easyFinBankService.RegistBankACcount(txtCorpNum.Text, accountInfo)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+
+    End Sub
+
+    '=========================================================================
+    ' 팝빌에 등록된 계좌정보를 수정합니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#UpdateBankAccount
+    '=========================================================================
+    Private Sub btnUpdateBankAccount_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateBankAccount.Click
+
+        Dim accountInfo As New EasyFinBankAccountForm
+
+        ' 기관코드
+        ' 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
+        ' SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
+        ' 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
+        accountInfo.BankCode = ""
+
+        ' 계좌번호, 하이픈('-') 제외
+        accountInfo.AccountNumber = ""
+
+        ' 계좌비밀번호
+        accountInfo.AccountPWD = ""
+
+        ' 계좌 별칭
+        accountInfo.AccountName = ""
+
+        ' 인터넷뱅킹 아이디 (국민은행 필수)
+        accountInfo.BankID = ""
+
+        ' 조회전용 계정 아이디 (대구은행, 신협, 신한은행 필수)
+        accountInfo.FastID = ""
+
+        ' 조회전용 계정 비밀번호 (대구은행, 신협, 신한은행 필수)
+        accountInfo.FastPWD = ""
+
+        ' 메모
+        accountInfo.Memo = ""
+
+
+        Try
+
+            Dim response As Response = easyFinBankService.UpdateBankAccount(txtCorpNum.Text, accountInfo)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 팝빌에 등록된 계좌 정보를 확인합니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetBankAccountInfo
+    '=========================================================================
+    Private Sub btnGetBankAccountInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetBankAccountInfo.Click
+
+        ' 기관코드
+        ' 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
+        ' SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
+        ' 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
+        Dim BankCode = ""
+
+        ' 계좌번호, 하이픈('-') 제외
+        Dim AccountNumber = ""
+
+
+        Try
+            Dim bankAccountInfo As EasyFinBankAccount = easyFinBankService.GetBankAccountInfo(txtCorpNum.Text, BankCode, AccountNumber)
+
+            Dim tmp As String = ""
+            tmp += "accountNumber (계좌번호) : " + bankAccountInfo.accountNumber + vbCrLf
+            tmp += "bankCode (기관코드) : " + bankAccountInfo.bankCode + vbCrLf
+            tmp += "accountName (계좌별칭) : " + bankAccountInfo.accountName + vbCrLf
+            tmp += "accountType (계좌유형) : " + bankAccountInfo.accountType + vbCrLf
+            tmp += "state (계좌 상태) : " + bankAccountInfo.state.ToString + vbCrLf
+            tmp += "regDT (등록일시) : " + bankAccountInfo.regDT + vbCrLf
+            tmp += "contractDT (정액제 서비스 시작일시) : " + bankAccountInfo.contractDT + vbCrLf
+            tmp += "useEndDate (정액제 서비스 종료일자) : " + bankAccountInfo.useEndDate + vbCrLf
+            tmp += "baseDate (자동연장 결제일) : " + bankAccountInfo.baseDate.ToString + vbCrLf
+            tmp += "contractState (정액제 서비스 상태) : " + bankAccountInfo.contractState.ToString + vbCrLf
+            tmp += "closeRequestYN (정액제 해지신청 여부) : " + bankAccountInfo.closeRequestYN.ToString + vbCrLf
+            tmp += "useRestrictYN (정액제 사용제한 여부) : " + bankAccountInfo.useRestrictYN.ToString + vbCrLf
+            tmp += "closeOnExpired (정액제 만료시 해지여부) : " + bankAccountInfo.closeOnExpired.ToString + vbCrLf
+            tmp += "unPaiedYN (미수금 보유 여부) : " + bankAccountInfo.unPaidYN.ToString + vbCrLf
+            tmp += "memo (메모) : " + bankAccountInfo.memo
+
+            MsgBox(tmp)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+        ''
+
+    End Sub
+
+    '=========================================================================
+    ' 팝빌에 등록된 은행계좌 목록을 반환한다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#ListBankAccount
+    '=========================================================================
+    Private Sub btnListBankAccount_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListBankAccount.Click
+
+        Try
+            Dim bankAccountList As List(Of EasyFinBankAccount) = easyFinBankService.ListBankAccount(txtCorpNum.Text, txtUserId.Text)
+
+            Dim tmp As String = ""
+            tmp += "accountNumber (계좌번호) | bankCode (기관코드) | accountName (계좌별칭) | accountType (계좌유형) | state (계좌 상태) |"
+            tmp += " regDT (등록일시)  | contractDT (정액제 서비스 시작일시) | useEndDate (정액제 서비스 종료일자) | baseDate (자동연장 결제일) |"
+            tmp += " contractState (정액제 서비스 상태) | closeRequestYN (정액제 해지신청 여부) | useRestrictYN (정액제 사용제한 여부) | closeOnExpired (정액제 만료시 해지여부) |"
+            tmp += " unPaidYN (미수금 보유 여부) | memo (메모) " + vbCrLf + vbCrLf
+
+            For Each info As EasyFinBankAccount In bankAccountList
+                tmp += info.accountNumber + " | " + info.bankCode + " | " + info.accountName + " | " + info.accountType + " | " + info.state.ToString + " | "
+                tmp += info.regDT + " | " + info.contractDT + " | " + info.useEndDate + " | " + info.baseDate.ToString + " | "
+                tmp += info.contractState.ToString + " | " + info.closeRequestYN.ToString + " | " + info.useRestrictYN.ToString + " | " + info.closeOnExpired.ToString + " | "
+                tmp += info.unPaidYN.ToString + " | " + info.memo + vbCrLf
+            Next
+
+            MsgBox(tmp)
+
+        Catch ex As PopbillException
+
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 계좌 등록, 수정 및 삭제할 수 있는 계좌 관리 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetBankAccountMgtURL
+    '=========================================================================
+    Private Sub btnBankAccountMgtURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBankAccountMgtURL.Click
+        Try
+            Dim url As String = easyFinBankService.GetBankAccountMgtURL(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox(url)
+            txtURL.Text = url
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 계좌의 정액제 해지를 요청합니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#CloseBankAccount
+    '=========================================================================
+    Private Sub btnCloseBankAccount_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCloseBankAccount.Click
+
+        ' 기관코드
+        ' 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
+        ' SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
+        ' 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
+        Dim BankCode = ""
+
+        ' 계좌번호, 하이픈('-') 제외
+        Dim AccountNumber = ""
+
+        ' 해지유형, "일반", "중도" 중 택 1
+        ' 일반(일반해지) – 이용중인 정액제 기간 만료 후 해지
+        ' 중도(중도해지) – 해지 요청일 기준으로 정지되고 팝빌 담당자가 승인시 해지
+        ' └ 중도일 경우, 정액제 잔여기간은 일할로 계산되어 포인트 환불 (무료 이용기간 중 해지하면 전액 환불)
+        Dim CloseType = "중도"
+
+
+        Try
+            Dim response As Response = easyFinBankService.CloseBankAccount(txtCorpNum.Text, BankCode, AccountNumber, CloseType)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 신청한 정액제 해지요청을 취소합니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#RevokeCloseBankAccount
+    '=========================================================================
+    Private Sub btnRevokeCloseBankAccount_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRevokeCloseBankAccount.Click
+
+        ' 기관코드
+        ' 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
+        ' SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
+        ' 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
+        Dim BankCode = ""
+
+        ' 계좌번호, 하이픈('-') 제외
+        Dim AccountNumber = ""
+
+        Try
+            Dim response As Response = easyFinBankService.RevokeCloseBankAccount(txtCorpNum.Text, BankCode, AccountNumber)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+
+
+    End Sub
+
+    '=========================================================================
+    ' 등록된 계좌를 삭제합니다.
+    ' - 정액제가 아닌 종량제 이용 시에만 등록된 계좌를 삭제할 수 있습니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#DeleteBankAccount
+    '=========================================================================
+    Private Sub btnDeleteBankAccount_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteBankAccount.Click
+
+        ' 기관코드
+        ' 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
+        ' SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
+        ' 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
+        Dim BankCode = ""
+
+        ' 계좌번호, 하이픈('-') 제외
+        Dim AccountNumber = ""
+
+        Try
+            Dim response As Response = easyFinBankService.DeleteBankAccount(txtCorpNum.Text, BankCode, AccountNumber, txtUserId.Text)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+
+    End Sub
+
+
+    '=========================================================================
+    ' 계좌 거래내역을 확인하기 위해 팝빌에 수집요청을 합니다. (조회기간 단위 : 최대 1개월)
+    ' - 조회일로부터 최대 3개월 이전 내역까지 조회할 수 있습니다.
+    ' - 반환 받은 작업아이디는 함수 호출 시점부터 1시간 동안 유효합니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#RequestJob
+    '=========================================================================
+    Private Sub btnRequestJob_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRequestJob.Click
+
+        '기관코드
+        Dim BankCode As String = ""
+
+        '은행 계좌번호
+        Dim AccountNumber As String = ""
+
+        ' 시작일자, 표시형식(yyyyMMdd)
+        Dim SDate As String = "20220501"
+
+        ' 종료일자, 표시형식(yyyyMMdd)
+        Dim EDate As String = "20220513"
+
+        Try
+
+            Dim jobID As String = easyFinBankService.RequestJob(txtCorpNum.Text, BankCode, AccountNumber, SDate, EDate)
+
+            MsgBox("작업아이디(JobID) : " + jobID)
+
+            txtJobID.Text = jobID
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 수집 요청(RequestJob API) 함수를 통해 반환 받은 작업 아이디의 상태를 확인합니다.
+    ' - 거래 내역 조회(Search API) 함수 또는 거래 요약 정보 조회(Summary API) 함수를 사용하기 전에
+    '   수집 작업의 진행 상태, 수집 작업의 성공 여부를 확인해야 합니다.
+    ' - 작업 상태(jobState) = 3(완료)이고 수집 결과 코드(errorCode) = 1(수집성공)이면
+    '   거래 내역 조회(Search) 또는 거래 요약 정보 조회(Summary) 를 해야합니다.
+    ' - 작업 상태(jobState)가 3(완료)이지만 수집 결과 코드(errorCode)가 1(수집성공)이 아닌 경우에는
+    '   오류메시지(errorReason)로 수집 실패에 대한 원인을 파악할 수 있습니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetJobState
+    '=========================================================================
+    Private Sub btnGetJobState_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetJobState.Click
+
+        Try
+            Dim JobState As EasyFinBankJobState = easyFinBankService.GetJobState(txtCorpNum.Text, txtJobID.Text)
+
+            Dim tmp As String = "jobID (작업아이디) : " + JobState.jobID + vbCrLf
+            tmp += "jobState (수집상태) : " + JobState.jobState.ToString() + vbCrLf
+            tmp += "startDate (시작일자) : " + JobState.startDate + vbCrLf
+            tmp += "endDate (종료일자) : " + JobState.endDate + vbCrLf
+            tmp += "errorCode (오류코드) : " + JobState.errorCode.ToString() + vbCrLf
+            tmp += "errorReason (오류메시지) : " + JobState.errorReason + vbCrLf
+            tmp += "jobStartDT (작업 시작일시) : " + JobState.jobStartDT + vbCrLf
+            tmp += "jobEndDT (작업 종료일시) : " + JobState.jobEndDT + vbCrLf
+            tmp += "regDT (수집 요청일시) : " + JobState.regDT + vbCrLf
+
+            MsgBox(tmp)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+
+    End Sub
+
+    '=========================================================================
+    ' 수집요청(RequestJob API) 함수를 통해 반환 받은 작업아이디의 목록을 확인합니다.
+    ' - 수집 요청 후 1시간이 경과한 수집 요청건은 상태정보가 반환되지 않습니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#ListActiveJob
+    '=========================================================================
+    Private Sub btnListActiveJob_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListActiveJob.Click
+
+        Try
+            Dim jobList As List(Of EasyFinBankJobState) = easyFinBankService.ListACtiveJob(txtCorpNum.Text, txtUserId.Text)
+
+            Dim tmp As String = "jobID (작업아이디) | jobState (수집상태) | startDate (시작일자) | endDate (종료일자) | "
+            tmp += " errorCode (오류코드) | errorReason (오류메시지) |"
+            tmp += "jobStartDT (작업 시작일시) | jobEndDT (작업 종료일시) | regDT (수집 요청일시) " + vbCrLf
+
+            For Each info As EasyFinBankJobState In jobList
+                tmp += info.jobID + " | " + info.jobState.ToString + " | " + info.startDate + " | " + info.endDate + " | "
+                tmp += info.errorCode.ToString + " | " + info.errorReason + " | "
+                tmp += info.jobStartDT + " | " + info.jobEndDT + " | " + info.regDT + vbCrLf
+            Next
+
+            If (jobList.Count > 0) Then
+                txtJobID.Text = jobList.Item(0).jobID
+            End If
+
+            MsgBox(tmp)
+
+        Catch ex As PopbillException
+
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+
+    End Sub
+
+    '=========================================================================
+    ' 수집 상태 확인(GetJobState API) 함수를 통해 상태 정보가 확인된 작업아이디를 활용하여 계좌 거래 내역을 조회합니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#Search
+    '=========================================================================
+    Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
+
+        ' 거래유형 배열 ("I" 와 "O" 중 선택, 다중 선택 가능)
+        ' └ I = 입금 , O = 출금
+        ' - 미입력 시 전체조회
+        Dim tradeType(2) As String
+        tradeType(0) = "I"
+        tradeType(1) = "O"
+
+        ' "입·출금액" / "메모" / "비고" 중 검색하고자 하는 값 입력
+        ' - 메모 = 거래내역 메모저장(SaveMemo API) 함수를 사용하여 저장한 값
+        ' - 비고 = EasyFinBankSearchDetail의 remark1, remark2, remark3 값
+        ' - 미입력시 전체조회
+        Dim SearchString As String = ""
+
+        '페이지 번호
+        Dim Page As Integer = 1
+
+        '페이지당 검색개수, 최대 1000건
+        Dim PerPage As Integer = 10
+
+        '정렬 방향, D-내림차순, A-오름차순
+        Dim Order As String = "D"
+
+        Try
+            ListBox1.Items.Clear()
+
+            Dim searchList As EasyFinBankSearchResult = easyFinBankService.Search(txtCorpNum.Text, txtJobID.Text, tradeType, _
+                                                                              SearchString, Page, PerPage, Order, txtUserId.Text)
+
+            Dim tmp As String = "code (응답코드) : " + CStr(searchList.code) + vbCrLf
+            tmp += "message (응답메시지) : " + searchList.message + vbCrLf
+            tmp += "total (총 검색결과 건수) : " + CStr(searchList.total) + vbCrLf
+            tmp += "perPage (페이지당 검색개수) : " + CStr(searchList.perPage) + vbCrLf
+            tmp += "pageNum (페이지 번호) : " + CStr(searchList.pageNum) + vbCrLf
+            tmp += "pageCount (페이지 개수) : " + CStr(searchList.pageCount) + vbCrLf
+            tmp += "lastScrapDT (최종 조회일시) : " + CStr(searchList.lastScrapDT) + vbCrLf + vbCrLf
+
+            MsgBox(tmp)
+
+            Dim rowStr As String = "tid (거래내역 아이디) | trdate(거래일자) | trserial(거래일자별 일련번호) | trdt(거래일시) | accIn(입금액) | accOut(출금액) | "
+            rowStr += "balance(잔액) | remark1(비고1) | remark2(비고2) | remark3(비고3) | memo(메모)"
+
+            ListBox1.Items.Add(rowStr)
+
+            For Each tradeInfo As EasyFinBankSearchDetail In searchList.list
+                rowStr = tradeInfo.tid + " | "
+                rowStr += tradeInfo.trdate + " | "
+                rowStr += tradeInfo.trserial.ToString + " | "
+                rowStr += tradeInfo.trdt + " | "
+                rowStr += tradeInfo.accIn + " | "
+                rowStr += tradeInfo.accOut + " | "
+                rowStr += tradeInfo.balance + " | "
+                rowStr += tradeInfo.remark1 + " | "
+                rowStr += tradeInfo.remark2 + " | "
+                rowStr += tradeInfo.remark3 + " | "
+
+                rowStr += tradeInfo.memo
+
+                ListBox1.Items.Add(rowStr)
+            Next
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 수집 상태 확인(GetJobState API) 함수를 통해 상태 정보가 확인된 작업아이디를 활용하여 계좌 거래내역의 요약 정보를 조회합니다.
+    ' - 요약 정보는 입·출 금액 합계, 입·출 거래 건수를 가리킵니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#Summary
+    '=========================================================================
+    Private Sub btnSummary_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSummary.Click
+
+        ' 거래유형 배열 ("I" 와 "O" 중 선택, 다중 선택 가능)
+        ' └ I = 입금 , O = 출금
+        ' - 미입력 시 전체조회
+        Dim tradeType(2) As String
+        tradeType(0) = "I"
+        tradeType(1) = "O"
+
+        ' "입·출금액" / "메모" / "비고" 중 검색하고자 하는 값 입력
+        ' - 메모 = 거래내역 메모저장(SaveMemo API) 함수를 사용하여 저장한 값
+        ' - 비고 = EasyFinBankSearchDetail의 remark1, remark2, remark3 값
+        ' - 미입력시 전체조회
+        Dim SearchString As String = ""
+
+        Try
+
+            Dim summaryInfo As EasyFinBankSummary = easyFinBankService.Summary(txtCorpNum.Text, txtJobID.Text, tradeType, _
+                                                                              SearchString, txtUserId.Text)
+
+            Dim tmp As String = "count (수집결과 건수) : " + summaryInfo.count.ToString + vbCrLf
+            tmp += "cntAccIn (입금거래 건수) : " + summaryInfo.cntAccIn.ToString + vbCrLf
+            tmp += "cntAccOut (출금거래 건수) : " + summaryInfo.cntAccOut.ToString + vbCrLf
+            tmp += "totalAccIn (입금액 합계) : " + summaryInfo.totalAccIn.ToString + vbCrLf
+            tmp += "totalAccOut (출금액 합계) : " + summaryInfo.totalAccOut.ToString + vbCrLf
+
+            MsgBox(tmp)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 한 건의 거래 내역에 메모를 저장합니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#SaveMemo
+    '=========================================================================
+    Private Sub btnSaveMemo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSaveMemo.Click
+
+        '거래내역 메모
+        Dim Memo As String = "메모-테스트"
+
+        Try
+
+            Dim response As Response = easyFinBankService.SaveMemo(txtCorpNum.Text, txtTID.Text, Memo, txtUserId.Text)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+
+    '=========================================================================
+    ' 계좌조회 정액제 서비스 신청 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetFlatRatePopUpURL
+    '=========================================================================
+    Private Sub btnFlatRatePopUpURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnFlatRatePopUpURL.Click
+        Try
+            Dim url As String = easyFinBankService.GetFlatRatePopUpURL(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox(url)
+            txtURL.Text = url
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 계좌조회 정액제 서비스 상태를 확인합니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetFlatRateState
+    '=========================================================================
+    Private Sub btnGetFlatRateState_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFlatRateState.Click
+
+        '기관코드
+        Dim BankCode As String = ""
+
+        '은행 계좌번호
+        Dim AccountNumber As String = ""
+
+        Try
+            Dim flatRateInfo As EasyFinBankFlatRate = easyFinBankService.GetFlatRateState(txtCorpNum.Text, BankCode, AccountNumber)
+
+            Dim tmp As String = "referencdeID (계좌아이디) : " + flatRateInfo.referenceID + vbCrLf
+            tmp += "contractDT (정액제 서비스 시작일시) : " + flatRateInfo.contractDT + vbCrLf
+            tmp += "useEndDate (정액제 서비스 종료일) : " + flatRateInfo.useEndDate + vbCrLf
+            tmp += "baseDate (자동연장 결제일) : " + CStr(flatRateInfo.baseDate) + vbCrLf
+            tmp += "state (정액제 서비스 상태) : " + CStr(flatRateInfo.state) + vbCrLf
+            tmp += "closeRequestYN (서비스 해지신청 여부) : " + CStr(flatRateInfo.closeRequestYN) + vbCrLf
+            tmp += "useRestrictYN (서비스 사용제한 여부) : " + CStr(flatRateInfo.useRestrictYN) + vbCrLf
+            tmp += "closeOnExpired (서비스만료시 해지여부 ) : " + CStr(flatRateInfo.closeOnExpired) + vbCrLf
+            tmp += "unPaidYN (미수금 보유 여부) : " + CStr(flatRateInfo.unPaidYN) + vbCrLf
+
+            MsgBox(tmp)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원의 잔여포인트를 확인합니다.
+    ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트 확인(GetPartnerBalance API) 함수를 통해 확인하시기 바랍니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetBalance
+    '=========================================================================
+    Private Sub btnGetBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetBalance.Click
+        Try
+            Dim remainPoint As Double = easyFinBankService.GetBalance(txtCorpNum.Text)
+
+            MsgBox("연동회원 잔여포인트 : " + remainPoint.ToString())
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetChargeURL
+    '=========================================================================
+    Private Sub btnGetChargeURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeURL.Click
+        Try
+            Dim url As String = easyFinBankService.GetChargeURL(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox(url)
+            txtURL.Text = url
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원 포인트 결제내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetPaymentURL
+    '=========================================================================
+    Private Sub btnGetPaymentURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPaymentURL.Click
+        Try
+            Dim url As String = easyFinBankService.GetPaymentURL(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox(url)
+            txtURL.Text = url
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원 포인트 사용내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetUseHistoryURL
+    '=========================================================================
+    Private Sub btnGetUseHistoryURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetUseHistoryURL.Click
+        Try
+            Dim url As String = easyFinBankService.GetUseHistoryURL(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox(url)
+            txtURL.Text = url
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 파트너의 잔여포인트를 확인합니다.
+    ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트 확인(GetBalance API) 함수를 이용하시기 바랍니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetPartnerBalance
+    '=========================================================================
+    Private Sub btnGetPartnerBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerBalance.Click
+
+        Try
+            Dim remainPoint As Double = easyFinBankService.GetPartnerBalance(txtCorpNum.Text)
+
+            MsgBox("파트너 잔여포인트 : " + remainPoint.ToString())
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetPartnerURL
+    '=========================================================================
+    Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerURL.Click
+        Try
+            '파트너 포인트충전 URL
+            Dim TOGO As String = "CHRG"
+
+            Dim url As String = easyFinBankService.GetPartnerURL(txtCorpNum.Text, TOGO)
+
+            MsgBox(url)
+            txtURL.Text = url
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 팝빌 계좌조회 API 서비스 과금정보를 확인합니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetChargeInfo
+    '=========================================================================
+    Private Sub btnGetChargeInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo.Click
+        Try
+            Dim ChargeInfo As ChargeInfo = easyFinBankService.GetChargeInfo(txtCorpNum.Text)
+
+            Dim tmp As String = "unitCost (월정액요금) : " + ChargeInfo.unitCost + vbCrLf
+            tmp += "chargeMethod (과금유형) : " + ChargeInfo.chargeMethod + vbCrLf
+            tmp += "rateSystem (과금제도) : " + ChargeInfo.rateSystem + vbCrLf
+
+            MsgBox(tmp)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
     End Sub
 
     '=========================================================================
@@ -108,16 +798,11 @@ Public Class frmExample
         joinInfo.ContactName = "담당자명"
 
         '담당자 이메일 (최대 20자)
-        joinInfo.ContactEmail = "test@test.com"
+        joinInfo.ContactEmail = ""
 
         '담당자 연락처 (최대 20자)
-        joinInfo.ContactTEL = "070-4304-2991"
+        joinInfo.ContactTEL = ""
 
-        '담당자 휴대폰번호 (최대 20자)
-        joinInfo.ContactHP = "010-111-222"
-
-        '담당자 팩스번호 (최대 20자)
-        joinInfo.ContactFAX = "02-6442-9700"
 
         Try
             Dim response As Response = easyFinBankService.JoinMember(joinInfo)
@@ -127,127 +812,6 @@ Public Class frmExample
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
 
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 팝빌 계좌조회 API 서비스 과금정보를 확인합니다.
-    ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetChargeInfo
-    '=========================================================================
-    Private Sub btnGetChargeInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo.Click
-        Try
-            Dim ChargeInfo As ChargeInfo = easyFinBankService.GetChargeInfo(txtCorpNum.Text)
-
-            Dim tmp As String = "unitCost (월정액요금) : " + ChargeInfo.unitCost + vbCrLf
-            tmp += "chargeMethod (과금유형) : " + ChargeInfo.chargeMethod + vbCrLf
-            tmp += "rateSystem (과금제도) : " + ChargeInfo.rateSystem + vbCrLf
-
-            MsgBox(tmp)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 연동회원의 잔여포인트를 확인합니다.
-    ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트(GetPartnerBalance API)를 통해 확인하시기 바랍니다.
-    ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetBalance
-    '=========================================================================
-    Private Sub btnGetBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetBalance.Click
-        Try
-            Dim remainPoint As Double = easyFinBankService.GetBalance(txtCorpNum.Text)
-
-            MsgBox("연동회원 잔여포인트 : " + remainPoint.ToString())
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 연동회원 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
-    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetChargeURL
-    '=========================================================================
-    Private Sub btnGetChargeURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeURL.Click
-        Try
-            Dim url As String = easyFinBankService.GetChargeURL(txtCorpNum.Text, txtUserId.Text)
-
-            MsgBox(url)
-            txtURL.Text = url
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 연동회원 포인트 결제내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
-    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetPaymentURL
-    '=========================================================================
-    Private Sub btnGetPaymentURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPaymentURL.Click
-        Try
-            Dim url As String = easyFinBankService.GetPaymentURL(txtCorpNum.Text, txtUserId.Text)
-
-            MsgBox(url)
-            txtURL.Text = url
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 연동회원 포인트 사용내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
-    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetUseHistoryURL
-    '=========================================================================
-    Private Sub btnGetUseHistoryURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetUseHistoryURL.Click
-        Try
-            Dim url As String = easyFinBankService.GetUseHistoryURL(txtCorpNum.Text, txtUserId.Text)
-
-            MsgBox(url)
-            txtURL.Text = url
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 파트너의 잔여포인트를 확인합니다.
-    ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
-    ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetPartnerBalance
-    '=========================================================================
-    Private Sub btnGetPartnerBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerBalance.Click
-
-        Try
-            Dim remainPoint As Double = easyFinBankService.GetPartnerBalance(txtCorpNum.Text)
-
-            MsgBox("파트너 잔여포인트 : " + remainPoint.ToString())
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
-    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetPartnerURL
-    '=========================================================================
-    Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerURL.Click
-        Try
-            '파트너 포인트충전 URL
-            Dim TOGO As String = "CHRG"
-
-            Dim url As String = easyFinBankService.GetPartnerURL(txtCorpNum.Text, TOGO)
-
-            MsgBox(url)
-            txtURL.Text = url
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
@@ -264,147 +828,6 @@ Public Class frmExample
             txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
-    ' - https://docs.popbill.com/easyfinbank/dotnet/api#RegistContact
-    '=========================================================================
-    Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistContact.Click
-
-        '담당자 정보객체
-        Dim joinData As New Contact
-
-        '아이디 (6자이상 50자미만)
-        joinData.id = "testkorea1120"
-
-        '비밀번호, 8자 이상 20자 이하(영문, 숫자, 특수문자 조합)
-        joinData.Password = "asdf8536!@#"
-
-        '담당자 성명 (최대 100자)
-        joinData.personName = "담당자명"
-
-        '담당자 연락처 (최대 20자)
-        joinData.tel = "070-1111-2222"
-
-        '담당자 휴대폰 (최대 20자)
-        joinData.hp = "010-1234-1234"
-
-        '담당자 팩스 (최대 20자)
-        joinData.fax = "070-1234-1234"
-
-        '담당자 이메일 (최대 100자)
-        joinData.email = "test@test.com"
-
-        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
-        joinData.searchRole = 3
-
-        Try
-            Dim response As Response = easyFinBankService.RegistContact(txtCorpNum.Text, joinData, txtUserId.Text)
-
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보을 확인합니다.
-    ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetContactInfo
-    '=========================================================================
-    Private Sub btnGetContactInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetContactInfo.Click
-
-        '확인할 담당자 아이디
-        Dim contactID As String = "DONETVB_CONTACT"
-
-        Dim tmp As String = ""
-
-        Try
-            Dim contactInfo As Contact = easyFinBankService.GetContactInfo(txtCorpNum.Text, contactID, txtUserId.Text)
-
-            tmp += "id (담당자 아이디) : " + contactInfo.id + vbCrLf
-            tmp += "personName (담당자명) : " + contactInfo.personName + vbCrLf
-            tmp += "email (담당자 이메일) : " + contactInfo.email + vbCrLf
-            tmp += "hp (휴대폰번호) : " + contactInfo.hp + vbCrLf
-            tmp += "searchRole (담당자 권한) : " + contactInfo.searchRole.ToString() + vbCrLf
-            tmp += "tel (연락처) : " + contactInfo.tel + vbCrLf
-            tmp += "fax (팩스번호) : " + contactInfo.fax + vbCrLf
-            tmp += "mgrYN (관리자 여부) : " + contactInfo.mgrYN.ToString() + vbCrLf
-            tmp += "regDT (등록일시) : " + contactInfo.regDT + vbCrLf
-            tmp += "state (상태) : " + contactInfo.state + vbCrLf
-
-            tmp += vbCrLf
-
-            MsgBox(tmp)
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
-    ' - https://docs.popbill.com/easyfinbank/dotnet/api#ListContact
-    '=========================================================================
-    Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListContact.Click
-        Try
-            Dim contactList As List(Of Contact) = easyFinBankService.ListContact(txtCorpNum.Text, txtUserId.Text)
-
-            Dim tmp As String = "id(아이디) | personName(담당자명) | email(메일주소) | hp(휴대폰번호) | fax(팩스) | tel(연락처) |"
-            tmp += "regDT(등록일시) | searchRole(담당자 권한) | mgrYN(관리자 여부) | state(상태)" + vbCrLf
-
-            For Each info As Contact In contactList
-                tmp += info.id + " | " + info.personName + " | " + info.email + " | " + info.hp + " | " + info.fax + " | " + info.tel + " | "
-                tmp += info.regDT.ToString() + " | " + info.searchRole.ToString() + " | " + info.mgrYN.ToString() + " | " + info.state + vbCrLf
-            Next
-
-            MsgBox(tmp)
-        Catch ex As PopbillException
-
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
-    ' - https://docs.popbill.com/easyfinbank/dotnet/api#UpdateContact
-    '=========================================================================
-    Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateContact.Click
-
-        '담당자 정보객체
-        Dim joinData As New Contact
-
-        '아이디 (6자이상 50자미만)
-        joinData.id = "testkorea1120"
-
-        '담당자 성명 (최대 100자)
-        joinData.personName = "담당자명"
-
-        '담당자 연락처 (최대 20자)
-        joinData.tel = "070-1111-2222"
-
-        '담당자 휴대폰 (최대 20자)
-        joinData.hp = "010-1234-1234"
-
-        '담당자 팩스 (최대 20자)
-        joinData.fax = "070-1234-1234"
-
-        '담당자 이메일 (최대 100자)
-        joinData.email = "test@test.com"
-
-        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
-        joinData.searchRole = 3
-
-        Try
-            Dim response As Response = easyFinBankService.UpdateContact(txtCorpNum.Text, joinData, txtUserId.Text)
-
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -466,210 +889,34 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 계좌 거래내역을 확인하기 위해 팝빌에 수집요청을 합니다. (조회기간 단위 : 최대 1개월)
-    ' - 조회일로부터 최대 3개월 이전 내역까지 조회할 수 있습니다.
-    ' - 반환 받은 작업아이디는 함수 호출 시점부터 1시간 동안 유효합니다.
-    ' - https://docs.popbill.com/easyfinbank/dotnet/api#RequestJob
+    ' 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#RegistContact
     '=========================================================================
-    Private Sub btnRequestJob_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRequestJob.Click
+    Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistContact.Click
 
-        '기관코드
-        Dim BankCode As String = "0048"
+        '담당자 정보객체
+        Dim joinData As New Contact
 
-        '은행 계좌번호
-        Dim AccountNumber As String = "131020538645"
+        '아이디 (6자이상 50자미만)
+        joinData.id = "testkorea1120"
 
-        ' 시작일자, 표시형식(yyyyMMdd)
-        Dim SDate As String = "20210701"
+        '비밀번호, 8자 이상 20자 이하(영문, 숫자, 특수문자 조합)
+        joinData.Password = "asdf8536!@#"
 
-        ' 종료일자, 표시형식(yyyyMMdd)
-        Dim EDate As String = "20210730"
+        '담당자 성명 (최대 100자)
+        joinData.personName = "담당자명"
+
+        '담당자 연락처 (최대 20자)
+        joinData.tel = ""
+
+        '담당자 이메일 (최대 100자)
+        joinData.email = ""
+
+        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
+        joinData.searchRole = 3
 
         Try
-
-            Dim jobID As String = easyFinBankService.RequestJob(txtCorpNum.Text, BankCode, AccountNumber, SDate, EDate)
-
-            MsgBox("작업아이디(JobID) : " + jobID)
-
-            txtJobID.Text = jobID
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' RequestJob(수집 요청)를 통해 반환 받은 작업아이디의 상태를 확인합니다.
-    ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetJobState
-    '=========================================================================
-    Private Sub btnGetJobState_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetJobState.Click
-
-        Try
-            Dim JobState As EasyFinBankJobState = easyFinBankService.GetJobState(txtCorpNum.Text, txtJobID.Text)
-
-            Dim tmp As String = "jobID (작업아이디) : " + JobState.jobID + vbCrLf
-            tmp += "jobState (수집상태) : " + JobState.jobState.ToString() + vbCrLf
-            tmp += "startDate (시작일자) : " + JobState.startDate + vbCrLf
-            tmp += "endDate (종료일자) : " + JobState.endDate + vbCrLf
-            tmp += "errorCode (오류코드) : " + JobState.errorCode.ToString() + vbCrLf
-            tmp += "errorReason (오류메시지) : " + JobState.errorReason + vbCrLf
-            tmp += "jobStartDT (작업 시작일시) : " + JobState.jobStartDT + vbCrLf
-            tmp += "jobEndDT (작업 종료일시) : " + JobState.jobEndDT + vbCrLf
-            tmp += "regDT (수집 요청일시) : " + JobState.regDT + vbCrLf
-
-            MsgBox(tmp)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-
-    End Sub
-
-    '=========================================================================
-    ' RequestJob(수집 요청)를 통해 반환 받은 작업아이디의 목록을 확인합니다.
-    ' - 수집 요청 후 1시간이 경과한 수집 요청건은 상태정보가 반환되지 않습니다.
-    ' - https://docs.popbill.com/easyfinbank/dotnet/api#ListActiveJob
-    '=========================================================================
-    Private Sub btnListActiveJob_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListActiveJob.Click
-
-        Try
-            Dim jobList As List(Of EasyFinBankJobState) = easyFinBankService.ListACtiveJob(txtCorpNum.Text, txtUserId.Text)
-
-            Dim tmp As String = "jobID (작업아이디) | jobState (수집상태) | startDate (시작일자) | endDate (종료일자) | "
-            tmp += " errorCode (오류코드) | errorReason (오류메시지) |"
-            tmp += "jobStartDT (작업 시작일시) | jobEndDT (작업 종료일시) | regDT (수집 요청일시) " + vbCrLf
-
-            For Each info As EasyFinBankJobState In jobList
-                tmp += info.jobID + " | " + info.jobState.ToString + " | " + info.startDate + " | " + info.endDate + " | "
-                tmp += info.errorCode.ToString + " | " + info.errorReason + " | "
-                tmp += info.jobStartDT + " | " + info.jobEndDT + " | " + info.regDT + vbCrLf
-            Next
-
-            If (jobList.Count > 0) Then
-                txtJobID.Text = jobList.Item(0).jobID
-            End If
-
-            MsgBox(tmp)
-
-        Catch ex As PopbillException
-
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-
-    End Sub
-
-    '=========================================================================
-    ' GetJobState(수집 상태 확인)를 통해 상태 정보가 확인된 작업아이디를 활용하여 계좌 거래 내역을 조회합니다.
-    ' - https://docs.popbill.com/easyfinbank/dotnet/api#Search
-    '=========================================================================
-    Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
-
-        '거래유형 배열 I-입금, O-출금
-        Dim tradeType(2) As String
-        tradeType(0) = "I"
-        tradeType(1) = "O"
-
-        '조회 검색어, 조회 검색어, 입금/출금액, 메모, 적요 like 검색
-        Dim SearchString As String = ""
-
-        '페이지 번호
-        Dim Page As Integer = 1
-
-        '페이지당 검색개수, 최대 1000건
-        Dim PerPage As Integer = 10
-
-        '정렬 방향, D-내림차순, A-오름차순
-        Dim Order As String = "D"
-
-        Try
-            ListBox1.Items.Clear()
-
-            Dim searchList As EasyFinBankSearchResult = easyFinBankService.Search(txtCorpNum.Text, txtJobID.Text, tradeType, _
-                                                                              SearchString, Page, PerPage, Order, txtUserId.Text)
-
-            Dim tmp As String = "code (응답코드) : " + CStr(searchList.code) + vbCrLf
-            tmp += "message (응답메시지) : " + searchList.message + vbCrLf
-            tmp += "total (총 검색결과 건수) : " + CStr(searchList.total) + vbCrLf
-            tmp += "perPage (페이지당 검색개수) : " + CStr(searchList.perPage) + vbCrLf
-            tmp += "pageNum (페이지 번호) : " + CStr(searchList.pageNum) + vbCrLf
-            tmp += "pageCount (페이지 개수) : " + CStr(searchList.pageCount) + vbCrLf
-            tmp += "lastScrapDT (최종 조회일시) : " + CStr(searchList.lastScrapDT) + vbCrLf + vbCrLf
-
-            MsgBox(tmp)
-
-            Dim rowStr As String = "tid (거래내역 아이디) | trdate(거래일자) | trserial(거래일자별 일련번호) | trdt(거래일시) | accIn(입금액) | accOut(출금액) | "
-            rowStr += "balance(잔액) | remark1(비고1) | remark2(비고2) | remark3(비고3) | memo(메모)"
-
-            ListBox1.Items.Add(rowStr)
-
-            For Each tradeInfo As EasyFinBankSearchDetail In searchList.list
-                rowStr = tradeInfo.tid + " | "
-                rowStr += tradeInfo.trdate + " | "
-                rowStr += tradeInfo.trserial.ToString + " | "
-                rowStr += tradeInfo.trdt + " | "
-                rowStr += tradeInfo.accIn + " | "
-                rowStr += tradeInfo.accOut + " | "
-                rowStr += tradeInfo.balance + " | "
-                rowStr += tradeInfo.remark1 + " | "
-                rowStr += tradeInfo.remark2 + " | "
-                rowStr += tradeInfo.remark3 + " | "
-
-                rowStr += tradeInfo.memo
-
-                ListBox1.Items.Add(rowStr)
-            Next
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' GetJobState(수집 상태 확인)를 통해 상태 정보가 확인된 작업아이디를 활용하여 계좌 거래내역의 요약 정보를 조회합니다.
-    ' - https://docs.popbill.com/easyfinbank/dotnet/api#Summary
-    '=========================================================================
-    Private Sub btnSummary_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSummary.Click
-
-        '거래유형 배열 I-입금, O-출금
-        Dim tradeType(2) As String
-        tradeType(0) = "I"
-        tradeType(1) = "O"
-
-        '조회 검색어, 조회 검색어, 입금/출금액, 메모, 적요 like 검색
-        Dim SearchString As String = ""
-
-        Try
-
-            Dim summaryInfo As EasyFinBankSummary = easyFinBankService.Summary(txtCorpNum.Text, txtJobID.Text, tradeType, _
-                                                                              SearchString, txtUserId.Text)
-
-            Dim tmp As String = "count (수집결과 건수) : " + summaryInfo.count.ToString + vbCrLf
-            tmp += "cntAccIn (입금거래 건수) : " + summaryInfo.cntAccIn.ToString + vbCrLf
-            tmp += "cntAccOut (출금거래 건수) : " + summaryInfo.cntAccOut.ToString + vbCrLf
-            tmp += "totalAccIn (입금액 합계) : " + summaryInfo.totalAccIn.ToString + vbCrLf
-            tmp += "totalAccOut (출금액 합계) : " + summaryInfo.totalAccOut.ToString + vbCrLf
-
-            MsgBox(tmp)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 한 건의 거래 내역에 메모를 저장합니다.
-    ' - https://docs.popbill.com/easyfinbank/dotnet/api#SaveMemo
-    '=========================================================================
-    Private Sub btnSaveMemo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSaveMemo.Click
-
-        '거래내역 메모
-        Dim Memo As String = "20210701-테스트"
-
-        Try
-
-            Dim response As Response = easyFinBankService.SaveMemo(txtCorpNum.Text, txtTID.Text, Memo, txtUserId.Text)
+            Dim response As Response = easyFinBankService.RegistContact(txtCorpNum.Text, joinData, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
@@ -680,60 +927,53 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 계좌 등록, 수정 및 삭제할 수 있는 계좌 관리 팝업 URL을 반환합니다.
-    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetBankAccountMgtURL
+    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보을 확인합니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetContactInfo
     '=========================================================================
-    Private Sub btnBankAccountMgtURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBankAccountMgtURL.Click
-        Try
-            Dim url As String = easyFinBankService.GetBankAccountMgtURL(txtCorpNum.Text, txtUserId.Text)
+    Private Sub btnGetContactInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetContactInfo.Click
 
-            MsgBox(url)
-            txtURL.Text = url
+        '확인할 담당자 아이디
+        Dim contactID As String = "DONETVB_CONTACT"
+
+        Dim tmp As String = ""
+
+        Try
+            Dim contactInfo As Contact = easyFinBankService.GetContactInfo(txtCorpNum.Text, contactID, txtUserId.Text)
+
+            tmp += "id (담당자 아이디) : " + contactInfo.id + vbCrLf
+            tmp += "personName (담당자명) : " + contactInfo.personName + vbCrLf
+            tmp += "email (담당자 이메일) : " + contactInfo.email + vbCrLf
+            tmp += "searchRole (담당자 권한) : " + contactInfo.searchRole.ToString() + vbCrLf
+            tmp += "tel (연락처) : " + contactInfo.tel + vbCrLf
+            tmp += "mgrYN (관리자 여부) : " + contactInfo.mgrYN.ToString() + vbCrLf
+            tmp += "regDT (등록일시) : " + contactInfo.regDT + vbCrLf
+            tmp += "state (상태) : " + contactInfo.state + vbCrLf
+
+            tmp += vbCrLf
+
+            MsgBox(tmp)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
     '=========================================================================
-    ' 계좌조회 정액제 서비스 신청 페이지의 팝업 URL을 반환합니다.
-    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetFlatRatePopUpURL
+    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#ListContact
     '=========================================================================
-    Private Sub btnFlatRatePopUpURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnFlatRatePopUpURL.Click
+    Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListContact.Click
         Try
-            Dim url As String = easyFinBankService.GetFlatRatePopUpURL(txtCorpNum.Text, txtUserId.Text)
+            Dim contactList As List(Of Contact) = easyFinBankService.ListContact(txtCorpNum.Text, txtUserId.Text)
 
-            MsgBox(url)
-            txtURL.Text = url
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
+            Dim tmp As String = "id(아이디) | personName(담당자명) | email(메일주소) | tel(연락처) |"
+            tmp += "regDT(등록일시) | searchRole(담당자 권한) | mgrYN(관리자 여부) | state(상태)" + vbCrLf
 
-    '=========================================================================
-    ' 팝빌에 등록된 은행계좌 목록을 반환한다.
-    ' - https://docs.popbill.com/easyfinbank/dotnet/api#ListBankAccount
-    '=========================================================================
-    Private Sub btnListBankAccount_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListBankAccount.Click
-
-        Try
-            Dim bankAccountList As List(Of EasyFinBankAccount) = easyFinBankService.ListBankAccount(txtCorpNum.Text, txtUserId.Text)
-
-            Dim tmp As String = "bankCode (기관코드) | accountNumber (계좌번호) | accountName (계좌별칭) | accountType (계좌유형) | state (정액제 상태) |"
-            tmp += " regDT (등록일시)  | contractDT (정액제 서비스 시작일시) | useEndDate (정액제 서비스 종료일자) | baseDate (자동연장 결제일) |"
-            tmp += " contractState (정액제 서비스 상태) | closeRequestYN (정액제 해지신청 여부) | useRestrictYN (정액제 사용제한 여부) | closeOnExpired (정액제 만료시 해지여부) |"
-            tmp += " unPaidYN (미수금 보유 여부) | memo (메모) " + vbCrLf + vbCrLf
-
-            For Each info As EasyFinBankAccount In bankAccountList
-                tmp += info.bankCode + " | " + info.accountNumber + " | " + info.accountName + " | " + info.accountType + " | " + info.state.ToString + " | "
-                tmp += info.regDT + " | " + info.contractDT + " | " + info.useEndDate + " | " + info.baseDate.ToString + " | "
-                tmp += info.contractState.ToString + " | " + info.closeRequestYN.ToString + " | " + info.useRestrictYN.ToString + " | " + info.closeOnExpired.ToString + " | "
-                tmp += info.unPaidYN.ToString + " | " + info.memo + vbCrLf
+            For Each info As Contact In contactList
+                tmp += info.id + " | " + info.personName + " | " + info.email + " | " + info.tel + " | "
+                tmp += info.regDT.ToString() + " | " + info.searchRole.ToString() + " | " + info.mgrYN.ToString() + " | " + info.state + vbCrLf
             Next
 
             MsgBox(tmp)
-
         Catch ex As PopbillException
 
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
@@ -741,215 +981,31 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 계좌조회 정액제 서비스 상태를 확인합니다.
-    ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetFlatRateState
+    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
+    ' - https://docs.popbill.com/easyfinbank/dotnet/api#UpdateContact
     '=========================================================================
-    Private Sub btnGetFlatRateState_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFlatRateState.Click
+    Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateContact.Click
 
-        '기관코드
-        Dim BankCode As String = ""
+        '담당자 정보객체
+        Dim joinData As New Contact
 
-        '은행 계좌번호
-        Dim AccountNumber As String = ""
+        '아이디 (6자이상 50자미만)
+        joinData.id = "testkorea1120"
 
-        Try
-            Dim flatRateInfo As EasyFinBankFlatRate = easyFinBankService.GetFlatRateState(txtCorpNum.Text, BankCode, AccountNumber)
+        '담당자 성명 (최대 100자)
+        joinData.personName = "담당자명"
 
-            Dim tmp As String = "referencdeID (계좌아이디) : " + flatRateInfo.referenceID + vbCrLf
-            tmp += "contractDT (정액제 서비스 시작일시) : " + flatRateInfo.contractDT + vbCrLf
-            tmp += "useEndDate (정액제 서비스 종료일) : " + flatRateInfo.useEndDate + vbCrLf
-            tmp += "baseDate (자동연장 결제일) : " + CStr(flatRateInfo.baseDate) + vbCrLf
-            tmp += "state (정액제 서비스 상태) : " + CStr(flatRateInfo.state) + vbCrLf
-            tmp += "closeRequestYN (서비스 해지신청 여부) : " + CStr(flatRateInfo.closeRequestYN) + vbCrLf
-            tmp += "useRestrictYN (서비스 사용제한 여부) : " + CStr(flatRateInfo.useRestrictYN) + vbCrLf
-            tmp += "closeOnExpired (서비스만료시 해지여부 ) : " + CStr(flatRateInfo.closeOnExpired) + vbCrLf
-            tmp += "unPaidYN (미수금 보유 여부) : " + CStr(flatRateInfo.unPaidYN) + vbCrLf
+        '담당자 연락처 (최대 20자)
+        joinData.tel = ""
 
-            MsgBox(tmp)
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
+        '담당자 이메일 (최대 100자)
+        joinData.email = ""
 
-    Private Sub btnRegistBankAccount_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistBankAccount.Click
-
-        '=========================================================================
-        ' 계좌조회 서비스를 이용할 계좌를 팝빌에 등록합니다.
-        ' - https://docs.popbill.com/easyfinbank/dotnet/api#RegistBankAccount
-        '=========================================================================
-
-        Dim accountInfo As New EasyFinBankAccountForm
-
-        ' [필수] 기관코드
-        ' 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
-        ' SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
-        ' 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
-        accountInfo.BankCode = ""
-
-        ' [필수] 계좌번호, 하이픈('-') 제외
-        accountInfo.AccountNumber = ""
-
-        ' [필수] 계좌비밀번호
-        accountInfo.AccountPWD = ""
-
-        ' [필수] 계좌유형, "법인" 또는 "개인" 입력
-        accountInfo.AccountType = ""
-
-        ' [필수] 예금주 식별정보 (‘-‘ 제외)
-        ' 계좌유형이 “법인”인 경우 : 사업자번호(10자리)
-        ' 계좌유형이 “개인”인 경우 : 예금주 생년월일 (6자리-YYMMDD)
-        accountInfo.IdentityNumber = ""
-
-        ' 계좌 별칭
-        accountInfo.AccountName = ""
-
-        ' 인터넷뱅킹 아이디 (국민은행 필수)
-        accountInfo.BankID = ""
-
-        ' 조회전용 계정 아이디 (대구은행, 신협, 신한은행 필수)
-        accountInfo.FastID = ""
-
-        ' 조회전용 계정 비밀번호 (대구은행, 신협, 신한은행 필수)
-        accountInfo.FastPWD = ""
-
-        ' 결제기간(개월), 1~12 입력가능, 미기재시 기본값(1) 처리
-        ' - 파트너 과금방식의 경우 입력값에 관계없이 1개월 처리
-        accountInfo.UsePeriod = "1"
-
-        ' 메모
-        accountInfo.Memo = ""
-
+        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
+        joinData.searchRole = 3
 
         Try
-
-            Dim response As Response = easyFinBankService.RegistBankACcount(txtCorpNum.Text, accountInfo)
-
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-
-    End Sub
-
-    Private Sub btnUpdateBankAccount_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateBankAccount.Click
-
-        '=========================================================================
-        ' 팝빌에 등록된 계좌정보를 수정합니다.
-        ' - https://docs.popbill.com/easyfinbank/dotnet/api#UpdateBankAccount
-        '=========================================================================
-
-        Dim accountInfo As New EasyFinBankAccountForm
-
-        ' [필수] 기관코드
-        ' 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
-        ' SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
-        ' 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
-        accountInfo.BankCode = ""
-
-        ' [필수] 계좌번호, 하이픈('-') 제외
-        accountInfo.AccountNumber = ""
-
-        ' [필수] 계좌비밀번호
-        accountInfo.AccountPWD = ""
-
-        ' 계좌 별칭
-        accountInfo.AccountName = ""
-
-        ' 인터넷뱅킹 아이디 (국민은행 필수)
-        accountInfo.BankID = ""
-
-        ' 조회전용 계정 아이디 (대구은행, 신협, 신한은행 필수)
-        accountInfo.FastID = ""
-
-        ' 조회전용 계정 비밀번호 (대구은행, 신협, 신한은행 필수)
-        accountInfo.FastPWD = ""
-
-        ' 메모
-        accountInfo.Memo = ""
-
-
-        Try
-
-            Dim response As Response = easyFinBankService.UpdateBankAccount(txtCorpNum.Text, accountInfo)
-
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    Private Sub btnGetBankAccountInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetBankAccountInfo.Click
-
-        '=========================================================================
-        ' 팝빌에 등록된 계좌 정보를 확인합니다.
-        ' - https://docs.popbill.com/easyfinbank/dotnet/api#GetBankAccountInfo
-        '=========================================================================
-
-        ' [필수] 기관코드
-        ' 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
-        ' SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
-        ' 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
-        Dim BankCode = ""
-
-        ' [필수] 계좌번호, 하이픈('-') 제외
-        Dim AccountNumber = ""
-
-
-        Try
-            Dim bankAccountInfo As EasyFinBankAccount = easyFinBankService.GetBankAccountInfo(txtCorpNum.Text, BankCode, AccountNumber)
-
-            Dim tmp As String = "bankCode (기관코드) : " + bankAccountInfo.bankCode + vbCrLf
-            tmp += "accountNumber (계좌번호) : " + bankAccountInfo.accountNumber + vbCrLf
-            tmp += "accountName (계좌별칭) : " + bankAccountInfo.accountName + vbCrLf
-            tmp += "accountType (계좌유형) : " + bankAccountInfo.accountType + vbCrLf
-            tmp += "state (정액제 상태) : " + bankAccountInfo.state.ToString + vbCrLf
-            tmp += "regDT (등록일시) : " + bankAccountInfo.regDT + vbCrLf
-            tmp += "contractDT (정액제 서비스 시작일시) : " + bankAccountInfo.contractDT + vbCrLf
-            tmp += "baseDate (자동연장 결제일) : " + bankAccountInfo.baseDate.ToString + vbCrLf
-            tmp += "useEndDate (정액제 서비스 종료일자) : " + bankAccountInfo.useEndDate + vbCrLf
-            tmp += "contractState (정액제 서비스 상태) : " + bankAccountInfo.contractState.ToString + vbCrLf
-            tmp += "closeRequestYN (정액제 해지신청 여부) : " + bankAccountInfo.closeRequestYN.ToString + vbCrLf
-            tmp += "useRestrictYN (정액제 사용제한 여부) : " + bankAccountInfo.useRestrictYN.ToString + vbCrLf
-            tmp += "closeOnExpired (정액제 만료시 해지여부) : " + bankAccountInfo.closeOnExpired.ToString + vbCrLf
-            tmp += "unPaiedYN (미수금 보유 여부) : " + bankAccountInfo.unPaidYN.ToString + vbCrLf
-            tmp += "memo (메모) : " + bankAccountInfo.memo
-
-            MsgBox(tmp)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
-        End Try
-        '
-
-    End Sub
-
-    Private Sub btnCloseBankAccount_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCloseBankAccount.Click
-
-        '=========================================================================
-        ' 계좌의 정액제 해지를 요청합니다.
-        ' - https://docs.popbill.com/easyfinbank/dotnet/api#CloseBankAccount
-        '=========================================================================
-
-        ' [필수] 기관코드
-        ' 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
-        ' SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
-        ' 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
-        Dim BankCode = ""
-
-        ' [필수] 계좌번호, 하이픈('-') 제외
-        Dim AccountNumber = ""
-
-        ' [필수] 해지유형, “일반”, “중도” 중 선택 기재
-        ' 일반해지 – 이용중인 정액제 사용기간까지 이용후 정지
-        ' 중도해지 – 요청일 기준으로 정지, 정액제 잔여기간은 일할로 계산되어 포인트 환불 (무료 이용기간 중 중도해지 시 전액 환불)
-        Dim CloseType = "중도"
-
-
-        Try
-            Dim response As Response = easyFinBankService.CloseBankAccount(txtCorpNum.Text, BankCode, AccountNumber, CloseType)
+            Dim response As Response = easyFinBankService.UpdateContact(txtCorpNum.Text, joinData, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
@@ -959,61 +1015,5 @@ Public Class frmExample
         End Try
     End Sub
 
-    Private Sub btnRevokeCloseBankAccount_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRevokeCloseBankAccount.Click
 
-        '=========================================================================
-        ' 신청한 정액제 해지요청을 취소합니다.
-        ' - https://docs.popbill.com/easyfinbank/dotnet/api#RevokeCloseBankAccount
-        '=========================================================================
-
-        ' [필수] 기관코드
-        ' 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
-        ' SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
-        ' 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
-        Dim BankCode = ""
-
-        ' [필수] 계좌번호, 하이픈('-') 제외
-        Dim AccountNumber = ""
-
-        Try
-            Dim response As Response = easyFinBankService.RevokeCloseBankAccount(txtCorpNum.Text, BankCode, AccountNumber)
-
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
-        End Try
-
-
-    End Sub
-
-    Private Sub btnDeleteBankAccount_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteBankAccount.Click
-
-        '=========================================================================
-        ' 등록된 계좌를 삭제합니다.
-        ' - 정액제가 아닌 종량제 이용 시에만 등록된 계좌를 삭제할 수 있습니다.
-        ' - https://docs.popbill.com/easyfinbank/dotnet/api#DeleteBankAccount
-        '=========================================================================
-
-        ' [필수] 기관코드
-        ' 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
-        ' SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
-        ' 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
-        Dim BankCode = ""
-
-        ' [필수] 계좌번호, 하이픈('-') 제외
-        Dim AccountNumber = ""
-
-        Try
-            Dim response As Response = easyFinBankService.DeleteBankAccount(txtCorpNum.Text, BankCode, AccountNumber, txtUserId.Text)
-
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
-        End Try
-
-    End Sub
 End Class

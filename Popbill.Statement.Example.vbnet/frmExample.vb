@@ -2,8 +2,8 @@
 '
 ' 팝빌 전자명세서 API VB.NET SDK Example
 '
-' - VB.NET SDK 연동환경 설정방법 안내 : https://docs.popbill.com/statement/tutorial/dotnet#vb
-' - 업데이트 일자 : 2021-08-05
+' - VB.NET SDK 연동환경 설정방법 안내 : https://docs.popbill.com/statement/tutorial/dotnet_vb
+' - 업데이트 일자 : 2022-05-13
 ' - 연동 기술지원 연락처 : 1600-9854
 ' - 연동 기술지원 이메일 : code@linkhubcorp.com
 '
@@ -32,16 +32,16 @@ Public Class frmExample
         '전자명세서 서비스 객체 초기화
         statementService = New StatementService(LinkID, SecretKey)
 
-        '연동환경 설정값 (True-개발용, False-상업용)
+        '연동환경 설정값, True-개발용, False-상업용
         statementService.IsTest = True
 
-        '인증토큰의 IP제한기능 사용여부, (True-권장)
+        '인증토큰 발급 IP 제한 On/Off, True-사용, False-미사용, 기본값(True)
         statementService.IPRestrictOnOff = True
 
-        '팝빌 API 서비스 고정 IP 사용여부, True-사용, False-미사용(기본값)
+        '팝빌 API 서비스 고정 IP 사용여부, True-사용, False-미사용, 기본값(False)
         statementService.UseStaticIP = False
 
-        '로컬PC 시간 사용 여부 True(사용), False(기본값) - 미사용
+        '로컬시스템 시간 사용여부, True-사용, False-미사용, 기본값(False)
         statementService.UseLocalTimeYN = False
 
     End Sub
@@ -70,7 +70,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 파트너가 전자명세서 관리 목적으로 할당하는 문서번호의 사용여부를 확인합니다.
-    ' - 최대 24자, 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
+    ' - 이미 사용 중인 문서번호는 중복 사용이 불가하고, 전자명세서가 삭제된 경우에만 문서번호의 재사용이 가능합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#CheckMgtKeyInUse
     '=========================================================================
     Private Sub btnCheckMgtKeyInUse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckMgtKeyInUse.Click
@@ -93,22 +93,22 @@ Public Class frmExample
     Private Sub btnRegistIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistIssue.Click
         Dim statement As New Statement
 
-        '[필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
-        statement.writeDate = "20210701"
+        '기재상 작성일자, 날짜형식(yyyyMMdd)
+        statement.writeDate = "20220513"
 
-        '[필수] {영수, 청구} 중 기재
+        '{영수, 청구, 없음} 중 기재
         statement.purposeType = "영수"
 
-        '[필수] 과세형태, {과세, 영세, 면세} 중 기재
+        '과세형태, {과세, 영세, 면세} 중 기재
         statement.taxType = "과세"
 
         '맞춤양식코드, 공백처리시 기본양식으로 작성
         statement.formCode = txtFormCode.Text
 
-        '[필수] 전자명세서 종류코드
+        '전자명세서 종류코드
         statement.itemCode = selectedItemCode()
 
-        '[필수] 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        '문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
         statement.mgtKey = txtMgtKey.Text
 
 
@@ -141,13 +141,13 @@ Public Class frmExample
         statement.senderContactName = "발신자 담당자명"
 
         '발신자 이메일
-        statement.senderEmail = "test@test.com"
+        statement.senderEmail = ""
 
         '발신자 연락처
-        statement.senderTEL = "070-7070-0707"
+        statement.senderTEL = ""
 
         '발신자 휴대전화 번호
-        statement.senderHP = "010-000-2222"
+        statement.senderHP = ""
 
 
         '=========================================================================
@@ -176,27 +176,27 @@ Public Class frmExample
         statement.receiverContactName = "수신자 담당자명"
 
         '수신자 담당자 휴대폰번호
-        statement.receiverHP = "010-1111-2222"
+        statement.receiverHP = ""
 
         '수신자 담당자 연락처
-        statement.receiverTEL = "070-1234-1234"
+        statement.receiverTEL = ""
 
         '수신자 메일주소
         '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
         '실제 거래처의 메일주소가 기재되지 않도록 주의
-        statement.receiverEmail = "test@test.com"
+        statement.receiverEmail = ""
 
         '=========================================================================
         '                     전자명세서 기재사항
         '=========================================================================
 
-        '[필수] 공급가액 합계
+        '공급가액 합계
         statement.supplyCostTotal = "100000"
 
-        '[필수] 세액 합계
+        '세액 합계
         statement.taxTotal = "10000"
 
-        '[필수] 합계금액, 공급가액 합계 + 세액 합계
+        '합계금액, 공급가액 합계 + 세액 합계
         statement.totalAmount = "110000"
 
         '기재 상 일련번호 항목
@@ -207,13 +207,18 @@ Public Class frmExample
         statement.remark2 = "비고2"
         statement.remark3 = "비고3"
 
-        '발행 안내문자 발송여부
+        ' 문자 자동전송 여부 (true / false 중 택 1)
+        ' └ true = 전송 , false = 미전송(기본값)
         statement.smssendYN = False
 
-        '사업자등록증 이미지 첨부여부
+        ' 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
+        ' └ true = 첨부 , false = 미첨부(기본값)
+        ' - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.businessLicenseYN = False
 
-        '통장사본 이미지 첨부여부
+        ' 통장사본 이미지 첨부여부 (true / false 중 택 1)
+        ' └ true = 첨부 , false = 미첨부(기본값)
+        ' - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.bankBookYN = False
 
 
@@ -222,7 +227,7 @@ Public Class frmExample
         Dim newDetail As StatementDetail = New StatementDetail
 
         newDetail.serialNum = 1             '일련번호 1부터 순차 기재
-        newDetail.purchaseDT = "20210701"   '거래일자  yyyyMMdd
+        newDetail.purchaseDT = "20220513"   '거래일자  yyyyMMdd
         newDetail.itemName = "품명"         '품목명
         newDetail.spec = "규격"             '규격
         newDetail.unit = "단위"             '단위
@@ -242,7 +247,7 @@ Public Class frmExample
         newDetail = New StatementDetail
 
         newDetail.serialNum = 2             '일련번호 1부터 순차 기재
-        newDetail.purchaseDT = "20210701"   '거래일자  yyyyMMdd
+        newDetail.purchaseDT = "20220513"   '거래일자  yyyyMMdd
         newDetail.itemName = "품명"         '품목명
         newDetail.spec = "규격"             '규격
 
@@ -250,7 +255,8 @@ Public Class frmExample
         '=========================================================================
         ' 전자명세서 추가속성
         ' - 추가속성에 관한 자세한 사항은 "[전자명세서 API 연동매뉴얼] >
-        '   5.2. 기본양식 추가속성 테이블"을 참조하시기 바랍니다.
+        '   기본양식 추가속성 테이블"을 참조하시기 바랍니다.
+        ' [https://docs.popbill.com/statement/propertyBag?lang=dotnet]
         '=========================================================================
         statement.propertyBag = New Dictionary(Of String, String)
 
@@ -281,22 +287,22 @@ Public Class frmExample
     Private Sub btnRegister_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegister.Click
         Dim statement As New Statement
 
-        '[필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
-        statement.writeDate = "20210701"
+        '기재상 작성일자, 날짜형식(yyyyMMdd)
+        statement.writeDate = "20220513"
 
-        '[필수] {영수, 청구} 중 기재
+        '{영수, 청구} 중 기재
         statement.purposeType = "영수"
 
-        '[필수] 과세형태, {과세, 영세, 면세} 중 기재
+        '과세형태, {과세, 영세, 면세} 중 기재
         statement.taxType = "과세"
 
         '맞춤양식코드, 공백처리시 기본양식으로 작성
         statement.formCode = txtFormCode.Text
 
-        '[필수] 전자명세서 종류코드
+        '전자명세서 종류코드
         statement.itemCode = selectedItemCode()
 
-        '[필수] 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        '문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
         statement.mgtKey = txtMgtKey.Text
 
 
@@ -329,13 +335,13 @@ Public Class frmExample
         statement.senderContactName = "발신자 담당자명"
 
         '발신자 이메일
-        statement.senderEmail = "test@test.com"
+        statement.senderEmail = ""
 
         '발신자 연락처
-        statement.senderTEL = "070-7070-0707"
+        statement.senderTEL = ""
 
         '발신자 휴대전화 번호
-        statement.senderHP = "010-000-2222"
+        statement.senderHP = ""
 
 
         '=========================================================================
@@ -364,27 +370,27 @@ Public Class frmExample
         statement.receiverContactName = "수신자 담당자명"
 
         '수신자 담당자 휴대폰번호
-        statement.receiverHP = "010-1111-2222"
+        statement.receiverHP = ""
 
         '수신자 담당자 연락처
-        statement.receiverTEL = "070-1234-1234"
+        statement.receiverTEL = ""
 
         '수신자 메일주소
         '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
         '실제 거래처의 메일주소가 기재되지 않도록 주의
-        statement.receiverEmail = "test@receiver.com"
+        statement.receiverEmail = ""
 
         '=========================================================================
         '                     전자명세서 기재사항
         '=========================================================================
 
-        '[필수] 공급가액 합계
+        '공급가액 합계
         statement.supplyCostTotal = "100000"
 
-        '[필수] 세액 합계
+        '세액 합계
         statement.taxTotal = "10000"
 
-        '[필수] 합계금액, 공급가액 합계 + 세액 합계
+        '합계금액, 공급가액 합계 + 세액 합계
         statement.totalAmount = "110000"             '필수 합계금액.  공급가액 + 세액
 
         '기재 상 일련번호 항목
@@ -395,13 +401,18 @@ Public Class frmExample
         statement.remark2 = "비고2"
         statement.remark3 = "비고3"
 
-        '발행 안내문자 발송여부
+        ' 문자 자동전송 여부 (true / false 중 택 1)
+        ' └ true = 전송 , false = 미전송(기본값)
         statement.smssendYN = False
 
-        '사업자등록증 이미지 첨부여부
+        ' 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
+        ' └ true = 첨부 , false = 미첨부(기본값)
+        ' - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.businessLicenseYN = False
 
-        '통장사본 이미지 첨부여부
+        ' 통장사본 이미지 첨부여부 (true / false 중 택 1)
+        ' └ true = 첨부 , false = 미첨부(기본값)
+        ' - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.bankBookYN = False
 
 
@@ -410,7 +421,7 @@ Public Class frmExample
         Dim newDetail As StatementDetail = New StatementDetail
 
         newDetail.serialNum = 1             '일련번호 1부터 순차 기재
-        newDetail.purchaseDT = "20210701"   '거래일자  yyyyMMdd
+        newDetail.purchaseDT = "20220513"   '거래일자  yyyyMMdd
         newDetail.itemName = "품명"         '품목명
         newDetail.spec = "규격"             '규격
         newDetail.unit = "단위"             '단위
@@ -430,7 +441,7 @@ Public Class frmExample
         newDetail = New StatementDetail
 
         newDetail.serialNum = 2             '일련번호 1부터 순차 기재
-        newDetail.purchaseDT = "20210701"   '거래일자  yyyyMMdd
+        newDetail.purchaseDT = "20220513"   '거래일자  yyyyMMdd
         newDetail.itemName = "품명"         '품목명
         newDetail.spec = "규격"             '규격
 
@@ -438,7 +449,8 @@ Public Class frmExample
         '=========================================================================
         ' 전자명세서 추가속성
         ' - 추가속성에 관한 자세한 사항은 "[전자명세서 API 연동매뉴얼] >
-        '   5.2. 기본양식 추가속성 테이블"을 참조하시기 바랍니다.
+        '   기본양식 추가속성 테이블"을 참조하시기 바랍니다.
+        ' [https://docs.popbill.com/statement/propertyBag?lang=dotnet]
         '=========================================================================
         statement.propertyBag = New Dictionary(Of String, String)
 
@@ -463,22 +475,22 @@ Public Class frmExample
 
         Dim statement As New Statement
 
-        '[필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
-        statement.writeDate = "20210701"
+        '기재상 작성일자, 날짜형식(yyyyMMdd)
+        statement.writeDate = "20220513"
 
-        '[필수] {영수, 청구} 중 기재
+        '{영수, 청구, 없음} 중 기재
         statement.purposeType = "영수"
 
-        '[필수] 과세형태, {과세, 영세, 면세} 중 기재
+        '과세형태, {과세, 영세, 면세} 중 기재
         statement.taxType = "과세"
 
         '맞춤양식코드, 공백처리시 기본양식으로 작성
         statement.formCode = txtFormCode.Text
 
-        '[필수] 전자명세서 종류코드
+        '전자명세서 종류코드
         statement.itemCode = selectedItemCode()
 
-        '[필수] 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        '문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
         statement.mgtKey = txtMgtKey.Text
 
 
@@ -511,13 +523,13 @@ Public Class frmExample
         statement.senderContactName = "발신자 담당자명"
 
         '발신자 이메일
-        statement.senderEmail = "test@test.com"
+        statement.senderEmail = ""
 
         '발신자 연락처
-        statement.senderTEL = "070-7070-0707"
+        statement.senderTEL = ""
 
         '발신자 휴대전화 번호
-        statement.senderHP = "010-000-2222"
+        statement.senderHP = ""
 
 
         '=========================================================================
@@ -546,27 +558,27 @@ Public Class frmExample
         statement.receiverContactName = "수신자 담당자명"
 
         '수신자 담당자 휴대폰번호
-        statement.receiverHP = "010-1111-2222"
+        statement.receiverHP = ""
 
         '수신자 담당자 연락처
-        statement.receiverTEL = "070-1234-1234"
+        statement.receiverTEL = ""
 
         '수신자 메일주소
         '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
         '실제 거래처의 메일주소가 기재되지 않도록 주의
-        statement.receiverEmail = "test@receiver.com"
+        statement.receiverEmail = ""
 
         '=========================================================================
         '                     전자명세서 기재사항
         '=========================================================================
 
-        '[필수] 공급가액 합계
+        '공급가액 합계
         statement.supplyCostTotal = "100000"
 
-        '[필수] 세액 합계
+        '세액 합계
         statement.taxTotal = "10000"
 
-        '[필수] 합계금액, 공급가액 합계 + 세액 합계
+        '합계금액, 공급가액 합계 + 세액 합계
         statement.totalAmount = "110000"             '필수 합계금액.  공급가액 + 세액
 
         '기재 상 일련번호 항목
@@ -577,13 +589,18 @@ Public Class frmExample
         statement.remark2 = "비고2"
         statement.remark3 = "비고3"
 
-        '발행 안내문자 발송여부
+        ' 문자 자동전송 여부 (true / false 중 택 1)
+        ' └ true = 전송 , false = 미전송(기본값)
         statement.smssendYN = False
 
-        '사업자등록증 이미지 첨부여부
+        ' 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
+        ' └ true = 첨부 , false = 미첨부(기본값)
+        ' - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.businessLicenseYN = False
 
-        '통장사본 이미지 첨부여부
+        ' 통장사본 이미지 첨부여부 (true / false 중 택 1)
+        ' └ true = 첨부 , false = 미첨부(기본값)
+        ' - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.bankBookYN = False
 
 
@@ -592,7 +609,7 @@ Public Class frmExample
         Dim newDetail As StatementDetail = New StatementDetail
 
         newDetail.serialNum = 1             '일련번호 1부터 순차 기재
-        newDetail.purchaseDT = "20210701"   '거래일자  yyyyMMdd
+        newDetail.purchaseDT = "20220513"   '거래일자  yyyyMMdd
         newDetail.itemName = "품명"         '품목명
         newDetail.spec = "규격"             '규격
         newDetail.unit = "단위"             '단위
@@ -612,7 +629,7 @@ Public Class frmExample
         newDetail = New StatementDetail
 
         newDetail.serialNum = 2             '일련번호 1부터 순차 기재
-        newDetail.purchaseDT = "20210701"   '거래일자  yyyyMMdd
+        newDetail.purchaseDT = "20220513"   '거래일자  yyyyMMdd
         newDetail.itemName = "품명"         '품목명
         newDetail.spec = "규격"             '규격
 
@@ -620,7 +637,8 @@ Public Class frmExample
         '=========================================================================
         ' 전자명세서 추가속성
         ' - 추가속성에 관한 자세한 사항은 "[전자명세서 API 연동매뉴얼] >
-        '   5.2. 기본양식 추가속성 테이블"을 참조하시기 바랍니다.
+        '   기본양식 추가속성 테이블"을 참조하시기 바랍니다.
+        ' [https://docs.popbill.com/statement/propertyBag?lang=dotnet]
         '=========================================================================
         statement.propertyBag = New Dictionary(Of String, String)
 
@@ -737,10 +755,11 @@ Public Class frmExample
 
             Dim tmp As String = ""
 
+            tmp = tmp + "itemCode (명세서 코드) : " + CStr(docInfo.itemCode) + vbCrLf
             tmp = tmp + "itemKey (팝빌번호) : " + docInfo.itemKey + vbCrLf
-            tmp = tmp + "invoiceNum (문서고유번호) : " + docInfo.invoiceNum + vbCrLf
+            tmp = tmp + "invoiceNum (팝빌 승인번호) : " + docInfo.invoiceNum + vbCrLf
             tmp = tmp + "mgtKey (문서번호) : " + docInfo.mgtKey + vbCrLf
-            tmp = tmp + "taxType (세금형태) : " + docInfo.taxType + vbCrLf
+            tmp = tmp + "taxType (과세형태) : " + docInfo.taxType + vbCrLf
             tmp = tmp + "writeDate (작성일자) : " + docInfo.writeDate + vbCrLf
             tmp = tmp + "regDT (임시저장일시) : " + docInfo.regDT + vbCrLf
             tmp = tmp + "senderCorpName (발신자 상호) : " + docInfo.senderCorpName + vbCrLf
@@ -775,8 +794,8 @@ Public Class frmExample
         Dim MgtKeyList As List(Of String) = New List(Of String)
 
         '문서번호 배열, 최대 1000건
-        MgtKeyList.Add("20210701-01")
-        MgtKeyList.Add("20210701-02")
+        MgtKeyList.Add("20220513-001")
+        MgtKeyList.Add("20220513-002")
 
         Try
             Dim statementInfoList As List(Of StatementInfo) = statementService.GetInfos(txtCorpNum.Text, selectedItemCode, MgtKeyList)
@@ -784,10 +803,11 @@ Public Class frmExample
             Dim tmp As String = ""
 
             For Each docInfo As StatementInfo In statementInfoList
+                tmp = tmp + "itemCode (명세서 코드) : " + CStr(docInfo.itemCode) + vbCrLf
                 tmp = tmp + "itemKey (팝빌번호) : " + docInfo.itemKey + vbCrLf
-                tmp = tmp + "invoiceNum (문서고유번호) : " + docInfo.invoiceNum + vbCrLf
+                tmp = tmp + "invoiceNum (팝빌 승인번호) : " + docInfo.invoiceNum + vbCrLf
                 tmp = tmp + "mgtKey (문서번호) : " + docInfo.mgtKey + vbCrLf
-                tmp = tmp + "taxType (세금형태) : " + docInfo.taxType + vbCrLf
+                tmp = tmp + "taxType (과세형태) : " + docInfo.taxType + vbCrLf
                 tmp = tmp + "writeDate (작성일자) : " + docInfo.writeDate + vbCrLf
                 tmp = tmp + "regDT (임시저장일시) : " + docInfo.regDT + vbCrLf
                 tmp = tmp + "senderCorpName (발신자 상호) : " + docInfo.senderCorpName + vbCrLf
@@ -827,10 +847,10 @@ Public Class frmExample
 
             tmp = tmp + "itemCode(문서종류코드) : " + CStr(docDetailInfo.itemCode) + vbCrLf
             tmp = tmp + "mgtKey(문서번호) : " + docDetailInfo.mgtKey + vbCrLf
-            tmp = tmp + "invoiceNum(문서고유번호) : " + docDetailInfo.invoiceNum + vbCrLf
+            tmp = tmp + "invoiceNum(팝빌 승인번호) : " + docDetailInfo.invoiceNum + vbCrLf
             tmp = tmp + "formCode(맞춤양식 코드) : " + docDetailInfo.formCode + vbCrLf
             tmp = tmp + "writeDate(작성일자) : " + docDetailInfo.writeDate + vbCrLf
-            tmp = tmp + "taxType(세금형태) : " + docDetailInfo.taxType + vbCrLf
+            tmp = tmp + "taxType(과세형태) : " + docDetailInfo.taxType + vbCrLf
             tmp = tmp + "purposeType(영수/청구) : " + docDetailInfo.purposeType + vbCrLf
             tmp = tmp + "serialNum(일련번호) : " + docDetailInfo.serialNum + vbCrLf
             tmp = tmp + "taxTotal(세액 합계) : " + docDetailInfo.taxTotal + vbCrLf
@@ -898,17 +918,18 @@ Public Class frmExample
         Dim State(3) As String
         Dim ItemCode(6) As Integer
 
-        '[필수] 일자유형, R-등록일시 W-작성일자 I-발행일시 중 택1
+        ' 일자 유형 ("R" , "W" , "I" 중 택 1)
+        ' └ R = 등록일자 , W = 작성일자 , I = 발행일자
         Dim DType As String = "W"
 
-        '[필수] 시작일자, yyyyMMdd
-        Dim SDate As String = "20210701"
+        '시작일자, yyyyMMdd
+        Dim SDate As String = "20220513"
 
-        '[필수] 종료일자, yyyyMMdd
-        Dim EDate As String = "20210730"
+        '종료일자, yyyyMMdd
+        Dim EDate As String = "20220513"
 
-        '전송상태값 배열, 미기재시 전체상태조회, 문서상태값 3자리숫자 작성
-        '2,3번째 와일드카드 가능
+        ' 전자명세서 상태코드 배열 (2,3번째 자리에 와일드카드(*) 사용 가능)
+        ' - 미입력시 전체조회
         State(0) = "2**"
         State(1) = "3**"
 
@@ -920,7 +941,8 @@ Public Class frmExample
         ItemCode(4) = 125
         ItemCode(5) = 126
 
-        '거래처 정보조회, 거래처 상호 또는 거래처 사업자등록번호 기재, 미기재시 전체조회
+        ' 통합검색어, 거래처 상호명 또는 거래처 사업자번호로 조회
+        ' - 미입력시 전체조회
         Dim QString = ""
 
         '정렬방향, D-내림차순(기본값), A-오름차순
@@ -938,34 +960,37 @@ Public Class frmExample
             Dim tmp As String
 
             tmp = "code (응답코드) : " + stmtSearchList.code.ToString + vbCrLf
+            tmp = tmp + "message (응답메시지) : " + stmtSearchList.message + vbCrLf + vbCrLf
             tmp = tmp + "total (총 검색결과 건수) : " + stmtSearchList.total.ToString + vbCrLf
             tmp = tmp + "perPage (페이지당 검색개수) : " + stmtSearchList.perPage.ToString + vbCrLf
             tmp = tmp + "pageNum (페이지 번호) : " + stmtSearchList.pageNum.ToString + vbCrLf
             tmp = tmp + "pageCount (페이지 개수) : " + stmtSearchList.pageCount.ToString + vbCrLf
-            tmp = tmp + "message (응답메시지) : " + stmtSearchList.message + vbCrLf + vbCrLf
 
             Dim docInfo As StatementInfo
 
             For Each docInfo In stmtSearchList.list
+                tmp = tmp + "itemCode (명세서 코드) : " + CStr(docInfo.itemCode) + vbCrLf
                 tmp = tmp + "itemKey (팝빌번호) : " + docInfo.itemKey + vbCrLf
-                tmp = tmp + "stateCode (상태코드) : " + docInfo.stateCode.ToString + vbCrLf
-                tmp = tmp + "taxType (세금형태) : " + docInfo.taxType + vbCrLf
-                tmp = tmp + "purposeType (영수/청구) : " + docInfo.purposeType + vbCrLf
+                tmp = tmp + "invoiceNum (팝빌 승인번호) : " + docInfo.invoiceNum + vbCrLf
+                tmp = tmp + "mgtKey (문서번호) : " + docInfo.mgtKey + vbCrLf
+                tmp = tmp + "taxType (과세형태) : " + docInfo.taxType + vbCrLf
                 tmp = tmp + "writeDate (작성일자) : " + docInfo.writeDate + vbCrLf
-                tmp = tmp + "senderCorpName (발신자상호) : " + docInfo.senderCorpName + vbCrLf
-                tmp = tmp + "senderCorpNum (발신자 사업자번호) : " + docInfo.senderCorpNum + vbCrLf
-                tmp = tmp + "senderPrintYN (발신자 인쇄여부) : " + docInfo.senderPrintYN.ToString + vbCrLf
-                tmp = tmp + "receiverCorpName (수신자상호) : " + docInfo.receiverCorpName + vbCrLf
-                tmp = tmp + "receiverCorpNum (수신자 사업자번호) : " + docInfo.receiverCorpNum + vbCrLf
-                tmp = tmp + "receiverPrintYN (수신자 인쇄여부) : " + docInfo.receiverPrintYN.ToString + vbCrLf
-                tmp = tmp + "supplyCostTotal (공급가액) : " + docInfo.supplyCostTotal + vbCrLf
-                tmp = tmp + "taxTotal (세액) : " + docInfo.taxTotal + vbCrLf
+                tmp = tmp + "regDT (임시저장일시) : " + docInfo.regDT + vbCrLf
+                tmp = tmp + "senderCorpName (발신자 상호) : " + docInfo.senderCorpName + vbCrLf
+                tmp = tmp + "senderCorpNum (발신자 사업자등록번호) : " + docInfo.senderCorpNum + vbCrLf
+                tmp = tmp + "senderPrintYN (발신자 인쇄여부) : " + CStr(docInfo.senderPrintYN) + vbCrLf
+                tmp = tmp + "receiverCorpName (수신자 상호): " + docInfo.receiverCorpName + vbCrLf
+                tmp = tmp + "receiverCorpNum (수신자 사업자등록번호) : " + docInfo.receiverCorpNum + vbCrLf
+                tmp = tmp + "receiverPrintYN (수신자 인쇄여부) : " + CStr(docInfo.receiverPrintYN) + vbCrLf
+                tmp = tmp + "supplyCostTotal (공급가액 합계) : " + docInfo.supplyCostTotal + vbCrLf
+                tmp = tmp + "taxTotal (세액 합계) : " + docInfo.taxTotal + vbCrLf
+                tmp = tmp + "purposeType (영수/청구) : " + docInfo.purposeType + vbCrLf
                 tmp = tmp + "issueDT (발행일시) : " + docInfo.issueDT + vbCrLf
-                tmp = tmp + "stateDT (상태일시) : " + docInfo.stateDT + vbCrLf
-                tmp = tmp + "openYN (개봉여부) : " + docInfo.openYN.ToString + vbCrLf
-                tmp = tmp + "openDT (개봉일시) : " + docInfo.openDT + vbCrLf
+                tmp = tmp + "stateCode (상태코드) : " + CStr(docInfo.stateCode) + vbCrLf
+                tmp = tmp + "stateDT (상태 변경일시) : " + docInfo.stateDT + vbCrLf
                 tmp = tmp + "stateMemo (상태메모) : " + docInfo.stateMemo + vbCrLf
-                tmp = tmp + "regDT (임시저장일시) : " + docInfo.regDT + vbCrLf + vbCrLf
+                tmp = tmp + "openYN (개봉 여부) : " + CStr(docInfo.openYN) + vbCrLf
+                tmp = tmp + "openDT (개봉 일시) : " + docInfo.openDT + vbCrLf
             Next
 
             MsgBox(tmp)
@@ -1032,7 +1057,7 @@ Public Class frmExample
 
 
     '=========================================================================
-    ' 팝빌 사이트와 동일한 전자명세서 1건의 상세 정보 페이지의 팝업 URL을 반환합니다.
+    ' 전자명세서 1건의 상세 정보 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetPopUpURL
     '=========================================================================
@@ -1049,8 +1074,26 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
+    ' 전자명세서 1건의 상세 정보 페이지(사이트 상단, 좌측 메뉴 및 버튼 제외)의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#GetViewURL
+    '=========================================================================
+    Private Sub btnGetViewURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetViewURL.Click
+
+        Try
+            Dim url As String = statementService.GetViewURL(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, txtUserId.Text)
+
+            MsgBox(url)
+            txtURL.Text = url
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
     ' 전자명세서 1건을 인쇄하기 위한 페이지의 팝업 URL을 반환하며, 페이지내에서 인쇄 설정값을 "공급자" / "공급받는자" / "공급자+공급받는자"용 중 하나로 지정할 수 있습니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    ' - 전자명세서의 공급자는 "발신자", 공급받는자는 "수신자"를 나타내는 용어입니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetPrintURL
     '=========================================================================
     Private Sub btnGetPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPrintURL.Click
@@ -1068,6 +1111,7 @@ Public Class frmExample
     '=========================================================================
     ' "공급받는자" 용 전자명세서 1건을 인쇄하기 위한 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    ' - 전자명세서의 공급받는자는 "수신자"를 나타내는 용어입니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetEPrintURL
     '=========================================================================
     Private Sub btnGetEPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetEPrintURL.Click
@@ -1092,8 +1136,8 @@ Public Class frmExample
         Dim MgtKeyList As List(Of String) = New List(Of String)
 
         '문서번호 배열 (최대 100건)
-        MgtKeyList.Add("20210701-01")
-        MgtKeyList.Add("20210701-02")
+        MgtKeyList.Add("20220513-001")
+        MgtKeyList.Add("20220513-002")
 
         Try
             Dim url As String = statementService.GetMassPrintURL(txtCorpNum.Text, selectedItemCode, MgtKeyList, txtUserId.Text)
@@ -1139,7 +1183,8 @@ Public Class frmExample
 
     '=========================================================================
     ' 인감 및 첨부문서 등록 팝업 URL을 반환합니다.
-    ' - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    ' - https://docs.popbill.com/statement/dotnet/api#GetSealURL
     '=========================================================================
     Private Sub btnGetPopbillURL_SEAL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPopbillURL_SEAL.Click
         Try
@@ -1174,7 +1219,7 @@ Public Class frmExample
 
     '=========================================================================
     ' "임시저장" 상태의 전자명세서에 첨부된 1개의 파일을 삭제합니다.
-    ' - 파일을 식별하는 파일아이디는 첨부파일 목록(GetFiles API) 의 응답항목 중 파일아이디(AttachedFile) 값을 통해 확인할 수 있습니다.
+    ' - 파일을 식별하는 파일아이디는 첨부파일 목록 확인(GetFiles API) 함수의 응답항목 중 파일아이디(AttachedFile) 값을 통해 확인할 수 있습니다.
     ' - https://docs.popbill.com/statement/dotnet/api#DeleteFile
     '=========================================================================
     Private Sub btnDeleteFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteFile.Click
@@ -1191,7 +1236,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 전자명세서에 첨부된 파일목록을 확인합니다.
-    ' - 응답항목 중 파일아이디(AttachedFile) 항목은 파일삭제(DeleteFile API) 호출시 이용할 수 있습니다.
+    ' - 응답항목 중 파일아이디(AttachedFile) 항목은 파일삭제(DeleteFile API) 함수 호출시 이용할 수 있습니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetFiles
     '=========================================================================
     Private Sub btnGetFiles_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFiles.Click
@@ -1221,7 +1266,7 @@ Public Class frmExample
     Private Sub btnSendEmail_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendEmail.Click
 
         '수신메일주소
-        Dim receiveMail As String = "test@test.com"
+        Dim receiveMail As String = ""
 
         Try
             Dim response As Response = statementService.SendEmail(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, receiveMail, txtUserId.Text)
@@ -1242,10 +1287,10 @@ Public Class frmExample
     Private Sub btnSendSMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendSMS.Click
 
         '발신번호
-        Dim sendNum As String = "070-4304-2991"
+        Dim sendNum As String = ""
 
         '수신번호
-        Dim receiveNum As String = "010-111-2222"
+        Dim receiveNum As String = ""
 
         '메시지내용, 최대90Byte(한글45자), 90Byte 초과한 내용은 삭제되어 전송
         Dim contents As String = "문자메시지 내용."
@@ -1267,10 +1312,10 @@ Public Class frmExample
     Private Sub btnSendFAX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendFAX.Click
 
         '팩스 발신번호
-        Dim sendNum As String = "070-111-2222"
+        Dim sendNum As String = ""
 
         '팩스 수신번호
-        Dim receiveNum As String = "070-111-2223"
+        Dim receiveNum As String = ""
 
         Try
             Dim response As Response = statementService.SendFAX(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, sendNum, receiveNum, txtUserId.Text)
@@ -1292,30 +1337,29 @@ Public Class frmExample
     Private Sub btnFAXSend_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnFAXSend.Click
 
         '팩스 발신번호
-        Dim sendNum As String = "070111222"
+        Dim sendNum As String = ""
 
         '팩스 수신번호
-        Dim receiveNum As String = "070111222"
-
+        Dim receiveNum As String = ""
 
         Dim statement As New Statement
 
-        '[필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
+        '기재상 작성일자, 날짜형식(yyyyMMdd)
         statement.writeDate = "20210701"
 
-        '[필수] {영수, 청구} 중 기재
+        '{영수, 청구, 없음} 중 기재
         statement.purposeType = "영수"
 
-        '[필수] 과세형태, {과세, 영세, 면세} 중 기재
+        '과세형태, {과세, 영세, 면세} 중 기재
         statement.taxType = "과세"
 
         '맞춤양식코드, 공백처리시 기본양식으로 작성
         statement.formCode = txtFormCode.Text
 
-        '[필수] 전자명세서 종류코드
+        '전자명세서 종류코드
         statement.itemCode = selectedItemCode()
 
-        '[필수] 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        '문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
         statement.mgtKey = txtMgtKey.Text
 
 
@@ -1348,13 +1392,13 @@ Public Class frmExample
         statement.senderContactName = "발신자 담당자명"
 
         '발신자 이메일
-        statement.senderEmail = "test@test.com"
+        statement.senderEmail = ""
 
         '발신자 연락처
-        statement.senderTEL = "070-7070-0707"
+        statement.senderTEL = ""
 
         '발신자 휴대전화 번호
-        statement.senderHP = "010-000-2222"
+        statement.senderHP = ""
 
 
         '=========================================================================
@@ -1383,27 +1427,27 @@ Public Class frmExample
         statement.receiverContactName = "수신자 담당자명"
 
         '수신자 담당자 휴대폰번호
-        statement.receiverHP = "010-1111-2222"
+        statement.receiverHP = ""
 
         '수신자 담당자 연락처
-        statement.receiverTEL = "070-1234-1234"
+        statement.receiverTEL = ""
 
         '수신자 메일주소
         '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
         '실제 거래처의 메일주소가 기재되지 않도록 주의
-        statement.receiverEmail = "test@receiver.com"
+        statement.receiverEmail = ""
 
         '=========================================================================
         '                     전자명세서 기재사항
         '=========================================================================
 
-        '[필수] 공급가액 합계
+        '공급가액 합계
         statement.supplyCostTotal = "100000"
 
-        '[필수] 세액 합계
+        '세액 합계
         statement.taxTotal = "10000"
 
-        '[필수] 합계금액, 공급가액 합계 + 세액 합계
+        '합계금액, 공급가액 합계 + 세액 합계
         statement.totalAmount = "110000"             '필수 합계금액.  공급가액 + 세액
 
         '기재 상 일련번호 항목
@@ -1414,13 +1458,18 @@ Public Class frmExample
         statement.remark2 = "비고2"
         statement.remark3 = "비고3"
 
-        '발행 안내문자 발송여부
+        ' 문자 자동전송 여부 (true / false 중 택 1)
+        ' └ true = 전송 , false = 미전송(기본값)
         statement.smssendYN = False
 
-        '사업자등록증 이미지 첨부여부
+        ' 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
+        ' └ true = 첨부 , false = 미첨부(기본값)
+        ' - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.businessLicenseYN = False
 
-        '통장사본 이미지 첨부여부
+        ' 통장사본 이미지 첨부여부 (true / false 중 택 1)
+        ' └ true = 첨부 , false = 미첨부(기본값)
+        ' - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.bankBookYN = False
 
 
@@ -1429,7 +1478,7 @@ Public Class frmExample
         Dim newDetail As StatementDetail = New StatementDetail
 
         newDetail.serialNum = 1             '일련번호 1부터 순차 기재
-        newDetail.purchaseDT = "20210701"   '거래일자  yyyyMMdd
+        newDetail.purchaseDT = "20220513"   '거래일자  yyyyMMdd
         newDetail.itemName = "품명"         '품목명
         newDetail.spec = "규격"             '규격
         newDetail.unit = "단위"             '단위
@@ -1449,7 +1498,7 @@ Public Class frmExample
         newDetail = New StatementDetail
 
         newDetail.serialNum = 2             '일련번호 1부터 순차 기재
-        newDetail.purchaseDT = "20210701"   '거래일자  yyyyMMdd
+        newDetail.purchaseDT = "20220513"   '거래일자  yyyyMMdd
         newDetail.itemName = "품명"         '품목명
         newDetail.spec = "규격"             '규격
 
@@ -1457,7 +1506,8 @@ Public Class frmExample
         '=========================================================================
         ' 전자명세서 추가속성
         ' - 추가속성에 관한 자세한 사항은 "[전자명세서 API 연동매뉴얼] >
-        '   5.2. 기본양식 추가속성 테이블"을 참조하시기 바랍니다.
+        '   기본양식 추가속성 테이블"을 참조하시기 바랍니다.
+        ' [https://docs.popbill.com/statement/propertyBag?lang=dotnet]
         '=========================================================================
         statement.propertyBag = New Dictionary(Of String, String)
 
@@ -1485,7 +1535,7 @@ Public Class frmExample
         Dim subItemCode As Integer = 121
 
         '첨부할 전자명세서 문서번호
-        Dim subMgtKey As String = "20210701-02"
+        Dim subMgtKey As String = "20220513-001"
 
         Try
             Dim response As Response = statementService.AttachStatement(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, subItemCode, subMgtKey)
@@ -1506,7 +1556,7 @@ Public Class frmExample
         Dim subItemCode As Integer = 121
 
         '첨부해제 대상 전자명세서 문서번호
-        Dim subMgtKey As String = "20210701-02"
+        Dim subMgtKey As String = "20220513-001"
 
         Try
             Dim response As Response = statementService.DetachStatement(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, subItemCode, subMgtKey)
@@ -1576,7 +1626,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 잔여포인트를 확인합니다.
-    ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트(GetPartnerBalance API)를 통해 확인하시기 바랍니다.
+    ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트 확인(GetPartnerBalance API) 함수를 통해 확인하시기 바랍니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetBalance
     '=========================================================================
     Private Sub btnGetBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1643,7 +1693,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 파트너의 잔여포인트를 확인합니다.
-    ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
+    ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트 확인(GetBalance API) 함수를 이용하시기 바랍니다.
     ' - https://docs.popbill.com/statement/dotnet/api#GetPartnerBalance
     '=========================================================================
     Private Sub btnGetPartnerBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerBalance.Click
@@ -1776,16 +1826,10 @@ Public Class frmExample
         joinInfo.ContactName = "담당자명"
 
         '담당자 이메일 (최대 20자)
-        joinInfo.ContactEmail = "test@test.com"
+        joinInfo.ContactEmail = ""
 
         '담당자 연락처 (최대 20자)
-        joinInfo.ContactTEL = "070-4304-2991"
-
-        '담당자 휴대폰번호 (최대 20자)
-        joinInfo.ContactHP = "010-111-222"
-
-        '담당자 팩스번호 (최대 20자)
-        joinInfo.ContactFAX = "02-6442-9700"
+        joinInfo.ContactTEL = ""
 
         Try
             Dim response As Response = statementService.JoinMember(joinInfo)
@@ -1871,16 +1915,10 @@ Public Class frmExample
         joinData.personName = "담당자명"
 
         '담당자 연락처 (최대 20자)
-        joinData.tel = "070-1111-2222"
-
-        '담당자 휴대폰 (최대 20자)
-        joinData.hp = "010-1234-1234"
-
-        '담당자 팩스 (최대 20자)
-        joinData.fax = "070-1234-1234"
+        joinData.tel = ""
 
         '담당자 이메일 (최대 100자)
-        joinData.email = "test@test.com"
+        joinData.email = ""
 
         '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
         joinData.searchRole = 3
@@ -1911,10 +1949,8 @@ Public Class frmExample
             tmp += "id (담당자 아이디) : " + contactInfo.id + vbCrLf
             tmp += "personName (담당자명) : " + contactInfo.personName + vbCrLf
             tmp += "email (담당자 이메일) : " + contactInfo.email + vbCrLf
-            tmp += "hp (휴대폰번호) : " + contactInfo.hp + vbCrLf
             tmp += "searchRole (담당자 권한) : " + contactInfo.searchRole.ToString() + vbCrLf
             tmp += "tel (연락처) : " + contactInfo.tel + vbCrLf
-            tmp += "fax (팩스번호) : " + contactInfo.fax + vbCrLf
             tmp += "mgrYN (관리자 여부) : " + contactInfo.mgrYN.ToString() + vbCrLf
             tmp += "regDT (등록일시) : " + contactInfo.regDT + vbCrLf
             tmp += "state (상태) : " + contactInfo.state + vbCrLf
@@ -1935,11 +1971,11 @@ Public Class frmExample
         Try
             Dim contactList As List(Of Contact) = statementService.ListContact(txtCorpNum.Text, txtUserId.Text)
 
-            Dim tmp As String = "id(아이디) | personName(담당자명) | email(메일주소) | hp(휴대폰번호) | fax(팩스) | tel(연락처) |"
+            Dim tmp As String = "id(아이디) | personName(담당자명) | email(메일주소) | tel(연락처) |"
             tmp += "regDT(등록일시) | searchRole(담당자 권한) | mgrYN(관리자 여부) | state(상태)" + vbCrLf
 
             For Each info As Contact In contactList
-                tmp += info.id + " | " + info.personName + " | " + info.email + " | " + info.hp + " | " + info.fax + " | " + info.tel + " | "
+                tmp += info.id + " | " + info.personName + " | " + info.email + " | " + info.tel + " | "
                 tmp += info.regDT.ToString() + " | " + info.searchRole.ToString() + " | " + info.mgrYN.ToString() + " | " + info.state + vbCrLf
             Next
 
@@ -1965,16 +2001,10 @@ Public Class frmExample
         joinData.personName = "담당자명"
 
         '담당자 연락처 (최대 20자)
-        joinData.tel = "070-1111-2222"
-
-        '담당자 휴대폰 (최대 20자)
-        joinData.hp = "010-1234-1234"
-
-        '담당자 팩스 (최대 20자)
-        joinData.fax = "070-1234-1234"
+        joinData.tel = ""
 
         '담당자 이메일 (최대 100자)
-        joinData.email = "test@test.com"
+        joinData.email = ""
 
         '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
         joinData.searchRole = 3
@@ -1984,23 +2014,6 @@ Public Class frmExample
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 팝빌 사이트와 동일한 전자명세서 1건의 상세 정보 페이지(사이트 상단, 좌측 메뉴 및 버튼 제외)의 팝업 URL을 반환합니다.
-    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - https://docs.popbill.com/statement/dotnet/api#GetViewURL
-    '=========================================================================
-    Private Sub btnGetViewURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetViewURL.Click
-
-        Try
-            Dim url As String = statementService.GetViewURL(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text, txtUserId.Text)
-
-            MsgBox(url)
-            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try

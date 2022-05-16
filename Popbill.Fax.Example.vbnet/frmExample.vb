@@ -2,8 +2,8 @@
 '
 ' 팝빌 팩스 API VB.Net SDK Example
 '
-'' - VB.Net SDK 연동환경 설정방법 안내 : https://docs.popbill.com/fax/tutorial/dotnet#vb
-' - 업데이트 일자 : 2021-12-23
+' - VB.Net SDK 연동환경 설정방법 안내 : https://docs.popbill.com/fax/tutorial/dotnet_vb
+' - 업데이트 일자 : 2022-05-13
 ' - 연동 기술지원 연락처 : 1600-9854
 ' - 연동 기술지원 이메일 : code@linkhubcorp.com
 '
@@ -29,16 +29,16 @@ Public Class frmExample
         '팩스 서비스 객체 초기화
         faxService = New FaxService(LinkID, SecretKey)
 
-        '연동환경 설정값 True(테스트용), False(상업용)
+        '연동환경 설정값, True-개발용, False-상업용
         faxService.IsTest = True
 
-        '인증토큰의 IP제한기능 사용여부, (True-권장)
+        '인증토큰 발급 IP 제한 On/Off, True-사용, False-미사용, 기본값(True)
         faxService.IPRestrictOnOff = True
 
-        '팝빌 API 서비스 고정 IP 사용여부, True-사용, False-미사용(기본값)
+        '팝빌 API 서비스 고정 IP 사용여부, True-사용, False-미사용, 기본값(False)
         faxService.UseStaticIP = False
 
-        '로컬PC 시간 사용 여부 True(사용), False(기본값) - 미사용
+        '로컬시스템 시간 사용여부, True-사용, False-미사용, 기본값(False)
         faxService.UseLocalTimeYN = False
 
     End Sub
@@ -99,10 +99,10 @@ Public Class frmExample
             Dim strFileName As String = fileDialog.FileName
 
             '발신번호
-            Dim sendNum As String = "070-4304-2991"
+            Dim sendNum As String = ""
 
             '수신팩스번호
-            Dim receiveNum As String = "070-111-2222"
+            Dim receiveNum As String = ""
 
             '수신자명
             Dim receiveName As String = "수신자명"
@@ -141,14 +141,14 @@ Public Class frmExample
             Dim strFileName As String = fileDialog.FileName
 
             '발신번호
-            Dim sendNum As String = "070-4304-2991"
+            Dim sendNum As String = ""
 
             '수신정보배열, 최대 1000건
             Dim receivers As List(Of FaxReceiver) = New List(Of FaxReceiver)
 
             For i As Integer = 0 To 99
                 Dim receiver As FaxReceiver = New FaxReceiver
-                receiver.receiveNum = "070-111-222"
+                receiver.receiveNum = ""
                 receiver.receiveName = "수신자명칭_" + CStr(i)
                 receivers.Add(receiver)
             Next i
@@ -192,10 +192,10 @@ Public Class frmExample
         If filepaths.Count > 0 Then
 
             '발신번호
-            Dim sendNum As String = "070-4304-2991"
+            Dim sendNum As String = ""
 
             '수신번호
-            Dim receiveNum As String = "070-111-2222"
+            Dim receiveNum As String = ""
 
             '수신자명
             Dim receiveName As String = "수신자명칭"
@@ -240,14 +240,14 @@ Public Class frmExample
         If filepaths.Count > 0 Then
 
             '발신번호
-            Dim sendNum As String = "070-4304-2991"
+            Dim sendNum As String = ""
 
             '수신정보배열, 최대 1000건
             Dim receivers As List(Of FaxReceiver) = New List(Of FaxReceiver)
 
             For i As Integer = 0 To 99
                 Dim receiver As FaxReceiver = New FaxReceiver
-                receiver.receiveNum = "111-2222-3333"
+                receiver.receiveNum = ""
                 receiver.receiveName = "수신자명칭_" + CStr(i)
                 receivers.Add(receiver)
             Next i
@@ -279,6 +279,7 @@ Public Class frmExample
     ' 팝빌에서 반환받은 접수번호를 통해 팩스 1건을 재전송합니다.
     ' - 발신/수신 정보 미입력시 기존과 동일한 정보로 팩스가 전송되고, 접수일 기준 최대 60일이 경과되지 않는 건만 재전송이 가능합니다.
     ' - 팩스 재전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
+    ' - 변환실패 사유로 전송실패한 팩스 접수건은 재전송이 불가합니다.
     ' - https://docs.popbill.com/fax/dotnet/api#ResendFAX
     '=========================================================================
     Private Sub btnResendFAX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnResendFAX.Click
@@ -317,6 +318,7 @@ Public Class frmExample
     ' 팝빌에서 반환받은 접수번호를 통해 다수건의 팩스를 재전송합니다. (최대 전송파일 개수: 20개) (최대 1,000건)
     ' - 발신/수신 정보 미입력시 기존과 동일한 정보로 팩스가 전송되고, 접수일 기준 최대 60일이 경과되지 않는 건만 재전송이 가능합니다.
     ' - 팩스 재전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
+    ' - 변환실패 사유로 전송실패한 팩스 접수건은 재전송이 불가합니다.
     ' - https://docs.popbill.com/fax/dotnet/api#ResendFAX_Same
     '=========================================================================
     Private Sub btnResendFAX_Multi_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnResendFAX_Multi.Click
@@ -337,7 +339,7 @@ Public Class frmExample
             Dim receiver As FaxReceiver = New FaxReceiver
 
             '수신팩스번호
-            receiver.receiveNum = "070-111-222"
+            receiver.receiveNum = ""
 
             '수신자명
             receiver.receiveName = "수신자명칭_" + CStr(i)
@@ -364,6 +366,7 @@ Public Class frmExample
     ' 파트너가 할당한 전송요청 번호를 통해 팩스 1건을 재전송합니다.
     ' - 발신/수신 정보 미입력시 기존과 동일한 정보로 팩스가 전송되고, 접수일 기준 최대 60일이 경과되지 않는 건만 재전송이 가능합니다.
     ' - 팩스 재전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
+    ' - 변환실패 사유로 전송실패한 팩스 접수건은 재전송이 불가합니다.
     ' - https://docs.popbill.com/fax/dotnet/api#ResendFAXRN
     '=========================================================================
     Private Sub btnResendFAXRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnResendFAXRN.Click
@@ -406,6 +409,7 @@ Public Class frmExample
     ' 파트너가 할당한 전송요청 번호를 통해 다수건의 팩스를 재전송합니다. (최대 전송파일 개수: 20개) (최대 1,000건)
     ' - 발신/수신 정보 미입력시 기존과 동일한 정보로 팩스가 전송되고, 접수일 기준 최대 60일이 경과되지 않는 건만 재전송이 가능합니다.
     ' - 팩스 재전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
+    ' - 변환실패 사유로 전송실패한 팩스 접수건은 재전송이 불가합니다.
     ' - https://docs.popbill.com/fax/dotnet/api#ResendFAXRN_Same
     '=========================================================================
     Private Sub btnResendFAXRN_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnResendFAXRN_same.Click
@@ -491,10 +495,10 @@ Public Class frmExample
         Try
             Dim ResultList As List(Of FaxResult) = faxService.GetFaxResult(txtCorpNum.Text, txtReceiptNum.Text)
 
-            Dim rowStr As String = "state(전송상태 코드) | result(전송결과 코드) | sendNum(발신번호) | senderName(발신자명) | receiveName(수신번호) | receiveName(수신자명) | receiveNumType(수신번호 유형) | "
-            rowStr += "title(팩스제목) | sendPageCnt(전체 페이지수) | successPageCnt(성공 페이지수) | failPageCnt(실패 페이지수) | refundPageCnt(환불 페이지수) | cancelPageCnt(취소 페이지수) | "
-            rowStr += "reserveDT(예약시간) | receiptNum(접수시간) | sendDT(발송시간) | resultDT(전송결과 수신시간) | fileNames(전송 파일명 리스트) | receiptNum(접수번호) | "
-            rowStr += "requestNum(요청번호) | chargePageCnt(과금 페이지수) | tiffFileSize(변환파일용량(단위:Byte))"
+            Dim rowStr As String = "state(전송상태 코드) | result(전송결과 코드) | sendNum(발신번호) | senderName(발신자명) | receiveNum(수신번호) | receiveNumType(수신번호 유형) | receiveName(수신번호) | "
+            rowStr += "title(팩스제목) | sendPageCnt(전체 페이지수) | successPageCnt(성공 페이지수) | failPageCnt(실패 페이지수) | cancelPageCnt(취소 페이지수) | "
+            rowStr += "reserveDT(예약시간) | receiptDT(접수일시) | sendDT(전송일시) | resultDT(전송결과 수신일시) | fileNames(전송 파일명 리스트) | receiptNum(접수번호) | "
+            rowStr += "requestNum(요청번호) | chargePageCnt(과금 페이지수) | refundPageCnt(환불 페이지수) | tiffFileSize(변환파일용량(단위:Byte))"
 
             ListBox1.Items.Add(rowStr)
 
@@ -505,13 +509,12 @@ Public Class frmExample
                 rowStr += Result.sendNum + " | "
                 rowStr += Result.senderName + " | "
                 rowStr += Result.receiveNum + " | "
-                rowStr += Result.receiveName + " | "
                 rowStr += Result.receiveNumType + " | "
+                rowStr += Result.receiveName + " | "
                 rowStr += Result.title + " | "
                 rowStr += Result.sendPageCnt.ToString + " | "
                 rowStr += Result.successPageCnt.ToString + " | "
                 rowStr += Result.failPageCnt.ToString + " | "
-                rowStr += Result.refundPageCnt.ToString + " | "
                 rowStr += Result.cancelPageCnt.ToString + " | "
                 rowStr += Result.reserveDT + " | "
                 rowStr += Result.receiptDT + " | "
@@ -528,7 +531,8 @@ Public Class frmExample
 
                 rowStr += Result.receiptNum + " | "
                 rowStr += Result.requestNum + " | "
-                rowStr += Result.chargePageCnt + " | "
+                rowStr += Result.chargePageCnt.ToString + " | "
+                rowStr += Result.refundPageCnt.ToString + " | "
                 rowStr += Result.tiffFileSize
 
                 ListBox1.Items.Add(rowStr)
@@ -548,10 +552,10 @@ Public Class frmExample
         Try
             Dim ResultList As List(Of FaxResult) = faxService.GetFaxResultRN(txtCorpNum.Text, txtRequestNum.Text)
 
-            Dim rowStr As String = "state(전송상태 코드) | result(전송결과 코드) | sendNum(발신번호) | senderName(발신자명) | receiveName(수신번호) | receiveName(수신자명) | receiveNumType(수신번호 유형) | "
-            rowStr += "title(팩스제목) | sendPageCnt(전체 페이지수) | successPageCnt(성공 페이지수) | failPageCnt(실패 페이지수) | refundPageCnt(환불 페이지수) | cancelPageCnt(취소 페이지수) | "
-            rowStr += "reserveDT(예약시간) | receiptNum(접수시간) | sendDT(발송시간) | resultDT(전송결과 수신시간) | fileNames(전송 파일명 리스트) | receiptNum(접수번호) | "
-            rowStr += "requestNum(요청번호) | chargePageCnt(과금 페이지수) | tiffFileSize(변환파일용량(단위:Byte))"
+            Dim rowStr As String = "state(전송상태 코드) | result(전송결과 코드) | sendNum(발신번호) | senderName(발신자명) | receiveNum(수신번호) | receiveNumType(수신번호 유형) | receiveName(수신번호) | "
+            rowStr += "title(팩스제목) | sendPageCnt(전체 페이지수) | successPageCnt(성공 페이지수) | failPageCnt(실패 페이지수) | cancelPageCnt(취소 페이지수) | "
+            rowStr += "reserveDT(예약시간) | receiptDT(접수일시) | sendDT(전송일시) | resultDT(전송결과 수신일시) | fileNames(전송 파일명 리스트) | receiptNum(접수번호) | "
+            rowStr += "requestNum(요청번호) | chargePageCnt(과금 페이지수) | refundPageCnt(환불 페이지수) | tiffFileSize(변환파일용량(단위:Byte))"
 
             ListBox1.Items.Add(rowStr)
 
@@ -562,13 +566,12 @@ Public Class frmExample
                 rowStr += Result.sendNum + " | "
                 rowStr += Result.senderName + " | "
                 rowStr += Result.receiveNum + " | "
-                rowStr += Result.receiveName + " | "
                 rowStr += Result.receiveNumType + " | "
+                rowStr += Result.receiveName + " | "
                 rowStr += Result.title + " | "
                 rowStr += Result.sendPageCnt.ToString + " | "
                 rowStr += Result.successPageCnt.ToString + " | "
                 rowStr += Result.failPageCnt.ToString + " | "
-                rowStr += Result.refundPageCnt.ToString + " | "
                 rowStr += Result.cancelPageCnt.ToString + " | "
                 rowStr += Result.reserveDT + " | "
                 rowStr += Result.receiptDT + " | "
@@ -585,7 +588,8 @@ Public Class frmExample
 
                 rowStr += Result.receiptNum + " | "
                 rowStr += Result.requestNum + " | "
-                rowStr += Result.chargePageCnt + " | "
+                rowStr += Result.chargePageCnt.ToString + " | "
+                rowStr += Result.refundPageCnt.ToString + " | "
                 rowStr += Result.tiffFileSize
 
                 ListBox1.Items.Add(rowStr)
@@ -604,22 +608,29 @@ Public Class frmExample
         Dim State(4) As String
 
         '최대 검색기간 : 2개월 이내
-        '[필수] 시작일자, yyyyMMdd
-        Dim SDate As String = "20210801"
+        '시작일자, yyyyMMdd
+        Dim SDate As String = "20220501"
 
-        '[필수] 종료일자, yyyyMMdd
-        Dim EDate As String = "20210805"
+        '종료일자, yyyyMMdd
+        Dim EDate As String = "20220531"
 
-        '전송상태값 배열, 1-대기, 2-성공, 3-실패, 4-취소
+        ' 전송상태 배열 ("1" , "2" , "3" , "4" 중 선택, 다중 선택 가능)
+        ' └ 1 = 대기 , 2 = 성공 , 3 = 실패 , 4 = 취소
+        ' - 미입력 시 전체조회
         State(0) = "1"
         State(1) = "2"
         State(2) = "3"
         State(3) = "4"
 
-        '예약팩스 검색여부, True(예약팩스만 조회), False(전체조회)
+        ' 예약여부 (false , true 중 택 1)
+        ' └ false = 전체조회, true = 예약전송건 조회
+        ' - 미입력시 기본값 false 처리
         Dim ReserveYN As Boolean = False
 
-        '개인조회여부, True(개인조회), False(전체조회)
+        ' 개인조회 여부 (false , true 중 택 1)
+        ' false = 접수한 팩스 전체 조회 (관리자권한)
+        ' true = 해당 담당자 계정으로 접수한 팩스만 조회 (개인권한)
+        ' 미입력시 기본값 false 처리
         Dim SenderYN As Boolean = False
 
         '페이지 번호
@@ -631,7 +642,8 @@ Public Class frmExample
         '정렬방향, D-내림차순(기본값), A-오름차순
         Dim Order As String = "D"
 
-        '조회 검색어, 팩스 전송시 기재한 수신자명 또는 발신자명 입력
+        ' 조회하고자 하는 발신자명 또는 수신자명
+        ' - 미입력시 전체조회
         Dim QString As String = ""
 
         ListBox1.Items.Clear()
@@ -647,27 +659,27 @@ Public Class frmExample
             tmp = tmp + "pageCount (페이지 개수) : " + CStr(faxSearchList.pageCount) + vbCrLf
             tmp = tmp + "message (응답메시지) : " + faxSearchList.message + vbCrLf + vbCrLf
 
-            Dim rowStr As String = "state(전송상태 코드) | result(전송결과 코드) | sendNum(발신번호) | senderName(발신자명) | receiveName(수신번호) | receiveName(수신자명) | receiveNumType(수신번호 유형) |"
-            rowStr += "title(팩스제목) | sendPageCnt(전체 페이지수) | successPageCnt(성공 페이지수) | failPageCnt(실패 페이지수) | refundPageCnt(환불 페이지수) | cancelPageCnt(취소 페이지수) | "
-            rowStr += "reserveDT(예약시간) | receiptNum(접수시간) | sendDT(발송시간) | resultDT(전송결과 수신시간) | fileNames(전송 파일명 리스트) | receiptNum(접수번호) | "
-            rowStr += "requestNum(요청번호) | chargePageCnt(과금 페이지수) | tiffFileSize(변환파일용량(단위:Byte))"
+            Dim rowStr As String = "state(전송상태 코드) | result(전송결과 코드) | sendNum(발신번호) | senderName(발신자명) | receiveNum(수신번호) | receiveNumType(수신번호 유형) | receiveName(수신번호) | "
+            rowStr += "title(팩스제목) | sendPageCnt(전체 페이지수) | successPageCnt(성공 페이지수) | failPageCnt(실패 페이지수) | cancelPageCnt(취소 페이지수) | "
+            rowStr += "reserveDT(예약시간) | receiptDT(접수일시) | sendDT(전송일시) | resultDT(전송결과 수신일시) | fileNames(전송 파일명 리스트) | receiptNum(접수번호) | "
+            rowStr += "requestNum(요청번호) | chargePageCnt(과금 페이지수) | refundPageCnt(환불 페이지수) | tiffFileSize(변환파일용량(단위:Byte))"
 
             ListBox1.Items.Add(rowStr)
 
             For Each Result As FaxResult In faxSearchList.list
+
                 rowStr = ""
                 rowStr += Result.state.ToString + " | "
                 rowStr += Result.result.ToString + " | "
                 rowStr += Result.sendNum + " | "
                 rowStr += Result.senderName + " | "
                 rowStr += Result.receiveNum + " | "
-                rowStr += Result.receiveName + " | "
                 rowStr += Result.receiveNumType + " | "
+                rowStr += Result.receiveName + " | "
                 rowStr += Result.title + " | "
                 rowStr += Result.sendPageCnt.ToString + " | "
                 rowStr += Result.successPageCnt.ToString + " | "
                 rowStr += Result.failPageCnt.ToString + " | "
-                rowStr += Result.refundPageCnt.ToString + " | "
                 rowStr += Result.cancelPageCnt.ToString + " | "
                 rowStr += Result.reserveDT + " | "
                 rowStr += Result.receiptDT + " | "
@@ -684,7 +696,8 @@ Public Class frmExample
 
                 rowStr += Result.receiptNum + " | "
                 rowStr += Result.requestNum + " | "
-                rowStr += Result.chargePageCnt + " | "
+                rowStr += Result.chargePageCnt.ToString + " | "
+                rowStr += Result.refundPageCnt.ToString + " | "
                 rowStr += Result.tiffFileSize
 
                 ListBox1.Items.Add(rowStr)
@@ -732,7 +745,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 잔여포인트를 확인합니다.
-    ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트(GetPartnerBalance API)를 통해 확인하시기 바랍니다.
+    ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트 확인(GetPartnerBalance API) 함수를 통해 확인하시기 바랍니다.
     ' - https://docs.popbill.com/fax/dotnet/api#GetBalance
     '=========================================================================
     Private Sub btnGetBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetBalance.Click
@@ -797,7 +810,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 파트너의 잔여포인트를 확인합니다.
-    ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
+    ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트 확인(GetBalance API) 함수를 이용하시기 바랍니다.
     ' - https://docs.popbill.com/fax/dotnet/api#GetPartnerBalance
     '=========================================================================
     Private Sub btnGetPartnerBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerBalance.Click
@@ -934,16 +947,10 @@ Public Class frmExample
         joinInfo.ContactName = "담당자명"
 
         '담당자 이메일 (최대 20자)
-        joinInfo.ContactEmail = "test@test.com"
+        joinInfo.ContactEmail = ""
 
         '담당자 연락처 (최대 20자)
-        joinInfo.ContactTEL = "070-4304-2991"
-
-        '담당자 휴대폰번호 (최대 20자)
-        joinInfo.ContactHP = "010-111-222"
-
-        '담당자 팩스번호 (최대 20자)
-        joinInfo.ContactFAX = "02-6442-9700"
+        joinInfo.ContactTEL = ""
 
         Try
             Dim response As Response = faxService.JoinMember(joinInfo)
@@ -969,147 +976,6 @@ Public Class frmExample
             txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
-    ' - https://docs.popbill.com/fax/dotnet/api#RegistContact
-    '=========================================================================
-    Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistContact.Click
-
-        '담당자 정보객체
-        Dim joinData As New Contact
-
-        '아이디 (6자이상 50자미만)
-        joinData.id = "testkorea1120"
-
-        '비밀번호, 8자 이상 20자 이하(영문, 숫자, 특수문자 조합)
-        joinData.Password = "asdf8536!@#"
-
-        '담당자 성명 (최대 100자)
-        joinData.personName = "담당자명"
-
-        '담당자 연락처 (최대 20자)
-        joinData.tel = "070-1111-2222"
-
-        '담당자 휴대폰 (최대 20자)
-        joinData.hp = "010-1234-1234"
-
-        '담당자 팩스 (최대 20자)
-        joinData.fax = "070-1234-1234"
-
-        '담당자 이메일 (최대 100자)
-        joinData.email = "test@test.com"
-
-        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
-        joinData.searchRole = 3
-
-        Try
-            Dim response As Response = faxService.RegistContact(txtCorpNum.Text, joinData, txtUserId.Text)
-
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보을 확인합니다.
-    ' - https://docs.popbill.com/fax/dotnet/api#GetContactInfo
-    '=========================================================================
-    Private Sub btnGetContactInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetContactInfo.Click
-
-        '확인할 담당자 아이디
-        Dim contactID As String = "DONETVB_CONTACT"
-
-        Dim tmp As String = ""
-
-        Try
-            Dim contactInfo As Contact = faxService.GetContactInfo(txtCorpNum.Text, contactID, txtUserId.Text)
-
-            tmp += "id (담당자 아이디) : " + contactInfo.id + vbCrLf
-            tmp += "personName (담당자명) : " + contactInfo.personName + vbCrLf
-            tmp += "email (담당자 이메일) : " + contactInfo.email + vbCrLf
-            tmp += "hp (휴대폰번호) : " + contactInfo.hp + vbCrLf
-            tmp += "searchRole (담당자 권한) : " + contactInfo.searchRole.ToString() + vbCrLf
-            tmp += "tel (연락처) : " + contactInfo.tel + vbCrLf
-            tmp += "fax (팩스번호) : " + contactInfo.fax + vbCrLf
-            tmp += "mgrYN (관리자 여부) : " + contactInfo.mgrYN.ToString() + vbCrLf
-            tmp += "regDT (등록일시) : " + contactInfo.regDT + vbCrLf
-            tmp += "state (상태) : " + contactInfo.state + vbCrLf
-
-            tmp += vbCrLf
-
-            MsgBox(tmp)
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
-    ' - https://docs.popbill.com/fax/dotnet/api#ListContact
-    '=========================================================================
-    Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListContact.Click
-        Try
-            Dim contactList As List(Of Contact) = faxService.ListContact(txtCorpNum.Text, txtUserId.Text)
-
-            Dim tmp As String = "id(아이디) | personName(담당자명) | email(메일주소) | hp(휴대폰번호) | fax(팩스) | tel(연락처) |"
-            tmp += "regDT(등록일시) | searchRole(담당자 권한) | mgrYN(관리자 여부) | state(상태)" + vbCrLf
-
-            For Each info As Contact In contactList
-                tmp += info.id + " | " + info.personName + " | " + info.email + " | " + info.hp + " | " + info.fax + " | " + info.tel + " | "
-                tmp += info.regDT.ToString() + " | " + info.searchRole.ToString() + " | " + info.mgrYN.ToString() + " | " + info.state + vbCrLf
-            Next
-
-            MsgBox(tmp)
-        Catch ex As PopbillException
-
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
-    ' - https://docs.popbill.com/fax/dotnet/api#UpdateContact
-    '=========================================================================
-    Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateContact.Click
-
-        '담당자 정보객체
-        Dim joinData As New Contact
-
-        '아이디 (6자이상 50자미만)
-        joinData.id = "testkorea1120"
-
-        '담당자 성명 (최대 100자)
-        joinData.personName = "담당자명"
-
-        '담당자 연락처 (최대 20자)
-        joinData.tel = "070-1111-2222"
-
-        '담당자 휴대폰 (최대 20자)
-        joinData.hp = "010-1234-1234"
-
-        '담당자 팩스 (최대 20자)
-        joinData.fax = "070-1234-1234"
-
-        '담당자 이메일 (최대 100자)
-        joinData.email = "test@test.com"
-
-        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
-        joinData.searchRole = 3
-
-        Try
-            Dim response As Response = faxService.UpdateContact(txtCorpNum.Text, joinData, txtUserId.Text)
-
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -1161,6 +1027,133 @@ Public Class frmExample
         Try
 
             Dim response As Response = faxService.UpdateCorpInfo(txtCorpNum.Text, corpInfo, txtUserId.Text)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
+    ' - https://docs.popbill.com/fax/dotnet/api#RegistContact
+    '=========================================================================
+    Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistContact.Click
+
+        '담당자 정보객체
+        Dim joinData As New Contact
+
+        '아이디 (6자이상 50자미만)
+        joinData.id = "testkorea1120"
+
+        '비밀번호, 8자 이상 20자 이하(영문, 숫자, 특수문자 조합)
+        joinData.Password = "asdf8536!@#"
+
+        '담당자 성명 (최대 100자)
+        joinData.personName = "담당자명"
+
+        '담당자 연락처 (최대 20자)
+        joinData.tel = ""
+
+        '담당자 이메일 (최대 100자)
+        joinData.email = ""
+
+        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
+        joinData.searchRole = 3
+
+        Try
+            Dim response As Response = faxService.RegistContact(txtCorpNum.Text, joinData, txtUserId.Text)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보을 확인합니다.
+    ' - https://docs.popbill.com/fax/dotnet/api#GetContactInfo
+    '=========================================================================
+    Private Sub btnGetContactInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetContactInfo.Click
+
+        '확인할 담당자 아이디
+        Dim contactID As String = "DONETVB_CONTACT"
+
+        Dim tmp As String = ""
+
+        Try
+            Dim contactInfo As Contact = faxService.GetContactInfo(txtCorpNum.Text, contactID, txtUserId.Text)
+
+            tmp += "id (담당자 아이디) : " + contactInfo.id + vbCrLf
+            tmp += "personName (담당자명) : " + contactInfo.personName + vbCrLf
+            tmp += "email (담당자 이메일) : " + contactInfo.email + vbCrLf
+            tmp += "searchRole (담당자 권한) : " + contactInfo.searchRole.ToString() + vbCrLf
+            tmp += "tel (연락처) : " + contactInfo.tel + vbCrLf
+            tmp += "mgrYN (관리자 여부) : " + contactInfo.mgrYN.ToString() + vbCrLf
+            tmp += "regDT (등록일시) : " + contactInfo.regDT + vbCrLf
+            tmp += "state (상태) : " + contactInfo.state + vbCrLf
+
+            tmp += vbCrLf
+
+            MsgBox(tmp)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
+    ' - https://docs.popbill.com/fax/dotnet/api#ListContact
+    '=========================================================================
+    Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListContact.Click
+        Try
+            Dim contactList As List(Of Contact) = faxService.ListContact(txtCorpNum.Text, txtUserId.Text)
+
+            Dim tmp As String = "id(아이디) | personName(담당자명) | email(메일주소) | tel(연락처) |"
+            tmp += "regDT(등록일시) | searchRole(담당자 권한) | mgrYN(관리자 여부) | state(상태)" + vbCrLf
+
+            For Each info As Contact In contactList
+                tmp += info.id + " | " + info.personName + " | " + info.email + " | " + info.tel + " | "
+                tmp += info.regDT.ToString() + " | " + info.searchRole.ToString() + " | " + info.mgrYN.ToString() + " | " + info.state + vbCrLf
+            Next
+
+            MsgBox(tmp)
+        Catch ex As PopbillException
+
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
+    ' - https://docs.popbill.com/fax/dotnet/api#UpdateContact
+    '=========================================================================
+    Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateContact.Click
+
+        '담당자 정보객체
+        Dim joinData As New Contact
+
+        '아이디 (6자이상 50자미만)
+        joinData.id = "testkorea1120"
+
+        '담당자 성명 (최대 100자)
+        joinData.personName = "담당자명"
+
+        '담당자 연락처 (최대 20자)
+        joinData.tel = ""
+
+        '담당자 이메일 (최대 100자)
+        joinData.email = ""
+
+        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
+        joinData.searchRole = 3
+
+        Try
+            Dim response As Response = faxService.UpdateContact(txtCorpNum.Text, joinData, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 

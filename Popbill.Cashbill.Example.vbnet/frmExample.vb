@@ -2,8 +2,8 @@
 '
 ' 팝빌 현금영수증 API VB.Net  SDK Example
 '
-' - VB.Net SDK 연동환경 설정방법 안내 : https://docs.popbill.com/cashbill/tutorial/dotnet#vb
-' - 업데이트 일자 : 2022-03-18
+' - VB.Net SDK 연동환경 설정방법 안내 : https://docs.popbill.com/cashbill/tutorial/dotnet_vb
+' - 업데이트 일자 : 2022-05-13
 ' - 연동 기술지원 연락처 : 1600-9854
 ' - 연동 기술지원 이메일 : code@linkhubcorp.com
 '
@@ -33,16 +33,16 @@ Public Class frmExample
         '현금영수증 서비스 객체 초기화
         cashbillService = New CashbillService(LinkID, SecretKey)
 
-        '연동환경 설정값 (True-개발용, False-상업용)
+        '연동환경 설정값, True-개발용, False-상업용
         cashbillService.IsTest = True
 
-        '인증토큰의 IP제한기능 사용여부, (True-권장)
+        '인증토큰 발급 IP 제한 On/Off, True-사용, False-미사용, 기본값(True)
         cashbillService.IPRestrictOnOff = True
 
-        '팝빌 API 서비스 고정 IP 사용여부, True-사용, False-미사용(기본값)
+        '팝빌 API 서비스 고정 IP 사용여부, True-사용, False-미사용, 기본값(False)
         cashbillService.UseStaticIP = False
 
-        '로컬PC 시간 사용 여부 True(사용), False(기본값) - 미사용
+        '로컬시스템 시간 사용여부, True-사용, False-미사용, 기본값(False)
         cashbillService.UseLocalTimeYN = False
 
     End Sub
@@ -50,7 +50,6 @@ Public Class frmExample
     '=========================================================================
     ' 파트너가 현금영수증 관리 목적으로 할당하는 문서번호 사용여부를 확인합니다.
     ' - 이미 사용 중인 문서번호는 중복 사용이 불가하고, 현금영수증이 삭제된 경우에만 문서번호의 재사용이 가능합니다.
-    ' - 문서번호는 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
     ' - https://docs.popbill.com/cashbill/dotnet/api#CheckMgtKeyInUse
     '=========================================================================
     Private Sub btnCheckMgtKeyInUse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckMgtKeyInUse.Click
@@ -77,14 +76,6 @@ Public Class frmExample
         '현금영수증 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
         cashbill.mgtKey = txtMgtKey.Text
 
-        '[취소거래시 필수] 원본 현금영수증 국세청승인번호
-        '문서정보(GetInfo API)의 응답항목중 국세청승인번호(confirmNum)를 확인하여 기재
-        cashbill.orgConfirmNum = ""
-
-        '[취소거래시 필수] 원본 현금영수증 거래일자
-        '문서정보(GetInfo API)의 응답항목중 거래일자(tradeDate)를 확인하여 기재
-        cashbill.orgTradeDate = ""
-
         '문서형태, [승인거래, 취소거래] 중 기재
         cashbill.tradeType = "승인거래"
 
@@ -92,6 +83,7 @@ Public Class frmExample
         cashbill.tradeUsage = "소득공제용"
 
         '거래유형, [일반, 도서공연, 대중교통] 중 기재
+        '- 미입력시 기본값 "일반" 처리
         cashbill.tradeOpt = "일반"
 
         '과세형태, [과세, 비과세] 중 기재
@@ -122,15 +114,16 @@ Public Class frmExample
         cashbill.franchiseCEOName = "발행자 대표자"
 
         '가맹점 주소
-        cashbill.franchiseAddr = "발행자 주소d"
+        cashbill.franchiseAddr = "발행자 주소"
 
         '가맹점 전화번호
-        cashbill.franchiseTEL = "070-1234-1234"
+        cashbill.franchiseTEL = ""
 
-        '식별번호, 거래유형에 따라 작성
-        '소득공제용 - 주민등록/휴대폰/카드번호 기재가능
-        '지출증빙용 - 사업자번호/주민등록/휴대폰/카드번호 기재가능
-        cashbill.identityNum = "0101112222"
+        ' 식별번호, 거래구분에 따라 작성
+        ' └ 소득공제용 - 주민등록/휴대폰/카드번호(현금영수증 카드)/자진발급용 번호(010-000-1234) 기재가능
+        ' └ 지출증빙용 - 사업자번호/주민등록/휴대폰/카드번호(현금영수증 카드) 기재가능
+        ' └ 주민등록번호 13자리, 휴대폰번호 10~11자리, 카드번호 13~19자리, 사업자번호 10자리 입력 가능
+        cashbill.identityNum = "010-000-1234"
 
         '주문자명
         cashbill.customerName = "주문자명"
@@ -146,11 +139,13 @@ Public Class frmExample
         '실제 거래처의 메일주소가 기재되지 않도록 주의
         cashbill.email = ""
 
-        '주문자 휴대폰번호
-        cashbill.hp = "010-111-222"
-
-        '현금영수증 발행 알림문자 전송여부, 미기재시 "false"
+        '현금영수증 발행 알림문자 전송여부
+        '미입력시 기본값 False 처리
         cashbill.smssendYN = False
+
+        '주문자 휴대폰번호
+        ' - {smssendYN} 의 값이 True 인 경우 아래 휴대폰번호로 안내 문자 전송
+        cashbill.hp = ""
 
         '메모
         Dim memo As String = "즉시발행 메모"
@@ -169,215 +164,145 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 현금영수증을 [임시저장]합니다.
-    ' - [임시저장] 상태의 현금영수증은 발행(Issue API)을 호출해야만 국세청에 전송됩니다.
-    ' - 현금영수증 국세청 전송 정책 : https://docs.popbill.com/cashbill/ntsSendPolicy?lang=dotnet
-    ' - https://docs.popbill.com/cashbill/dotnet/api#Register
+    ' 최대 100건의 현금영수증 발행을 한번의 요청으로 접수합니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#BulkSubmit
     '=========================================================================
-    Private Sub btnRegister_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim cashbill As Cashbill = New Cashbill
+    Private Sub btnBulkSubmit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBulkSubmit.Click
+        ' 현금영수증 객체정보 목록
+        Dim cashbillList As List(Of Cashbill) = New List(Of Cashbill)
 
-        '현금영수증 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
-        cashbill.mgtKey = txtMgtKey.Text
+        For i = 0 To 99
+            Dim cashbill As Cashbill = New Cashbill
 
-        '[취소거래시 필수] 원본 현금영수증 국세청승인번호
-        '문서정보(GetInfo API)의 응답항목중 국세청승인번호(confirmNum)를 확인하여 기재
-        cashbill.orgConfirmNum = ""
+            '현금영수증 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+            cashbill.mgtKey = txtSubmitID.Text + i.ToString()
 
-        '[취소거래시 필수] 원본 현금영수증 거래일자
-        '문서정보(GetInfo API)의 응답항목중 거래일자(tradeDate)를 확인하여 기재
-        cashbill.orgTradeDate = ""
+            '[취소거래시 필수] 원본 현금영수증 국세청승인번호
+            'cashbill.orgConfirmNum = ""
 
-        '문서형태, [승인거래, 취소거래] 중 기재
-        cashbill.tradeType = "승인거래"
+            '[취소거래시 필수] 원본 현금영수증 거래일자
+            'cashbill.orgTradeDate = ""
 
-        '거래구분, [소득공제용, 지출증빙용] 중 기재
-        cashbill.tradeUsage = "소득공제용"
+            '문서형태, [승인거래, 취소거래] 중 기재
+            cashbill.tradeType = "승인거래"
 
-        '거래유형, [일반, 도서공연, 대중교통] 중 기재
-        cashbill.tradeOpt = "일반"
+            '거래구분, [소득공제용, 지출증빙용] 중 기재
+            cashbill.tradeUsage = "소득공제용"
 
-        '과세형태, [과세, 비과세] 중 기재
-        cashbill.taxationType = "과세"
+            '거래유형, [일반, 도서공연, 대중교통] 중 기재
+            '- 미입력시 기본값 "일반" 처리
+            cashbill.tradeOpt = "일반"
 
-        '거래금액, 공급가액 + 봉사료 + 세액
-        cashbill.totalAmount = "11000"
+            '과세형태, [과세, 비과세] 중 기재
+            cashbill.taxationType = "과세"
 
-        '공급가액
-        cashbill.supplyCost = "10000"
+            '거래금액, 공급가액 + 봉사료 + 세액
+            cashbill.totalAmount = "11000"
 
-        '부가세
-        cashbill.tax = "1000"
+            '공급가액
+            cashbill.supplyCost = "10000"
 
-        '봉사료
-        cashbill.serviceFee = "0"
+            '부가세
+            cashbill.tax = "1000"
 
-        '가맹점 사업자번호, "-" 제외 10자리
-        cashbill.franchiseCorpNum = txtCorpNum.Text
+            '봉사료
+            cashbill.serviceFee = "0"
 
-        '가맹점 종사업장 식별번호
-        cashbill.franchiseTaxRegID = ""
+            '가맹점 사업자번호, "-" 제외 10자리
+            cashbill.franchiseCorpNum = txtCorpNum.Text
 
-        '가맹점 상호명
-        cashbill.franchiseCorpName = "발행자 상호"
+            '가맹점 종사업장 식별번호
+            cashbill.franchiseTaxRegID = ""
 
-        '가맹점 대표자 성명
-        cashbill.franchiseCEOName = "발행자 대표자"
+            '가맹점 상호명
+            cashbill.franchiseCorpName = "발행자 상호"
 
-        '가맹점 주소
-        cashbill.franchiseAddr = "발행자 주소d"
+            '가맹점 대표자 성명
+            cashbill.franchiseCEOName = "발행자 대표자"
 
-        '가맹점 전화번호
-        cashbill.franchiseTEL = "070-1234-1234"
+            '가맹점 주소
+            cashbill.franchiseAddr = "발행자 주소"
 
-        '식별번호, 거래유형에 따라 작성
-        '소득공제용 - 주민등록/휴대폰/카드번호 기재가능
-        '지출증빙용 - 사업자번호/주민등록/휴대폰/카드번호 기재가능
-        cashbill.identityNum = "0101112222"
+            '가맹점 전화번호
+            cashbill.franchiseTEL = ""
 
-        '주문자명
-        cashbill.customerName = "주문자명"
+            '식별번호, 거래유형에 따라 작성
+            '└ 소득공제용 - 주민등록/휴대폰/카드번호(현금영수증 카드)/자진발급용 번호(010-000-1234) 기재가능
+            '└ 지출증빙용 - 사업자번호/주민등록/휴대폰/카드번호(현금영수증 카드) 기재가능
+            '└ 주민등록번호 13자리, 휴대폰번호 10~11자리, 카드번호 13~19자리, 사업자번호 10자리 입력 가능
+            cashbill.identityNum = "010-000-1234"
 
-        '주문상품명
-        cashbill.itemName = "주문상품명"
+            '주문자명
+            cashbill.customerName = "주문자명"
 
-        '주문번호
-        cashbill.orderNumber = "주문번호"
+            '주문상품명
+            cashbill.itemName = "주문상품명"
 
-        '주문자 이메일
-        '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
-        '실제 거래처의 메일주소가 기재되지 않도록 주의
-        cashbill.email = "test@test.com"
+            '주문번호
+            cashbill.orderNumber = "주문번호"
 
-        '주문자 휴대폰번호
-        cashbill.hp = "010-111-222"
+            '주문자 이메일
+            '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+            '실제 거래처의 메일주소가 기재되지 않도록 주의
+            cashbill.email = ""
 
-        '현금영수증 발행 알림문자 전송여부, 미기재시 "false"
-        cashbill.smssendYN = False
+            '현금영수증 발행 알림문자 전송여부
+            '미입력시 기본값 False 처리
+            cashbill.smssendYN = False
+
+            '주문자 휴대폰번호
+            '- {smssendYN} 의 값이 true 인 경우 아래 휴대폰번호로 안내 문자 전송
+            cashbill.hp = ""
+
+            cashbillList.Add(cashbill)
+        Next
 
         Try
-            Dim response As Response = cashbillService.Register(txtCorpNum.Text, cashbill, txtUserId.Text)
+            Dim response As BulkResponse = cashbillService.BulkSubmit(txtCorpNum.Text, txtSubmitID.Text, cashbillList, txtUserId.Text)
 
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-
-    End Sub
-
-    '=========================================================================
-    ' 1건의 현금영수증을 [수정]합니다.
-    ' - [임시저장] 상태의 현금영수증만 수정할 수 있습니다.
-    ' - https://docs.popbill.com/cashbill/dotnet/api#Update
-    '=========================================================================
-    Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-        Dim cashbill As Cashbill = New Cashbill
-
-        '현금영수증 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
-        cashbill.mgtKey = txtMgtKey.Text
-
-        '[취소거래시 필수] 원본 현금영수증 국세청승인번호
-        '문서정보(GetInfo API)의 응답항목중 국세청승인번호(confirmNum)를 확인하여 기재
-        cashbill.orgConfirmNum = ""
-
-        '[취소거래시 필수] 원본 현금영수증 거래일자
-        '문서정보(GetInfo API)의 응답항목중 거래일자(tradeDate)를 확인하여 기재
-        cashbill.orgTradeDate = ""
-
-        '문서형태, [승인거래, 취소거래] 중 기재
-        cashbill.tradeType = "승인거래"
-
-        '거래구분, [소득공제용, 지출증빙용] 중 기재
-        cashbill.tradeUsage = "소득공제용"
-
-        '거래유형, [일반, 도서공연, 대중교통] 중 기재
-        cashbill.tradeOpt = "일반"
-
-        '과세형태, [과세, 비과세] 중 기재
-        cashbill.taxationType = "과세"
-
-        '거래금액, 공급가액 + 봉사료 + 세액
-        cashbill.totalAmount = "11000"
-
-        '공급가액
-        cashbill.supplyCost = "10000"
-
-        '부가세
-        cashbill.tax = "1000"
-
-        '봉사료
-        cashbill.serviceFee = "0"
-
-        '가맹점 사업자번호, "-" 제외 10자리
-        cashbill.franchiseCorpNum = txtCorpNum.Text
-
-        '가맹점 종사업장 식별번호
-        cashbill.franchiseTaxRegID = ""
-
-        '가맹점 상호명
-        cashbill.franchiseCorpName = "발행자 상호"
-
-        '가맹점 대표자 성명
-        cashbill.franchiseCEOName = "발행자 대표자"
-
-        '가맹점 주소
-        cashbill.franchiseAddr = "발행자 주소d"
-
-        '가맹점 전화번호
-        cashbill.franchiseTEL = "070-1234-1234"
-
-        '식별번호, 거래유형에 따라 작성
-        '소득공제용 - 주민등록/휴대폰/카드번호 기재가능
-        '지출증빙용 - 사업자번호/주민등록/휴대폰/카드번호 기재가능
-        cashbill.identityNum = "0101112222"
-
-        '주문자명
-        cashbill.customerName = "주문자명"
-
-        '주문상품명
-        cashbill.itemName = "주문상품명"
-
-        '주문번호
-        cashbill.orderNumber = "주문번호"
-
-        '주문자 이메일
-        '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
-        '실제 거래처의 메일주소가 기재되지 않도록 주의
-        cashbill.email = "test@test.com"
-
-        '주문자 휴대폰번호
-        cashbill.hp = "010-111-222"
-
-        '현금영수증 발행 알림문자 전송여부, 미기재시 "false"
-        cashbill.smssendYN = False
-
-        Try
-            Dim response As Response = cashbillService.Update(txtCorpNum.Text, txtMgtKey.Text, cashbill, txtUserId.Text)
-
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message + vbCrLf + "접수아이디(receiptID) : " + response.receiptID)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
     '=========================================================================
-    ' 1건의 [임시저장] 현금영수증을 [발행]합니다.
-    ' - 현금영수증 국세청 전송 정책 : https://docs.popbill.com/cashbill/ntsSendPolicy?lang=dotnet
-    ' - https://docs.popbill.com/cashbill/dotnet/api#CBIssue
+    ' 접수시 기재한 SubmitID를 사용하여 현금영수증 접수결과를 확인합니다.
+    ' - 개별 현금영수증 처리상태는 접수상태(txState)가 완료(2) 시 반환됩니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#GetBulkResult
     '=========================================================================
-    Private Sub btnIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-        '발행 메모
-        Dim Memo As String = "발행 메모"
-
+    Private Sub btnGetBulkResult_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetBulkResult.Click
         Try
+            Dim result As BulkCashbillResult = cashbillService.GetBulkResult(txtCorpNum.Text, txtSubmitID.Text, txtUserId.Text)
 
-            Dim response As CBIssueResponse = cashbillService.Issue(txtCorpNum.Text, txtMgtKey.Text, Memo, txtUserId.Text)
+            Dim tmp As String = ""
 
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message + vbCrLf _
-                + "국세청 승인번호(confirmNum) : " + response.confirmNum + vbCrLf + "거래일자(tradeDate) : " + response.tradeDate)
+            tmp += "응답 코드(code) : " + result.code.ToString() + vbCrLf
+            tmp += "응답메시지(message) : " + result.message + vbCrLf
+            tmp += "제출아이디(submitID) : " + result.submitID + vbCrLf
+            tmp += "현금영수증 접수 건수(submitCount) : " + result.submitCount.ToString() + vbCrLf
+            tmp += "현금영수증 발행 성공 건수(successCount) : " + result.successCount.ToString() + vbCrLf
+            tmp += "현금영수증 발행 실패 건수(failCount) : " + result.failCount.ToString() + vbCrLf
+            tmp += "접수상태코드(txState) : " + result.txState.ToString() + vbCrLf
+            tmp += "접수 결과코드(txResultCode) : " + result.txResultCode.ToString() + vbCrLf
+            tmp += "발행처리 시작일시(txStartDT) : " + result.txStartDT + vbCrLf
+            tmp += "발행처리 완료일시(txEndDT) : " + result.txEndDT + vbCrLf
+            tmp += "접수일시(receiptDT) : " + result.receiptDT + vbCrLf
+            tmp += "접수아이디(receiptID) : " + result.receiptID + vbCrLf
 
+            If Not result.issueResult Is Nothing Then
+                Dim i As Integer = 1
+                For Each issueResult As BulkCashbillIssueResult In result.issueResult
+                    tmp += "===========발행결과[" + i.ToString() + "/" + result.issueResult.Count.ToString() + "]===========" + vbCrLf
+                    tmp += "응답코드(code) : " + issueResult.code.ToString + vbCrLf
+                    tmp += "문서번호(MgtKey) : " + issueResult.mgtKey + vbCrLf
+                    tmp += "국세청승인번호(confirmNum) : " + issueResult.confirmNum + vbCrLf
+                    tmp += "거래일자(tradeDate) : " + issueResult.tradeDate + vbCrLf
+                    i = i + 1
+                Next
+            End If
+
+            MsgBox(tmp)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -385,7 +310,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 국세청 전송 이전 "발행완료" 상태의 현금영수증을 "발행취소"하고 국세청 신고 대상에서 제외합니다.
-    ' - Delete(삭제)함수를 호출하여 "발행취소" 상태의 현금영수증을 삭제하면, 문서번호 재사용이 가능합니다.
+    ' - 삭제(Delete API) 함수를 호출하여 "발행취소" 상태의 현금영수증을 삭제하면, 문서번호 재사용이 가능합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#CancelIssue
     '=========================================================================
     Private Sub btnCancelIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -507,7 +432,7 @@ Public Class frmExample
         Dim orgConfirmNum As String = "TB0000013"
 
         '원본현금영수증 거래일자
-        Dim orgTradeDate As String = "20210804"
+        Dim orgTradeDate As String = "20220501"
 
         '발행 안내문자 전송여부
         Dim smssendYN As Boolean = False
@@ -538,9 +463,11 @@ Public Class frmExample
         Dim orgConfirmNum As String = "TB0000013"
 
         '원본현금영수증 거래일자
-        Dim orgTradeDate As String = "20210804"
+        Dim orgTradeDate As String = "20220501"
 
-        '발행안내문자 전송여부
+        '안내 문자 전송여부 , True / False 중 택 1
+        '└ True = 전송 , False = 미전송
+        '└ 원본 현금영수증의 구매자(고객)의 휴대폰번호 문자 전송
         Dim smssendYN As Boolean = False
 
         '취소현금영수증 메모
@@ -549,19 +476,25 @@ Public Class frmExample
         '부분취소 여부
         Dim isPartCancel As Boolean = True
 
-        '취소사유, 1-거래취소, 2-오류발급취소, 3- 기타
+        '취소사유 , 1 / 2 / 3 중 택 1
+        '└ 1 = 거래취소 , 2 = 오류발급취소 , 3 = 기타
+        '└ 미입력시 기본값 1 처리
         Dim cancelType As Integer = 1
 
         '[취소] 공급가액
+        '취소할 공급가액 입력
         Dim supplyCost As String = "2000"
 
         '[취소] 세액
+        '취소할 세액 입력
         Dim tax As String = "200"
 
         '[취소] 봉사료
+        '취소할 봉사료 입력
         Dim serviceFee As String = "0"
 
-        '[취소] 합계금액
+        '[취소] 거래금액 (공급가액+세액+봉사료)
+        '취소할 거래금액 입력
         Dim totalAmount As String = "2200"
 
         Try
@@ -580,6 +513,8 @@ Public Class frmExample
 
     '=========================================================================
     ' 현금영수증 1건의 상태 및 요약정보를 확인합니다.
+    ' - 리턴값 'CashbillInfo'의 변수 'stateCode'를 통해 현금영수증의 상태코드를 확인합니다.
+    ' - 현금영수증 상태코드 [https://docs.popbill.com/cashbill/stateCode?lang=dotnet]
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetInfo
     '=========================================================================
     Private Sub btnGetInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetInfo.Click
@@ -622,6 +557,8 @@ Public Class frmExample
 
     '=========================================================================
     ' 다수건의 현금영수증 상태 및 요약 정보를 확인합니다. (1회 호출 시 최대 1,000건 확인 가능)
+    ' - 리턴값 'CashbillInfo'의 변수 'stateCode'를 통해 현금영수증의 상태코드를 확인합니다.
+    ' - 현금영수증 상태코드 [https://docs.popbill.com/cashbill/stateCode?lang=dotnet]
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetInfos
     '=========================================================================
     Private Sub btnGetInfos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetInfos.Click
@@ -629,8 +566,8 @@ Public Class frmExample
         Dim MgtKeyList As List(Of String) = New List(Of String)
 
         '문서번호 배열, 최대 1000건.
-        MgtKeyList.Add("20210701-001")
-        MgtKeyList.Add("20210701-002")
+        MgtKeyList.Add("20220513-001")
+        MgtKeyList.Add("20220513-002")
 
         Try
             Dim cashbillInfoList As List(Of CashbillInfo) = cashbillService.GetInfos(txtCorpNum.Text, MgtKeyList)
@@ -731,35 +668,43 @@ Public Class frmExample
         Dim taxationType(2) As String
         Dim tradeOpt(3) As String
 
-        '[필수] 일자유형, R-등록일자, T-거래일자 I-발행일자
+        '일자유형, R-등록일자, T-거래일자 I-발행일자
         Dim DType As String = "T"
 
-        '[필수] 시작일자, 형식(yyyyMMdd)
-        Dim SDate As String = "20211201"
+        '시작일자, 형식(yyyyMMdd)
+        Dim SDate As String = "20220501"
 
-        '[필수] 종료일자, 형식(yyyyMMdd)
-        Dim EDate As String = "20211220"
+        '종료일자, 형식(yyyyMMdd)
+        Dim EDate As String = "20220531"
 
-        '전송상태코드 배열, 미기재시 전체조회, 2,3번째 자리 와일드카드(*) 가능
-        '[참조] 현금영수증 API 연동매뉴열 "5.1. 현금영수증 상태코드"
+        '상태코드 배열 (2,3번째 자리에 와일드카드(*) 사용 가능)
+        '- 미입력시 전체조회
         State(0) = "2**"
         State(1) = "3**"
         State(2) = "4**"
 
-        '문서형태 배열, N-일반 현금영수증, C-취소 현금영수증
+        '문서형태 배열 ("N" , "C" 중 선택, 다중 선택 가능)
+        '- N = 일반 현금영수증 , C = 취소 현금영수증
+        '- 미입력시 전체조회
         tradeType(0) = "N"
         tradeType(1) = "C"
 
-        '거래구분 배열, P-소득공제, C-지출증빙
+        '거래구분 배열 ("P" , "C" 중 선택, 다중 선택 가능)
+        '- P = 소득공제용 , C = 지출증빙용
+        '- 미입력시 전체조회
         tradeUsage(0) = "P"
         tradeUsage(1) = "C"
 
-        '거래유형, N-일반, B-도서공연, T-대중교통
+        '거래유형 배열 ("N" , "B" , "T" 중 선택, 다중 선택 가능)
+        '- N = 일반 , B = 도서공연 , T = 대중교통
+        '- 미입력시 전체조회
         tradeOpt(0) = "N"
         tradeOpt(1) = "B"
         tradeOpt(2) = "T"
 
-        '과세형태 배열, T-과세, N-비과세
+        '과세형태 배열 ("T" , "N" 중 선택, 다중 선택 가능)
+        '- T = 과세 , N = 비과세
+        '- 미입력시 전체조회
         taxationType(0) = "T"
         taxationType(1) = "N"
 
@@ -769,27 +714,29 @@ Public Class frmExample
         '페이지 번호, 기본값 1
         Dim Page As Integer = 1
 
-        '페이지당 목록갯수, 기본값 500
+        '페이지당 목록갯수, 기본값 500, 최댓값 100
         Dim PerPage As Integer = 30
 
         '정렬방향 D-내림차순(기본값), A-오름차순
         Dim Order As String = "D"
 
-        '가맹점 종사업장 번호, 다수건 검색시 콤마(",")로 구분. 예) 1234,1000
+        '가맹점 종사업장 번호
+        '└ 다수건 검색시 콤마(",")로 구분. 예) "1234,1000"
+        '└ 미입력시 전제조회
         Dim FranchiseTaxRegID = ""
 
         Try
             Dim cbSearchList As CBSearchResult = cashbillService.Search(txtCorpNum.Text, DType, SDate, EDate, State, _
                                                                 tradeType, tradeUsage, tradeOpt, taxationType, QString, Order, Page, PerPage, FranchiseTaxRegID)
 
-            Dim tmp As String
+            Dim tmp As String = ""
 
-            tmp = "code (응답코드) : " + CStr(cbSearchList.code) + vbCrLf
-            tmp = tmp + "message (응답메시지) : " + cbSearchList.message + vbCrLf + vbCrLf
-            tmp = tmp + "total (총 검색결과 건수) : " + CStr(cbSearchList.total) + vbCrLf
-            tmp = tmp + "perPage (페이지당 검색개수) : " + CStr(cbSearchList.perPage) + vbCrLf
-            tmp = tmp + "pageNum (페이지 번호) : " + CStr(cbSearchList.pageNum) + vbCrLf
-            tmp = tmp + "pageCount (페이지 개수) : " + CStr(cbSearchList.pageCount) + vbCrLf
+            tmp += "code (응답코드) : " + CStr(cbSearchList.code) + vbCrLf
+            tmp += "message (응답메시지) : " + cbSearchList.message + vbCrLf + vbCrLf
+            tmp += "total (총 검색결과 건수) : " + CStr(cbSearchList.total) + vbCrLf
+            tmp += "perPage (페이지당 검색개수) : " + CStr(cbSearchList.perPage) + vbCrLf
+            tmp += "pageNum (페이지 번호) : " + CStr(cbSearchList.pageNum) + vbCrLf
+            tmp += "pageCount (페이지 개수) : " + CStr(cbSearchList.pageCount) + vbCrLf
 
             For Each cbInfo As CashbillInfo In cbSearchList.list
                 tmp += "itemKey (팝빌번호) : " + cbInfo.itemKey + vbCrLf
@@ -848,17 +795,14 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 현금영수증 임시문서함 팝업 URL을 반환합니다.
+    ' 로그인 상태로 팝빌 사이트의 현금영수증 임시문서함 메뉴에 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetURL
     '=========================================================================
     Private Sub btnGetURL_TBOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_TBOX.Click
 
-        'TBOX-임시문서함 / PBOX-발행문서함 / WRITE-현금영수증 신규 작성
-        Dim TOGO As String = "TBOX"
-
         Try
-            Dim url As String = cashbillService.GetURL(txtCorpNum.Text, txtUserId.Text, TOGO)
+            Dim url As String = cashbillService.GetURL(txtCorpNum.Text, txtUserId.Text, "TBOX")
 
             MsgBox(url)
             txtURL.Text = url
@@ -870,17 +814,14 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 현금영수증 발행문서함 팝업 URL을 반환합니다.
+    ' 로그인 상태로 팝빌 사이트의 현금영수증 발행문서함 메뉴에 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetURL
     '=========================================================================
     Private Sub btnGetURL_SBOX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_PBOX.Click
 
-        'TBOX-임시문서함 / PBOX-발행문서함 / WRITE-현금영수증 신규 작성
-        Dim TOGO As String = "PBOX"
-
         Try
-            Dim url As String = cashbillService.GetURL(txtCorpNum.Text, txtUserId.Text, TOGO)
+            Dim url As String = cashbillService.GetURL(txtCorpNum.Text, txtUserId.Text, "PBOX")
 
             MsgBox(url)
             txtURL.Text = url
@@ -891,17 +832,14 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 현금영수증 매출문서작성 팝업 URL을 반환합니다.
+    ' 로그인 상태로 팝빌 사이트의 현금영수증 매출문서작성 메뉴에 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetURL
     '=========================================================================
     Private Sub btnGetURL_WRITE_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetURL_WRITE.Click
 
-        'TBOX-임시문서함 / PBOX-발행문서함 / WRITE-현금영수증 신규 작성
-        Dim TOGO As String = "WRITE"
-
         Try
-            Dim url As String = cashbillService.GetURL(txtCorpNum.Text, txtUserId.Text, TOGO)
+            Dim url As String = cashbillService.GetURL(txtCorpNum.Text, txtUserId.Text, "WRITE")
 
             MsgBox(url)
             txtURL.Text = url
@@ -912,7 +850,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 사이트와 동일한 현금영수증 1건의 상세 정보 페이지의 URL을 반환합니다.
+    ' 현금영수증 1건의 상세 정보 페이지의 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetPopUpURL
     '=========================================================================
@@ -930,7 +868,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 사이트와 동일한 현금영수증 1건의 상세 정보 페이지(사이트 상단, 좌측 메뉴 및 버튼 제외)의 URL을 반환합니다.
+    ' 현금영수증 1건의 상세 정보 페이지(사이트 상단, 좌측 메뉴 및 버튼 제외)의 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetViewURL
     '=========================================================================
@@ -965,23 +903,6 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 1건의 현금영수증 인쇄 팝업 URL을 반환합니다. (공급받는자용)
-    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    '=========================================================================
-    Private Sub btnEPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEPrintURL.Click
-
-        Try
-            Dim url As String = cashbillService.GetEPrintURL(txtCorpNum.Text, txtMgtKey.Text, txtUserId.Text)
-
-            MsgBox(url)
-            txtURL.Text = url
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-
-    End Sub
-
-    '=========================================================================
     ' 다수건의 현금영수증을 인쇄하기 위한 페이지의 팝업 URL을 반환합니다. (최대 100건)
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetMassPrintURL
@@ -990,8 +911,8 @@ Public Class frmExample
         Dim MgtKeyList As List(Of String) = New List(Of String)
 
         '문서 문서번호 배열, 최대 100건.
-        MgtKeyList.Add("20210701-001")
-        MgtKeyList.Add("20210701-002")
+        MgtKeyList.Add("20220513-001")
+        MgtKeyList.Add("20220513-002")
 
         Try
             Dim url As String = cashbillService.GetMassPrintURL(txtCorpNum.Text, MgtKeyList, txtUserId.Text)
@@ -1022,6 +943,23 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
+    ' 현금영수증 PDF 파일을 다운 받을 수 있는 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#GetPDFURL
+    '=========================================================================
+    Private Sub btnGetPDFURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPDFURL.Click
+
+        Try
+            Dim url As String = cashbillService.GetPDFURL(txtCorpNum.Text, txtMgtKey.Text, txtUserId.Text)
+
+            MsgBox(url)
+            txtURL.Text = url
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
     ' 팝빌 사이트에 로그인 상태로 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetAccessURL
@@ -1044,8 +982,8 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnSendEmail_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendEmail.Click
 
-        '수자 이메일주소
-        Dim receiverMail = "test@test.com"
+        '수신이메일주소
+        Dim receiverMail = ""
 
         Try
             Dim response As Response = cashbillService.SendEmail(txtCorpNum.Text, txtMgtKey.Text, receiverMail, txtUserId.Text)
@@ -1059,16 +997,17 @@ Public Class frmExample
 
     '=========================================================================
     ' 현금영수증과 관련된 안내 SMS(단문) 문자를 재전송하는 함수로, 팝빌 사이트 [문자·팩스] > [문자] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다.
-    ' - 알림문자 전송시 포인트가 차감됩니다. (전송실패시 환불처리)
+    ' - 메시지는 최대 90byte까지 입력 가능하고, 초과한 내용은 자동으로 삭제되어 전송합니다. (한글 최대 45자)
+    ' - 함수 호출 시 포인트가 과금됩니다. (전송실패시 환불처리)
     ' - https://docs.popbill.com/cashbill/dotnet/api#SendSMS
     '=========================================================================
     Private Sub btnSendSMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendSMS.Click
 
         '발신번호
-        Dim sendNum As String = "070-1234-1234"
+        Dim sendNum As String = ""
 
         '수신번호
-        Dim receiveNum As String = "010-1111-2222"
+        Dim receiveNum As String = ""
 
         '메시지내용, 90byte(한글45자) 초과된 내용은 삭제되어 전송됨
         Dim contents As String = "발신문자 메시지 내용"
@@ -1091,16 +1030,37 @@ Public Class frmExample
     Private Sub btnSendFAX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendFAX.Click
 
         '발신번호
-        Dim sendNum As String = "070-111-2222"
+        Dim sendNum As String = ""
 
         '수신팩스번호
-        Dim receiveNum As String = "070-1111-2222"
+        Dim receiveNum As String = ""
 
         Try
             Dim response As Response = cashbillService.SendFAX(txtCorpNum.Text, txtMgtKey.Text, sendNum, receiveNum, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 팝빌 사이트를 통해 발행하였지만 문서번호가 존재하지 않는 현금영수증에 문서번호를 할당합니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#AssignMgtKey
+    '=========================================================================
+    Private Sub btnAssignMgtKey_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAssignMgtKey.Click
+
+        '팝빌번호, 목록조회(Search) API의 반환항목중 ItemKey 참조
+        Dim itemKey As String = ""
+
+        '문서번호가 없는 문서에 할당할 문서번호
+        '- 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        Dim mgtKey As String = "20220504-001"
+
+        Try
+            Dim response As Response = cashbillService.AssignMgtKey(txtCorpNum.Text, itemKey, mgtKey, txtUserId.Text)
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -1155,7 +1115,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 잔여포인트를 확인합니다.
-    ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트(GetPartnerBalance API)를 통해 확인하시기 바랍니다.
+    ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트 확인(GetPartnerBalance API) 함수를 통해 확인하시기 바랍니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetBalance
     '=========================================================================
     Private Sub btnGetBalance_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetBalance.Click
@@ -1219,7 +1179,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 파트너의 잔여포인트를 확인합니다.
-    ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
+    ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트 확인(GetBalance API) 함수를 이용하시기 바랍니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#GetPartnerBalance
     '=========================================================================
     Private Sub btnGetPartnerPoint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerPoint.Click
@@ -1356,160 +1316,13 @@ Public Class frmExample
         joinInfo.ContactName = "담당자명"
 
         '담당자 이메일 (최대 20자)
-        joinInfo.ContactEmail = "test@test.com"
+        joinInfo.ContactEmail = ""
 
         '담당자 연락처 (최대 20자)
-        joinInfo.ContactTEL = "070-4304-2991"
-
-        '담당자 휴대폰번호 (최대 20자)
-        joinInfo.ContactHP = "010-111-222"
-
-        '담당자 팩스번호 (최대 20자)
-        joinInfo.ContactFAX = "02-6442-9700"
+        joinInfo.ContactTEL = ""
 
         Try
             Dim response As Response = cashbillService.JoinMember(joinInfo)
-
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
-    ' - https://docs.popbill.com/cashbill/dotnet/api#RegistContact
-    '=========================================================================
-    Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistContact.Click
-
-        '담당자 정보객체
-        Dim joinData As New Contact
-
-        '아이디 (6자이상 50자미만)
-        joinData.id = "testkorea1120"
-
-        '비밀번호, 8자 이상 20자 이하(영문, 숫자, 특수문자 조합)
-        joinData.Password = "asdf8536!@#"
-
-        '담당자 성명 (최대 100자)
-        joinData.personName = "담당자명"
-
-        '담당자 연락처 (최대 20자)
-        joinData.tel = "070-1111-2222"
-
-        '담당자 휴대폰 (최대 20자)
-        joinData.hp = "010-1234-1234"
-
-        '담당자 팩스 (최대 20자)
-        joinData.fax = "070-1234-1234"
-
-        '담당자 이메일 (최대 100자)
-        joinData.email = "test@test.com"
-
-        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
-        joinData.searchRole = 3
-
-        Try
-            Dim response As Response = cashbillService.RegistContact(txtCorpNum.Text, joinData, txtUserId.Text)
-
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보을 확인합니다.
-    ' - https://docs.popbill.com/cashbill/dotnet/api#GetContactInfo
-    '=========================================================================
-    Private Sub btnGetContactInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetContactInfo.Click
-
-        '확인할 담당자 아이디
-        Dim contactID As String = "DONETVB_CONTACT"
-
-        Dim tmp As String = ""
-
-        Try
-            Dim contactInfo As Contact = cashbillService.GetContactInfo(txtCorpNum.Text, contactID, txtUserId.Text)
-
-            tmp += "id (담당자 아이디) : " + contactInfo.id + vbCrLf
-            tmp += "personName (담당자명) : " + contactInfo.personName + vbCrLf
-            tmp += "email (담당자 이메일) : " + contactInfo.email + vbCrLf
-            tmp += "hp (휴대폰번호) : " + contactInfo.hp + vbCrLf
-            tmp += "searchRole (담당자 권한) : " + contactInfo.searchRole.ToString() + vbCrLf
-            tmp += "tel (연락처) : " + contactInfo.tel + vbCrLf
-            tmp += "fax (팩스번호) : " + contactInfo.fax + vbCrLf
-            tmp += "mgrYN (관리자 여부) : " + contactInfo.mgrYN.ToString() + vbCrLf
-            tmp += "regDT (등록일시) : " + contactInfo.regDT + vbCrLf
-            tmp += "state (상태) : " + contactInfo.state + vbCrLf
-
-            tmp += vbCrLf
-
-            MsgBox(tmp)
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
-    ' - https://docs.popbill.com/cashbill/dotnet/api#ListContact
-    '=========================================================================
-    Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListContact.Click
-        Try
-            Dim contactList As List(Of Contact) = cashbillService.ListContact(txtCorpNum.Text, txtUserId.Text)
-
-            Dim tmp As String = "id(아이디) | personName(담당자명) | email(메일주소) | hp(휴대폰번호) | fax(팩스) | tel(연락처) |"
-            tmp += "regDT(등록일시) | searchRole(담당자 권한) | mgrYN(관리자 여부) | state(상태)" + vbCrLf
-
-            For Each info As Contact In contactList
-                tmp += info.id + " | " + info.personName + " | " + info.email + " | " + info.hp + " | " + info.fax + " | " + info.tel + " | "
-                tmp += info.regDT.ToString() + " | " + info.searchRole.ToString() + " | " + info.mgrYN.ToString() + " | " + info.state + vbCrLf
-            Next
-
-            MsgBox(tmp)
-        Catch ex As PopbillException
-
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
-    ' - https://docs.popbill.com/cashbill/dotnet/api#UpdateContact
-    '=========================================================================
-    Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateContact.Click
-
-        '담당자 정보객체
-        Dim joinData As New Contact
-
-        '아이디 (6자이상 50자미만)
-        joinData.id = "testkorea1120"
-
-        '담당자 성명 (최대 100자)
-        joinData.personName = "담당자명"
-
-        '담당자 연락처 (최대 20자)
-        joinData.tel = "070-1111-2222"
-
-        '담당자 휴대폰 (최대 20자)
-        joinData.hp = "010-1234-1234"
-
-        '담당자 팩스 (최대 20자)
-        joinData.fax = "070-1234-1234"
-
-        '담당자 이메일 (최대 100자)
-        joinData.email = "test@test.com"
-
-        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
-        joinData.searchRole = 3
-
-        Try
-            Dim response As Response = cashbillService.UpdateContact(txtCorpNum.Text, joinData, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
@@ -1574,37 +1387,318 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 현금영수증 PDF 파일을 다운 받을 수 있는 URL을 반환합니다.
-    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - https://docs.popbill.com/cashbill/dotnet/api#GetPDFURL
+    ' 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#RegistContact
     '=========================================================================
-    Private Sub btnGetPDFURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPDFURL.Click
+    Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistContact.Click
+
+        '담당자 정보객체
+        Dim joinData As New Contact
+
+        '아이디 (6자이상 50자미만)
+        joinData.id = "testkorea1120"
+
+        '비밀번호, 8자 이상 20자 이하(영문, 숫자, 특수문자 조합)
+        joinData.Password = "asdf8536!@#"
+
+        '담당자 성명 (최대 100자)
+        joinData.personName = "담당자명"
+
+        '담당자 연락처 (최대 20자)
+        joinData.tel = ""
+
+        '담당자 이메일 (최대 100자)
+        joinData.email = ""
+
+        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
+        joinData.searchRole = 3
 
         Try
-            Dim url As String = cashbillService.GetPDFURL(txtCorpNum.Text, txtMgtKey.Text, txtUserId.Text)
+            Dim response As Response = cashbillService.RegistContact(txtCorpNum.Text, joinData, txtUserId.Text)
 
-            MsgBox(url)
-            txtURL.Text = url
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보을 확인합니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#GetContactInfo
+    '=========================================================================
+    Private Sub btnGetContactInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetContactInfo.Click
+
+        '확인할 담당자 아이디
+        Dim contactID As String = "DONETVB_CONTACT"
+
+        Dim tmp As String = ""
+
+        Try
+            Dim contactInfo As Contact = cashbillService.GetContactInfo(txtCorpNum.Text, contactID, txtUserId.Text)
+
+            tmp += "id (담당자 아이디) : " + contactInfo.id + vbCrLf
+            tmp += "personName (담당자명) : " + contactInfo.personName + vbCrLf
+            tmp += "email (담당자 이메일) : " + contactInfo.email + vbCrLf
+            tmp += "searchRole (담당자 권한) : " + contactInfo.searchRole.ToString() + vbCrLf
+            tmp += "tel (연락처) : " + contactInfo.tel + vbCrLf
+            tmp += "mgrYN (관리자 여부) : " + contactInfo.mgrYN.ToString() + vbCrLf
+            tmp += "regDT (등록일시) : " + contactInfo.regDT + vbCrLf
+            tmp += "state (상태) : " + contactInfo.state + vbCrLf
+
+            tmp += vbCrLf
+
+            MsgBox(tmp)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
     '=========================================================================
-    ' 팝빌 사이트를 통해 발행하였지만 문서번호가 존재하지 않는 현금영수증에 문서번호를 할당합니다.
-    ' - https://docs.popbill.com/cashbill/dotnet/api#AssignMgtKey
+    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#ListContact
     '=========================================================================
-    Private Sub btnAssignMgtKey_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAssignMgtKey.Click
+    Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListContact.Click
+        Try
+            Dim contactList As List(Of Contact) = cashbillService.ListContact(txtCorpNum.Text, txtUserId.Text)
 
-        '팝빌번호, 목록조회(Search) API의 반환항목중 ItemKey 참조
-        Dim itemKey As String = "020080617004800001"
+            Dim tmp As String = "id(아이디) | personName(담당자명) | email(메일주소) | tel(연락처) |"
+            tmp += "regDT(등록일시) | searchRole(담당자 권한) | mgrYN(관리자 여부) | state(상태)" + vbCrLf
 
-        '문서번호가 없는 문서에 할당할 문서번호
-        '- 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
-        Dim mgtKey As String = "20210701-001"
+            For Each info As Contact In contactList
+                tmp += info.id + " | " + info.personName + " | " + info.email + " | " + info.tel + " | " + info.regDT.ToString() + " | "
+                tmp += info.searchRole.ToString() + " | " + info.mgrYN.ToString() + " | " + info.state + vbCrLf
+            Next
+
+            MsgBox(tmp)
+        Catch ex As PopbillException
+
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
+    ' - https://docs.popbill.com/cashbill/dotnet/api#UpdateContact
+    '=========================================================================
+    Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateContact.Click
+
+        '담당자 정보객체
+        Dim joinData As New Contact
+
+        '아이디 (6자이상 50자미만)
+        joinData.id = "testkorea1120"
+
+        '담당자 성명 (최대 100자)
+        joinData.personName = "담당자명"
+
+        '담당자 연락처 (최대 20자)
+        joinData.tel = ""
+
+        '담당자 이메일 (최대 100자)
+        joinData.email = ""
+
+        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
+        joinData.searchRole = 3
 
         Try
-            Dim response As Response = cashbillService.AssignMgtKey(txtCorpNum.Text, itemKey, mgtKey, txtUserId.Text)
+            Dim response As Response = cashbillService.UpdateContact(txtCorpNum.Text, joinData, txtUserId.Text)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+
+
+    '=========================================================================
+    ' 1건의 현금영수증을 [임시저장]합니다.
+    ' - [임시저장] 상태의 현금영수증은 발행(Issue API)을 호출해야만 국세청에 전송됩니다.
+    '=========================================================================
+    Private Sub btnRegister_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        Dim cashbill As Cashbill = New Cashbill
+
+        '현금영수증 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        cashbill.mgtKey = txtMgtKey.Text
+
+        '[취소거래시 필수] 원본 현금영수증 국세청승인번호
+        '문서정보(GetInfo API)의 응답항목중 국세청승인번호(confirmNum)를 확인하여 기재
+        cashbill.orgConfirmNum = ""
+
+        '[취소거래시 필수] 원본 현금영수증 거래일자
+        '문서정보(GetInfo API)의 응답항목중 거래일자(tradeDate)를 확인하여 기재
+        cashbill.orgTradeDate = ""
+
+        '문서형태, [승인거래, 취소거래] 중 기재
+        cashbill.tradeType = "승인거래"
+
+        '거래구분, [소득공제용, 지출증빙용] 중 기재
+        cashbill.tradeUsage = "소득공제용"
+
+        '거래유형, [일반, 도서공연, 대중교통] 중 기재
+        cashbill.tradeOpt = "일반"
+
+        '과세형태, [과세, 비과세] 중 기재
+        cashbill.taxationType = "과세"
+
+        '거래금액, 공급가액 + 봉사료 + 세액
+        cashbill.totalAmount = "11000"
+
+        '공급가액
+        cashbill.supplyCost = "10000"
+
+        '부가세
+        cashbill.tax = "1000"
+
+        '봉사료
+        cashbill.serviceFee = "0"
+
+        '가맹점 사업자번호, "-" 제외 10자리
+        cashbill.franchiseCorpNum = txtCorpNum.Text
+
+        '가맹점 종사업장 식별번호
+        cashbill.franchiseTaxRegID = ""
+
+        '가맹점 상호명
+        cashbill.franchiseCorpName = "발행자 상호"
+
+        '가맹점 대표자 성명
+        cashbill.franchiseCEOName = "발행자 대표자"
+
+        '가맹점 주소
+        cashbill.franchiseAddr = "발행자 주소d"
+
+        '가맹점 전화번호
+        cashbill.franchiseTEL = "070-1234-1234"
+
+        '식별번호, 거래유형에 따라 작성
+        '소득공제용 - 주민등록/휴대폰/카드번호 기재가능
+        '지출증빙용 - 사업자번호/주민등록/휴대폰/카드번호 기재가능
+        cashbill.identityNum = "0101112222"
+
+        '주문자명
+        cashbill.customerName = "주문자명"
+
+        '주문상품명
+        cashbill.itemName = "주문상품명"
+
+        '주문번호
+        cashbill.orderNumber = "주문번호"
+
+        '주문자 이메일
+        '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        '실제 거래처의 메일주소가 기재되지 않도록 주의
+        cashbill.email = "test@test.com"
+
+        '주문자 휴대폰번호
+        cashbill.hp = "010-111-222"
+
+        '현금영수증 발행 알림문자 전송여부, 미기재시 "false"
+        cashbill.smssendYN = False
+
+        Try
+            Dim response As Response = cashbillService.Register(txtCorpNum.Text, cashbill, txtUserId.Text)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+
+    End Sub
+
+    '=========================================================================
+    ' 1건의 현금영수증을 [수정]합니다.
+    ' - [임시저장] 상태의 현금영수증만 수정할 수 있습니다.
+    '=========================================================================
+    Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+
+        Dim cashbill As Cashbill = New Cashbill
+
+        '현금영수증 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        cashbill.mgtKey = txtMgtKey.Text
+
+        '[취소거래시 필수] 원본 현금영수증 국세청승인번호
+        '문서정보(GetInfo API)의 응답항목중 국세청승인번호(confirmNum)를 확인하여 기재
+        cashbill.orgConfirmNum = ""
+
+        '[취소거래시 필수] 원본 현금영수증 거래일자
+        '문서정보(GetInfo API)의 응답항목중 거래일자(tradeDate)를 확인하여 기재
+        cashbill.orgTradeDate = ""
+
+        '문서형태, [승인거래, 취소거래] 중 기재
+        cashbill.tradeType = "승인거래"
+
+        '거래구분, [소득공제용, 지출증빙용] 중 기재
+        cashbill.tradeUsage = "소득공제용"
+
+        '거래유형, [일반, 도서공연, 대중교통] 중 기재
+        cashbill.tradeOpt = "일반"
+
+        '과세형태, [과세, 비과세] 중 기재
+        cashbill.taxationType = "과세"
+
+        '거래금액, 공급가액 + 봉사료 + 세액
+        cashbill.totalAmount = "11000"
+
+        '공급가액
+        cashbill.supplyCost = "10000"
+
+        '부가세
+        cashbill.tax = "1000"
+
+        '봉사료
+        cashbill.serviceFee = "0"
+
+        '가맹점 사업자번호, "-" 제외 10자리
+        cashbill.franchiseCorpNum = txtCorpNum.Text
+
+        '가맹점 종사업장 식별번호
+        cashbill.franchiseTaxRegID = ""
+
+        '가맹점 상호명
+        cashbill.franchiseCorpName = "발행자 상호"
+
+        '가맹점 대표자 성명
+        cashbill.franchiseCEOName = "발행자 대표자"
+
+        '가맹점 주소
+        cashbill.franchiseAddr = "발행자 주소d"
+
+        '가맹점 전화번호
+        cashbill.franchiseTEL = "070-1234-1234"
+
+        '식별번호, 거래유형에 따라 작성
+        '소득공제용 - 주민등록/휴대폰/카드번호 기재가능
+        '지출증빙용 - 사업자번호/주민등록/휴대폰/카드번호 기재가능
+        cashbill.identityNum = "0101112222"
+
+        '주문자명
+        cashbill.customerName = "주문자명"
+
+        '주문상품명
+        cashbill.itemName = "주문상품명"
+
+        '주문번호
+        cashbill.orderNumber = "주문번호"
+
+        '주문자 이메일
+        '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        '실제 거래처의 메일주소가 기재되지 않도록 주의
+        cashbill.email = "test@test.com"
+
+        '주문자 휴대폰번호
+        cashbill.hp = "010-111-222"
+
+        '현금영수증 발행 알림문자 전송여부, 미기재시 "false"
+        cashbill.smssendYN = False
+
+        Try
+            Dim response As Response = cashbillService.Update(txtCorpNum.Text, txtMgtKey.Text, cashbill, txtUserId.Text)
+
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
@@ -1612,146 +1706,39 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 최대 100건의 현금영수증 발행을 한번의 요청으로 접수합니다.
-    ' - https://docs.popbill.com/cashbill/dotnet/api#BulkSubmit
+    ' 1건의 [임시저장] 현금영수증을 [발행]합니다.
     '=========================================================================
-    Private Sub btnBulkSubmit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBulkSubmit.Click
-        ' 현금영수증 객체정보 목록
-        Dim cashbillList As List(Of Cashbill) = New List(Of Cashbill)
+    Private Sub btnIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
-        For i = 0 To 99
-            Dim cashbill As Cashbill = New Cashbill
-
-            '현금영수증 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
-            cashbill.mgtKey = txtSubmitID.Text + i.ToString()
-
-            '[취소거래시 필수] 원본 현금영수증 국세청승인번호
-            '문서정보(GetInfo API)의 응답항목중 국세청승인번호(confirmNum)를 확인하여 기재
-            cashbill.orgConfirmNum = ""
-
-            '[취소거래시 필수] 원본 현금영수증 거래일자
-            '문서정보(GetInfo API)의 응답항목중 거래일자(tradeDate)를 확인하여 기재
-            cashbill.orgTradeDate = ""
-
-            '문서형태, [승인거래, 취소거래] 중 기재
-            cashbill.tradeType = "승인거래"
-
-            '거래구분, [소득공제용, 지출증빙용] 중 기재
-            cashbill.tradeUsage = "소득공제용"
-
-            '거래유형, [일반, 도서공연, 대중교통] 중 기재
-            cashbill.tradeOpt = "일반"
-
-            '과세형태, [과세, 비과세] 중 기재
-            cashbill.taxationType = "과세"
-
-            '거래금액, 공급가액 + 봉사료 + 세액
-            cashbill.totalAmount = "11000"
-
-            '공급가액
-            cashbill.supplyCost = "10000"
-
-            '부가세
-            cashbill.tax = "1000"
-
-            '봉사료
-            cashbill.serviceFee = "0"
-
-            '가맹점 사업자번호, "-" 제외 10자리
-            cashbill.franchiseCorpNum = txtCorpNum.Text
-
-            '가맹점 종사업장 식별번호
-            cashbill.franchiseTaxRegID = ""
-
-            '가맹점 상호명
-            cashbill.franchiseCorpName = "발행자 상호"
-
-            '가맹점 대표자 성명
-            cashbill.franchiseCEOName = "발행자 대표자"
-
-            '가맹점 주소
-            cashbill.franchiseAddr = "발행자 주소d"
-
-            '가맹점 전화번호
-            cashbill.franchiseTEL = "070-1234-1234"
-
-            '식별번호, 거래유형에 따라 작성
-            '소득공제용 - 주민등록/휴대폰/카드번호 기재가능
-            '지출증빙용 - 사업자번호/주민등록/휴대폰/카드번호 기재가능
-            cashbill.identityNum = "0101112222"
-
-            '주문자명
-            cashbill.customerName = "주문자명"
-
-            '주문상품명
-            cashbill.itemName = "주문상품명"
-
-            '주문번호
-            cashbill.orderNumber = "주문번호"
-
-            '주문자 이메일
-            '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
-            '실제 거래처의 메일주소가 기재되지 않도록 주의
-            cashbill.email = ""
-
-            '주문자 휴대폰번호
-            cashbill.hp = "010-111-222"
-
-            '현금영수증 발행 알림문자 전송여부, 미기재시 "false"
-            cashbill.smssendYN = False
-
-            cashbillList.Add(cashbill)
-        Next
+        '발행 메모
+        Dim Memo As String = "발행 메모"
 
         Try
-            Dim response As BulkResponse = cashbillService.BulkSubmit(txtCorpNum.Text, txtSubmitID.Text, cashbillList, txtUserId.Text)
 
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message + vbCrLf + "접수아이디(receiptID) : " + response.receiptID)
+            Dim response As CBIssueResponse = cashbillService.Issue(txtCorpNum.Text, txtMgtKey.Text, Memo, txtUserId.Text)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message + vbCrLf _
+                + "국세청 승인번호(confirmNum) : " + response.confirmNum + vbCrLf + "거래일자(tradeDate) : " + response.tradeDate)
+
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
 
+    '=========================================================================
+    ' 1건의 현금영수증 인쇄 팝업 URL을 반환합니다. (공급받는자용)
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    '=========================================================================
+    Private Sub btnEPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEPrintURL.Click
 
-    '=========================================================================
-    ' 접수시 기재한 SubmitID를 사용하여 현금영수증 접수결과를 확인합니다.
-    ' - 개별 현금영수증 처리상태는 접수상태(txState)가 완료(2) 시 반환됩니다.
-    ' - https://docs.popbill.com/cashbill/dotnet/api#GetBulkResult
-    '=========================================================================
-    Private Sub btnGetBulkResult_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetBulkResult.Click
         Try
-            Dim result As BulkCashbillResult = cashbillService.GetBulkResult(txtCorpNum.Text, txtSubmitID.Text, txtUserId.Text)
+            Dim url As String = cashbillService.GetEPrintURL(txtCorpNum.Text, txtMgtKey.Text, txtUserId.Text)
 
-            Dim tmp As String = ""
-
-            tmp += "응답 코드(code) : " + result.code.ToString() + vbCrLf
-            tmp += "응답메시지(message) : " + result.message + vbCrLf
-            tmp += "제출아이디(submitID) : " + result.submitID + vbCrLf
-            tmp += "현금영수증 접수 건수(submitCount) : " + result.submitCount.ToString() + vbCrLf
-            tmp += "현금영수증 발행 성공 건수(successCount) : " + result.successCount.ToString() + vbCrLf
-            tmp += "현금영수증 발행 실패 건수(failCount) : " + result.failCount.ToString() + vbCrLf
-            tmp += "접수상태코드(txState) : " + result.txState.ToString() + vbCrLf
-            tmp += "접수 결과코드(txResultCode) : " + result.txResultCode.ToString() + vbCrLf
-            tmp += "발행처리 시작일시(txStartDT) : " + result.txStartDT + vbCrLf
-            tmp += "발행처리 완료일시(txEndDT) : " + result.txEndDT + vbCrLf
-            tmp += "접수일시(receiptDT) : " + result.receiptDT + vbCrLf
-            tmp += "접수아이디(receiptID) : " + result.receiptID + vbCrLf
-
-            If Not result.issueResult Is Nothing Then
-                Dim i As Integer = 1
-                For Each issueResult As BulkCashbillIssueResult In result.issueResult
-                    tmp += "===========발행결과[" + i.ToString() + "/" + result.issueResult.Count.ToString() + "]===========" + vbCrLf
-                    tmp += "문서번호(MgtKey) : " + issueResult.mgtKey + vbCrLf
-                    tmp += "응답코드(code) : " + issueResult.code.ToString + vbCrLf
-                    tmp += "국세청승인번호(confirmNum) : " + issueResult.confirmNum + vbCrLf
-                    tmp += "거래일자(tradeDate) : " + issueResult.tradeDate + vbCrLf
-                    i = i + 1
-                Next
-            End If
-
-            MsgBox(tmp)
+            MsgBox(url)
+            txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
+
     End Sub
 End Class

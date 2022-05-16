@@ -2,8 +2,8 @@
 '
 ' 팝빌 홈택스 현금영수증 매입매출 API VB.Net SDK Example
 '
-' - VB.Net SDK 연동환경 설정방법 안내 : https://docs.popbill.com/htcashbill/tutorial/dotnet#vb
-' - 업데이트 일자 : 2021-08-05
+' - VB.Net SDK 연동환경 설정방법 안내 : https://docs.popbill.com/htcashbill/tutorial/dotnet_vb
+' - 업데이트 일자 : 2022-05-13
 ' - 연동 기술지원 연락처 : 1600-8536
 ' - 연동 기술지원 이메일 : code@linkhubcorp.com
 '
@@ -33,22 +33,23 @@ Public Class frmExample
         '홈택스 현금영수증 서비스 객체 초기화
         htCashbillService = New HTCashbillService(LinkID, SecretKey)
 
-        '연동환경 설정값 (True-개발용, False-상업용)
+        '연동환경 설정값, True-개발용, False-상업용
         htCashbillService.IsTest = True
 
-        '인증토큰의 IP제한기능 사용여부, (True-권장)
+        '인증토큰 발급 IP 제한 On/Off, True-사용, False-미사용, 기본값(True)
         htCashbillService.IPRestrictOnOff = True
 
-        '팝빌 API 서비스 고정 IP 사용여부, True-사용, False-미사용(기본값)
+        '팝빌 API 서비스 고정 IP 사용여부, True-사용, False-미사용, 기본값(False)
         htCashbillService.UseStaticIP = False
 
-        '로컬PC 시간 사용 여부 True(사용), False(기본값) - 미사용
+        '로컬시스템 시간 사용여부, True-사용, False-미사용, 기본값(False)
         htCashbillService.UseLocalTimeYN = False
 
     End Sub
 
     '=========================================================================
     ' 홈택스에 신고된 현금영수증 매입/매출 내역 수집을 팝빌에 요청합니다. (조회기간 단위 : 최대 3개월)
+    ' - 수집 요청후 반환받은 작업아이디(JobID)의 유효시간은 1시간 입니다.
     ' - https://docs.popbill.com/htcashbill/dotnet/api#RequestJob
     '=========================================================================
     Private Sub btnRequestJob_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRequestJob.Click
@@ -57,10 +58,10 @@ Public Class frmExample
         Dim tiKeyType As KeyType = KeyType.BUY
 
         '시작일자, 표시형식(yyyyMMdd)
-        Dim SDate As String = "20210701"
+        Dim SDate As String = "20220501"
 
         '종료일자, 표시형식(yyyyMMdd)
-        Dim EDate As String = "20210730"
+        Dim EDate As String = "20220513"
 
         Try
             Dim jobID As String = htCashbillService.RequestJob(txtCorpNum.Text, tiKeyType, SDate, EDate)
@@ -74,7 +75,13 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 함수 RequestJob(수집 요청)를 통해 반환 받은 작업 아이디의 상태를 확인합니다.
+    '   *  수집 요청(RequestJob API) 함수를 통해 반환 받은 작업 아이디의 상태를 확인합니다.
+    ' - 수집 결과 조회(Search API) 함수 또는 수집 결과 요약 정보 조회(Summary API) 함수를 사용하기 전에
+    '   수집 작업의 진행 상태, 수집 작업의 성공 여부를 확인해야 합니다.
+    ' - 작업 상태(jobState) = 3(완료)이고 수집 결과 코드(errorCode) = 1(수집성공)이면
+    '   수집 결과 내역 조회(Search) 또는 수집 결과 요약 정보 조회(Summary)를 해야합니다.
+    ' - 작업 상태(jobState)가 3(완료)이지만 수집 결과 코드(errorCode)가 1(수집성공)이 아닌 경우에는
+    '   오류메시지(errorReason)로 수집 실패에 대한 원인을 파악할 수 있습니다.
     ' - https://docs.popbill.com/htcashbill/dotnet/api#GetJobState
     '=========================================================================
     Private Sub btnGetJobState_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetJobState.Click
@@ -141,17 +148,21 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 함수 GetJobState(수집 상태 확인)를 통해 상태 정보 확인된 작업아이디를 활용하여 현금영수증 매입/매출 내역을 조회합니다.
+    ' 수집 상태 확인(GetJobState API) 함수를 통해 상태 정보 확인된 작업아이디를 활용하여 현금영수증 매입/매출 내역을 조회합니다.
     ' - https://docs.popbill.com/htcashbill/dotnet/api#Search
     '=========================================================================
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
 
-        '현금영수증 형태 배열, N-일반현금영수증, C-취소현금영수증
+        ' 문서형태 배열 ("N" 와 "C" 중 선택, 다중 선택 가능)
+        ' └ N = 일반 현금영수증 , C = 취소현금영수증
+        ' - 미입력 시 전체조회
         Dim tradeType(2) As String
         tradeType(0) = "N"
         tradeType(1) = "C"
 
-        '거래용도 배열, P-소득공제용, C-지출증빙용
+        ' 거래구분 배열 ("P" 와 "C" 중 선택, 다중 선택 가능)
+        ' └ P = 소득공제용 , C = 지출증빙용
+        ' - 미입력 시 전체조회
         Dim tradeUsage(2) As String
         tradeUsage(0) = "P"
         tradeUsage(1) = "C"
@@ -217,17 +228,22 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 함수 GetJobState(수집 상태 확인)를 통해 상태 정보가 확인된 작업아이디를 활용하여 수집된 현금영수증 매입/매출 내역의 요약 정보를 조회합니다.
+    ' 수집 상태 확인(GetJobState API) 함수를 통해 상태 정보가 확인된 작업아이디를 활용하여 수집된 현금영수증 매입/매출 내역의 요약 정보를 조회합니다.
+    ' - 요약 정보 : 현금영수증 수집 건수, 공급가액 합계, 세액 합계, 봉사료 합계, 합계 금액
     ' - https://docs.popbill.com/htcashbill/dotnet/api#Summary
     '=========================================================================
     Private Sub btnSummary_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSummary.Click
 
-        '현금영수증 형태 배열, N-일반현금영수증, C-취소현금영수증
+        ' 문서형태 배열 ("N" 와 "C" 중 선택, 다중 선택 가능)
+        ' └ N = 일반 현금영수증 , C = 취소현금영수증
+        ' - 미입력 시 전체조회
         Dim tradeType(2) As String
         tradeType(0) = "N"
         tradeType(1) = "C"
 
-        '거래용도 배열, P-소득공제용, C-지출증빙용
+        ' 거래구분 배열 ("P" 와 "C" 중 선택, 다중 선택 가능)
+        ' └ P = 소득공제용 , C = 지출증빙용
+        ' - 미입력 시 전체조회
         Dim tradeUsage(2) As String
         tradeUsage(0) = "P"
         tradeUsage(1) = "C"
@@ -251,7 +267,6 @@ Public Class frmExample
 
     '=========================================================================
     ' 홈택스연동 인증정보를 관리하는 페이지의 팝업 URL을 반환합니다.
-    ' - 인증방식에는 부서사용자/공인인증서 인증 방식이 있습니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
     ' - https://docs.popbill.com/htcashbill/dotnet/api#GetCertificatePopUpURL
     '=========================================================================
@@ -357,8 +372,48 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
+    ' 홈택스연동 정액제 서비스 신청 페이지의 팝업 URL을 반환합니다.
+    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    ' - https://docs.popbill.com/htcashbill/dotnet/api#GetFlatRatePopUpURL
+    '=========================================================================
+    Private Sub btnGetFlatRatePopUpURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFlatRatePopUpURL.Click
+        Try
+            Dim url As String = htCashbillService.GetFlatRatePopUpURL(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox(url)
+            txtURL.Text = url
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 홈택스연동 정액제 서비스 상태를 확인합니다.
+    ' - https://docs.popbill.com/htcashbill/dotnet/api#GetFlatRateState
+    '=========================================================================
+    Private Sub btnGetFlatRateState_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFlatRateState.Click
+        Try
+            Dim flatRateInfo As HTFlatRate = htCashbillService.GetFlatRateState(txtCorpNum.Text)
+
+            Dim tmp As String = "referencdeID (사업자번호) : " + flatRateInfo.referenceID + vbCrLf
+            tmp += "contractDT (정액제 서비스 시작일시) : " + flatRateInfo.contractDT + vbCrLf
+            tmp += "useEndDate (정액제 서비스 종료일) : " + flatRateInfo.useEndDate + vbCrLf
+            tmp += "baseDate (자동연장 결제일) : " + CStr(flatRateInfo.baseDate) + vbCrLf
+            tmp += "state (정액제 서비스 상태) : " + CStr(flatRateInfo.state) + vbCrLf
+            tmp += "closeRequestYN (서비스 해지신청 여부) : " + CStr(flatRateInfo.closeRequestYN) + vbCrLf
+            tmp += "useRestrictYN (서비스 사용제한 여부) : " + CStr(flatRateInfo.useRestrictYN) + vbCrLf
+            tmp += "closeOnExpired (서비스만료시 해지여부 ) : " + CStr(flatRateInfo.closeOnExpired) + vbCrLf
+            tmp += "unPaidYN (미수금 보유 여부) : " + CStr(flatRateInfo.unPaidYN) + vbCrLf
+
+            MsgBox(tmp)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
     ' 연동회원의 잔여포인트를 확인합니다.
-    ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트(GetPartnerBalance API)를 통해 확인하시기 바랍니다.
+    ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트 확인(GetPartnerBalance API) 함수를 통해 확인하시기 바랍니다.
     ' - https://docs.popbill.com/htcashbill/dotnet/api#GetBalance
     '=========================================================================
     Private Sub btnGetBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetBalance.Click
@@ -442,7 +497,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 파트너의 잔여포인트를 확인합니다.
-    ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
+    ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트 확인(GetBalance API) 함수를 이용하시기 바랍니다.
     ' - https://docs.popbill.com/htcashbill/dotnet/api#GetPartnerBalance
     '=========================================================================
     Private Sub btnGetPartnerBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerBalance.Click
@@ -471,46 +526,6 @@ Public Class frmExample
 
             MsgBox(tmp)
 
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 홈택스연동 정액제 서비스 신청 페이지의 팝업 URL을 반환합니다.
-    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#GetFlatRatePopUpURL
-    '=========================================================================
-    Private Sub btnGetFlatRatePopUpURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFlatRatePopUpURL.Click
-        Try
-            Dim url As String = htCashbillService.GetFlatRatePopUpURL(txtCorpNum.Text, txtUserId.Text)
-
-            MsgBox(url)
-            txtURL.Text = url
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 홈택스연동 정액제 서비스 상태를 확인합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#GetFlatRateState
-    '=========================================================================
-    Private Sub btnGetFlatRateState_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFlatRateState.Click
-        Try
-            Dim flatRateInfo As HTFlatRate = htCashbillService.GetFlatRateState(txtCorpNum.Text)
-
-            Dim tmp As String = "referencdeID (사업자번호) : " + flatRateInfo.referenceID + vbCrLf
-            tmp += "contractDT (정액제 서비스 시작일시) : " + flatRateInfo.contractDT + vbCrLf
-            tmp += "useEndDate (정액제 서비스 종료일) : " + flatRateInfo.useEndDate + vbCrLf
-            tmp += "baseDate (자동연장 결제일) : " + CStr(flatRateInfo.baseDate) + vbCrLf
-            tmp += "state (정액제 서비스 상태) : " + CStr(flatRateInfo.state) + vbCrLf
-            tmp += "closeRequestYN (서비스 해지신청 여부) : " + CStr(flatRateInfo.closeRequestYN) + vbCrLf
-            tmp += "useRestrictYN (서비스 사용제한 여부) : " + CStr(flatRateInfo.useRestrictYN) + vbCrLf
-            tmp += "closeOnExpired (서비스만료시 해지여부 ) : " + CStr(flatRateInfo.closeOnExpired) + vbCrLf
-            tmp += "unPaidYN (미수금 보유 여부) : " + CStr(flatRateInfo.unPaidYN) + vbCrLf
-
-            MsgBox(tmp)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
@@ -584,16 +599,10 @@ Public Class frmExample
         joinInfo.ContactName = "담당자명"
 
         '담당자 이메일 (최대 20자)
-        joinInfo.ContactEmail = "test@test.com"
+        joinInfo.ContactEmail = ""
 
         '담당자 연락처 (최대 20자)
-        joinInfo.ContactTEL = "070-4304-2991"
-
-        '담당자 휴대폰번호 (최대 20자)
-        joinInfo.ContactHP = "010-111-222"
-
-        '담당자 팩스번호 (최대 20자)
-        joinInfo.ContactFAX = "02-6442-9700"
+        joinInfo.ContactTEL = ""
 
         Try
             Dim response As Response = htCashbillService.JoinMember(joinInfo)
@@ -619,147 +628,6 @@ Public Class frmExample
             txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#RegistContact
-    '=========================================================================
-    Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistContact.Click
-
-        '담당자 정보객체
-        Dim joinData As New Contact
-
-        '아이디 (6자이상 50자미만)
-        joinData.id = "testkorea1120"
-
-        '비밀번호, 8자 이상 20자 이하(영문, 숫자, 특수문자 조합)
-        joinData.Password = "asdf8536!@#"
-
-        '담당자 성명 (최대 100자)
-        joinData.personName = "담당자명"
-
-        '담당자 연락처 (최대 20자)
-        joinData.tel = "070-1111-2222"
-
-        '담당자 휴대폰 (최대 20자)
-        joinData.hp = "010-1234-1234"
-
-        '담당자 팩스 (최대 20자)
-        joinData.fax = "070-1234-1234"
-
-        '담당자 이메일 (최대 100자)
-        joinData.email = "test@test.com"
-
-        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
-        joinData.searchRole = 3
-
-        Try
-            Dim response As Response = htCashbillService.RegistContact(txtCorpNum.Text, joinData, txtUserId.Text)
-
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보을 확인합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#GetContactInfo
-    '=========================================================================
-    Private Sub btnGetContactInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetContactInfo.Click
-
-        '확인할 담당자 아이디
-        Dim contactID As String = "DONETVB_CONTACT"
-
-        Dim tmp As String = ""
-
-        Try
-            Dim contactInfo As Contact = htCashbillService.GetContactInfo(txtCorpNum.Text, contactID, txtUserId.Text)
-
-            tmp += "id (담당자 아이디) : " + contactInfo.id + vbCrLf
-            tmp += "personName (담당자명) : " + contactInfo.personName + vbCrLf
-            tmp += "email (담당자 이메일) : " + contactInfo.email + vbCrLf
-            tmp += "hp (휴대폰번호) : " + contactInfo.hp + vbCrLf
-            tmp += "searchRole (담당자 권한) : " + contactInfo.searchRole.ToString() + vbCrLf
-            tmp += "tel (연락처) : " + contactInfo.tel + vbCrLf
-            tmp += "fax (팩스번호) : " + contactInfo.fax + vbCrLf
-            tmp += "mgrYN (관리자 여부) : " + contactInfo.mgrYN.ToString() + vbCrLf
-            tmp += "regDT (등록일시) : " + contactInfo.regDT + vbCrLf
-            tmp += "state (상태) : " + contactInfo.state + vbCrLf
-
-            tmp += vbCrLf
-
-            MsgBox(tmp)
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#ListContact
-    '=========================================================================
-    Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListContact.Click
-        Try
-            Dim contactList As List(Of Contact) = htCashbillService.ListContact(txtCorpNum.Text, txtUserId.Text)
-
-            Dim tmp As String = "id(아이디) | personName(담당자명) | email(메일주소) | hp(휴대폰번호) | fax(팩스) | tel(연락처) |"
-            tmp += "regDT(등록일시) | searchRole(담당자 권한) | mgrYN(관리자 여부) | state(상태)" + vbCrLf
-
-            For Each info As Contact In contactList
-                tmp += info.id + " | " + info.personName + " | " + info.email + " | " + info.hp + " | " + info.fax + " | " + info.tel + " | "
-                tmp += info.regDT.ToString() + " | " + info.searchRole.ToString() + " | " + info.mgrYN.ToString() + " | " + info.state + vbCrLf
-            Next
-
-            MsgBox(tmp)
-        Catch ex As PopbillException
-
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#UpdateContact
-    '=========================================================================
-    Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateContact.Click
-
-        '담당자 정보객체
-        Dim joinData As New Contact
-
-        '아이디 (6자이상 50자미만)
-        joinData.id = "testkorea1120"
-
-        '담당자 성명 (최대 100자)
-        joinData.personName = "담당자명"
-
-        '담당자 연락처 (최대 20자)
-        joinData.tel = "070-1111-2222"
-
-        '담당자 휴대폰 (최대 20자)
-        joinData.hp = "010-1234-1234"
-
-        '담당자 팩스 (최대 20자)
-        joinData.fax = "070-1234-1234"
-
-        '담당자 이메일 (최대 100자)
-        joinData.email = "test@test.com"
-
-        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
-        joinData.searchRole = 3
-
-        Try
-            Dim response As Response = htCashbillService.UpdateContact(txtCorpNum.Text, joinData, txtUserId.Text)
-
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -811,6 +679,133 @@ Public Class frmExample
         Try
 
             Dim response As Response = htCashbillService.UpdateCorpInfo(txtCorpNum.Text, corpInfo, txtUserId.Text)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
+    ' - https://docs.popbill.com/htcashbill/dotnet/api#RegistContact
+    '=========================================================================
+    Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistContact.Click
+
+        '담당자 정보객체
+        Dim joinData As New Contact
+
+        '아이디 (6자이상 50자미만)
+        joinData.id = "testkorea1120"
+
+        '비밀번호, 8자 이상 20자 이하(영문, 숫자, 특수문자 조합)
+        joinData.Password = "asdf8536!@#"
+
+        '담당자 성명 (최대 100자)
+        joinData.personName = "담당자명"
+
+        '담당자 연락처 (최대 20자)
+        joinData.tel = ""
+
+        '담당자 이메일 (최대 100자)
+        joinData.email = ""
+
+        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
+        joinData.searchRole = 3
+
+        Try
+            Dim response As Response = htCashbillService.RegistContact(txtCorpNum.Text, joinData, txtUserId.Text)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보을 확인합니다.
+    ' - https://docs.popbill.com/htcashbill/dotnet/api#GetContactInfo
+    '=========================================================================
+    Private Sub btnGetContactInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetContactInfo.Click
+
+        '확인할 담당자 아이디
+        Dim contactID As String = "DONETVB_CONTACT"
+
+        Dim tmp As String = ""
+
+        Try
+            Dim contactInfo As Contact = htCashbillService.GetContactInfo(txtCorpNum.Text, contactID, txtUserId.Text)
+
+            tmp += "id (담당자 아이디) : " + contactInfo.id + vbCrLf
+            tmp += "personName (담당자명) : " + contactInfo.personName + vbCrLf
+            tmp += "email (담당자 이메일) : " + contactInfo.email + vbCrLf
+            tmp += "searchRole (담당자 권한) : " + contactInfo.searchRole.ToString() + vbCrLf
+            tmp += "tel (연락처) : " + contactInfo.tel + vbCrLf
+            tmp += "mgrYN (관리자 여부) : " + contactInfo.mgrYN.ToString() + vbCrLf
+            tmp += "regDT (등록일시) : " + contactInfo.regDT + vbCrLf
+            tmp += "state (상태) : " + contactInfo.state + vbCrLf
+
+            tmp += vbCrLf
+
+            MsgBox(tmp)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
+    ' - https://docs.popbill.com/htcashbill/dotnet/api#ListContact
+    '=========================================================================
+    Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListContact.Click
+        Try
+            Dim contactList As List(Of Contact) = htCashbillService.ListContact(txtCorpNum.Text, txtUserId.Text)
+
+            Dim tmp As String = "id(아이디) | personName(담당자명) | email(메일주소) | tel(연락처) |"
+            tmp += "regDT(등록일시) | searchRole(담당자 권한) | mgrYN(관리자 여부) | state(상태)" + vbCrLf
+
+            For Each info As Contact In contactList
+                tmp += info.id + " | " + info.personName + " | " + info.email + " | " + info.tel + " | "
+                tmp += info.regDT.ToString() + " | " + info.searchRole.ToString() + " | " + info.mgrYN.ToString() + " | " + info.state + vbCrLf
+            Next
+
+            MsgBox(tmp)
+        Catch ex As PopbillException
+
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
+    ' - https://docs.popbill.com/htcashbill/dotnet/api#UpdateContact
+    '=========================================================================
+    Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateContact.Click
+
+        '담당자 정보객체
+        Dim joinData As New Contact
+
+        '아이디 (6자이상 50자미만)
+        joinData.id = "testkorea1120"
+
+        '담당자 성명 (최대 100자)
+        joinData.personName = "담당자명"
+
+        '담당자 연락처 (최대 20자)
+        joinData.tel = ""
+
+        '담당자 이메일 (최대 100자)
+        joinData.email = ""
+
+        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
+        joinData.searchRole = 3
+
+        Try
+            Dim response As Response = htCashbillService.UpdateContact(txtCorpNum.Text, joinData, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 

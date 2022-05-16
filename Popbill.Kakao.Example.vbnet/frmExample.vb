@@ -2,13 +2,13 @@
 '
 ' 팝빌 카카오톡 API VB.Net SDK Example
 '
-' - VB.Net 연동환경 설정방법 안내 : https://docs.popbill.com/kakao/tutorial/dotnet#vb
-' - 업데이트 일자 : 2021-12-23
+' - VB.Net 연동환경 설정방법 안내 : https://docs.popbill.com/kakao/tutorial/dotnet_vb
+' - 업데이트 일자 : 2022-05-13
 ' - 연동 기술지원 연락처 : 1600-9854
 ' - 연동 기술지원 이메일 : code@linkhubcorp.com
 '
 ' <테스트 연동개발 준비사항>
-' 1) 22, 25번 라인에 선언된 링크아이디(LinkID)와 비밀키(SecretKey)를
+' 1) 21, 24번 라인에 선언된 링크아이디(LinkID)와 비밀키(SecretKey)를
 '    링크허브 가입시 메일로 발급받은 인증정보를 참조하여 변경합니다.
 ' 2) 팝빌 개발용 사이트(test.popbill.com)에 연동회원으로 가입합니다.
 ' 3) 발신번호 사전등록을 합니다. (등록방법은 사이트/API 두가지 방식이 있습니다.)
@@ -31,16 +31,16 @@ Public Class frmExample
         '카카오톡 서비스 클래스 초기화
         kakaoService = New KakaoService(LinkID, SecretKey)
 
-        '연동환경 설정값 (True-개발용, False-상업용)
+        '연동환경 설정값, True-개발용, False-상업용
         kakaoService.IsTest = True
 
-        '인증토큰의 IP제한기능 사용여부, (True-권장)
+        '인증토큰 발급 IP 제한 On/Off, True-사용, False-미사용, 기본값(True)
         kakaoService.IPRestrictOnOff = True
 
-        '팝빌 API 서비스 고정 IP 사용여부, True-사용, False-미사용(기본값)
+        '팝빌 API 서비스 고정 IP 사용여부, True-사용, False-미사용, 기본값(False)
         kakaoService.UseStaticIP = False
 
-        '로컬PC 시간 사용 여부 True(사용), False(기본값) - 미사용
+        '로컬시스템 시간 사용여부, True-사용, False-미사용, 기본값(False)
         kakaoService.UseLocalTimeYN = False
     End Sub
 
@@ -79,7 +79,7 @@ Public Class frmExample
         Try
             Dim plusFriendList As List(Of PlusFriend) = kakaoService.ListPlusFriendID(txtCorpNum.Text, txtUserId.Text)
 
-            Dim tmp As String = "plusFriendID(카카오톡채널 아이디) | plusFriendName(카카오톡채널 이름) | regDT(등록일시)" + vbCrLf
+            Dim tmp As String = "plusFriendID(검색용 아이디) | plusFriendName(채널명) | regDT(등록일시)" + vbCrLf
 
             For Each info As PlusFriend In plusFriendList
                 tmp += info.plusFriendID + " | " + info.plusFriendName + " | " + info.regDT + vbCrLf
@@ -165,7 +165,7 @@ Public Class frmExample
             tmp += "templateCode(템플릿 코드) : " + template.templateCode + vbCrLf
             tmp += "templateName(템플릿 제목) : " + template.templateName + vbCrLf
             tmp += "template(템플릿 내용) : " + template.template + vbCrLf
-            tmp += "plusFriendID(카카오톡채널 아이디) : " + template.plusFriendID + vbCrLf
+            tmp += "plusFriendID(검색용 아이디) : " + template.plusFriendID + vbCrLf
             tmp += "ads(광고 메시지) : " + template.ads + vbCrLf
             tmp += "appendix(부가 메시지) : " + template.appendix + vbCrLf
 
@@ -202,7 +202,7 @@ Public Class frmExample
                 tmp += "templateCode(템플릿 코드) : " + info.templateCode + vbCrLf
                 tmp += "templateName(템플릿 제목) : " + info.templateName + vbCrLf
                 tmp += "template(템플릿 내용) : " + info.template + vbCrLf
-                tmp += "plusFriendID(카카오톡채널 아이디) : " + info.plusFriendID + vbCrLf
+                tmp += "plusFriendID(검색용 아이디) : " + info.plusFriendID + vbCrLf
                 tmp += "ads(광고 메시지) : " + info.ads + vbCrLf
                 tmp += "appendix(부가 메시지) : " + info.appendix + vbCrLf
 
@@ -232,11 +232,13 @@ Public Class frmExample
     Private Sub btnSendATS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnSendATS_one.Click
 
-        '알림톡 템플릿 코드, 알림톡 템플릿 목록확인(ListATSTemplate) API 반환항목중 templateCode로 확인
+        ' 승인된 알림톡 템플릿코드
+        ' └ 알림톡 템플릿 관리 팝업 URL(GetATSTemplateMgtURL API) 함수, 알림톡 템플릿 목록 확인(ListATStemplate API) 함수를 호출하거나
+        '    팝빌사이트에서 승인된 알림톡 템플릿 코드를  확인 가능.
         Dim templateCode As String = "019020000163"
 
         '팝빌에 사전등록된 발신번호
-        Dim senderNum As String = "07043042991"
+        Dim senderNum As String = ""
 
         '알림톡 템플릿 내용 (최대 1000자)
         Dim content As String = "[ 팝빌 ]" + vbCrLf
@@ -246,20 +248,23 @@ Public Class frmExample
         content += "팝빌 파트너센터 : 1600-8536" + vbCrLf
         content += "support@linkhub.co.kr"
 
-        '대체문자 메시지 내용 (최대 2000byte)
+        ' 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
+        ' └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
         Dim altContent As String = "대체문자 메시지 내용"
 
-        '대체문자 유형, 공백-미전송, C-알림톡내용 전송, A-대체문자내용 전송
+        ' 대체문자 유형 (null , "C" , "A" 중 택 1)
+        ' null = 미전송, C = 알림톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
         Dim altSendType = "A"
 
         '수신번호
-        Dim receiveNum = "010111222"
+        Dim receiveNum = ""
 
         '수신자명
         Dim receiveName = "수신자명"
 
-        '전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-        '최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+        ' 전송요청번호
+        ' 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+        ' 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         Dim requestNum = ""
 
         '버튼정보를 수정하지 않고 템플릿 신청시 기재한 정보로 전송하는 경우 null 처리
@@ -289,12 +294,15 @@ Public Class frmExample
     '=========================================================================
     ' 승인된 템플릿의 내용을 작성하여 다수건의 알림톡 전송을 팝빌에 접수하며, 수신자 별로 개별 내용을 전송합니다. (최대 1,000건)
     ' - 사전에 승인된 템플릿의 내용과 알림톡 전송내용(content)이 다를 경우 전송실패 처리됩니다.
+    ' - 전송실패 시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#SendATS_Multi
     '=========================================================================
     Private Sub btnSendATS_multi_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnSendATS_multi.Click
 
-        '알림톡 템플릿 코드, 알림톡 템플릿 목록확인(ListATSTemplate) API 반환항목중 templateCode로 확인
+        ' 승인된 알림톡 템플릿코드
+        ' └ 알림톡 템플릿 관리 팝업 URL(GetATSTemplateMgtURL API) 함수, 알림톡 템플릿 목록 확인(ListATStemplate API) 함수를 호출하거나
+        '   팝빌사이트에서 승인된 알림톡 템플릿 코드를  확인 가능.
         Dim templateCode As String = "019020000163"
 
         '알림톡 템플릿 내용 (최대 1000자)
@@ -306,13 +314,15 @@ Public Class frmExample
         content += "support@linkhub.co.kr"
 
         '팝빌에 사전등록된 발신번호
-        Dim senderNum As String = "07043042991"
+        Dim senderNum As String = ""
 
-        '대체문자 유형, 공백-미전송, C-알림톡내용 전송, A-대체문자내용 전송
+        ' 대체문자 유형 (null , "C" , "A" 중 택 1)
+        ' null = 미전송, C = 알림톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
         Dim altSendType = "A"
 
-        '전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-        '최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+        ' 전송요청번호
+        ' 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+        ' 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         Dim requestNum = ""
 
         '전송정보 배열, 최대 1000건
@@ -320,11 +330,11 @@ Public Class frmExample
 
         For i As Integer = 0 To 5
             Dim msg As KakaoReceiver = New KakaoReceiver
-            msg.rcv = "010111222" '수신번호
+            msg.rcv = "" '수신번호
             msg.rcvnm = "수신자명칭_" + CStr(i) '수신자명
             msg.msg = content '알림톡 템플릿 내용 (최대 1000자)
             msg.altmsg = "대체문자 메시지 내용" '대체문자 내용 (최대 2000byte)
-            msg.interOPRefKey = "20210701-" + CStr(i) '파트너 지정키, 대량전송시, 수신자 구별용 메모
+            msg.interOPRefKey = "20220504-" + CStr(i) '파트너 지정키, 대량전송시, 수신자 구별용 메모
 
             '수신자별 개별 버튼정보 전송하는 경우
             '개별 버튼의 개수는 템플릿 신청 시 승인받은 버튼의 개수와 동일하게 생성, 다를경우 실패 처리
@@ -377,16 +387,19 @@ Public Class frmExample
     '=========================================================================
     ' 승인된 템플릿 내용을 작성하여 다수건의 알림톡 전송을 팝빌에 접수하며, 모든 수신자에게 동일 내용을 전송합니다. (최대 1,000건)
     ' - 사전에 승인된 템플릿의 내용과 알림톡 전송내용(content)이 다를 경우 전송실패 처리됩니다.
+    ' - 전송실패시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#SendATS_Same
     '=========================================================================
     Private Sub btnSendATS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnSendATS_same.Click
 
-        '알림톡 템플릿 코드, 알림톡 템플릿 목록확인(ListATSTemplate) API 반환항목중 templateCode로 확인
+        ' 승인된 알림톡 템플릿코드
+        ' └ 알림톡 템플릿 관리 팝업 URL(GetATSTemplateMgtURL API) 함수, 알림톡 템플릿 목록 확인(ListATStemplate API) 함수를 호출하거나
+        '   팝빌사이트에서 승인된 알림톡 템플릿 코드를  확인 가능.
         Dim templateCode As String = "019020000163"
 
         '팝빌에 사전등록된 발신번호
-        Dim senderNum As String = "01043245117"
+        Dim senderNum As String = ""
 
         '알림톡 템플릿 내용 (최대 1000자)
         Dim content As String = "[ 팝빌 ]" + vbCrLf
@@ -396,14 +409,17 @@ Public Class frmExample
         content += "팝빌 파트너센터 : 1600-8536" + vbCrLf
         content += "support@linkhub.co.kr"
 
-        '대체문자 메시지 내용 (최대 2000byte)
+        ' 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
+        ' └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
         Dim altContent As String = "대체문자 메시지 내용"
 
-        '대체문자 유형, 공백-미전송, C-알림톡내용 전송, A-대체문자내용 전송
+        ' 대체문자 유형 (null , "C" , "A" 중 택 1)
+        ' null = 미전송, C = 알림톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
         Dim altSendType = "A"
 
-        '전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-        '최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+        ' 전송요청번호
+        ' 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+        ' 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         Dim requestNum = ""
 
         '전송정보 배열, 최대 1000건
@@ -411,9 +427,9 @@ Public Class frmExample
 
         For i As Integer = 0 To 5
             Dim msg As KakaoReceiver = New KakaoReceiver
-            msg.rcv = "010111222" '수신번호
+            msg.rcv = "" '수신번호
             msg.rcvnm = "수신자명칭_" + CStr(i) '수신자명
-            msg.interOPRefKey = "20210701-" + CStr(i) '파트너 지정키, 수신자 구별용 메모.
+            msg.interOPRefKey = "20220504-" + CStr(i) '파트너 지정키, 수신자 구별용 메모.
 
             receiverList.Add(msg)
         Next
@@ -443,19 +459,20 @@ Public Class frmExample
     '=========================================================================
     ' 텍스트로 구성된 1건의 친구톡 전송을 팝빌에 접수합니다.
     ' - 친구톡의 경우 야간 전송은 제한됩니다. (20:00 ~ 익일 08:00)
+    ' - 전송실패시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#SendFTS
     '=========================================================================
     Private Sub btnSendFTS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnSendFTS_one.Click
 
-        '카카오톡채널 아이디, 카카오톡채널 목록 확인(LIstPlusFriend) API의 plusFriendID 항목 확인
+        '검색용 아이디, ListPlusFriendID API 의 plusFriendID 참고
         Dim plusFriendID As String = "@팝빌"
 
         '팝빌에 사전등록된 발신번호
-        Dim senderNum As String = "07043042991"
+        Dim senderNum As String = ""
 
         '수신번호
-        Dim receiverNum As String = "010111222"
+        Dim receiverNum As String = ""
 
         '수신자명
         Dim receiverName As String = "수신자명"
@@ -463,17 +480,22 @@ Public Class frmExample
         '친구톡 내용 (최대 1000자)
         Dim content As String = "친구톡 내용입니다."
 
-        '대체문자 메시지 내용 (최대 2000byte)
+        ' 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
+        ' └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
         Dim altContent As String = "대체문자 메시지 내용입니다."
 
-        '대체문자 유형, 공백-미전송, C-친구톡내용 전송, A-대체문자내용 전송
+        ' 대체문자 유형 (null , "C" , "A" 중 택 1)
+        ' null = 미전송, C = 알림톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
         Dim altSendType = "A"
 
-        '광고전송 여부
+        ' 광고성 메시지 여부 ( true , false 중 택 1)
+        ' └ true = 광고 , false = 일반
+        ' - 미입력 시 기본값 false 처리
         Dim adsYN As Boolean = True
 
-        '전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-        '최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+        ' 전송요청번호
+        ' 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+        ' 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         Dim requestNum = ""
 
         '버튼 배열 최대 5개
@@ -499,25 +521,30 @@ Public Class frmExample
     '=========================================================================
     ' 텍스트로 구성된 다수건의 친구톡 전송을 팝빌에 접수하며, 수신자 별로 개별 내용을 전송합니다. (최대 1,000건)
     ' - 친구톡의 경우 야간 전송은 제한됩니다. (20:00 ~ 익일 08:00)
+    ' - 전송실패시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#SendFTS_Multi
     '=========================================================================
     Private Sub btnSendFTS_multi_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnSendFTS_multi.Click
 
-        '카카오톡채널 아이디, 카카오톡채널 목록 확인(LIstPlusFriend) API의 plusFriendID 항목 확인
+        '검색용 아이디, ListPlusFriendID API 의 plusFriendID 참고
         Dim plusFriendID As String = "@팝빌"
 
         '팝빌에 사전등록된 발신번호
-        Dim senderNum As String = "07043042991"
+        Dim senderNum As String = ""
 
-        '대체문자 유형, 공백-미전송, C-친구톡내용 전송, A-대체문자내용 전송
+        ' 대체문자 유형 (null , "C" , "A" 중 택 1)
+        ' null = 미전송, C = 알림톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
         Dim altSendType = "A"
 
-        '광고전송 여부
+        ' 광고성 메시지 여부 ( true , false 중 택 1)
+        ' └ true = 광고 , false = 일반
+        ' - 미입력 시 기본값 false 처리
         Dim adsYN As Boolean = True
 
-        '전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-        '최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+        ' 전송요청번호
+        ' 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+        ' 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         Dim requestNum = ""
 
         '전송정보 배열, 최대 1000건
@@ -525,11 +552,11 @@ Public Class frmExample
 
         For i As Integer = 0 To 5
             Dim msg As KakaoReceiver = New KakaoReceiver
-            msg.rcv = "010111222" '수신번호
+            msg.rcv = "" '수신번호
             msg.rcvnm = "수신자명칭_" + CStr(i) '수신자명
             msg.msg = "친구톡 내용입니다." + CStr(i) '친구톡 내용 (최대 1000자)
             msg.altmsg = "대체문자 메시지 내용" + CStr(i) '대체문자 내용 (최대 2000byte)
-            msg.interOPRefKey = "20210701-" + CStr(i) '파트너 지정키, 대량전송시, 수신자 구별용 메모
+            msg.interOPRefKey = "20220504-" + CStr(i) '파트너 지정키, 대량전송시, 수신자 구별용 메모
 
             '수신자별 개별 버튼정보 전송하는 경우
             '생성 가능 개수 최대 5개
@@ -579,31 +606,37 @@ Public Class frmExample
     '=========================================================================
     ' 텍스트로 구성된 다수건의 친구톡 전송을 팝빌에 접수하며, 모든 수신자에게 동일 내용을 전송합니다. (최대 1,000건)
     ' - 친구톡의 경우 야간 전송은 제한됩니다. (20:00 ~ 익일 08:00)
+    ' - 전송실패시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#SendFTS_Same
     '=========================================================================
     Private Sub btnSendFTS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnSendFTS_same.Click
 
-        '카카오톡채널 아이디, 카카오톡채널 목록 확인(LIstPlusFriend) API의 plusFriendID 항목 확인
+        '검색용 아이디, ListPlusFriendID API 의 plusFriendID 참고
         Dim plusFriendID As String = "@팝빌"
 
         '팝빌에 사전등록된 발신번호
-        Dim senderNum As String = "07043042991"
+        Dim senderNum As String = ""
 
         '친구톡 내용 (최대 1000자)
         Dim content As String = "친구톡 내용입니다."
 
-        '대체문자 메시지 내용 (최대 2000byte)
+        ' 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
+        ' └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
         Dim altContent As String = "대체문자 메시지 내용입니다."
 
-        '대체문자 유형, 공백-미전송, C-친구톡내용 전송, A-대체문자내용 전송
+        ' 대체문자 유형 (null , "C" , "A" 중 택 1)
+        ' null = 미전송, C = 알림톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
         Dim altSendType = "A"
 
-        '광고전송 여부
+        ' 광고성 메시지 여부 ( true , false 중 택 1)
+        ' └ true = 광고 , false = 일반
+        ' - 미입력 시 기본값 false 처리
         Dim adsYN As Boolean = True
 
-        '전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-        '최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+        ' 전송요청번호
+        ' 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+        ' 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         Dim requestNum = ""
 
         '전송정보 배열, 최대 1000건
@@ -611,7 +644,7 @@ Public Class frmExample
 
         For i As Integer = 0 To 5
             Dim msg As KakaoReceiver = New KakaoReceiver
-            msg.rcv = "010111222" '수신번호
+            msg.rcv = "" '수신번호
             msg.rcvnm = "수신자명칭_" + CStr(i) '수신자명
             receiverList.Add(msg)
         Next
@@ -640,20 +673,22 @@ Public Class frmExample
     ' 이미지가 첨부된 1건의 친구톡 전송을 팝빌에 접수합니다.
     ' - 친구톡의 경우 야간 전송은 제한됩니다. (20:00 ~ 익일 08:00)
     ' - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
+    ' - 전송실패시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
+    ' - 대체문자의 경우, 포토문자(MMS) 형식은 지원하고 있지 않습니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#SendFMS
     '=========================================================================
     Private Sub btnSendFMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnSendFMS_one.Click
         If fileDialog.ShowDialog(Me) = DialogResult.OK Then
 
-            '카카오톡채널 아이디, 카카오톡채널 목록 확인(LIstPlusFriend) API의 plusFriendID 항목 확인
+            '검색용 아이디, ListPlusFriendID API 의 plusFriendID 참고
             Dim plusFriendID As String = "@팝빌"
 
             '팝빌에 사전등록된 발신번호
-            Dim senderNum As String = "07043042991"
+            Dim senderNum As String = ""
 
             '수신번호
-            Dim receiverNum As String = "010111222"
+            Dim receiverNum As String = ""
 
             '수신자명
             Dim receiverName As String = "수신자명"
@@ -661,23 +696,30 @@ Public Class frmExample
             '친구톡 내용 (최대 400자)
             Dim content As String = "친구톡 내용입니다."
 
-            '대체문자 메시지 내용 (최대 2000byte)
+            ' 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
+            ' └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
             Dim altContent As String = "대체문자 메시지 내용입니다."
 
-            '대체문자 유형, 공백-미전송, C-친구톡내용 전송, A-대체문자내용 전송
+            ' 대체문자 유형 (null , "C" , "A" 중 택 1)
+            ' null = 미전송, C = 알림톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
             Dim altSendType = "A"
 
-            '광고전송 여부
+            ' 광고성 메시지 여부 ( true , false 중 택 1)
+            ' └ true = 광고 , false = 일반
+            ' - 미입력 시 기본값 false 처리
             Dim adsYN As Boolean = True
 
             '첨부 이미지 파일경로
             Dim strFileName As String = fileDialog.FileName
 
-            '이미지 링크 URL
+            ' 이미지 링크 URL
+            ' └ 수신자가 친구톡 상단 이미지 클릭시 호출되는 URL
+            ' - 미입력시 첨부된 이미지를 링크 기능 없이 표시
             Dim imageURL As String = "https://www.popbill.com"
 
-            '전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            '최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            ' 전송요청번호
+            ' 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+            ' 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             Dim requestNum = ""
 
             '버튼 배열 최대 5개
@@ -707,6 +749,8 @@ Public Class frmExample
     ' 이미지가 첨부된 다수건의 친구톡 전송을 팝빌에 접수하며, 수신자 별로 개별 내용을 전송합니다. (최대 1,000건)
     ' - 친구톡의 경우 야간 전송은 제한됩니다. (20:00 ~ 익일 08:00)
     ' - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
+    ' - 전송실패시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
+    ' - 대체문자의 경우, 포토문자(MMS) 형식은 지원하고 있지 않습니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#SendFMS_Multi
     '=========================================================================
     Private Sub btnSendFMS_multi_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -714,26 +758,32 @@ Public Class frmExample
 
         If fileDialog.ShowDialog(Me) = DialogResult.OK Then
 
-            '카카오톡채널 아이디, 카카오톡채널 목록 확인(LIstPlusFriend) API의 plusFriendID 항목 확인
+            '검색용 아이디, ListPlusFriendID API 의 plusFriendID 참고
             Dim plusFriendID As String = "@팝빌"
 
             '팝빌에 사전등록된 발신번호
-            Dim senderNum As String = "07043042991"
+            Dim senderNum As String = ""
 
-            '대체문자 유형, 공백-미전송, C-친구톡내용 전송, A-대체문자내용 전송
+            ' 대체문자 유형 (null , "C" , "A" 중 택 1)
+            ' null = 미전송, C = 알림톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
             Dim altSendType = "A"
 
-            '광고전송 여부
+            ' 광고성 메시지 여부 ( true , false 중 택 1)
+            ' └ true = 광고 , false = 일반
+            ' - 미입력 시 기본값 false 처리
             Dim adsYN As Boolean = True
 
             '첨부 이미지 파일경로
             Dim strFileName As String = fileDialog.FileName
 
-            '이미지 링크 URL
+            ' 이미지 링크 URL
+            ' └ 수신자가 친구톡 상단 이미지 클릭시 호출되는 URL
+            ' - 미입력시 첨부된 이미지를 링크 기능 없이 표시
             Dim imageURL As String = "https://www.popbill.com"
 
-            '전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            '최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            ' 전송요청번호
+            ' 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+            ' 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             Dim requestNum = ""
 
             '전송정보 배열, 최대 1000건
@@ -741,11 +791,11 @@ Public Class frmExample
 
             For i As Integer = 0 To 5
                 Dim msg As KakaoReceiver = New KakaoReceiver
-                msg.rcv = "010111222" '수신번호
+                msg.rcv = "" '수신번호
                 msg.rcvnm = "수신자명칭_" + CStr(i) '수신자명
                 msg.msg = "친구톡 내용입니다." + CStr(i) '친구톡 내용 (최대 400자)
                 msg.altmsg = "대체문자 메시지 내용" + CStr(i) '대체문자 내용 (최대 2000byte)
-                msg.interOPRefKey = "20210701-" + CStr(i) '파트너 지정키, 대량전송시, 수신자 구별용 메모
+                msg.interOPRefKey = "20220504-" + CStr(i) '파트너 지정키, 대량전송시, 수신자 구별용 메모
 
                 '수신자별 개별 버튼정보 전송하는 경우
                 '생성 가능 개수 최대 5개
@@ -799,6 +849,8 @@ Public Class frmExample
     ' 이미지가 첨부된 다수건의 친구톡 전송을 팝빌에 접수하며, 모든 수신자에게 동일 내용을 전송합니다. (최대 1,000건)
     ' - 친구톡의 경우 야간 전송은 제한됩니다. (20:00 ~ 익일 08:00)
     ' - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
+    ' - 전송실패시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
+    ' - 대체문자의 경우, 포토문자(MMS) 형식은 지원하고 있지 않습니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#SendFMS_Same
     '=========================================================================
     Private Sub btnSendFMS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -806,32 +858,39 @@ Public Class frmExample
 
         If fileDialog.ShowDialog(Me) = DialogResult.OK Then
 
-            '카카오톡채널 아이디, 카카오톡채널 목록 확인(LIstPlusFriend) API의 plusFriendID 항목 확인
+            '검색용 아이디, ListPlusFriendID API 의 plusFriendID 참고
             Dim plusFriendID As String = "@팝빌"
 
             '팝빌에 사전등록된 발신번호
-            Dim senderNum As String = "07043042991"
+            Dim senderNum As String = ""
 
             '친구톡 내용 (최대 400자)
             Dim content As String = "친구톡 내용입니다."
 
-            '대체문자 메시지 내용 (최대 2000byte)
+            ' 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
+            ' └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
             Dim altContent As String = "대체문자 메시지 내용입니다."
 
-            '대체문자 유형, 공백-미전송, C-친구톡내용 전송, A-대체문자내용 전송
+            ' 대체문자 유형 (null , "C" , "A" 중 택 1)
+            ' null = 미전송, C = 알림톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
             Dim altSendType = "A"
 
-            '광고전송 여부
+            ' 광고성 메시지 여부 ( true , false 중 택 1)
+            ' └ true = 광고 , false = 일반
+            ' - 미입력 시 기본값 false 처리
             Dim adsYN As Boolean = True
 
             '첨부 이미지 파일경로
             Dim strFileName As String = fileDialog.FileName
 
-            '이미지 링크 URL
+            ' 이미지 링크 URL
+            ' └ 수신자가 친구톡 상단 이미지 클릭시 호출되는 URL
+            ' - 미입력시 첨부된 이미지를 링크 기능 없이 표시
             Dim imageURL As String = "https://www.popbill.com"
 
-            '전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            '최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            ' 전송요청번호
+            ' 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+            ' 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             Dim requestNum = ""
 
             '전송정보 배열, 최대 1000건
@@ -839,7 +898,7 @@ Public Class frmExample
 
             For i As Integer = 0 To 5
                 Dim msg As KakaoReceiver = New KakaoReceiver
-                msg.rcv = "010111222" '수신번호
+                msg.rcv = "" '수신번호
                 msg.rcvnm = "수신자명칭_" + CStr(i) '수신자명
                 receiverList.Add(msg)
             Next
@@ -939,9 +998,9 @@ Public Class frmExample
             MsgBox(tmp)
 
             '전송결과 정보 리스트
-            Dim rowStr As String = "state(전송상태 코드) | sendDT(전송일시) | receiveNum(수신번호) | receiveName(수신자명) | content(내용) | "
-            rowStr += "result(전송결과 코드) | resultDT(전송결과 수신일시) | altContnet(대체문자 내용) | altContentType(대체문자 전송유형) | "
-            rowStr += "altSendDT(대체문자 전송일시) | altReult(대체문자 전송결과 코드) | altResultDT(대체문자 전송결과 수신일시) | receiptNum(접수번호) | requestNum(요청번호) | interOPRefKey (파트너 지정키)"
+            Dim rowStr As String = "state(전송상태 코드) | sendDT(전송일시) | result(전송결과 코드) | resultDT(전송결과 수신일시) | receiveNum(수신번호) | receiveName(수신자명) | content(내용) | "
+            rowStr += "altContnet(대체문자 내용) | altContentType(대체문자 전송유형) | altSendDT(대체문자 전송일시) | altResult(대체문자 전송결과 코드) | altResultDT(대체문자 전송결과 수신일시) | "
+            rowStr += "receiptNum(접수번호) | requestNum(요청번호) | interOPRefKey (파트너 지정키)"
 
             ListBox1.Items.Add(rowStr)
 
@@ -949,11 +1008,11 @@ Public Class frmExample
                 rowStr = ""
                 rowStr += Result.state.ToString + " | "
                 rowStr += Result.sendDT + " | "
+                rowStr += Result.result.ToString + " | "
+                rowStr += Result.resultDT + " | "
                 rowStr += Result.receiveNum + " | "
                 rowStr += Result.receiveName + " | "
                 rowStr += Result.content + " | "
-                rowStr += Result.result.ToString + " | "
-                rowStr += Result.resultDT + " | "
                 rowStr += Result.altContent + " | "
                 rowStr += Result.altContentType.ToString + " | "
                 rowStr += Result.altSendDT + " | "
@@ -1009,9 +1068,9 @@ Public Class frmExample
             MsgBox(tmp)
 
             '전송결과 정보 리스트
-            Dim rowStr As String = "state(전송상태 코드) | sendDT(전송일시) | receiveNum(수신번호) | receiveName(수신자명) | content(내용) | "
-            rowStr += "result(전송결과 코드) | resultDT(전송결과 수신일시) | altContnet(대체문자 내용) | altContentType(대체문자 전송유형) | "
-            rowStr += "altSendDT(대체문자 전송일시) | altReult(대체문자 전송결과 코드) | altResultDT(대체문자 전송결과 수신일시) | receiptNum(접수번호) | requestNum(요청번호)"
+            Dim rowStr As String = "state(전송상태 코드) | sendDT(전송일시) | result(전송결과 코드) | resultDT(전송결과 수신일시) | receiveNum(수신번호) | receiveName(수신자명) | content(내용) | "
+            rowStr += "altContnet(대체문자 내용) | altContentType(대체문자 전송유형) | altSendDT(대체문자 전송일시) | altResult(대체문자 전송결과 코드) | altResultDT(대체문자 전송결과 수신일시) | "
+            rowStr += "receiptNum(접수번호) | requestNum(요청번호) | interOPRefKey (파트너 지정키)"
 
             ListBox1.Items.Add(rowStr)
 
@@ -1019,18 +1078,19 @@ Public Class frmExample
                 rowStr = ""
                 rowStr += Result.state.ToString + " | "
                 rowStr += Result.sendDT + " | "
+                rowStr += Result.result.ToString + " | "
+                rowStr += Result.resultDT + " | "
                 rowStr += Result.receiveNum + " | "
                 rowStr += Result.receiveName + " | "
                 rowStr += Result.content + " | "
-                rowStr += Result.result.ToString + " | "
-                rowStr += Result.resultDT + " | "
                 rowStr += Result.altContent + " | "
                 rowStr += Result.altContentType.ToString + " | "
                 rowStr += Result.altSendDT + " | "
                 rowStr += Result.altResult + " | "
                 rowStr += Result.altResultDT + " | "
                 rowStr += Result.receiptNum + " | "
-                rowStr += Result.requestNum
+                rowStr += Result.requestNum + " | "
+                rowStr += Result.interOPRefKey
 
                 ListBox1.Items.Add(rowStr)
             Next
@@ -1049,13 +1109,15 @@ Public Class frmExample
         Dim item(3) As String
 
         '최대 검색기간 : 6개월 이내
-        '[필수] 시작일자, yyyyMMdd
-        Dim SDate As String = "20210701"
+        '시작일자, yyyyMMdd
+        Dim SDate As String = "20220501"
 
-        '[필수] 종료일자, yyyyMMdd
-        Dim EDate As String = "20210730"
+        '종료일자, yyyyMMdd
+        Dim EDate As String = "20220531"
 
-        '전송상태값 배열, 0-대기, 1-전송중, 2-성공, 3-대체, 4-실패, 5-취소
+        ' 전송상태 배열 ("0" , "1" , "2" , "3" , "4" , "5" 중 선택, 다중 선택 가능)
+        ' └ 0 = 전송대기 , 1 = 전송중 , 2 = 전송성공 , 3 = 대체문자 전송 , 4 = 전송실패 , 5 = 전송취소
+        ' - 미입력 시 전체조회
         State(0) = "0"
         State(1) = "1"
         State(2) = "2"
@@ -1063,15 +1125,22 @@ Public Class frmExample
         State(4) = "4"
         State(5) = "5"
 
-        '검색대상 배열, ATS(알림톡), FTS(친구톡 텍스트), FMS(친구톡 이미지)
+        ' 검색대상 배열 ("ATS", "FTS", "FMS" 중 선택, 다중 선택 가능)
+        ' └ ATS = 알림톡 , FTS = 친구톡(텍스트) , FMS = 친구톡(이미지)
+        ' - 미입력 시 전체조회
         item(0) = "ATS"
         item(1) = "FTS"
         item(2) = "FMS"
 
-        '예약문자 검색여부, 공백- 전체조회, 1-예약전송 조회, 0-즉시전송 조회
+        ' 전송유형별 조회 (null , "0" , "1" 중 택 1)
+        ' └ null = 전체 , 0 = 즉시전송건 , 1 = 예약전송건
+        ' - 미입력 시 전체조회
         Dim ReserveYN As String = ""
 
-        '개인조회여부, True(개인조회), False(전체조회)
+        ' 사용자권한별 조회 (true / false 중 택 1)
+        ' └ false = 접수한 카카오톡 전체 조회 (관리자권한)
+        ' └ true = 해당 담당자 계정으로 접수한 카카오톡만 조회 (개인권한)
+        ' - 미입력시 기본값 false 처리
         Dim SenderYN As Boolean = False
 
         '페이지 번호
@@ -1083,7 +1152,8 @@ Public Class frmExample
         '정렬방향, D-내림차순(기본값), A-오름차순
         Dim Order As String = "D"
 
-        '조회 검색어, 카카오톡 전송시 기재한 수신자명 입력
+        ' 조회하고자 하는 수신자명
+        ' - 미입력시 전체조회
         Dim QString As String = ""
 
         ListBox1.Items.Clear()
@@ -1091,20 +1161,20 @@ Public Class frmExample
             Dim msgSearchList As KakaoSearchResult = kakaoService.Search(txtCorpNum.Text, SDate, EDate, State, item, ReserveYN, SenderYN, Order, Page, PerPage, _
                                                                          txtUserId.Text, QString)
 
-            Dim tmp As String
+            Dim tmp As String = ""
 
-            tmp = "code (응답코드) : " + CStr(msgSearchList.code) + vbCrLf
-            tmp = tmp + "total (총 검색결과 건수) : " + CStr(msgSearchList.total) + vbCrLf
-            tmp = tmp + "perPage (페이지당 검색개수) : " + CStr(msgSearchList.perPage) + vbCrLf
-            tmp = tmp + "pageNum (페이지 번호) : " + CStr(msgSearchList.pageNum) + vbCrLf
-            tmp = tmp + "pageCount (페이지 개수) : " + CStr(msgSearchList.pageCount) + vbCrLf
-            tmp = tmp + "message (응답메시지) : " + msgSearchList.message + vbCrLf + vbCrLf
+            tmp += "code (응답코드) : " + CStr(msgSearchList.code) + vbCrLf
+            tmp += "message (응답메시지) : " + msgSearchList.message + vbCrLf + vbCrLf
+            tmp += "total (총 검색결과 건수) : " + CStr(msgSearchList.total) + vbCrLf
+            tmp += "perPage (페이지당 검색개수) : " + CStr(msgSearchList.perPage) + vbCrLf
+            tmp += "pageNum (페이지 번호) : " + CStr(msgSearchList.pageNum) + vbCrLf
+            tmp += "pageCount (페이지 개수) : " + CStr(msgSearchList.pageCount) + vbCrLf
 
             MsgBox(tmp)
 
-            Dim rowStr As String = "state(전송상태 코드) | sendDT(전송일시) | receiveNum(수신번호) | receiveName(수신자명) | content(내용) | "
-            rowSTR += "result(전송결과 코드) | resultDT(전송결과 수신일시) | altContnet(대체문자 내용) | altContentType(대체문자 전송유형) | "
-            rowStr += "altSendDT(대체문자 전송일시) | altReult(대체문자 전송결과 코드) | altResultDT(대체문자 전송결과 수신일시) | receiptNum(접수번호) | requestNum(요청번호)"
+            Dim rowStr As String = "state(전송상태 코드) | sendDT(전송일시) | result(전송결과 코드) | resultDT(전송결과 수신일시) | receiveNum(수신번호) | receiveName(수신자명) | content(내용) | "
+            rowStr += "altContnet(대체문자 내용) | altContentType(대체문자 전송유형) | altSendDT(대체문자 전송일시) | altResult(대체문자 전송결과 코드) | altResultDT(대체문자 전송결과 수신일시) | "
+            rowStr += "receiptNum(접수번호) | requestNum(요청번호) | interOPRefKey (파트너 지정키)"
 
             ListBox1.Items.Add(rowStr)
 
@@ -1112,18 +1182,19 @@ Public Class frmExample
                 rowStr = ""
                 rowStr += Result.state.ToString + " | "
                 rowStr += Result.sendDT + " | "
+                rowStr += Result.result.ToString + " | "
+                rowStr += Result.resultDT + " | "
                 rowStr += Result.receiveNum + " | "
                 rowStr += Result.receiveName + " | "
                 rowStr += Result.content + " | "
-                rowStr += Result.result.ToString + " | "
-                rowStr += Result.resultDT + " | "
                 rowStr += Result.altContent + " | "
                 rowStr += Result.altContentType.ToString + " | "
                 rowStr += Result.altSendDT + " | "
                 rowStr += Result.altResult + " | "
                 rowStr += Result.altResultDT + " | "
                 rowStr += Result.receiptNum + " | "
-                rowStr += Result.requestNum
+                rowStr += Result.requestNum + " | "
+                rowStr += Result.interOPRefKey
 
                 ListBox1.Items.Add(rowStr)
             Next
@@ -1151,7 +1222,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 잔여포인트를 확인합니다.
-    ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트(GetPartnerBalance API)를 통해 확인하시기 바랍니다.
+    ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트 확인(GetPartnerBalance API) 함수를 통해 확인하시기 바랍니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#GetBalance
     '=========================================================================
     Private Sub btnGetBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1221,7 +1292,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 파트너의 잔여포인트를 확인합니다.
-    ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
+    ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트 확인(GetBalance API) 함수를 이용하시기 바랍니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#GetPartnerBalance
     '=========================================================================
     Private Sub btnGetPartnerBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1461,16 +1532,10 @@ Public Class frmExample
         joinInfo.ContactName = "담당자명"
 
         '담당자 이메일 (최대 20자)
-        joinInfo.ContactEmail = "test@test.com"
+        joinInfo.ContactEmail = ""
 
         '담당자 연락처 (최대 20자)
-        joinInfo.ContactTEL = "070-4304-2991"
-
-        '담당자 휴대폰번호 (최대 20자)
-        joinInfo.ContactHP = "010-111-222"
-
-        '담당자 팩스번호 (최대 20자)
-        joinInfo.ContactFAX = "02-6442-9700"
+        joinInfo.ContactTEL = ""
 
 
         Try
@@ -1498,149 +1563,6 @@ Public Class frmExample
             txtURL.Text = url
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
-    ' - https://docs.popbill.com/kakao/dotnet/api#RegistContact
-    '=========================================================================
-    Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnRegistContact.Click
-
-        '담당자 정보객체
-        Dim joinData As New Contact
-
-        '아이디 (6자이상 50자미만)
-        joinData.id = "testkorea1120"
-
-        '비밀번호, 8자 이상 20자 이하(영문, 숫자, 특수문자 조합)
-        joinData.Password = "asdf8536!@#"
-
-        '담당자 성명 (최대 100자)
-        joinData.personName = "담당자명"
-
-        '담당자 연락처 (최대 20자)
-        joinData.tel = "070-1111-2222"
-
-        '담당자 휴대폰 (최대 20자)
-        joinData.hp = "010-1234-1234"
-
-        '담당자 팩스 (최대 20자)
-        joinData.fax = "070-1234-1234"
-
-        '담당자 이메일 (최대 100자)
-        joinData.email = "test@test.com"
-
-        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
-        joinData.searchRole = 3
-
-        Try
-            Dim response As Response = kakaoService.RegistContact(txtCorpNum.Text, joinData, txtUserId.Text)
-
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보을 확인합니다.
-    ' - https://docs.popbill.com/kakao/dotnet/api#GetContactInfo
-    '=========================================================================
-    Private Sub btnGetContactInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetContactInfo.Click
-
-        '확인할 담당자 아이디
-        Dim contactID As String = "DONETVB_CONTACT"
-
-        Dim tmp As String = ""
-
-        Try
-            Dim contactInfo As Contact = kakaoService.GetContactInfo(txtCorpNum.Text, contactID, txtUserId.Text)
-
-            tmp += "id (담당자 아이디) : " + contactInfo.id + vbCrLf
-            tmp += "personName (담당자명) : " + contactInfo.personName + vbCrLf
-            tmp += "email (담당자 이메일) : " + contactInfo.email + vbCrLf
-            tmp += "hp (휴대폰번호) : " + contactInfo.hp + vbCrLf
-            tmp += "searchRole (담당자 권한) : " + contactInfo.searchRole.ToString() + vbCrLf
-            tmp += "tel (연락처) : " + contactInfo.tel + vbCrLf
-            tmp += "fax (팩스번호) : " + contactInfo.fax + vbCrLf
-            tmp += "mgrYN (관리자 여부) : " + contactInfo.mgrYN.ToString() + vbCrLf
-            tmp += "regDT (등록일시) : " + contactInfo.regDT + vbCrLf
-            tmp += "state (상태) : " + contactInfo.state + vbCrLf
-
-            tmp += vbCrLf
-
-            MsgBox(tmp)
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
-    ' - https://docs.popbill.com/kakao/dotnet/api#ListContact
-    '=========================================================================
-    Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnListContact.Click
-        Try
-            Dim contactList As List(Of Contact) = kakaoService.ListContact(txtCorpNum.Text, txtUserId.Text)
-
-            Dim tmp As String = "id(아이디) | personName(담당자명) | email(메일주소) | hp(휴대폰번호) | fax(팩스) | tel(연락처) |"
-            tmp += "regDT(등록일시) | searchRole(담당자 권한) | mgrYN(관리자 여부) | state(상태)" + vbCrLf
-
-            For Each info As Contact In contactList
-                tmp += info.id + " | " + info.personName + " | " + info.email + " | " + info.hp + " | " + info.fax + " | " + info.tel + " | "
-                tmp += info.regDT.ToString() + " | " + info.searchRole.ToString() + " | " + info.mgrYN.ToString() + " | " + info.state + vbCrLf
-            Next
-
-            MsgBox(tmp)
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
-    ' - https://docs.popbill.com/kakao/dotnet/api#UpdateContact
-    '=========================================================================
-    Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnUpdateContact.Click
-
-        '담당자 정보객체
-        Dim joinData As New Contact
-
-        '아이디 (6자이상 50자미만)
-        joinData.id = "testkorea1120"
-
-        '담당자 성명 (최대 100자)
-        joinData.personName = "담당자명"
-
-        '담당자 연락처 (최대 20자)
-        joinData.tel = "070-1111-2222"
-
-        '담당자 휴대폰 (최대 20자)
-        joinData.hp = "010-1234-1234"
-
-        '담당자 팩스 (최대 20자)
-        joinData.fax = "070-1234-1234"
-
-        '담당자 이메일 (최대 100자)
-        joinData.email = "test@test.com"
-
-        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
-        joinData.searchRole = 3
-
-        Try
-            Dim response As Response = kakaoService.UpdateContact(txtCorpNum.Text, joinData, txtUserId.Text)
-
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-
         End Try
     End Sub
 
@@ -1694,6 +1616,135 @@ Public Class frmExample
         Try
 
             Dim response As Response = kakaoService.UpdateCorpInfo(txtCorpNum.Text, corpInfo, txtUserId.Text)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
+    ' - https://docs.popbill.com/kakao/dotnet/api#RegistContact
+    '=========================================================================
+    Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnRegistContact.Click
+
+        '담당자 정보객체
+        Dim joinData As New Contact
+
+        '아이디 (6자이상 50자미만)
+        joinData.id = "testkorea1120"
+
+        '비밀번호, 8자 이상 20자 이하(영문, 숫자, 특수문자 조합)
+        joinData.Password = "asdf8536!@#"
+
+        '담당자 성명 (최대 100자)
+        joinData.personName = "담당자명"
+
+        '담당자 연락처 (최대 20자)
+        joinData.tel = ""
+
+        '담당자 이메일 (최대 100자)
+        joinData.email = ""
+
+        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
+        joinData.searchRole = 3
+
+        Try
+            Dim response As Response = kakaoService.RegistContact(txtCorpNum.Text, joinData, txtUserId.Text)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보을 확인합니다.
+    ' - https://docs.popbill.com/kakao/dotnet/api#GetContactInfo
+    '=========================================================================
+    Private Sub btnGetContactInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetContactInfo.Click
+
+        '확인할 담당자 아이디
+        Dim contactID As String = "DONETVB_CONTACT"
+
+        Dim tmp As String = ""
+
+        Try
+            Dim contactInfo As Contact = kakaoService.GetContactInfo(txtCorpNum.Text, contactID, txtUserId.Text)
+
+            tmp += "id (담당자 아이디) : " + contactInfo.id + vbCrLf
+            tmp += "personName (담당자명) : " + contactInfo.personName + vbCrLf
+            tmp += "email (담당자 이메일) : " + contactInfo.email + vbCrLf
+            tmp += "searchRole (담당자 권한) : " + contactInfo.searchRole.ToString() + vbCrLf
+            tmp += "tel (연락처) : " + contactInfo.tel + vbCrLf
+            tmp += "mgrYN (관리자 여부) : " + contactInfo.mgrYN.ToString() + vbCrLf
+            tmp += "regDT (등록일시) : " + contactInfo.regDT + vbCrLf
+            tmp += "state (상태) : " + contactInfo.state + vbCrLf
+
+            tmp += vbCrLf
+
+            MsgBox(tmp)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
+    ' - https://docs.popbill.com/kakao/dotnet/api#ListContact
+    '=========================================================================
+    Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnListContact.Click
+        Try
+            Dim contactList As List(Of Contact) = kakaoService.ListContact(txtCorpNum.Text, txtUserId.Text)
+
+            Dim tmp As String = "id(아이디) | personName(담당자명) | email(메일주소) | tel(연락처) |"
+            tmp += "regDT(등록일시) | searchRole(담당자 권한) | mgrYN(관리자 여부) | state(상태)" + vbCrLf
+
+            For Each info As Contact In contactList
+                tmp += info.id + " | " + info.personName + " | " + info.email + " | " + info.tel + " | "
+                tmp += info.regDT.ToString() + " | " + info.searchRole.ToString() + " | " + info.mgrYN.ToString() + " | " + info.state + vbCrLf
+            Next
+
+            MsgBox(tmp)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
+    ' - https://docs.popbill.com/kakao/dotnet/api#UpdateContact
+    '=========================================================================
+    Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnUpdateContact.Click
+
+        '담당자 정보객체
+        Dim joinData As New Contact
+
+        '아이디 (6자이상 50자미만)
+        joinData.id = "testkorea1120"
+
+        '담당자 성명 (최대 100자)
+        joinData.personName = "담당자명"
+
+        '담당자 연락처 (최대 20자)
+        joinData.tel = ""
+
+        '담당자 이메일 (최대 100자)
+        joinData.email = ""
+
+        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
+        joinData.searchRole = 3
+
+        Try
+            Dim response As Response = kakaoService.UpdateContact(txtCorpNum.Text, joinData, txtUserId.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
