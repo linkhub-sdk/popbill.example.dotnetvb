@@ -161,6 +161,7 @@ Partial Class frmExample
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
         Me.Label8 = New System.Windows.Forms.Label
         Me.txtURL = New System.Windows.Forms.TextBox
+        Me.btnGetTaxCertInfo = New System.Windows.Forms.Button
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -355,6 +356,7 @@ Partial Class frmExample
         '
         'GroupBox6
         '
+        Me.GroupBox6.Controls.Add(Me.btnGetTaxCertInfo)
         Me.GroupBox6.Controls.Add(Me.btnCheckCertValidation)
         Me.GroupBox6.Controls.Add(Me.btnGetCertificateExpireDate)
         Me.GroupBox6.Controls.Add(Me.btnGetTaxCertURL)
@@ -1627,6 +1629,15 @@ Partial Class frmExample
         Me.txtURL.Size = New System.Drawing.Size(419, 21)
         Me.txtURL.TabIndex = 25
         '
+        'btnGetTaxCertInfo
+        '
+        Me.btnGetTaxCertInfo.Location = New System.Drawing.Point(6, 115)
+        Me.btnGetTaxCertInfo.Name = "btnGetTaxCertInfo"
+        Me.btnGetTaxCertInfo.Size = New System.Drawing.Size(150, 29)
+        Me.btnGetTaxCertInfo.TabIndex = 5
+        Me.btnGetTaxCertInfo.Text = "인증서 정보 확인"
+        Me.btnGetTaxCertInfo.UseVisualStyleBackColor = True
+        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
@@ -1814,5 +1825,6 @@ Partial Class frmExample
     Friend WithEvents btnBulkSubmit As System.Windows.Forms.Button
     Friend WithEvents txtSubmitID As System.Windows.Forms.TextBox
     Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents btnGetTaxCertInfo As System.Windows.Forms.Button
 
 End Class

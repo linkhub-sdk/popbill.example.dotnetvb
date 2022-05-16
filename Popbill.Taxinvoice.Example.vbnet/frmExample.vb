@@ -3264,6 +3264,31 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
+    ' 팝빌 인증서버에 등록된 인증서의 정보를 확인합니다.
+    ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetTaxCertInfo
+    '=========================================================================
+    Private Sub btnGetTaxCertInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetTaxCertInfo.Click
+        Try
+            Dim taxinvoiceCertificate As TaxinvoiceCertificate = taxinvoiceService.GetTaxCertInfo(txtCorpNum.Text, txtUserId.Text)
+
+            Dim tmp As String = ""
+            tmp += "regDT (등록일시) : " + taxinvoiceCertificate.regDT + vbCrLf
+            tmp += "expireDT (만료일시) : " + taxinvoiceCertificate.expireDT + vbCrLf
+            tmp += "issuerDN (인증서 발급자 DN) : " + taxinvoiceCertificate.issuerDN + vbCrLf
+            tmp += "subjectDN (등록된 인증서 DN) : " + taxinvoiceCertificate.subjectDN + vbCrLf
+            tmp += "issuerName (인증서 종류) : " + taxinvoiceCertificate.issuerName + vbCrLf
+            tmp += "oid (OID) : " + taxinvoiceCertificate.oid + vbCrLf
+            tmp += "regContactName (등록 담당자 성명) : " + taxinvoiceCertificate.regContactName + vbCrLf
+            tmp += "regContactID (등록 담당자 아이디) : " + taxinvoiceCertificate.regContactID + vbCrLf
+
+
+            MsgBox(tmp)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
     ' 연동회원의 잔여포인트를 확인합니다.
     ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트 확인(GetPartnerBalance API) 함수를 통해 확인하시기 바랍니다.
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetBalance
