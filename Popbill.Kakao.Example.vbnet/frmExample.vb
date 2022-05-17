@@ -200,6 +200,11 @@ Public Class frmExample
                 Next
                 tmp += vbCrLf
             End If
+
+            tmp += "secureYN(보안템플릿 여부) : " + CStr(template.secureYN) + vbCrLf
+            tmp += "state(템플릿 상태) : " + template.state + vbCrLf
+            tmp += "stateDT(템플릿 상태 일시) : " + template.stateDT + vbCrLf
+
             MsgBox(tmp)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
@@ -237,6 +242,10 @@ Public Class frmExample
                     Next
                     tmp += vbCrLf
                 End If
+
+                tmp += "secureYN(보안템플릿 여부) : " + CStr(info.secureYN) + vbCrLf
+                tmp += "state(템플릿 상태) : " + info.state + vbCrLf
+                tmp += "stateDT(템플릿 상태 일시) : " + info.stateDT + vbCrLf + vbCrLf
             Next
             MsgBox(tmp)
 
