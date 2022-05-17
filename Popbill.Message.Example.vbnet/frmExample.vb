@@ -172,7 +172,7 @@ Public Class frmExample
         ' - 미입력 시 기본값 false 처리
         Dim adsYN = True
 
-        For i As Integer = 0 To 99
+        For i As Integer = 0 To 2
 
             Dim msg As Message = New Message
 
@@ -190,6 +190,9 @@ Public Class frmExample
 
             '메시지내용, 90Byte 초과된 내용은 삭제되어 전송
             msg.content = "단문 문자메시지 내용, 각 메시지마다 개별설정 가능." + CStr(i)
+
+            '파트너 지정키, 대량전송 시 수신자 구별용 메모
+            msg.interOPRefKey = "20220513-" + CStr(i)
 
             messages.Add(msg)
         Next
@@ -239,6 +242,10 @@ Public Class frmExample
 
             '수신자명
             msg.receiveName = "수신자명칭_" + CStr(i)
+
+            '파트너 지정키, 대량전송 시 수신자 구별용 메모
+            msg.interOPRefKey = "20220513-" + CStr(i)
+
             messages.Add(msg)
         Next
 
@@ -340,6 +347,9 @@ Public Class frmExample
             '장문 메시지 내용, 최대 2000byte
             msg.content = "장문 문자메시지 내용, 각 메시지마다 개별설정 가능." + CStr(i)
 
+            '파트너 지정키, 대량전송 시 수신자 구별용 메모
+            msg.interOPRefKey = "20220513-" + CStr(i)
+
             messages.Add(msg)
         Next
 
@@ -391,6 +401,9 @@ Public Class frmExample
 
             '수신자명
             msg.receiveName = "수신자명칭_" + CStr(i)
+
+            '파트너 지정키, 대량전송 시 수신자 구별용 메모
+            msg.interOPRefKey = "20220513-" + CStr(i)
 
             messages.Add(msg)
         Next
@@ -492,6 +505,9 @@ Public Class frmExample
             '장문메시지 내용, 최대 2000byte
             msg.content = "문자메시지 내용, 각 메시지마다 개별설정 가능." + CStr(i)
 
+            '파트너 지정키, 대량전송 시 수신자 구별용 메모
+            msg.interOPRefKey = "20220513-" + CStr(i)
+
             messages.Add(msg)
         Next
 
@@ -543,6 +559,9 @@ Public Class frmExample
 
             '수신자명
             msg.receiveName = "수신자명칭_" + i.ToString
+
+            '파트너 지정키, 대량전송 시 수신자 구별용 메모
+            msg.interOPRefKey = "20220513-" + CStr(i)
 
             messages.Add(msg)
         Next
@@ -651,6 +670,9 @@ Public Class frmExample
                 '수신자명
                 msg.receiveName = "수신자명칭_" + CStr(i)
 
+                '파트너 지정키, 대량전송 시 수신자 구별용 메모
+                msg.interOPRefKey = "20220513-" + CStr(i)
+
                 messages.Add(msg)
             Next
 
@@ -709,6 +731,9 @@ Public Class frmExample
 
                 '수신자명
                 msg.receiveName = "수신자명칭_" + CStr(i)
+
+                '파트너 지정키, 대량전송 시 수신자 구별용 메모
+                msg.interOPRefKey = "20220513-" + CStr(i)
 
                 messages.Add(msg)
             Next
@@ -770,7 +795,7 @@ Public Class frmExample
 
             Dim rowStr As String = "subject(메시지 제목) | content(메시지 내용) | sendNum(발신번호) | senderName(발신자명) | receiveNum(수신번호) | receiveName(수신자명) | "
             rowStr += "receiptDT(접수일시) | sendDT(전송일시) | resultDT(전송결과 수신일시) | reserveDT(예약일시) | state(전송 상태코드) | result(전송 결과코드) | type(메시지 타입) | "
-            rowStr += "tranNet(전송처리 이동통신사명) | receiptNum(접수번호) | requestNum(요청번호)"
+            rowStr += "tranNet(전송처리 이동통신사명) | receiptNum(접수번호) | requestNum(요청번호) | interOPRefKey(파트너 지정키)"
 
             ListBox1.Items.Add(rowStr)
 
@@ -778,7 +803,7 @@ Public Class frmExample
                 rowStr = ""
                 rowStr += Result.subject + " | " + Result.content + " | " + Result.sendNum + " | " + Result.senderName + " | " + Result.receiveNum + " | " + Result.receiveName + " | "
                 rowStr += Result.receiptDT + " | " + Result.sendDT + " | " + Result.resultDT + " | " + Result.reserveDT + " | " + Result.state.ToString + " | " + Result.result.ToString + " | "
-                rowStr += Result.type + " | " + Result.tranNet + " | " + Result.receiptNum + " | " + Result.requestNum
+                rowStr += Result.type + " | " + Result.tranNet + " | " + Result.receiptNum + " | " + Result.requestNum + " | " + Result.interOPRefKey
 
                 ListBox1.Items.Add(rowStr)
             Next
@@ -799,7 +824,7 @@ Public Class frmExample
 
             Dim rowStr As String = "subject(메시지 제목) | content(메시지 내용) | sendNum(발신번호) | senderName(발신자명) | receiveNum(수신번호) | receiveName(수신자명) | "
             rowStr += "receiptDT(접수일시) | sendDT(전송일시) | resultDT(전송결과 수신일시) | reserveDT(예약일시) | state(전송 상태코드) | result(전송 결과코드) | type(메시지 타입) | "
-            rowStr += "tranNet(전송처리 이동통신사명) | receiptNum(접수번호) | requestNum(요청번호)"
+            rowStr += "tranNet(전송처리 이동통신사명) | receiptNum(접수번호) | requestNum(요청번호) | interOPRefKey(파트너 지정키)"
 
             ListBox1.Items.Add(rowStr)
 
@@ -807,7 +832,7 @@ Public Class frmExample
                 rowStr = ""
                 rowStr += Result.subject + " | " + Result.content + " | " + Result.sendNum + " | " + Result.senderName + " | " + Result.receiveNum + " | " + Result.receiveName + " | "
                 rowStr += Result.receiptDT + " | " + Result.sendDT + " | " + Result.resultDT + " | " + Result.reserveDT + " | " + Result.state.ToString + " | " + Result.result.ToString + " | "
-                rowStr += Result.type + " | " + Result.tranNet + " | " + Result.receiptNum + " | " + Result.requestNum
+                rowStr += Result.type + " | " + Result.tranNet + " | " + Result.receiptNum + " | " + Result.requestNum + " | " + Result.interOPRefKey
 
                 ListBox1.Items.Add(rowStr)
             Next
@@ -888,7 +913,7 @@ Public Class frmExample
 
             Dim rowStr As String = "subject(메시지 제목) | content(메시지 내용) | sendNum(발신번호) | senderName(발신자명) | receiveNum(수신번호) | receiveName(수신자명) | "
             rowStr += "receiptDT(접수일시) | sendDT(전송일시) | resultDT(전송결과 수신일시) | reserveDT(예약일시) | state(전송 상태코드) | result(전송 결과코드) | type(메시지 타입) | "
-            rowStr += "tranNet(전송처리 이동통신사명) | receiptNum(접수번호) | requestNum(요청번호)"
+            rowStr += "tranNet(전송처리 이동통신사명) | receiptNum(접수번호) | requestNum(요청번호) | interOPRefKey(파트너 지정키)"
 
             ListBox1.Items.Add(rowStr)
 
@@ -896,7 +921,7 @@ Public Class frmExample
                 rowStr = ""
                 rowStr += Result.subject + " | " + Result.content + " | " + Result.sendNum + " | " + Result.senderName + " | " + Result.receiveNum + " | " + Result.receiveName + " | "
                 rowStr += Result.receiptDT + " | " + Result.sendDT + " | " + Result.resultDT + " | " + Result.reserveDT + " | " + Result.state.ToString + " | " + Result.result.ToString + " | "
-                rowStr += Result.type + " | " + Result.tranNet + " | " + Result.receiptNum + " | " + Result.requestNum
+                rowStr += Result.type + " | " + Result.tranNet + " | " + Result.receiptNum + " | " + Result.requestNum + " | " + Result.interOPRefKey
 
                 ListBox1.Items.Add(rowStr)
             Next

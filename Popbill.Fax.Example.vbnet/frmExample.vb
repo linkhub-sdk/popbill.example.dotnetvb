@@ -168,6 +168,7 @@ Public Class frmExample
                 Dim receiver As FaxReceiver = New FaxReceiver
                 receiver.receiveNum = ""
                 receiver.receiveName = "수신자명칭_" + CStr(i)
+                receiver.interOPRefKey = "20220513-" + CStr(i)
                 receivers.Add(receiver)
             Next i
 
@@ -267,6 +268,7 @@ Public Class frmExample
                 Dim receiver As FaxReceiver = New FaxReceiver
                 receiver.receiveNum = ""
                 receiver.receiveName = "수신자명칭_" + CStr(i)
+                receiver.interOPRefKey = "20220513-" + CStr(i)
                 receivers.Add(receiver)
             Next i
 
@@ -361,6 +363,8 @@ Public Class frmExample
 
             '수신자명
             receiver.receiveName = "수신자명칭_" + CStr(i)
+
+            receiver.interOPRefKey = "20220513-" + CStr(i)
             receivers.Add(receiver)
         Next i
 
@@ -448,10 +452,13 @@ Public Class frmExample
             Dim receiver As FaxReceiver = New FaxReceiver
 
             '수신팩스번호
-            receiver.receiveNum = "070-111-222"
+            receiver.receiveNum = ""
 
             '수신자명
             receiver.receiveName = "수신자명칭_" + CStr(i)
+
+            receiver.interOPRefKey = "20220513-" + CStr(i)
+
             receivers.Add(receiver)
         Next i
 
@@ -516,7 +523,7 @@ Public Class frmExample
             Dim rowStr As String = "state(전송상태 코드) | result(전송결과 코드) | sendNum(발신번호) | senderName(발신자명) | receiveNum(수신번호) | receiveNumType(수신번호 유형) | receiveName(수신번호) | "
             rowStr += "title(팩스제목) | sendPageCnt(전체 페이지수) | successPageCnt(성공 페이지수) | failPageCnt(실패 페이지수) | cancelPageCnt(취소 페이지수) | "
             rowStr += "reserveDT(예약시간) | receiptDT(접수일시) | sendDT(전송일시) | resultDT(전송결과 수신일시) | fileNames(전송 파일명 리스트) | receiptNum(접수번호) | "
-            rowStr += "requestNum(요청번호) | chargePageCnt(과금 페이지수) | refundPageCnt(환불 페이지수) | tiffFileSize(변환파일용량(단위:Byte))"
+            rowStr += "requestNum(요청번호) | interOPRefKey(파트너 지정키) | chargePageCnt(과금 페이지수) | refundPageCnt(환불 페이지수) | tiffFileSize(변환파일용량(단위:Byte))"
 
             ListBox1.Items.Add(rowStr)
 
@@ -549,6 +556,7 @@ Public Class frmExample
 
                 rowStr += Result.receiptNum + " | "
                 rowStr += Result.requestNum + " | "
+                rowStr += Result.interOPRefKey + " | "
                 rowStr += Result.chargePageCnt.ToString + " | "
                 rowStr += Result.refundPageCnt.ToString + " | "
                 rowStr += Result.tiffFileSize
@@ -573,7 +581,7 @@ Public Class frmExample
             Dim rowStr As String = "state(전송상태 코드) | result(전송결과 코드) | sendNum(발신번호) | senderName(발신자명) | receiveNum(수신번호) | receiveNumType(수신번호 유형) | receiveName(수신번호) | "
             rowStr += "title(팩스제목) | sendPageCnt(전체 페이지수) | successPageCnt(성공 페이지수) | failPageCnt(실패 페이지수) | cancelPageCnt(취소 페이지수) | "
             rowStr += "reserveDT(예약시간) | receiptDT(접수일시) | sendDT(전송일시) | resultDT(전송결과 수신일시) | fileNames(전송 파일명 리스트) | receiptNum(접수번호) | "
-            rowStr += "requestNum(요청번호) | chargePageCnt(과금 페이지수) | refundPageCnt(환불 페이지수) | tiffFileSize(변환파일용량(단위:Byte))"
+            rowStr += "requestNum(요청번호) | interOPRefKey(파트너 지정키) | chargePageCnt(과금 페이지수) | refundPageCnt(환불 페이지수) | tiffFileSize(변환파일용량(단위:Byte))"
 
             ListBox1.Items.Add(rowStr)
 
@@ -606,6 +614,7 @@ Public Class frmExample
 
                 rowStr += Result.receiptNum + " | "
                 rowStr += Result.requestNum + " | "
+                rowStr += Result.interOPRefKey + " | "
                 rowStr += Result.chargePageCnt.ToString + " | "
                 rowStr += Result.refundPageCnt.ToString + " | "
                 rowStr += Result.tiffFileSize
@@ -680,7 +689,7 @@ Public Class frmExample
             Dim rowStr As String = "state(전송상태 코드) | result(전송결과 코드) | sendNum(발신번호) | senderName(발신자명) | receiveNum(수신번호) | receiveNumType(수신번호 유형) | receiveName(수신번호) | "
             rowStr += "title(팩스제목) | sendPageCnt(전체 페이지수) | successPageCnt(성공 페이지수) | failPageCnt(실패 페이지수) | cancelPageCnt(취소 페이지수) | "
             rowStr += "reserveDT(예약시간) | receiptDT(접수일시) | sendDT(전송일시) | resultDT(전송결과 수신일시) | fileNames(전송 파일명 리스트) | receiptNum(접수번호) | "
-            rowStr += "requestNum(요청번호) | chargePageCnt(과금 페이지수) | refundPageCnt(환불 페이지수) | tiffFileSize(변환파일용량(단위:Byte))"
+            rowStr += "requestNum(요청번호) | interOPRefKey(파트너 지정키) | chargePageCnt(과금 페이지수) | refundPageCnt(환불 페이지수) | tiffFileSize(변환파일용량(단위:Byte))"
 
             ListBox1.Items.Add(rowStr)
 
@@ -714,6 +723,7 @@ Public Class frmExample
 
                 rowStr += Result.receiptNum + " | "
                 rowStr += Result.requestNum + " | "
+                rowStr += Result.interOPRefKey + " | "
                 rowStr += Result.chargePageCnt.ToString + " | "
                 rowStr += Result.refundPageCnt.ToString + " | "
                 rowStr += Result.tiffFileSize
