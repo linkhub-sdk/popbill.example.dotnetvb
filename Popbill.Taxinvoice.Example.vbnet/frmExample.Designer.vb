@@ -162,6 +162,7 @@ Partial Class frmExample
         Me.Label8 = New System.Windows.Forms.Label
         Me.txtURL = New System.Windows.Forms.TextBox
         Me.btnGetTaxCertInfo = New System.Windows.Forms.Button
+        Me.btnGetXML = New System.Windows.Forms.Button
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -567,7 +568,7 @@ Partial Class frmExample
         Me.GroupBox7.Controls.Add(Me.Label3)
         Me.GroupBox7.Location = New System.Drawing.Point(12, 230)
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(1329, 601)
+        Me.GroupBox7.Size = New System.Drawing.Size(1329, 641)
         Me.GroupBox7.TabIndex = 6
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "전자세금계산서 관련 API"
@@ -1228,7 +1229,7 @@ Partial Class frmExample
         Me.GroupBox13.Controls.Add(Me.btnGetURL_TBOX)
         Me.GroupBox13.Location = New System.Drawing.Point(1144, 366)
         Me.GroupBox13.Name = "GroupBox13"
-        Me.GroupBox13.Size = New System.Drawing.Size(166, 223)
+        Me.GroupBox13.Size = New System.Drawing.Size(166, 264)
         Me.GroupBox13.TabIndex = 12
         Me.GroupBox13.TabStop = False
         Me.GroupBox13.Text = "기타 URL"
@@ -1281,7 +1282,7 @@ Partial Class frmExample
         Me.GroupBox12.Controls.Add(Me.btnGetPopUpURL)
         Me.GroupBox12.Location = New System.Drawing.Point(723, 366)
         Me.GroupBox12.Name = "GroupBox12"
-        Me.GroupBox12.Size = New System.Drawing.Size(408, 223)
+        Me.GroupBox12.Size = New System.Drawing.Size(408, 264)
         Me.GroupBox12.TabIndex = 11
         Me.GroupBox12.TabStop = False
         Me.GroupBox12.Text = "문서관련 URL 기능"
@@ -1360,6 +1361,7 @@ Partial Class frmExample
         '
         'GroupBox9
         '
+        Me.GroupBox9.Controls.Add(Me.btnGetXML)
         Me.GroupBox9.Controls.Add(Me.btnGetBulkResult)
         Me.GroupBox9.Controls.Add(Me.btnSearch)
         Me.GroupBox9.Controls.Add(Me.btnGetInfos)
@@ -1368,44 +1370,44 @@ Partial Class frmExample
         Me.GroupBox9.Controls.Add(Me.btnGetDetailInfo)
         Me.GroupBox9.Location = New System.Drawing.Point(200, 366)
         Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(159, 223)
+        Me.GroupBox9.Size = New System.Drawing.Size(159, 264)
         Me.GroupBox9.TabIndex = 8
         Me.GroupBox9.TabStop = False
         Me.GroupBox9.Text = "문서 정보"
         '
         'btnGetBulkResult
         '
-        Me.btnGetBulkResult.Location = New System.Drawing.Point(16, 183)
+        Me.btnGetBulkResult.Location = New System.Drawing.Point(16, 218)
         Me.btnGetBulkResult.Name = "btnGetBulkResult"
         Me.btnGetBulkResult.Size = New System.Drawing.Size(131, 29)
-        Me.btnGetBulkResult.TabIndex = 11
+        Me.btnGetBulkResult.TabIndex = 13
         Me.btnGetBulkResult.Text = "초대량 접수결과 확인"
         Me.btnGetBulkResult.UseVisualStyleBackColor = True
         '
         'btnSearch
         '
-        Me.btnSearch.Location = New System.Drawing.Point(16, 151)
+        Me.btnSearch.Location = New System.Drawing.Point(16, 185)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(131, 29)
-        Me.btnSearch.TabIndex = 10
+        Me.btnSearch.TabIndex = 12
         Me.btnSearch.Text = "문서목록 조회"
         Me.btnSearch.UseVisualStyleBackColor = True
         '
         'btnGetInfos
         '
-        Me.btnGetInfos.Location = New System.Drawing.Point(16, 118)
+        Me.btnGetInfos.Location = New System.Drawing.Point(16, 53)
         Me.btnGetInfos.Name = "btnGetInfos"
         Me.btnGetInfos.Size = New System.Drawing.Size(131, 29)
-        Me.btnGetInfos.TabIndex = 9
+        Me.btnGetInfos.TabIndex = 8
         Me.btnGetInfos.Text = "문서정보(대량)"
         Me.btnGetInfos.UseVisualStyleBackColor = True
         '
         'btnGetLogs
         '
-        Me.btnGetLogs.Location = New System.Drawing.Point(16, 86)
+        Me.btnGetLogs.Location = New System.Drawing.Point(16, 152)
         Me.btnGetLogs.Name = "btnGetLogs"
         Me.btnGetLogs.Size = New System.Drawing.Size(131, 29)
-        Me.btnGetLogs.TabIndex = 8
+        Me.btnGetLogs.TabIndex = 11
         Me.btnGetLogs.Text = "문서이력"
         Me.btnGetLogs.UseVisualStyleBackColor = True
         '
@@ -1420,10 +1422,10 @@ Partial Class frmExample
         '
         'btnGetDetailInfo
         '
-        Me.btnGetDetailInfo.Location = New System.Drawing.Point(16, 53)
+        Me.btnGetDetailInfo.Location = New System.Drawing.Point(16, 86)
         Me.btnGetDetailInfo.Name = "btnGetDetailInfo"
         Me.btnGetDetailInfo.Size = New System.Drawing.Size(131, 29)
-        Me.btnGetDetailInfo.TabIndex = 6
+        Me.btnGetDetailInfo.TabIndex = 9
         Me.btnGetDetailInfo.Text = "문서상세정보"
         Me.btnGetDetailInfo.UseVisualStyleBackColor = True
         '
@@ -1440,7 +1442,7 @@ Partial Class frmExample
         Me.GroupBox11.Controls.Add(Me.btnSendEmail)
         Me.GroupBox11.Location = New System.Drawing.Point(365, 366)
         Me.GroupBox11.Name = "GroupBox11"
-        Me.GroupBox11.Size = New System.Drawing.Size(352, 223)
+        Me.GroupBox11.Size = New System.Drawing.Size(352, 264)
         Me.GroupBox11.TabIndex = 10
         Me.GroupBox11.TabStop = False
         Me.GroupBox11.Text = "부가 기능"
@@ -1517,7 +1519,7 @@ Partial Class frmExample
         Me.GroupBox10.Controls.Add(Me.btnGetFiles)
         Me.GroupBox10.Location = New System.Drawing.Point(20, 366)
         Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(165, 223)
+        Me.GroupBox10.Size = New System.Drawing.Size(165, 264)
         Me.GroupBox10.TabIndex = 9
         Me.GroupBox10.TabStop = False
         Me.GroupBox10.Text = "첨부파일"
@@ -1638,11 +1640,20 @@ Partial Class frmExample
         Me.btnGetTaxCertInfo.Text = "인증서 정보 확인"
         Me.btnGetTaxCertInfo.UseVisualStyleBackColor = True
         '
+        'btnGetXML
+        '
+        Me.btnGetXML.Location = New System.Drawing.Point(16, 119)
+        Me.btnGetXML.Name = "btnGetXML"
+        Me.btnGetXML.Size = New System.Drawing.Size(131, 29)
+        Me.btnGetXML.TabIndex = 10
+        Me.btnGetXML.Text = "문서상세정보(XML)"
+        Me.btnGetXML.UseVisualStyleBackColor = True
+        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1362, 839)
+        Me.ClientSize = New System.Drawing.Size(1362, 875)
         Me.Controls.Add(Me.txtURL)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.GroupBox7)
@@ -1826,5 +1837,6 @@ Partial Class frmExample
     Friend WithEvents txtSubmitID As System.Windows.Forms.TextBox
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents btnGetTaxCertInfo As System.Windows.Forms.Button
+    Friend WithEvents btnGetXML As System.Windows.Forms.Button
 
 End Class

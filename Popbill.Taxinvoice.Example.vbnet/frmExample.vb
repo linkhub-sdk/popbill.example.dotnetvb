@@ -2355,6 +2355,33 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
+    ' 세금계산서 1건의 상세정보를 XML로 반환합니다.
+    ' - https://docs.popbill.com/taxinvoice/dotnet/api#GetXML
+    '=========================================================================
+    Private Sub btnGetXML_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetXML.Click
+
+        '세금계산서 발행유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
+        Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
+
+        Try
+
+            Dim tiXML As TaxinvoiceXML = taxinvoiceService.GetXML(txtCorpNum.Text, KeyType, txtMgtKey.Text)
+
+            Dim tmp As String = ""
+
+            tmp += "code (응답코드) : " + CStr(tiXML.code) + vbCrLf
+            tmp += "message (응답메시지) : " + tiXML.message + vbCrLf
+            tmp += "retObject (전자세금계산서 XML 문서) : " + tiXML.retObject + vbCrLf
+
+            MsgBox(tmp)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
     ' 검색조건에 해당하는 세금계산서를 조회합니다. (조회기간 단위 : 최대 6개월)
     ' - https://docs.popbill.com/taxinvoice/dotnet/api#Search
     '=========================================================================
