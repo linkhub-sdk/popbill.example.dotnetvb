@@ -265,9 +265,14 @@ Public Class frmExample
         content += "팝빌 파트너센터 : 1600-8536" + vbCrLf
         content += "support@linkhub.co.kr"
 
+        ' 대체문자 제목
+        ' - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
+        Dim altSubject = "대체문자 제목"
+
         ' 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
         ' └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
-        Dim altContent As String = "대체문자 메시지 내용"
+        Dim altContent As String = "카카오톡이 실패하여 문자로 전송됩니다." + vbCrLf
+        altContent += content
 
         ' 대체문자 유형 (null , "C" , "A" 중 택 1)
         ' null = 미전송, C = 알림톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
@@ -297,7 +302,7 @@ Public Class frmExample
         'buttonList.Add(btnInfo)
 
         Try
-            Dim receiptNum As String = kakaoService.SendATS(txtCorpNum.Text, templateCode, senderNum, _
+            Dim receiptNum As String = kakaoService.SendATS(txtCorpNum.Text, templateCode, senderNum, altSubject, _
                                                             altSendType, getReserveDT(), receiveNum, receiveName, content, altContent, requestNum, buttonList)
 
             MsgBox("접수번호 : " + receiptNum)
@@ -350,7 +355,17 @@ Public Class frmExample
             msg.rcv = "" '수신번호
             msg.rcvnm = "수신자명칭_" + CStr(i) '수신자명
             msg.msg = content '알림톡 템플릿 내용 (최대 1000자)
-            msg.altmsg = "대체문자 메시지 내용" '대체문자 내용 (최대 2000byte)
+
+            ' 대체문자 제목
+            ' - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
+            msg.altsjt = "대체문자 제목" + CStr(i)
+
+            '대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
+            ' └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
+            msg.altmsg = "카카오톡이 실패하여 문자로 전송됩니다." + vbCrLf
+            msg.altmsg += content
+
+            '파트너 지정키, 대량전송시, 수신자 구별용 메모
             msg.interOPRefKey = "20220504-" + CStr(i) '파트너 지정키, 대량전송시, 수신자 구별용 메모
 
             '수신자별 개별 버튼정보 전송하는 경우
@@ -426,9 +441,14 @@ Public Class frmExample
         content += "팝빌 파트너센터 : 1600-8536" + vbCrLf
         content += "support@linkhub.co.kr"
 
+        ' 대체문자 제목
+        ' - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
+        Dim altSubject = "대체문자 제목"
+
         ' 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
         ' └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
-        Dim altContent As String = "대체문자 메시지 내용"
+        Dim altContent As String = "카카오톡이 실패하여 문자로 전송됩니다." + vbCrLf
+        altContent += content
 
         ' 대체문자 유형 (null , "C" , "A" 중 택 1)
         ' null = 미전송, C = 알림톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
@@ -464,7 +484,7 @@ Public Class frmExample
         'buttonList.Add(btnInfo)
 
         Try
-            Dim receiptNum As String = kakaoService.SendATS(txtCorpNum.Text, templateCode, senderNum, content, _
+            Dim receiptNum As String = kakaoService.SendATS(txtCorpNum.Text, templateCode, senderNum, content, altSubject, _
                                                             altContent, altSendType, getReserveDT(), receiverList, txtUserId.Text, requestNum, buttonList)
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
@@ -497,9 +517,18 @@ Public Class frmExample
         '친구톡 내용 (최대 1000자)
         Dim content As String = "친구톡 내용입니다."
 
+        ' 대체문자 제목
+        ' - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
+        Dim altSubject = "대체문자 제목"
+
         ' 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
         ' └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
-        Dim altContent As String = "대체문자 메시지 내용입니다."
+        Dim altContent As String = "카카오톡이 실패하여 문자로 전송됩니다." + vbCrLf
+        altContent += "[팝빌]" + vbCrLf
+        altContent += "친구톡을 접수하였으나 실패하여 문자로 전송되었습니다." + vbCrLf
+        altContent += "채널이 친구로 등록되어 있는지 확인해 주시길 바랍니다." + vbCrLf + vbCrLf
+        altContent += "문의사항 있으시면 파트너센터로 편하게 연락주시기 바랍니다." + vbCrLf
+        altContent += "팝빌 파트너센터 : 1600-8536" + vbCrLf
 
         ' 대체문자 유형 (null , "C" , "A" 중 택 1)
         ' null = 미전송, C = 알림톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
@@ -526,8 +555,8 @@ Public Class frmExample
         buttonList.Add(btnInfo)
 
         Try
-            Dim receiptNum As String = kakaoService.SendFTS(txtCorpNum.Text, plusFriendID, senderNum, content, altContent, altSendType, receiverNum, _
-                                                            receiverName, adsYN, getReserveDT(), buttonList, txtUserId.Text, requestNum)
+            Dim receiptNum As String = kakaoService.SendFTS(txtCorpNum.Text, plusFriendID, senderNum, content, altSubject, altContent, altSendType, _
+                                                            receiverNum, receiverName, adsYN, getReserveDT(), buttonList, txtUserId.Text, requestNum)
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
         Catch ex As PopbillException
@@ -572,8 +601,22 @@ Public Class frmExample
             msg.rcv = "" '수신번호
             msg.rcvnm = "수신자명칭_" + CStr(i) '수신자명
             msg.msg = "친구톡 내용입니다." + CStr(i) '친구톡 내용 (최대 1000자)
-            msg.altmsg = "대체문자 메시지 내용" + CStr(i) '대체문자 내용 (최대 2000byte)
-            msg.interOPRefKey = "20220504-" + CStr(i) '파트너 지정키, 대량전송시, 수신자 구별용 메모
+
+            '대체문자 제목
+            '- 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
+            msg.altsjt = "대체문자 제목" + CStr(i)
+
+            '대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
+            '└ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
+            Dim altContent = "[팝빌]" + vbCrLf
+            altContent += "친구톡을 접수하였으나 실패하여 문자로 전송되었습니다." + vbCrLf
+            altContent += "채널이 친구로 등록되어 있는지 확인해 주시길 바랍니다." + vbCrLf + vbCrLf
+            altContent += "문의사항 있으시면 파트너센터로 편하게 연락주시기 바랍니다." + vbCrLf
+            altContent += "팝빌 파트너센터 : 1600-8536" + vbCrLf
+            msg.altmsg = altContent
+
+            '파트너 지정키, 대량전송시, 수신자 구별용 메모
+            msg.interOPRefKey = "20220504-" + CStr(i)
 
             '수신자별 개별 버튼정보 전송하는 경우
             '생성 가능 개수 최대 5개
@@ -638,9 +681,18 @@ Public Class frmExample
         '친구톡 내용 (최대 1000자)
         Dim content As String = "친구톡 내용입니다."
 
+        '대체문자 제목
+        '- 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
+        Dim altSubject = "대체문자 제목"
+
         ' 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
         ' └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
-        Dim altContent As String = "대체문자 메시지 내용입니다."
+        Dim altContent As String = "카카오톡이 실패하여 문자로 전송됩니다." + vbCrLf + vbCrLf
+        altContent += "[팝빌]" + vbCrLf
+        altContent += "친구톡을 접수하였으나 실패하여 문자로 전송되었습니다." + vbCrLf
+        altContent += "채널이 친구로 등록되어 있는지 확인해 주시길 바랍니다." + vbCrLf + vbCrLf
+        altContent += "문의사항 있으시면 파트너센터로 편하게 연락주시기 바랍니다." + vbCrLf
+        altContent += "팝빌 파트너센터 : 1600-8536" + vbCrLf
 
         ' 대체문자 유형 (null , "C" , "A" 중 택 1)
         ' null = 미전송, C = 알림톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
@@ -659,7 +711,7 @@ Public Class frmExample
         '전송정보 배열, 최대 1000건
         Dim receiverList As List(Of KakaoReceiver) = New List(Of KakaoReceiver)
 
-        For i As Integer = 0 To 5
+        For i As Integer = 0 To 2
             Dim msg As KakaoReceiver = New KakaoReceiver
             msg.rcv = "" '수신번호
             msg.rcvnm = "수신자명칭_" + CStr(i) '수신자명
@@ -677,7 +729,7 @@ Public Class frmExample
         buttonList.Add(btnInfo)
 
         Try
-            Dim receiptNum As String = kakaoService.SendFTS(txtCorpNum.Text, plusFriendID, senderNum, content, altContent, altSendType, _
+            Dim receiptNum As String = kakaoService.SendFTS(txtCorpNum.Text, plusFriendID, senderNum, content, altSubject, altContent, altSendType, _
                                                             adsYN, getReserveDT(), receiverList, buttonList, txtUserId.Text, requestNum)
             MsgBox("접수번호 : " + receiptNum)
             txtReceiptNum.Text = receiptNum
@@ -713,9 +765,18 @@ Public Class frmExample
             '친구톡 내용 (최대 400자)
             Dim content As String = "친구톡 내용입니다."
 
+            ' 대체문자 제목
+            ' - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
+            Dim altSubject = "대체문자 제목"
+
             ' 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
             ' └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
-            Dim altContent As String = "대체문자 메시지 내용입니다."
+            Dim altContent As String = "카카오톡이 실패하여 문자로 전송됩니다." + vbCrLf
+            altContent += "[팝빌]" + vbCrLf
+            altContent += "친구톡을 접수하였으나 실패하여 문자로 전송되었습니다." + vbCrLf
+            altContent += "채널이 친구로 등록되어 있는지 확인해 주시길 바랍니다." + vbCrLf + vbCrLf
+            altContent += "문의사항 있으시면 파트너센터로 편하게 연락주시기 바랍니다." + vbCrLf
+            altContent += "팝빌 파트너센터 : 1600-8536" + vbCrLf
 
             ' 대체문자 유형 (null , "C" , "A" 중 택 1)
             ' null = 미전송, C = 알림톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
@@ -750,7 +811,7 @@ Public Class frmExample
             buttonList.Add(btnInfo)
 
             Try
-                Dim receiptNum As String = kakaoService.SendFMS(txtCorpNum.Text, plusFriendID, senderNum, content, altContent, altSendType, receiverNum, _
+                Dim receiptNum As String = kakaoService.SendFMS(txtCorpNum.Text, plusFriendID, senderNum, content, altSubject, altContent, altSendType, receiverNum, _
                                                                 receiverName, adsYN, getReserveDT(), buttonList, strFileName, imageURL, _
                                                                 txtUserId.Text, requestNum)
                 MsgBox("접수번호 : " + receiptNum)
@@ -811,7 +872,20 @@ Public Class frmExample
                 msg.rcv = "" '수신번호
                 msg.rcvnm = "수신자명칭_" + CStr(i) '수신자명
                 msg.msg = "친구톡 내용입니다." + CStr(i) '친구톡 내용 (최대 400자)
-                msg.altmsg = "대체문자 메시지 내용" + CStr(i) '대체문자 내용 (최대 2000byte)
+
+                '대체문자 제목
+                '- 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
+                msg.altsjt = "대체문자 제목" + CStr(i)
+
+                '대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
+                '└ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
+                Dim altContent = "[팝빌]" + vbCrLf
+                altContent += "친구톡을 접수하였으나 실패하여 문자로 전송되었습니다." + vbCrLf
+                altContent += "채널이 친구로 등록되어 있는지 확인해 주시길 바랍니다." + vbCrLf + vbCrLf
+                altContent += "문의사항 있으시면 파트너센터로 편하게 연락주시기 바랍니다." + vbCrLf
+                altContent += "팝빌 파트너센터 : 1600-8536" + vbCrLf
+                msg.altmsg = altContent
+
                 msg.interOPRefKey = "20220504-" + CStr(i) '파트너 지정키, 대량전송시, 수신자 구별용 메모
 
                 '수신자별 개별 버튼정보 전송하는 경우
@@ -884,9 +958,18 @@ Public Class frmExample
             '친구톡 내용 (최대 400자)
             Dim content As String = "친구톡 내용입니다."
 
+            '대체문자 제목
+            '- 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
+            Dim altSubject = "대체문자 제목"
+
             ' 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
             ' └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
-            Dim altContent As String = "대체문자 메시지 내용입니다."
+            Dim altContent As String = "카카오톡이 실패하여 문자로 전송됩니다." + vbCrLf + vbCrLf
+            altContent += "[팝빌]" + vbCrLf
+            altContent += "친구톡을 접수하였으나 실패하여 문자로 전송되었습니다." + vbCrLf
+            altContent += "채널이 친구로 등록되어 있는지 확인해 주시길 바랍니다." + vbCrLf + vbCrLf
+            altContent += "문의사항 있으시면 파트너센터로 편하게 연락주시기 바랍니다." + vbCrLf
+            altContent += "팝빌 파트너센터 : 1600-8536" + vbCrLf
 
             ' 대체문자 유형 (null , "C" , "A" 중 택 1)
             ' null = 미전송, C = 알림톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
@@ -913,7 +996,7 @@ Public Class frmExample
             '전송정보 배열, 최대 1000건
             Dim receiverList As List(Of KakaoReceiver) = New List(Of KakaoReceiver)
 
-            For i As Integer = 0 To 5
+            For i As Integer = 0 To 2
                 Dim msg As KakaoReceiver = New KakaoReceiver
                 msg.rcv = "" '수신번호
                 msg.rcvnm = "수신자명칭_" + CStr(i) '수신자명
@@ -931,7 +1014,7 @@ Public Class frmExample
             buttonList.Add(btnInfo)
 
             Try
-                Dim receiptNum As String = kakaoService.SendFMS(txtCorpNum.Text, plusFriendID, senderNum, content, altContent, altSendType, _
+                Dim receiptNum As String = kakaoService.SendFMS(txtCorpNum.Text, plusFriendID, senderNum, content, altSubject, altContent, altSendType, _
                                                                 adsYN, getReserveDT(), receiverList, buttonList, strFileName, imageURL, txtUserId.Text, requestNum)
                 MsgBox("접수번호 : " + receiptNum)
                 txtReceiptNum.Text = receiptNum
@@ -990,6 +1073,7 @@ Public Class frmExample
             tmp += "templateCode(템플릿 코드) : " + sentInfo.templateCode + vbCrLf
             tmp += "plusFriendID(카카오톡채널 아이디) : " + sentInfo.plusFriendID + vbCrLf
             tmp += "sendNum(발신번호) : " + sentInfo.sendNum + vbCrLf
+            tmp += "altSubject(대체문자 제목) : " + sentInfo.altSubject + vbCrLf
             tmp += "altContent(대체문자 내용) : " + sentInfo.altContent + vbCrLf
             tmp += "altSendType(대체문자 유형) : " + sentInfo.altSendType + vbCrLf
             tmp += "reserveDT(예약일시) : " + sentInfo.reserveDT + vbCrLf
@@ -1016,8 +1100,8 @@ Public Class frmExample
 
             '전송결과 정보 리스트
             Dim rowStr As String = "state(전송상태 코드) | sendDT(전송일시) | result(전송결과 코드) | resultDT(전송결과 수신일시) | receiveNum(수신번호) | receiveName(수신자명) | content(내용) | "
-            rowStr += "altContnet(대체문자 내용) | altContentType(대체문자 전송유형) | altSendDT(대체문자 전송일시) | altResult(대체문자 전송결과 코드) | altResultDT(대체문자 전송결과 수신일시) | "
-            rowStr += "receiptNum(접수번호) | requestNum(요청번호) | interOPRefKey (파트너 지정키)"
+            rowStr += "altSubject(대체문자 제목) | altContnet(대체문자 내용) | altContentType(대체문자 전송유형) | altSendDT(대체문자 전송일시) | altResult(대체문자 전송결과 코드) | "
+            rowStr += "altResultDT(대체문자 전송결과 수신일시) | receiptNum(접수번호) | requestNum(요청번호) | interOPRefKey (파트너 지정키)"
 
             ListBox1.Items.Add(rowStr)
 
@@ -1030,6 +1114,7 @@ Public Class frmExample
                 rowStr += Result.receiveNum + " | "
                 rowStr += Result.receiveName + " | "
                 rowStr += Result.content + " | "
+                rowStr += Result.altSubject + " | "
                 rowStr += Result.altContent + " | "
                 rowStr += Result.altContentType.ToString + " | "
                 rowStr += Result.altSendDT + " | "
@@ -1054,12 +1139,13 @@ Public Class frmExample
         Handles btnGetMessagesRN.Click
         ListBox1.Items.Clear()
         Try
-            Dim sentInfo As KakaoSentResult = kakaoService.GetMessagesRN(txtCorpNum.Text, txtRequestNum.Text)
+            Dim sentInfo As KakaoSentResult = kakaoService.GetMessages(txtCorpNum.Text, txtReceiptNum.Text)
 
             Dim tmp As String = "contentType(카카오톡 유형) : " + sentInfo.contentType + vbCrLf
             tmp += "templateCode(템플릿 코드) : " + sentInfo.templateCode + vbCrLf
             tmp += "plusFriendID(카카오톡채널 아이디) : " + sentInfo.plusFriendID + vbCrLf
             tmp += "sendNum(발신번호) : " + sentInfo.sendNum + vbCrLf
+            tmp += "altSubject(대체문자 제목) : " + sentInfo.altSubject + vbCrLf
             tmp += "altContent(대체문자 내용) : " + sentInfo.altContent + vbCrLf
             tmp += "altSendType(대체문자 유형) : " + sentInfo.altSendType + vbCrLf
             tmp += "reserveDT(예약일시) : " + sentInfo.reserveDT + vbCrLf
@@ -1086,8 +1172,8 @@ Public Class frmExample
 
             '전송결과 정보 리스트
             Dim rowStr As String = "state(전송상태 코드) | sendDT(전송일시) | result(전송결과 코드) | resultDT(전송결과 수신일시) | receiveNum(수신번호) | receiveName(수신자명) | content(내용) | "
-            rowStr += "altContnet(대체문자 내용) | altContentType(대체문자 전송유형) | altSendDT(대체문자 전송일시) | altResult(대체문자 전송결과 코드) | altResultDT(대체문자 전송결과 수신일시) | "
-            rowStr += "receiptNum(접수번호) | requestNum(요청번호) | interOPRefKey (파트너 지정키)"
+            rowStr += "altSubject(대체문자 제목) | altContnet(대체문자 내용) | altContentType(대체문자 전송유형) | altSendDT(대체문자 전송일시) | altResult(대체문자 전송결과 코드) | "
+            rowStr += "altResultDT(대체문자 전송결과 수신일시) | receiptNum(접수번호) | requestNum(요청번호) | interOPRefKey (파트너 지정키)"
 
             ListBox1.Items.Add(rowStr)
 
@@ -1100,6 +1186,7 @@ Public Class frmExample
                 rowStr += Result.receiveNum + " | "
                 rowStr += Result.receiveName + " | "
                 rowStr += Result.content + " | "
+                rowStr += Result.altSubject + " | "
                 rowStr += Result.altContent + " | "
                 rowStr += Result.altContentType.ToString + " | "
                 rowStr += Result.altSendDT + " | "
@@ -1190,8 +1277,8 @@ Public Class frmExample
             MsgBox(tmp)
 
             Dim rowStr As String = "state(전송상태 코드) | sendDT(전송일시) | result(전송결과 코드) | resultDT(전송결과 수신일시) | receiveNum(수신번호) | receiveName(수신자명) | content(내용) | "
-            rowStr += "altContnet(대체문자 내용) | altContentType(대체문자 전송유형) | altSendDT(대체문자 전송일시) | altResult(대체문자 전송결과 코드) | altResultDT(대체문자 전송결과 수신일시) | "
-            rowStr += "receiptNum(접수번호) | requestNum(요청번호) | interOPRefKey (파트너 지정키)"
+            rowStr += "altSubject(대체문자 제목) | altContnet(대체문자 내용) | altContentType(대체문자 전송유형) | altSendDT(대체문자 전송일시) | altResult(대체문자 전송결과 코드) | "
+            rowStr += "altResultDT(대체문자 전송결과 수신일시) | receiptNum(접수번호) | requestNum(요청번호) | interOPRefKey (파트너 지정키)"
 
             ListBox1.Items.Add(rowStr)
 
@@ -1204,6 +1291,7 @@ Public Class frmExample
                 rowStr += Result.receiveNum + " | "
                 rowStr += Result.receiveName + " | "
                 rowStr += Result.content + " | "
+                rowStr += Result.altSubject + " | "
                 rowStr += Result.altContent + " | "
                 rowStr += Result.altContentType.ToString + " | "
                 rowStr += Result.altSendDT + " | "
