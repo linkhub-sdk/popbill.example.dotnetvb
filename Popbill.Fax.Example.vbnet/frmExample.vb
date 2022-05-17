@@ -877,7 +877,10 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnUnitCost_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUnitCost.Click
         Try
-            Dim unitCost As Single = faxService.GetUnitCost(txtCorpNum.Text)
+            '수신번호 유형, 일반 / 지능 중 택 1
+            Dim receiveNumType As String = "지능"
+
+            Dim unitCost As Single = faxService.GetUnitCost(txtCorpNum.Text, receiveNumType)
 
             MsgBox("팩스전송 단가(unitCost) : " + unitCost.ToString())
 
@@ -893,7 +896,10 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnGetChargeInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo.Click
         Try
-            Dim ChargeInfo As ChargeInfo = faxService.GetChargeInfo(txtCorpNum.Text)
+            '수신번호 유형, 일반 / 지능 중 택 1
+            Dim receiveNumType As String = "지능"
+
+            Dim ChargeInfo As ChargeInfo = faxService.GetChargeInfo(txtCorpNum.Text, receiveNumType, txtUserId.Text)
 
             Dim tmp As String = "unitCost (전송단가) : " + ChargeInfo.unitCost + vbCrLf
             tmp += "chargeMethod (과금유형) : " + ChargeInfo.chargeMethod + vbCrLf
