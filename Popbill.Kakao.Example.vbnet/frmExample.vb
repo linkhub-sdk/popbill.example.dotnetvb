@@ -70,6 +70,31 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
+    ' 팝빌에 등록한 연동회원의 카카오톡 채널 목록을 확인합니다.
+    ' - https://docs.popbill.com/kakao/dotnet/api#ListPlusFriendID
+    '=========================================================================
+    Private Sub btnListPlusFriendID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+        Handles btnListPlusFriendID.Click
+        Try
+            Dim plusFriendList As List(Of PlusFriend) = kakaoService.ListPlusFriendID(txtCorpNum.Text, txtUserId.Text)
+
+            Dim tmp As String = "카카오톡 채널 목록" + vbCrLf + vbCrLf
+
+            For Each info As PlusFriend In plusFriendList
+                tmp += "plusFriendID (검색용 아이디) : " + info.plusFriendID + vbCrLf
+                tmp += "plusFriendName (채널명) : " + info.plusFriendName + vbCrLf
+                tmp += "regDT (등록일시) : " + info.regDT + vbCrLf
+                tmp += "state (채널 상태) : " + CStr(info.state) + vbCrLf
+                tmp += "stateDT (채널 상태 일시) : " + info.stateDT + vbCrLf + vbCrLf
+            Next
+
+            MsgBox(tmp)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
     ' 카카오톡 발신번호 등록여부를 확인합니다.
     ' - 발신번호 상태가 '승인'인 경우에만 리턴값 'Response'의 변수 'code'가 1로 반환됩니다.
     ' - https://docs.popbill.com/kakao/dotnet/api#CheckSenderNumber
@@ -82,27 +107,6 @@ Public Class frmExample
             response = kakaoService.CheckSenderNumber(txtCorpNum.Text, senderNumber, txtUserId.Text)
 
             MsgBox(response.message)
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 팝빌에 등록한 연동회원의 카카오톡 발신번호 목록을 확인합니다.
-    ' - https://docs.popbill.com/kakao/dotnet/api#ListPlusFriendID
-    '=========================================================================
-    Private Sub btnListPlusFriendID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnListPlusFriendID.Click
-        Try
-            Dim plusFriendList As List(Of PlusFriend) = kakaoService.ListPlusFriendID(txtCorpNum.Text, txtUserId.Text)
-
-            Dim tmp As String = "plusFriendID(검색용 아이디) | plusFriendName(채널명) | regDT(등록일시)" + vbCrLf
-
-            For Each info As PlusFriend In plusFriendList
-                tmp += info.plusFriendID + " | " + info.plusFriendName + " | " + info.regDT + vbCrLf
-            Next
-
-            MsgBox(tmp)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
