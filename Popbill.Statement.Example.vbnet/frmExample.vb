@@ -51,7 +51,7 @@ Public Class frmExample
 
         Dim itemCode As Integer = 121
 
-        If cboItemCode.Text = "거래명새서" Then
+        If cboItemCode.Text = "거래명세서" Then
             itemCode = 121
         ElseIf cboItemCode.Text = "청구서" Then
             itemCode = 122
@@ -755,7 +755,7 @@ Public Class frmExample
 
             Dim tmp As String = ""
 
-            tmp = tmp + "itemCode (명세서 코드) : " + CStr(docInfo.itemCode) + vbCrLf
+            tmp = tmp + "itemCode (명세서 코드) : " + docInfo.itemCode.ToString + vbCrLf
             tmp = tmp + "itemKey (팝빌번호) : " + docInfo.itemKey + vbCrLf
             tmp = tmp + "invoiceNum (팝빌 승인번호) : " + docInfo.invoiceNum + vbCrLf
             tmp = tmp + "mgtKey (문서번호) : " + docInfo.mgtKey + vbCrLf
@@ -772,7 +772,7 @@ Public Class frmExample
             tmp = tmp + "taxTotal (세액 합계) : " + docInfo.taxTotal + vbCrLf
             tmp = tmp + "purposeType (영수/청구) : " + docInfo.purposeType + vbCrLf
             tmp = tmp + "issueDT (발행일시) : " + docInfo.issueDT + vbCrLf
-            tmp = tmp + "stateCode (상태코드) : " + CStr(docInfo.stateCode) + vbCrLf
+            tmp = tmp + "stateCode (상태코드) : " + docInfo.stateCode.ToString + vbCrLf
             tmp = tmp + "stateDT (상태 변경일시) : " + docInfo.stateDT + vbCrLf
             tmp = tmp + "stateMemo (상태메모) : " + docInfo.stateMemo + vbCrLf
             tmp = tmp + "openYN (개봉 여부) : " + CStr(docInfo.openYN) + vbCrLf
@@ -803,7 +803,7 @@ Public Class frmExample
             Dim tmp As String = ""
 
             For Each docInfo As StatementInfo In statementInfoList
-                tmp = tmp + "itemCode (명세서 코드) : " + CStr(docInfo.itemCode) + vbCrLf
+                tmp = tmp + "itemCode (명세서 코드) : " + docInfo.itemCode.ToString + vbCrLf
                 tmp = tmp + "itemKey (팝빌번호) : " + docInfo.itemKey + vbCrLf
                 tmp = tmp + "invoiceNum (팝빌 승인번호) : " + docInfo.invoiceNum + vbCrLf
                 tmp = tmp + "mgtKey (문서번호) : " + docInfo.mgtKey + vbCrLf
@@ -820,11 +820,11 @@ Public Class frmExample
                 tmp = tmp + "taxTotal (세액 합계) : " + docInfo.taxTotal + vbCrLf
                 tmp = tmp + "purposeType (영수/청구) : " + docInfo.purposeType + vbCrLf
                 tmp = tmp + "issueDT (발행일시) : " + docInfo.issueDT + vbCrLf
-                tmp = tmp + "stateCode (상태코드) : " + CStr(docInfo.stateCode) + vbCrLf
+                tmp = tmp + "stateCode (상태코드) : " + docInfo.stateCode.ToString + vbCrLf
                 tmp = tmp + "stateDT (상태 변경일시) : " + docInfo.stateDT + vbCrLf
                 tmp = tmp + "stateMemo (상태메모) : " + docInfo.stateMemo + vbCrLf
                 tmp = tmp + "openYN (개봉 여부) : " + CStr(docInfo.openYN) + vbCrLf
-                tmp = tmp + "openDT (개봉 일시) : " + docInfo.openDT + vbCrLf
+                tmp = tmp + "openDT (개봉 일시) : " + docInfo.openDT + vbCrLf + vbCrLf
             Next
 
             MsgBox(tmp)
@@ -845,7 +845,7 @@ Public Class frmExample
 
             Dim docDetailInfo As Statement = statementService.GetDetailInfo(txtCorpNum.Text, selectedItemCode, txtMgtKey.Text)
 
-            tmp = tmp + "itemCode(문서종류코드) : " + CStr(docDetailInfo.itemCode) + vbCrLf
+            tmp = tmp + "itemCode(문서종류코드) : " + docDetailInfo.itemCode.ToString + vbCrLf
             tmp = tmp + "mgtKey(문서번호) : " + docDetailInfo.mgtKey + vbCrLf
             tmp = tmp + "invoiceNum(팝빌 승인번호) : " + docDetailInfo.invoiceNum + vbCrLf
             tmp = tmp + "formCode(맞춤양식 코드) : " + docDetailInfo.formCode + vbCrLf
@@ -969,7 +969,7 @@ Public Class frmExample
             Dim docInfo As StatementInfo
 
             For Each docInfo In stmtSearchList.list
-                tmp = tmp + "itemCode (명세서 코드) : " + CStr(docInfo.itemCode) + vbCrLf
+                tmp = tmp + "itemCode (명세서 코드) : " + docInfo.itemCode.ToString + vbCrLf
                 tmp = tmp + "itemKey (팝빌번호) : " + docInfo.itemKey + vbCrLf
                 tmp = tmp + "invoiceNum (팝빌 승인번호) : " + docInfo.invoiceNum + vbCrLf
                 tmp = tmp + "mgtKey (문서번호) : " + docInfo.mgtKey + vbCrLf
@@ -986,7 +986,7 @@ Public Class frmExample
                 tmp = tmp + "taxTotal (세액 합계) : " + docInfo.taxTotal + vbCrLf
                 tmp = tmp + "purposeType (영수/청구) : " + docInfo.purposeType + vbCrLf
                 tmp = tmp + "issueDT (발행일시) : " + docInfo.issueDT + vbCrLf
-                tmp = tmp + "stateCode (상태코드) : " + CStr(docInfo.stateCode) + vbCrLf
+                tmp = tmp + "stateCode (상태코드) : " + docInfo.stateCode.ToString + vbCrLf
                 tmp = tmp + "stateDT (상태 변경일시) : " + docInfo.stateDT + vbCrLf
                 tmp = tmp + "stateMemo (상태메모) : " + docInfo.stateMemo + vbCrLf
                 tmp = tmp + "openYN (개봉 여부) : " + CStr(docInfo.openYN) + vbCrLf
@@ -1345,7 +1345,7 @@ Public Class frmExample
         Dim statement As New Statement
 
         '기재상 작성일자, 날짜형식(yyyyMMdd)
-        statement.writeDate = "20210701"
+        statement.writeDate = "20220513"
 
         '{영수, 청구, 없음} 중 기재
         statement.purposeType = "영수"

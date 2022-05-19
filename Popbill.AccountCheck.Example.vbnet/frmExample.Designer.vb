@@ -112,8 +112,7 @@ Partial Class frmExample
         Me.txtAccountNumber.Location = New System.Drawing.Point(84, 47)
         Me.txtAccountNumber.Name = "txtAccountNumber"
         Me.txtAccountNumber.Size = New System.Drawing.Size(155, 21)
-        Me.txtAccountNumber.TabIndex = 3
-        Me.txtAccountNumber.Text = "9432451175835"
+        Me.txtAccountNumber.TabIndex = 1
         '
         'btnCheckAccountInfo
         '
@@ -139,7 +138,6 @@ Partial Class frmExample
         Me.txtBankCode.Name = "txtBankCode"
         Me.txtBankCode.Size = New System.Drawing.Size(155, 21)
         Me.txtBankCode.TabIndex = 0
-        Me.txtBankCode.Text = "0004"
         '
         'txtUserId
         '
@@ -493,7 +491,7 @@ Partial Class frmExample
         Me.txtIdentityNumTypeDC.Location = New System.Drawing.Point(112, 101)
         Me.txtIdentityNumTypeDC.Name = "txtIdentityNumTypeDC"
         Me.txtIdentityNumTypeDC.Size = New System.Drawing.Size(127, 21)
-        Me.txtIdentityNumTypeDC.TabIndex = 25
+        Me.txtIdentityNumTypeDC.TabIndex = 3
         Me.txtIdentityNumTypeDC.Text = "P"
         '
         'txtIdentityNumDC
@@ -501,8 +499,7 @@ Partial Class frmExample
         Me.txtIdentityNumDC.Location = New System.Drawing.Point(84, 74)
         Me.txtIdentityNumDC.Name = "txtIdentityNumDC"
         Me.txtIdentityNumDC.Size = New System.Drawing.Size(155, 21)
-        Me.txtIdentityNumDC.TabIndex = 23
-        Me.txtIdentityNumDC.Text = "921102"
+        Me.txtIdentityNumDC.TabIndex = 2
         '
         'Label8
         '
@@ -527,15 +524,14 @@ Partial Class frmExample
         Me.txtAccountNumberDC.Location = New System.Drawing.Point(84, 47)
         Me.txtAccountNumberDC.Name = "txtAccountNumberDC"
         Me.txtAccountNumberDC.Size = New System.Drawing.Size(155, 21)
-        Me.txtAccountNumberDC.TabIndex = 3
-        Me.txtAccountNumberDC.Text = "9432451175835"
+        Me.txtAccountNumberDC.TabIndex = 1
         '
         'btnCheckDepositorInfo
         '
         Me.btnCheckDepositorInfo.Location = New System.Drawing.Point(248, 21)
         Me.btnCheckDepositorInfo.Name = "btnCheckDepositorInfo"
         Me.btnCheckDepositorInfo.Size = New System.Drawing.Size(110, 49)
-        Me.btnCheckDepositorInfo.TabIndex = 2
+        Me.btnCheckDepositorInfo.TabIndex = 4
         Me.btnCheckDepositorInfo.Text = "계좌실명조회"
         Me.btnCheckDepositorInfo.UseVisualStyleBackColor = True
         '
@@ -554,7 +550,6 @@ Partial Class frmExample
         Me.txtBankCodeDC.Name = "txtBankCodeDC"
         Me.txtBankCodeDC.Size = New System.Drawing.Size(155, 21)
         Me.txtBankCodeDC.TabIndex = 0
-        Me.txtBankCodeDC.Text = "0004"
         '
         'frmExample
         '

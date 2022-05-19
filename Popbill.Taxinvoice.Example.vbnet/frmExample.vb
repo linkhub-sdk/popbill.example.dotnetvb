@@ -2159,14 +2159,14 @@ Public Class frmExample
             tmp += "openYN (개봉 여부) : " + CStr(tiInfo.openYN) + vbCrLf
             tmp += "openDT (개봉 일시) : " + CStr(tiInfo.openDT) + vbCrLf
             tmp += "stateMemo (상태메모) : " + tiInfo.stateMemo + vbCrLf
-            tmp += "stateCode (상태코드) : " + CStr(tiInfo.stateCode) + vbCrLf
+            tmp += "stateCode (상태코드) : " + tiInfo.stateCode.ToString + vbCrLf
             tmp += "stateDT (상태 변경일시) : " + tiInfo.stateDT + vbCrLf
             tmp += "nstconfirmNum (국세청승인번호) : " + tiInfo.ntsconfirmNum + vbCrLf
             tmp += "ntsresult (국세청 전송결과) : " + tiInfo.ntsresult + vbCrLf
             tmp += "ntssendDT (국세청 전송일시) : " + tiInfo.ntssendDT + vbCrLf
             tmp += "ntsresultDT (국세청 결과 수신일시) : " + tiInfo.ntsresultDT + vbCrLf
             tmp += "ntssendErrCode (전송실패 사유코드) : " + tiInfo.ntssendErrCode + vbCrLf
-            tmp += "modifyCode (수정 사유코드) : " + CStr(tiInfo.modifyCode) + vbCrLf
+            tmp += "modifyCode (수정 사유코드) : " + tiInfo.modifyCode.ToString + vbCrLf
             tmp += "interOPYN (연동문서 여부) : " + CStr(tiInfo.interOPYN) + vbCrLf
             tmp += "invoicerCorpName (공급자 상호) : " + tiInfo.invoicerCorpName + vbCrLf
             tmp += "invoicerCorpNum (공급자 사업자번호) : " + tiInfo.invoicerCorpNum + vbCrLf
@@ -2175,7 +2175,7 @@ Public Class frmExample
             tmp += "invoiceeCorpName (공급받는자 상호) : " + tiInfo.invoiceeCorpName + vbCrLf
             tmp += "invoiceeCorpNum (공급받는자 사업자번호) : " + tiInfo.invoiceeCorpNum + vbCrLf
             tmp += "invoiceePrintYN (공급받는자 문서번호) : " + CStr(tiInfo.invoiceePrintYN) + vbCrLf
-            tmp += "closeDownState (공급받는자 휴폐업상태) : " + CStr(tiInfo.closeDownState) + vbCrLf
+            tmp += "closeDownState (공급받는자 휴폐업상태) : " + tiInfo.closeDownState.ToString + vbCrLf
             tmp += "closeDownStateDate (공급받는자 휴폐업일자) : " + CStr(tiInfo.closeDownStateDate) + vbCrLf
             tmp += "trusteeCorpName (수탁자 상호) : " + tiInfo.trusteeCorpName + vbCrLf
             tmp += "trusteeCorpNum (수탁자 사업자번호) : " + tiInfo.trusteeCorpNum + vbCrLf
@@ -2225,14 +2225,14 @@ Public Class frmExample
                 tmp += "openYN (개봉 여부) : " + CStr(tiInfo.openYN) + vbCrLf
                 tmp += "openDT (개봉 일시) : " + CStr(tiInfo.openDT) + vbCrLf
                 tmp += "stateMemo (상태메모) : " + tiInfo.stateMemo + vbCrLf
-                tmp += "stateCode (상태코드) : " + CStr(tiInfo.stateCode) + vbCrLf
+                tmp += "stateCode (상태코드) : " + tiInfo.stateCode.ToString + vbCrLf
                 tmp += "stateDT (상태 변경일시) : " + tiInfo.stateDT + vbCrLf
                 tmp += "nstconfirmNum (국세청승인번호) : " + tiInfo.ntsconfirmNum + vbCrLf
                 tmp += "ntsresult (국세청 전송결과) : " + tiInfo.ntsresult + vbCrLf
                 tmp += "ntssendDT (국세청 전송일시) : " + tiInfo.ntssendDT + vbCrLf
                 tmp += "ntsresultDT (국세청 결과 수신일시) : " + tiInfo.ntsresultDT + vbCrLf
                 tmp += "ntssendErrCode (전송실패 사유코드) : " + tiInfo.ntssendErrCode + vbCrLf
-                tmp += "modifyCode (수정 사유코드) : " + CStr(tiInfo.modifyCode) + vbCrLf
+                tmp += "modifyCode (수정 사유코드) : " + tiInfo.modifyCode.ToString + vbCrLf
                 tmp += "interOPYN (연동문서 여부) : " + CStr(tiInfo.interOPYN) + vbCrLf
                 tmp += "invoicerCorpName (공급자 상호) : " + tiInfo.invoicerCorpName + vbCrLf
                 tmp += "invoicerCorpNum (공급자 사업자번호) : " + tiInfo.invoicerCorpNum + vbCrLf
@@ -2241,7 +2241,7 @@ Public Class frmExample
                 tmp += "invoiceeCorpName (공급받는자 상호) : " + tiInfo.invoiceeCorpName + vbCrLf
                 tmp += "invoiceeCorpNum (공급받는자 사업자번호) : " + tiInfo.invoiceeCorpNum + vbCrLf
                 tmp += "invoiceePrintYN (공급받는자 문서번호) : " + CStr(tiInfo.invoiceePrintYN) + vbCrLf
-                tmp += "closeDownState (공급받는자 휴폐업상태) : " + CStr(tiInfo.closeDownState) + vbCrLf
+                tmp += "closeDownState (공급받는자 휴폐업상태) : " + tiInfo.closeDownState.ToString + vbCrLf
                 tmp += "closeDownStateDate (공급받는자 휴폐업일자) : " + CStr(tiInfo.closeDownStateDate) + vbCrLf
                 tmp += "trusteeCorpName (수탁자 상호) : " + tiInfo.trusteeCorpName + vbCrLf
                 tmp += "trusteeCorpNum (수탁자 사업자번호) : " + tiInfo.trusteeCorpNum + vbCrLf
@@ -2313,7 +2313,7 @@ Public Class frmExample
             tmp += "invoiceeAddr (공급받는자 주소) : " + tiDetailInfo.invoiceeAddr + vbCrLf
             tmp += "invoiceeBizType (공급받는자 업태) : " + tiDetailInfo.invoiceeBizType + vbCrLf
             tmp += "invoiceeBizClass (공급받는자 종목) : " + tiDetailInfo.invoiceeBizClass + vbCrLf
-            tmp += "closeDownState (휴폐업상태) : " + CStr(tiDetailInfo.closeDownState) + vbCrLf
+            tmp += "closeDownState (휴폐업상태) : " + tiDetailInfo.closeDownState.ToString + vbCrLf
             tmp += "closeDownStateDate (휴폐업일자) : " + CStr(tiDetailInfo.closeDownStateDate) + vbCrLf
             tmp += "invoiceeContactName1 (담당자 성명) : " + tiDetailInfo.invoiceeContactName1 + vbCrLf
             tmp += "invoiceeTEL1 (담당자 연락처) : " + tiDetailInfo.invoiceeTEL1 + vbCrLf
@@ -2520,14 +2520,14 @@ Public Class frmExample
                 tmp += "openYN (개봉 여부) : " + CStr(tiInfo.openYN) + vbCrLf
                 tmp += "openDT (개봉 일시) : " + CStr(tiInfo.openDT) + vbCrLf
                 tmp += "stateMemo (상태메모) : " + tiInfo.stateMemo + vbCrLf
-                tmp += "stateCode (상태코드) : " + CStr(tiInfo.stateCode) + vbCrLf
+                tmp += "stateCode (상태코드) : " + tiInfo.stateCode.ToString + vbCrLf
                 tmp += "stateDT (상태 변경일시) : " + tiInfo.stateDT + vbCrLf
                 tmp += "nstconfirmNum (국세청승인번호) : " + tiInfo.ntsconfirmNum + vbCrLf
                 tmp += "ntsresult (국세청 전송결과) : " + tiInfo.ntsresult + vbCrLf
                 tmp += "ntssendDT (국세청 전송일시) : " + tiInfo.ntssendDT + vbCrLf
                 tmp += "ntsresultDT (국세청 결과 수신일시) : " + tiInfo.ntsresultDT + vbCrLf
                 tmp += "ntssendErrCode (전송실패 사유코드) : " + tiInfo.ntssendErrCode + vbCrLf
-                tmp += "modifyCode (수정 사유코드) : " + CStr(tiInfo.modifyCode) + vbCrLf
+                tmp += "modifyCode (수정 사유코드) : " + tiInfo.modifyCode.ToString + vbCrLf
                 tmp += "interOPYN (연동문서 여부) : " + CStr(tiInfo.interOPYN) + vbCrLf
                 tmp += "invoicerCorpName (공급자 상호) : " + tiInfo.invoicerCorpName + vbCrLf
                 tmp += "invoicerCorpNum (공급자 사업자번호) : " + tiInfo.invoicerCorpNum + vbCrLf
@@ -2536,7 +2536,7 @@ Public Class frmExample
                 tmp += "invoiceeCorpName (공급받는자 상호) : " + tiInfo.invoiceeCorpName + vbCrLf
                 tmp += "invoiceeCorpNum (공급받는자 사업자번호) : " + tiInfo.invoiceeCorpNum + vbCrLf
                 tmp += "invoiceePrintYN (공급받는자 문서번호) : " + CStr(tiInfo.invoiceePrintYN) + vbCrLf
-                tmp += "closeDownState (공급받는자 휴폐업상태) : " + CStr(tiInfo.closeDownState) + vbCrLf
+                tmp += "closeDownState (공급받는자 휴폐업상태) : " + tiInfo.closeDownState.ToString + vbCrLf
                 tmp += "closeDownStateDate (공급받는자 휴폐업일자) : " + CStr(tiInfo.closeDownStateDate) + vbCrLf
                 tmp += "trusteeCorpName (수탁자 상호) : " + tiInfo.trusteeCorpName + vbCrLf
                 tmp += "trusteeCorpNum (수탁자 사업자번호) : " + tiInfo.trusteeCorpNum + vbCrLf
@@ -3077,7 +3077,7 @@ Public Class frmExample
         Try
             Dim KeyList As List(Of EmailPublicKey) = taxinvoiceService.GetEmailPublicKeys(txtCorpNum.Text)
 
-            MsgBox(KeyList.Count.ToString())
+            MsgBox("유통사업자 수 : " + KeyList.Count.ToString())
 
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
