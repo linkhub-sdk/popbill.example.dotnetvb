@@ -557,7 +557,7 @@ Public Class frmExample
                 rowStr += Result.receiptNum + " | "
                 rowStr += Result.requestNum + " | "
                 rowStr += Result.interOPRefKey + " | "
-                rowStr += Result.chargePageCnt.ToString + " | "
+                rowStr += Result.chargePageCnt + " | "
                 rowStr += Result.refundPageCnt.ToString + " | "
                 rowStr += Result.tiffFileSize
 
@@ -615,7 +615,7 @@ Public Class frmExample
                 rowStr += Result.receiptNum + " | "
                 rowStr += Result.requestNum + " | "
                 rowStr += Result.interOPRefKey + " | "
-                rowStr += Result.chargePageCnt.ToString + " | "
+                rowStr += Result.chargePageCnt + " | "
                 rowStr += Result.refundPageCnt.ToString + " | "
                 rowStr += Result.tiffFileSize
 
@@ -724,7 +724,7 @@ Public Class frmExample
                 rowStr += Result.receiptNum + " | "
                 rowStr += Result.requestNum + " | "
                 rowStr += Result.interOPRefKey + " | "
-                rowStr += Result.chargePageCnt.ToString + " | "
+                rowStr += Result.chargePageCnt + " | "
                 rowStr += Result.refundPageCnt.ToString + " | "
                 rowStr += Result.tiffFileSize
 
