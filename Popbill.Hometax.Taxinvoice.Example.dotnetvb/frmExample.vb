@@ -542,7 +542,7 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnCheckLoginDeptUser_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckLoginDeptUser.Click
         Try
-            Dim response As Response = htTaxinvoiceService.CheckLoginDeptUser(txtCorpNum.Text, txtUserId.Text)
+            Dim response As Response = htTaxinvoiceService.CheckLoginDeptUser(txtCorpNum.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
@@ -556,7 +556,7 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnDeleteDeptUser_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteDeptUser.Click
         Try
-            Dim response As Response = htTaxinvoiceService.DeleteDeptUser(txtCorpNum.Text, txtUserId.Text)
+            Dim response As Response = htTaxinvoiceService.DeleteDeptUser(txtCorpNum.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
@@ -933,7 +933,7 @@ Public Class frmExample
         Dim tmp As String = ""
 
         Try
-            Dim contactInfo As Contact = htTaxinvoiceService.GetContactInfo(txtCorpNum.Text, contactID, txtUserId.Text)
+            Dim contactInfo As Contact = htTaxinvoiceService.GetContactInfo(txtCorpNum.Text, contactID)
 
             tmp += "id (담당자 아이디) : " + contactInfo.id + vbCrLf
             tmp += "personName (담당자명) : " + contactInfo.personName + vbCrLf

@@ -452,7 +452,7 @@ Public Class frmExample
         Dim tmp As String = ""
 
         Try
-            Dim contactInfo As Contact = accountCheckService.GetContactInfo(txtCorpNum.Text, contactID, txtUserId.Text)
+            Dim contactInfo As Contact = accountCheckService.GetContactInfo(txtCorpNum.Text, contactID)
 
             tmp += "id (담당자 아이디) : " + contactInfo.id + vbCrLf
             tmp += "personName (담당자명) : " + contactInfo.personName + vbCrLf

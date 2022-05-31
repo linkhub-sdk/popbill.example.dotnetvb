@@ -200,7 +200,7 @@ Public Class frmExample
     Private Sub btnListBankAccount_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListBankAccount.Click
 
         Try
-            Dim bankAccountList As List(Of EasyFinBankAccount) = easyFinBankService.ListBankAccount(txtCorpNum.Text, txtUserId.Text)
+            Dim bankAccountList As List(Of EasyFinBankAccount) = easyFinBankService.ListBankAccount(txtCorpNum.Text)
 
             Dim tmp As String = ""
             tmp += "accountNumber (계좌번호) | bankCode (기관코드) | accountName (계좌별칭) | accountType (계좌유형) | state (계좌 상태) |"
@@ -317,7 +317,7 @@ Public Class frmExample
         Dim AccountNumber = ""
 
         Try
-            Dim response As Response = easyFinBankService.DeleteBankAccount(txtCorpNum.Text, BankCode, AccountNumber, txtUserId.Text)
+            Dim response As Response = easyFinBankService.DeleteBankAccount(txtCorpNum.Text, BankCode, AccountNumber)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
@@ -403,7 +403,7 @@ Public Class frmExample
     Private Sub btnListActiveJob_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListActiveJob.Click
 
         Try
-            Dim jobList As List(Of EasyFinBankJobState) = easyFinBankService.ListACtiveJob(txtCorpNum.Text, txtUserId.Text)
+            Dim jobList As List(Of EasyFinBankJobState) = easyFinBankService.ListACtiveJob(txtCorpNum.Text)
 
             Dim tmp As String = "jobID (작업아이디) | jobState (수집상태) | startDate (시작일자) | endDate (종료일자) | "
             tmp += " errorCode (오류코드) | errorReason (오류메시지) |"
@@ -460,7 +460,7 @@ Public Class frmExample
             ListBox1.Items.Clear()
 
             Dim searchList As EasyFinBankSearchResult = easyFinBankService.Search(txtCorpNum.Text, txtJobID.Text, tradeType, _
-                                                                              SearchString, Page, PerPage, Order, txtUserId.Text)
+                                                                              SearchString, Page, PerPage, Order)
 
             Dim tmp As String = "code (응답코드) : " + CStr(searchList.code) + vbCrLf
             tmp += "message (응답메시지) : " + searchList.message + vbCrLf
@@ -523,7 +523,7 @@ Public Class frmExample
         Try
 
             Dim summaryInfo As EasyFinBankSummary = easyFinBankService.Summary(txtCorpNum.Text, txtJobID.Text, tradeType, _
-                                                                              SearchString, txtUserId.Text)
+                                                                              SearchString)
 
             Dim tmp As String = "count (수집결과 건수) : " + summaryInfo.count.ToString + vbCrLf
             tmp += "cntAccIn (입금거래 건수) : " + summaryInfo.cntAccIn.ToString + vbCrLf
@@ -550,7 +550,7 @@ Public Class frmExample
 
         Try
 
-            Dim response As Response = easyFinBankService.SaveMemo(txtCorpNum.Text, txtTID.Text, Memo, txtUserId.Text)
+            Dim response As Response = easyFinBankService.SaveMemo(txtCorpNum.Text, txtTID.Text, Memo)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
@@ -938,7 +938,7 @@ Public Class frmExample
         Dim tmp As String = ""
 
         Try
-            Dim contactInfo As Contact = easyFinBankService.GetContactInfo(txtCorpNum.Text, contactID, txtUserId.Text)
+            Dim contactInfo As Contact = easyFinBankService.GetContactInfo(txtCorpNum.Text, contactID)
 
             tmp += "id (담당자 아이디) : " + contactInfo.id + vbCrLf
             tmp += "personName (담당자명) : " + contactInfo.personName + vbCrLf

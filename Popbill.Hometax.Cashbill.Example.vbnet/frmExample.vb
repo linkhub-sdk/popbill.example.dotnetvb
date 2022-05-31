@@ -287,7 +287,7 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnGetCertificateExpireDate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetCertificateExpireDate.Click
         Try
-            Dim expireDate As String = htCashbillService.GetCertificateExpireDate(txtCorpNum.Text, txtUserId.Text)
+            Dim expireDate As String = htCashbillService.GetCertificateExpireDate(txtCorpNum.Text)
 
             MsgBox("홈택스 공인인증서 만료일시 : " + expireDate)
         Catch ex As PopbillException
@@ -738,7 +738,7 @@ Public Class frmExample
         Dim tmp As String = ""
 
         Try
-            Dim contactInfo As Contact = htCashbillService.GetContactInfo(txtCorpNum.Text, contactID, txtUserId.Text)
+            Dim contactInfo As Contact = htCashbillService.GetContactInfo(txtCorpNum.Text, contactID)
 
             tmp += "id (담당자 아이디) : " + contactInfo.id + vbCrLf
             tmp += "personName (담당자명) : " + contactInfo.personName + vbCrLf

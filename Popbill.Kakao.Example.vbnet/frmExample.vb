@@ -76,7 +76,7 @@ Public Class frmExample
     Private Sub btnListPlusFriendID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnListPlusFriendID.Click
         Try
-            Dim plusFriendList As List(Of PlusFriend) = kakaoService.ListPlusFriendID(txtCorpNum.Text, txtUserId.Text)
+            Dim plusFriendList As List(Of PlusFriend) = kakaoService.ListPlusFriendID(txtCorpNum.Text)
 
             Dim tmp As String = "카카오톡 채널 목록" + vbCrLf + vbCrLf
 
@@ -104,7 +104,7 @@ Public Class frmExample
             Dim response As Response
             Dim senderNumber As String = ""
 
-            response = kakaoService.CheckSenderNumber(txtCorpNum.Text, senderNumber, txtUserId.Text)
+            response = kakaoService.CheckSenderNumber(txtCorpNum.Text, senderNumber)
 
             MsgBox(response.message)
         Catch ex As PopbillException
@@ -178,7 +178,7 @@ Public Class frmExample
         Dim templateCode As String = "021010000076"
 
         Try
-            Dim template As ATSTemplate = kakaoService.GetATSTemplate(txtCorpNum.Text, templateCode, txtUserId.Text)
+            Dim template As ATSTemplate = kakaoService.GetATSTemplate(txtCorpNum.Text, templateCode)
 
             Dim tmp As String = ""
 
@@ -219,7 +219,7 @@ Public Class frmExample
     Private Sub btnListATSTemplate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnListATSTemplate.Click
         Try
-            Dim templateList As List(Of ATSTemplate) = kakaoService.ListATSTemplate(txtCorpNum.Text, txtUserId.Text)
+            Dim templateList As List(Of ATSTemplate) = kakaoService.ListATSTemplate(txtCorpNum.Text)
 
             Dim tmp As String = ""
 
@@ -1047,7 +1047,7 @@ Public Class frmExample
         Try
             Dim response As Response
 
-            response = kakaoService.CancelReserve(txtCorpNum.Text, txtReceiptNum.Text, txtUserId.Text)
+            response = kakaoService.CancelReserve(txtCorpNum.Text, txtReceiptNum.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
@@ -1064,7 +1064,7 @@ Public Class frmExample
         Try
             Dim response As Response
 
-            response = kakaoService.CancelReserveRN(txtCorpNum.Text, txtRequestNum.Text, txtUserId.Text)
+            response = kakaoService.CancelReserveRN(txtCorpNum.Text, txtRequestNum.Text)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
@@ -1794,7 +1794,7 @@ Public Class frmExample
         Dim tmp As String = ""
 
         Try
-            Dim contactInfo As Contact = kakaoService.GetContactInfo(txtCorpNum.Text, contactID, txtUserId.Text)
+            Dim contactInfo As Contact = kakaoService.GetContactInfo(txtCorpNum.Text, contactID)
 
             tmp += "id (담당자 아이디) : " + contactInfo.id + vbCrLf
             tmp += "personName (담당자명) : " + contactInfo.personName + vbCrLf

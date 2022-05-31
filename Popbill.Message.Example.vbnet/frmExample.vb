@@ -64,7 +64,7 @@ Public Class frmExample
             Dim response As Response
             Dim senderNumber As String = ""
 
-            response = messageService.CheckSenderNumber(txtCorpNum.Text, senderNumber, txtUserId.Text)
+            response = messageService.CheckSenderNumber(txtCorpNum.Text, senderNumber)
 
             MsgBox(response.message)
         Catch ex As PopbillException
@@ -760,7 +760,7 @@ Public Class frmExample
         Try
             Dim response As Response
 
-            response = messageService.CancelReserve(txtCorpNum.Text, txtReceiptNum.Text, txtUserId.Text)
+            response = messageService.CancelReserve(txtCorpNum.Text, txtReceiptNum.Text)
 
             MsgBox(response.message)
         Catch ex As PopbillException
@@ -776,7 +776,7 @@ Public Class frmExample
         Try
             Dim response As Response
 
-            response = messageService.CancelReserveRN(txtCorpNum.Text, txtRequestNum.Text, txtUserId.Text)
+            response = messageService.CancelReserveRN(txtCorpNum.Text, txtRequestNum.Text)
 
             MsgBox(response.message)
         Catch ex As PopbillException
@@ -1401,7 +1401,7 @@ Public Class frmExample
         Dim tmp As String = ""
 
         Try
-            Dim contactInfo As Contact = messageService.GetContactInfo(txtCorpNum.Text, contactID, txtUserId.Text)
+            Dim contactInfo As Contact = messageService.GetContactInfo(txtCorpNum.Text, contactID)
 
             tmp += "id (담당자 아이디) : " + contactInfo.id + vbCrLf
             tmp += "personName (담당자명) : " + contactInfo.personName + vbCrLf

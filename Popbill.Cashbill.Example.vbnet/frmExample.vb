@@ -258,7 +258,7 @@ Public Class frmExample
         Next
 
         Try
-            Dim response As BulkResponse = cashbillService.BulkSubmit(txtCorpNum.Text, txtSubmitID.Text, cashbillList, txtUserId.Text)
+            Dim response As BulkResponse = cashbillService.BulkSubmit(txtCorpNum.Text, txtSubmitID.Text, cashbillList)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message + vbCrLf + "접수아이디(receiptID) : " + response.receiptID)
         Catch ex As PopbillException
@@ -273,7 +273,7 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnGetBulkResult_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetBulkResult.Click
         Try
-            Dim result As BulkCashbillResult = cashbillService.GetBulkResult(txtCorpNum.Text, txtSubmitID.Text, txtUserId.Text)
+            Dim result As BulkCashbillResult = cashbillService.GetBulkResult(txtCorpNum.Text, txtSubmitID.Text)
 
             Dim tmp As String = ""
 
@@ -1059,7 +1059,7 @@ Public Class frmExample
         Dim mgtKey As String = "20220504-001"
 
         Try
-            Dim response As Response = cashbillService.AssignMgtKey(txtCorpNum.Text, itemKey, mgtKey, txtUserId.Text)
+            Dim response As Response = cashbillService.AssignMgtKey(txtCorpNum.Text, itemKey, mgtKey)
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
         Catch ex As PopbillException
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
@@ -1072,7 +1072,7 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnListEmailConfig_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListEmailConfig.Click
         Try
-            Dim emailConfigList As List(Of EmailConfig) = cashbillService.ListEmailConfig(txtCorpNum.Text, txtUserId.Text)
+            Dim emailConfigList As List(Of EmailConfig) = cashbillService.ListEmailConfig(txtCorpNum.Text)
 
             Dim tmp As String = "메일전송유형 | 전송여부 " + vbCrLf
 
@@ -1104,7 +1104,7 @@ Public Class frmExample
             '전송여부 (True-전송, False-미전송)
             Dim sendYN As Boolean = True
 
-            Dim response As Response = cashbillService.UpdateEmailConfig(txtCorpNum.Text, emailType, sendYN, txtUserId.Text)
+            Dim response As Response = cashbillService.UpdateEmailConfig(txtCorpNum.Text, emailType, sendYN)
 
             MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
 
@@ -1436,7 +1436,7 @@ Public Class frmExample
         Dim tmp As String = ""
 
         Try
-            Dim contactInfo As Contact = cashbillService.GetContactInfo(txtCorpNum.Text, contactID, txtUserId.Text)
+            Dim contactInfo As Contact = cashbillService.GetContactInfo(txtCorpNum.Text, contactID)
 
             tmp += "id (담당자 아이디) : " + contactInfo.id + vbCrLf
             tmp += "personName (담당자명) : " + contactInfo.personName + vbCrLf
