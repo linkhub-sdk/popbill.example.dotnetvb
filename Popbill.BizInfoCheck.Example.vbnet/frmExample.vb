@@ -58,27 +58,27 @@ Public Class frmExample
             tmp += "companyRegNum (법인번호): " + result.companyRegNum + vbCrLf
             tmp += "checkDT (확인일시) : " + result.checkDT + vbCrLf
             tmp += "corpName (상호): " + result.corpName + vbCrLf
-            tmp += "corpCode (기업형태코드): " + result.corpCode + vbCrLf
-            tmp += "corpScaleCode (기업규모코드): " + result.corpScaleCode + vbCrLf
-            tmp += "personCorpCode (개인법인코드): " + result.personCorpCode + vbCrLf
-            tmp += "headOfficeCode (본점지점코드) : " + result.headOfficeCode + vbCrLf
+            tmp += "corpCode (기업형태코드): " + nullToString(result.corpCode) + vbCrLf
+            tmp += "corpScaleCode (기업규모코드): " + nullToString(result.corpScaleCode) + vbCrLf
+            tmp += "personCorpCode (개인법인코드): " + nullToString(result.personCorpCode) + vbCrLf
+            tmp += "headOfficeCode (본점지점코드) : " + nullToString(result.headOfficeCode) + vbCrLf
             tmp += "industryCode (산업코드) : " + result.industryCode + vbCrLf
-            tmp += "establishCode (설립구분코드) : " + result.establishCode + vbCrLf
+            tmp += "establishCode (설립구분코드) : " + nullToString(result.establishCode) + vbCrLf
             tmp += "establishDate (설립일자) : " + result.establishDate + vbCrLf
             tmp += "CEOName (대표자명) : " + result.ceoname + vbCrLf
-            tmp += "workPlaceCode (사업장구분코드): " + result.workPlaceCode + vbCrLf
-            tmp += "addrCode (주소구분코드) : " + result.addrCode + vbCrLf
+            tmp += "workPlaceCode (사업장구분코드): " + nullToString(result.workPlaceCode) + vbCrLf
+            tmp += "addrCode (주소구분코드) : " + nullToString(result.addrCode) + vbCrLf
             tmp += "zipCode (우편번호) : " + result.zipCode + vbCrLf
             tmp += "addr (주소) : " + result.addr + vbCrLf
             tmp += "addrDetail (상세주소) : " + result.addrDetail + vbCrLf
             tmp += "enAddr (영문주소) : " + result.enAddr + vbCrLf
             tmp += "bizClass (업종) : " + result.bizClass + vbCrLf
             tmp += "bizType (업태) : " + result.bizType + vbCrLf
-            tmp += "result (결과코드) : " + result.result + vbCrLf
+            tmp += "result (결과코드) : " + nullToString(result.result) + vbCrLf
             tmp += "resultMessage (결과메시지) : " + result.resultMessage + vbCrLf
-            tmp += "closeDownTaxType (사업자과세유형) : " + result.closeDownTaxType + vbCrLf
+            tmp += "closeDownTaxType (사업자과세유형) : " + nullToString(result.closeDownTaxType) + vbCrLf
             tmp += "closeDownTaxTypeDate (과세유형전환일자):" + result.closeDownTaxTypeDate + vbCrLf
-            tmp += "closeDownState (휴폐업상태) : " + result.closeDownState + vbCrLf
+            tmp += "closeDownState (휴폐업상태) : " + nullToString(result.closeDownState) + vbCrLf
             tmp += "closeDownStateDate (휴폐업일자) : " + result.closeDownStateDate
 
             MsgBox(tmp)
@@ -87,6 +87,15 @@ Public Class frmExample
             MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
         End Try
     End Sub
+
+    Private Function nullToString(ByVal target As Integer?) As String
+        If target IsNot Nothing Then
+            Return target.ToString
+        Else
+            Return ""
+        End If
+    End Function
+
 
     '=========================================================================
     ' 연동회원의 잔여포인트를 확인합니다.
