@@ -22,7 +22,6 @@ Partial Class frmExample
     '코드 편집기를 사용하여 수정하지 마십시오.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.btnCancelReserve = New System.Windows.Forms.Button
         Me.groupBox7 = New System.Windows.Forms.GroupBox
         Me.btnSendLMS_same = New System.Windows.Forms.Button
         Me.btnSendLMS_hund = New System.Windows.Forms.Button
@@ -37,11 +36,16 @@ Partial Class frmExample
         Me.groupBox6 = New System.Windows.Forms.GroupBox
         Me.btn_SendSMS_hund = New System.Windows.Forms.Button
         Me.btnSendSMS_one = New System.Windows.Forms.Button
-        Me.txtReceiptNum = New System.Windows.Forms.TextBox
-        Me.label4 = New System.Windows.Forms.Label
-        Me.btnGetMessageResult = New System.Windows.Forms.Button
         Me.label3 = New System.Windows.Forms.Label
         Me.groupBox4 = New System.Windows.Forms.GroupBox
+        Me.btnCancelReserveRNbyRCV = New System.Windows.Forms.Button
+        Me.btnCancelReservebyRCV = New System.Windows.Forms.Button
+        Me.txtRequestNumbyRCV = New System.Windows.Forms.TextBox
+        Me.txtReceiptNumbyRCV = New System.Windows.Forms.TextBox
+        Me.Label8 = New System.Windows.Forms.Label
+        Me.Label7 = New System.Windows.Forms.Label
+        Me.GroupBox18 = New System.Windows.Forms.GroupBox
+        Me.GroupBox14 = New System.Windows.Forms.GroupBox
         Me.ListBox1 = New System.Windows.Forms.ListBox
         Me.btnCancelReserveRN = New System.Windows.Forms.Button
         Me.btnGetMessageResultRN = New System.Windows.Forms.Button
@@ -59,6 +63,10 @@ Partial Class frmExample
         Me.btnGetSenderNumberList = New System.Windows.Forms.Button
         Me.btnSearch = New System.Windows.Forms.Button
         Me.btnGetAutoDenyList = New System.Windows.Forms.Button
+        Me.btnCancelReserve = New System.Windows.Forms.Button
+        Me.btnGetMessageResult = New System.Windows.Forms.Button
+        Me.txtReceiptNum = New System.Windows.Forms.TextBox
+        Me.label4 = New System.Windows.Forms.Label
         Me.GroupBox12 = New System.Windows.Forms.GroupBox
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
         Me.GroupBox17 = New System.Windows.Forms.GroupBox
@@ -97,10 +105,16 @@ Partial Class frmExample
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
         Me.Label6 = New System.Windows.Forms.Label
         Me.txtURL = New System.Windows.Forms.TextBox
+        Me.txtReceiveNumbyRCV = New System.Windows.Forms.TextBox
+        Me.Label9 = New System.Windows.Forms.Label
+        Me.txtReceiveNumRNbyRCV = New System.Windows.Forms.TextBox
+        Me.Label10 = New System.Windows.Forms.Label
         Me.groupBox7.SuspendLayout()
         Me.groupBox8.SuspendLayout()
         Me.groupBox6.SuspendLayout()
         Me.groupBox4.SuspendLayout()
+        Me.GroupBox18.SuspendLayout()
+        Me.GroupBox14.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
         Me.GroupBox10.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -112,15 +126,6 @@ Partial Class frmExample
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'btnCancelReserve
-        '
-        Me.btnCancelReserve.Location = New System.Drawing.Point(144, 166)
-        Me.btnCancelReserve.Name = "btnCancelReserve"
-        Me.btnCancelReserve.Size = New System.Drawing.Size(121, 30)
-        Me.btnCancelReserve.TabIndex = 22
-        Me.btnCancelReserve.Text = "예약 전송 취소"
-        Me.btnCancelReserve.UseVisualStyleBackColor = True
         '
         'groupBox7
         '
@@ -255,31 +260,6 @@ Partial Class frmExample
         Me.btnSendSMS_one.Text = "1건"
         Me.btnSendSMS_one.UseVisualStyleBackColor = True
         '
-        'txtReceiptNum
-        '
-        Me.txtReceiptNum.Location = New System.Drawing.Point(90, 139)
-        Me.txtReceiptNum.Name = "txtReceiptNum"
-        Me.txtReceiptNum.Size = New System.Drawing.Size(165, 21)
-        Me.txtReceiptNum.TabIndex = 17
-        '
-        'label4
-        '
-        Me.label4.AutoSize = True
-        Me.label4.Location = New System.Drawing.Point(28, 143)
-        Me.label4.Name = "label4"
-        Me.label4.Size = New System.Drawing.Size(65, 12)
-        Me.label4.TabIndex = 16
-        Me.label4.Text = "접수번호 : "
-        '
-        'btnGetMessageResult
-        '
-        Me.btnGetMessageResult.Location = New System.Drawing.Point(17, 166)
-        Me.btnGetMessageResult.Name = "btnGetMessageResult"
-        Me.btnGetMessageResult.Size = New System.Drawing.Size(121, 30)
-        Me.btnGetMessageResult.TabIndex = 21
-        Me.btnGetMessageResult.Text = "전송상태확인"
-        Me.btnGetMessageResult.UseVisualStyleBackColor = True
-        '
         'label3
         '
         Me.label3.AutoSize = True
@@ -291,6 +271,12 @@ Partial Class frmExample
         '
         'groupBox4
         '
+        Me.groupBox4.Controls.Add(Me.txtRequestNumbyRCV)
+        Me.groupBox4.Controls.Add(Me.txtReceiptNumbyRCV)
+        Me.groupBox4.Controls.Add(Me.Label8)
+        Me.groupBox4.Controls.Add(Me.Label7)
+        Me.groupBox4.Controls.Add(Me.GroupBox18)
+        Me.groupBox4.Controls.Add(Me.GroupBox14)
         Me.groupBox4.Controls.Add(Me.ListBox1)
         Me.groupBox4.Controls.Add(Me.btnCancelReserveRN)
         Me.groupBox4.Controls.Add(Me.btnGetMessageResultRN)
@@ -320,19 +306,93 @@ Partial Class frmExample
         Me.groupBox4.TabStop = False
         Me.groupBox4.Text = "메시지 관련 기능"
         '
+        'btnCancelReserveRNbyRCV
+        '
+        Me.btnCancelReserveRNbyRCV.Location = New System.Drawing.Point(17, 79)
+        Me.btnCancelReserveRNbyRCV.Name = "btnCancelReserveRNbyRCV"
+        Me.btnCancelReserveRNbyRCV.Size = New System.Drawing.Size(225, 30)
+        Me.btnCancelReserveRNbyRCV.TabIndex = 44
+        Me.btnCancelReserveRNbyRCV.Text = "예약전송 취소 (요청번호, 수신번호)"
+        Me.btnCancelReserveRNbyRCV.UseVisualStyleBackColor = True
+        '
+        'btnCancelReservebyRCV
+        '
+        Me.btnCancelReservebyRCV.Location = New System.Drawing.Point(17, 79)
+        Me.btnCancelReservebyRCV.Name = "btnCancelReservebyRCV"
+        Me.btnCancelReservebyRCV.Size = New System.Drawing.Size(225, 30)
+        Me.btnCancelReservebyRCV.TabIndex = 39
+        Me.btnCancelReservebyRCV.Text = "예약전송 취소 (접수번호, 수신번호)"
+        Me.btnCancelReservebyRCV.UseVisualStyleBackColor = True
+        '
+        'txtRequestNumbyRCV
+        '
+        Me.txtRequestNumbyRCV.Location = New System.Drawing.Point(908, 139)
+        Me.txtRequestNumbyRCV.Name = "txtRequestNumbyRCV"
+        Me.txtRequestNumbyRCV.Size = New System.Drawing.Size(165, 21)
+        Me.txtRequestNumbyRCV.TabIndex = 42
+        '
+        'txtReceiptNumbyRCV
+        '
+        Me.txtReceiptNumbyRCV.Location = New System.Drawing.Point(638, 139)
+        Me.txtReceiptNumbyRCV.Name = "txtReceiptNumbyRCV"
+        Me.txtReceiptNumbyRCV.Size = New System.Drawing.Size(165, 21)
+        Me.txtReceiptNumbyRCV.TabIndex = 37
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(846, 143)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(65, 12)
+        Me.Label8.TabIndex = 41
+        Me.Label8.Text = "요청번호 : "
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(576, 143)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(65, 12)
+        Me.Label7.TabIndex = 36
+        Me.Label7.Text = "접수번호 : "
+        '
+        'GroupBox18
+        '
+        Me.GroupBox18.Controls.Add(Me.txtReceiveNumRNbyRCV)
+        Me.GroupBox18.Controls.Add(Me.btnCancelReserveRNbyRCV)
+        Me.GroupBox18.Controls.Add(Me.Label10)
+        Me.GroupBox18.Location = New System.Drawing.Point(831, 119)
+        Me.GroupBox18.Name = "GroupBox18"
+        Me.GroupBox18.Size = New System.Drawing.Size(264, 115)
+        Me.GroupBox18.TabIndex = 45
+        Me.GroupBox18.TabStop = False
+        Me.GroupBox18.Text = "요청번호 할당 전송건 처리"
+        '
+        'GroupBox14
+        '
+        Me.GroupBox14.Controls.Add(Me.txtReceiveNumbyRCV)
+        Me.GroupBox14.Controls.Add(Me.Label9)
+        Me.GroupBox14.Controls.Add(Me.btnCancelReservebyRCV)
+        Me.GroupBox14.Location = New System.Drawing.Point(561, 119)
+        Me.GroupBox14.Name = "GroupBox14"
+        Me.GroupBox14.Size = New System.Drawing.Size(264, 115)
+        Me.GroupBox14.TabIndex = 40
+        Me.GroupBox14.TabStop = False
+        Me.GroupBox14.Text = "접수번호 관련 기능 (요청번호 미할당)"
+        '
         'ListBox1
         '
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.HorizontalScrollbar = True
         Me.ListBox1.ItemHeight = 12
-        Me.ListBox1.Location = New System.Drawing.Point(9, 213)
+        Me.ListBox1.Location = New System.Drawing.Point(9, 240)
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.Size = New System.Drawing.Size(1164, 220)
         Me.ListBox1.TabIndex = 35
         '
         'btnCancelReserveRN
         '
-        Me.btnCancelReserveRN.Location = New System.Drawing.Point(428, 166)
+        Me.btnCancelReserveRN.Location = New System.Drawing.Point(417, 166)
         Me.btnCancelReserveRN.Name = "btnCancelReserveRN"
         Me.btnCancelReserveRN.Size = New System.Drawing.Size(121, 30)
         Me.btnCancelReserveRN.TabIndex = 33
@@ -341,7 +401,7 @@ Partial Class frmExample
         '
         'btnGetMessageResultRN
         '
-        Me.btnGetMessageResultRN.Location = New System.Drawing.Point(301, 166)
+        Me.btnGetMessageResultRN.Location = New System.Drawing.Point(290, 166)
         Me.btnGetMessageResultRN.Name = "btnGetMessageResultRN"
         Me.btnGetMessageResultRN.Size = New System.Drawing.Size(121, 30)
         Me.btnGetMessageResultRN.TabIndex = 32
@@ -350,7 +410,7 @@ Partial Class frmExample
         '
         'txtRequestNum
         '
-        Me.txtRequestNum.Location = New System.Drawing.Point(374, 139)
+        Me.txtRequestNum.Location = New System.Drawing.Point(363, 139)
         Me.txtRequestNum.Name = "txtRequestNum"
         Me.txtRequestNum.Size = New System.Drawing.Size(165, 21)
         Me.txtRequestNum.TabIndex = 31
@@ -358,7 +418,7 @@ Partial Class frmExample
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(312, 143)
+        Me.Label5.Location = New System.Drawing.Point(301, 143)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(65, 12)
         Me.Label5.TabIndex = 30
@@ -366,12 +426,12 @@ Partial Class frmExample
         '
         'GroupBox13
         '
-        Me.GroupBox13.Location = New System.Drawing.Point(297, 119)
+        Me.GroupBox13.Location = New System.Drawing.Point(286, 119)
         Me.GroupBox13.Name = "GroupBox13"
         Me.GroupBox13.Size = New System.Drawing.Size(264, 88)
         Me.GroupBox13.TabIndex = 34
         Me.GroupBox13.TabStop = False
-        Me.GroupBox13.Text = "요청번호 할달 전송건 처리"
+        Me.GroupBox13.Text = "요청번호 할당 전송건 처리"
         '
         'btnGetStates
         '
@@ -426,36 +486,36 @@ Partial Class frmExample
         Me.GroupBox10.Controls.Add(Me.btnCheckSenderNumber)
         Me.GroupBox10.Controls.Add(Me.btnGetSenderNumberMgtURL)
         Me.GroupBox10.Controls.Add(Me.btnGetSenderNumberList)
-        Me.GroupBox10.Location = New System.Drawing.Point(747, 58)
+        Me.GroupBox10.Location = New System.Drawing.Point(739, 58)
         Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(176, 138)
+        Me.GroupBox10.Size = New System.Drawing.Size(453, 55)
         Me.GroupBox10.TabIndex = 26
         Me.GroupBox10.TabStop = False
         Me.GroupBox10.Text = "발신번호 관리"
         '
         'btnCheckSenderNumber
         '
-        Me.btnCheckSenderNumber.Location = New System.Drawing.Point(12, 18)
+        Me.btnCheckSenderNumber.Location = New System.Drawing.Point(6, 18)
         Me.btnCheckSenderNumber.Name = "btnCheckSenderNumber"
-        Me.btnCheckSenderNumber.Size = New System.Drawing.Size(151, 33)
+        Me.btnCheckSenderNumber.Size = New System.Drawing.Size(147, 33)
         Me.btnCheckSenderNumber.TabIndex = 0
         Me.btnCheckSenderNumber.Text = "발신번호 등록여부 확인"
         Me.btnCheckSenderNumber.UseVisualStyleBackColor = True
         '
         'btnGetSenderNumberMgtURL
         '
-        Me.btnGetSenderNumberMgtURL.Location = New System.Drawing.Point(12, 57)
+        Me.btnGetSenderNumberMgtURL.Location = New System.Drawing.Point(154, 18)
         Me.btnGetSenderNumberMgtURL.Name = "btnGetSenderNumberMgtURL"
-        Me.btnGetSenderNumberMgtURL.Size = New System.Drawing.Size(151, 33)
+        Me.btnGetSenderNumberMgtURL.Size = New System.Drawing.Size(147, 33)
         Me.btnGetSenderNumberMgtURL.TabIndex = 1
         Me.btnGetSenderNumberMgtURL.Text = "발신번호 관리 팝업"
         Me.btnGetSenderNumberMgtURL.UseVisualStyleBackColor = True
         '
         'btnGetSenderNumberList
         '
-        Me.btnGetSenderNumberList.Location = New System.Drawing.Point(12, 96)
+        Me.btnGetSenderNumberList.Location = New System.Drawing.Point(302, 18)
         Me.btnGetSenderNumberList.Name = "btnGetSenderNumberList"
-        Me.btnGetSenderNumberList.Size = New System.Drawing.Size(151, 33)
+        Me.btnGetSenderNumberList.Size = New System.Drawing.Size(147, 33)
         Me.btnGetSenderNumberList.TabIndex = 2
         Me.btnGetSenderNumberList.Text = "발신번호 목록 조회"
         Me.btnGetSenderNumberList.UseVisualStyleBackColor = True
@@ -477,6 +537,40 @@ Partial Class frmExample
         Me.btnGetAutoDenyList.TabIndex = 24
         Me.btnGetAutoDenyList.Text = "080 수신거부목록"
         Me.btnGetAutoDenyList.UseVisualStyleBackColor = True
+        '
+        'btnCancelReserve
+        '
+        Me.btnCancelReserve.Location = New System.Drawing.Point(144, 166)
+        Me.btnCancelReserve.Name = "btnCancelReserve"
+        Me.btnCancelReserve.Size = New System.Drawing.Size(121, 30)
+        Me.btnCancelReserve.TabIndex = 22
+        Me.btnCancelReserve.Text = "예약 전송 취소"
+        Me.btnCancelReserve.UseVisualStyleBackColor = True
+        '
+        'btnGetMessageResult
+        '
+        Me.btnGetMessageResult.Location = New System.Drawing.Point(17, 166)
+        Me.btnGetMessageResult.Name = "btnGetMessageResult"
+        Me.btnGetMessageResult.Size = New System.Drawing.Size(121, 30)
+        Me.btnGetMessageResult.TabIndex = 21
+        Me.btnGetMessageResult.Text = "전송상태확인"
+        Me.btnGetMessageResult.UseVisualStyleBackColor = True
+        '
+        'txtReceiptNum
+        '
+        Me.txtReceiptNum.Location = New System.Drawing.Point(90, 139)
+        Me.txtReceiptNum.Name = "txtReceiptNum"
+        Me.txtReceiptNum.Size = New System.Drawing.Size(165, 21)
+        Me.txtReceiptNum.TabIndex = 17
+        '
+        'label4
+        '
+        Me.label4.AutoSize = True
+        Me.label4.Location = New System.Drawing.Point(28, 143)
+        Me.label4.Name = "label4"
+        Me.label4.Size = New System.Drawing.Size(65, 12)
+        Me.label4.TabIndex = 16
+        Me.label4.Text = "접수번호 : "
         '
         'GroupBox12
         '
@@ -840,6 +934,38 @@ Partial Class frmExample
         Me.txtURL.Size = New System.Drawing.Size(285, 21)
         Me.txtURL.TabIndex = 36
         '
+        'txtReceiveNumbyRCV
+        '
+        Me.txtReceiveNumbyRCV.Location = New System.Drawing.Point(77, 47)
+        Me.txtReceiveNumbyRCV.Name = "txtReceiveNumbyRCV"
+        Me.txtReceiveNumbyRCV.Size = New System.Drawing.Size(165, 21)
+        Me.txtReceiveNumbyRCV.TabIndex = 47
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(15, 51)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(65, 12)
+        Me.Label9.TabIndex = 46
+        Me.Label9.Text = "수신번호 : "
+        '
+        'txtReceiveNumRNbyRCV
+        '
+        Me.txtReceiveNumRNbyRCV.Location = New System.Drawing.Point(77, 47)
+        Me.txtReceiveNumRNbyRCV.Name = "txtReceiveNumRNbyRCV"
+        Me.txtReceiveNumRNbyRCV.Size = New System.Drawing.Size(165, 21)
+        Me.txtReceiveNumRNbyRCV.TabIndex = 47
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(15, 51)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(65, 12)
+        Me.Label10.TabIndex = 46
+        Me.Label10.Text = "수신번호 : "
+        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
@@ -861,6 +987,10 @@ Partial Class frmExample
         Me.groupBox6.ResumeLayout(False)
         Me.groupBox4.ResumeLayout(False)
         Me.groupBox4.PerformLayout()
+        Me.GroupBox18.ResumeLayout(False)
+        Me.GroupBox18.PerformLayout()
+        Me.GroupBox14.ResumeLayout(False)
+        Me.GroupBox14.PerformLayout()
         Me.GroupBox11.ResumeLayout(False)
         Me.GroupBox10.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
@@ -875,7 +1005,6 @@ Partial Class frmExample
         Me.PerformLayout()
 
     End Sub
-    Private WithEvents btnCancelReserve As System.Windows.Forms.Button
     Private WithEvents groupBox7 As System.Windows.Forms.GroupBox
     Private WithEvents btnSendLMS_same As System.Windows.Forms.Button
     Private WithEvents btnSendLMS_hund As System.Windows.Forms.Button
@@ -890,9 +1019,6 @@ Partial Class frmExample
     Private WithEvents groupBox6 As System.Windows.Forms.GroupBox
     Private WithEvents btn_SendSMS_hund As System.Windows.Forms.Button
     Private WithEvents btnSendSMS_one As System.Windows.Forms.Button
-    Friend WithEvents txtReceiptNum As System.Windows.Forms.TextBox
-    Friend WithEvents label4 As System.Windows.Forms.Label
-    Private WithEvents btnGetMessageResult As System.Windows.Forms.Button
     Friend WithEvents label3 As System.Windows.Forms.Label
     Private WithEvents groupBox4 As System.Windows.Forms.GroupBox
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
@@ -942,7 +1068,6 @@ Partial Class frmExample
     Friend WithEvents txtRequestNum As System.Windows.Forms.TextBox
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Private WithEvents GroupBox13 As System.Windows.Forms.GroupBox
-    Private WithEvents GroupBox12 As System.Windows.Forms.GroupBox
     Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents txtURL As System.Windows.Forms.TextBox
@@ -950,5 +1075,22 @@ Partial Class frmExample
     Friend WithEvents btnGetPaymentURL As System.Windows.Forms.Button
     Friend WithEvents btnGetContactInfo As System.Windows.Forms.Button
     Friend WithEvents btnCheckSenderNumber As System.Windows.Forms.Button
+    Private WithEvents btnCancelReserveRNbyRCV As System.Windows.Forms.Button
+    Private WithEvents btnCancelReservebyRCV As System.Windows.Forms.Button
+    Friend WithEvents txtRequestNumbyRCV As System.Windows.Forms.TextBox
+    Friend WithEvents txtReceiptNumbyRCV As System.Windows.Forms.TextBox
+    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents Label7 As System.Windows.Forms.Label
+    Private WithEvents GroupBox18 As System.Windows.Forms.GroupBox
+    Private WithEvents GroupBox14 As System.Windows.Forms.GroupBox
+    Private WithEvents btnCancelReserve As System.Windows.Forms.Button
+    Private WithEvents btnGetMessageResult As System.Windows.Forms.Button
+    Friend WithEvents txtReceiptNum As System.Windows.Forms.TextBox
+    Friend WithEvents label4 As System.Windows.Forms.Label
+    Private WithEvents GroupBox12 As System.Windows.Forms.GroupBox
+    Friend WithEvents txtReceiveNumRNbyRCV As System.Windows.Forms.TextBox
+    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents txtReceiveNumbyRCV As System.Windows.Forms.TextBox
+    Friend WithEvents Label9 As System.Windows.Forms.Label
 
 End Class

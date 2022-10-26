@@ -3,7 +3,7 @@
 ' 팝빌 문자 API VB.Net SDK Example
 '
 ' - VB.Net 연동환경 설정방법 안내 : https://docs.popbill.com/message/tutorial/dotnet_vb
-' - 업데이트 일자 : 2022-05-13
+' - 업데이트 일자 : 2022-10-26
 ' - 연동 기술지원 연락처 : 1600-9854
 ' - 연동 기술지원 이메일 : code@linkhubcorp.com
 '
@@ -777,6 +777,38 @@ Public Class frmExample
             Dim response As Response
 
             response = messageService.CancelReserveRN(txtCorpNum.Text, txtRequestNum.Text)
+
+            MsgBox(response.message)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 팝빌에서 반환받은 접수번호와 수신번호를 통해 예약접수된 문자 메시지 전송을 취소합니다. (예약시간 10분 전까지 가능)
+    ' - https://docs.popbill.com/message/dotnet/api#CancelReservebyRCV
+    '=========================================================================
+    Private Sub btnCancelReservebyRCV_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelReservebyRCV.Click
+        Try
+            Dim response As Response
+
+            response = messageService.CancelReservebyRCV(txtCorpNum.Text, txtReceiptNumbyRCV.Text, txtReceiveNumbyRCV.Text)
+
+            MsgBox(response.message)
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 파트너가 할당한 전송요청 번호와 수신번호를 통해 예약접수된 문자 전송을 취소합니다. (예약시간 10분 전까지 가능)
+    ' - https://docs.popbill.com/message/dotnet/api#CancelReserveRNbyRCV
+    '=========================================================================
+    Private Sub btnCancelReserveRNbyRCV_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelReserveRNbyRCV.Click
+        Try
+            Dim response As Response
+
+            response = messageService.CancelReserveRNbyRCV(txtCorpNum.Text, txtRequestNumbyRCV.Text, txtReceiveNumRNbyRCV.Text)
 
             MsgBox(response.message)
         Catch ex As PopbillException
