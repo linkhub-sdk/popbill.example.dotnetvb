@@ -309,68 +309,8 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 국세청 전송 이전 "발행완료" 상태의 현금영수증을 "발행취소"하고 국세청 신고 대상에서 제외합니다.
-    ' - 삭제(Delete API) 함수를 호출하여 "발행취소" 상태의 현금영수증을 삭제하면, 문서번호 재사용이 가능합니다.
-    ' - https://docs.popbill.com/cashbill/dotnet/api#CancelIssue
-    '=========================================================================
-    Private Sub btnCancelIssue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-        '발행취소 메모
-        Dim Memo As String = "발행취소 메모"
-
-        Try
-            Dim response As Response = cashbillService.CancelIssue(txtCorpNum.Text, txtMgtKey.Text, Memo, txtUserId.Text)
-
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 국세청 전송 이전 "발행완료" 상태의 현금영수증을 "발행취소"하고 국세청 신고 대상에서 제외합니다.
-    ' - Delete(삭제)함수를 호출하여 "발행취소" 상태의 현금영수증을 삭제하면, 문서번호 재사용이 가능합니다.
-    ' - https://docs.popbill.com/cashbill/dotnet/api#CancelIssue
-    '=========================================================================
-    Private Sub btnCancelIssue02_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelIssue02.Click
-
-        '발행취소 메모
-        Dim memo As String = "발행취소 메모"
-
-        Try
-            Dim response As Response = cashbillService.CancelIssue(txtCorpNum.Text, txtMgtKey.Text, memo, txtUserId.Text)
-
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' 국세청 전송 이전 "발행완료" 상태의 현금영수증을 "발행취소"하고 국세청 신고 대상에서 제외합니다.
-    ' - Delete(삭제)함수를 호출하여 "발행취소" 상태의 현금영수증을 삭제하면, 문서번호 재사용이 가능합니다.
-    ' - https://docs.popbill.com/cashbill/dotnet/api#CancelIssue
-    '=========================================================================
-    Private Sub btnCancelIssueSub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelIssueSub.Click
-
-        '발행취소 메모
-        Dim Memo As String = "발행취소 메모"
-
-        Try
-            Dim response As Response = cashbillService.CancelIssue(txtCorpNum.Text, txtMgtKey.Text, Memo, txtUserId.Text)
-
-            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message)
-
-        Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
     ' 삭제 가능한 상태의 현금영수증을 삭제합니다.
-    ' - 삭제 가능한 상태: "임시저장", "발행취소", "전송실패"
+    ' - 삭제 가능한 상태: "전송실패"
     ' - 현금영수증을 삭제하면 사용된 문서번호(mgtKey)를 재사용할 수 있습니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#Delete
     '=========================================================================
@@ -388,7 +328,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 삭제 가능한 상태의 현금영수증을 삭제합니다.
-    ' - 삭제 가능한 상태: "임시저장", "발행취소", "전송실패"
+    ' - 삭제 가능한 상태: "전송실패"
     ' - 현금영수증을 삭제하면 사용된 문서번호(mgtKey)를 재사용할 수 있습니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#Delete
     '=========================================================================
@@ -406,7 +346,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 삭제 가능한 상태의 현금영수증을 삭제합니다.
-    ' - 삭제 가능한 상태: "임시저장", "발행취소", "전송실패"
+    ' - 삭제 가능한 상태: "전송실패"
     ' - 현금영수증을 삭제하면 사용된 문서번호(mgtKey)를 재사용할 수 있습니다.
     ' - https://docs.popbill.com/cashbill/dotnet/api#Delete
     '=========================================================================
@@ -679,9 +619,7 @@ Public Class frmExample
 
         '상태코드 배열 (2,3번째 자리에 와일드카드(*) 사용 가능)
         '- 미입력시 전체조회
-        State(0) = "2**"
-        State(1) = "3**"
-        State(2) = "4**"
+        State(0) = "3**"
 
         '문서형태 배열 ("N" , "C" 중 선택, 다중 선택 가능)
         '- N = 일반 현금영수증 , C = 취소 현금영수증
