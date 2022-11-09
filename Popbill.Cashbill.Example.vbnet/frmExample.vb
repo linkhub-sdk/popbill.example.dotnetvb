@@ -148,7 +148,7 @@ Public Class frmExample
         cashbill.hp = ""
 
         '거래일시, 날짜(yyyyMMddHHmmss)
-        '당일, 전일만 가능
+        '당일, 전일만 가능, 미입력시 기본값 발행일시 처리
         cashbill.tradeDT = "20221108000000"
 
         '메모
@@ -260,7 +260,7 @@ Public Class frmExample
             cashbill.hp = ""
 
             '거래일시, 날짜(yyyyMMddHHmmss)
-            '당일, 전일만 가능
+            '당일, 전일만 가능, 미입력시 기본값 발행일시 처리
             cashbill.tradeDT = "20221108000000"
 
             cashbillList.Add(cashbill)
@@ -452,7 +452,7 @@ Public Class frmExample
         Dim emailSubject As String = "메일제목 테스트"
 
         '거래일시, 날짜(yyyyMMddHHmmss)
-        '당일, 전일만 가능
+        '당일, 전일만 가능, 미입력시 기본값 발행일시 처리
         Dim tradeDT As String = "20221108000000"
 
         Try
