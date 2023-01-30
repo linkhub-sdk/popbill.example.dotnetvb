@@ -3,7 +3,7 @@
 '
 ' 팝빌 예금주조회 API VB.Net SDK Example
 '
-' - VB.Net SDK 연동환경 설정방법 안내 : https://docs.popbill.com/accountcheck/tutorial/dotnet_vb
+' - VB.Net SDK 연동환경 설정방법 안내 : https://developers.popbill.com/guide/accountcheck/dotnet/getting-started/tutorial?fwn=vb
 ' - 업데이트 일자 : 2022-05-13
 ' - 연동 기술지원 연락처 : 1600-9854
 ' - 연동 기술지원 이메일 : code@linkhubcorp.com
@@ -48,7 +48,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 1건의 예금주성명을 조회합니다.
-    ' - https://docs.popbill.com/accountcheck/dotnet/api#CheckAccountInfo
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/check#CheckAccountInfo
     '=========================================================================
     Private Sub btnCheckAccountInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckAccountInfo.Click
 
@@ -73,7 +73,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 1건의 예금주실명을 조회합니다.
-    ' - https://docs.popbill.com/accountcheck/dotnet/api#CheckDepositorInfo
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/check#CheckDepositorInfo
     '=========================================================================
     Private Sub btnCheckDepositorInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckDepositorInfo.Click
         Try
@@ -99,7 +99,7 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원의 잔여포인트를 확인합니다.
     ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트 확인(GetPartnerBalance API) 함수를 통해 확인하시기 바랍니다.
-    ' - https://docs.popbill.com/accountcheck/dotnet/api#GetBalance
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/point#GetBalance
     '=========================================================================
     Private Sub btnGetBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetBalance.Click
 
@@ -116,7 +116,7 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - https://docs.popbill.com/accountcheck/dotnet/api#GetChargeURL
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/point#GetChargeURL
     '=========================================================================
     Private Sub btnGetChargeURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeURL.Click
 
@@ -133,7 +133,7 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원 포인트 결제내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - https://docs.popbill.com/accountcheck/dotnet/api#GetPaymentURL
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/point#GetPaymentURL
     '=========================================================================
     Private Sub btnGetPaymentURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPaymentURL.Click
         Try
@@ -149,7 +149,7 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원 포인트 사용내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - https://docs.popbill.com/accountcheck/dotnet/api#GetUseHistoryURL
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/point#GetUseHistoryURL
     '=========================================================================
     Private Sub btnGetUseHistoryURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetUseHistoryURL.Click
         Try
@@ -165,7 +165,7 @@ Public Class frmExample
     '=========================================================================
     ' 파트너의 잔여포인트를 확인합니다.
     ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트 확인(GetBalance API) 함수를 이용하시기 바랍니다.
-    ' - https://docs.popbill.com/accountcheck/dotnet/api#GetPartnerBalance
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/point#GetPartnerBalance
     '=========================================================================
     Private Sub btnGetPartnerBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerBalance.Click
 
@@ -183,7 +183,7 @@ Public Class frmExample
     '=========================================================================
     ' 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - https://docs.popbill.com/accountcheck/dotnet/api#GetPartnerURL
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/point#GetPartnerURL
     '=========================================================================
     Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerURL.Click
         Try
@@ -201,7 +201,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 예금주 성명/실명 조회시 과금되는 포인트 단가를 확인합니다.
-    ' - https://docs.popbill.com/accountcheck/dotnet/api#GetUnitCost
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/point#GetUnitCost
     '=========================================================================
     Private Sub btnUnitCost_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUnitCost.Click
 
@@ -222,7 +222,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 예금주조회 API 서비스 과금정보를 확인합니다.
-    ' - https://docs.popbill.com/accountcheck/dotnet/api#GetChargeInfo
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/point#GetChargeInfo
     '=========================================================================
     Private Sub btnGetChargeInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo.Click
 
@@ -245,7 +245,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 사업자번호를 조회하여 연동회원 가입여부를 확인합니다.
-    ' - https://docs.popbill.com/accountcheck/dotnet/api#CheckIsMember
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/member#CheckIsMember
     '=========================================================================
     Private Sub btnCheckIsMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckIsMember.Click
         Try
@@ -260,7 +260,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 사용하고자 하는 아이디의 중복여부를 확인합니다.
-    ' - https://docs.popbill.com/accountcheck/dotnet/api#CheckID
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/member#CheckID
     '=========================================================================
     Private Sub btnCheckID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckID.Click
         Try
@@ -275,7 +275,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 사용자를 연동회원으로 가입처리합니다.
-    ' - https://docs.popbill.com/accountcheck/dotnet/api#JoinMember
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/member#JoinMember
     '=========================================================================
     Private Sub btnJoinMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnJoinMember.Click
 
@@ -331,7 +331,7 @@ Public Class frmExample
     '=========================================================================
     ' 팝빌 사이트에 로그인 상태로 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - https://docs.popbill.com/accountcheck/dotnet/api#GetAccessURL
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/member#GetAccessURL
     '=========================================================================
     Private Sub btnGetAccessURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetAccessURL.Click
 
@@ -347,7 +347,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 회사정보를 확인합니다.
-    ' - https://docs.popbill.com/accountcheck/dotnet/api#GetCorpInfo
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/member#GetCorpInfo
     '=========================================================================
     Private Sub btnGetCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetCorpInfo.Click
         Try
@@ -369,7 +369,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 회사정보를 수정합니다.
-    ' - https://docs.popbill.com/accountcheck/dotnet/api#UpdateCorpInfo
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/member#UpdateCorpInfo
     '=========================================================================
     Private Sub btnUpdateCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateCorpInfo.Click
 
@@ -404,7 +404,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
-    ' - https://docs.popbill.com/accountcheck/dotnet/api#RegistContact
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/member#RegistContact
     '=========================================================================
     Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistContact.Click
 
@@ -442,7 +442,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보을 확인합니다.
-    ' - https://docs.popbill.com/accountcheck/dotnet/api#GetContactInfo
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/member#GetContactInfo
     '=========================================================================
     Private Sub btnGetContactInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetContactInfo.Click
 
@@ -473,7 +473,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
-    ' - https://docs.popbill.com/accountcheck/dotnet/api#ListContact
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/member#ListContact
     '=========================================================================
     Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListContact.Click
 
@@ -498,7 +498,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
-    ' - https://docs.popbill.com/accountcheck/dotnet/api#UpdateContact
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/member#UpdateContact
     '=========================================================================
     Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateContact.Click
 

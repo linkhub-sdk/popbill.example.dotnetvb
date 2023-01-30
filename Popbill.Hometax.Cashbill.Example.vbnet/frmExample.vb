@@ -2,7 +2,7 @@
 '
 ' 팝빌 홈택스 현금영수증 매입매출 API VB.Net SDK Example
 '
-' - VB.Net SDK 연동환경 설정방법 안내 : https://docs.popbill.com/htcashbill/tutorial/dotnet_vb
+' - VB.Net SDK 연동환경 설정방법 안내 : https://developers.popbill.com/guide/htcashbill/dotnet/getting-started/tutorial?fwn=vb
 ' - 업데이트 일자 : 2022-05-13
 ' - 연동 기술지원 연락처 : 1600-8536
 ' - 연동 기술지원 이메일 : code@linkhubcorp.com
@@ -50,7 +50,7 @@ Public Class frmExample
     '=========================================================================
     ' 홈택스에 신고된 현금영수증 매입/매출 내역 수집을 팝빌에 요청합니다. (조회기간 단위 : 최대 3개월)
     ' - 수집 요청후 반환받은 작업아이디(JobID)의 유효시간은 1시간 입니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#RequestJob
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/job#RequestJob
     '=========================================================================
     Private Sub btnRequestJob_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRequestJob.Click
 
@@ -82,7 +82,7 @@ Public Class frmExample
     '   수집 결과 내역 조회(Search) 또는 수집 결과 요약 정보 조회(Summary)를 해야합니다.
     ' - 작업 상태(jobState)가 3(완료)이지만 수집 결과 코드(errorCode)가 1(수집성공)이 아닌 경우에는
     '   오류메시지(errorReason)로 수집 실패에 대한 원인을 파악할 수 있습니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#GetJobState
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/job#GetJobState
     '=========================================================================
     Private Sub btnGetJobState_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetJobState.Click
         Try
@@ -112,7 +112,7 @@ Public Class frmExample
     '=========================================================================
     ' 현금영수증 매입/매출 내역 수집요청에 대한 상태 목록을 확인합니다.
     ' - 수집 요청 후 1시간이 경과한 수집 요청건은 상태정보가 반환되지 않습니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#ListActiveJob
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/job#ListActiveJob
     '=========================================================================
     Private Sub btnListActiveJob_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListActiveJob.Click
         Try
@@ -149,7 +149,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 수집 상태 확인(GetJobState API) 함수를 통해 상태 정보 확인된 작업아이디를 활용하여 현금영수증 매입/매출 내역을 조회합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#Search
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/search#Search
     '=========================================================================
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
 
@@ -230,7 +230,7 @@ Public Class frmExample
     '=========================================================================
     ' 수집 상태 확인(GetJobState API) 함수를 통해 상태 정보가 확인된 작업아이디를 활용하여 수집된 현금영수증 매입/매출 내역의 요약 정보를 조회합니다.
     ' - 요약 정보 : 현금영수증 수집 건수, 공급가액 합계, 세액 합계, 봉사료 합계, 합계 금액
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#Summary
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/search#Summary
     '=========================================================================
     Private Sub btnSummary_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSummary.Click
 
@@ -268,7 +268,7 @@ Public Class frmExample
     '=========================================================================
     ' 홈택스연동 인증정보를 관리하는 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#GetCertificatePopUpURL
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/cert#GetCertificatePopUpURL
     '=========================================================================
     Private Sub btnGetCertificatePopUpURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetCertificatePopUpURL.Click
         Try
@@ -283,7 +283,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 홈택스연동 인증을 위해 팝빌에 등록된 인증서 만료일자를 확인합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#GetCertificateExpireDate
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/cert#GetCertificateExpireDate
     '=========================================================================
     Private Sub btnGetCertificateExpireDate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetCertificateExpireDate.Click
         Try
@@ -297,7 +297,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 팝빌에 등록된 인증서로 홈택스 로그인 가능 여부를 확인합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#CheckCertValidation
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/cert#CheckCertValidation
     '=========================================================================
     Private Sub btnCheckCertValidation_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckCertValidation.Click
         Try
@@ -311,7 +311,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 홈택스연동 인증을 위해 팝빌에 현금영수증 자료조회 부서사용자 계정을 등록합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#RegistDeptUser
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/cert#RegistDeptUser
     '=========================================================================
     Private Sub btnRegistDeptUser_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistDeptUser.Click
         ' 홈택스에서 생성한 현금영수증 부서사용자 아이디
@@ -331,7 +331,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 홈택스연동 인증을 위해 팝빌에 등록된 현금영수증 자료조회 부서사용자 계정을 확인합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#CheckDeptUser
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/cert#CheckDeptUser
     '=========================================================================
     Private Sub btnCheckDeptUser_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckDeptUser.Click
         Try
@@ -345,7 +345,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 팝빌에 등록된 현금영수증 자료조회 부서사용자 계정 정보로 홈택스 로그인 가능 여부를 확인합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#CheckLoginDeptUser
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/cert#CheckLoginDeptUser
     '=========================================================================
     Private Sub btnCheckLoginDeptUser_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckLoginDeptUser.Click
         Try
@@ -359,7 +359,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 팝빌에 등록된 홈택스 현금영수증 자료조회 부서사용자 계정을 삭제합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#DeleteDeptUser
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/cert#DeleteDeptUser
     '=========================================================================
     Private Sub btnDeleteDeptUser_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteDeptUser.Click
         Try
@@ -374,7 +374,7 @@ Public Class frmExample
     '=========================================================================
     ' 홈택스연동 정액제 서비스 신청 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#GetFlatRatePopUpURL
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/point#GetFlatRatePopUpURL
     '=========================================================================
     Private Sub btnGetFlatRatePopUpURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFlatRatePopUpURL.Click
         Try
@@ -389,7 +389,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 홈택스연동 정액제 서비스 상태를 확인합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#GetFlatRateState
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/point#GetFlatRateState
     '=========================================================================
     Private Sub btnGetFlatRateState_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFlatRateState.Click
         Try
@@ -414,7 +414,7 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원의 잔여포인트를 확인합니다.
     ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트 확인(GetPartnerBalance API) 함수를 통해 확인하시기 바랍니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#GetBalance
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/point#GetBalance
     '=========================================================================
     Private Sub btnGetBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetBalance.Click
         Try
@@ -431,7 +431,7 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#GetChargeURL
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/point#GetChargeURL
     '=========================================================================
     Private Sub btnGetChargeURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeURL.Click
         Try
@@ -447,7 +447,7 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원 포인트 결제내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#GetPaymentURL
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/point#GetPaymentURL
     '=========================================================================
     Private Sub btnGetPaymentURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPaymentURL.Click
         Try
@@ -463,7 +463,7 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원 포인트 사용내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#GetUseHistoryURL
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/point#GetUseHistoryURL
     '=========================================================================
     Private Sub btnGetUseHistoryURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetUseHistoryURL.Click
         Try
@@ -479,7 +479,7 @@ Public Class frmExample
     '=========================================================================
     ' 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#GetPartnerURL
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/point#GetPartnerURL
     '=========================================================================
     Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerURL.Click
         Try
@@ -498,7 +498,7 @@ Public Class frmExample
     '=========================================================================
     ' 파트너의 잔여포인트를 확인합니다.
     ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트 확인(GetBalance API) 함수를 이용하시기 바랍니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#GetPartnerBalance
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/point#GetPartnerBalance
     '=========================================================================
     Private Sub btnGetPartnerBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPartnerBalance.Click
         Try
@@ -514,7 +514,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 팝빌 홈택스연동(현금) API 서비스 과금정보를 확인합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#GetChargeInfo
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/point#GetChargeInfo
     '=========================================================================
     Private Sub btnGetChargeInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo.Click
         Try
@@ -533,7 +533,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 사업자번호를 조회하여 연동회원 가입여부를 확인합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#CheckIsMember
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/member#CheckIsMember
     '=========================================================================
     Private Sub btnCheckIsMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckIsMember.Click
         Try
@@ -548,7 +548,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 사용하고자 하는 아이디의 중복여부를 확인합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#CheckID
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/member#CheckID
     '=========================================================================
     Private Sub btnCheckID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckID.Click
         Try
@@ -563,7 +563,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 사용자를 연동회원으로 가입처리합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#JoinMember
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/member#JoinMember
     '=========================================================================
     Private Sub btnJoinMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnJoinMember.Click
         Dim joinInfo As JoinForm = New JoinForm
@@ -618,7 +618,7 @@ Public Class frmExample
     '=========================================================================
     ' 팝빌 사이트에 로그인 상태로 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#GetAccessURL
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/member#GetAccessURL
     '=========================================================================
     Private Sub btnGetAccessURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetAccessURL.Click
         Try
@@ -633,7 +633,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 회사정보를 확인합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#GetCorpInfo
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/member#GetCorpInfo
     '=========================================================================
     Private Sub btnGetCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetCorpInfo.Click
         Try
@@ -655,7 +655,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 회사정보를 수정합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#UpdateCorpInfo
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/member#UpdateCorpInfo
     '=========================================================================
     Private Sub btnUpdateCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateCorpInfo.Click
 
@@ -690,7 +690,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#RegistContact
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/member#RegistContact
     '=========================================================================
     Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistContact.Click
 
@@ -728,7 +728,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보을 확인합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#GetContactInfo
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/member#GetContactInfo
     '=========================================================================
     Private Sub btnGetContactInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetContactInfo.Click
 
@@ -759,7 +759,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#ListContact
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/member#ListContact
     '=========================================================================
     Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListContact.Click
         Try
@@ -782,7 +782,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
-    ' - https://docs.popbill.com/htcashbill/dotnet/api#UpdateContact
+    ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/member#UpdateContact
     '=========================================================================
     Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateContact.Click
 
