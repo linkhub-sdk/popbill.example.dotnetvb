@@ -107,7 +107,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 팩스 1건을 전송합니다. (최대 전송파일 개수: 20개)
-    ' - https://developers.popbill.com/reference/fax/dotnet/api/send#SendFAXOne
+    ' - https://developers.popbill.com/reference/fax/dotnet/api/send#SendFAX
     '=========================================================================
     Private Sub btnSenFax_1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSenFax_1.Click
 
