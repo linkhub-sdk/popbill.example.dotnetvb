@@ -677,7 +677,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 발신자가 발행한 전자명세서를 발행취소합니다.
-    ' - https://developers.popbill.com/reference/statement/dotnet/api/issue#CancelIssue
+    ' - https://developers.popbill.com/reference/statement/dotnet/api/issue#Cancel
     '=========================================================================
     Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
 
@@ -695,7 +695,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 발신자가 발행한 전자명세서를 발행취소합니다.
-    ' - https://developers.popbill.com/reference/statement/dotnet/api/issue#CancelIssue
+    ' - https://developers.popbill.com/reference/statement/dotnet/api/issue#Cancel
     '=========================================================================
     Private Sub btnCancelIssueSub_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelIssueSub.Click
 

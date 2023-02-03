@@ -818,7 +818,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 팝빌에서 반환받은 접수번호를 통해 문자 전송상태 및 결과를 확인합니다.
-    ' - https://developers.popbill.com/reference/sms/dotnet/api/info#GetMessageResult
+    ' - https://developers.popbill.com/reference/sms/dotnet/api/info#GetMessages
     '=========================================================================
     Private Sub btnGetMessageResult_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMessageResult.Click
         ListBox1.Items.Clear()
@@ -847,7 +847,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 파트너가 할당한 전송요청 번호를 통해 문자 전송상태 및 결과를 확인합니다.
-    ' - https://developers.popbill.com/reference/sms/dotnet/api/info#GetMessageResultRN
+    ' - https://developers.popbill.com/reference/sms/dotnet/api/info#GetMessagesRN
     '=========================================================================
     Private Sub btnGetMessageResultRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMessageResultRN.Click
         ListBox1.Items.Clear()
