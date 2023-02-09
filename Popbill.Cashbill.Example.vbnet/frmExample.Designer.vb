@@ -66,7 +66,6 @@ Partial Class frmExample
         Me.btnGetBulkResult = New System.Windows.Forms.Button
         Me.btnSearch = New System.Windows.Forms.Button
         Me.btnGetInfos = New System.Windows.Forms.Button
-        Me.btnGetLogs = New System.Windows.Forms.Button
         Me.btnGetInfo = New System.Windows.Forms.Button
         Me.btnGetDetailInfo = New System.Windows.Forms.Button
         Me.btnCheckMgtKeyInUse = New System.Windows.Forms.Button
@@ -532,7 +531,6 @@ Partial Class frmExample
         Me.GroupBox9.Controls.Add(Me.btnGetBulkResult)
         Me.GroupBox9.Controls.Add(Me.btnSearch)
         Me.GroupBox9.Controls.Add(Me.btnGetInfos)
-        Me.GroupBox9.Controls.Add(Me.btnGetLogs)
         Me.GroupBox9.Controls.Add(Me.btnGetInfo)
         Me.GroupBox9.Controls.Add(Me.btnGetDetailInfo)
         Me.GroupBox9.Location = New System.Drawing.Point(10, 290)
@@ -544,7 +542,7 @@ Partial Class frmExample
         '
         'btnGetBulkResult
         '
-        Me.btnGetBulkResult.Location = New System.Drawing.Point(6, 177)
+        Me.btnGetBulkResult.Location = New System.Drawing.Point(6, 146)
         Me.btnGetBulkResult.Name = "btnGetBulkResult"
         Me.btnGetBulkResult.Size = New System.Drawing.Size(131, 26)
         Me.btnGetBulkResult.TabIndex = 12
@@ -553,7 +551,7 @@ Partial Class frmExample
         '
         'btnSearch
         '
-        Me.btnSearch.Location = New System.Drawing.Point(6, 147)
+        Me.btnSearch.Location = New System.Drawing.Point(6, 114)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(131, 26)
         Me.btnSearch.TabIndex = 10
@@ -562,21 +560,12 @@ Partial Class frmExample
         '
         'btnGetInfos
         '
-        Me.btnGetInfos.Location = New System.Drawing.Point(6, 116)
+        Me.btnGetInfos.Location = New System.Drawing.Point(6, 52)
         Me.btnGetInfos.Name = "btnGetInfos"
         Me.btnGetInfos.Size = New System.Drawing.Size(131, 26)
         Me.btnGetInfos.TabIndex = 9
         Me.btnGetInfos.Text = "문서정보(대량)"
         Me.btnGetInfos.UseVisualStyleBackColor = True
-        '
-        'btnGetLogs
-        '
-        Me.btnGetLogs.Location = New System.Drawing.Point(6, 84)
-        Me.btnGetLogs.Name = "btnGetLogs"
-        Me.btnGetLogs.Size = New System.Drawing.Size(131, 26)
-        Me.btnGetLogs.TabIndex = 8
-        Me.btnGetLogs.Text = "문서이력"
-        Me.btnGetLogs.UseVisualStyleBackColor = True
         '
         'btnGetInfo
         '
@@ -589,7 +578,7 @@ Partial Class frmExample
         '
         'btnGetDetailInfo
         '
-        Me.btnGetDetailInfo.Location = New System.Drawing.Point(6, 52)
+        Me.btnGetDetailInfo.Location = New System.Drawing.Point(6, 84)
         Me.btnGetDetailInfo.Name = "btnGetDetailInfo"
         Me.btnGetDetailInfo.Size = New System.Drawing.Size(131, 26)
         Me.btnGetDetailInfo.TabIndex = 6
@@ -952,7 +941,6 @@ Partial Class frmExample
     Friend WithEvents btnGetURL_PBOX As System.Windows.Forms.Button
     Friend WithEvents btnGetURL_TBOX As System.Windows.Forms.Button
     Friend WithEvents btnGetInfos As System.Windows.Forms.Button
-    Friend WithEvents btnGetLogs As System.Windows.Forms.Button
     Friend WithEvents btnSendFAX As System.Windows.Forms.Button
     Friend WithEvents btnSendSMS As System.Windows.Forms.Button
     Friend WithEvents btnSendEmail As System.Windows.Forms.Button
