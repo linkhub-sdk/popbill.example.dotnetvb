@@ -632,5 +632,14 @@ Partial Class frmExample
     Private WithEvents Label9 As System.Windows.Forms.Label
     Private WithEvents txtIdentityNumTypeDC As System.Windows.Forms.TextBox
     Private WithEvents txtIdentityNumDC As System.Windows.Forms.TextBox
+    Private WithEvents btnPaymentRequest As System.Windows.Forms.Button
+    Private WithEvents btnGetSettleResult As System.Windows.Forms.Button
+    Private WithEvents btnGetUseHistory As System.Windows.Forms.Button
+    Private WithEvents btnGetPaymentHistory As System.Windows.Forms.Button
+    Private WithEvents btnRefund As System.Windows.Forms.Button
+    Private WithEvents btnGetRefundHistory As System.Windows.Forms.Button
+    Private WithEvents btnGetRefundInfo As System.Windows.Forms.Button
+    Private WithEvents btnGetRefundableBalance As System.Windows.Forms.Button
+    Private WithEvents btnQuitMember As System.Windows.Forms.Button
 
 End Class

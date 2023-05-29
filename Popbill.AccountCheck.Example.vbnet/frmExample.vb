@@ -530,4 +530,164 @@ Public Class frmExample
 
         End Try
     End Sub
+
+    Private  Sub  btnPaymentRequest_Click() Handles btnPaymentRequest.Click
+
+    End Sub
+
+
+    Private Sub btnPaymentRequest_Click() Handles btnGetSettleResult.Click
+        Dim CorpNum As String = "1234567890"
+
+        Dim PaymentForm As New PaymentForm
+
+        PaymentForm.paymentName = "입금자 명"
+
+        PaymentForm.settleCost = "10000"
+
+        PaymentForm.settlerEmail = "settler@email.com"
+
+        PaymentForm.settlerName = "입금자"
+
+        PaymentForm.notifyHP = "010-1234-1234"
+
+        Dim  UserID As String = "testkorea"
+    Try
+        Dim response As PaymentResponse =  accountCheckService.PaymentRequest(CorpNum, PaymentForm, UserID)
+    Catch ex As PopbillException
+        MsgBox("응답 코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+    End Try
+    End Sub
+    Private Sub btnGetUseHistory_Click() Handles btnGetUseHistory.Click
+
+        Dim CorpNum As String = "1234567890"
+
+        Dim SDate As String = "20230501"
+
+        Dim EDate As String = "20230530"
+
+        Dim Page As Integer = 1
+
+        Dim PerPage As Integer = 500
+
+        Dim Order As String = ""
+
+        Dim  UserID As String = "testkorea"
+
+        Try
+            Dim result As UseHistoryResult =  accountCheckService.GetUseHistory(CorpNum, SDate, EDate, Page, PerPage, Order, UserID)
+        Catch ex As PopbillException
+            MsgBox("응답 코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+    Private Sub btnGetPaymentHistory_Click() Handles btnGetPaymentHistory.Click
+
+        Dim CorpNum As String = "1234567890"
+
+        Dim SDate As String = "20230501"
+
+        Dim EDate As String = "20230530"
+
+        Dim Page As Integer = 1
+
+        Dim PerPage As Integer = 500
+
+
+        Dim  UserID As String = "testkorea"
+
+        Try
+            Dim result As PaymentHistoryResult =  accountCheckService.GetPaymentHistory(CorpNum, SDate, EDate, Page, PerPage, UserID)
+        Catch ex As PopbillException
+            MsgBox("응답 코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+    Private Sub btnGetSettleResult_Click() Handles btnRefund.Click
+
+        Dim CorpNum As String = "1234567890"
+
+        Dim SettleCode As String = "20230501"
+
+        Dim  UserID As String = "testkorea"
+
+        Try
+            Dim response As PaymentHistory =  accountCheckService.GetSettleResult(CorpNum, SettleCode, UserID)
+        Catch ex As PopbillException
+            MsgBox("응답 코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+    Private Sub btnRefund_Click() Handles btnGetRefundHistory.Click
+
+        Dim CorpNum As String = "1234567890"
+
+        Dim RefundForm As New RefundForm
+
+        RefundForm.AccountBank= ""
+        RefundForm.AccountName= ""
+        RefundForm.AccountNum= ""
+        RefundForm.ContactName= ""
+        RefundForm.TEL= ""
+        RefundForm.RequestPoint= ""
+        RefundForm.Reason= ""
+
+        Dim  UserID As String = "testkorea"
+
+        Try
+            Dim response As RefundResponse =  accountCheckService.Refund(CorpNum, RefundForm,  UserID)
+        Catch ex As PopbillException
+            MsgBox("응답 코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    Private Sub btnGetRefundHistory_Click() Handles btnGetRefundInfo.Click
+
+        Dim CorpNum As String = "1234567890"
+
+        Dim Page As Integer = 1
+
+        Dim PerPage As Integer = 500
+
+        Dim  UserID As String = "testkorea"
+    Try
+        Dim response As RefundHistoryResult =  accountCheckService.GetRefundHistory(CorpNum, Page, PerPage, UserID)
+    Catch ex As PopbillException
+        MsgBox("응답 코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+    End Try
+    End Sub
+    Private Sub btnGetRefundInfo_Click() Handles btnGetRefundableBalance.Click
+        Dim CorpNum As String = "1234567890"
+
+        Dim RefundCode As String = ""
+
+        Dim  UserID As String = "testkorea"
+    Try
+        Dim response As RefundHistory =  accountCheckService.GetRefundInfo(CorpNum, RefundCode, UserID)
+    Catch ex As PopbillException
+        MsgBox("응답 코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+    End Try
+    End Sub
+    Private Sub btnGetRefundableBalance_Click() Handles btnQuitMember.Click
+        Dim CorpNum As String = "1234567890"
+
+        Dim  UserID As String = "testkorea"
+
+        Try
+            Dim response As Double =  accountCheckService.GetRefundableBalance(CorpNum, UserID)
+        Catch ex As PopbillException
+            MsgBox("응답 코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
+
+    Private Sub btnQuitMember_Click() Handles btnQuitMember.Click
+        Dim CorpNum As String = "1234567890"
+
+        Dim QuitReason As String = "탈퇴 사유"
+
+        Dim  UserID As String = "testkorea"
+
+        Try
+            Dim response As Response =  accountCheckService.QuitMember(CorpNum, QuitReason, UserID)
+        Catch ex As PopbillException
+            MsgBox("응답 코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+        End Try
+    End Sub
 End Class
