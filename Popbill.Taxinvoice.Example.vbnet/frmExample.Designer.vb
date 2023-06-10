@@ -477,6 +477,14 @@ Partial Class frmExample
         '
         Me.GroupBox3.Controls.Add(Me.btnGetChargeInfo)
         Me.GroupBox3.Controls.Add(Me.btnUnitCost)
+        Me.GroupBox3.Controls.Add(Me.btnPaymentRequest)
+        Me.GroupBox3.Controls.Add(Me.btnGetSettleResult)
+        Me.GroupBox3.Controls.Add(Me.btnGetPaymentHistory)
+        Me.GroupBox3.Controls.Add(Me.btnGetUseHistory)
+        Me.GroupBox3.Controls.Add(Me.btnRefund)
+        Me.GroupBox3.Controls.Add(Me.btnGetRefundHistory)
+        Me.GroupBox3.Controls.Add(Me.btnGetRefundableBalance)
+        Me.GroupBox3.Controls.Add(Me.btnGetRefundInfo)
         Me.GroupBox3.Location = New System.Drawing.Point(172, 17)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(161, 155)
@@ -507,6 +515,7 @@ Partial Class frmExample
         Me.GroupBox2.Controls.Add(Me.btnCheckID)
         Me.GroupBox2.Controls.Add(Me.btnCheckIsMember)
         Me.GroupBox2.Controls.Add(Me.btnJoinMember)
+        Me.GroupBox2.Controls.Add(Me.btnQuitMember)
         Me.GroupBox2.Location = New System.Drawing.Point(6, 17)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(161, 155)
@@ -1236,6 +1245,8 @@ Partial Class frmExample
         Me.GroupBox13.Controls.Add(Me.btnGetURL_PBOX)
         Me.GroupBox13.Controls.Add(Me.btnGetURL_SBOX)
         Me.GroupBox13.Controls.Add(Me.btnGetURL_TBOX)
+        Me.GroupBox13.Controls.Add(Me.btnGetURL_SWBOX)
+        Me.GroupBox13.Controls.Add(Me.btnGetURL_PWBOX)
         Me.GroupBox13.Location = New System.Drawing.Point(1144, 366)
         Me.GroupBox13.Name = "GroupBox13"
         Me.GroupBox13.Size = New System.Drawing.Size(166, 264)
@@ -1249,7 +1260,7 @@ Partial Class frmExample
         Me.btnGetURL_WRITE.Name = "btnGetURL_WRITE"
         Me.btnGetURL_WRITE.Size = New System.Drawing.Size(136, 29)
         Me.btnGetURL_WRITE.TabIndex = 11
-        Me.btnGetURL_WRITE.Text = "매출작성"
+        Me.btnGetURL_WRITE.Text = "정발행 작성"
         Me.btnGetURL_WRITE.UseVisualStyleBackColor = True
         '
         'btnGetURL_PBOX
@@ -1278,6 +1289,24 @@ Partial Class frmExample
         Me.btnGetURL_TBOX.TabIndex = 8
         Me.btnGetURL_TBOX.Text = "연동문서함"
         Me.btnGetURL_TBOX.UseVisualStyleBackColor = True
+        '
+        'btnGetURL_SWBOX
+        '
+        Me.btnGetURL_SWBOX.Location = New System.Drawing.Point(16, 150)
+        Me.btnGetURL_SWBOX.Name = "btnGetURL_SWBOX"
+        Me.btnGetURL_SWBOX.Size = New System.Drawing.Size(136, 29)
+        Me.btnGetURL_SWBOX.TabIndex = 8
+        Me.btnGetURL_SWBOX.Text = "매출 발행 대기함"
+        Me.btnGetURL_SWBOX.UseVisualStyleBackColor = True
+        '
+        'btnGetURL_PWBOX
+        '
+        Me.btnGetURL_PWBOX.Location = New System.Drawing.Point(16, 182)
+        Me.btnGetURL_PWBOX.Name = "btnGetURL_PWBOX"
+        Me.btnGetURL_PWBOX.Size = New System.Drawing.Size(136, 29)
+        Me.btnGetURL_PWBOX.TabIndex = 8
+        Me.btnGetURL_PWBOX.Text = "매입 발행 대기함"
+        Me.btnGetURL_PWBOX.UseVisualStyleBackColor = True
         '
         'GroupBox12
         '
@@ -1815,6 +1844,8 @@ Partial Class frmExample
     Friend WithEvents btnGetURL_PBOX As System.Windows.Forms.Button
     Friend WithEvents btnGetURL_SBOX As System.Windows.Forms.Button
     Friend WithEvents btnGetURL_TBOX As System.Windows.Forms.Button
+    Private WithEvents btnGetURL_SWBOX As System.Windows.Forms.Button
+    Private WithEvents btnGetURL_PWBOX As System.Windows.Forms.Button
     Friend WithEvents btnGetInfos As System.Windows.Forms.Button
     Friend WithEvents btnGetLogs As System.Windows.Forms.Button
     Friend WithEvents btnSendFAX As System.Windows.Forms.Button
