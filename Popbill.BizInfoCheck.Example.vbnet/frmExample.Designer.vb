@@ -58,6 +58,15 @@ Partial Class frmExample
         Me.txtTargetCorpNum = New System.Windows.Forms.TextBox
         Me.Label4 = New System.Windows.Forms.Label
         Me.txtURL = New System.Windows.Forms.TextBox
+        Me.btnPaymentRequest = New System.Windows.Forms.Button
+        Me.btnGetSettleResult = New System.Windows.Forms.Button
+        Me.btnGetPaymentHistory = New System.Windows.Forms.Button
+        Me.btnGetUseHistory = New System.Windows.Forms.Button
+        Me.btnRefund = New System.Windows.Forms.Button
+        Me.btnGetRefundHistory = New System.Windows.Forms.Button
+        Me.btnGetRefundableBalance = New System.Windows.Forms.Button
+        Me.btnGetRefundInfo = New System.Windows.Forms.Button
+        Me.btnQuitMember = New System.Windows.Forms.Button
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -264,6 +273,14 @@ Partial Class frmExample
         '
         Me.GroupBox3.Controls.Add(Me.btnGetChargeInfo)
         Me.GroupBox3.Controls.Add(Me.btnUnitCost)
+        Me.GroupBox3.Controls.Add(Me.btnPaymentRequest)
+        Me.GroupBox3.Controls.Add(Me.btnGetSettleResult)
+        Me.GroupBox3.Controls.Add(Me.btnGetPaymentHistory)
+        Me.GroupBox3.Controls.Add(Me.btnGetUseHistory)
+        Me.GroupBox3.Controls.Add(Me.btnRefund)
+        Me.GroupBox3.Controls.Add(Me.btnGetRefundHistory)
+        Me.GroupBox3.Controls.Add(Me.btnGetRefundableBalance)
+        Me.GroupBox3.Controls.Add(Me.btnGetRefundInfo)
         Me.GroupBox3.Location = New System.Drawing.Point(145, 17)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(131, 155)
@@ -294,6 +311,7 @@ Partial Class frmExample
         Me.GroupBox6.Controls.Add(Me.btnCheckID)
         Me.GroupBox6.Controls.Add(Me.btnCheckIsMember)
         Me.GroupBox6.Controls.Add(Me.btnJoinMember)
+        Me.GroupBox6.Controls.Add(Me.btnQuitMember)
         Me.GroupBox6.Location = New System.Drawing.Point(6, 17)
         Me.GroupBox6.Name = "GroupBox6"
         Me.GroupBox6.Size = New System.Drawing.Size(131, 155)
@@ -414,6 +432,78 @@ Partial Class frmExample
         Me.txtURL.Name = "txtURL"
         Me.txtURL.Size = New System.Drawing.Size(279, 21)
         Me.txtURL.TabIndex = 4
+                '
+        ' btnPaymentRequest
+        '
+        Me.btnPaymentRequest.Location = new System.Drawing.Point(6, 92)
+        Me.btnPaymentRequest.Name = "btnPaymentRequest"
+        Me.btnPaymentRequest.Size = new System.Drawing.Size(119, 32)
+        Me.btnPaymentRequest.TabIndex = 8
+        Me.btnPaymentRequest.Text = "연동회원 무통장 입금신청"
+        '
+        ' btnGetSettleResult
+        '
+        Me.btnGetSettleResult.Location = new System.Drawing.Point(6, 128)
+        Me.btnGetSettleResult.Name = "btnGetSettleResult"
+        Me.btnGetSettleResult.Size = new System.Drawing.Size(119, 32)
+        Me.btnGetSettleResult.TabIndex = 0
+        Me.btnGetSettleResult.Text = "무통장 입금신청 정보확인"
+        '
+        ' btnGetPaymentHistory
+        '
+        Me.btnGetPaymentHistory.Location = new System.Drawing.Point(6, 166)
+        Me.btnGetPaymentHistory.Name = "btnGetPaymentHistory"
+        Me.btnGetPaymentHistory.Size = new System.Drawing.Size(119, 32)
+        Me.btnGetPaymentHistory.TabIndex = 0
+        Me.btnGetPaymentHistory.Text = "연동회원 포인트 결제내역 확인"
+        '
+        ' btnGetUseHistory
+        '
+        Me.btnGetUseHistory.Location = new System.Drawing.Point(6, 202)
+        Me.btnGetUseHistory.Name = "btnGetUseHistory"
+        Me.btnGetUseHistory.Size = new System.Drawing.Size(119, 32)
+        Me.btnGetUseHistory.TabIndex = 0
+        Me.btnGetUseHistory.Text = "연동회원 포인트 사용내역 확인"
+        '
+        ' btnRefund
+        '
+        Me.btnRefund.Location = new System.Drawing.Point(6, 238)
+        Me.btnRefund.Name = "btnRefund"
+        Me.btnRefund.Size = new System.Drawing.Size(119, 32)
+        Me.btnRefund.TabIndex = 0
+        Me.btnRefund.Text = "연동회원 포인트 환불신청"
+        '
+        ' btnGetRefundHistory
+        '
+        Me.btnGetRefundHistory.Location = new System.Drawing.Point(6, 274)
+        Me.btnGetRefundHistory.Name = "btnGetRefundHistory"
+        Me.btnGetRefundHistory.Size = new System.Drawing.Size(119, 32)
+        Me.btnGetRefundHistory.TabIndex = 0
+        Me.btnGetRefundHistory.Text = "연동회원 포인트 환불내역 확인"
+        '
+        ' btnGetRefundInfo
+        '
+        Me.btnGetRefundInfo.Location = new System.Drawing.Point(6, 310)
+        Me.btnGetRefundInfo.Name = "btnGetRefundInfo"
+        Me.btnGetRefundInfo.Size = new System.Drawing.Size(119, 32)
+        Me.btnGetRefundInfo.TabIndex = 0
+        Me.btnGetRefundInfo.Text = "환불 신청 상태 조회"
+        '
+        ' btnGetRefundableBalance
+        '
+        Me.btnGetRefundableBalance.Location = new System.Drawing.Point(6, 346)
+        Me.btnGetRefundableBalance.Name = "btnGetRefundableBalance"
+        Me.btnGetRefundableBalance.Size = new System.Drawing.Size(119, 32)
+        Me.btnGetRefundableBalance.TabIndex = 0
+        Me.btnGetRefundableBalance.Text = "환불 가능 포인트 조회"
+        '
+        ' btnQuitMember
+        '
+        Me.btnQuitMember.Location = new System.Drawing.Point(8, 132)
+        Me.btnQuitMember.Name = "btnQuitMember"
+        Me.btnQuitMember.Size = new System.Drawing.Size(104, 32)
+        Me.btnQuitMember.TabIndex = 23
+        Me.btnQuitMember.Text = "팝빌 회원 탈퇴"
         '
         'frmExample
         '
@@ -481,5 +571,14 @@ Partial Class frmExample
     Friend WithEvents btnGetUseHistoryURL As System.Windows.Forms.Button
     Friend WithEvents btnGetPaymentURL As System.Windows.Forms.Button
     Friend WithEvents btnGetContactInfo As System.Windows.Forms.Button
+    Private WithEvents btnPaymentRequest As System.Windows.Forms.Button
+    Private WithEvents btnGetSettleResult As System.Windows.Forms.Button
+    Private WithEvents btnGetPaymentHistory As System.Windows.Forms.Button
+    Private WithEvents btnGetUseHistory As System.Windows.Forms.Button
+    Private WithEvents btnRefund As System.Windows.Forms.Button
+    Private WithEvents btnGetRefundHistory As System.Windows.Forms.Button
+    Private WithEvents btnGetRefundableBalance As System.Windows.Forms.Button
+    Private WithEvents btnGetRefundInfo As System.Windows.Forms.Button
+    Private WithEvents btnQuitMember As System.Windows.Forms.Button
 
 End Class

@@ -516,4 +516,309 @@ Public Class frmExample
 
         End Try
     End Sub
+    '=========================================================================
+    ' 연동회원 포인트 충전을 위해 무통장입금을 신청합니다.
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/point#PaymentRequest
+    '=========================================================================
+    Private Sub btnPaymentRequest_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPaymentRequest.Click
+
+        '입금신청 객체정보
+        Dim paymentForm As New PaymentForm
+
+        '담당자명
+        paymentForm.settlerName	="담당자명"
+        '담당자 이메일
+        paymentForm.settlerEmail	="담당자 이메일"
+        '담당자 휴대폰
+        paymentForm.notifyHP	="담당자 휴대폰"
+        '입금자명
+        paymentForm.paymentName	="입금자명"
+        '결제금액
+        paymentForm.settleCost	="결제금액"
+
+        Try
+            Dim response As PaymentResponse = bizInfoCheckService.PaymentRequest(txtCorpNum.Text, paymentForm, txtUserId.Text)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.message+vbCrLf + "정산코드(settleCode) : " + response.settleCode)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원 포인트 무통장 입금신청내역 1건을 확인합니다.
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/point#GetSettleResult
+    '=========================================================================
+    Private Sub btnGetSettleResult_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSettleResult.Click
+
+        '정산코드
+        Dim SettleCode As String = "202301160000000010"
+
+        Try
+            Dim response As PaymentHistory = bizInfoCheckService.GetSettleResult (txtCorpNum.Text, SettleCode, txtUserId.Text)
+
+            MsgBox(
+                "결제 내용(productType) : " + response.productType + vbCrLf +
+                "정액제 상품명(productName) : " + response.productName + vbCrLf +
+                "결제 유형(settleType) : " + response.settleType + vbCrLf +
+                "담당자명(settlerName) : " + response.settlerName + vbCrLf +
+                "담당자메일(settlerEmail) : " + response.settlerEmail + vbCrLf +
+                "결제 금액(settleCost) : " + response.settleCost + vbCrLf +
+                "충전포인트(settlePoint) : " + response.settlePoint + vbCrLf +
+                "결제 상태(settleState) : " + response.settleState.ToString() + vbCrLf +
+                "등록일시(regDT) : " + response.regDT + vbCrLf +
+                "상태일시(stateDT) : " + response.stateDT
+                )
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원의 포인트 결제내역을 확인합니다.
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/point#GetPaymentHistory
+    '=========================================================================
+    Private Sub btnGetPaymentHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPaymentHistory.Click
+
+        '조회 시작 일자
+        Dim SDate As String = "20230501"
+
+        '조회 종료 일자
+        Dim EDate As String = "20230530"
+
+        '목록 페이지 번호
+        Dim Page  As Integer = 1
+
+        '페이지당 목록 개수
+        Dim PerPage  As Integer = 500
+
+        Try
+            Dim result As PaymentHistoryResult = bizInfoCheckService.GetPaymentHistory(txtCorpNum.Text,SDate,EDate,Page,PerPage, txtUserId.Text)
+
+            Dim tmp As String = ""
+            For Each history As PaymentHistory In result.list
+
+            tmp += "결제 내용(productType) : " + history.productType + vbCrLf
+            tmp += "정액제 상품명(productName) : " + history.productName + vbCrLf
+            tmp += "결제 유형(settleType) : " + history.settleType + vbCrLf
+            tmp += "담당자명(settlerName) : " + history.settlerName + vbCrLf
+            tmp += "담당자메일(settlerEmail) : " + history.settlerEmail + vbCrLf
+            tmp += "결제 금액(settleCost) : " + history.settleCost + vbCrLf
+            tmp += "충전포인트(settlePoint) : " + history.settlePoint + vbCrLf
+            tmp += "결제 상태(settleState) : " + history.settleState.ToString() + vbCrLf
+            tmp += "등록일시(regDT) : " + history.regDT + vbCrLf
+            tmp += "상태일시(stateDT) : " + history.stateDT + vbCrLf
+            tmp += vbCrLf
+
+            Next
+
+            MsgBox(tmp)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원의 포인트 사용내역을 확인합니다.
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/point#GetUseHistory
+    '=========================================================================
+    Private Sub btnGetUseHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetUseHistory.Click
+
+        '조회 시작 일자
+        Dim SDate As String = "20230501"
+
+        '조회 종료 일자
+        Dim EDate As String = "20230530"
+
+        '목록 페이지 번호
+        Dim Page  As Integer = 1
+
+        '페이지당 목록 개수
+        Dim PerPage  As Integer = 500
+
+        '목록 정렬 방향
+        Dim Order As String = "D"
+
+        Try
+            Dim result As UseHistoryResult = bizInfoCheckService.GetUseHistory(txtCorpNum.Text,SDate,EDate,Page,PerPage, Order, txtUserId.Text)
+
+            Dim tmp As String = ""
+            For Each history As UseHistory In result.list
+
+                tmp += "서비스 코드(itemCode) : " + history.itemCode + vbCrLf
+                tmp += "포인트 증감 유형(txType) : " + history.txType + vbCrLf
+                tmp += "결제 유형(txPoint) : " + history.txPoint + vbCrLf
+                tmp += "담당자명(balance) : " + history.balance + vbCrLf
+                tmp += "담당자메일(txDT) : " + history.txDT + vbCrLf
+                tmp += "결제 금액(userID) : " + history.userID + vbCrLf
+                tmp += "충전포인트(userName) : " + history.userName + vbCrLf
+                tmp += vbCrLf
+
+            Next
+
+            MsgBox(tmp)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원 포인트를 환불 신청합니다.
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/point#Refund
+    '=========================================================================
+    Private Sub btnRefund_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRefund.Click
+
+        '환불신청 객체정보
+        Dim refundForm As RefundForm = New RefundForm
+
+        '담당자명
+        refundForm.ContactName = "담당자명"
+
+        '담당자 연락처
+        refundForm.TEL = "010-1234-1234"
+
+        '환불 신청 포인트
+        refundForm.RequestPoint = "100"
+
+        '은행명
+        refundForm.AccountBank = "국민"
+
+        '계좌 번호
+        refundForm.AccountNum = "123-12-10981204"
+
+        '예금주명
+        refundForm.AccountName = "예금주"
+
+        '환불 사유
+        refundForm.Reason = "환불 사유"
+
+        Try
+            Dim response As RefundResponse = bizInfoCheckService.Refund(txtCorpNum.Text,refundForm, txtUserId.Text)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf +
+                        "응답메시지(message) : " + response.Message + vbCrLf +
+                   "환불코드(refundCode) : " +response.refundCode )
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 연동회원의 포인트 환불신청내역을 확인합니다.
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/point#GetRefundHistory
+    '=========================================================================
+    Private Sub btnGetRefundHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetRefundHistory.Click
+
+        '목폭 페이지 번호
+        Dim Page As Integer = 1
+
+        '페이지당 목록 개수
+        Dim PerPage As Integer = 500
+
+
+        Try
+            Dim result As RefundHistoryResult  = bizInfoCheckService.GetRefundHistory(txtCorpNum.Text,Page, PerPage, txtUserId.Text)
+
+            Dim tmp As String = ""
+
+            For Each history As RefundHistory In result.list
+                tmp += "reqDT (신청일시) :" + history.reqDT + vbCrLf
+                tmp += "requestPoint (환불 신청포인트) :" + history.requestPoint + vbCrLf
+                tmp += "accountBank (환불계좌 은행명) :" + history.accountBank + vbCrLf
+                tmp += "accountNum (환불계좌번호) :" + history.accountNum + vbCrLf
+                tmp += "accountName (환불계좌 예금주명) :" + history.accountName + vbCrLf
+                tmp += "state (상태) : " + history.state.ToString() + vbCrLf
+                tmp += "reason (환불사유) : " + history.reason + vbCrLf
+            Next
+
+            MsgBox("응답코드(code) : " + result.code.ToString() + vbCrLf+
+                   "총 검색결과 건수(total) : " + result.total.ToString() + vbCrLf+
+                   "페이지당 검색개수(perPage) : " + result.perPage.ToString() +vbCrLf+
+                   "페이지 번호(pageNum) : " + result.pageNum.ToString() +vbCrLf+
+                   "페이지 개수(pageCount) : " + result.pageCount.ToString() +vbCrLf +
+                   "사용내역"+vbCrLf+
+                   tmp)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 포인트 환불에 대한 상세정보 1건을 확인합니다.
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/point#GetRefundInfo
+    '=========================================================================
+    Private Sub btnGetRefundInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetRefundInfo.Click
+
+        '환불코드
+        Dim refundCode As String = "023040000017"
+
+        Try
+            Dim history As RefundHistory  = bizInfoCheckService.GetRefundInfo(txtCorpNum.Text,refundCode, txtUserId.Text)
+
+            MsgBox("reqDT (신청일시) :" + history.reqDT + vbCrLf+
+                   "requestPoint (환불 신청포인트) :" + history.requestPoint + vbCrLf+
+                   "accountBank (환불계좌 은행명) :" + history.accountBank + vbCrLf+
+                   "accountNum (환불계좌번호) :" + history.accountNum + vbCrLf+
+                   "accountName (환불계좌 예금주명) :" + history.accountName + vbCrLf+
+                   "state (상태) : " + history.state.ToString() + vbCrLf+
+                   "reason (환불사유) : " + history.reason + vbCrLf
+                   )
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 환불 가능한 포인트를 확인합니다. (보너스 포인트는 환불가능포인트에서 제외됩니다.)
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/point#GetRefundableBalance
+    '=========================================================================
+    Private Sub btnGetRefundableBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetRefundInfo.Click
+
+        Try
+            Dim refundableCode As Double  = bizInfoCheckService.GetRefundableBalance(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox("환불 가능 포인트(refundableCode) : " + refundableCode)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' 가입된 연동회원의 탈퇴를 요청합니다.
+    ' - 회원탈퇴 신청과 동시에 팝빌의 모든 서비스 이용이 불가하며, 관리자를 포함한 모든 담당자 계정도 일괄탈퇴 됩니다.
+    ' - 회원탈퇴로 삭제된 데이터는 복원이 불가능합니다.
+    ' - 관리자 계정만 회원탈퇴가 가능합니다.
+    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/member#QuitMember
+    '=========================================================================
+    Private Sub btnQuitMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetRefundInfo.Click
+
+        '탈퇴사유
+        Dim quitReason As String = "회원 탈퇴 사유"
+
+        Try
+            Dim response As Response  = bizInfoCheckService.QuitMember(txtCorpNum.Text, quitReason, txtUserId.Text)
+
+            MsgBox("응답코드(code) : " + response.code.ToString() + vbCrLf + "응답메시지(message) : " + response.Message)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString() + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
 End Class
