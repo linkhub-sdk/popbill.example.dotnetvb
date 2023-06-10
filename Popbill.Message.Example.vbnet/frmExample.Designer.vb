@@ -118,6 +118,7 @@ Partial Class frmExample
         Me.btnGetRefundableBalance = New System.Windows.Forms.Button
         Me.btnGetRefundInfo = New System.Windows.Forms.Button
         Me.btnQuitMember = New System.Windows.Forms.Button
+        Me.btnCheckAutoDenyNumber = New System.Windows.Forms.Button
         Me.groupBox7.SuspendLayout()
         Me.groupBox8.SuspendLayout()
         Me.groupBox6.SuspendLayout()
@@ -1056,6 +1057,14 @@ Partial Class frmExample
         Me.btnQuitMember.Size = new System.Drawing.Size(104, 32)
         Me.btnQuitMember.TabIndex = 23
         Me.btnQuitMember.Text = "팝빌 회원 탈퇴"
+        '
+        ' btnCheckAutoDenyNumber
+        '
+        Me.btnCheckAutoDenyNumber.Location = new System.Drawing.Point(8, 132)
+        Me.btnCheckAutoDenyNumber.Name = "btnCheckAutoDenyNumber"
+        Me.btnCheckAutoDenyNumber.Size = new System.Drawing.Size(104, 32)
+        Me.btnCheckAutoDenyNumber.TabIndex = 23
+        Me.btnCheckAutoDenyNumber.Text = "080 번호 확인"
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
@@ -1191,4 +1200,5 @@ Partial Class frmExample
     Private WithEvents btnGetRefundableBalance As System.Windows.Forms.Button
     Private WithEvents btnGetRefundInfo As System.Windows.Forms.Button
     Private WithEvents btnQuitMember As System.Windows.Forms.Button
+    Private WithEvents btnCheckAutoDenyNumber As System.Windows.Forms.Button
 End Class

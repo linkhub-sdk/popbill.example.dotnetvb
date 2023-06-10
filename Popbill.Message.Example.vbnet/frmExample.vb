@@ -1843,4 +1843,22 @@ Public Class frmExample
 
         End Try
     End Sub
+
+    '=========================================================================
+    ' 팝빌회원에 등록된 080 수신거부 번호 정보를 확인합니다.
+    ' - https://developers.popbill.com/reference/sms/php/api/info#CheckAutoDenyNumber
+    '=========================================================================
+    Private Sub btnCheckAutoDenyNumber_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetRefundInfo.Click
+
+        Try
+            Dim response As AutoDenyNumberInfo  = messageService.CheckAutoDenyNumber(txtCorpNum.Text, txtUserId.Text)
+
+            MsgBox("전용 080 번호(smsdenyNumber) : " + response.smsdenyNumber.ToString + vbCrLf +
+                   "등록일시 (regDT) : " + response.regDT)
+
+        Catch ex As PopbillException
+            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+
+        End Try
+    End Sub
 End Class
