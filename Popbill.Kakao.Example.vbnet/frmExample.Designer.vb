@@ -105,6 +105,8 @@ Partial Class frmExample
         Me.btnGetRefundableBalance = New System.Windows.Forms.Button
         Me.btnGetRefundInfo = New System.Windows.Forms.Button
         Me.btnQuitMember = New System.Windows.Forms.Button
+        Me.btnCancelReserveRNbyRCV = New System.Windows.Forms.Button
+        Me.btnCancelReservebyRCV = New System.Windows.Forms.Button
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
@@ -497,6 +499,8 @@ Partial Class frmExample
         Me.GroupBox12.Controls.Add(Me.Label5)
         Me.GroupBox12.Controls.Add(Me.txtRequestNum)
         Me.GroupBox12.Controls.Add(Me.btnCancelReserveRN)
+        Me.GroupBox12.Controls.Add(Me.btnCancelReserveRNbyRCV)
+        Me.GroupBox12.Controls.Add(Me.btnCancelReservebyRCV)
         Me.GroupBox12.Controls.Add(Me.btnGetMessagesRN)
         Me.GroupBox12.Location = New System.Drawing.Point(299, 190)
         Me.GroupBox12.Name = "GroupBox12"
@@ -529,6 +533,26 @@ Partial Class frmExample
         Me.btnCancelReserveRN.TabIndex = 8
         Me.btnCancelReserveRN.Text = "예약전송 취소"
         Me.btnCancelReserveRN.UseVisualStyleBackColor = True
+        '
+        '
+        'btnCancelReserveRNbyRCV
+        '
+        Me.btnCancelReserveRNbyRCV.Location = New System.Drawing.Point(141, 47)
+        Me.btnCancelReserveRNbyRCV.Name = "btnCancelReserveRNbyRCV"
+        Me.btnCancelReserveRNbyRCV.Size = New System.Drawing.Size(122, 33)
+        Me.btnCancelReserveRNbyRCV.TabIndex = 8
+        Me.btnCancelReserveRNbyRCV.Text = "예약전송 일부 취소 (전송 요청번호)"
+        Me.btnCancelReserveRNbyRCV.UseVisualStyleBackColor = True
+        '
+        '
+        'btnCancelReservebyRCV
+        '
+        Me.btnCancelReservebyRCV.Location = New System.Drawing.Point(141, 47)
+        Me.btnCancelReservebyRCV.Name = "btnCancelReservebyRCV"
+        Me.btnCancelReservebyRCV.Size = New System.Drawing.Size(122, 33)
+        Me.btnCancelReservebyRCV.TabIndex = 8
+        Me.btnCancelReservebyRCV.Text = "예약전송 일부 취소 (접수번호)"
+        Me.btnCancelReservebyRCV.UseVisualStyleBackColor = True
         '
         'btnGetMessagesRN
         '
@@ -1041,4 +1065,6 @@ Partial Class frmExample
     Private WithEvents btnGetRefundableBalance As System.Windows.Forms.Button
     Private WithEvents btnGetRefundInfo As System.Windows.Forms.Button
     Private WithEvents btnQuitMember As System.Windows.Forms.Button
+    Private WithEvents btnCancelReserveRNbyRCV As System.Windows.Forms.Button
+    Private WithEvents btnCancelReservebyRCV As System.Windows.Forms.Button
 End Class
