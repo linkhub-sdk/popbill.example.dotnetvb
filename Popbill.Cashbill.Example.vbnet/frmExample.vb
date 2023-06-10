@@ -505,7 +505,7 @@ Public Class frmExample
             tmp += "ntsresultCode (국세청 처리결과 상태코드) : " + cbInfo.ntsresultCode + vbCrLf
             tmp += "ntsresultMessage (국세청 처리결과 메시지) : " + cbInfo.ntsresultMessage + vbCrLf
             tmp += "printYN (인쇄여부) : " + cbInfo.printYN.ToString + vbCrLf
-
+            tmp += "interOPYN (연동문서여부) : " + cbInfo.interOPYN.ToString + vbCrLf + vbCrLf
             MsgBox(tmp)
 
         Catch ex As PopbillException
@@ -557,7 +557,8 @@ Public Class frmExample
                 tmp += "ntsresultDT (국세청 처리결과 수신일시) : " + cbInfo.ntsresultDT + vbCrLf
                 tmp += "ntsresultCode (국세청 처리결과 상태코드) : " + cbInfo.ntsresultCode + vbCrLf
                 tmp += "ntsresultMessage (국세청 처리결과 메시지) : " + cbInfo.ntsresultMessage + vbCrLf
-                tmp += "printYN (인쇄여부) : " + cbInfo.printYN.ToString + vbCrLf + vbCrLf
+                tmp += "printYN (인쇄여부) : " + cbInfo.printYN.ToString + vbCrLf
+                tmp += "interOPYN (연동문서여부) : " + cbInfo.interOPYN.ToString + vbCrLf + vbCrLf
             Next
 
             MsgBox(tmp)
@@ -721,7 +722,8 @@ Public Class frmExample
                 tmp += "ntsresultDT (국세청 처리결과 수신일시) : " + cbInfo.ntsresultDT + vbCrLf
                 tmp += "ntsresultCode (국세청 처리결과 상태코드) : " + cbInfo.ntsresultCode + vbCrLf
                 tmp += "ntsresultMessage (국세청 처리결과 메시지) : " + cbInfo.ntsresultMessage + vbCrLf
-                tmp += "printYN (인쇄여부) : " + cbInfo.printYN.ToString + vbCrLf + vbCrLf
+                tmp += "printYN (인쇄여부) : " + cbInfo.printYN.ToString + vbCrLf
+                tmp += "interOPYN (연동문서여부) : " + cbInfo.interOPYN.ToString + vbCrLf + vbCrLf
             Next
 
             MsgBox(tmp)
