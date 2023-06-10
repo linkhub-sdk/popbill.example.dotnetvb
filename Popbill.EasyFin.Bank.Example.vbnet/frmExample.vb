@@ -1016,7 +1016,7 @@ Public Class frmExample
     End Sub
     '=========================================================================
     ' 연동회원 포인트 충전을 위해 무통장입금을 신청합니다.
-    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/point#PaymentRequest
+    ' - https://developers.popbill.com/reference/easyfinbank/dotnet/api/point#PaymentRequest
     '=========================================================================
     Private Sub btnPaymentRequest_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPaymentRequest.Click
 
@@ -1047,7 +1047,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원 포인트 무통장 입금신청내역 1건을 확인합니다.
-    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/point#GetSettleResult
+    ' - https://developers.popbill.com/reference/easyfinbank/dotnet/api/point#GetSettleResult
     '=========================================================================
     Private Sub btnGetSettleResult_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSettleResult.Click
 
@@ -1078,7 +1078,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 포인트 결제내역을 확인합니다.
-    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/point#GetPaymentHistory
+    ' - https://developers.popbill.com/reference/easyfinbank/dotnet/api/point#GetPaymentHistory
     '=========================================================================
     Private Sub btnGetPaymentHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPaymentHistory.Click
 
@@ -1124,7 +1124,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 포인트 사용내역을 확인합니다.
-    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/point#GetUseHistory
+    ' - https://developers.popbill.com/reference/easyfinbank/dotnet/api/point#GetUseHistory
     '=========================================================================
     Private Sub btnGetUseHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetUseHistory.Click
 
@@ -1170,7 +1170,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원 포인트를 환불 신청합니다.
-    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/point#Refund
+    ' - https://developers.popbill.com/reference/easyfinbank/dotnet/api/point#Refund
     '=========================================================================
     Private Sub btnRefund_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRefund.Click
 
@@ -1213,7 +1213,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 포인트 환불신청내역을 확인합니다.
-    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/point#GetRefundHistory
+    ' - https://developers.popbill.com/reference/easyfinbank/dotnet/api/point#GetRefundHistory
     '=========================================================================
     Private Sub btnGetRefundHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetRefundHistory.Click
 
@@ -1255,7 +1255,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 포인트 환불에 대한 상세정보 1건을 확인합니다.
-    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/point#GetRefundInfo
+    ' - https://developers.popbill.com/reference/easyfinbank/dotnet/api/point#GetRefundInfo
     '=========================================================================
     Private Sub btnGetRefundInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetRefundInfo.Click
 
@@ -1282,7 +1282,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 환불 가능한 포인트를 확인합니다. (보너스 포인트는 환불가능포인트에서 제외됩니다.)
-    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/point#GetRefundableBalance
+    ' - https://developers.popbill.com/reference/easyfinbank/dotnet/api/point#GetRefundableBalance
     '=========================================================================
     Private Sub btnGetRefundableBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetRefundInfo.Click
 
@@ -1302,7 +1302,7 @@ Public Class frmExample
     ' - 회원탈퇴 신청과 동시에 팝빌의 모든 서비스 이용이 불가하며, 관리자를 포함한 모든 담당자 계정도 일괄탈퇴 됩니다.
     ' - 회원탈퇴로 삭제된 데이터는 복원이 불가능합니다.
     ' - 관리자 계정만 회원탈퇴가 가능합니다.
-    ' - https://developers.popbill.com/reference/accountcheck/dotnet/api/member#QuitMember
+    ' - https://developers.popbill.com/reference/easyfinbank/dotnet/api/member#QuitMember
     '=========================================================================
     Private Sub btnQuitMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetRefundInfo.Click
 
