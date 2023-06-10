@@ -245,7 +245,7 @@ Partial Class frmExample
         Me.btnGetURL_WRITE.Name = "btnGetURL_WRITE"
         Me.btnGetURL_WRITE.Size = New System.Drawing.Size(102, 26)
         Me.btnGetURL_WRITE.TabIndex = 11
-        Me.btnGetURL_WRITE.Text = "매출작성"
+        Me.btnGetURL_WRITE.Text = "현금영수증 작성"
         Me.btnGetURL_WRITE.UseVisualStyleBackColor = True
         '
         'btnGetURL_PBOX
@@ -254,12 +254,12 @@ Partial Class frmExample
         Me.btnGetURL_PBOX.Name = "btnGetURL_PBOX"
         Me.btnGetURL_PBOX.Size = New System.Drawing.Size(102, 26)
         Me.btnGetURL_PBOX.TabIndex = 9
-        Me.btnGetURL_PBOX.Text = "발행보관함"
+        Me.btnGetURL_PBOX.Text = "발행문서함"
         Me.btnGetURL_PBOX.UseVisualStyleBackColor = True
         '
         'btnGetURL_TBOX
         '
-        Me.btnGetURL_TBOX.Location = New System.Drawing.Point(6, 20)
+        Me.btnGetURL_TBOX.Location = New System.Drawing.Point(6, 116)
         Me.btnGetURL_TBOX.Name = "btnGetURL_TBOX"
         Me.btnGetURL_TBOX.Size = New System.Drawing.Size(102, 26)
         Me.btnGetURL_TBOX.TabIndex = 8
