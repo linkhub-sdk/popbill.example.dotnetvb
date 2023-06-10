@@ -491,7 +491,6 @@ Public Class frmExample
             tmp += "totalAmount (거래금액) : " + cbInfo.totalAmount + vbCrLf
             tmp += "issueDT (발행일시) : " + cbInfo.issueDT + vbCrLf
             tmp += "regDT (등록일시) : " + cbInfo.regDT + vbCrLf
-            tmp += "stateMemo (상태메모) : " + cbInfo.stateMemo + vbCrLf
             tmp += "stateCode (상태코드) : " + cbInfo.stateCode.ToString + vbCrLf
             tmp += "stateDT (상태변경일시) : " + cbInfo.stateDT + vbCrLf
             tmp += "identityNum (식별번호) : " + cbInfo.identityNum + vbCrLf
@@ -544,7 +543,6 @@ Public Class frmExample
                 tmp += "totalAmount (거래금액) : " + cbInfo.totalAmount + vbCrLf
                 tmp += "issueDT (발행일시) : " + cbInfo.issueDT + vbCrLf
                 tmp += "regDT (등록일시) : " + cbInfo.regDT + vbCrLf
-                tmp += "stateMemo (상태메모) : " + cbInfo.stateMemo + vbCrLf
                 tmp += "stateCode (상태코드) : " + cbInfo.stateCode.ToString + vbCrLf
                 tmp += "stateDT (상태변경일시) : " + cbInfo.stateDT + vbCrLf
                 tmp += "identityNum (식별번호) : " + cbInfo.identityNum + vbCrLf
@@ -709,7 +707,6 @@ Public Class frmExample
                 tmp += "totalAmount (거래금액) : " + cbInfo.totalAmount + vbCrLf
                 tmp += "issueDT (발행일시) : " + cbInfo.issueDT + vbCrLf
                 tmp += "regDT (등록일시) : " + cbInfo.regDT + vbCrLf
-                tmp += "stateMemo (상태메모) : " + cbInfo.stateMemo + vbCrLf
                 tmp += "stateCode (상태코드) : " + cbInfo.stateCode.ToString + vbCrLf
                 tmp += "stateDT (상태변경일시) : " + cbInfo.stateDT + vbCrLf
                 tmp += "identityNum (식별번호) : " + cbInfo.identityNum + vbCrLf
