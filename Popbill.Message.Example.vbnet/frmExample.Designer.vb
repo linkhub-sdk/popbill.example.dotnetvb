@@ -109,6 +109,15 @@ Partial Class frmExample
         Me.Label9 = New System.Windows.Forms.Label
         Me.txtReceiveNumRNbyRCV = New System.Windows.Forms.TextBox
         Me.Label10 = New System.Windows.Forms.Label
+        Me.btnPaymentRequest = New System.Windows.Forms.Button
+        Me.btnGetSettleResult = New System.Windows.Forms.Button
+        Me.btnGetPaymentHistory = New System.Windows.Forms.Button
+        Me.btnGetUseHistory = New System.Windows.Forms.Button
+        Me.btnRefund = New System.Windows.Forms.Button
+        Me.btnGetRefundHistory = New System.Windows.Forms.Button
+        Me.btnGetRefundableBalance = New System.Windows.Forms.Button
+        Me.btnGetRefundInfo = New System.Windows.Forms.Button
+        Me.btnQuitMember = New System.Windows.Forms.Button
         Me.groupBox7.SuspendLayout()
         Me.groupBox8.SuspendLayout()
         Me.groupBox6.SuspendLayout()
@@ -780,6 +789,14 @@ Partial Class frmExample
         Me.GroupBox3.Controls.Add(Me.btnGetUnitCost_LMS)
         Me.GroupBox3.Controls.Add(Me.btnGetChargeInfo_SMS)
         Me.GroupBox3.Controls.Add(Me.btnUnitCost_SMS)
+        Me.GroupBox3.Controls.Add(Me.btnPaymentRequest)
+        Me.GroupBox3.Controls.Add(Me.btnGetSettleResult)
+        Me.GroupBox3.Controls.Add(Me.btnGetPaymentHistory)
+        Me.GroupBox3.Controls.Add(Me.btnGetUseHistory)
+        Me.GroupBox3.Controls.Add(Me.btnRefund)
+        Me.GroupBox3.Controls.Add(Me.btnGetRefundHistory)
+        Me.GroupBox3.Controls.Add(Me.btnGetRefundableBalance)
+        Me.GroupBox3.Controls.Add(Me.btnGetRefundInfo)
         Me.GroupBox3.Location = New System.Drawing.Point(145, 17)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(288, 160)
@@ -846,6 +863,7 @@ Partial Class frmExample
         Me.GroupBox9.Controls.Add(Me.btnCheckID)
         Me.GroupBox9.Controls.Add(Me.btnCheckIsMember)
         Me.GroupBox9.Controls.Add(Me.btnJoinMember)
+        Me.GroupBox9.Controls.Add(Me.btnQuitMember)
         Me.GroupBox9.Location = New System.Drawing.Point(6, 17)
         Me.GroupBox9.Name = "GroupBox9"
         Me.GroupBox9.Size = New System.Drawing.Size(131, 160)
@@ -1092,5 +1110,13 @@ Partial Class frmExample
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents txtReceiveNumbyRCV As System.Windows.Forms.TextBox
     Friend WithEvents Label9 As System.Windows.Forms.Label
-
+    Private WithEvents btnPaymentRequest As System.Windows.Forms.Button
+    Private WithEvents btnGetSettleResult As System.Windows.Forms.Button
+    Private WithEvents btnGetPaymentHistory As System.Windows.Forms.Button
+    Private WithEvents btnGetUseHistory As System.Windows.Forms.Button
+    Private WithEvents btnRefund As System.Windows.Forms.Button
+    Private WithEvents btnGetRefundHistory As System.Windows.Forms.Button
+    Private WithEvents btnGetRefundableBalance As System.Windows.Forms.Button
+    Private WithEvents btnGetRefundInfo As System.Windows.Forms.Button
+    Private WithEvents btnQuitMember As System.Windows.Forms.Button
 End Class
