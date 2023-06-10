@@ -99,6 +99,15 @@ Partial Class frmExample
         Me.btnJoinMember = New System.Windows.Forms.Button
         Me.Label5 = New System.Windows.Forms.Label
         Me.txtURL = New System.Windows.Forms.TextBox
+        Me.btnPaymentRequest = New System.Windows.Forms.Button
+        Me.btnGetSettleResult = New System.Windows.Forms.Button
+        Me.btnGetPaymentHistory = New System.Windows.Forms.Button
+        Me.btnGetUseHistory = New System.Windows.Forms.Button
+        Me.btnRefund = New System.Windows.Forms.Button
+        Me.btnGetRefundHistory = New System.Windows.Forms.Button
+        Me.btnGetRefundableBalance = New System.Windows.Forms.Button
+        Me.btnGetRefundInfo = New System.Windows.Forms.Button
+        Me.btnQuitMember = New System.Windows.Forms.Button
         Me.GroupBox7.SuspendLayout()
         Me.GroupBox24.SuspendLayout()
         Me.GroupBox13.SuspendLayout()
@@ -805,6 +814,14 @@ Partial Class frmExample
         '
         Me.GroupBox19.Controls.Add(Me.btnGetChargeInfo)
         Me.GroupBox19.Controls.Add(Me.btnGetUnitCost)
+        Me.GroupBox19.Controls.Add(Me.btnPaymentRequest)
+        Me.GroupBox19.Controls.Add(Me.btnGetSettleResult)
+        Me.GroupBox19.Controls.Add(Me.btnGetPaymentHistory)
+        Me.GroupBox19.Controls.Add(Me.btnGetUseHistory)
+        Me.GroupBox19.Controls.Add(Me.btnRefund)
+        Me.GroupBox19.Controls.Add(Me.btnGetRefundHistory)
+        Me.GroupBox19.Controls.Add(Me.btnGetRefundableBalance)
+        Me.GroupBox19.Controls.Add(Me.btnGetRefundInfo)
         Me.GroupBox19.Location = New System.Drawing.Point(145, 17)
         Me.GroupBox19.Name = "GroupBox19"
         Me.GroupBox19.Size = New System.Drawing.Size(131, 152)
@@ -835,6 +852,7 @@ Partial Class frmExample
         Me.GroupBox20.Controls.Add(Me.btnCheckID)
         Me.GroupBox20.Controls.Add(Me.btnCheckIsMember)
         Me.GroupBox20.Controls.Add(Me.btnJoinMember)
+        Me.GroupBox20.Controls.Add(Me.btnQuitMember)
         Me.GroupBox20.Location = New System.Drawing.Point(6, 17)
         Me.GroupBox20.Name = "GroupBox20"
         Me.GroupBox20.Size = New System.Drawing.Size(131, 152)
@@ -1000,5 +1018,14 @@ Partial Class frmExample
     Friend WithEvents txtSubmitID As System.Windows.Forms.TextBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents btnGetBulkResult As System.Windows.Forms.Button
+    Private WithEvents btnPaymentRequest As System.Windows.Forms.Button
+    Private WithEvents btnGetSettleResult As System.Windows.Forms.Button
+    Private WithEvents btnGetPaymentHistory As System.Windows.Forms.Button
+    Private WithEvents btnGetUseHistory As System.Windows.Forms.Button
+    Private WithEvents btnRefund As System.Windows.Forms.Button
+    Private WithEvents btnGetRefundHistory As System.Windows.Forms.Button
+    Private WithEvents btnGetRefundableBalance As System.Windows.Forms.Button
+    Private WithEvents btnGetRefundInfo As System.Windows.Forms.Button
+    Private WithEvents btnQuitMember As System.Windows.Forms.Button
 
 End Class
