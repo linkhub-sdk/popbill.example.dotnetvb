@@ -3,7 +3,7 @@
 ' 팝빌 문자 API VB.Net SDK Example
 '
 ' - VB.Net 연동환경 설정방법 안내 : https://developers.popbill.com/guide/sms/dotnet/getting-started/tutorial?fwn=vb
-' - 업데이트 일자 : 2022-10-26
+' - 업데이트 일자 : 2023-06-11
 ' - 연동 기술지원 연락처 : 1600-9854
 ' - 연동 기술지원 이메일 : code@linkhubcorp.com
 '

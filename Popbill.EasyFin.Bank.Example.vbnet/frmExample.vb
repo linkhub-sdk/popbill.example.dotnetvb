@@ -3,7 +3,7 @@
 ' 팝빌 계좌조회 API VB.Net SDK Example
 '
 ' - VB.Net SDK 연동환경 설정방법 안내 : https://developers.popbill.com/guide/easyfinbank/dotnet/getting-started/tutorial?fwn=vb
-' - 업데이트 일자 : 2022-05-13
+' - 업데이트 일자 : 2023-06-11
 ' - 연동 기술지원 연락처 : 1600-8536
 ' - 연동 기술지원 이메일 : code@linkhubcorp.com
 '
