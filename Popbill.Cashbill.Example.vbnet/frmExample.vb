@@ -61,7 +61,7 @@ Public Class frmExample
 
         Catch ex As PopbillException
 
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -160,10 +160,10 @@ Public Class frmExample
         Try
             Dim response As CBIssueResponse = cashbillService.RegistIssue(txtCorpNum.Text, cashbill, memo, txtUserId.Text, emailSubject)
 
-            MsgBox("응답코드(code) : " + response.code.ToString + vbCrLf + "응답메시지(message) : " + response.message + vbCrLf _
-                   + "국세청 승인번호(confirmNum) : " + response.confirmNum + vbCrLf + "거래일자(tradeDate) : " + response.tradeDate)
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message + vbCrLf _
+                   + "confirmNum(국세청 승인번호) : " + response.confirmNum + vbCrLf + "tradeDate(거래일자) : " + response.tradeDate)
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -268,9 +268,9 @@ Public Class frmExample
         Try
             Dim response As BulkResponse = cashbillService.BulkSubmit(txtCorpNum.Text, txtSubmitID.Text, cashbillList)
 
-            MsgBox("응답코드(code) : " + response.code.ToString + vbCrLf + "응답메시지(message) : " + response.message + vbCrLf + "접수아이디(receiptID) : " + response.receiptID)
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message + vbCrLf + "receiptID(접수아이디) : " + response.receiptID)
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -285,36 +285,36 @@ Public Class frmExample
 
             Dim tmp As String = ""
 
-            tmp += "응답 코드(code) : " + result.code.ToString + vbCrLf
-            tmp += "응답메시지(message) : " + result.message + vbCrLf
-            tmp += "제출아이디(submitID) : " + result.submitID + vbCrLf
-            tmp += "현금영수증 접수 건수(submitCount) : " + result.submitCount.ToString + vbCrLf
-            tmp += "현금영수증 발행 성공 건수(successCount) : " + result.successCount.ToString + vbCrLf
-            tmp += "현금영수증 발행 실패 건수(failCount) : " + result.failCount.ToString + vbCrLf
-            tmp += "접수상태코드(txState) : " + result.txState.ToString + vbCrLf
-            tmp += "접수 결과코드(txResultCode) : " + result.txResultCode.ToString + vbCrLf
-            tmp += "발행처리 시작일시(txStartDT) : " + result.txStartDT + vbCrLf
-            tmp += "발행처리 완료일시(txEndDT) : " + result.txEndDT + vbCrLf
-            tmp += "접수일시(receiptDT) : " + result.receiptDT + vbCrLf
-            tmp += "접수아이디(receiptID) : " + result.receiptID + vbCrLf
+            tmp += "code(응답 코드) : " + result.code.ToString + vbCrLf
+            tmp += "message(응답메시지) : " + result.message + vbCrLf
+            tmp += "submitID(제출아이디) : " + result.submitID + vbCrLf
+            tmp += "submitCount(현금영수증 접수 건수) : " + result.submitCount.ToString + vbCrLf
+            tmp += "successCount(현금영수증 발행 성공 건수) : " + result.successCount.ToString + vbCrLf
+            tmp += "failCount(현금영수증 발행 실패 건수) : " + result.failCount.ToString + vbCrLf
+            tmp += "txState(접수상태코드) : " + result.txState.ToString + vbCrLf
+            tmp += "txResultCode(접수 결과코드) : " + result.txResultCode.ToString + vbCrLf
+            tmp += "txStartDT(발행처리 시작일시) : " + result.txStartDT + vbCrLf
+            tmp += "txEndDT(발행처리 완료일시) : " + result.txEndDT + vbCrLf
+            tmp += "receiptDT(접수일시) : " + result.receiptDT + vbCrLf
+            tmp += "receiptID(접수아이디) : " + result.receiptID + vbCrLf
 
             If Not result.issueResult Is Nothing Then
                 Dim i As Integer = 1
                 For Each issueResult As BulkCashbillIssueResult In result.issueResult
                     tmp += "===========발행결과[" + i.ToString + "/" + result.issueResult.Count.ToString + "]===========" + vbCrLf
-                    tmp += "응답코드(code) : " + issueResult.code.ToString + vbCrLf
-                    tmp += "응답메시지(message) : " + issueResult.message + vbCrLf
-                    tmp += "문서번호(MgtKey) : " + issueResult.mgtKey + vbCrLf
-                    tmp += "국세청승인번호(confirmNum) : " + issueResult.confirmNum + vbCrLf
-                    tmp += "거래일자(tradeDate) : " + issueResult.tradeDate + vbCrLf
-                    tmp += "발행일시(issueDT) : " + issueResult.issueDT + vbCrLf
+                    tmp += "code(응답코드) : " + issueResult.code.ToString + vbCrLf
+                    tmp += "message(응답메시지) : " + issueResult.message + vbCrLf
+                    tmp += "MgtKey(문서번호) : " + issueResult.mgtKey + vbCrLf
+                    tmp += "confirmNum(국세청승인번호) : " + issueResult.confirmNum + vbCrLf
+                    tmp += "tradeDate(거래일자) : " + issueResult.tradeDate + vbCrLf
+                    tmp += "issueDT(발행일시) : " + issueResult.issueDT + vbCrLf
                     i = i + 1
                 Next
             End If
 
             MsgBox(tmp)
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -329,10 +329,10 @@ Public Class frmExample
         Try
             Dim response As Response = cashbillService.Delete(txtCorpNum.Text, txtMgtKey.Text, txtUserId.Text)
 
-            MsgBox("응답코드(code) : " + response.code.ToString + vbCrLf + "응답메시지(message) : " + response.message)
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -347,10 +347,10 @@ Public Class frmExample
         Try
             Dim response As Response = cashbillService.Delete(txtCorpNum.Text, txtMgtKey.Text, txtUserId.Text)
 
-            MsgBox("응답코드(code) : " + response.code.ToString + vbCrLf + "응답메시지(message) : " + response.message)
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -364,10 +364,10 @@ Public Class frmExample
         Try
             Dim response As Response = cashbillService.Delete(txtCorpNum.Text, txtMgtKey.Text, txtUserId.Text)
 
-            MsgBox("응답코드(code) : " + response.code.ToString + vbCrLf + "응답메시지(message) : " + response.message)
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -393,12 +393,12 @@ Public Class frmExample
         Try
             Dim response As CBIssueResponse = cashbillService.RevokeRegistIssue(txtCorpNum.Text, txtMgtKey.Text, orgConfirmNum, orgTradeDate, smssendYN, memo)
 
-            MsgBox("응답코드(code) : " + response.code.ToString + vbCrLf + "응답메시지(message) : " + response.message + vbCrLf +
-                   "국세청 승인번호(confirmNum) : " + response.confirmNum + vbCrLf +
-                 "거래일자(tradeDate) : " + response.tradeDate)
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message + vbCrLf +
+                   "confirmNum(국세청 승인번호) : " + response.confirmNum + vbCrLf +
+                 "tradeDate(거래일자) : " + response.tradeDate)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -460,12 +460,12 @@ Public Class frmExample
                                                                          smssendYN, memo, txtUserId.Text, isPartCancel, cancelType, supplyCost, _
                                                                          tax, serviceFee, totalAmount, emailSubject, tradeDT)
 
-            MsgBox("응답코드(code) : " + response.code.ToString + vbCrLf + "응답메시지(message) : " + response.message + vbCrLf _
-                + "국세청 승인번호(confirmNum) : " + response.confirmNum + vbCrLf +
-                 "거래일자(tradeDate) : " + response.tradeDate)
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message + vbCrLf _
+                + "confirmNum(국세청 승인번호) : " + response.confirmNum + vbCrLf +
+                 "tradeDate(거래일자) : " + response.tradeDate)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -509,7 +509,7 @@ Public Class frmExample
 
         Catch ex As PopbillException
 
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -562,7 +562,7 @@ Public Class frmExample
             MsgBox(tmp)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -611,7 +611,7 @@ Public Class frmExample
             MsgBox(tmp)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -726,7 +726,7 @@ Public Class frmExample
             MsgBox(tmp)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -744,7 +744,7 @@ Public Class frmExample
             txtURL.Text = url
         Catch ex As PopbillException
 
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
 
     End Sub
@@ -763,7 +763,7 @@ Public Class frmExample
             txtURL.Text = url
         Catch ex As PopbillException
 
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -781,7 +781,7 @@ Public Class frmExample
             txtURL.Text = url
         Catch ex As PopbillException
 
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -799,7 +799,7 @@ Public Class frmExample
             txtURL.Text = url
         Catch ex As PopbillException
 
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -817,7 +817,7 @@ Public Class frmExample
             txtURL.Text = url
         Catch ex As PopbillException
 
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -833,7 +833,7 @@ Public Class frmExample
             MsgBox(url)
             txtURL.Text = url
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
 
     End Sub
@@ -856,7 +856,7 @@ Public Class frmExample
             MsgBox(url)
             txtURL.Text = url
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
 
     End Sub
@@ -873,7 +873,7 @@ Public Class frmExample
             MsgBox(url)
             txtURL.Text = url
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
 
     End Sub
@@ -891,7 +891,7 @@ Public Class frmExample
             MsgBox(url)
             txtURL.Text = url
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -907,7 +907,7 @@ Public Class frmExample
             MsgBox(url)
             txtURL.Text = url
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
 
     End Sub
@@ -924,10 +924,10 @@ Public Class frmExample
         Try
             Dim response As Response = cashbillService.SendEmail(txtCorpNum.Text, txtMgtKey.Text, receiverMail, txtUserId.Text)
 
-            MsgBox("응답코드(code) : " + response.code.ToString + vbCrLf + "응답메시지(message) : " + response.message)
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -951,10 +951,10 @@ Public Class frmExample
         Try
             Dim response As Response = cashbillService.SendSMS(txtCorpNum.Text, txtMgtKey.Text, sendNum, receiveNum, contents, txtUserId.Text)
 
-            MsgBox("응답코드(code) : " + response.code.ToString + vbCrLf + "응답메시지(message) : " + response.message)
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -974,10 +974,10 @@ Public Class frmExample
         Try
             Dim response As Response = cashbillService.SendFAX(txtCorpNum.Text, txtMgtKey.Text, sendNum, receiveNum, txtUserId.Text)
 
-            MsgBox("응답코드(code) : " + response.code.ToString + vbCrLf + "응답메시지(message) : " + response.message)
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -996,9 +996,9 @@ Public Class frmExample
 
         Try
             Dim response As Response = cashbillService.AssignMgtKey(txtCorpNum.Text, itemKey, mgtKey)
-            MsgBox("응답코드(code) : " + response.code.ToString + vbCrLf + "응답메시지(message) : " + response.message)
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message)
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -1020,7 +1020,7 @@ Public Class frmExample
             MsgBox(tmp)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -1042,10 +1042,10 @@ Public Class frmExample
 
             Dim response As Response = cashbillService.UpdateEmailConfig(txtCorpNum.Text, emailType, sendYN)
 
-            MsgBox("응답코드(code) : " + response.code.ToString + vbCrLf + "응답메시지(message) : " + response.message)
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -1061,7 +1061,7 @@ Public Class frmExample
             MsgBox("연동회원 잔여포인트 : " + remainPoint.ToString)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -1077,7 +1077,7 @@ Public Class frmExample
             MsgBox(url)
             txtURL.Text = url
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -1093,7 +1093,7 @@ Public Class frmExample
             MsgBox(url)
             txtURL.Text = url
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -1109,7 +1109,7 @@ Public Class frmExample
             MsgBox(url)
             txtURL.Text = url
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -1126,7 +1126,7 @@ Public Class frmExample
             MsgBox("파트너 잔여포인트 : " + remainPoint.ToString)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -1145,7 +1145,7 @@ Public Class frmExample
             MsgBox(url)
             txtURL.Text = url
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -1157,10 +1157,10 @@ Public Class frmExample
         Try
             Dim unitCost As Single = cashbillService.GetUnitCost(txtCorpNum.Text)
 
-            MsgBox("현금영수증 발행단가(unitCost) : " + unitCost.ToString)
+            MsgBox("unitCost(현금영수증 발행단가) : " + unitCost.ToString)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
 
         End Try
     End Sub
@@ -1180,7 +1180,7 @@ Public Class frmExample
             MsgBox(tmp)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -1192,10 +1192,10 @@ Public Class frmExample
         Try
             Dim response As Response = cashbillService.CheckIsMember(txtCorpNum.Text, LinkID)
 
-            MsgBox("응답코드(code) : " + response.code.ToString + vbCrLf + "응답메시지(message) : " + response.message)
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -1207,10 +1207,10 @@ Public Class frmExample
         Try
             Dim response As Response = cashbillService.CheckID(txtCorpNum.Text)
 
-            MsgBox("응답코드(code) : " + response.code.ToString + vbCrLf + "응답메시지(message) : " + response.message)
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -1260,10 +1260,10 @@ Public Class frmExample
         Try
             Dim response As Response = cashbillService.JoinMember(joinInfo)
 
-            MsgBox("응답코드(code) : " + response.code.ToString + vbCrLf + "응답메시지(message) : " + response.message)
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
 
         End Try
     End Sub
@@ -1285,7 +1285,7 @@ Public Class frmExample
             MsgBox(tmp)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -1315,10 +1315,10 @@ Public Class frmExample
 
             Dim response As Response = cashbillService.UpdateCorpInfo(txtCorpNum.Text, corpInfo, txtUserId.Text)
 
-            MsgBox("응답코드(code) : " + response.code.ToString + vbCrLf + "응답메시지(message) : " + response.message)
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -1352,10 +1352,10 @@ Public Class frmExample
         Try
             Dim response As Response = cashbillService.RegistContact(txtCorpNum.Text, joinData, txtUserId.Text)
 
-            MsgBox("응답코드(code) : " + response.code.ToString + vbCrLf + "응답메시지(message) : " + response.message)
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
 
         End Try
     End Sub
@@ -1387,7 +1387,7 @@ Public Class frmExample
 
             MsgBox(tmp)
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -1410,7 +1410,7 @@ Public Class frmExample
             MsgBox(tmp)
         Catch ex As PopbillException
 
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
     End Sub
 
@@ -1441,10 +1441,10 @@ Public Class frmExample
         Try
             Dim response As Response = cashbillService.UpdateContact(txtCorpNum.Text, joinData, txtUserId.Text)
 
-            MsgBox("응답코드(code) : " + response.code.ToString + vbCrLf + "응답메시지(message) : " + response.message)
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
 
         End Try
     End Sub
@@ -1461,7 +1461,7 @@ Public Class frmExample
             MsgBox(url)
             txtURL.Text = url
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
 
     End Sub
@@ -1489,10 +1489,10 @@ Public Class frmExample
         Try
             Dim response As PaymentResponse = cashbillService.PaymentRequest(txtCorpNum.Text, paymentForm, txtUserId.Text)
 
-            MsgBox("응답코드(code) : " + response.code.ToString + vbCrLf + "응답메시지(message) : " + response.message+vbCrLf + "정산코드(settleCode) : " + response.settleCode)
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message+vbCrLf + "settleCode(정산코드) : " + response.settleCode)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
 
         End Try
     End Sub
@@ -1510,20 +1510,20 @@ Public Class frmExample
             Dim response As PaymentHistory = cashbillService.GetSettleResult (txtCorpNum.Text, SettleCode, txtUserId.Text)
 
             MsgBox(
-                "결제 내용(productType) : " + response.productType + vbCrLf +
-                "정액제 상품명(productName) : " + response.productName + vbCrLf +
-                "결제 유형(settleType) : " + response.settleType + vbCrLf +
-                "담당자명(settlerName) : " + response.settlerName + vbCrLf +
-                "담당자메일(settlerEmail) : " + response.settlerEmail + vbCrLf +
-                "결제 금액(settleCost) : " + response.settleCost + vbCrLf +
-                "충전포인트(settlePoint) : " + response.settlePoint + vbCrLf +
-                "결제 상태(settleState) : " + response.settleState.ToString + vbCrLf +
-                "등록일시(regDT) : " + response.regDT + vbCrLf +
-                "상태일시(stateDT) : " + response.stateDT
+                "productType(결제 내용) : " + response.productType + vbCrLf +
+                "productName(정액제 상품명) : " + response.productName + vbCrLf +
+                "settleType(결제 유형) : " + response.settleType + vbCrLf +
+                "settlerName(담당자명) : " + response.settlerName + vbCrLf +
+                "settlerEmail(담당자메일) : " + response.settlerEmail + vbCrLf +
+                "settleCost(결제 금액) : " + response.settleCost + vbCrLf +
+                "settlePoint(충전포인트) : " + response.settlePoint + vbCrLf +
+                "settleState(결제 상태) : " + response.settleState.ToString + vbCrLf +
+                "regDT(등록일시) : " + response.regDT + vbCrLf +
+                "stateDT(상태일시) : " + response.stateDT
                 )
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
 
         End Try
     End Sub
@@ -1552,16 +1552,16 @@ Public Class frmExample
             Dim tmp As String = ""
             For Each history As PaymentHistory In result.list
 
-            tmp += "결제 내용(productType) : " + history.productType + vbCrLf
-            tmp += "정액제 상품명(productName) : " + history.productName + vbCrLf
-            tmp += "결제 유형(settleType) : " + history.settleType + vbCrLf
-            tmp += "담당자명(settlerName) : " + history.settlerName + vbCrLf
-            tmp += "담당자메일(settlerEmail) : " + history.settlerEmail + vbCrLf
-            tmp += "결제 금액(settleCost) : " + history.settleCost + vbCrLf
-            tmp += "충전포인트(settlePoint) : " + history.settlePoint + vbCrLf
-            tmp += "결제 상태(settleState) : " + history.settleState.ToString + vbCrLf
-            tmp += "등록일시(regDT) : " + history.regDT + vbCrLf
-            tmp += "상태일시(stateDT) : " + history.stateDT + vbCrLf
+            tmp += "productType(결제 내용) : " + history.productType + vbCrLf
+            tmp += "productName(정액제 상품명) : " + history.productName + vbCrLf
+            tmp += "settleType(결제 유형) : " + history.settleType + vbCrLf
+            tmp += "settlerName(담당자명) : " + history.settlerName + vbCrLf
+            tmp += "settlerEmail(담당자메일) : " + history.settlerEmail + vbCrLf
+            tmp += "settleCost(결제 금액) : " + history.settleCost + vbCrLf
+            tmp += "settlePoint(충전포인트) : " + history.settlePoint + vbCrLf
+            tmp += "settleState(결제 상태) : " + history.settleState.ToString + vbCrLf
+            tmp += "regDT(등록일시) : " + history.regDT + vbCrLf
+            tmp += "stateDT(상태일시) : " + history.stateDT + vbCrLf
             tmp += vbCrLf
 
             Next
@@ -1569,7 +1569,7 @@ Public Class frmExample
             MsgBox(tmp)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
 
         End Try
     End Sub
@@ -1601,13 +1601,13 @@ Public Class frmExample
             Dim tmp As String = ""
             For Each history As UseHistory In result.list
 
-                tmp += "서비스 코드(itemCode) : " + history.itemCode + vbCrLf
-                tmp += "포인트 증감 유형(txType) : " + history.txType + vbCrLf
-                tmp += "결제 유형(txPoint) : " + history.txPoint + vbCrLf
-                tmp += "담당자명(balance) : " + history.balance + vbCrLf
-                tmp += "담당자메일(txDT) : " + history.txDT + vbCrLf
-                tmp += "결제 금액(userID) : " + history.userID + vbCrLf
-                tmp += "충전포인트(userName) : " + history.userName + vbCrLf
+                tmp += "itemCode(서비스 코드) : " + history.itemCode + vbCrLf
+                tmp += "txType(포인트 증감 유형) : " + history.txType + vbCrLf
+                tmp += "txPoint(결제 유형) : " + history.txPoint + vbCrLf
+                tmp += "balance(담당자명) : " + history.balance + vbCrLf
+                tmp += "txDT(담당자메일) : " + history.txDT + vbCrLf
+                tmp += "userID(결제 금액) : " + history.userID + vbCrLf
+                tmp += "userName(충전포인트) : " + history.userName + vbCrLf
                 tmp += vbCrLf
 
             Next
@@ -1615,7 +1615,7 @@ Public Class frmExample
             MsgBox(tmp)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
 
         End Try
     End Sub
@@ -1653,12 +1653,12 @@ Public Class frmExample
         Try
             Dim response As RefundResponse = cashbillService.Refund(txtCorpNum.Text,refundForm, txtUserId.Text)
 
-            MsgBox("응답코드(code) : " + response.code.ToString + vbCrLf +
-                        "응답메시지(message) : " + response.Message + vbCrLf +
-                   "환불코드(refundCode) : " +response.refundCode )
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf +
+                        "message(응답메시지) : " + response.Message + vbCrLf +
+                   "refundCode(환불코드) : " +response.refundCode )
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
 
         End Try
     End Sub
@@ -1691,16 +1691,16 @@ Public Class frmExample
                 tmp += "reason (환불사유) : " + history.reason + vbCrLf
             Next
 
-            MsgBox("응답코드(code) : " + result.code.ToString + vbCrLf+
-                   "총 검색결과 건수(total) : " + result.total.ToString + vbCrLf+
-                   "페이지당 검색개수(perPage) : " + result.perPage.ToString +vbCrLf+
-                   "페이지 번호(pageNum) : " + result.pageNum.ToString +vbCrLf+
-                   "페이지 개수(pageCount) : " + result.pageCount.ToString +vbCrLf +
+            MsgBox("code(응답코드) : " + result.code.ToString + vbCrLf+
+                   "total(총 검색결과 건수) : " + result.total.ToString + vbCrLf+
+                   "perPage(페이지당 검색개수) : " + result.perPage.ToString +vbCrLf+
+                   "pageNum(페이지 번호) : " + result.pageNum.ToString +vbCrLf+
+                   "pageCount(페이지 개수) : " + result.pageCount.ToString +vbCrLf +
                    "사용내역"+vbCrLf+
                    tmp)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
 
         End Try
     End Sub
@@ -1727,7 +1727,7 @@ Public Class frmExample
                    )
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
 
         End Try
     End Sub
@@ -1741,10 +1741,10 @@ Public Class frmExample
         Try
             Dim refundableCode As Double  = cashbillService.GetRefundableBalance(txtCorpNum.Text, txtUserId.Text)
 
-            MsgBox("환불 가능 포인트(refundableCode) : " + refundableCode)
+            MsgBox("refundableCode(환불 가능 포인트) : " + refundableCode)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
 
         End Try
     End Sub
@@ -1764,10 +1764,10 @@ Public Class frmExample
         Try
             Dim response As Response  = cashbillService.QuitMember(txtCorpNum.Text, quitReason, txtUserId.Text)
 
-            MsgBox("응답코드(code) : " + response.code.ToString + vbCrLf + "응답메시지(message) : " + response.Message)
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.Message)
 
         Catch ex As PopbillException
-            MsgBox("응답코드(code) : " + ex.code.ToString + vbCrLf + "응답메시지(message) : " + ex.Message)
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
 
         End Try
     End Sub
