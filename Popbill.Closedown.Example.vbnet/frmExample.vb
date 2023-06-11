@@ -416,10 +416,10 @@ Public Class frmExample
         joinData.personName = "담당자명"
 
         '담당자 연락처 (최대 20자)
-        joinData.tel = ""
+        joinData.tel = "010-1234-1234"
 
         '담당자 이메일 (최대 100자)
-        joinData.email = ""
+        joinData.email = "test@email.com"
 
         '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
         joinData.searchRole = 3
@@ -505,10 +505,10 @@ Public Class frmExample
         joinData.personName = "담당자명"
 
         '담당자 연락처 (최대 20자)
-        joinData.tel = ""
+        joinData.tel = "010-1234-1234"
 
         '담당자 이메일 (최대 100자)
-        joinData.email = ""
+        joinData.email = "test@email.com"
 
         '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
         joinData.searchRole = 3
@@ -533,15 +533,15 @@ Public Class frmExample
         Dim paymentForm As New PaymentForm
 
         '담당자명
-        paymentForm.settlerName	="담당자명"
+        paymentForm.settlerName = "담당자명"
         '담당자 이메일
-        paymentForm.settlerEmail	="담당자 이메일"
+        paymentForm.settlerEmail = "test@email.com"
         '담당자 휴대폰
-        paymentForm.notifyHP	="담당자 휴대폰"
+        paymentForm.notifyHP = "010-1234-1234"
         '입금자명
-        paymentForm.paymentName	="입금자명"
+        paymentForm.paymentName = "입금자명"
         '결제금액
-        paymentForm.settleCost	="결제금액"
+        paymentForm.settleCost = "결제금액"
 
         Try
             Dim response As PaymentResponse = closedownService.PaymentRequest(txtCorpNum.Text, paymentForm, txtUserId.Text)
@@ -739,13 +739,13 @@ Public Class frmExample
             Dim tmp As String = ""
 
             For Each history As RefundHistory In result.list
-                tmp += "reqDT (신청일시) :" + history.reqDT + vbCrLf
-                tmp += "requestPoint (환불 신청포인트) :" + history.requestPoint + vbCrLf
-                tmp += "accountBank (환불계좌 은행명) :" + history.accountBank + vbCrLf
-                tmp += "accountNum (환불계좌번호) :" + history.accountNum + vbCrLf
-                tmp += "accountName (환불계좌 예금주명) :" + history.accountName + vbCrLf
-                tmp += "state (상태) : " + history.state.ToString + vbCrLf
-                tmp += "reason (환불사유) : " + history.reason + vbCrLf
+                tmp += "신청일시(reqDT) :" + history.reqDT + vbCrLf
+                tmp += "환불 신청포인트(requestPoint) :" + history.requestPoint + vbCrLf
+                tmp += "환불계좌 은행명(accountBank) :" + history.accountBank + vbCrLf
+                tmp += "환불계좌번호(accountNum) :" + history.accountNum + vbCrLf
+                tmp += "환불계좌 예금주명(accountName) :" + history.accountName + vbCrLf
+                tmp += "상태(state) : " + history.state.ToString + vbCrLf
+                tmp += "환불사유(reason) : " + history.reason + vbCrLf
             Next
 
             MsgBox("응답코드(code) : " + result.code.ToString + vbCrLf+
@@ -774,13 +774,13 @@ Public Class frmExample
         Try
             Dim history As RefundHistory  = closedownService.GetRefundInfo(txtCorpNum.Text,refundCode, txtUserId.Text)
 
-            MsgBox("reqDT (신청일시) :" + history.reqDT + vbCrLf+
-                   "requestPoint (환불 신청포인트) :" + history.requestPoint + vbCrLf+
-                   "accountBank (환불계좌 은행명) :" + history.accountBank + vbCrLf+
-                   "accountNum (환불계좌번호) :" + history.accountNum + vbCrLf+
-                   "accountName (환불계좌 예금주명) :" + history.accountName + vbCrLf+
-                   "state (상태) : " + history.state.ToString + vbCrLf+
-                   "reason (환불사유) : " + history.reason + vbCrLf
+            MsgBox("신청일시(reqDT) :" + history.reqDT + vbCrLf+
+                   "환불 신청포인트(requestPoint) :" + history.requestPoint + vbCrLf+
+                   "환불계좌 은행명(accountBank) :" + history.accountBank + vbCrLf+
+                   "환불계좌번호(accountNum) :" + history.accountNum + vbCrLf+
+                   "환불계좌 예금주명(accountName) :" + history.accountName + vbCrLf+
+                   "상태(state) : " + history.state.ToString + vbCrLf+
+                   "환불사유(reason) : " + history.reason + vbCrLf
                    )
 
         Catch ex As PopbillException
@@ -793,7 +793,7 @@ Public Class frmExample
     ' 환불 가능한 포인트를 확인합니다. (보너스 포인트는 환불가능포인트에서 제외됩니다.)
     ' - https://developers.popbill.com/reference/closedown/dotnet/api/point#GetRefundableBalance
     '=========================================================================
-    Private Sub btnGetRefundableBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetRefundInfo.Click
+    Private Sub btnGetRefundableBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetRefundableBalance.Click
 
         Try
             Dim refundableCode As Double  = closedownService.GetRefundableBalance(txtCorpNum.Text, txtUserId.Text)
@@ -813,7 +813,7 @@ Public Class frmExample
     ' - 관리자 계정만 회원탈퇴가 가능합니다.
     ' - https://developers.popbill.com/reference/closedown/dotnet/api/member#QuitMember
     '=========================================================================
-    Private Sub btnQuitMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetRefundInfo.Click
+    Private Sub btnQuitMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnQuitMember.Click
 
         '탈퇴사유
         Dim quitReason As String = "회원 탈퇴 사유"

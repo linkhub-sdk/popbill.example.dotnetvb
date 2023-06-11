@@ -1341,10 +1341,10 @@ Public Class frmExample
         joinData.personName = "담당자명"
 
         '담당자 연락처 (최대 20자)
-        joinData.tel = ""
+        joinData.tel = "010-1234-1234"
 
         '담당자 이메일 (최대 100자)
-        joinData.email = ""
+        joinData.email = "test@email.com"
 
         '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
         joinData.searchRole = 3
@@ -1430,10 +1430,10 @@ Public Class frmExample
         joinData.personName = "담당자명"
 
         '담당자 연락처 (최대 20자)
-        joinData.tel = ""
+        joinData.tel = "010-1234-1234"
 
         '담당자 이메일 (최대 100자)
-        joinData.email = ""
+        joinData.email = "test@email.com"
 
         '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
         joinData.searchRole = 3
@@ -1476,15 +1476,15 @@ Public Class frmExample
         Dim paymentForm As New PaymentForm
 
         '담당자명
-        paymentForm.settlerName	="담당자명"
+        paymentForm.settlerName = "담당자명"
         '담당자 이메일
-        paymentForm.settlerEmail	="담당자 이메일"
+        paymentForm.settlerEmail = "test@email.com"
         '담당자 휴대폰
-        paymentForm.notifyHP	="담당자 휴대폰"
+        paymentForm.notifyHP = "010-1234-1234"
         '입금자명
-        paymentForm.paymentName	="입금자명"
+        paymentForm.paymentName = "입금자명"
         '결제금액
-        paymentForm.settleCost	="결제금액"
+        paymentForm.settleCost = "결제금액"
 
         Try
             Dim response As PaymentResponse = cashbillService.PaymentRequest(txtCorpNum.Text, paymentForm, txtUserId.Text)
@@ -1736,7 +1736,7 @@ Public Class frmExample
     ' 환불 가능한 포인트를 확인합니다. (보너스 포인트는 환불가능포인트에서 제외됩니다.)
     ' - https://developers.popbill.com/reference/cashbill/dotnet/api/point#GetRefundableBalance
     '=========================================================================
-    Private Sub btnGetRefundableBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetRefundInfo.Click
+    Private Sub btnGetRefundableBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetRefundableBalance.Click
 
         Try
             Dim refundableCode As Double  = cashbillService.GetRefundableBalance(txtCorpNum.Text, txtUserId.Text)
@@ -1756,7 +1756,7 @@ Public Class frmExample
     ' - 관리자 계정만 회원탈퇴가 가능합니다.
     ' - https://developers.popbill.com/reference/cashbill/dotnet/api/member#QuitMember
     '=========================================================================
-    Private Sub btnQuitMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetRefundInfo.Click
+    Private Sub btnQuitMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnQuitMember.Click
 
         '탈퇴사유
         Dim quitReason As String = "회원 탈퇴 사유"
