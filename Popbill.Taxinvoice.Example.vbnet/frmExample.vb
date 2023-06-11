@@ -3375,7 +3375,7 @@ Public Class frmExample
         Try
             Dim remainPoint As Double = taxinvoiceService.GetBalance(txtCorpNum.Text)
 
-            MsgBox("연동회원 잔여포인트 : " + remainPoint.ToString)
+            MsgBox("remainPoint(연동회원 잔여포인트) : " + remainPoint.ToString)
         Catch ex As PopbillException
             MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
@@ -3444,7 +3444,7 @@ Public Class frmExample
         Try
             Dim remainPoint As Double = taxinvoiceService.GetPartnerBalance(txtCorpNum.Text)
 
-            MsgBox("파트너 잔여포인트 : " + remainPoint.ToString)
+            MsgBox("remainPoint(파트너 잔여포인트) : " + remainPoint.ToString)
         Catch ex As PopbillException
             MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
