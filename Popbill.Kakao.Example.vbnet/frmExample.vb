@@ -2220,4 +2220,8 @@ Public Class frmExample
 
         End Try
     End Sub
+
+    Private Sub GroupBox12_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GroupBox12.Enter
+
+    End Sub
 End Class
