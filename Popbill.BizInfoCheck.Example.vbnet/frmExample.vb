@@ -534,12 +534,12 @@ Public Class frmExample
         '입금자명
         paymentForm.paymentName = "입금자명"
         '결제금액
-        paymentForm.settleCost = "결제금액"
+        paymentForm.settleCost = "1000"
 
         Try
             Dim response As PaymentResponse = bizInfoCheckService.PaymentRequest(txtCorpNum.Text, paymentForm, txtUserId.Text)
 
-            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message+vbCrLf + "settleCode(정산코드) : " + response.settleCode)
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message+ vbCrLf + "settleCode(정산코드) : " + response.settleCode)
 
         Catch ex As PopbillException
             MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
@@ -559,18 +559,20 @@ Public Class frmExample
         Try
             Dim response As PaymentHistory = bizInfoCheckService.GetSettleResult (txtCorpNum.Text, SettleCode, txtUserId.Text)
 
-            MsgBox(
-                "productType(결제 내용) : " + response.productType + vbCrLf +
-                "productName(정액제 상품명) : " + response.productName + vbCrLf +
-                "settleType(결제 유형) : " + response.settleType + vbCrLf +
-                "settlerName(담당자명) : " + response.settlerName + vbCrLf +
-                "settlerEmail(담당자메일) : " + response.settlerEmail + vbCrLf +
-                "settleCost(결제 금액) : " + response.settleCost + vbCrLf +
-                "settlePoint(충전포인트) : " + response.settlePoint + vbCrLf +
-                "settleState(결제 상태) : " + response.settleState.ToString + vbCrLf +
-                "regDT(등록일시) : " + response.regDT + vbCrLf +
-                "stateDT(상태일시) : " + response.stateDT
-                )
+            Dim tmp As String = ""
+
+            tmp += "productType(결제 내용) : " + response.productType + vbCrLf
+            tmp += "productName(결제 상품명) : " + response.productName + vbCrLf
+            tmp += "settleType(결제 유형) : " + response.settleType + vbCrLf
+            tmp += "settlerName(담당자명) : " + response.settlerName + vbCrLf
+            tmp += "settlerEmail(담당자메일) : " + response.settlerEmail + vbCrLf
+            tmp += "settleCost(결제 금액) : " + response.settleCost + vbCrLf
+            tmp += "settlePoint(충전포인트) : " + response.settlePoint + vbCrLf
+            tmp += "settleState(결제 상태) : " + response.settleState.ToString + vbCrLf
+            tmp += "regDT(등록일시) : " + response.regDT + vbCrLf
+            tmp += "stateDT(상태일시) : " + response.stateDT
+
+            MsgBox(tmp)
 
         Catch ex As PopbillException
             MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
@@ -600,10 +602,17 @@ Public Class frmExample
             Dim result As PaymentHistoryResult = bizInfoCheckService.GetPaymentHistory(txtCorpNum.Text,SDate,EDate,Page,PerPage, txtUserId.Text)
 
             Dim tmp As String = ""
+            tmp += "code(응답 코드) : " + result.code + vbCrLf
+            tmp += "total(총 검색결과 건수) : " + result.code + vbCrLf
+            tmp += "perPage(페이지당 검색개수) : " + result.code + vbCrLf
+            tmp += "pageNum(페이지 번호) : " + result.code + vbCrLf
+            tmp += "pageCount(페이지 개수) : " + result.code + vbCrLf
+            tmp += "결제내역"+ vbCrLf
+
             For Each history As PaymentHistory In result.list
 
             tmp += "productType(결제 내용) : " + history.productType + vbCrLf
-            tmp += "productName(정액제 상품명) : " + history.productName + vbCrLf
+            tmp += "productName(결제 상품명) : " + history.productName + vbCrLf
             tmp += "settleType(결제 유형) : " + history.settleType + vbCrLf
             tmp += "settlerName(담당자명) : " + history.settlerName + vbCrLf
             tmp += "settlerEmail(담당자메일) : " + history.settlerEmail + vbCrLf
@@ -649,6 +658,13 @@ Public Class frmExample
             Dim result As UseHistoryResult = bizInfoCheckService.GetUseHistory(txtCorpNum.Text,SDate,EDate,Page,PerPage, Order, txtUserId.Text)
 
             Dim tmp As String = ""
+            tmp += "code(응답 코드) : "+ result.code  + vbCrLf
+            tmp += "total(총 검색결과 건수) : "+ result.total  + vbCrLf
+            tmp +=  "perPage(페이지당 검색개수) : "+result.perPage  + vbCrLf
+            tmp +=  "pageNum(페이지당 번호) : "+result.pageNum  + vbCrLf
+            tmp +=  "pageCount(페이지당 개수) : "+result.pageCount  + vbCrLf
+            tmp += "사용내역"+ vbCrLf
+
             For Each history As UseHistory In result.list
 
                 tmp += "itemCode(서비스 코드) : " + history.itemCode + vbCrLf
@@ -703,9 +719,13 @@ Public Class frmExample
         Try
             Dim response As RefundResponse = bizInfoCheckService.Refund(txtCorpNum.Text,refundForm, txtUserId.Text)
 
-            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf +
-                        "message(응답메시지) : " + response.Message + vbCrLf +
-                   "refundCode(환불코드) : " +response.refundCode )
+            Dim tmp As String = ""
+
+            tmp += "code(응답코드) : " + response.code.ToString + vbCrLf
+            tmp += "message(응답메시지) : " + response.Message + vbCrLf
+            tmp += "refundCode(환불코드) : " +response.refundCode
+
+            MsgBox(tmp)
 
         Catch ex As PopbillException
             MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
@@ -731,6 +751,13 @@ Public Class frmExample
 
             Dim tmp As String = ""
 
+            tmp += "code(응답코드) : " + result.code.ToString + vbCrLf
+            tmp += "total(총 검색결과 건수) : " + result.total.ToString + vbCrLf
+            tmp += "perPage(페이지당 검색개수) : " + result.perPage.ToString + vbCrLf
+            tmp += "pageNum(페이지 번호) : " + result.pageNum.ToString + vbCrLf
+            tmp += "pageCount(페이지 개수) : " + result.pageCount.ToString + vbCrLf
+            tmp += "사용내역"+ vbCrLf
+
             For Each history As RefundHistory In result.list
                 tmp+ = "reqDT(신청일시) :" + history.reqDT + vbCrLf
                 tmp+ = "requestPoint(환불 신청포인트) :" + history.requestPoint + vbCrLf
@@ -741,13 +768,7 @@ Public Class frmExample
                 tmp+ = "reason(환불사유) : " + history.reason + vbCrLf
             Next
 
-            MsgBox("code(응답코드) : " + result.code.ToString + vbCrLf+
-                   "total(총 검색결과 건수) : " + result.total.ToString + vbCrLf+
-                   "perPage(페이지당 검색개수) : " + result.perPage.ToString +vbCrLf+
-                   "pageNum(페이지 번호) : " + result.pageNum.ToString +vbCrLf+
-                   "pageCount(페이지 개수) : " + result.pageCount.ToString +vbCrLf +
-                   "사용내역"+vbCrLf+
-                   tmp)
+            MsgBox(tmp)
 
         Catch ex As PopbillException
             MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
@@ -767,14 +788,17 @@ Public Class frmExample
         Try
             Dim history As RefundHistory  = bizInfoCheckService.GetRefundInfo(txtCorpNum.Text,refundCode, txtUserId.Text)
 
-            MsgBox("reqDT(신청일시) :" + history.reqDT + vbCrLf+
-                   "requestPoint(환불 신청포인트) :" + history.requestPoint + vbCrLf+
-                   "accountBank(환불계좌 은행명) :" + history.accountBank + vbCrLf+
-                   "accountNum(환불계좌번호) :" + history.accountNum + vbCrLf+
-                   "accountName(환불계좌 예금주명) :" + history.accountName + vbCrLf+
-                   "state(상태) : " + history.state.ToString + vbCrLf+
-                   "reason(환불사유) : " + history.reason + vbCrLf
-                   )
+            Dim tmp As String = ""
+
+            tmp += "reqDT(신청일시) :" + history.reqDT + vbCrLf
+            tmp += "requestPoint(환불 신청포인트) :" + history.requestPoint + vbCrLf
+            tmp += "accountBank(환불계좌 은행명) :" + history.accountBank + vbCrLf
+            tmp += "accountNum(환불계좌번호) :" + history.accountNum + vbCrLf
+            tmp += "accountName(환불계좌 예금주명) :" + history.accountName + vbCrLf
+            tmp += "state(상태) : " + history.state.ToString + vbCrLf
+            tmp += "reason(환불사유) : " + history.reason + vbCrLf
+
+            MsgBox(tmp)
 
         Catch ex As PopbillException
             MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
