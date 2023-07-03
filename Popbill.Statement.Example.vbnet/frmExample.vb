@@ -2108,11 +2108,11 @@ Public Class frmExample
             Dim result As PaymentHistoryResult = statementService.GetPaymentHistory(txtCorpNum.Text,SDate,EDate,Page,PerPage, txtUserId.Text)
 
             Dim tmp As String = ""
-            tmp += "code(응답 코드) : " + result.code + vbCrLf
-            tmp += "total(총 검색결과 건수) : " + result.code + vbCrLf
-            tmp += "perPage(페이지당 검색개수) : " + result.code + vbCrLf
-            tmp += "pageNum(페이지 번호) : " + result.code + vbCrLf
-            tmp += "pageCount(페이지 개수) : " + result.code + vbCrLf
+            tmp += "code(응답코드) : " + result.code.ToString + vbCrLf
+            tmp += "total(총 검색결과 건수) : " + result.total.ToString + vbCrLf
+            tmp += "perPage(페이지당 검색개수) : " + result.perPage.ToString + vbCrLf
+            tmp += "pageNum(페이지 번호) : " + result.pageNum.ToString + vbCrLf
+            tmp += "pageCount(페이지 개수) : " + result.pageCount.ToString + vbCrLf
             tmp += "결제내역"+ vbCrLf
 
             For Each history As PaymentHistory In result.list
@@ -2164,11 +2164,11 @@ Public Class frmExample
             Dim result As UseHistoryResult = statementService.GetUseHistory(txtCorpNum.Text,SDate,EDate,Page,PerPage, Order, txtUserId.Text)
 
             Dim tmp As String = ""
-            tmp += "code(응답 코드) : "+ result.code  + vbCrLf
-            tmp += "total(총 검색결과 건수) : "+ result.total  + vbCrLf
-            tmp +=  "perPage(페이지당 검색개수) : "+result.perPage  + vbCrLf
-            tmp +=  "pageNum(페이지당 번호) : "+result.pageNum  + vbCrLf
-            tmp +=  "pageCount(페이지당 개수) : "+result.pageCount  + vbCrLf
+            tmp += "code(응답코드) : " + result.code.ToString + vbCrLf
+            tmp += "total(총 검색결과 건수) : " + result.total.ToString + vbCrLf
+            tmp += "perPage(페이지당 검색개수) : " + result.perPage.ToString + vbCrLf
+            tmp += "pageNum(페이지 번호) : " + result.pageNum.ToString + vbCrLf
+            tmp += "pageCount(페이지 개수) : " + result.pageCount.ToString + vbCrLf
             tmp += "사용 내역" + vbCrLf
 
             For Each history As UseHistory In result.list
