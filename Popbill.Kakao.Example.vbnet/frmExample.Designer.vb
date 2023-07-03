@@ -18,7 +18,7 @@ Partial Class frmExample
     Private components As System.ComponentModel.IContainer
 
     '참고: 다음 프로시저는 Windows Form 디자이너에 필요합니다.
-    '수정하려면 Windows Form 디자이너를 사용하십시오.  
+    '수정하려면 Windows Form 디자이너를 사용하십시오.
     '코드 편집기를 사용하여 수정하지 마십시오.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
@@ -325,7 +325,7 @@ Partial Class frmExample
         Me.btnGetPaymentHistory.Name = "btnGetPaymentHistory"
         Me.btnGetPaymentHistory.Size = New System.Drawing.Size(128, 32)
         Me.btnGetPaymentHistory.TabIndex = 0
-        Me.btnGetPaymentHistory.Text = "연동회원 포인트 결제내역 확인"
+        Me.btnGetPaymentHistory.Text = "포인트 결제내역 확인"
         '
         'btnGetRefundHistory
         '
@@ -333,7 +333,7 @@ Partial Class frmExample
         Me.btnGetRefundHistory.Name = "btnGetRefundHistory"
         Me.btnGetRefundHistory.Size = New System.Drawing.Size(128, 32)
         Me.btnGetRefundHistory.TabIndex = 0
-        Me.btnGetRefundHistory.Text = "연동회원 포인트 환불내역 확인"
+        Me.btnGetRefundHistory.Text = "포인트 환불내역 확인"
         '
         'btnRefund
         '
@@ -341,7 +341,7 @@ Partial Class frmExample
         Me.btnRefund.Name = "btnRefund"
         Me.btnRefund.Size = New System.Drawing.Size(128, 32)
         Me.btnRefund.TabIndex = 0
-        Me.btnRefund.Text = "연동회원 포인트 환불신청"
+        Me.btnRefund.Text = "포인트 환불신청"
         '
         'btnGetUseHistory
         '
@@ -349,7 +349,7 @@ Partial Class frmExample
         Me.btnGetUseHistory.Name = "btnGetUseHistory"
         Me.btnGetUseHistory.Size = New System.Drawing.Size(128, 32)
         Me.btnGetUseHistory.TabIndex = 0
-        Me.btnGetUseHistory.Text = "연동회원 포인트 사용내역 확인"
+        Me.btnGetUseHistory.Text = "포인트 사용내역 확인"
         '
         'GroupBox3
         '
@@ -430,7 +430,7 @@ Partial Class frmExample
         Me.btnPaymentRequest.Name = "btnPaymentRequest"
         Me.btnPaymentRequest.Size = New System.Drawing.Size(141, 32)
         Me.btnPaymentRequest.TabIndex = 8
-        Me.btnPaymentRequest.Text = "연동회원 무통장 입금신청"
+        Me.btnPaymentRequest.Text = "무통장 입금신청"
         '
         'btnGetSettleResult
         '
