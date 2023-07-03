@@ -566,18 +566,20 @@ Public Class frmExample
         Try
             Dim response As PaymentHistory = closedownService.GetSettleResult (txtCorpNum.Text, SettleCode, txtUserId.Text)
 
-            MsgBox(
-                "productType(결제 내용) : " + response.productType + vbCrLf +
-                "productName(결제 상품명) : " + response.productName + vbCrLf +
-                "settleType(결제 유형) : " + response.settleType + vbCrLf +
-                "settlerName(담당자명) : " + response.settlerName + vbCrLf +
-                "settlerEmail(담당자메일) : " + response.settlerEmail + vbCrLf +
-                "settleCost(결제 금액) : " + response.settleCost + vbCrLf +
-                "settlePoint(충전포인트) : " + response.settlePoint + vbCrLf +
-                "settleState(결제 상태) : " + response.settleState.ToString + vbCrLf +
-                "regDT(등록일시) : " + response.regDT + vbCrLf +
-                "stateDT(상태일시) : " + response.stateDT
-                )
+            Dim tmp As String = ""
+
+            tmp += "productType(결제 내용) : " + response.productType + vbCrLf
+            tmp += "productName(결제 상품명) : " + response.productName + vbCrLf
+            tmp += "settleType(결제 유형) : " + response.settleType + vbCrLf
+            tmp += "settlerName(담당자명) : " + response.settlerName + vbCrLf
+            tmp += "settlerEmail(담당자메일) : " + response.settlerEmail + vbCrLf
+            tmp += "settleCost(결제 금액) : " + response.settleCost + vbCrLf
+            tmp += "settlePoint(충전포인트) : " + response.settlePoint + vbCrLf
+            tmp += "settleState(결제 상태) : " + response.settleState.ToString + vbCrLf
+            tmp += "regDT(등록일시) : " + response.regDT + vbCrLf
+            tmp += "stateDT(상태일시) : " + response.stateDT
+
+            MsgBox(tmp)
 
         Catch ex As PopbillException
             MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)

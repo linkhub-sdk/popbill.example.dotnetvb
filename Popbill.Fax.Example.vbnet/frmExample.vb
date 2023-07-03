@@ -1439,13 +1439,7 @@ Public Class frmExample
                 tmp += "reason(환불사유) : " + history.reason + vbCrLf
             Next
 
-            MsgBox("code(응답코드) : " + result.code.ToString + vbCrLf+
-                   "total(총 검색결과 건수) : " + result.total.ToString + vbCrLf+
-                   "perPage(페이지당 검색개수) : " + result.perPage.ToString + vbCrLf+
-                   "pageNum(페이지 번호) : " + result.pageNum.ToString + vbCrLf+
-                   "pageCount(페이지 개수) : " + result.pageCount.ToString + vbCrLf +
-                   "사용내역"+ vbCrLf+
-                   tmp)
+            MsgBox(tmp)
 
         Catch ex As PopbillException
             MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)

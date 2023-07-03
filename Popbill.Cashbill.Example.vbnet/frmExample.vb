@@ -393,9 +393,7 @@ Public Class frmExample
         Try
             Dim response As CBIssueResponse = cashbillService.RevokeRegistIssue(txtCorpNum.Text, txtMgtKey.Text, orgConfirmNum, orgTradeDate, smssendYN, memo)
 
-            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message + vbCrLf +
-                   "confirmNum(국세청 승인번호) : " + response.confirmNum + vbCrLf +
-                 "tradeDate(거래일자) : " + response.tradeDate)
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message + vbCrLf + "confirmNum(국세청 승인번호) : " + response.confirmNum + vbCrLf + "tradeDate(거래일자) : " + response.tradeDate)
 
         Catch ex As PopbillException
             MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
@@ -460,9 +458,7 @@ Public Class frmExample
                                                                          smssendYN, memo, txtUserId.Text, isPartCancel, cancelType, supplyCost, _
                                                                          tax, serviceFee, totalAmount, emailSubject, tradeDT)
 
-            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message + vbCrLf _
-                + "confirmNum(국세청 승인번호) : " + response.confirmNum + vbCrLf +
-                 "tradeDate(거래일자) : " + response.tradeDate)
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message + vbCrLf + "confirmNum(국세청 승인번호) : " + response.confirmNum + vbCrLf + "tradeDate(거래일자) : " + response.tradeDate)
 
         Catch ex As PopbillException
             MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)

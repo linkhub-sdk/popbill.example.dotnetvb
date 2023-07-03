@@ -2118,9 +2118,7 @@ Public Class frmExample
         Try
             Dim response As RefundResponse = kakaoService.Refund(txtCorpNum.Text,refundForm, txtUserId.Text)
 
-            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf +
-                        "message(응답메시지) : " + response.Message + vbCrLf +
-                   "refundCode(환불코드) : " +response.refundCode )
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.Message + vbCrLf + "refundCode(환불코드) : " +response.refundCode )
 
         Catch ex As PopbillException
             MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
