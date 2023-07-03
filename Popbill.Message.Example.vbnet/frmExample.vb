@@ -1831,7 +1831,7 @@ Public Class frmExample
         Try
             Dim refundableCode As Double  = messageService.GetRefundableBalance(txtCorpNum.Text, txtUserId.Text)
 
-            MsgBox("refundableCode(환불 가능 포인트) : " + refundableCode)
+            MsgBox("refundableCode(환불 가능 포인트) : " + refundableCode.ToString)
 
         Catch ex As PopbillException
             MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
@@ -1866,16 +1866,17 @@ Public Class frmExample
     ' 팝빌회원에 등록된 080 수신거부 번호 정보를 확인합니다.
     ' - https://developers.popbill.com/reference/sms/php/api/info#CheckAutoDenyNumber
     '=========================================================================
-    Private Sub btnCheckAutoDenyNumber_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetRefundInfo.Click
+    Private Sub btnCheckAutoDenyNumber_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckAutoDenyNumber.Click
 
         Try
-            Dim response As AutoDenyNumberInfo  = messageService.CheckAutoDenyNumber(txtCorpNum.Text, txtUserId.Text)
+            Dim response As AutoDenyNumberInfo = messageService.CheckAutoDenyNumber(txtCorpNum.Text)
 
-            MsgBox("전용 080 번호(smsdenyNumber) : " + response.smsdenyNumber.ToString + vbCrLf + "regDT(등록일시 ) : " + response.regDT)
+            MsgBox("전용 080 번호(smsdenyNumber) : " + response.smsdenyNumber.ToString + vbCrLf + "regDT(등록일시) : " + response.regDT)
 
         Catch ex As PopbillException
             MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
 
         End Try
     End Sub
+
 End Class

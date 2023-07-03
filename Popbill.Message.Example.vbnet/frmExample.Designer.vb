@@ -72,44 +72,42 @@ Partial Class frmExample
         Me.txtReceiptNum = New System.Windows.Forms.TextBox
         Me.label4 = New System.Windows.Forms.Label
         Me.GroupBox12 = New System.Windows.Forms.GroupBox
+        Me.btnCheckAutoDenyNumber = New System.Windows.Forms.Button
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
-        Me.GroupBox17 = New System.Windows.Forms.GroupBox
-        Me.btnUpdateCorpInfo = New System.Windows.Forms.Button
-        Me.btnGetCorpInfo = New System.Windows.Forms.Button
-        Me.GroupBox16 = New System.Windows.Forms.GroupBox
-        Me.btnGetContactInfo = New System.Windows.Forms.Button
-        Me.btnUpdateContact = New System.Windows.Forms.Button
-        Me.btnListContact = New System.Windows.Forms.Button
-        Me.btnRegistContact = New System.Windows.Forms.Button
         Me.GroupBox15 = New System.Windows.Forms.GroupBox
         Me.btnGetAccessURL = New System.Windows.Forms.Button
         Me.GroupBox5 = New System.Windows.Forms.GroupBox
         Me.btnGetPartnerURL = New System.Windows.Forms.Button
         Me.btnGetPartnerBalance = New System.Windows.Forms.Button
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox
-        Me.btnGetUseHistoryURL = New System.Windows.Forms.Button
-        Me.btnGetPaymentURL = New System.Windows.Forms.Button
-        Me.btnGetChargeURL = New System.Windows.Forms.Button
-        Me.btnGetBalance = New System.Windows.Forms.Button
         Me.GroupBox3 = New System.Windows.Forms.GroupBox
+        Me.btnGetRefundHistory = New System.Windows.Forms.Button
+        Me.btnGetUseHistoryURL = New System.Windows.Forms.Button
         Me.btnGetChargeInfo_MMS = New System.Windows.Forms.Button
+        Me.btnGetPaymentURL = New System.Windows.Forms.Button
         Me.btnGetChargeInfo_LMS = New System.Windows.Forms.Button
+        Me.btnGetChargeURL = New System.Windows.Forms.Button
         Me.btnGetUnitCost_MMS = New System.Windows.Forms.Button
+        Me.btnGetBalance = New System.Windows.Forms.Button
+        Me.btnGetPaymentHistory = New System.Windows.Forms.Button
         Me.btnGetUnitCost_LMS = New System.Windows.Forms.Button
         Me.btnGetChargeInfo_SMS = New System.Windows.Forms.Button
+        Me.btnRefund = New System.Windows.Forms.Button
         Me.btnUnitCost_SMS = New System.Windows.Forms.Button
+        Me.btnGetUseHistory = New System.Windows.Forms.Button
         Me.btnPaymentRequest = New System.Windows.Forms.Button
         Me.btnGetSettleResult = New System.Windows.Forms.Button
-        Me.btnGetPaymentHistory = New System.Windows.Forms.Button
-        Me.btnGetUseHistory = New System.Windows.Forms.Button
-        Me.btnRefund = New System.Windows.Forms.Button
-        Me.btnGetRefundHistory = New System.Windows.Forms.Button
         Me.btnGetRefundableBalance = New System.Windows.Forms.Button
         Me.btnGetRefundInfo = New System.Windows.Forms.Button
         Me.GroupBox9 = New System.Windows.Forms.GroupBox
+        Me.btnUpdateCorpInfo = New System.Windows.Forms.Button
+        Me.btnGetContactInfo = New System.Windows.Forms.Button
+        Me.btnGetCorpInfo = New System.Windows.Forms.Button
         Me.btnCheckID = New System.Windows.Forms.Button
+        Me.btnUpdateContact = New System.Windows.Forms.Button
         Me.btnCheckIsMember = New System.Windows.Forms.Button
+        Me.btnListContact = New System.Windows.Forms.Button
         Me.btnJoinMember = New System.Windows.Forms.Button
+        Me.btnRegistContact = New System.Windows.Forms.Button
         Me.btnQuitMember = New System.Windows.Forms.Button
         Me.txtUserId = New System.Windows.Forms.TextBox
         Me.Label2 = New System.Windows.Forms.Label
@@ -118,7 +116,6 @@ Partial Class frmExample
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
         Me.Label6 = New System.Windows.Forms.Label
         Me.txtURL = New System.Windows.Forms.TextBox
-        Me.btnCheckAutoDenyNumber = New System.Windows.Forms.Button
         Me.groupBox7.SuspendLayout()
         Me.groupBox8.SuspendLayout()
         Me.groupBox6.SuspendLayout()
@@ -128,11 +125,8 @@ Partial Class frmExample
         Me.GroupBox11.SuspendLayout()
         Me.GroupBox10.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
-        Me.GroupBox17.SuspendLayout()
-        Me.GroupBox16.SuspendLayout()
         Me.GroupBox15.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
         Me.SuspendLayout()
@@ -309,7 +303,8 @@ Partial Class frmExample
         Me.groupBox4.Controls.Add(Me.txtReserveDT)
         Me.groupBox4.Controls.Add(Me.label3)
         Me.groupBox4.Controls.Add(Me.GroupBox12)
-        Me.groupBox4.Location = New System.Drawing.Point(15, 370)
+        Me.groupBox4.Controls.Add(Me.btnCheckAutoDenyNumber)
+        Me.groupBox4.Location = New System.Drawing.Point(15, 318)
         Me.groupBox4.Name = "groupBox4"
         Me.groupBox4.Size = New System.Drawing.Size(1198, 450)
         Me.groupBox4.TabIndex = 23
@@ -623,104 +618,31 @@ Partial Class frmExample
         Me.GroupBox12.TabStop = False
         Me.GroupBox12.Text = "접수번호 관련 기능 (요청번호 미할당)"
         '
+        'btnCheckAutoDenyNumber
+        '
+        Me.btnCheckAutoDenyNumber.Location = New System.Drawing.Point(952, 19)
+        Me.btnCheckAutoDenyNumber.Name = "btnCheckAutoDenyNumber"
+        Me.btnCheckAutoDenyNumber.Size = New System.Drawing.Size(132, 33)
+        Me.btnCheckAutoDenyNumber.TabIndex = 23
+        Me.btnCheckAutoDenyNumber.Text = "080 번호 확인"
+        '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.GroupBox17)
-        Me.GroupBox1.Controls.Add(Me.GroupBox16)
         Me.GroupBox1.Controls.Add(Me.GroupBox15)
         Me.GroupBox1.Controls.Add(Me.GroupBox5)
-        Me.GroupBox1.Controls.Add(Me.GroupBox2)
         Me.GroupBox1.Controls.Add(Me.GroupBox3)
         Me.GroupBox1.Controls.Add(Me.GroupBox9)
         Me.GroupBox1.Location = New System.Drawing.Point(15, 39)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1198, 325)
+        Me.GroupBox1.Size = New System.Drawing.Size(1198, 273)
         Me.GroupBox1.TabIndex = 28
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "팝빌 기본 API"
         '
-        'GroupBox17
-        '
-        Me.GroupBox17.Controls.Add(Me.btnUpdateCorpInfo)
-        Me.GroupBox17.Controls.Add(Me.btnGetCorpInfo)
-        Me.GroupBox17.Location = New System.Drawing.Point(1045, 17)
-        Me.GroupBox17.Name = "GroupBox17"
-        Me.GroupBox17.Size = New System.Drawing.Size(134, 161)
-        Me.GroupBox17.TabIndex = 6
-        Me.GroupBox17.TabStop = False
-        Me.GroupBox17.Text = "회사정보 관련"
-        '
-        'btnUpdateCorpInfo
-        '
-        Me.btnUpdateCorpInfo.Location = New System.Drawing.Point(6, 52)
-        Me.btnUpdateCorpInfo.Name = "btnUpdateCorpInfo"
-        Me.btnUpdateCorpInfo.Size = New System.Drawing.Size(122, 30)
-        Me.btnUpdateCorpInfo.TabIndex = 8
-        Me.btnUpdateCorpInfo.Text = "회사정보 수정"
-        Me.btnUpdateCorpInfo.UseVisualStyleBackColor = True
-        '
-        'btnGetCorpInfo
-        '
-        Me.btnGetCorpInfo.Location = New System.Drawing.Point(6, 19)
-        Me.btnGetCorpInfo.Name = "btnGetCorpInfo"
-        Me.btnGetCorpInfo.Size = New System.Drawing.Size(122, 30)
-        Me.btnGetCorpInfo.TabIndex = 7
-        Me.btnGetCorpInfo.Text = "회사정보 조회"
-        Me.btnGetCorpInfo.UseVisualStyleBackColor = True
-        '
-        'GroupBox16
-        '
-        Me.GroupBox16.Controls.Add(Me.btnGetContactInfo)
-        Me.GroupBox16.Controls.Add(Me.btnUpdateContact)
-        Me.GroupBox16.Controls.Add(Me.btnListContact)
-        Me.GroupBox16.Controls.Add(Me.btnRegistContact)
-        Me.GroupBox16.Location = New System.Drawing.Point(900, 17)
-        Me.GroupBox16.Name = "GroupBox16"
-        Me.GroupBox16.Size = New System.Drawing.Size(138, 161)
-        Me.GroupBox16.TabIndex = 5
-        Me.GroupBox16.TabStop = False
-        Me.GroupBox16.Text = "담당자 관련"
-        '
-        'btnGetContactInfo
-        '
-        Me.btnGetContactInfo.Location = New System.Drawing.Point(8, 53)
-        Me.btnGetContactInfo.Name = "btnGetContactInfo"
-        Me.btnGetContactInfo.Size = New System.Drawing.Size(122, 30)
-        Me.btnGetContactInfo.TabIndex = 8
-        Me.btnGetContactInfo.Text = "담당자 정보 확인"
-        Me.btnGetContactInfo.UseVisualStyleBackColor = True
-        '
-        'btnUpdateContact
-        '
-        Me.btnUpdateContact.Location = New System.Drawing.Point(8, 120)
-        Me.btnUpdateContact.Name = "btnUpdateContact"
-        Me.btnUpdateContact.Size = New System.Drawing.Size(122, 30)
-        Me.btnUpdateContact.TabIndex = 7
-        Me.btnUpdateContact.Text = "담당자 정보 수정"
-        Me.btnUpdateContact.UseVisualStyleBackColor = True
-        '
-        'btnListContact
-        '
-        Me.btnListContact.Location = New System.Drawing.Point(8, 86)
-        Me.btnListContact.Name = "btnListContact"
-        Me.btnListContact.Size = New System.Drawing.Size(122, 30)
-        Me.btnListContact.TabIndex = 6
-        Me.btnListContact.Text = "담당자 목록 조회"
-        Me.btnListContact.UseVisualStyleBackColor = True
-        '
-        'btnRegistContact
-        '
-        Me.btnRegistContact.Location = New System.Drawing.Point(8, 19)
-        Me.btnRegistContact.Name = "btnRegistContact"
-        Me.btnRegistContact.Size = New System.Drawing.Size(122, 30)
-        Me.btnRegistContact.TabIndex = 5
-        Me.btnRegistContact.Text = "담당자 추가"
-        Me.btnRegistContact.UseVisualStyleBackColor = True
-        '
         'GroupBox15
         '
         Me.GroupBox15.Controls.Add(Me.btnGetAccessURL)
-        Me.GroupBox15.Location = New System.Drawing.Point(732, 17)
+        Me.GroupBox15.Location = New System.Drawing.Point(922, 17)
         Me.GroupBox15.Name = "GroupBox15"
         Me.GroupBox15.Size = New System.Drawing.Size(162, 161)
         Me.GroupBox15.TabIndex = 4
@@ -740,7 +662,7 @@ Partial Class frmExample
         '
         Me.GroupBox5.Controls.Add(Me.btnGetPartnerURL)
         Me.GroupBox5.Controls.Add(Me.btnGetPartnerBalance)
-        Me.GroupBox5.Location = New System.Drawing.Point(595, 17)
+        Me.GroupBox5.Location = New System.Drawing.Point(785, 17)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(131, 160)
         Me.GroupBox5.TabIndex = 2
@@ -765,241 +687,292 @@ Partial Class frmExample
         Me.btnGetPartnerBalance.Text = "파트너포인트 확인"
         Me.btnGetPartnerBalance.UseVisualStyleBackColor = True
         '
-        'GroupBox2
-        '
-        Me.GroupBox2.Controls.Add(Me.btnGetUseHistoryURL)
-        Me.GroupBox2.Controls.Add(Me.btnGetPaymentURL)
-        Me.GroupBox2.Controls.Add(Me.btnGetChargeURL)
-        Me.GroupBox2.Controls.Add(Me.btnGetBalance)
-        Me.GroupBox2.Controls.Add(Me.btnGetPaymentHistory)
-        Me.GroupBox2.Controls.Add(Me.btnGetRefundHistory)
-        Me.GroupBox2.Controls.Add(Me.btnRefund)
-        Me.GroupBox2.Controls.Add(Me.btnGetUseHistory)
-        Me.GroupBox2.Location = New System.Drawing.Point(439, 17)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(150, 302)
-        Me.GroupBox2.TabIndex = 1
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "연동과금 포인트"
-        '
-        'btnGetUseHistoryURL
-        '
-        Me.btnGetUseHistoryURL.Location = New System.Drawing.Point(7, 120)
-        Me.btnGetUseHistoryURL.Name = "btnGetUseHistoryURL"
-        Me.btnGetUseHistoryURL.Size = New System.Drawing.Size(137, 30)
-        Me.btnGetUseHistoryURL.TabIndex = 7
-        Me.btnGetUseHistoryURL.Text = "포인트 사용내역 URL"
-        Me.btnGetUseHistoryURL.UseVisualStyleBackColor = True
-        '
-        'btnGetPaymentURL
-        '
-        Me.btnGetPaymentURL.Location = New System.Drawing.Point(7, 86)
-        Me.btnGetPaymentURL.Name = "btnGetPaymentURL"
-        Me.btnGetPaymentURL.Size = New System.Drawing.Size(137, 30)
-        Me.btnGetPaymentURL.TabIndex = 6
-        Me.btnGetPaymentURL.Text = "포인트 결제내역 URL"
-        Me.btnGetPaymentURL.UseVisualStyleBackColor = True
-        '
-        'btnGetChargeURL
-        '
-        Me.btnGetChargeURL.Location = New System.Drawing.Point(7, 52)
-        Me.btnGetChargeURL.Name = "btnGetChargeURL"
-        Me.btnGetChargeURL.Size = New System.Drawing.Size(137, 30)
-        Me.btnGetChargeURL.TabIndex = 5
-        Me.btnGetChargeURL.Text = "포인트 충전 URL"
-        Me.btnGetChargeURL.UseVisualStyleBackColor = True
-        '
-        'btnGetBalance
-        '
-        Me.btnGetBalance.Location = New System.Drawing.Point(7, 19)
-        Me.btnGetBalance.Name = "btnGetBalance"
-        Me.btnGetBalance.Size = New System.Drawing.Size(137, 30)
-        Me.btnGetBalance.TabIndex = 2
-        Me.btnGetBalance.Text = "잔여포인트 확인"
-        Me.btnGetBalance.UseVisualStyleBackColor = True
-        '
         'GroupBox3
         '
+        Me.GroupBox3.Controls.Add(Me.btnGetRefundHistory)
+        Me.GroupBox3.Controls.Add(Me.btnGetUseHistoryURL)
         Me.GroupBox3.Controls.Add(Me.btnGetChargeInfo_MMS)
+        Me.GroupBox3.Controls.Add(Me.btnGetPaymentURL)
         Me.GroupBox3.Controls.Add(Me.btnGetChargeInfo_LMS)
+        Me.GroupBox3.Controls.Add(Me.btnGetChargeURL)
         Me.GroupBox3.Controls.Add(Me.btnGetUnitCost_MMS)
+        Me.GroupBox3.Controls.Add(Me.btnGetBalance)
+        Me.GroupBox3.Controls.Add(Me.btnGetPaymentHistory)
         Me.GroupBox3.Controls.Add(Me.btnGetUnitCost_LMS)
         Me.GroupBox3.Controls.Add(Me.btnGetChargeInfo_SMS)
+        Me.GroupBox3.Controls.Add(Me.btnRefund)
         Me.GroupBox3.Controls.Add(Me.btnUnitCost_SMS)
+        Me.GroupBox3.Controls.Add(Me.btnGetUseHistory)
         Me.GroupBox3.Controls.Add(Me.btnPaymentRequest)
         Me.GroupBox3.Controls.Add(Me.btnGetSettleResult)
         Me.GroupBox3.Controls.Add(Me.btnGetRefundableBalance)
         Me.GroupBox3.Controls.Add(Me.btnGetRefundInfo)
-        Me.GroupBox3.Location = New System.Drawing.Point(145, 17)
+        Me.GroupBox3.Location = New System.Drawing.Point(271, 17)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(288, 200)
+        Me.GroupBox3.Size = New System.Drawing.Size(508, 252)
         Me.GroupBox3.TabIndex = 1
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "포인트 관련"
         '
+        'btnGetRefundHistory
+        '
+        Me.btnGetRefundHistory.Location = New System.Drawing.Point(179, 210)
+        Me.btnGetRefundHistory.Name = "btnGetRefundHistory"
+        Me.btnGetRefundHistory.Size = New System.Drawing.Size(155, 32)
+        Me.btnGetRefundHistory.TabIndex = 0
+        Me.btnGetRefundHistory.Text = "포인트 환불내역 확인"
+        '
+        'btnGetUseHistoryURL
+        '
+        Me.btnGetUseHistoryURL.Location = New System.Drawing.Point(340, 134)
+        Me.btnGetUseHistoryURL.Name = "btnGetUseHistoryURL"
+        Me.btnGetUseHistoryURL.Size = New System.Drawing.Size(155, 32)
+        Me.btnGetUseHistoryURL.TabIndex = 7
+        Me.btnGetUseHistoryURL.Text = "포인트 사용내역 URL"
+        Me.btnGetUseHistoryURL.UseVisualStyleBackColor = True
+        '
         'btnGetChargeInfo_MMS
         '
-        Me.btnGetChargeInfo_MMS.Location = New System.Drawing.Point(151, 86)
+        Me.btnGetChargeInfo_MMS.Location = New System.Drawing.Point(179, 96)
         Me.btnGetChargeInfo_MMS.Name = "btnGetChargeInfo_MMS"
-        Me.btnGetChargeInfo_MMS.Size = New System.Drawing.Size(126, 30)
+        Me.btnGetChargeInfo_MMS.Size = New System.Drawing.Size(155, 32)
         Me.btnGetChargeInfo_MMS.TabIndex = 8
         Me.btnGetChargeInfo_MMS.Text = "포토 과금정보 확인"
         Me.btnGetChargeInfo_MMS.UseVisualStyleBackColor = True
         '
+        'btnGetPaymentURL
+        '
+        Me.btnGetPaymentURL.Location = New System.Drawing.Point(340, 96)
+        Me.btnGetPaymentURL.Name = "btnGetPaymentURL"
+        Me.btnGetPaymentURL.Size = New System.Drawing.Size(155, 32)
+        Me.btnGetPaymentURL.TabIndex = 6
+        Me.btnGetPaymentURL.Text = "포인트 결제내역 URL"
+        Me.btnGetPaymentURL.UseVisualStyleBackColor = True
+        '
         'btnGetChargeInfo_LMS
         '
-        Me.btnGetChargeInfo_LMS.Location = New System.Drawing.Point(151, 52)
+        Me.btnGetChargeInfo_LMS.Location = New System.Drawing.Point(179, 58)
         Me.btnGetChargeInfo_LMS.Name = "btnGetChargeInfo_LMS"
-        Me.btnGetChargeInfo_LMS.Size = New System.Drawing.Size(126, 30)
+        Me.btnGetChargeInfo_LMS.Size = New System.Drawing.Size(155, 32)
         Me.btnGetChargeInfo_LMS.TabIndex = 7
         Me.btnGetChargeInfo_LMS.Text = "장문 과금정보 확인"
         Me.btnGetChargeInfo_LMS.UseVisualStyleBackColor = True
         '
+        'btnGetChargeURL
+        '
+        Me.btnGetChargeURL.Location = New System.Drawing.Point(340, 58)
+        Me.btnGetChargeURL.Name = "btnGetChargeURL"
+        Me.btnGetChargeURL.Size = New System.Drawing.Size(155, 32)
+        Me.btnGetChargeURL.TabIndex = 5
+        Me.btnGetChargeURL.Text = "포인트 충전 URL"
+        Me.btnGetChargeURL.UseVisualStyleBackColor = True
+        '
         'btnGetUnitCost_MMS
         '
-        Me.btnGetUnitCost_MMS.Location = New System.Drawing.Point(18, 86)
+        Me.btnGetUnitCost_MMS.Location = New System.Drawing.Point(18, 95)
         Me.btnGetUnitCost_MMS.Name = "btnGetUnitCost_MMS"
-        Me.btnGetUnitCost_MMS.Size = New System.Drawing.Size(126, 30)
+        Me.btnGetUnitCost_MMS.Size = New System.Drawing.Size(155, 32)
         Me.btnGetUnitCost_MMS.TabIndex = 6
         Me.btnGetUnitCost_MMS.Text = "포토 요금단가 확인"
         Me.btnGetUnitCost_MMS.UseVisualStyleBackColor = True
         '
+        'btnGetBalance
+        '
+        Me.btnGetBalance.Location = New System.Drawing.Point(340, 20)
+        Me.btnGetBalance.Name = "btnGetBalance"
+        Me.btnGetBalance.Size = New System.Drawing.Size(155, 32)
+        Me.btnGetBalance.TabIndex = 2
+        Me.btnGetBalance.Text = "잔여포인트 확인"
+        Me.btnGetBalance.UseVisualStyleBackColor = True
+        '
+        'btnGetPaymentHistory
+        '
+        Me.btnGetPaymentHistory.Location = New System.Drawing.Point(340, 172)
+        Me.btnGetPaymentHistory.Name = "btnGetPaymentHistory"
+        Me.btnGetPaymentHistory.Size = New System.Drawing.Size(155, 32)
+        Me.btnGetPaymentHistory.TabIndex = 0
+        Me.btnGetPaymentHistory.Text = "포인트 결제내역 확인"
+        '
         'btnGetUnitCost_LMS
         '
-        Me.btnGetUnitCost_LMS.Location = New System.Drawing.Point(18, 52)
+        Me.btnGetUnitCost_LMS.Location = New System.Drawing.Point(18, 57)
         Me.btnGetUnitCost_LMS.Name = "btnGetUnitCost_LMS"
-        Me.btnGetUnitCost_LMS.Size = New System.Drawing.Size(126, 30)
+        Me.btnGetUnitCost_LMS.Size = New System.Drawing.Size(155, 32)
         Me.btnGetUnitCost_LMS.TabIndex = 5
         Me.btnGetUnitCost_LMS.Text = "장문 요금단가 확인"
         Me.btnGetUnitCost_LMS.UseVisualStyleBackColor = True
         '
         'btnGetChargeInfo_SMS
         '
-        Me.btnGetChargeInfo_SMS.Location = New System.Drawing.Point(151, 19)
+        Me.btnGetChargeInfo_SMS.Location = New System.Drawing.Point(179, 20)
         Me.btnGetChargeInfo_SMS.Name = "btnGetChargeInfo_SMS"
-        Me.btnGetChargeInfo_SMS.Size = New System.Drawing.Size(126, 30)
+        Me.btnGetChargeInfo_SMS.Size = New System.Drawing.Size(155, 32)
         Me.btnGetChargeInfo_SMS.TabIndex = 4
         Me.btnGetChargeInfo_SMS.Text = "단문 과금정보 확인"
         Me.btnGetChargeInfo_SMS.UseVisualStyleBackColor = True
+        '
+        'btnRefund
+        '
+        Me.btnRefund.Location = New System.Drawing.Point(18, 209)
+        Me.btnRefund.Name = "btnRefund"
+        Me.btnRefund.Size = New System.Drawing.Size(155, 32)
+        Me.btnRefund.TabIndex = 0
+        Me.btnRefund.Text = "포인트 환불신청"
         '
         'btnUnitCost_SMS
         '
         Me.btnUnitCost_SMS.Location = New System.Drawing.Point(18, 19)
         Me.btnUnitCost_SMS.Name = "btnUnitCost_SMS"
-        Me.btnUnitCost_SMS.Size = New System.Drawing.Size(126, 30)
+        Me.btnUnitCost_SMS.Size = New System.Drawing.Size(155, 32)
         Me.btnUnitCost_SMS.TabIndex = 3
         Me.btnUnitCost_SMS.Text = "단문 요금단가 확인"
         Me.btnUnitCost_SMS.UseVisualStyleBackColor = True
         '
+        'btnGetUseHistory
+        '
+        Me.btnGetUseHistory.Location = New System.Drawing.Point(340, 210)
+        Me.btnGetUseHistory.Name = "btnGetUseHistory"
+        Me.btnGetUseHistory.Size = New System.Drawing.Size(155, 32)
+        Me.btnGetUseHistory.TabIndex = 0
+        Me.btnGetUseHistory.Text = "포인트 사용내역 확인"
+        '
         'btnPaymentRequest
         '
-        Me.btnPaymentRequest.Location = New System.Drawing.Point(18, 120)
+        Me.btnPaymentRequest.Location = New System.Drawing.Point(18, 133)
         Me.btnPaymentRequest.Name = "btnPaymentRequest"
-        Me.btnPaymentRequest.Size = New System.Drawing.Size(126, 32)
+        Me.btnPaymentRequest.Size = New System.Drawing.Size(155, 32)
         Me.btnPaymentRequest.TabIndex = 8
         Me.btnPaymentRequest.Text = "무통장 입금신청"
         '
         'btnGetSettleResult
         '
-        Me.btnGetSettleResult.Location = New System.Drawing.Point(18, 156)
+        Me.btnGetSettleResult.Location = New System.Drawing.Point(18, 171)
         Me.btnGetSettleResult.Name = "btnGetSettleResult"
-        Me.btnGetSettleResult.Size = New System.Drawing.Size(126, 32)
+        Me.btnGetSettleResult.Size = New System.Drawing.Size(155, 32)
         Me.btnGetSettleResult.TabIndex = 0
         Me.btnGetSettleResult.Text = "무통장 입금신청 정보확인"
         '
-        'btnGetPaymentHistory
-        '
-        Me.btnGetPaymentHistory.Location = New System.Drawing.Point(7, 156)
-        Me.btnGetPaymentHistory.Name = "btnGetPaymentHistory"
-        Me.btnGetPaymentHistory.Size = New System.Drawing.Size(137, 32)
-        Me.btnGetPaymentHistory.TabIndex = 0
-        Me.btnGetPaymentHistory.Text = "포인트 결제내역 확인"
-        '
-        'btnGetUseHistory
-        '
-        Me.btnGetUseHistory.Location = New System.Drawing.Point(7, 192)
-        Me.btnGetUseHistory.Name = "btnGetUseHistory"
-        Me.btnGetUseHistory.Size = New System.Drawing.Size(137, 32)
-        Me.btnGetUseHistory.TabIndex = 0
-        Me.btnGetUseHistory.Text = "포인트 사용내역 확인"
-        '
-        'btnRefund
-        '
-        Me.btnRefund.Location = New System.Drawing.Point(7, 228)
-        Me.btnRefund.Name = "btnRefund"
-        Me.btnRefund.Size = New System.Drawing.Size(137, 32)
-        Me.btnRefund.TabIndex = 0
-        Me.btnRefund.Text = "포인트 환불신청"
-        '
-        'btnGetRefundHistory
-        '
-        Me.btnGetRefundHistory.Location = New System.Drawing.Point(7, 264)
-        Me.btnGetRefundHistory.Name = "btnGetRefundHistory"
-        Me.btnGetRefundHistory.Size = New System.Drawing.Size(137, 32)
-        Me.btnGetRefundHistory.TabIndex = 0
-        Me.btnGetRefundHistory.Text = "포인트 환불내역 확인"
-        '
         'btnGetRefundableBalance
         '
-        Me.btnGetRefundableBalance.Location = New System.Drawing.Point(150, 156)
+        Me.btnGetRefundableBalance.Location = New System.Drawing.Point(179, 172)
         Me.btnGetRefundableBalance.Name = "btnGetRefundableBalance"
-        Me.btnGetRefundableBalance.Size = New System.Drawing.Size(127, 32)
+        Me.btnGetRefundableBalance.Size = New System.Drawing.Size(155, 32)
         Me.btnGetRefundableBalance.TabIndex = 0
         Me.btnGetRefundableBalance.Text = "환불 가능 포인트 조회"
         '
         'btnGetRefundInfo
         '
-        Me.btnGetRefundInfo.Location = New System.Drawing.Point(151, 120)
+        Me.btnGetRefundInfo.Location = New System.Drawing.Point(179, 134)
         Me.btnGetRefundInfo.Name = "btnGetRefundInfo"
-        Me.btnGetRefundInfo.Size = New System.Drawing.Size(126, 32)
+        Me.btnGetRefundInfo.Size = New System.Drawing.Size(155, 32)
         Me.btnGetRefundInfo.TabIndex = 0
         Me.btnGetRefundInfo.Text = "환불 신청 상태 조회"
         '
         'GroupBox9
         '
+        Me.GroupBox9.Controls.Add(Me.btnUpdateCorpInfo)
+        Me.GroupBox9.Controls.Add(Me.btnGetContactInfo)
+        Me.GroupBox9.Controls.Add(Me.btnGetCorpInfo)
         Me.GroupBox9.Controls.Add(Me.btnCheckID)
+        Me.GroupBox9.Controls.Add(Me.btnUpdateContact)
         Me.GroupBox9.Controls.Add(Me.btnCheckIsMember)
+        Me.GroupBox9.Controls.Add(Me.btnListContact)
         Me.GroupBox9.Controls.Add(Me.btnJoinMember)
+        Me.GroupBox9.Controls.Add(Me.btnRegistContact)
         Me.GroupBox9.Controls.Add(Me.btnQuitMember)
         Me.GroupBox9.Location = New System.Drawing.Point(6, 17)
         Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(131, 160)
+        Me.GroupBox9.Size = New System.Drawing.Size(259, 203)
         Me.GroupBox9.TabIndex = 0
         Me.GroupBox9.TabStop = False
         Me.GroupBox9.Text = "회원 정보"
         '
+        'btnUpdateCorpInfo
+        '
+        Me.btnUpdateCorpInfo.Location = New System.Drawing.Point(134, 163)
+        Me.btnUpdateCorpInfo.Name = "btnUpdateCorpInfo"
+        Me.btnUpdateCorpInfo.Size = New System.Drawing.Size(122, 30)
+        Me.btnUpdateCorpInfo.TabIndex = 8
+        Me.btnUpdateCorpInfo.Text = "회사정보 수정"
+        Me.btnUpdateCorpInfo.UseVisualStyleBackColor = True
+        '
+        'btnGetContactInfo
+        '
+        Me.btnGetContactInfo.Location = New System.Drawing.Point(134, 56)
+        Me.btnGetContactInfo.Name = "btnGetContactInfo"
+        Me.btnGetContactInfo.Size = New System.Drawing.Size(122, 30)
+        Me.btnGetContactInfo.TabIndex = 8
+        Me.btnGetContactInfo.Text = "담당자 정보 확인"
+        Me.btnGetContactInfo.UseVisualStyleBackColor = True
+        '
+        'btnGetCorpInfo
+        '
+        Me.btnGetCorpInfo.Location = New System.Drawing.Point(6, 163)
+        Me.btnGetCorpInfo.Name = "btnGetCorpInfo"
+        Me.btnGetCorpInfo.Size = New System.Drawing.Size(122, 30)
+        Me.btnGetCorpInfo.TabIndex = 7
+        Me.btnGetCorpInfo.Text = "회사정보 조회"
+        Me.btnGetCorpInfo.UseVisualStyleBackColor = True
+        '
         'btnCheckID
         '
-        Me.btnCheckID.Location = New System.Drawing.Point(6, 51)
+        Me.btnCheckID.Location = New System.Drawing.Point(6, 55)
         Me.btnCheckID.Name = "btnCheckID"
-        Me.btnCheckID.Size = New System.Drawing.Size(118, 30)
+        Me.btnCheckID.Size = New System.Drawing.Size(122, 30)
         Me.btnCheckID.TabIndex = 3
         Me.btnCheckID.Text = "ID 중복 확인"
         Me.btnCheckID.UseVisualStyleBackColor = True
+        '
+        'btnUpdateContact
+        '
+        Me.btnUpdateContact.Location = New System.Drawing.Point(134, 127)
+        Me.btnUpdateContact.Name = "btnUpdateContact"
+        Me.btnUpdateContact.Size = New System.Drawing.Size(122, 30)
+        Me.btnUpdateContact.TabIndex = 7
+        Me.btnUpdateContact.Text = "담당자 정보 수정"
+        Me.btnUpdateContact.UseVisualStyleBackColor = True
         '
         'btnCheckIsMember
         '
         Me.btnCheckIsMember.Location = New System.Drawing.Point(6, 19)
         Me.btnCheckIsMember.Name = "btnCheckIsMember"
-        Me.btnCheckIsMember.Size = New System.Drawing.Size(118, 30)
+        Me.btnCheckIsMember.Size = New System.Drawing.Size(122, 30)
         Me.btnCheckIsMember.TabIndex = 2
         Me.btnCheckIsMember.Text = "가입여부 확인"
         Me.btnCheckIsMember.UseVisualStyleBackColor = True
         '
+        'btnListContact
+        '
+        Me.btnListContact.Location = New System.Drawing.Point(134, 91)
+        Me.btnListContact.Name = "btnListContact"
+        Me.btnListContact.Size = New System.Drawing.Size(122, 30)
+        Me.btnListContact.TabIndex = 6
+        Me.btnListContact.Text = "담당자 목록 조회"
+        Me.btnListContact.UseVisualStyleBackColor = True
+        '
         'btnJoinMember
         '
-        Me.btnJoinMember.Location = New System.Drawing.Point(6, 84)
+        Me.btnJoinMember.Location = New System.Drawing.Point(6, 91)
         Me.btnJoinMember.Name = "btnJoinMember"
-        Me.btnJoinMember.Size = New System.Drawing.Size(118, 30)
+        Me.btnJoinMember.Size = New System.Drawing.Size(122, 30)
         Me.btnJoinMember.TabIndex = 1
         Me.btnJoinMember.Text = "회원 가입"
         Me.btnJoinMember.UseVisualStyleBackColor = True
         '
+        'btnRegistContact
+        '
+        Me.btnRegistContact.Location = New System.Drawing.Point(134, 20)
+        Me.btnRegistContact.Name = "btnRegistContact"
+        Me.btnRegistContact.Size = New System.Drawing.Size(122, 30)
+        Me.btnRegistContact.TabIndex = 5
+        Me.btnRegistContact.Text = "담당자 추가"
+        Me.btnRegistContact.UseVisualStyleBackColor = True
+        '
         'btnQuitMember
         '
-        Me.btnQuitMember.Location = New System.Drawing.Point(6, 120)
+        Me.btnQuitMember.Location = New System.Drawing.Point(6, 127)
         Me.btnQuitMember.Name = "btnQuitMember"
-        Me.btnQuitMember.Size = New System.Drawing.Size(118, 32)
+        Me.btnQuitMember.Size = New System.Drawing.Size(122, 30)
         Me.btnQuitMember.TabIndex = 23
         Me.btnQuitMember.Text = "팝빌 회원 탈퇴"
         '
@@ -1057,19 +1030,11 @@ Partial Class frmExample
         Me.txtURL.Size = New System.Drawing.Size(285, 21)
         Me.txtURL.TabIndex = 36
         '
-        'btnCheckAutoDenyNumber
-        '
-        Me.btnCheckAutoDenyNumber.Location = New System.Drawing.Point(8, 132)
-        Me.btnCheckAutoDenyNumber.Name = "btnCheckAutoDenyNumber"
-        Me.btnCheckAutoDenyNumber.Size = New System.Drawing.Size(104, 32)
-        Me.btnCheckAutoDenyNumber.TabIndex = 23
-        Me.btnCheckAutoDenyNumber.Text = "080 번호 확인"
-        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1225, 828)
+        Me.ClientSize = New System.Drawing.Size(1225, 778)
         Me.Controls.Add(Me.txtURL)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.GroupBox1)
@@ -1093,11 +1058,8 @@ Partial Class frmExample
         Me.GroupBox11.ResumeLayout(False)
         Me.GroupBox10.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox17.ResumeLayout(False)
-        Me.GroupBox16.ResumeLayout(False)
         Me.GroupBox15.ResumeLayout(False)
         Me.GroupBox5.ResumeLayout(False)
-        Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox9.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -1121,10 +1083,8 @@ Partial Class frmExample
     Friend WithEvents label3 As System.Windows.Forms.Label
     Private WithEvents groupBox4 As System.Windows.Forms.GroupBox
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
-    Friend WithEvents GroupBox17 As System.Windows.Forms.GroupBox
     Friend WithEvents btnUpdateCorpInfo As System.Windows.Forms.Button
     Friend WithEvents btnGetCorpInfo As System.Windows.Forms.Button
-    Friend WithEvents GroupBox16 As System.Windows.Forms.GroupBox
     Friend WithEvents btnUpdateContact As System.Windows.Forms.Button
     Friend WithEvents btnListContact As System.Windows.Forms.Button
     Friend WithEvents btnRegistContact As System.Windows.Forms.Button
@@ -1133,7 +1093,6 @@ Partial Class frmExample
     Friend WithEvents GroupBox5 As System.Windows.Forms.GroupBox
     Friend WithEvents btnGetPartnerURL As System.Windows.Forms.Button
     Friend WithEvents btnGetPartnerBalance As System.Windows.Forms.Button
-    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents btnGetChargeURL As System.Windows.Forms.Button
     Friend WithEvents btnGetBalance As System.Windows.Forms.Button
     Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox

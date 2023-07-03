@@ -756,7 +756,7 @@ Public Class frmExample
             tmp += "perPage(페이지당 검색개수) : " + result.perPage.ToString + vbCrLf
             tmp += "pageNum(페이지 번호) : " + result.pageNum.ToString + vbCrLf
             tmp += "pageCount(페이지 개수) : " + result.pageCount.ToString + vbCrLf
-            tmp += "사용내역"+ vbCrLf
+            tmp += "환불내역" + vbCrLf
 
             For Each history As RefundHistory In result.list
                 tmp+ = "reqDT(신청일시) :" + history.reqDT + vbCrLf
@@ -815,7 +815,7 @@ Public Class frmExample
         Try
             Dim refundableCode As Double  = bizInfoCheckService.GetRefundableBalance(txtCorpNum.Text, txtUserId.Text)
 
-            MsgBox("refundableCode(환불 가능 포인트) : " + refundableCode)
+            MsgBox("refundableCode(환불 가능 포인트) : " + refundableCode.ToString)
 
         Catch ex As PopbillException
             MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)

@@ -1759,7 +1759,7 @@ Public Class frmExample
         Try
             Dim refundableCode As Double  = cashbillService.GetRefundableBalance(txtCorpNum.Text, txtUserId.Text)
 
-            MsgBox("refundableCode(환불 가능 포인트) : " + refundableCode)
+            MsgBox("refundableCode(환불 가능 포인트) : " + refundableCode.ToString)
 
         Catch ex As PopbillException
             MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
