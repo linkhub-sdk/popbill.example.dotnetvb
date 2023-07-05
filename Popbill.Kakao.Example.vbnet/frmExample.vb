@@ -268,6 +268,7 @@ Public Class frmExample
         Dim templateCode As String = "019020000163"
 
         '팝빌에 사전등록된 발신번호
+        '※ 대체문자를 전송하는 경우에만 필수 입력
         Dim senderNum As String = ""
 
         '알림톡 템플릿 내용 (최대 1000자)
@@ -349,6 +350,7 @@ Public Class frmExample
         content += "support@linkhub.co.kr"
 
         '팝빌에 사전등록된 발신번호
+        '※ 대체문자를 전송하는 경우에만 필수 입력
         Dim senderNum As String = ""
 
         ' 대체문자 유형 (null , "C" , "A" 중 택 1)
@@ -444,6 +446,7 @@ Public Class frmExample
         Dim templateCode As String = "019020000163"
 
         '팝빌에 사전등록된 발신번호
+        '※ 대체문자를 전송하는 경우에만 필수 입력
         Dim senderNum As String = ""
 
         '알림톡 템플릿 내용 (최대 1000자)
@@ -519,6 +522,7 @@ Public Class frmExample
         Dim plusFriendID As String = "@팝빌"
 
         '팝빌에 사전등록된 발신번호
+        '※ 대체문자를 전송하는 경우에만 필수 입력
         Dim senderNum As String = ""
 
         '수신번호
@@ -590,6 +594,7 @@ Public Class frmExample
         Dim plusFriendID As String = "@팝빌"
 
         '팝빌에 사전등록된 발신번호
+        '※ 대체문자를 전송하는 경우에만 필수 입력
         Dim senderNum As String = ""
 
         ' 대체문자 유형 (null , "C" , "A" 중 택 1)
@@ -689,6 +694,7 @@ Public Class frmExample
         Dim plusFriendID As String = "@팝빌"
 
         '팝빌에 사전등록된 발신번호
+        '※ 대체문자를 전송하는 경우에만 필수 입력
         Dim senderNum As String = ""
 
         '친구톡 내용 (최대 1000자)
@@ -767,6 +773,7 @@ Public Class frmExample
             Dim plusFriendID As String = "@팝빌"
 
             '팝빌에 사전등록된 발신번호
+            '※ 대체문자를 전송하는 경우에만 필수 입력
             Dim senderNum As String = ""
 
             '수신번호
@@ -853,6 +860,7 @@ Public Class frmExample
             Dim plusFriendID As String = "@팝빌"
 
             '팝빌에 사전등록된 발신번호
+            '※ 대체문자를 전송하는 경우에만 필수 입력
             Dim senderNum As String = ""
 
             ' 대체문자 유형 (null , "C" , "A" 중 택 1)
@@ -966,6 +974,7 @@ Public Class frmExample
             Dim plusFriendID As String = "@팝빌"
 
             '팝빌에 사전등록된 발신번호
+            '※ 대체문자를 전송하는 경우에만 필수 입력
             Dim senderNum As String = ""
 
             '친구톡 내용 (최대 400자)

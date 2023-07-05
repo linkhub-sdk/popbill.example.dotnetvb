@@ -2099,7 +2099,7 @@ Public Class frmExample
         Dim EDate As String = "20230530"
 
         '목록 페이지 번호
-        Dim Page  As Integer = 1
+        Dim Page As Integer = 1
 
         '페이지당 목록 개수
         Dim PerPage  As Integer = 500
