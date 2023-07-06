@@ -1473,12 +1473,16 @@ Public Class frmExample
 
         '담당자명
         paymentForm.settlerName = "담당자명"
+
         '담당자 이메일
         paymentForm.settlerEmail = "test@email.com"
+
         '담당자 휴대폰
         paymentForm.notifyHP = "010-1234-1234"
+
         '입금자명
         paymentForm.paymentName = "입금자명"
+
         '결제금액
         paymentForm.settleCost = "1000"
 
@@ -1615,11 +1619,11 @@ Public Class frmExample
 
                 tmp += "itemCode(서비스 코드) : " + history.itemCode + vbCrLf
                 tmp += "txType(포인트 증감 유형) : " + history.txType + vbCrLf
-                tmp += "txPoint(결제 유형) : " + history.txPoint + vbCrLf
-                tmp += "balance(담당자명) : " + history.balance + vbCrLf
-                tmp += "txDT(담당자메일) : " + history.txDT + vbCrLf
-                tmp += "userID(결제 금액) : " + history.userID + vbCrLf
-                tmp += "userName(충전포인트) : " + history.userName + vbCrLf
+                tmp += "txPoint(증감 포인트) : " + history.txPoint + vbCrLf
+                tmp += "balance(잔여포인트) : " + history.balance + vbCrLf
+                tmp += "txDT(포인트 증감 일시) : " + history.txDT + vbCrLf
+                tmp += "userID(담당자 아이디) : " + history.userID + vbCrLf
+                tmp += "userName(담당자명) : " + history.userName + vbCrLf
                 tmp += vbCrLf
 
             Next
@@ -1757,9 +1761,9 @@ Public Class frmExample
     Private Sub btnGetRefundableBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetRefundableBalance.Click
 
         Try
-            Dim refundableCode As Double  = cashbillService.GetRefundableBalance(txtCorpNum.Text, txtUserId.Text)
+            Dim refundableBalance As Double  = cashbillService.GetRefundableBalance(txtCorpNum.Text, txtUserId.Text)
 
-            MsgBox("refundableCode(환불 가능 포인트) : " + refundableCode.ToString)
+            MsgBox("refundableBalance(환불 가능 포인트) : " + refundableBalance.ToString)
 
         Catch ex As PopbillException
             MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
