@@ -1048,7 +1048,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌에서 반환받은 접수번호를 통해 예약접수된 카카오톡을 전송 취소합니다. (예약시간 10분 전까지 가능)
+    ' 팝빌에서 반환받은 접수번호를 통해 예약된 카카오톡을 전송 취소합니다. (예약시간 10분 전까지 가능)
     ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/send#CancelReserve
     '=========================================================================
     Private Sub btnCancelReserve_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1065,7 +1065,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 파트너가 할당한 전송요청 번호를 통해 예약접수된 카카오톡을 전송 취소합니다. (예약시간 10분 전까지 가능)
+    ' 파트너가 할당한 전송요청 번호를 통해 예약된 카카오톡을 전송 취소합니다. (예약시간 10분 전까지 가능)
     ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/send#CancelReserveRN
     '=========================================================================
     Private Sub btnCancelReserveRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -1088,8 +1088,10 @@ Public Class frmExample
     Private Sub btnCancelReserveRNbyRCV_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnCancelReserveRNbyRCV.Click
 
+        '전송요청 번호
         Dim RequestNum As String = "test_request_Num"
 
+        '수신번호
         Dim ReceiveNum As String = "01012341234"
 
         Try
@@ -1104,14 +1106,16 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 파트너가 할당한 전송요청 번호를 통해 예약접수된 카카오톡을 전송 취소합니다. (예약시간 10분 전까지 가능)
+    ' 파트너가 할당한 전송요청 번호를 통해 예약된 카카오톡을 전송 취소합니다. (예약시간 10분 전까지 가능)
     ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/send#CancelReserveRN
     '=========================================================================
     Private Sub btnCancelReservebyRCV_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnCancelReservebyRCV.Click
 
+        '접수번호
         Dim ReceiptNum As String = "023053016515500001"
 
+        '수신번호
         Dim ReceiveNum As String = "01012341234"
         Try
             Dim response As Response
