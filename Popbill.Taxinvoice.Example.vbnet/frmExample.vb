@@ -3117,23 +3117,6 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 전자세금계산서 유통사업자의 메일 목록을 확인합니다.
-    ' - https://developers.popbill.com/reference/taxinvoice/dotnet/api/etc#GetEmailPublicKeys
-    '=========================================================================
-    Private Sub btnGetEmailPublicKey_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-        Handles btnGetEmailPublicKey.Click
-
-        Try
-            Dim KeyList As List(Of EmailPublicKey) = taxinvoiceService.GetEmailPublicKeys(txtCorpNum.Text)
-
-            MsgBox("유통사업자 수 : " + KeyList.Count.ToString)
-
-        Catch ex As PopbillException
-            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
     ' 팝빌 사이트를 통해 발행하여 문서번호가 부여되지 않은 세금계산서에 문서번호를 할당합니다.
     ' - https://developers.popbill.com/reference/taxinvoice/dotnet/api/etc#AssignMgtKey
     '=========================================================================
