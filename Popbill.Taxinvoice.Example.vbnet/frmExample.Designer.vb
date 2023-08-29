@@ -162,7 +162,6 @@ Partial Class frmExample
         Me.btnDeleteFile = New System.Windows.Forms.Button
         Me.btnAttachFile = New System.Windows.Forms.Button
         Me.btnGetFiles = New System.Windows.Forms.Button
-        Me.btnGetEmailPublicKey = New System.Windows.Forms.Button
         Me.btnCheckMgtKeyInUse = New System.Windows.Forms.Button
         Me.cboMgtKeyType = New System.Windows.Forms.ComboBox
         Me.txtMgtKey = New System.Windows.Forms.TextBox
@@ -614,7 +613,6 @@ Partial Class frmExample
         Me.GroupBox7.Controls.Add(Me.GroupBox9)
         Me.GroupBox7.Controls.Add(Me.GroupBox11)
         Me.GroupBox7.Controls.Add(Me.GroupBox10)
-        Me.GroupBox7.Controls.Add(Me.btnGetEmailPublicKey)
         Me.GroupBox7.Controls.Add(Me.btnCheckMgtKeyInUse)
         Me.GroupBox7.Controls.Add(Me.cboMgtKeyType)
         Me.GroupBox7.Controls.Add(Me.txtMgtKey)
@@ -1649,15 +1647,6 @@ Partial Class frmExample
         Me.btnGetFiles.Text = "첨부파일 목록"
         Me.btnGetFiles.UseVisualStyleBackColor = True
         '
-        'btnGetEmailPublicKey
-        '
-        Me.btnGetEmailPublicKey.Location = New System.Drawing.Point(1112, 20)
-        Me.btnGetEmailPublicKey.Name = "btnGetEmailPublicKey"
-        Me.btnGetEmailPublicKey.Size = New System.Drawing.Size(153, 26)
-        Me.btnGetEmailPublicKey.TabIndex = 6
-        Me.btnGetEmailPublicKey.Text = "ASP업체 Email목록 확인"
-        Me.btnGetEmailPublicKey.UseVisualStyleBackColor = True
-        '
         'btnCheckMgtKeyInUse
         '
         Me.btnCheckMgtKeyInUse.Location = New System.Drawing.Point(379, 17)
@@ -1777,7 +1766,6 @@ Partial Class frmExample
     Friend WithEvents txtMgtKey As System.Windows.Forms.TextBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents btnCheckMgtKeyInUse As System.Windows.Forms.Button
-    Friend WithEvents btnGetEmailPublicKey As System.Windows.Forms.Button
     Friend WithEvents GroupBox8 As System.Windows.Forms.GroupBox
     Friend WithEvents btnRegister As System.Windows.Forms.Button
     Friend WithEvents btnDelete As System.Windows.Forms.Button
