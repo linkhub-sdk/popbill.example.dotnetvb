@@ -1,17 +1,21 @@
 ﻿
 '=========================================================================
+' 팝빌 예금주조회 API .NET SDK VB.NET Example
+' VB.NET 연동 튜토리얼 안내 : https://developers.popbill.com/guide/accountcheck/dotnet/getting-started/tutorial?fwn=vb
 '
-' 팝빌 예금주조회 API VB.Net SDK Example
-'
-' - VB.Net SDK 연동환경 설정방법 안내 : https://developers.popbill.com/guide/accountcheck/dotnet/getting-started/tutorial?fwn=vb
-' - 업데이트 일자 : 2023-07-03
-' - 연동 기술지원 연락처 : 1600-9854
-' - 연동 기술지원 이메일 : code@linkhubcorp.com
-'
+' 업데이트 일자 : 2024-02-26
+' 연동기술지원 연락처 : 1600-9854
+' 연동기술지원 이메일 : code@linkhubcorp.com
+'         
 ' <테스트 연동개발 준비사항>
-' 1) 20, 23번 라인에 선언된 링크아이디(LinkID)와 비밀키(SecretKey)를
-'    링크허브 가입시 메일로 발급받은 인증정보를 참조하여 변경합니다.
-' 2) 팝빌 개발용 사이트(test.popbill.com)에 연동회원으로 가입합니다.
+' 1) API Key 변경 (연동신청 시 메일로 전달된 정보)
+'     - LinkID : 링크허브에서 발급한 링크아이디
+'     - SecretKey : 링크허브에서 발급한 비밀키
+' 2) SDK 환경설정 옵션 설정
+'     - IsTest : 연동환경 설정, true-테스트, false-운영(Production), (기본값:true)
+'     - IPRestrictOnOff : 인증토큰 IP 검증 설정, true-사용, false-미사용, (기본값:true)
+'     - UseStaticIP : 통신 IP 고정, true-사용, false-미사용, (기본값:false)
+'     - UseLocalTimeYN : 로컬시스템 시간 사용여부, true-사용, false-미사용, (기본값:true)
 '=========================================================================
 
 
@@ -32,16 +36,16 @@ Public Class frmExample
         '예금주조회 서비스 객체 초기화
         accountCheckService = New AccountCheckService(LinkID, SecretKey)
 
-        '연동환경 설정값, True-개발용, False-상업용
+        '연동환경 설정, true-테스트, false-운영(Production), (기본값:true)
         accountCheckService.IsTest = True
 
-        '인증토큰 발급 IP 제한 On/Off, True-사용, False-미사용, 기본값(True)
+        '인증토큰 IP 검증 설정, true-사용, false-미사용, (기본값:true)
         accountCheckService.IPRestrictOnOff = True
 
-        '팝빌 API 서비스 고정 IP 사용여부, True-사용, False-미사용, 기본값(False)
+        '통신 IP 고정, true-사용, false-미사용, (기본값:false)
         accountCheckService.UseStaticIP = False
 
-        '로컬시스템 시간 사용여부, True-사용, False-미사용, 기본값(False)
+        '로컬시스템 시간 사용여부, true-사용, false-미사용, (기본값:true)
         accountCheckService.UseLocalTimeYN = False
 
     End Sub
@@ -558,7 +562,7 @@ Public Class frmExample
         Try
             Dim response As PaymentResponse = accountCheckService.PaymentRequest(txtCorpNum.Text, paymentForm, txtUserId.Text)
 
-            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message+ vbCrLf + "settleCode(정산코드) : " + response.settleCode)
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message + vbCrLf + "settleCode(정산코드) : " + response.settleCode)
 
         Catch ex As PopbillException
             MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
@@ -576,7 +580,7 @@ Public Class frmExample
         Dim SettleCode As String = "202301160000000010"
 
         Try
-            Dim response As PaymentHistory = accountCheckService.GetSettleResult (txtCorpNum.Text, SettleCode, txtUserId.Text)
+            Dim response As PaymentHistory = accountCheckService.GetSettleResult(txtCorpNum.Text, SettleCode, txtUserId.Text)
 
             Dim tmp As String = ""
 
@@ -612,13 +616,13 @@ Public Class frmExample
         Dim EDate As String = "20230530"
 
         '목록 페이지 번호
-        Dim Page  As Integer = 1
+        Dim Page As Integer = 1
 
         '페이지당 목록 개수
-        Dim PerPage  As Integer = 500
+        Dim PerPage As Integer = 500
 
         Try
-            Dim result As PaymentHistoryResult = accountCheckService.GetPaymentHistory(txtCorpNum.Text,SDate,EDate,Page,PerPage, txtUserId.Text)
+            Dim result As PaymentHistoryResult = accountCheckService.GetPaymentHistory(txtCorpNum.Text, SDate, EDate, Page, PerPage, txtUserId.Text)
 
             Dim tmp As String = ""
             tmp += "code(응답코드) : " + result.code.ToString + vbCrLf
@@ -626,21 +630,21 @@ Public Class frmExample
             tmp += "perPage(페이지당 검색개수) : " + result.perPage.ToString + vbCrLf
             tmp += "pageNum(페이지 번호) : " + result.pageNum.ToString + vbCrLf
             tmp += "pageCount(페이지 개수) : " + result.pageCount.ToString + vbCrLf
-            tmp += "결제내역"+ vbCrLf
+            tmp += "결제내역" + vbCrLf
 
             For Each history As PaymentHistory In result.list
 
-            tmp += "productType(결제 내용) : " + history.productType + vbCrLf
-            tmp += "productName(결제 상품명) : " + history.productName + vbCrLf
-            tmp += "settleType(결제 유형) : " + history.settleType + vbCrLf
-            tmp += "settlerName(담당자명) : " + history.settlerName + vbCrLf
-            tmp += "settlerEmail(담당자메일) : " + history.settlerEmail + vbCrLf
-            tmp += "settleCost(결제 금액) : " + history.settleCost + vbCrLf
-            tmp += "settlePoint(충전포인트) : " + history.settlePoint + vbCrLf
-            tmp += "settleState(결제 상태) : " + history.settleState.ToString + vbCrLf
-            tmp += "regDT(등록일시) : " + history.regDT + vbCrLf
-            tmp += "stateDT(상태일시) : " + history.stateDT + vbCrLf
-            tmp += vbCrLf
+                tmp += "productType(결제 내용) : " + history.productType + vbCrLf
+                tmp += "productName(결제 상품명) : " + history.productName + vbCrLf
+                tmp += "settleType(결제 유형) : " + history.settleType + vbCrLf
+                tmp += "settlerName(담당자명) : " + history.settlerName + vbCrLf
+                tmp += "settlerEmail(담당자메일) : " + history.settlerEmail + vbCrLf
+                tmp += "settleCost(결제 금액) : " + history.settleCost + vbCrLf
+                tmp += "settlePoint(충전포인트) : " + history.settlePoint + vbCrLf
+                tmp += "settleState(결제 상태) : " + history.settleState.ToString + vbCrLf
+                tmp += "regDT(등록일시) : " + history.regDT + vbCrLf
+                tmp += "stateDT(상태일시) : " + history.stateDT + vbCrLf
+                tmp += vbCrLf
 
             Next
 
@@ -665,16 +669,16 @@ Public Class frmExample
         Dim EDate As String = "20230530"
 
         '목록 페이지 번호
-        Dim Page  As Integer = 1
+        Dim Page As Integer = 1
 
         '페이지당 목록 개수
-        Dim PerPage  As Integer = 500
+        Dim PerPage As Integer = 500
 
         '목록 정렬 방향
         Dim Order As String = "D"
 
         Try
-            Dim result As UseHistoryResult = accountCheckService.GetUseHistory(txtCorpNum.Text,SDate,EDate,Page,PerPage, Order, txtUserId.Text)
+            Dim result As UseHistoryResult = accountCheckService.GetUseHistory(txtCorpNum.Text, SDate, EDate, Page, PerPage, Order, txtUserId.Text)
 
             Dim tmp As String = ""
             tmp += "code(응답코드) : " + result.code.ToString + vbCrLf
@@ -682,7 +686,7 @@ Public Class frmExample
             tmp += "perPage(페이지당 검색개수) : " + result.perPage.ToString + vbCrLf
             tmp += "pageNum(페이지 번호) : " + result.pageNum.ToString + vbCrLf
             tmp += "pageCount(페이지 개수) : " + result.pageCount.ToString + vbCrLf
-            tmp += "사용내역"+ vbCrLf
+            tmp += "사용내역" + vbCrLf
 
             For Each history As UseHistory In result.list
 
@@ -736,9 +740,9 @@ Public Class frmExample
         refundForm.Reason = "환불 사유"
 
         Try
-            Dim response As RefundResponse = accountCheckService.Refund(txtCorpNum.Text,refundForm, txtUserId.Text)
+            Dim response As RefundResponse = accountCheckService.Refund(txtCorpNum.Text, refundForm, txtUserId.Text)
 
-            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.Message + vbCrLf + "refundCode(환불코드) : " +response.refundCode )
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.Message + vbCrLf + "refundCode(환불코드) : " + response.refundCode)
 
         Catch ex As PopbillException
             MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
@@ -760,7 +764,7 @@ Public Class frmExample
 
 
         Try
-            Dim result As RefundHistoryResult  = accountCheckService.GetRefundHistory(txtCorpNum.Text,Page, PerPage, txtUserId.Text)
+            Dim result As RefundHistoryResult = accountCheckService.GetRefundHistory(txtCorpNum.Text, Page, PerPage, txtUserId.Text)
 
             Dim tmp As String = ""
 
@@ -800,7 +804,7 @@ Public Class frmExample
         Dim refundCode As String = "023040000017"
 
         Try
-            Dim history As RefundHistory  = accountCheckService.GetRefundInfo(txtCorpNum.Text, refundCode, txtUserId.Text)
+            Dim history As RefundHistory = accountCheckService.GetRefundInfo(txtCorpNum.Text, refundCode, txtUserId.Text)
 
             Dim tmp As String = ""
 
@@ -827,7 +831,7 @@ Public Class frmExample
     Private Sub btnGetRefundableBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetRefundableBalance.Click
 
         Try
-            Dim refundableBalance As Double  = accountCheckService.GetRefundableBalance(txtCorpNum.Text, txtUserId.Text)
+            Dim refundableBalance As Double = accountCheckService.GetRefundableBalance(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox("refundableBalance(환불 가능 포인트) : " + refundableBalance.ToString)
 
@@ -850,7 +854,7 @@ Public Class frmExample
         Dim quitReason As String = "회원 탈퇴 사유"
 
         Try
-            Dim response As Response  = accountCheckService.QuitMember(txtCorpNum.Text, quitReason, txtUserId.Text)
+            Dim response As Response = accountCheckService.QuitMember(txtCorpNum.Text, quitReason, txtUserId.Text)
 
             MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.Message)
 

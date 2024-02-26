@@ -1,20 +1,28 @@
 ﻿'=========================================================================
+' 팝빌 계좌조회 API .NET SDK VB.NET Example
+' VB.NET 연동 튜토리얼 안내 : https://developers.popbill.com/guide/easyfinbank/dotnet/getting-started/tutorial?fwn=vb
 '
-' 팝빌 계좌조회 API VB.Net SDK Example
-'
-' - VB.Net SDK 연동환경 설정방법 안내 : https://developers.popbill.com/guide/easyfinbank/dotnet/getting-started/tutorial?fwn=vb
-' - 업데이트 일자 : 2023-07-03
-' - 연동 기술지원 연락처 : 1600-8536
-' - 연동 기술지원 이메일 : code@linkhubcorp.com
-'
+' 업데이트 일자 : 2024-02-26
+' 연동기술지원 연락처 : 1600-9854
+' 연동기술지원 이메일 : code@linkhubcorp.com
+'         
+' <테스트 연동개발 준비사항>
+' 1) API Key 변경 (연동신청 시 메일로 전달된 정보)
+'     - LinkID : 링크허브에서 발급한 링크아이디
+'     - SecretKey : 링크허브에서 발급한 비밀키
+' 2) SDK 환경설정 옵션 설정
+'     - IsTest : 연동환경 설정, true-테스트, false-운영(Production), (기본값:true)
+'     - IPRestrictOnOff : 인증토큰 IP 검증 설정, true-사용, false-미사용, (기본값:true)
+'     - UseStaticIP : 통신 IP 고정, true-사용, false-미사용, (기본값:false)
+'     - UseLocalTimeYN : 로컬시스템 시간 사용여부, true-사용, false-미사용, (기본값:true)
 '=========================================================================
 
 Public Class frmExample
 
-    '링크아이디, 연동신청시 메일로 발급받은 인증정보로 변경
+    '링크아이디
     Private LinkID As String = "TESTER"
 
-    '비밀키, 연동신청시 메일로 발급받은 인증정보로 변경 유출주의
+    '비밀키
     Private SecretKey As String = "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I="
 
     '계좌조회 서비스 클래스 변수 선언
@@ -25,16 +33,16 @@ Public Class frmExample
         '서비스 객체 초기화
         easyFinBankService = New EasyFinBankService(LinkID, SecretKey)
 
-        '연동환경 설정값, True-개발용, False-상업용
+        '연동환경 설정, true-테스트, false-운영(Production), (기본값:true)
         easyFinBankService.IsTest = True
 
-        '인증토큰 발급 IP 제한 On/Off, True-사용, False-미사용, 기본값(True)
+        '인증토큰 IP 검증 설정, true-사용, false-미사용, (기본값:true)
         easyFinBankService.IPRestrictOnOff = True
 
-        '팝빌 API 서비스 고정 IP 사용여부, True-사용, False-미사용, 기본값(False)
+        '통신 IP 고정, true-사용, false-미사용, (기본값:false)
         easyFinBankService.UseStaticIP = False
 
-        '로컬시스템 시간 사용여부, True-사용, False-미사용, 기본값(False)
+        '로컬시스템 시간 사용여부, true-사용, false-미사용, (기본값:true)
         easyFinBankService.UseLocalTimeYN = False
 
     End Sub

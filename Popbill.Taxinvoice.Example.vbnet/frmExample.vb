@@ -1,20 +1,23 @@
 ﻿'=========================================================================
+' 팝빌 전자세금계산서 API .NET SDK VB.NET Example
+' VB.NET 연동 튜토리얼 안내 : https://developers.popbill.com/guide/taxinvoice/dotnet/getting-started/tutorial?fwn=vb
 '
-' 팝빌 전자세금계산서 API VB.Net SDK Example
-'
-' - VB.NET SDK 연동환경 설정방법 안내 : https://developers.popbill.com/guide/taxinvoice/dotnet/getting-started/tutorial?fwn=vb
-' - 업데이트 일자 : 2023-07-03
-' - 연동 기술지원 연락처 : 1600-9854
-' - 연동 기술지원 이메일 : code@linkhubcorp.com
-'
+' 업데이트 일자 : 2024-02-26
+' 연동기술지원 연락처 : 1600-9854
+' 연동기술지원 이메일 : code@linkhubcorp.com
+'         
 ' <테스트 연동개발 준비사항>
-' 1) 26, 29번 라인에 선언된 링크아이디(LinkID)와 비밀키(SecretKey)를
-'    링크허브 가입시 메일로 발급받은 인증정보를 참조하여 변경합니다.
-' 2) 팝빌 개발용 사이트(test.popbill.com)에 연동회원으로 가입합니다.
-' 3) 전자세금계산서 발행을 위해 공인인증서를 등록합니다.
-'    - 팝빌사이트 로그인 > [전자세금계산서] > [환경설정] > [공인인증서 관리]
-'    - 공인인증서 등록 팝업 URL (GetTaxCertURL API)을 이용하여 등록
-'
+' 1) API Key 변경 (연동신청 시 메일로 전달된 정보)
+'     - LinkID : 링크허브에서 발급한 링크아이디
+'     - SecretKey : 링크허브에서 발급한 비밀키
+' 2) SDK 환경설정 옵션 설정
+'     - IsTest : 연동환경 설정, true-테스트, false-운영(Production), (기본값:true)
+'     - IPRestrictOnOff : 인증토큰 IP 검증 설정, true-사용, false-미사용, (기본값:true)
+'     - UseStaticIP : 통신 IP 고정, true-사용, false-미사용, (기본값:false)
+'     - UseLocalTimeYN : 로컬시스템 시간 사용여부, true-사용, false-미사용, (기본값:true)
+' 3) 전자세금계산서 발행을 위해 공동인증서를 등록합니다.
+'    - 팝빌사이트 로그인 > [전자세금계산서] > [환경설정] > [공동인증서 관리]
+'    - 공동인증서 등록 팝업 URL (GetTaxCertURL API)을 이용하여 등록
 '=========================================================================
 
 Imports Popbill
@@ -36,16 +39,16 @@ Public Class frmExample
         '세금계산서 서비스 객체 초기화
         taxinvoiceService = New TaxinvoiceService(LinkID, SecretKey)
 
-        '연동환경 설정값, True-개발용, False-상업용
+        '연동환경 설정, true-테스트, false-운영(Production), (기본값:true)
         taxinvoiceService.IsTest = True
 
-        '인증토큰 발급 IP 제한 On/Off, True-사용, False-미사용, 기본값(True)
+        '인증토큰 IP 검증 설정, true-사용, false-미사용, (기본값:true)
         taxinvoiceService.IPRestrictOnOff = True
 
-        '팝빌 API 서비스 고정 IP 사용여부, True-사용, False-미사용, 기본값(False)
+        '통신 IP 고정, true-사용, false-미사용, (기본값:false)
         taxinvoiceService.UseStaticIP = False
 
-        '로컬시스템 시간 사용여부, True-사용, False-미사용, 기본값(False)
+        '로컬시스템 시간 사용여부, true-사용, false-미사용, (기본값:true)
         taxinvoiceService.UseLocalTimeYN = False
 
     End Sub
@@ -144,7 +147,7 @@ Public Class frmExample
         ' └ true = 전송 , false = 미전송
         ' └ 공급받는자 (주)담당자 휴대폰번호 {invoiceeHP1} 값으로 문자 전송
         ' - 전송 시 포인트 차감되며, 전송실패시 환불처리
-        taxinvoice.invoicerSMSSendYN = True
+        taxinvoice.invoicerSMSSendYN = False
 
         '=========================================================================
         '                            공급받는자 정보
@@ -178,7 +181,7 @@ Public Class frmExample
         taxinvoice.invoiceeContactName1 = "공급받는자 담당자명"
 
         '공급받는자 담당자 메일주소
-        '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        '팝빌 테스트 환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
         '실제 거래처의 메일주소가 기재되지 않도록 주의
         taxinvoice.invoiceeEmail1 = ""
 
@@ -413,7 +416,7 @@ Public Class frmExample
             ' └ true = 전송 , false = 미전송
             ' └ 공급받는자 (주)담당자 휴대폰번호 {invoiceeHP1} 값으로 문자 전송
             ' - 전송 시 포인트 차감되며, 전송실패시 환불처리
-            taxinvoice.invoicerSMSSendYN = True
+            taxinvoice.invoicerSMSSendYN = False
 
             '=========================================================================
             '                            공급받는자 정보
@@ -447,7 +450,7 @@ Public Class frmExample
             taxinvoice.invoiceeContactName1 = "공급받는자 담당자명"
 
             '공급받는자 담당자 메일주소
-            '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+            '팝빌 테스트 환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
             '실제 거래처의 메일주소가 기재되지 않도록 주의
             taxinvoice.invoiceeEmail1 = ""
 
@@ -697,7 +700,7 @@ Public Class frmExample
         ' └ true = 전송 , false = 미전송
         ' └ 공급받는자 (주)담당자 휴대폰번호 {invoiceeHP1} 값으로 문자 전송
         ' - 전송 시 포인트 차감되며, 전송실패시 환불처리
-        taxinvoice.invoicerSMSSendYN = True
+        taxinvoice.invoicerSMSSendYN = False
 
 
         '=========================================================================
@@ -732,7 +735,7 @@ Public Class frmExample
         taxinvoice.invoiceeContactName1 = "공급받는자 담당자명"
 
         '공급받는자 담당자 메일주소
-        '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        '팝빌 테스트 환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
         '실제 거래처의 메일주소가 기재되지 않도록 주의
         taxinvoice.invoiceeEmail1 = ""
 
@@ -939,7 +942,7 @@ Public Class frmExample
         ' └ true = 전송 , false = 미전송
         ' └ 공급받는자 (주)담당자 휴대폰번호 {invoiceeHP1} 값으로 문자 전송
         ' - 전송 시 포인트 차감되며, 전송실패시 환불처리
-        taxinvoice.invoicerSMSSendYN = True
+        taxinvoice.invoicerSMSSendYN = False
 
 
         '=========================================================================
@@ -974,7 +977,7 @@ Public Class frmExample
         taxinvoice.invoiceeContactName1 = "공급받는자 담당자명"
 
         '공급받는자 담당자 메일주소
-        '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        '팝빌 테스트 환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
         '실제 거래처의 메일주소가 기재되지 않도록 주의
         taxinvoice.invoiceeEmail1 = ""
 
@@ -1164,7 +1167,7 @@ Public Class frmExample
         ' └ true = 전송 , false = 미전송
         ' └ 공급받는자 (주)담당자 휴대폰번호 {invoiceeHP1} 값으로 문자 전송
         ' - 전송 시 포인트 차감되며, 전송실패시 환불처리
-        taxinvoice.invoicerSMSSendYN = True
+        taxinvoice.invoicerSMSSendYN = False
 
         '=========================================================================
         '                            공급받는자 정보
@@ -1198,7 +1201,7 @@ Public Class frmExample
         taxinvoice.invoiceeContactName1 = "공급받는자 담당자명"
 
         '공급받는자 담당자 메일주소
-        '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        '팝빌 테스트 환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
         '실제 거래처의 메일주소가 기재되지 않도록 주의
         taxinvoice.invoiceeEmail1 = ""
 
@@ -1400,7 +1403,7 @@ Public Class frmExample
         ' └ true = 전송 , false = 미전송
         ' └ 공급받는자 (주)담당자 휴대폰번호 {invoiceeHP1} 값으로 문자 전송
         ' - 전송 시 포인트 차감되며, 전송실패시 환불처리
-        taxinvoice.invoicerSMSSendYN = True
+        taxinvoice.invoicerSMSSendYN = False
 
 
         '=========================================================================
@@ -1438,7 +1441,7 @@ Public Class frmExample
         taxinvoice.invoiceeContactName1 = "공급받는자 담당자명"
 
         '공급받는자 담당자 메일주소
-        '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        '팝빌 테스트 환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
         '실제 거래처의 메일주소가 기재되지 않도록 주의
         taxinvoice.invoiceeEmail1 = ""
 
@@ -1808,7 +1811,7 @@ Public Class frmExample
         taxinvoice.invoiceeContactName1 = "공급받는자 담당자명"
 
         '공급받는자 담당자 메일주소
-        '팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        '팝빌 테스트 환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
         '실제 거래처의 메일주소가 기재되지 않도록 주의
         taxinvoice.invoiceeEmail1 = ""
 
@@ -2947,7 +2950,7 @@ Public Class frmExample
 
     '=========================================================================
     ' "임시저장" 상태의 세금계산서에 첨부된 1개의 파일을 삭제합니다.
-    ' - 파일 식별을 위해 첨부 시 부여되는 'FileID'는 첨부파일 목록 확인(GetFiles API) 함수를 호출하여 확인합니다.
+    ' - 파일 식별을 위해 첨부 시 할당되는 'FileID'는 첨부파일 목록 확인(GetFiles API) 함수를 호출하여 확인합니다.
     ' - https://developers.popbill.com/reference/taxinvoice/dotnet/api/etc#DeleteFile
     '=========================================================================
     Private Sub btnDeleteFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -3117,7 +3120,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 사이트를 통해 발행하여 문서번호가 부여되지 않은 세금계산서에 문서번호를 할당합니다.
+    ' 팝빌 사이트를 통해 발행하여 문서번호가 할당되지 않은 세금계산서에 문서번호를 할당합니다.
     ' - https://developers.popbill.com/reference/taxinvoice/dotnet/api/etc#AssignMgtKey
     '=========================================================================
     Private Sub btnAssignMgtKey_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
