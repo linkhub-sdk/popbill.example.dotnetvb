@@ -477,7 +477,7 @@ Partial Class frmExample
         Me.btnGetCertificatePopUpURL.Name = "btnGetCertificatePopUpURL"
         Me.btnGetCertificatePopUpURL.Size = New System.Drawing.Size(169, 31)
         Me.btnGetCertificatePopUpURL.TabIndex = 7
-        Me.btnGetCertificatePopUpURL.Text = "홈택스연동 인증관리 URL"
+        Me.btnGetCertificatePopUpURL.Text = "홈택스수집 인증관리 URL"
         Me.btnGetCertificatePopUpURL.UseVisualStyleBackColor = True
         '
         'btnDeleteDeptUser

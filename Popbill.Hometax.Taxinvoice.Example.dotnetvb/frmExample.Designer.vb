@@ -532,7 +532,7 @@ Partial Class frmExample
         Me.btnGetCertificatePopUpURL.Name = "btnGetCertificatePopUpURL"
         Me.btnGetCertificatePopUpURL.Size = New System.Drawing.Size(163, 29)
         Me.btnGetCertificatePopUpURL.TabIndex = 4
-        Me.btnGetCertificatePopUpURL.Text = "홈택스연동 인증관리 URL"
+        Me.btnGetCertificatePopUpURL.Text = "홈택스수집 인증관리 URL"
         Me.btnGetCertificatePopUpURL.UseVisualStyleBackColor = True
         '
         'groupBox11
@@ -773,7 +773,7 @@ Partial Class frmExample
         Me.Controls.Add(Me.Label1)
         Me.Name = "frmExample"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "팝빌 홈택스연동 전자세금계산서 매입매출 조회  API SDK"
+        Me.Text = "팝빌 홈택스수집 전자세금계산서 매입매출 조회  API SDK"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox15.ResumeLayout(False)
         Me.GroupBox5.ResumeLayout(False)

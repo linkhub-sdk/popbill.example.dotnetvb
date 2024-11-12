@@ -1,8 +1,8 @@
 ﻿'=========================================================================
-' 팝빌 휴폐업조회 API .NET SDK VB.NET Example
+' 팝빌 사업자등록상태조회 (휴폐업조회) API .NET SDK VB.NET Example
 ' VB.NET 연동 튜토리얼 안내 : https://developers.popbill.com/guide/closedown/dotnet/getting-started/tutorial?fwn=vb
 '
-' 업데이트 일자 : 2024-02-26
+' 업데이트 일자 : 2024-11-12
 ' 연동기술지원 연락처 : 1600-9854
 ' 연동기술지원 이메일 : code@linkhubcorp.com
 '         
@@ -25,12 +25,12 @@ Public Class frmExample
     '비밀키
     Private SecretKey As String = "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I="
 
-    '휴폐업조회 서비스 변수 선언
+    '사업자등록상태조회 (휴폐업조회) 서비스 변수 선언
     Private closedownService As ClosedownService
 
     Private Sub frmExample_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
-        '휴폐업조회 서비스 객체 초기화
+        '사업자등록상태조회 (휴폐업조회) 서비스 객체 초기화
         closedownService = New ClosedownService(LinkID, SecretKey)
 
         '연동환경 설정, true-테스트, false-운영(Production), (기본값:true)
@@ -48,7 +48,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 사업자번호 1건에 대한 휴폐업정보를 확인합니다.
+    ' 사업자번호 1건에 대한 사업자등록상태 (휴폐업조회) 를 확인합니다.
     ' - https://developers.popbill.com/reference/closedown/dotnet/api/check#CheckCorpNum
     '=========================================================================
     Private Sub btnCheckCorpNum_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckCorpNum.Click
@@ -75,7 +75,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 다수건의 사업자번호에 대한 휴폐업정보를 확인합니다. (최대 1,000건)
+    ' 다수건의 사업자번호에 대한 사업자등록상태 (휴폐업조회) 를 확인합니다. (최대 1,000건)
     ' - https://developers.popbill.com/reference/closedown/dotnet/api/check#CheckCorpNums
     '=========================================================================
     Private Sub btnCheckCorpNums_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckCorpNums.Click
@@ -207,14 +207,14 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 휴폐업 조회시 과금되는 포인트 단가를 확인합니다.
+    ' 사업자등록상태 (휴폐업조회) 조회시 과금되는 포인트 단가를 확인합니다.
     ' - https://developers.popbill.com/reference/closedown/dotnet/api/point#GetUnitCost
     '=========================================================================
     Private Sub btnUnitCost_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUnitCost.Click
         Try
             Dim unitCost As Single = closedownService.GetUnitCost(txtCorpNum.Text)
 
-            MsgBox("unitCost(휴폐업조회 단가) : " + unitCost.ToString)
+            MsgBox("unitCost(사업자등록상태조회 (휴폐업조회) 단가) : " + unitCost.ToString)
 
         Catch ex As PopbillException
             MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
@@ -223,7 +223,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 휴폐업조회 API 서비스 과금정보를 확인합니다.
+    ' 팝빌 사업자등록상태조회 (휴폐업조회) API 서비스 과금정보를 확인합니다.
     ' - https://developers.popbill.com/reference/closedown/dotnet/api/point#GetChargeInfo
     '=========================================================================
     Private Sub btnGetChargeInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetChargeInfo.Click

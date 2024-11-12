@@ -428,7 +428,7 @@ Partial Class frmExample
         Me.GroupBox4.Size = New System.Drawing.Size(547, 65)
         Me.GroupBox4.TabIndex = 34
         Me.GroupBox4.TabStop = False
-        Me.GroupBox4.Text = "휴폐업조회 API"
+        Me.GroupBox4.Text = "사업자등록상태조회 (휴폐업조회) API"
         '
         'btnCheckCorpNums
         '
@@ -495,7 +495,7 @@ Partial Class frmExample
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "frmExample"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "팝빌 휴폐업조회 API VB.Net SDK Example"
+        Me.Text = "팝빌 사업자등록상태조회 (휴폐업조회) API VB.Net SDK Example"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox15.ResumeLayout(False)
         Me.GroupBox5.ResumeLayout(False)

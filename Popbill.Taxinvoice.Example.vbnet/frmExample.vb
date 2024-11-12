@@ -2,7 +2,7 @@
 ' 팝빌 전자세금계산서 API .NET SDK VB.NET Example
 ' VB.NET 연동 튜토리얼 안내 : https://developers.popbill.com/guide/taxinvoice/dotnet/getting-started/tutorial?fwn=vb
 '
-' 업데이트 일자 : 2024-02-26
+' 업데이트 일자 : 2024-11-12
 ' 연동기술지원 연락처 : 1600-9854
 ' 연동기술지원 이메일 : code@linkhubcorp.com
 '         
@@ -3157,8 +3157,6 @@ Public Class frmExample
             Dim tmp As String = "메일전송유형 | 전송여부 " + vbCrLf
 
             For Each info As EmailConfig In emailConfigList
-                If info.emailType = "TAX_ISSUE" Then _
-                    tmp += "[정발행] TAX_ISSUE (공급받는자에게 전자세금계산서 발행 메일) | " + info.sendYN.ToString + vbCrLf
                 If info.emailType = "TAX_ISSUE_INVOICER" Then _
                     tmp += "[정발행] TAX_ISSUE_INVOICER (공급자에게 전자세금계산서 발행 메일) | " + info.sendYN.ToString + vbCrLf
                 If info.emailType = "TAX_CHECK" Then _
@@ -3171,6 +3169,8 @@ Public Class frmExample
                     tmp += "[역발행] TAX_CANCEL_REQUEST (공급받는자에게 세금계산서 취소 메일) | " + info.sendYN.ToString + vbCrLf
                 If info.emailType = "TAX_REFUSE" Then _
                     tmp += "[역발행] TAX_REFUSE (공급받는자에게 세금계산서 거부 메일) | " + info.sendYN.ToString + vbCrLf
+                If info.emailType = "TAX_REVERSE_ISSUE" Then _
+                    tmp += "[역발행] TAX_REVERSE_ISSUE (공급받는자에게 세금계산서 발행 메일) | " + info.sendYN.ToString + vbCrLf
                 If info.emailType = "TAX_TRUST_ISSUE" Then _
                     tmp += "[위수탁발행] TAX_TRUST_ISSUE (공급받는자에게 전자세금계산서 발행 메일) | " + info.sendYN.ToString + vbCrLf
                 If info.emailType = "TAX_TRUST_ISSUE_TRUSTEE" Then _
@@ -3182,7 +3182,7 @@ Public Class frmExample
                 If info.emailType = "TAX_TRUST_CANCEL_ISSUE_INVOICER" Then _
                     tmp += "[위수탁발행] TAX_TRUST_CANCEL_ISSUE_INVOICER (공급자에게 전자세금계산서 발행취소 메일) | " + info.sendYN.ToString + vbCrLf
                 If info.emailType = "TAX_CLOSEDOWN" Then _
-                    tmp += "[처리결과] TAX_CLOSEDOWN (거래처의 휴폐업 여부 확인 메일) | " + info.sendYN.ToString + vbCrLf
+                    tmp += "[처리결과] TAX_CLOSEDOWN (거래처의 사업자등록상태조회 (휴폐업조회) 확인 메일) | " + info.sendYN.ToString + vbCrLf
                 If info.emailType = "TAX_NTSFAIL_INVOICER" Then _
                     tmp += "[처리결과] TAX_NTSFAIL_INVOICER (전자세금계산서 국세청 전송실패 안내) | " + info.sendYN.ToString + vbCrLf
                 If info.emailType = "ETC_CERT_EXPIRATION" Then _
@@ -3200,29 +3200,29 @@ Public Class frmExample
     ' - https://developers.popbill.com/reference/taxinvoice/dotnet/api/etc#UpdateEmailConfig
     '메일전송유형
     '[정발행]
-    'TAX_ISSUE : 공급받는자에게 전자세금계산서 발행 메일 입니다.
-    'TAX_ISSUE_INVOICER : 공급자에게 전자세금계산서 발행 메일 입니다.
-    'TAX_CHECK : 공급자에게 전자세금계산서 수신확인 메일 입니다.
-    'TAX_CANCEL_ISSUE : 공급받는자에게 전자세금계산서 발행취소 메일 입니다.
+    'TAX_ISSUE_INVOICER : 공급자에게 전자세금계산서 발행 사실을 안내하는 메일
+    'TAX_CHECK : 공급자에게 전자세금계산서 수신확인 사실을 안내하는 메일
+    'TAX_CANCEL_ISSUE : 공급받는자에게 전자세금계산서 발행취소 사실을 안내하는 메일
 
     '[역발행]
-    'TAX_REQUEST : 공급자에게 세금계산서를 발행요청 메일 입니다.
-    'TAX_CANCEL_REQUEST : 공급받는자에게 세금계산서 취소 메일 입니다.
-    'TAX_REFUSE : 공급받는자에게 세금계산서 거부 메일 입니다.
+    'TAX_REQUEST : 공급자에게 전자세금계산서를 발행을 요청하는 메일
+    'TAX_CANCEL_REQUEST : 공급받는자에게 전자세금계산서 취소 사실을 안내하는 메일
+    'TAX_REFUSE : 공급받는자에게 전자세금계산서 거부 사실을 안내하는 메일
+    'TAX_REVERSE_ISSUE : 공급받는자에게 전자세금계산서 발행 사실을 안내하는 메일
 
     '[위수탁발행]
-    'TAX_TRUST_ISSUE : 공급받는자에게 전자세금계산서 발행 메일 입니다.
-    'TAX_TRUST_ISSUE_TRUSTEE : 수탁자에게 전자세금계산서 발행 메일 입니다.
-    'TAX_TRUST_ISSUE_INVOICER : 공급자에게 전자세금계산서 발행 메일 입니다.
-    'TAX_TRUST_CANCEL_ISSUE : 공급받는자에게 전자세금계산서 발행취소 메일 입니다.
-    'TAX_TRUST_CANCEL_ISSUE_INVOICER : 공급자에게 전자세금계산서 발행취소 메일 입니다.
+    'TAX_TRUST_ISSUE : 공급받는자에게 전자세금계산서 발행 사실을 안내하는 메일
+    'TAX_TRUST_ISSUE_TRUSTEE : 수탁자에게 전자세금계산서 발행 사실을 안내하는 메일
+    'TAX_TRUST_ISSUE_INVOICER : 공급자에게 전자세금계산서 발행 사실을 안내하는 메일
+    'TAX_TRUST_CANCEL_ISSUE : 공급받는자에게 전자세금계산서 발행취소 사실을 안내하는 메일
+    'TAX_TRUST_CANCEL_ISSUE_INVOICER : 공급자에게 전자세금계산서 발행취소 사실을 안내하는 메일
 
     '[처리결과]
-    'TAX_CLOSEDOWN : 거래처의 휴폐업 여부 확인 메일 입니다.
-    'TAX_NTSFAIL_INVOICER : 전자세금계산서 국세청 전송실패 안내 메일 입니다.
+    'TAX_CLOSEDOWN : 거래처의 사업자등록상태(휴폐업)를 확인하여 안내하는 메일
+    'TAX_NTSFAIL_INVOICER : 전자세금계산서 국세청 전송실패를 안내하는 메일
 
     '[정기발송]
-    'ETC_CERT_EXPIRATION : 팝빌에서 이용중인 공인인증서의 갱신 메일 입니다.
+    'ETC_CERT_EXPIRATION : 팝빌에 등록된 인증서의 만료예정을 안내하는 메일
     '=========================================================================
     Private Sub btnUpdateEmailConfig_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnUpdateEmailConfig.Click
