@@ -3229,7 +3229,7 @@ Public Class frmExample
 
         Try
             '메일전송유형
-            Dim emailType As String = "TAX_ISSUE"
+            Dim emailType As String = "TAX_ISSUE_INVOICER"
 
             '전송여부 (True-전송, False-미전송)
             Dim sendYN As Boolean = True
