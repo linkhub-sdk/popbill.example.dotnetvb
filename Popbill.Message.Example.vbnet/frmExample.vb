@@ -889,10 +889,10 @@ Public Class frmExample
 
         '최대 검색기간 : 6개월 이내
         '시작일자, yyyyMMdd
-        Dim SDate As String = "20220501"
+        Dim SDate As String = "20241201"
 
         '종료일자, yyyyMMdd
-        Dim EDate As String = "20220531"
+        Dim EDate As String = "20241231"
 
         ' 전송상태 배열 ("1" , "2" , "3" , "4" 중 선택, 다중 선택 가능)
         ' └ 1 = 대기 , 2 = 성공 , 3 = 실패 , 4 = 취소
@@ -909,9 +909,9 @@ Public Class frmExample
         item(1) = "LMS"
         item(2) = "MMS"
 
-        ' 예약여부 (false , true 중 택 1)
-        ' └ false = 전체조회, true = 예약전송건 조회
-        ' - 미입력시 기본값 false 처리
+        ' 예약여부 (null, false , true 중 택 1)
+        ' └ null = 전체조회, false = 즉시전송건 조회, true = 예약전송건 조회
+        ' - 미입력 시 전체조회
         Dim ReserveYN As Boolean = False
 
         ' 개인조회 여부 (false , true 중 택 1)
