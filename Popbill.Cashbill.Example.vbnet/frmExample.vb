@@ -185,10 +185,10 @@ Public Class frmExample
             '현금영수증 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
             cashbill.mgtKey = txtSubmitID.Text + i.ToString
 
-            '[취소거래시 필수] 원본 현금영수증 국세청승인번호
+            '[취소거래시 필수] 당초 승인 현금영수증 국세청승인번호
             'cashbill.orgConfirmNum = ""
 
-            '[취소거래시 필수] 원본 현금영수증 거래일자
+            '[취소거래시 필수] 당초 승인 현금영수증 거래일자
             'cashbill.orgTradeDate = ""
 
             '문서형태, [승인거래, 취소거래] 중 기재
@@ -420,7 +420,7 @@ Public Class frmExample
 
         '안내 문자 전송여부 , True / False 중 택 1
         '└ True = 전송 , False = 미전송
-        '└ 원본 현금영수증의 구매자(고객)의 휴대폰번호 문자 전송
+        '└ 당초 승인 현금영수증의 구매자(고객)의 휴대폰번호 문자 전송
         Dim smssendYN As Boolean = False
 
         '취소현금영수증 메모
@@ -497,8 +497,8 @@ Public Class frmExample
             tmp += "itemName (주문상품명) : " + cbInfo.itemName + vbCrLf
             tmp += "customerName (주문자명) : " + cbInfo.customerName + vbCrLf
             tmp += "confirmNum (국세청승인번호) : " + cbInfo.confirmNum + vbCrLf
-            tmp += "orgConfirmNum (원본 현금영수증 국세청승인번호) : " + cbInfo.orgConfirmNum + vbCrLf
-            tmp += "orgTradeDate (원본 현금영수증 거래일자) : " + cbInfo.orgTradeDate + vbCrLf
+            tmp += "orgConfirmNum (당초 승인 현금영수증 국세청승인번호) : " + cbInfo.orgConfirmNum + vbCrLf
+            tmp += "orgTradeDate (당초 승인 현금영수증 거래일자) : " + cbInfo.orgTradeDate + vbCrLf
             tmp += "ntssendDT (국세청 전송일시) : " + cbInfo.ntssendDT + vbCrLf
             tmp += "ntsresultDT (국세청 처리결과 수신일시) : " + cbInfo.ntsresultDT + vbCrLf
             tmp += "ntsresultCode (국세청 처리결과 상태코드) : " + cbInfo.ntsresultCode + vbCrLf
@@ -549,8 +549,8 @@ Public Class frmExample
                 tmp += "itemName (주문상품명) : " + cbInfo.itemName + vbCrLf
                 tmp += "customerName (주문자명) : " + cbInfo.customerName + vbCrLf
                 tmp += "confirmNum (국세청승인번호) : " + cbInfo.confirmNum + vbCrLf
-                tmp += "orgConfirmNum (원본 현금영수증 국세청승인번호) : " + cbInfo.orgConfirmNum + vbCrLf
-                tmp += "orgTradeDate (원본 현금영수증 거래일자) : " + cbInfo.orgTradeDate + vbCrLf
+                tmp += "orgConfirmNum (당초 승인 현금영수증 국세청승인번호) : " + cbInfo.orgConfirmNum + vbCrLf
+                tmp += "orgTradeDate (당초 승인 현금영수증 거래일자) : " + cbInfo.orgTradeDate + vbCrLf
                 tmp += "ntssendDT (국세청 전송일시) : " + cbInfo.ntssendDT + vbCrLf
                 tmp += "ntsresultDT (국세청 처리결과 수신일시) : " + cbInfo.ntsresultDT + vbCrLf
                 tmp += "ntsresultCode (국세청 처리결과 상태코드) : " + cbInfo.ntsresultCode + vbCrLf
@@ -581,8 +581,8 @@ Public Class frmExample
 
             tmp += "mgtKey (문서번호) : " + cbDetailInfo.mgtKey + vbCrLf
             tmp += "confirmNum (국세청승인번호) : " + cbDetailInfo.confirmNum + vbCrLf
-            tmp += "orgConfirmNum (원본 현금영수증 국세청승인번호) : " + cbDetailInfo.orgConfirmNum + vbCrLf
-            tmp += "orgTradeDate (원본 현금영수증 거래일자) : " + cbDetailInfo.orgTradeDate + vbCrLf
+            tmp += "orgConfirmNum (당초 승인 현금영수증 국세청승인번호) : " + cbDetailInfo.orgConfirmNum + vbCrLf
+            tmp += "orgTradeDate (당초 승인 현금영수증 거래일자) : " + cbDetailInfo.orgTradeDate + vbCrLf
             tmp += "tradeDate (거래일자) : " + cbDetailInfo.tradeDate + vbCrLf
             tmp += "tradeDT (거래일시) : " + cbDetailInfo.tradeDT + vbCrLf
             tmp += "tradeType (문서형태) : " + cbDetailInfo.tradeType + vbCrLf
@@ -713,8 +713,8 @@ Public Class frmExample
                 tmp += "itemName (주문상품명) : " + cbInfo.itemName + vbCrLf
                 tmp += "customerName (주문자명) : " + cbInfo.customerName + vbCrLf
                 tmp += "confirmNum (국세청승인번호) : " + cbInfo.confirmNum + vbCrLf
-                tmp += "orgConfirmNum (원본 현금영수증 국세청승인번호) : " + cbInfo.orgConfirmNum + vbCrLf
-                tmp += "orgTradeDate (원본 현금영수증 거래일자) : " + cbInfo.orgTradeDate + vbCrLf
+                tmp += "orgConfirmNum (당초 승인 현금영수증 국세청승인번호) : " + cbInfo.orgConfirmNum + vbCrLf
+                tmp += "orgTradeDate (당초 승인 현금영수증 거래일자) : " + cbInfo.orgTradeDate + vbCrLf
                 tmp += "ntssendDT (국세청 전송일시) : " + cbInfo.ntssendDT + vbCrLf
                 tmp += "ntsresultDT (국세청 처리결과 수신일시) : " + cbInfo.ntsresultDT + vbCrLf
                 tmp += "ntsresultCode (국세청 처리결과 상태코드) : " + cbInfo.ntsresultCode + vbCrLf

@@ -319,11 +319,12 @@ Public Class frmExample
 
         '버튼링크 URL 에 #{템플릿변수}를 기재하여 승인받은경우 URL 수정하여 전송
         'Dim buttonList As List(Of KakaoButton) = New List(Of KakaoButton)
-        'Dim btnInfo As KakaoButton = New KakaoButton
+        Dim btnInfo As KakaoButton = New KakaoButton
         'btnInfo.n = "버튼명"                        '버튼명
         'btnInfo.t = "WL"                            '버튼유형 (DS - 배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
         'btnInfo.u1 = "https://www.linkhub.co.kr"     '버튼링크1 [앱링크] iOS / [웹링크] Mobile
         'btnInfo.u2 = "http://www.popbill.co.kr"     '버튼링크2 [앱링크] Android / [웹링크] PC URL
+        'btnInfo.tg = "out"                          '아웃링크, 공백 - 카카오톡 인앱 브라우저, "tg" - 디바이스 기본 브라우저
         'buttonList.Add(btnInfo)
 
         Try
