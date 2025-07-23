@@ -3270,24 +3270,9 @@ Public Class frmExample
             Dim url As String = taxinvoiceService.GetTaxCertURL(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox(url)
+
             txtURL.Text = url
-            '=====================================================================
-            '공인인증서 등록시에는 Internet Explorer 브라우저만 이용이 가능합니다.
-            '- IE에서만 공인인증서 ActiveX 툴킷 구동가능
-            '=====================================================================
-
-            'Internet Explorer Process 선언
-            Dim ie As New System.Diagnostics.ProcessStartInfo("iexplore")
-
-            '팝빌로부터 반환받은 팝업 URL 주소 지정
-            ie.Arguments = url
-
-            '화면 기본위치 지정 (Normal-기본, Minimized-최소화, Maximized-최대화, Hidden-숨김화면)
-            ie.WindowStyle = ProcessWindowStyle.Normal
-
-            'Internet Explorer Process 호출
-            System.Diagnostics.Process.Start(ie)
-
+            
         Catch ex As PopbillException
             MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
         End Try
