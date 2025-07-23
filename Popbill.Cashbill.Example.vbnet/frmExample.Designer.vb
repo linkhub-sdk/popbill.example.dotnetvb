@@ -105,6 +105,7 @@ Partial Class frmExample
         Me.btnQuitMember = New System.Windows.Forms.Button
         Me.Label5 = New System.Windows.Forms.Label
         Me.txtURL = New System.Windows.Forms.TextBox
+        Me.btnDeleteContact = New System.Windows.Forms.Button
         Me.GroupBox7.SuspendLayout()
         Me.GroupBox24.SuspendLayout()
         Me.GroupBox13.SuspendLayout()
@@ -817,6 +818,7 @@ Partial Class frmExample
         '
         'GroupBox20
         '
+        Me.GroupBox20.Controls.Add(Me.btnDeleteContact)
         Me.GroupBox20.Controls.Add(Me.btnUpdateCorpInfo)
         Me.GroupBox20.Controls.Add(Me.btnGetContactInfo)
         Me.GroupBox20.Controls.Add(Me.btnGetCorpInfo)
@@ -829,14 +831,14 @@ Partial Class frmExample
         Me.GroupBox20.Controls.Add(Me.btnQuitMember)
         Me.GroupBox20.Location = New System.Drawing.Point(6, 17)
         Me.GroupBox20.Name = "GroupBox20"
-        Me.GroupBox20.Size = New System.Drawing.Size(288, 212)
+        Me.GroupBox20.Size = New System.Drawing.Size(288, 273)
         Me.GroupBox20.TabIndex = 0
         Me.GroupBox20.TabStop = False
         Me.GroupBox20.Text = "회원 정보"
         '
         'btnUpdateCorpInfo
         '
-        Me.btnUpdateCorpInfo.Location = New System.Drawing.Point(142, 173)
+        Me.btnUpdateCorpInfo.Location = New System.Drawing.Point(6, 211)
         Me.btnUpdateCorpInfo.Name = "btnUpdateCorpInfo"
         Me.btnUpdateCorpInfo.Size = New System.Drawing.Size(130, 32)
         Me.btnUpdateCorpInfo.TabIndex = 8
@@ -938,6 +940,15 @@ Partial Class frmExample
         Me.txtURL.Name = "txtURL"
         Me.txtURL.Size = New System.Drawing.Size(278, 21)
         Me.txtURL.TabIndex = 24
+        '
+        'btnDeleteContact
+        '
+        Me.btnDeleteContact.Location = New System.Drawing.Point(142, 173)
+        Me.btnDeleteContact.Name = "btnDeleteContact"
+        Me.btnDeleteContact.Size = New System.Drawing.Size(130, 32)
+        Me.btnDeleteContact.TabIndex = 26
+        Me.btnDeleteContact.Text = "담당자 삭제"
+        Me.btnDeleteContact.UseVisualStyleBackColor = True
         '
         'frmExample
         '
@@ -1057,5 +1068,6 @@ Partial Class frmExample
     Private WithEvents btnGetRefundableBalance As System.Windows.Forms.Button
     Private WithEvents btnGetRefundInfo As System.Windows.Forms.Button
     Private WithEvents btnQuitMember As System.Windows.Forms.Button
+    Friend WithEvents btnDeleteContact As System.Windows.Forms.Button
 
 End Class

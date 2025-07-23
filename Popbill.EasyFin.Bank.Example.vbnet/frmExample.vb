@@ -1346,4 +1346,19 @@ Public Class frmExample
         End Try
     End Sub
 
+    Private Sub btnDeleteContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteContact.Click
+
+        '삭제할 담당자 아이디
+        Dim targetUserID As String = "testkorea20250723_01"
+
+        Try
+            Dim response As Response = easyFinBankService.DeleteContact(txtCorpNum.Text, targetUserID, txtUserId.Text)
+
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message)
+
+        Catch ex As PopbillException
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
+
+        End Try
+    End Sub
 End Class

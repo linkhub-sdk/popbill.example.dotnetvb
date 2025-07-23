@@ -91,6 +91,7 @@ Partial Class frmExample
         Me.Label1 = New System.Windows.Forms.Label
         Me.Label6 = New System.Windows.Forms.Label
         Me.txtURL = New System.Windows.Forms.TextBox
+        Me.btnDeleteContact = New System.Windows.Forms.Button
         Me.groupBox4.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
@@ -603,6 +604,7 @@ Partial Class frmExample
         '
         'GroupBox6
         '
+        Me.GroupBox6.Controls.Add(Me.btnDeleteContact)
         Me.GroupBox6.Controls.Add(Me.btnUpdateCorpInfo)
         Me.GroupBox6.Controls.Add(Me.btnGetContactInfo)
         Me.GroupBox6.Controls.Add(Me.btnGetCorpInfo)
@@ -615,14 +617,14 @@ Partial Class frmExample
         Me.GroupBox6.Controls.Add(Me.btnQuitMember)
         Me.GroupBox6.Location = New System.Drawing.Point(6, 17)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(285, 210)
+        Me.GroupBox6.Size = New System.Drawing.Size(285, 284)
         Me.GroupBox6.TabIndex = 0
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "회원 정보"
         '
         'btnUpdateCorpInfo
         '
-        Me.btnUpdateCorpInfo.Location = New System.Drawing.Point(142, 170)
+        Me.btnUpdateCorpInfo.Location = New System.Drawing.Point(6, 208)
         Me.btnUpdateCorpInfo.Name = "btnUpdateCorpInfo"
         Me.btnUpdateCorpInfo.Size = New System.Drawing.Size(130, 32)
         Me.btnUpdateCorpInfo.TabIndex = 8
@@ -759,6 +761,15 @@ Partial Class frmExample
         Me.txtURL.Size = New System.Drawing.Size(279, 21)
         Me.txtURL.TabIndex = 47
         '
+        'btnDeleteContact
+        '
+        Me.btnDeleteContact.Location = New System.Drawing.Point(142, 170)
+        Me.btnDeleteContact.Name = "btnDeleteContact"
+        Me.btnDeleteContact.Size = New System.Drawing.Size(128, 33)
+        Me.btnDeleteContact.TabIndex = 29
+        Me.btnDeleteContact.Text = "담당자 삭제"
+        Me.btnDeleteContact.UseVisualStyleBackColor = True
+        '
         'frmExample
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
@@ -857,4 +868,5 @@ Partial Class frmExample
     Private WithEvents btnGetRefundableBalance As System.Windows.Forms.Button
     Private WithEvents btnGetRefundInfo As System.Windows.Forms.Button
     Private WithEvents btnQuitMember As System.Windows.Forms.Button
+    Friend WithEvents btnDeleteContact As System.Windows.Forms.Button
 End Class

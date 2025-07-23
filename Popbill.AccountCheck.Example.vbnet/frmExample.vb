@@ -416,7 +416,7 @@ Public Class frmExample
         Dim joinData As New Contact
 
         '아이디 (6자이상 50자미만)
-        joinData.id = "testkorea1120"
+        joinData.id = "testkorea20250723_01"
 
         '비밀번호, 8자 이상 20자 이하(영문, 숫자, 특수문자 조합)
         joinData.Password = "asdf8536!@#"
@@ -857,6 +857,22 @@ Public Class frmExample
             Dim response As Response = accountCheckService.QuitMember(txtCorpNum.Text, quitReason, txtUserId.Text)
 
             MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.Message)
+
+        Catch ex As PopbillException
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
+
+        End Try
+    End Sub
+
+    Private Sub btnDeleteContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteContact.Click
+
+        '삭제할 담당자 아이디
+        Dim targetUserID As String = "testkorea20250723_01"
+
+        Try
+            Dim response As Response = accountCheckService.DeleteContact(txtCorpNum.Text, targetUserID, txtUserId.Text)
+
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message)
 
         Catch ex As PopbillException
             MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
