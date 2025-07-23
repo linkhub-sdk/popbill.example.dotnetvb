@@ -1408,7 +1408,7 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원의 잔여포인트를 확인합니다.
     ' - 과금방식이 파트너과금인 경우 파트너 잔여포인트 확인(GetPartnerBalance API) 함수를 통해 확인하시기 바랍니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/point#GetBalance
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/point#GetBalance
     '=========================================================================
     Private Sub btnGetBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnGetBalance.Click
@@ -1427,7 +1427,7 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/point#GetChargeURL
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/point#GetChargeURL
     '=========================================================================
     Private Sub btnGetChargeURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnGetChargeURL.Click
@@ -1444,7 +1444,7 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원 포인트 결제내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/point#GetPaymentURL
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/point#GetPaymentURL
     '=========================================================================
     Private Sub btnGetPaymentURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnGetPaymentURL.Click
@@ -1461,7 +1461,7 @@ Public Class frmExample
     '=========================================================================
     ' 연동회원 포인트 사용내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/point#GetUseHistoryURL
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/point#GetUseHistoryURL
     '=========================================================================
     Private Sub btnGetUseHistoryURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnGetUseHistoryURL.Click
@@ -1478,7 +1478,7 @@ Public Class frmExample
     '=========================================================================
     ' 파트너의 잔여포인트를 확인합니다.
     ' - 과금방식이 연동과금인 경우 연동회원 잔여포인트 확인(GetBalance API) 함수를 이용하시기 바랍니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/point#GetPartnerBalance
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/point#GetPartnerBalance
     '=========================================================================
     Private Sub btnGetPartnerBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnGetPartnerBalance.Click
@@ -1494,7 +1494,7 @@ Public Class frmExample
     '=========================================================================
     ' 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/point#GetPartnerURL
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/point#GetPartnerURL
     '=========================================================================
     Private Sub btnGetPartnerURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnGetPartnerURL.Click
@@ -1514,7 +1514,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 카카오톡(ATS) 전송시 과금되는 포인트 단가를 확인합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/point#GetUnitCost
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/point#GetUnitCost
     '=========================================================================
     Private Sub btnUnitCost_ATS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnUnitCost_ATS.Click
@@ -1535,7 +1535,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 카카오톡(FTS) 전송시 과금되는 포인트 단가를 확인합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/point#GetUnitCost
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/point#GetUnitCost
     '=========================================================================
     Private Sub btnGetUnitCost_FTS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnGetUnitCost_FTS.Click
@@ -1556,7 +1556,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 카카오톡(FMS) 전송시 과금되는 포인트 단가를 확인합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/point#GetUnitCost
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/point#GetUnitCost
     '=========================================================================
     Private Sub btnGetUnitCost_FMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnGetUnitCost_FMS.Click
@@ -1577,7 +1577,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 팝빌 카카오톡(ATS) API 서비스 과금정보를 확인합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/point#GetChargeInfo
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/point#GetChargeInfo
     '=========================================================================
     Private Sub btnGetChargeInfo_ATS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnGetChargeInfo_ATS.Click
@@ -1601,7 +1601,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 팝빌 카카오톡(FTS) API 서비스 과금정보를 확인합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/point#GetChargeInfo
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/point#GetChargeInfo
     '=========================================================================
     Private Sub btnGetChargeInfo_FTS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnGetChargeInfo_FTS.Click
@@ -1625,7 +1625,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 팝빌 카카오톡(FMS) API 서비스 과금정보를 확인합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/point#GetChargeInfo
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/point#GetChargeInfo
     '=========================================================================
     Private Sub btnGetChargeInfo_FMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnGetChargeInfo_FMS.Click
@@ -1649,7 +1649,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 사업자번호를 조회하여 연동회원 가입여부를 확인합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/member#CheckIsMember
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/member#CheckIsMember
     '=========================================================================
     Private Sub btnCheckIsMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnCheckIsMember.Click
@@ -1665,7 +1665,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 사용하고자 하는 아이디의 중복여부를 확인합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/member#CheckID
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/member#CheckID
     '=========================================================================
     Private Sub btnCheckID_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckID.Click
         Try
@@ -1680,7 +1680,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 사용자를 연동회원으로 가입처리합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/member#JoinMember
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/member#JoinMember
     '=========================================================================
     Private Sub btnJoinMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnJoinMember.Click
@@ -1737,7 +1737,7 @@ Public Class frmExample
     '=========================================================================
     ' 팝빌 사이트에 로그인 상태로 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
     ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/member#GetAccessURL
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/member#GetAccessURL
     '=========================================================================
     Private Sub btnGetAccessURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnGetAccessURL.Click
@@ -1753,7 +1753,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 회사정보를 확인합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/member#GetCorpInfo
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/member#GetCorpInfo
     '=========================================================================
     Private Sub btnGetCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnGetCorpInfo.Click
@@ -1776,7 +1776,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 회사정보를 수정합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/member#UpdateCorpInfo
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/member#UpdateCorpInfo
     '=========================================================================
     Private Sub btnUpdateCorpInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnUpdateCorpInfo.Click
@@ -1812,7 +1812,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/member#RegistContact
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/member#RegistContact
     '=========================================================================
     Private Sub btnRegistContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnRegistContact.Click
@@ -1851,7 +1851,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보을 확인합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/member#GetContactInfo
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/member#GetContactInfo
     '=========================================================================
     Private Sub btnGetContactInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetContactInfo.Click
 
@@ -1882,7 +1882,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/member#ListContact
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/member#ListContact
     '=========================================================================
     Private Sub btnListContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnListContact.Click
@@ -1905,7 +1905,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/member#UpdateContact
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/member#UpdateContact
     '=========================================================================
     Private Sub btnUpdateContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnUpdateContact.Click
@@ -1941,7 +1941,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원 포인트 충전을 위해 무통장입금을 신청합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/point#PaymentRequest
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/point#PaymentRequest
     '=========================================================================
     Private Sub btnPaymentRequest_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPaymentRequest.Click
 
@@ -1966,7 +1966,7 @@ Public Class frmExample
         Try
             Dim response As PaymentResponse = kakaoService.PaymentRequest(txtCorpNum.Text, paymentForm, txtUserId.Text)
 
-            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message+ vbCrLf + "settleCode(정산코드) : " + response.settleCode)
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message + vbCrLf + "settleCode(정산코드) : " + response.settleCode)
 
         Catch ex As PopbillException
             MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
@@ -1976,7 +1976,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원 포인트 무통장 입금신청내역 1건을 확인합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/point#GetSettleResult
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/point#GetSettleResult
     '=========================================================================
     Private Sub btnGetSettleResult_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSettleResult.Click
 
@@ -1984,20 +1984,20 @@ Public Class frmExample
         Dim SettleCode As String = "202301160000000010"
 
         Try
-            Dim response As PaymentHistory = kakaoService.GetSettleResult (txtCorpNum.Text, SettleCode, txtUserId.Text)
+            Dim response As PaymentHistory = kakaoService.GetSettleResult(txtCorpNum.Text, SettleCode, txtUserId.Text)
 
             Dim tmp As String = ""
 
-            tmp+ ="productType(결제 내용) : " + response.productType + vbCrLf
-            tmp+ ="productName(결제 상품명) : " + response.productName + vbCrLf
-            tmp+ ="settleType(결제 유형) : " + response.settleType + vbCrLf
-            tmp+ ="settlerName(담당자명) : " + response.settlerName + vbCrLf
-            tmp+ ="settlerEmail(담당자메일) : " + response.settlerEmail + vbCrLf
-            tmp+ ="settleCost(결제 금액) : " + response.settleCost + vbCrLf
-            tmp+ ="settlePoint(충전포인트) : " + response.settlePoint + vbCrLf
-            tmp+ ="settleState(결제 상태) : " + response.settleState.ToString + vbCrLf
-            tmp+ ="regDT(등록일시) : " + response.regDT + vbCrLf
-            tmp+ ="stateDT(상태일시) : " + response.stateDT
+            tmp += "productType(결제 내용) : " + response.productType + vbCrLf
+            tmp += "productName(결제 상품명) : " + response.productName + vbCrLf
+            tmp += "settleType(결제 유형) : " + response.settleType + vbCrLf
+            tmp += "settlerName(담당자명) : " + response.settlerName + vbCrLf
+            tmp += "settlerEmail(담당자메일) : " + response.settlerEmail + vbCrLf
+            tmp += "settleCost(결제 금액) : " + response.settleCost + vbCrLf
+            tmp += "settlePoint(충전포인트) : " + response.settlePoint + vbCrLf
+            tmp += "settleState(결제 상태) : " + response.settleState.ToString + vbCrLf
+            tmp += "regDT(등록일시) : " + response.regDT + vbCrLf
+            tmp += "stateDT(상태일시) : " + response.stateDT
 
             MsgBox(tmp)
 
@@ -2009,7 +2009,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 포인트 결제내역을 확인합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/point#GetPaymentHistory
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/point#GetPaymentHistory
     '=========================================================================
     Private Sub btnGetPaymentHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPaymentHistory.Click
 
@@ -2020,13 +2020,13 @@ Public Class frmExample
         Dim EDate As String = "20230530"
 
         '목록 페이지 번호
-        Dim Page  As Integer = 1
+        Dim Page As Integer = 1
 
         '페이지당 목록 개수
-        Dim PerPage  As Integer = 500
+        Dim PerPage As Integer = 500
 
         Try
-            Dim result As PaymentHistoryResult = kakaoService.GetPaymentHistory(txtCorpNum.Text,SDate,EDate,Page,PerPage, txtUserId.Text)
+            Dim result As PaymentHistoryResult = kakaoService.GetPaymentHistory(txtCorpNum.Text, SDate, EDate, Page, PerPage, txtUserId.Text)
 
             Dim tmp As String = ""
             tmp += "code(응답코드) : " + result.code.ToString + vbCrLf
@@ -2034,21 +2034,21 @@ Public Class frmExample
             tmp += "perPage(페이지당 검색개수) : " + result.perPage.ToString + vbCrLf
             tmp += "pageNum(페이지 번호) : " + result.pageNum.ToString + vbCrLf
             tmp += "pageCount(페이지 개수) : " + result.pageCount.ToString + vbCrLf
-            tmp += "결제내역"+ vbCrLf
+            tmp += "결제내역" + vbCrLf
 
             For Each history As PaymentHistory In result.list
 
-            tmp += "productType(결제 내용) : " + history.productType + vbCrLf
-            tmp += "productName(결제 상품명) : " + history.productName + vbCrLf
-            tmp += "settleType(결제 유형) : " + history.settleType + vbCrLf
-            tmp += "settlerName(담당자명) : " + history.settlerName + vbCrLf
-            tmp += "settlerEmail(담당자메일) : " + history.settlerEmail + vbCrLf
-            tmp += "settleCost(결제 금액) : " + history.settleCost + vbCrLf
-            tmp += "settlePoint(충전포인트) : " + history.settlePoint + vbCrLf
-            tmp += "settleState(결제 상태) : " + history.settleState.ToString + vbCrLf
-            tmp += "regDT(등록일시) : " + history.regDT + vbCrLf
-            tmp += "stateDT(상태일시) : " + history.stateDT + vbCrLf
-            tmp += vbCrLf
+                tmp += "productType(결제 내용) : " + history.productType + vbCrLf
+                tmp += "productName(결제 상품명) : " + history.productName + vbCrLf
+                tmp += "settleType(결제 유형) : " + history.settleType + vbCrLf
+                tmp += "settlerName(담당자명) : " + history.settlerName + vbCrLf
+                tmp += "settlerEmail(담당자메일) : " + history.settlerEmail + vbCrLf
+                tmp += "settleCost(결제 금액) : " + history.settleCost + vbCrLf
+                tmp += "settlePoint(충전포인트) : " + history.settlePoint + vbCrLf
+                tmp += "settleState(결제 상태) : " + history.settleState.ToString + vbCrLf
+                tmp += "regDT(등록일시) : " + history.regDT + vbCrLf
+                tmp += "stateDT(상태일시) : " + history.stateDT + vbCrLf
+                tmp += vbCrLf
 
             Next
 
@@ -2062,7 +2062,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 포인트 사용내역을 확인합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/point#GetUseHistory
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/point#GetUseHistory
     '=========================================================================
     Private Sub btnGetUseHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetUseHistory.Click
 
@@ -2073,16 +2073,16 @@ Public Class frmExample
         Dim EDate As String = "20230530"
 
         '목록 페이지 번호
-        Dim Page  As Integer = 1
+        Dim Page As Integer = 1
 
         '페이지당 목록 개수
-        Dim PerPage  As Integer = 500
+        Dim PerPage As Integer = 500
 
         '목록 정렬 방향
         Dim Order As String = "D"
 
         Try
-            Dim result As UseHistoryResult = kakaoService.GetUseHistory(txtCorpNum.Text,SDate,EDate,Page,PerPage, Order, txtUserId.Text)
+            Dim result As UseHistoryResult = kakaoService.GetUseHistory(txtCorpNum.Text, SDate, EDate, Page, PerPage, Order, txtUserId.Text)
 
             Dim tmp As String = ""
             tmp += "code(응답코드) : " + result.code.ToString + vbCrLf
@@ -2115,7 +2115,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원 포인트를 환불 신청합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/point#Refund
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/point#Refund
     '=========================================================================
     Private Sub btnRefund_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRefund.Click
 
@@ -2144,9 +2144,9 @@ Public Class frmExample
         refundForm.Reason = "환불 사유"
 
         Try
-            Dim response As RefundResponse = kakaoService.Refund(txtCorpNum.Text,refundForm, txtUserId.Text)
+            Dim response As RefundResponse = kakaoService.Refund(txtCorpNum.Text, refundForm, txtUserId.Text)
 
-            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.Message + vbCrLf + "refundCode(환불코드) : " +response.refundCode )
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.Message + vbCrLf + "refundCode(환불코드) : " + response.refundCode)
 
         Catch ex As PopbillException
             MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
@@ -2156,7 +2156,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원의 포인트 환불신청내역을 확인합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/point#GetRefundHistory
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/point#GetRefundHistory
     '=========================================================================
     Private Sub btnGetRefundHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetRefundHistory.Click
 
@@ -2168,7 +2168,7 @@ Public Class frmExample
 
 
         Try
-            Dim result As RefundHistoryResult  = kakaoService.GetRefundHistory(txtCorpNum.Text,Page, PerPage, txtUserId.Text)
+            Dim result As RefundHistoryResult = kakaoService.GetRefundHistory(txtCorpNum.Text, Page, PerPage, txtUserId.Text)
 
             Dim tmp As String = ""
 
@@ -2177,7 +2177,7 @@ Public Class frmExample
             tmp += "perPage(페이지당 검색개수) : " + result.perPage.ToString + vbCrLf
             tmp += "pageNum(페이지 번호) : " + result.pageNum.ToString + vbCrLf
             tmp += "pageCount(페이지 개수) : " + result.pageCount.ToString + vbCrLf
-            tmp += "환불내역"+ vbCrLf
+            tmp += "환불내역" + vbCrLf
 
             For Each history As RefundHistory In result.list
                 tmp += "reqDT (신청일시) :" + history.reqDT + vbCrLf
@@ -2199,7 +2199,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 포인트 환불에 대한 상세정보 1건을 확인합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/point#GetRefundInfo
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/point#GetRefundInfo
     '=========================================================================
     Private Sub btnGetRefundInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetRefundInfo.Click
 
@@ -2207,7 +2207,7 @@ Public Class frmExample
         Dim refundCode As String = "023040000017"
 
         Try
-            Dim history As RefundHistory  = kakaoService.GetRefundInfo(txtCorpNum.Text,refundCode, txtUserId.Text)
+            Dim history As RefundHistory = kakaoService.GetRefundInfo(txtCorpNum.Text, refundCode, txtUserId.Text)
 
             Dim tmp As String = ""
 
@@ -2229,12 +2229,12 @@ Public Class frmExample
 
     '=========================================================================
     ' 환불 가능한 포인트를 확인합니다. (보너스 포인트는 환불가능포인트에서 제외됩니다.)
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/point#GetRefundableBalance
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/point#GetRefundableBalance
     '=========================================================================
     Private Sub btnGetRefundableBalance_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetRefundableBalance.Click
 
         Try
-            Dim refundableBalance As Double  = kakaoService.GetRefundableBalance(txtCorpNum.Text, txtUserId.Text)
+            Dim refundableBalance As Double = kakaoService.GetRefundableBalance(txtCorpNum.Text, txtUserId.Text)
 
             MsgBox("refundableBalance(환불 가능 포인트) : " + refundableBalance.ToString)
 
@@ -2249,7 +2249,7 @@ Public Class frmExample
     ' - 회원탈퇴 신청과 동시에 팝빌의 모든 서비스 이용이 불가하며, 관리자를 포함한 모든 담당자 계정도 일괄탈퇴 됩니다.
     ' - 회원탈퇴로 삭제된 데이터는 복원이 불가능합니다.
     ' - 관리자 계정만 회원탈퇴가 가능합니다.
-    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/api/member#QuitMember
+    ' - https://developers.popbill.com/reference/kakaotalk/dotnet/common-api/member#QuitMember
     '=========================================================================
     Private Sub btnQuitMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnQuitMember.Click
 
