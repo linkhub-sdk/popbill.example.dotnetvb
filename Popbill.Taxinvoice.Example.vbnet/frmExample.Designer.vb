@@ -1443,7 +1443,7 @@ Partial Class frmExample
         Me.btnGetXML.Name = "btnGetXML"
         Me.btnGetXML.Size = New System.Drawing.Size(131, 29)
         Me.btnGetXML.TabIndex = 10
-        Me.btnGetXML.Text = "문서상세정보(XML)"
+        Me.btnGetXML.Text = "상세정보 확인 (XML)"
         Me.btnGetXML.UseVisualStyleBackColor = True
         '
         'btnGetBulkResult
@@ -1461,7 +1461,7 @@ Partial Class frmExample
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(131, 29)
         Me.btnSearch.TabIndex = 12
-        Me.btnSearch.Text = "문서목록 조회"
+        Me.btnSearch.Text = "목록 조회"
         Me.btnSearch.UseVisualStyleBackColor = True
         '
         'btnGetInfos
@@ -1470,7 +1470,7 @@ Partial Class frmExample
         Me.btnGetInfos.Name = "btnGetInfos"
         Me.btnGetInfos.Size = New System.Drawing.Size(131, 29)
         Me.btnGetInfos.TabIndex = 8
-        Me.btnGetInfos.Text = "문서정보(대량)"
+        Me.btnGetInfos.Text = "다수건 상태 확인"
         Me.btnGetInfos.UseVisualStyleBackColor = True
         '
         'btnGetLogs
@@ -1479,7 +1479,7 @@ Partial Class frmExample
         Me.btnGetLogs.Name = "btnGetLogs"
         Me.btnGetLogs.Size = New System.Drawing.Size(131, 29)
         Me.btnGetLogs.TabIndex = 11
-        Me.btnGetLogs.Text = "문서이력"
+        Me.btnGetLogs.Text = "상태 변경이력"
         Me.btnGetLogs.UseVisualStyleBackColor = True
         '
         'btnGetInfo
@@ -1488,7 +1488,7 @@ Partial Class frmExample
         Me.btnGetInfo.Name = "btnGetInfo"
         Me.btnGetInfo.Size = New System.Drawing.Size(131, 29)
         Me.btnGetInfo.TabIndex = 7
-        Me.btnGetInfo.Text = "문서정보"
+        Me.btnGetInfo.Text = "상태 확인"
         Me.btnGetInfo.UseVisualStyleBackColor = True
         '
         'btnGetDetailInfo
@@ -1497,7 +1497,7 @@ Partial Class frmExample
         Me.btnGetDetailInfo.Name = "btnGetDetailInfo"
         Me.btnGetDetailInfo.Size = New System.Drawing.Size(131, 29)
         Me.btnGetDetailInfo.TabIndex = 9
-        Me.btnGetDetailInfo.Text = "문서상세정보"
+        Me.btnGetDetailInfo.Text = "상세정보 확인"
         Me.btnGetDetailInfo.UseVisualStyleBackColor = True
         '
         'GroupBox11

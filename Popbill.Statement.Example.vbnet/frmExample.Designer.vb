@@ -45,6 +45,7 @@ Partial Class frmExample
         Me.btnGetRefundInfo = New System.Windows.Forms.Button
         Me.btnGetPaymentHistory = New System.Windows.Forms.Button
         Me.GroupBox2 = New System.Windows.Forms.GroupBox
+        Me.btnDeleteContact = New System.Windows.Forms.Button
         Me.btnUpdateCorpInfo = New System.Windows.Forms.Button
         Me.btnGetContactInfo = New System.Windows.Forms.Button
         Me.btnGetCorpInfo = New System.Windows.Forms.Button
@@ -120,7 +121,6 @@ Partial Class frmExample
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
         Me.Label13 = New System.Windows.Forms.Label
         Me.txtURL = New System.Windows.Forms.TextBox
-        Me.btnDeleteContact = New System.Windows.Forms.Button
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox15.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -369,6 +369,15 @@ Partial Class frmExample
         Me.GroupBox2.TabIndex = 0
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "회원 정보"
+        '
+        'btnDeleteContact
+        '
+        Me.btnDeleteContact.Location = New System.Drawing.Point(132, 172)
+        Me.btnDeleteContact.Name = "btnDeleteContact"
+        Me.btnDeleteContact.Size = New System.Drawing.Size(120, 31)
+        Me.btnDeleteContact.TabIndex = 34
+        Me.btnDeleteContact.Text = "담당자 삭제"
+        Me.btnDeleteContact.UseVisualStyleBackColor = True
         '
         'btnUpdateCorpInfo
         '
@@ -809,7 +818,7 @@ Partial Class frmExample
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(117, 30)
         Me.btnSearch.TabIndex = 24
-        Me.btnSearch.Text = "문서 목록조회"
+        Me.btnSearch.Text = "목록 조회"
         Me.btnSearch.UseVisualStyleBackColor = True
         '
         'btnGetInfo
@@ -818,7 +827,7 @@ Partial Class frmExample
         Me.btnGetInfo.Name = "btnGetInfo"
         Me.btnGetInfo.Size = New System.Drawing.Size(117, 30)
         Me.btnGetInfo.TabIndex = 23
-        Me.btnGetInfo.Text = "문서 정보"
+        Me.btnGetInfo.Text = "상태 확인"
         Me.btnGetInfo.UseVisualStyleBackColor = True
         '
         'btnGetInfos
@@ -827,7 +836,7 @@ Partial Class frmExample
         Me.btnGetInfos.Name = "btnGetInfos"
         Me.btnGetInfos.Size = New System.Drawing.Size(117, 30)
         Me.btnGetInfos.TabIndex = 22
-        Me.btnGetInfos.Text = "문서 정보(대량)"
+        Me.btnGetInfos.Text = "다수건 상태 확인"
         Me.btnGetInfos.UseVisualStyleBackColor = True
         '
         'btnGetLogs
@@ -836,7 +845,7 @@ Partial Class frmExample
         Me.btnGetLogs.Name = "btnGetLogs"
         Me.btnGetLogs.Size = New System.Drawing.Size(117, 30)
         Me.btnGetLogs.TabIndex = 21
-        Me.btnGetLogs.Text = "문서 이력"
+        Me.btnGetLogs.Text = "상태 변경이력"
         Me.btnGetLogs.UseVisualStyleBackColor = True
         '
         'btnGetDetailInfo
@@ -845,7 +854,7 @@ Partial Class frmExample
         Me.btnGetDetailInfo.Name = "btnGetDetailInfo"
         Me.btnGetDetailInfo.Size = New System.Drawing.Size(117, 30)
         Me.btnGetDetailInfo.TabIndex = 20
-        Me.btnGetDetailInfo.Text = "문서 상세정보"
+        Me.btnGetDetailInfo.Text = "상세정보 확인"
         Me.btnGetDetailInfo.UseVisualStyleBackColor = True
         '
         'groupBox6
@@ -1105,15 +1114,6 @@ Partial Class frmExample
         Me.txtURL.Name = "txtURL"
         Me.txtURL.Size = New System.Drawing.Size(265, 21)
         Me.txtURL.TabIndex = 52
-        '
-        'btnDeleteContact
-        '
-        Me.btnDeleteContact.Location = New System.Drawing.Point(132, 172)
-        Me.btnDeleteContact.Name = "btnDeleteContact"
-        Me.btnDeleteContact.Size = New System.Drawing.Size(120, 31)
-        Me.btnDeleteContact.TabIndex = 34
-        Me.btnDeleteContact.Text = "담당자 삭제"
-        Me.btnDeleteContact.UseVisualStyleBackColor = True
         '
         'frmExample
         '
