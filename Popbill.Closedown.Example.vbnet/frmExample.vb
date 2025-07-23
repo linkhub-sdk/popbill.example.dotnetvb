@@ -48,7 +48,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 사업자번호 1건에 대한 사업자등록상태 (휴폐업조회) 를 확인합니다.
+    ' 사업자번호 1건에 대해 실시간으로 사업자등록상태를 확인합니다.
     ' - https://developers.popbill.com/reference/closedown/dotnet/api/check#CheckCorpNum
     '=========================================================================
     Private Sub btnCheckCorpNum_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckCorpNum.Click
@@ -73,7 +73,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 다수건의 사업자번호에 대한 사업자등록상태 (휴폐업조회) 를 확인합니다. (최대 1,000건)
+    ' 다수건의 사업자번호에 대해 실시간으로 사업자등록상태를 확인합니다. (최대 1,000건)
     ' - https://developers.popbill.com/reference/closedown/dotnet/api/check#CheckCorpNums
     '=========================================================================
     Private Sub btnCheckCorpNums_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckCorpNums.Click
