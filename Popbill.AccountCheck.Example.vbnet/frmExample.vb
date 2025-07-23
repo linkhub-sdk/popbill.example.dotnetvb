@@ -61,13 +61,12 @@ Public Class frmExample
 
             Dim tmp As String = ""
 
-            tmp += "bankCode (기관코드) : " + accountInfo.bankCode + vbCrLf
-            tmp += "accountNumber (계좌번호) : " + accountInfo.accountNumber + vbCrLf
-            tmp += "accountName (예금주 성명) : " + accountInfo.accountName + vbCrLf
-            tmp += "checkDT (확인일시) : " + accountInfo.checkDT + vbCrLf
             tmp += "result (응답코드) : " + accountInfo.result + vbCrLf
             tmp += "resultMessage (응답메시지) : " + accountInfo.resultMessage + vbCrLf
-
+            tmp += "accountName (예금주 성명) : " + accountInfo.accountName + vbCrLf
+            tmp += "bankCode (기관코드) : " + accountInfo.bankCode + vbCrLf
+            tmp += "accountNumber (계좌번호) : " + accountInfo.accountNumber + vbCrLf
+            tmp += "checkDT (확인일시) : " + accountInfo.checkDT + vbCrLf
             MsgBox(tmp)
 
         Catch ex As PopbillException
@@ -85,15 +84,14 @@ Public Class frmExample
 
             Dim tmp As String = ""
 
-            tmp += "bankCode (기관코드) : " + accountInfo.bankCode + vbCrLf
-            tmp += "accountNumber (계좌번호) : " + accountInfo.accountNumber + vbCrLf
-            tmp += "accountName (예금주 성명) : " + accountInfo.accountName + vbCrLf
-            tmp += "checkDT (확인일시) : " + accountInfo.checkDT + vbCrLf
-            tmp += "identityNumType (등록번호 유형) : " + accountInfo.identityNumType + vbCrLf
-            tmp += "identityNum (등록번호) : " + accountInfo.identityNum + vbCrLf
             tmp += "result (응답코드) : " + accountInfo.result + vbCrLf
             tmp += "resultMessage (응답메시지) : " + accountInfo.resultMessage + vbCrLf
-
+            tmp += "accountName (예금주 성명) : " + accountInfo.accountName + vbCrLf
+            tmp += "accountNumber (계좌번호) : " + accountInfo.accountNumber + vbCrLf
+            tmp += "bankCode (기관코드) : " + accountInfo.bankCode + vbCrLf
+            tmp += "identityNumType (실명번호 유형) : " + accountInfo.identityNumType + vbCrLf
+            tmp += "identityNum (실명번호) : " + accountInfo.identityNum + vbCrLf
+            tmp += "checkDT (확인일시) : " + accountInfo.checkDT + vbCrLf
             MsgBox(tmp)
 
         Catch ex As PopbillException

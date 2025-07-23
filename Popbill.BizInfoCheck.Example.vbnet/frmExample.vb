@@ -62,14 +62,14 @@ Public Class frmExample
             tmp += "companyRegNum (법인번호): " + result.companyRegNum + vbCrLf
             tmp += "checkDT (확인일시) : " + result.checkDT + vbCrLf
             tmp += "corpName (상호): " + result.corpName + vbCrLf
+            tmp += "CEOName (대표자명) : " + result.ceoname + vbCrLf
             tmp += "corpCode (기업형태코드): " + nullToString(result.corpCode) + vbCrLf
             tmp += "corpScaleCode (기업규모코드): " + nullToString(result.corpScaleCode) + vbCrLf
             tmp += "personCorpCode (개인법인코드): " + nullToString(result.personCorpCode) + vbCrLf
             tmp += "headOfficeCode (본점지점코드) : " + nullToString(result.headOfficeCode) + vbCrLf
             tmp += "industryCode (산업코드) : " + result.industryCode + vbCrLf
-            tmp += "establishCode (설립구분코드) : " + nullToString(result.establishCode) + vbCrLf
             tmp += "establishDate (설립일자) : " + result.establishDate + vbCrLf
-            tmp += "CEOName (대표자명) : " + result.ceoname + vbCrLf
+            tmp += "establishCode (설립구분코드) : " + nullToString(result.establishCode) + vbCrLf
             tmp += "workPlaceCode (사업장구분코드): " + nullToString(result.workPlaceCode) + vbCrLf
             tmp += "addrCode (주소구분코드) : " + nullToString(result.addrCode) + vbCrLf
             tmp += "zipCode (우편번호) : " + result.zipCode + vbCrLf
@@ -78,12 +78,12 @@ Public Class frmExample
             tmp += "enAddr (영문주소) : " + result.enAddr + vbCrLf
             tmp += "bizClass (업종) : " + result.bizClass + vbCrLf
             tmp += "bizType (업태) : " + result.bizType + vbCrLf
-            tmp += "result (결과코드) : " + nullToString(result.result) + vbCrLf
-            tmp += "resultMessage (결과메시지) : " + result.resultMessage + vbCrLf
-            tmp += "closeDownTaxType (사업자과세유형) : " + nullToString(result.closeDownTaxType) + vbCrLf
-            tmp += "closeDownTaxTypeDate (과세유형전환일자):" + result.closeDownTaxTypeDate + vbCrLf
+            tmp += "result (상태코드) : " + nullToString(result.result) + vbCrLf
+            tmp += "resultMessage (상태메시지) : " + result.resultMessage + vbCrLf
             tmp += "closeDownState (휴폐업상태) : " + nullToString(result.closeDownState) + vbCrLf
             tmp += "closeDownStateDate (휴폐업일자) : " + result.closeDownStateDate
+            tmp += "closeDownTaxType (사업자과세유형) : " + nullToString(result.closeDownTaxType) + vbCrLf
+            tmp += "closeDownTaxTypeDate (과세유형전환일자):" + result.closeDownTaxTypeDate + vbCrLf
 
             MsgBox(tmp)
 

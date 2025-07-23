@@ -57,8 +57,6 @@ Public Class frmExample
             Dim corpStateInfo As CorpState = closedownService.checkCorpNum(txtCorpNum.Text, txtTargetCorpNum.Text)
 
             Dim tmp As String = ""
-            tmp += "* state (휴폐업상태) : null-알수없음, 0-등록되지 않은 사업자번호, 1-사업중, 2-폐업, 3-휴업" + vbCrLf
-            tmp += "* taxType (과세유형) : null-알수없음, 10-일반과세자, 20-면세과세자, 30-간이과세자, 31-간이과세자(세금계산서 발급사업자), 40-비영리법인, 국가기관" + vbCrLf + vbCrLf
 
             tmp += "corpNum (사업자번호) : " + corpStateInfo.corpNum + vbCrLf
             tmp += "taxType (과세유형) : " + corpStateInfo.taxType + vbCrLf
@@ -90,9 +88,7 @@ Public Class frmExample
             Dim corpInfoList As List(Of CorpState) = closedownService.checkCorpNums(txtCorpNum.Text, corpNumList)
 
             Dim tmp As String = ""
-            tmp += "* state (휴폐업상태) : null-알수없음, 0-등록되지 않은 사업자번호, 1-사업중, 2-폐업, 3-휴업" + vbCrLf
-            tmp += "* taxType (과세유형) : null-알수없음, 10-일반과세자, 20-면세과세자, 30-간이과세자, 31-간이과세자(세금계산서 발급사업자), 40-비영리법인, 국가기관" + vbCrLf + vbCrLf
-
+            
             For Each corpStateInfo As CorpState In corpInfoList
                 tmp += "corpNum (사업자번호) : " + corpStateInfo.corpNum + vbCrLf
                 tmp += "taxType (과세유형) : " + corpStateInfo.taxType + vbCrLf
