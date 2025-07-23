@@ -489,13 +489,19 @@ Public Class frmExample
             tmp += "tradeOpt (거래유형) : " + cbInfo.tradeOpt + vbCrLf
             tmp += "taxationType (과세형태) : " + cbInfo.taxationType + vbCrLf
             tmp += "totalAmount (거래금액) : " + cbInfo.totalAmount + vbCrLf
+            tmp += "supplyCost (공급가액) : " + cbInfo.supplyCost + vbCrLf
+            tmp += "tax (세액) : " + cbInfo.tax + vbCrLf
+            tmp += "serviceFee (봉사료) : " + cbInfo.serviceFee + vbCrLf
             tmp += "issueDT (발행일시) : " + cbInfo.issueDT + vbCrLf
             tmp += "regDT (등록일시) : " + cbInfo.regDT + vbCrLf
             tmp += "stateCode (상태코드) : " + cbInfo.stateCode.ToString + vbCrLf
             tmp += "stateDT (상태변경일시) : " + cbInfo.stateDT + vbCrLf
             tmp += "identityNum (식별번호) : " + cbInfo.identityNum + vbCrLf
             tmp += "itemName (주문상품명) : " + cbInfo.itemName + vbCrLf
-            tmp += "customerName (주문자명) : " + cbInfo.customerName + vbCrLf
+            tmp += "customerName (구매자명) : " + cbInfo.customerName + vbCrLf
+            tmp += "email (구매자 이메일) : " + cbInfo.email + vbCrLf
+            tmp += "hp (구매자 휴대폰 번호) : " + cbInfo.hp + vbCrLf
+            tmp += "orderNumber (주문번호) : " + cbInfo.orderNumber + vbCrLf
             tmp += "confirmNum (국세청승인번호) : " + cbInfo.confirmNum + vbCrLf
             tmp += "orgConfirmNum (당초 승인 현금영수증 국세청승인번호) : " + cbInfo.orgConfirmNum + vbCrLf
             tmp += "orgTradeDate (당초 승인 현금영수증 거래일자) : " + cbInfo.orgTradeDate + vbCrLf
@@ -504,6 +510,7 @@ Public Class frmExample
             tmp += "ntsresultCode (국세청 처리결과 상태코드) : " + cbInfo.ntsresultCode + vbCrLf
             tmp += "ntsresultMessage (국세청 처리결과 메시지) : " + cbInfo.ntsresultMessage + vbCrLf
             tmp += "printYN (인쇄여부) : " + cbInfo.printYN.ToString + vbCrLf
+
             tmp += "interOPYN (연동문서여부) : " + cbInfo.interOPYN.ToString + vbCrLf + vbCrLf
             MsgBox(tmp)
 

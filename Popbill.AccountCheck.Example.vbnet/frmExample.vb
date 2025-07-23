@@ -64,7 +64,7 @@ Public Class frmExample
             tmp += "bankCode (기관코드) : " + accountInfo.bankCode + vbCrLf
             tmp += "accountNumber (계좌번호) : " + accountInfo.accountNumber + vbCrLf
             tmp += "accountName (예금주 성명) : " + accountInfo.accountName + vbCrLf
-            tmp += "checkDate (확인일시) : " + accountInfo.checkDate + vbCrLf
+            tmp += "checkDT (확인일시) : " + accountInfo.checkDT + vbCrLf
             tmp += "result (응답코드) : " + accountInfo.result + vbCrLf
             tmp += "resultMessage (응답메시지) : " + accountInfo.resultMessage + vbCrLf
 
@@ -88,7 +88,7 @@ Public Class frmExample
             tmp += "bankCode (기관코드) : " + accountInfo.bankCode + vbCrLf
             tmp += "accountNumber (계좌번호) : " + accountInfo.accountNumber + vbCrLf
             tmp += "accountName (예금주 성명) : " + accountInfo.accountName + vbCrLf
-            tmp += "checkDate (확인일시) : " + accountInfo.checkDate + vbCrLf
+            tmp += "checkDT (확인일시) : " + accountInfo.checkDT + vbCrLf
             tmp += "identityNumType (등록번호 유형) : " + accountInfo.identityNumType + vbCrLf
             tmp += "identityNum (등록번호) : " + accountInfo.identityNum + vbCrLf
             tmp += "result (응답코드) : " + accountInfo.result + vbCrLf
