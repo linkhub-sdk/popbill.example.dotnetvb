@@ -57,7 +57,6 @@ Public Class frmExample
 
     '=========================================================================
     ' 팩스 발신번호 등록여부를 확인합니다.
-    ' - 발신번호 상태가 '승인'인 경우에만 리턴값 'Response'의 변수 'code'가 1로 반환됩니다.
     ' - https://developers.popbill.com/reference/fax/dotnet/api/sendnum#CheckSenderNumber
     '=========================================================================
     Private Sub btnCheckSenderNumber_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckSenderNumber.Click
@@ -74,8 +73,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 발신번호를 등록하고 내역을 확인하는 팩스 발신번호 관리 페이지 팝업 URL을 반환합니다.
-    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    ' 발신번호를 등록하는 팝업 URL을 반환합니다.
     ' - https://developers.popbill.com/reference/fax/dotnet/api/sendnum#GetSenderNumberMgtURL
     '=========================================================================
     Private Sub btnGetSenderNumberMgtURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSenderNumberMgtURL.Click
@@ -198,7 +196,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팩스 1건을 전송합니다.(다중파일 전송) (최대 전송파일 개수: 20개)
+    ' 팩스 1건을 전송합니다. (최대 전송파일 개수: 20개)
     ' - https://developers.popbill.com/reference/fax/dotnet/api/send#SendFAXMulti
     '=========================================================================
     Private Sub btnSenFax_3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSenFax_3.Click
@@ -245,7 +243,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 동일한 팩스파일을 다수의 수신자에게 전송하기 위해 팝빌에 접수합니다.(다중파일 동보전송) (최대 전송파일 개수 : 20개) (최대 1,000건)
+    ' 동일한 팩스파일을 다수의 수신자에게 전송하기 위해 팝빌에 접수합니다. (최대 전송파일 개수 : 20개) (최대 1,000건)
     ' - https://developers.popbill.com/reference/fax/dotnet/api/send#SendFAXMultiSame
     '=========================================================================
     Private Sub btnSenFax_4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSenFax_4.Click
@@ -297,9 +295,6 @@ Public Class frmExample
 
     '=========================================================================
     ' 팝빌에서 반환받은 접수번호를 통해 팩스 1건을 재전송합니다.
-    ' - 발신/수신 정보 미입력시 기존과 동일한 정보로 팩스가 전송되고, 접수일 기준 최대 60일이 경과되지 않는 건만 재전송이 가능합니다.
-    ' - 팩스 재전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
-    ' - 변환실패 사유로 전송실패한 팩스 접수건은 재전송이 불가합니다.
     ' - https://developers.popbill.com/reference/fax/dotnet/api/send#ResendFAX
     '=========================================================================
     Private Sub btnResendFAX_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnResendFAX.Click
@@ -335,10 +330,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌에서 반환받은 접수번호를 통해 다수건의 팩스를 재전송합니다. (최대 전송파일 개수: 20개) (최대 1,000건)
-    ' - 발신/수신 정보 미입력시 기존과 동일한 정보로 팩스가 전송되고, 접수일 기준 최대 60일이 경과되지 않는 건만 재전송이 가능합니다.
-    ' - 팩스 재전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
-    ' - 변환실패 사유로 전송실패한 팩스 접수건은 재전송이 불가합니다.
+    ' 팝빌에서 반환받은 접수번호를 통해 다수건의 팩스를 재전송합니다. (최대 1,000건)
     ' - https://developers.popbill.com/reference/fax/dotnet/api/send#ResendFAXSame
     '=========================================================================
     Private Sub btnResendFAX_Multi_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnResendFAX_Multi.Click
@@ -385,10 +377,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 파트너가 할당한 전송요청 번호를 통해 팩스 1건을 재전송합니다.
-    ' - 발신/수신 정보 미입력시 기존과 동일한 정보로 팩스가 전송되고, 접수일 기준 최대 60일이 경과되지 않는 건만 재전송이 가능합니다.
-    ' - 팩스 재전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
-    ' - 변환실패 사유로 전송실패한 팩스 접수건은 재전송이 불가합니다.
+    ' 파트너가 할당한 요청번호를 통해 팩스 1건을 재전송합니다.
     ' - https://developers.popbill.com/reference/fax/dotnet/api/send#ResendFAXRN
     '=========================================================================
     Private Sub btnResendFAXRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnResendFAXRN.Click
@@ -428,10 +417,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 파트너가 할당한 전송요청 번호를 통해 다수건의 팩스를 재전송합니다. (최대 전송파일 개수: 20개) (최대 1,000건)
-    ' - 발신/수신 정보 미입력시 기존과 동일한 정보로 팩스가 전송되고, 접수일 기준 최대 60일이 경과되지 않는 건만 재전송이 가능합니다.
-    ' - 팩스 재전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
-    ' - 변환실패 사유로 전송실패한 팩스 접수건은 재전송이 불가합니다.
+    ' 파트너가 할당한 요청번호를 통해 다수건의 팩스를 재전송합니다. (최대 전송파일 개수: 20개) (최대 1,000건)
     ' - https://developers.popbill.com/reference/fax/dotnet/api/send#ResendFAXRNSame
     '=========================================================================
     Private Sub btnResendFAXRN_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnResendFAXRN_same.Click
@@ -477,9 +463,8 @@ Public Class frmExample
         End Try
     End Sub
 
-
     '=========================================================================
-    ' 팝빌에서 반환받은 접수번호를 통해 예약접수된 팩스 전송을 취소합니다. (예약시간 10분 전까지 가능)
+    ' 팝빌에서 반환받은 접수번호로 예약된 팩스를 전송 취소합니다. (예약시간 10분 전까지 가능)
     ' - https://developers.popbill.com/reference/fax/dotnet/api/send#CancelReserve
     '=========================================================================
     Private Sub btnCancelReserve_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelReserve.Click
@@ -496,7 +481,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 파트너가 할당한 전송요청 번호를 통해 예약접수된 팩스 전송을 취소합니다. (예약시간 10분 전까지 가능)
+    ' 파트너가 할당한 요청번호로 예약된 팩스를 전송 취소합니다. (예약시간 10분 전까지 가능)
     ' - https://developers.popbill.com/reference/fax/dotnet/api/send#CancelReserveRN
     '=========================================================================
     Private Sub btnCancelReserveRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelReserveRN.Click
@@ -570,7 +555,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 파트너가 할당한 전송요청 번호를 통해 팩스 전송상태 및 결과를 확인합니다.
+    ' 파트너가 할당한 요청번호를 통해 팩스 전송상태 및 결과를 확인합니다.
     ' - https://developers.popbill.com/reference/fax/dotnet/api/info#GetFaxResultRN
     '=========================================================================
     Private Sub btnGetFaxResultRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFaxResultRN.Click
@@ -628,7 +613,6 @@ Public Class frmExample
 
     '=========================================================================
     ' 검색조건에 해당하는 팩스 전송내역 목록을 조회합니다. (조회기간 단위 : 최대 2개월)
-    ' - 팩스 접수일시로부터 2개월 이내 접수건만 조회할 수 있습니다.
     ' - https://developers.popbill.com/reference/fax/dotnet/api/info#Search
     '=========================================================================
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
@@ -636,10 +620,10 @@ Public Class frmExample
 
         '최대 검색기간 : 2개월 이내
         '시작일자, yyyyMMdd
-        Dim SDate As String = "20241201"
+        Dim SDate As String = "20250701"
 
         '종료일자, yyyyMMdd
-        Dim EDate As String = "20241231"
+        Dim EDate As String = "20250731"
 
         ' 전송상태 배열 ("1" , "2" , "3" , "4" 중 선택, 다중 선택 가능)
         ' └ 1 = 대기 , 2 = 성공 , 3 = 실패 , 4 = 취소
@@ -739,8 +723,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 사이트와 동일한 팩스 전송내역 확인 페이지의 팝업 URL을 반환합니다.
-    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    ' 팩스 전송내역 팝업 URL을 반환합니다.
     ' - https://developers.popbill.com/reference/fax/dotnet/api/info#GetSentListURL
     '=========================================================================
     Private Sub btnGetSentListURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSentListURL.Click
@@ -756,8 +739,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    '팩스 미리보기 팝업 URL을 반환하며, 팩스전송을 위한 TIF 포맷 변환 완료 후 호출 할 수 있습니다.
-    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    ' 팩스 1건의 변환파일을 확인하는 팝업 URL을 반환합니다.
     ' - https://developers.popbill.com/reference/fax/dotnet/api/info#GetPreviewURL
     '=========================================================================
     Private Sub btnGetPreviewURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPreviewURL.Click
