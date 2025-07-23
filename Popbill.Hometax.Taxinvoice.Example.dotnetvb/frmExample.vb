@@ -52,7 +52,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    '  홈택스에 신고된 전자세금계산서 매입/매출 내역 수집을 팝빌에 요청합니다. (조회기간 단위 : 최대 3개월)
+    '  홈택스에 신고된 전자세금계산서 매입/매출 내역 수집을 팝빌에 요청합니다.
     ' - https://developers.popbill.com/reference/httaxinvoice/dotnet/api/job#RequestJob
     '=========================================================================
     Private Sub btnRequestJob_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRequestJob.Click
@@ -64,10 +64,10 @@ Public Class frmExample
         Dim DType As String = "S"
 
         '시작일자, 표시형식(yyyyMMdd)
-        Dim SDate As String = "20220501"
+        Dim SDate As String = "20250701"
 
         '종료일자, 표시형식(yyyyMMdd)
-        Dim EDate As String = "20220513"
+        Dim EDate As String = "20250731"
 
         Try
             Dim jobID As String = htTaxinvoiceService.RequestJob(txtCorpNum.Text, tiKeyType, DType, SDate, EDate)
@@ -81,13 +81,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 수집 요청(RequestJob API) 함수를 통해 반환 받은 작업 아이디의 상태를 확인합니다.
-    ' - 수집 결과 조회(Search API) 함수 또는 수집 결과 요약 정보 조회(Summary API) 함수를 사용하기 전에
-    '   수집 작업의 진행 상태, 수집 작업의 성공 여부를 확인해야 합니다.
-    ' - 작업 상태(jobState) = 3(완료)이고 수집 결과 코드(errorCode) = 1(수집성공)이면
-    '   수집 결과 내역 조회(Search) 또는 수집 결과 요약 정보 조회(Summary)를 해야합니다.
-    ' - 작업 상태(jobState)가 3(완료)이지만 수집 결과 코드(errorCode)가 1(수집성공)이 아닌 경우에는
-    '   오류메시지(errorReason)로 수집 실패에 대한 원인을 파악할 수 있습니다.
+    ' [RequestJob - 수집 요청] API를 호출하고 반환 받은 작업아이디(JobID)를 이용하여 수집 상태를 확인합니다.
     ' - https://developers.popbill.com/reference/httaxinvoice/dotnet/api/job#GetJobState
     '=========================================================================
     Private Sub btnGetJobState_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetJobState.Click
@@ -116,8 +110,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 전자세금계산서 매입/매출 내역 수집요청에 대한 상태 목록을 확인합니다.
-    ' - 수집 요청 후 1시간이 경과한 수집 요청건은 상태정보가 반환되지 않습니다.
+    ' [RequestJob – 수집 요청] API를 호출하고 반환 받은 작업아이디(JobID) 목록의 수집 상태를 확인합니다.
     ' - https://developers.popbill.com/reference/httaxinvoice/dotnet/api/job#ListActiveJob
     '=========================================================================
     Private Sub btnListActiveJob_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListActiveJob.Click
@@ -155,7 +148,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 수집 상태 확인(GetJobState API) 함수를 통해 상태 정보가 확인된 작업아이디를 활용하여 수집된 전자세금계산서 매입/매출 내역을 조회합니다.
+    ' 홈택스에서 수집된 전자세금계산서 매입/매출 내역을 확인합니다.
     ' - https://developers.popbill.com/reference/httaxinvoice/dotnet/api/search#Search
     '=========================================================================
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
@@ -259,8 +252,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 수집 상태 확인(GetJobState API) 함수를 통해 상태 정보가 확인된 작업아이디를 활용하여 수집된 전자세금계산서 매입/매출 내역의 요약 정보를 조회합니다.
-    ' - 요약 정보 : 전자세금계산서 수집 건수, 공급가액 합계, 세액 합계, 합계 금액
+    ' 홈택스에서 수집된 전자세금계산서 매입/매출 내역의 합계정보를 제공합니다.
     ' - https://developers.popbill.com/reference/httaxinvoice/dotnet/api/search#Summary
     '=========================================================================
     Private Sub btnSummary_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSummary.Click
@@ -324,7 +316,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 국세청 승인번호를 통해 수집한 전자세금계산서 1건의 상세정보를 반환합니다.
+    ' 홈택스에서 수집된 전자세금계산서 1건의 상세정보를 제공합니다.
     ' - https://developers.popbill.com/reference/httaxinvoice/dotnet/api/search#GetTaxinvoice
     '=========================================================================
     Private Sub btnGetTaxinvocie_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetTaxinvocie.Click
@@ -401,7 +393,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 국세청 승인번호를 통해 수집한 전자세금계산서 1건의 상세정보를 XML 형태의 문자열로 반환합니다.
+    ' 홈택스에서 수집된 전자세금계산서 1건의 상세정보를 XML 데이터 포맷으로 제공합니다.
     ' - https://developers.popbill.com/reference/httaxinvoice/dotnet/api/search#GetXML
     '=========================================================================
     Private Sub btnGetXML_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetXML.Click
@@ -422,8 +414,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 수집된 전자세금계산서 1건의 상세내역을 확인하는 페이지의 팝업 URL을 반환합니다.
-    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    ' 홈택스에서 수집된 전자세금계산서 1건의 팝업 URL을 반환합니다.
     ' - https://developers.popbill.com/reference/httaxinvoice/dotnet/api/search#GetPopUpURL
     '=========================================================================
     Private Sub btnGetPopUpURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPopUpURL.Click
@@ -442,8 +433,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 수집된 전자세금계산서 1건의 상세내역을 인쇄하는 페이지의 URL을 반환합니다.
-    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    ' 홈택스에서 수집된 전자세금계산서 1건의 인쇄 팝업 URL을 반환합니다.
     ' - https://developers.popbill.com/reference/httaxinvoice/dotnet/api/search#GetPrintURL
     '=========================================================================
     Private Sub btnGetPrintURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPrintURL.Click
@@ -462,8 +452,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 홈택스수집 인증정보를 관리하는 페이지의 팝업 URL을 반환합니다.
-    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    ' 홈택스 인증정보를 등록하는 팝업 URL을 반환합니다.
     ' - https://developers.popbill.com/reference/httaxinvoice/dotnet/api/cert#GetCertificatePopUpURL
     '=========================================================================
     Private Sub btnGetCertificatePopUpURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetCertificatePopUpURL.Click
@@ -478,7 +467,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌에 등록된 인증서 만료일자를 확인합니다.
+    ' 팝빌에 등록된 인증서의 만료일자를 확인합니다.
     ' - https://developers.popbill.com/reference/httaxinvoice/dotnet/api/cert#GetCertificateExpireDate
     '=========================================================================
     Private Sub btnGetCertificateExpireDate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetCertificateExpireDate.Click
@@ -507,7 +496,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 홈택스수집 인증을 위해 팝빌에 전자세금계산서용 부서사용자 계정을 등록합니다.
+    ' 팝빌에 부서사용자를 등록합니다.
     ' - https://developers.popbill.com/reference/httaxinvoice/dotnet/api/cert#RegistDeptUser
     '=========================================================================
     Private Sub btnRegistDeptUser_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistDeptUser.Click
@@ -527,7 +516,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 홈택스수집 인증을 위해 팝빌에 등록된 전자세금계산서용 부서사용자 계정을 확인합니다.
+    ' 팝빌에 부서사용자 등록 여부를 확인합니다.
     ' - https://developers.popbill.com/reference/httaxinvoice/dotnet/api/cert#CheckDeptUser
     '=========================================================================
     Private Sub btnCheckDeptUser_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckDeptUser.Click
@@ -541,7 +530,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌에 등록된 전자세금계산서용 부서사용자 계정 정보로 홈택스 로그인 가능 여부를 확인합니다.
+    ' 팝빌에 등록된 부서사용자로 홈택스 로그인 가능 여부를 확인합니다.
     ' - https://developers.popbill.com/reference/httaxinvoice/dotnet/api/cert#CheckLoginDeptUser
     '=========================================================================
     Private Sub btnCheckLoginDeptUser_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckLoginDeptUser.Click
@@ -555,7 +544,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌에 등록된 홈택스 전자세금계산서용 부서사용자 계정을 삭제합니다.
+    ' 팝빌에 등록된 부서사용자 계정을 삭제합니다.
     ' - https://developers.popbill.com/reference/httaxinvoice/dotnet/api/cert#DeleteDeptUser
     '=========================================================================
     Private Sub btnDeleteDeptUser_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteDeptUser.Click
@@ -569,8 +558,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 홈택스수집 정액제 서비스 신청 페이지의 팝업 URL을 반환합니다.
-    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    ' 정액제를 신청하는 팝업 URL을 반환합니다.
     ' - https://developers.popbill.com/reference/httaxinvoice/dotnet/common-api/point#GetFlatRatePopUpURL
     '=========================================================================
     Private Sub btnGetFlatRatePopUpURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFlatRatePopUpURL.Click
