@@ -31,7 +31,6 @@ Partial Class frmExample
         Me.btnBulkSubmit = New System.Windows.Forms.Button
         Me.txtSubmitID = New System.Windows.Forms.TextBox
         Me.Label6 = New System.Windows.Forms.Label
-        Me.Label4 = New System.Windows.Forms.Label
         Me.GroupBox13 = New System.Windows.Forms.GroupBox
         Me.btnGetURL_WRITE = New System.Windows.Forms.Button
         Me.btnGetURL_PBOX = New System.Windows.Forms.Button
@@ -158,7 +157,6 @@ Partial Class frmExample
         'GroupBox7
         '
         Me.GroupBox7.Controls.Add(Me.GroupBox24)
-        Me.GroupBox7.Controls.Add(Me.Label4)
         Me.GroupBox7.Controls.Add(Me.GroupBox13)
         Me.GroupBox7.Controls.Add(Me.GroupBox1)
         Me.GroupBox7.Controls.Add(Me.groupBox10)
@@ -180,7 +178,7 @@ Partial Class frmExample
         Me.GroupBox24.Controls.Add(Me.btnBulkSubmit)
         Me.GroupBox24.Controls.Add(Me.txtSubmitID)
         Me.GroupBox24.Controls.Add(Me.Label6)
-        Me.GroupBox24.Location = New System.Drawing.Point(10, 233)
+        Me.GroupBox24.Location = New System.Drawing.Point(20, 221)
         Me.GroupBox24.Name = "GroupBox24"
         Me.GroupBox24.Size = New System.Drawing.Size(537, 51)
         Me.GroupBox24.TabIndex = 26
@@ -212,15 +210,6 @@ Partial Class frmExample
         Me.Label6.Size = New System.Drawing.Size(137, 12)
         Me.Label6.TabIndex = 25
         Me.Label6.Text = "제출아이디(SubmitID) : "
-        '
-        'Label4
-        '
-        Me.Label4.Font = New System.Drawing.Font("굴림", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Label4.Location = New System.Drawing.Point(273, 45)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(291, 28)
-        Me.Label4.TabIndex = 23
-        Me.Label4.Text = "국세청에 전송이 완료된 현금영수증을 취소하는 경우에는 '취소현금영수증'을 발행해야 합니다."
         '
         'GroupBox13
         '
@@ -268,7 +257,7 @@ Partial Class frmExample
         Me.GroupBox1.Controls.Add(Me.panel1)
         Me.GroupBox1.Controls.Add(Me.btnRevokRegistIssue)
         Me.GroupBox1.Controls.Add(Me.label11)
-        Me.GroupBox1.Location = New System.Drawing.Point(270, 77)
+        Me.GroupBox1.Location = New System.Drawing.Point(281, 55)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(277, 140)
         Me.GroupBox1.TabIndex = 22
@@ -331,12 +320,12 @@ Partial Class frmExample
         Me.groupBox10.Controls.Add(Me.btnDeleteSub)
         Me.groupBox10.Controls.Add(Me.Label8)
         Me.groupBox10.Controls.Add(Me.Label12)
-        Me.groupBox10.Location = New System.Drawing.Point(9, 77)
+        Me.groupBox10.Location = New System.Drawing.Point(20, 55)
         Me.groupBox10.Name = "groupBox10"
         Me.groupBox10.Size = New System.Drawing.Size(229, 143)
         Me.groupBox10.TabIndex = 21
         Me.groupBox10.TabStop = False
-        Me.groupBox10.Text = "현금영수증 즉시발행 프로세스(권장)"
+        Me.groupBox10.Text = "현금영수증 즉시발행 프로세스"
         '
         'btnRegistIssue
         '
@@ -1031,7 +1020,6 @@ Partial Class frmExample
     Friend WithEvents btnCheckID As System.Windows.Forms.Button
     Friend WithEvents btnCheckIsMember As System.Windows.Forms.Button
     Friend WithEvents btnJoinMember As System.Windows.Forms.Button
-    Private WithEvents Label4 As System.Windows.Forms.Label
     Private WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents btnRevokeRegistIssue_part As System.Windows.Forms.Button
     Friend WithEvents btnDelete02 As System.Windows.Forms.Button

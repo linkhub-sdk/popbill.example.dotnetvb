@@ -1829,4 +1829,5 @@ Public Class frmExample
 
         End Try
     End Sub
+
 End Class
