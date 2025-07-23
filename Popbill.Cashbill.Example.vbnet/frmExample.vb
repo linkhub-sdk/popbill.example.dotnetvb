@@ -1021,7 +1021,6 @@ Public Class frmExample
 
             For Each info As EmailConfig In emailConfigList
                 If info.emailType = "CSH_ISSUE" Then tmp += "CSH_ISSUE (고객에게 현금영수증이 발행 되었음을 알려주는 메일) | " + info.sendYN.ToString + vbCrLf
-                If info.emailType = "CSH_CANCEL" Then tmp += "CSH_CANCEL (고객에게 현금영수증이 발행취소 되었음을 알려주는 메일) |" + info.sendYN.ToString + vbCrLf
             Next
 
             MsgBox(tmp)
