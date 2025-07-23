@@ -60,7 +60,6 @@ Public Class frmExample
 
     '=========================================================================
     ' 문자 발신번호 등록여부를 확인합니다.
-    ' - 발신번호 상태가 '승인'인 경우에만 리턴값 'Response'의 변수 'code'가 1로 반환됩니다.
     ' - https://developers.popbill.com/reference/sms/dotnet/api/sendnum#CheckSenderNumber
     '=========================================================================
     Private Sub btnCheckSenderNumber_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckSenderNumber.Click
@@ -77,8 +76,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 발신번호를 등록하고 내역을 확인하는 문자 발신번호 관리 페이지 팝업 URL을 반환합니다.
-    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    ' 발신번호를 등록하는 팝업 URL을 반환합니다.
     ' - https://developers.popbill.com/reference/sms/dotnet/api/sendnum#GetSenderNumberMgtURL
     '=========================================================================
     Private Sub btnGetSenderNumberMgtURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSenderNumberMgtURL.Click
@@ -158,7 +156,6 @@ Public Class frmExample
 
     '=========================================================================
     ' 최대 90byte의 단문(SMS) 메시지 다수건 전송을 팝빌에 접수합니다. (최대 1,000건)
-    ' - 수신자마다 개별 내용을 전송할 수 있습니다(대량전송).
     ' - https://developers.popbill.com/reference/sms/dotnet/api/send#SendSMSMulti
     '=========================================================================
     Private Sub btn_SendSMS_hund_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_SendSMS_hund.Click
@@ -214,7 +211,6 @@ Public Class frmExample
 
     '=========================================================================
     ' 최대 90byte의 단문(SMS) 메시지 다수건 전송을 팝빌에 접수합니다. (최대 1,000건)
-    ' - 모든 수신자에게 동일한 내용을 전송합니다(동보전송).
     ' - https://developers.popbill.com/reference/sms/dotnet/api/send#SendSMSSame
     '=========================================================================
     Private Sub btnSendSMS_Same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendSMS_Same.Click
@@ -312,7 +308,6 @@ Public Class frmExample
 
     '=========================================================================
     ' 최대 2,000byte의 장문(LMS) 메시지 다수건 전송을 팝빌에 접수합니다. (최대 1,000건)
-    ' - 수신자마다 개별 내용을 전송할 수 있습니다(대량전송).
     ' - https://developers.popbill.com/reference/sms/dotnet/api/send#SendLMSMulti
     '=========================================================================
     Private Sub btnSendLMS_hund_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendLMS_hund.Click
@@ -370,7 +365,6 @@ Public Class frmExample
 
     '=========================================================================
     ' 최대 2,000byte의 장문(LMS) 메시지 다수건 전송을 팝빌에 접수합니다. (최대 1,000건)
-    ' - 모든 수신자에게 동일한 내용을 전송합니다(동보전송).
     ' - https://developers.popbill.com/reference/sms/dotnet/api/send#SendLMSSame
     '=========================================================================
     Private Sub btnSendLMS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendLMS_same.Click
@@ -424,7 +418,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 메시지 크기(90byte)에 따라 단문/장문(SMS/LMS)을 자동으로 인식하여 1건의 메시지를 전송을 팝빌에 접수합니다.
+    ' 메시지 길이(90byte)에 따라 단문/장문(SMS/LMS)을 자동으로 인식하여 1건의 메시지를 전송을 팝빌에 접수합니다.
     ' - https://developers.popbill.com/reference/sms/dotnet/api/send#SendXMSOne
     '=========================================================================
     Private Sub btnSendXMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendXMS_one.Click
@@ -469,8 +463,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 메시지 크기(90byte)에 따라 단문/장문(SMS/LMS)을 자동으로 인식하여 다수건의 메시지 전송을 팝빌에 접수합니다. (최대 1,000건)
-    ' - 수신자마다 개별 내용을 전송할 수 있습니다(대량전송).
+    ' 메시지 길이(90byte)에 따라 단문/장문(SMS/LMS)을 자동으로 인식하여 다수건의 메시지 전송을 팝빌에 접수합니다. (최대 1,000건)
     ' - https://developers.popbill.com/reference/sms/dotnet/api/send#SendXMSMulti
     '=========================================================================
     Private Sub btnSendXMS_hund_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendXMS_hund.Click
@@ -527,8 +520,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 메시지 크기(90byte)에 따라 단문/장문(SMS/LMS)을 자동으로 인식하여 다수건의 메시지 전송을 팝빌에 접수합니다. (최대 1,000건)
-    ' - 모든 수신자에게 동일한 내용을 전송합니다(동보전송).
+    ' 메시지 길이(90byte)에 따라 단문/장문(SMS/LMS)을 자동으로 인식하여 다수건의 메시지 전송을 팝빌에 접수합니다. (최대 1,000건)
     ' - https://developers.popbill.com/reference/sms/dotnet/api/send#SendXMSSame
     '=========================================================================
     Private Sub btnSendXMS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendXMS_same.Click
@@ -584,7 +576,6 @@ Public Class frmExample
 
     '=========================================================================
     ' 최대 2,000byte의 메시지와 이미지로 구성된 포토문자(MMS) 1건 전송을 팝빌에 접수합니다.
-    ' - 이미지 파일 포맷/규격 : 최대 300Kbyte(JPEG, JPG), 가로/세로 1,000px 이하 권장
     ' - https://developers.popbill.com/reference/sms/dotnet/api/send#SendMMSOne
     '=========================================================================
     Private Sub btnSendMMS_one_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendMMS_one.Click
@@ -634,8 +625,6 @@ Public Class frmExample
 
     '===========================================================================
     ' 최대 2,000byte의 메시지와 이미지로 구성된 포토문자(MMS) 다수건 전송을 팝빌에 접수합니다. (최대 1,000건)
-    ' - 모든 수신자에게 동일한 내용을 전송합니다(동보전송).
-    ' - 이미지 파일 포맷/규격 : 최대 300Kbyte(JPEG), 가로/세로 1,000px 이하 권장
     ' - https://developers.popbill.com/reference/sms/dotnet/api/send#SendMMSSame
     '===========================================================================
     Private Sub btnSendMMS_hundered_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendMMS_hundered.Click
@@ -696,8 +685,6 @@ Public Class frmExample
 
     '=========================================================================
     ' 최대 2,000byte의 메시지와 이미지로 구성된 포토문자(MMS) 다수건 전송을 팝빌에 접수합니다. (최대 1,000건)
-    ' - 모든 수신자에게 동일한 내용을 전송합니다(동보전송).
-    ' - 이미지 파일 포맷/규격 : 최대 300Kbyte(JPEG), 가로/세로 1,000px 이하 권장
     ' - https://developers.popbill.com/reference/sms/dotnet/api/send#SendMMSSame
     '=========================================================================
     Private Sub btnSendMMS_same_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSendMMS_same.Click
@@ -757,7 +744,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌에서 반환받은 접수번호를 통해 예약접수된 문자 메시지 전송을 취소합니다. (예약시간 10분 전까지 가능)
+    ' 팝빌에서 반환받은 접수번호로 예약된 문자를 전송 취소합니다. (예약시간 10분 전까지 가능)
     ' - https://developers.popbill.com/reference/sms/dotnet/api/send#CancelReserve
     '=========================================================================
     Private Sub btnCancelReserve_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelReserve.Click
@@ -773,7 +760,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 파트너가 할당한 전송요청 번호를 통해 예약접수된 문자 전송을 취소합니다. (예약시간 10분 전까지 가능)
+    ' 파트너가 할당한 요청번호로 예약된 문자를 전송 취소합니다. (예약시간 10분 전까지 가능)
     ' - https://developers.popbill.com/reference/sms/dotnet/api/send#CancelReserveRN
     '=========================================================================
     Private Sub btnCancelReserveRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelReserveRN.Click
@@ -789,7 +776,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌에서 반환받은 접수번호와 수신번호를 통해 예약접수된 문자 메시지 전송을 취소합니다. (예약시간 10분 전까지 가능)
+    ' 팝빌에서 반환받은 접수번호로 접수 건을 식별하여 수신번호에 예약된 문자를 전송 취소합니다. (예약시간 10분 전까지 가능)
     ' - https://developers.popbill.com/reference/sms/dotnet/api/send#CancelReservebyRCV
     '=========================================================================
     Private Sub btnCancelReservebyRCV_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelReservebyRCV.Click
@@ -805,7 +792,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 파트너가 할당한 전송요청 번호와 수신번호를 통해 예약접수된 문자 전송을 취소합니다. (예약시간 10분 전까지 가능)
+    ' 파트너가 할당한 요청번호로 접수 건을 식별하여 수신번호에 예약된 문자를 전송 취소합니다. (예약시간 10분 전까지 가능)
     ' - https://developers.popbill.com/reference/sms/dotnet/api/send#CancelReserveRNbyRCV
     '=========================================================================
     Private Sub btnCancelReserveRNbyRCV_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelReserveRNbyRCV.Click
@@ -850,7 +837,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 파트너가 할당한 전송요청 번호를 통해 문자 전송상태 및 결과를 확인합니다.
+    ' 파트너가 할당한 요청번호를 통해 문자 전송상태 및 결과를 확인합니다.
     ' - https://developers.popbill.com/reference/sms/dotnet/api/info#GetMessagesRN
     '=========================================================================
     Private Sub btnGetMessageResultRN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetMessageResultRN.Click
@@ -880,7 +867,6 @@ Public Class frmExample
 
     '=========================================================================
     ' 검색조건에 해당하는 문자 전송내역을 조회합니다. (조회기간 단위 : 최대 2개월)
-    ' - 문자 접수일시로부터 6개월 이내 접수건만 조회할 수 있습니다.
     ' - https://developers.popbill.com/reference/sms/dotnet/api/info#Search
     '=========================================================================
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
@@ -970,8 +956,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌 사이트와 동일한 문자 전송내역 확인 페이지의 팝업 URL을 반환합니다.
-    ' - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+    ' 문자 전송내역 팝업 URL을 반환합니다.
     ' - https://developers.popbill.com/reference/sms/dotnet/api/info#GetSentListURL
     '=========================================================================
     Private Sub btnGetSentListURL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetSentListURL.Click
