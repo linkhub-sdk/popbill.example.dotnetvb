@@ -132,7 +132,6 @@ Partial Class frmExample
         Me.btnGetURL_SWBOX = New System.Windows.Forms.Button
         Me.btnGetURL_PWBOX = New System.Windows.Forms.Button
         Me.GroupBox12 = New System.Windows.Forms.GroupBox
-        Me.btnGetOldPrintURL = New System.Windows.Forms.Button
         Me.btnGetPDFURL = New System.Windows.Forms.Button
         Me.btnGetViewURL = New System.Windows.Forms.Button
         Me.btnGetEmailURL = New System.Windows.Forms.Button
@@ -1345,7 +1344,6 @@ Partial Class frmExample
         '
         'GroupBox12
         '
-        Me.GroupBox12.Controls.Add(Me.btnGetOldPrintURL)
         Me.GroupBox12.Controls.Add(Me.btnGetPDFURL)
         Me.GroupBox12.Controls.Add(Me.btnGetViewURL)
         Me.GroupBox12.Controls.Add(Me.btnGetEmailURL)
@@ -1359,15 +1357,6 @@ Partial Class frmExample
         Me.GroupBox12.TabIndex = 11
         Me.GroupBox12.TabStop = False
         Me.GroupBox12.Text = "문서관련 URL 기능"
-        '
-        'btnGetOldPrintURL
-        '
-        Me.btnGetOldPrintURL.Location = New System.Drawing.Point(12, 118)
-        Me.btnGetOldPrintURL.Name = "btnGetOldPrintURL"
-        Me.btnGetOldPrintURL.Size = New System.Drawing.Size(207, 29)
-        Me.btnGetOldPrintURL.TabIndex = 17
-        Me.btnGetOldPrintURL.Text = "(구)인쇄 팝업 URL"
-        Me.btnGetOldPrintURL.UseVisualStyleBackColor = True
         '
         'btnGetPDFURL
         '
@@ -1398,7 +1387,7 @@ Partial Class frmExample
         '
         'btnGetMassPrintURL
         '
-        Me.btnGetMassPrintURL.Location = New System.Drawing.Point(12, 183)
+        Me.btnGetMassPrintURL.Location = New System.Drawing.Point(12, 156)
         Me.btnGetMassPrintURL.Name = "btnGetMassPrintURL"
         Me.btnGetMassPrintURL.Size = New System.Drawing.Size(207, 29)
         Me.btnGetMassPrintURL.TabIndex = 12
@@ -1407,7 +1396,7 @@ Partial Class frmExample
         '
         'btnEPrintURL
         '
-        Me.btnEPrintURL.Location = New System.Drawing.Point(12, 151)
+        Me.btnEPrintURL.Location = New System.Drawing.Point(12, 121)
         Me.btnEPrintURL.Name = "btnEPrintURL"
         Me.btnEPrintURL.Size = New System.Drawing.Size(207, 29)
         Me.btnEPrintURL.TabIndex = 11
@@ -1881,7 +1870,6 @@ Partial Class frmExample
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents btnGetViewURL As System.Windows.Forms.Button
     Friend WithEvents btnGetPDFURL As System.Windows.Forms.Button
-    Friend WithEvents btnGetOldPrintURL As System.Windows.Forms.Button
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents txtURL As System.Windows.Forms.TextBox
     Friend WithEvents btnGetBulkResult As System.Windows.Forms.Button
