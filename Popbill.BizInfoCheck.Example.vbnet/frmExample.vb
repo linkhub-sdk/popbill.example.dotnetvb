@@ -48,7 +48,7 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 사업자번호 1건에 대한 기업정보정보를 확인합니다.
+    ' 사업자번호 1건에 대한 기업정보를 확인합니다.
     ' - https://developers.popbill.com/reference/bizinfocheck/dotnet/api/check#CheckBizInfo
     '=========================================================================
     Private Sub btnCheckBizInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckBizInfo.Click
