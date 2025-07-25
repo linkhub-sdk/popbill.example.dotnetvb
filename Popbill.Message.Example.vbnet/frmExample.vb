@@ -1857,7 +1857,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 팝빌회원에 등록된 080 수신거부 번호 정보를 확인합니다.
-    ' - https://developers.popbill.com/reference/sms/php/api/info#CheckAutoDenyNumber
+    ' - https://developers.popbill.com/reference/sms/dotnet/api/info#CheckAutoDenyNumber
     '=========================================================================
     Private Sub btnCheckAutoDenyNumber_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckAutoDenyNumber.Click
 
@@ -1874,7 +1874,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원에 추가된 담당자를 삭제합니다.
-    ' - https://developers.popbill.com/reference/taxinvoice/java/common-api/member#DeleteContact
+    ' - https://developers.popbill.com/reference/sms/dotnet/common-api/member#DeleteContact
     '=========================================================================
     Private Sub btnDeleteContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteContact.Click
 

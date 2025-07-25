@@ -1332,7 +1332,7 @@ Public Class frmExample
 
     '=========================================================================
     ' 연동회원에 추가된 담당자를 삭제합니다.
-    ' - https://developers.popbill.com/reference/taxinvoice/java/common-api/member#DeleteContact
+    ' - https://developers.popbill.com/reference/httaxinvoice/dotnet/common-api/member#DeleteContact
     '=========================================================================
     Private Sub btnDeleteContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteContact.Click
 
