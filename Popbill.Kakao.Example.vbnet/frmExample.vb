@@ -17,10 +17,10 @@
 '     - UseLocalTimeYN : 로컬시스템 시간 사용여부, true-사용, false-미사용, (기본값:true)
 ' 3) 비즈니스 채널 등록 및 알림톡 템플릿을 신청합니다.
 '    - 1. 비즈니스 채널 등록 (등록방법은 사이트/API 두가지 방식이 있습니다.)
-'        └ 팝빌 사이트 로그인 [문자/팩스] > [카카오톡] > [카카오톡 관리] > '카카오톡 채널 관리' 메뉴에서 등록
+'        └ 팝빌 사이트 로그인 > [카카오톡] > [카카오톡 관리] > '카카오톡 채널 관리' 메뉴에서 등록
 '        └ GetPlusFriendMgtURL API 를 통해 반환된 URL을 이용하여 등록
 '    - 2. 알림톡 템플릿 신청 (등록방법은 사이트/API 두가지 방식이 있습니다.)
-'        └ 팝빌 사이트 로그인 [문자/팩스] > [카카오톡] > [카카오톡 관리] > '알림톡 템플릿 관리' 메뉴에서 등록
+'        └ 팝빌 사이트 로그인 > [카카오톡] > [카카오톡 관리] > '알림톡 템플릿 관리' 메뉴에서 등록
 '        └ GetATSTemplateMgtURL API 를 통해 URL을 이용하여 등록.
 '=========================================================================
 
@@ -143,7 +143,7 @@ Public Class frmExample
         Try
             Dim senderNumberList As List(Of SenderNumber) = kakaoService.GetSenderNumberList(txtCorpNum.Text, txtUserId.Text)
 
-            Dim tmp As String = "number(발신번호) | representYN(대표번호여부) | state(인증상태) | memo(메모)" + vbCrLf
+            Dim tmp As String = "number(발신번호) | representYN(대표번호 지정여부) | state(등록상태) | memo(메모)" + vbCrLf
 
             For Each info As SenderNumber In senderNumberList
                 tmp += info.number + " | " + CStr(info.state) + " | " + CStr(info.representYN) + " | " + info.memo + vbCrLf
@@ -187,27 +187,27 @@ Public Class frmExample
             Dim tmp As String = ""
 
             tmp += "[템플릿 정보]" + vbCrLf
-            tmp += "templateCode(템플릿 코드) : " + template.templateCode + vbCrLf
-            tmp += "templateName(템플릿 제목) : " + template.templateName + vbCrLf
-            tmp += "template(템플릿 내용) : " + template.template + vbCrLf
-            tmp += "plusFriendID(검색용 아이디) : " + template.plusFriendID + vbCrLf
-            tmp += "ads(광고 메시지) : " + template.ads + vbCrLf
-            tmp += "appendix(부가 메시지) : " + template.appendix + vbCrLf
+            tmp += "templateCode (템플릿 코드) : " + template.templateCode + vbCrLf
+            tmp += "templateName (템플릿 제목) : " + template.templateName + vbCrLf
+            tmp += "template (템플릿 내용) : " + template.template + vbCrLf
+            tmp += "plusFriendID (검색용 아이디) : " + template.plusFriendID + vbCrLf
+            tmp += "ads (광고 메시지) : " + template.ads + vbCrLf
+            tmp += "appendix (부가 메시지) : " + template.appendix + vbCrLf
+            tmp += "secureYN (보안템플릿 여부) : " + CStr(template.secureYN) + vbCrLf
+            tmp += "state (템플릿 상태) : " + template.state + vbCrLf
+            tmp += "stateDT (템플릿 상태 일시) : " + template.stateDT + vbCrLf
 
             If Not template.btns Is Nothing Then
                 For Each btnInfo As KakaoButton In template.btns
                     tmp += "[버튼정보]" + vbCrLf
-                    tmp += "n(버튼명) : " + btnInfo.n + vbCrLf
-                    tmp += "t(버튼유형) : " + btnInfo.t + vbCrLf
-                    tmp += "u1(버튼링크1() : " + btnInfo.u1 + vbCrLf
-                    tmp += "u2(버튼링크2() : " + btnInfo.u2 + vbCrLf
+                    tmp += "n (버튼명) : " + btnInfo.n + vbCrLf
+                    tmp += "t (버튼유형) : " + btnInfo.t + vbCrLf
+                    tmp += "u1 (버튼링크1) : " + btnInfo.u1 + vbCrLf
+                    tmp += "u2 (버튼링크2) : " + btnInfo.u2 + vbCrLf
+                    tmp += "tg (아웃링크) : " + btnInfo.tg + vbCrLf
                 Next
                 tmp += vbCrLf
             End If
-
-            tmp += "secureYN(보안템플릿 여부) : " + CStr(template.secureYN) + vbCrLf
-            tmp += "state(템플릿 상태) : " + template.state + vbCrLf
-            tmp += "stateDT(템플릿 상태 일시) : " + template.stateDT + vbCrLf
 
             MsgBox(tmp)
         Catch ex As PopbillException
@@ -228,27 +228,29 @@ Public Class frmExample
 
             For Each info As ATSTemplate In templateList
                 tmp += "[템플릿 정보]" + vbCrLf
-                tmp += "templateCode(템플릿 코드) : " + info.templateCode + vbCrLf
-                tmp += "templateName(템플릿 제목) : " + info.templateName + vbCrLf
-                tmp += "template(템플릿 내용) : " + info.template + vbCrLf
-                tmp += "plusFriendID(검색용 아이디) : " + info.plusFriendID + vbCrLf
-                tmp += "ads(광고 메시지) : " + info.ads + vbCrLf
-                tmp += "appendix(부가 메시지) : " + info.appendix + vbCrLf
+                tmp += "templateCode (템플릿 코드) : " + info.templateCode + vbCrLf
+                tmp += "templateName (템플릿 제목) : " + info.templateName + vbCrLf
+                tmp += "template (템플릿 내용) : " + info.template + vbCrLf
+                tmp += "plusFriendID (검색용 아이디) : " + info.plusFriendID + vbCrLf
+                tmp += "ads (광고 메시지) : " + info.ads + vbCrLf
+                tmp += "appendix (부가 메시지) : " + info.appendix + vbCrLf
+                tmp += "secureYN (보안템플릿 여부) : " + CStr(info.secureYN) + vbCrLf
+                tmp += "state (템플릿 상태) : " + info.state + vbCrLf
+                tmp += "stateDT (템플릿 상태 일시) : " + info.stateDT + vbCrLf + vbCrLf
 
                 If Not info.btns Is Nothing Then
                     For Each btnInfo As KakaoButton In info.btns
                         tmp += "[버튼정보]" + vbCrLf
-                        tmp += "n(버튼명) : " + btnInfo.n + vbCrLf
-                        tmp += "t(버튼유형) : " + btnInfo.t + vbCrLf
-                        tmp += "u1(버튼링크1() : " + btnInfo.u1 + vbCrLf
-                        tmp += "u2(버튼링크2() : " + btnInfo.u2 + vbCrLf
+                        tmp += "n (버튼명) : " + btnInfo.n + vbCrLf
+                        tmp += "t (버튼유형) : " + btnInfo.t + vbCrLf
+                        tmp += "u1 (버튼링크1) : " + btnInfo.u1 + vbCrLf
+                        tmp += "u2 (버튼링크2) : " + btnInfo.u2 + vbCrLf
+                        tmp += "tg (아웃링크) : " + btnInfo.tg + vbCrLf
                     Next
                     tmp += vbCrLf
                 End If
 
-                tmp += "secureYN(보안템플릿 여부) : " + CStr(info.secureYN) + vbCrLf
-                tmp += "state(템플릿 상태) : " + info.state + vbCrLf
-                tmp += "stateDT(템플릿 상태 일시) : " + info.stateDT + vbCrLf + vbCrLf
+                
             Next
             MsgBox(tmp)
 
@@ -1119,29 +1121,30 @@ Public Class frmExample
         Try
             Dim sentInfo As KakaoSentResult = kakaoService.GetMessages(txtCorpNum.Text, txtReceiptNum.Text)
 
-            Dim tmp As String = "contentType(카카오톡 유형) : " + sentInfo.contentType + vbCrLf
-            tmp += "templateCode(템플릿 코드) : " + sentInfo.templateCode + vbCrLf
-            tmp += "plusFriendID(카카오톡채널 아이디) : " + sentInfo.plusFriendID + vbCrLf
-            tmp += "sendNum(발신번호) : " + sentInfo.sendNum + vbCrLf
-            tmp += "altSubject(대체문자 제목) : " + sentInfo.altSubject + vbCrLf
-            tmp += "altContent(대체문자 내용) : " + sentInfo.altContent + vbCrLf
-            tmp += "altSendType(대체문자 유형) : " + sentInfo.altSendType + vbCrLf
-            tmp += "reserveDT(예약일시) : " + sentInfo.reserveDT + vbCrLf
-            tmp += "adsYN(광고전송 여부) : " + CStr(sentInfo.adsYN) + vbCrLf
-            tmp += "imageURL(친구톡 이미지 URL) : " + sentInfo.imageURL + vbCrLf
-            tmp += "sendCnt(전송건수) : " + sentInfo.sendCnt + vbCrLf
-            tmp += "successCnt(성공건수) : " + sentInfo.successCnt + vbCrLf
-            tmp += "failCnt(실패건수) : " + sentInfo.failCnt + vbCrLf
-            tmp += "altCnt(대체문자 건수) : " + sentInfo.altCnt + vbCrLf
-            tmp += "cancelCnt(취소건수) : " + sentInfo.cancelCnt + vbCrLf
+            Dim tmp As String = "contentType (카카오톡 유형) : " + sentInfo.contentType + vbCrLf
+            tmp += "templateCode (템플릿 코드) : " + sentInfo.templateCode + vbCrLf
+            tmp += "plusFriendID (카카오톡채널 아이디) : " + sentInfo.plusFriendID + vbCrLf
+            tmp += "sendNum (발신번호) : " + sentInfo.sendNum + vbCrLf
+            tmp += "altSubject (대체문자 제목) : " + sentInfo.altSubject + vbCrLf
+            tmp += "altContent (대체문자 내용) : " + sentInfo.altContent + vbCrLf
+            tmp += "altSendType (대체문자 유형) : " + sentInfo.altSendType + vbCrLf
+            tmp += "reserveDT (예약일시) : " + sentInfo.reserveDT + vbCrLf
+            tmp += "adsYN (광고전송 여부) : " + CStr(sentInfo.adsYN) + vbCrLf
+            tmp += "imageURL (친구톡 이미지 URL) : " + sentInfo.imageURL + vbCrLf
+            tmp += "sendCnt (전송건수) : " + sentInfo.sendCnt + vbCrLf
+            tmp += "successCnt (성공건수) : " + sentInfo.successCnt + vbCrLf
+            tmp += "failCnt (실패건수) : " + sentInfo.failCnt + vbCrLf
+            tmp += "altCnt (대체문자 건수) : " + sentInfo.altCnt + vbCrLf
+            tmp += "cancelCnt (취소건수) : " + sentInfo.cancelCnt + vbCrLf
 
             If Not sentInfo.btns Is Nothing Then
                 For Each btnInfo As KakaoButton In sentInfo.btns
                     tmp += "[버튼정보]" + vbCrLf
-                    tmp += "n(버튼명) : " + btnInfo.n + vbCrLf
-                    tmp += "t(버튼유형) : " + btnInfo.t + vbCrLf
-                    tmp += "u1(버튼링크1) : " + btnInfo.u1 + vbCrLf
-                    tmp += "u2(버튼링크2) : " + btnInfo.u2 + vbCrLf
+                    tmp += "n (버튼명) : " + btnInfo.n + vbCrLf
+                    tmp += "t (버튼유형) : " + btnInfo.t + vbCrLf
+                    tmp += "u1 (버튼링크1) : " + btnInfo.u1 + vbCrLf
+                    tmp += "u2 (버튼링크2) : " + btnInfo.u2 + vbCrLf
+                    tmp += "tg (아웃링크) : " + btnInfo.tg + vbCrLf
                 Next
                 tmp += vbCrLf
             End If
@@ -1191,29 +1194,30 @@ Public Class frmExample
         Try
             Dim sentInfo As KakaoSentResult = kakaoService.GetMessages(txtCorpNum.Text, txtReceiptNum.Text)
 
-            Dim tmp As String = "contentType(카카오톡 유형) : " + sentInfo.contentType + vbCrLf
-            tmp += "templateCode(템플릿 코드) : " + sentInfo.templateCode + vbCrLf
-            tmp += "plusFriendID(카카오톡채널 아이디) : " + sentInfo.plusFriendID + vbCrLf
-            tmp += "sendNum(발신번호) : " + sentInfo.sendNum + vbCrLf
-            tmp += "altSubject(대체문자 제목) : " + sentInfo.altSubject + vbCrLf
-            tmp += "altContent(대체문자 내용) : " + sentInfo.altContent + vbCrLf
-            tmp += "altSendType(대체문자 유형) : " + sentInfo.altSendType + vbCrLf
-            tmp += "reserveDT(예약일시) : " + sentInfo.reserveDT + vbCrLf
-            tmp += "adsYN(광고전송 여부) : " + CStr(sentInfo.adsYN) + vbCrLf
-            tmp += "imageURL(친구톡 이미지 URL) : " + sentInfo.imageURL + vbCrLf
-            tmp += "sendCnt(전송건수) : " + sentInfo.sendCnt + vbCrLf
-            tmp += "successCnt(성공건수) : " + sentInfo.successCnt + vbCrLf
-            tmp += "failCnt(실패건수) : " + sentInfo.failCnt + vbCrLf
-            tmp += "altCnt(대체문자 건수) : " + sentInfo.altCnt + vbCrLf
-            tmp += "cancelCnt(취소건수) : " + sentInfo.cancelCnt + vbCrLf
+            Dim tmp As String = "contentType (카카오톡 유형) : " + sentInfo.contentType + vbCrLf
+            tmp += "templateCode (템플릿 코드) : " + sentInfo.templateCode + vbCrLf
+            tmp += "plusFriendID (카카오톡채널 아이디) : " + sentInfo.plusFriendID + vbCrLf
+            tmp += "sendNum (발신번호) : " + sentInfo.sendNum + vbCrLf
+            tmp += "altSubject (대체문자 제목) : " + sentInfo.altSubject + vbCrLf
+            tmp += "altContent (대체문자 내용) : " + sentInfo.altContent + vbCrLf
+            tmp += "altSendType (대체문자 유형) : " + sentInfo.altSendType + vbCrLf
+            tmp += "reserveDT (예약일시) : " + sentInfo.reserveDT + vbCrLf
+            tmp += "adsYN (광고전송 여부) : " + CStr(sentInfo.adsYN) + vbCrLf
+            tmp += "imageURL (친구톡 이미지 URL) : " + sentInfo.imageURL + vbCrLf
+            tmp += "sendCnt (전송건수) : " + sentInfo.sendCnt + vbCrLf
+            tmp += "successCnt (성공건수) : " + sentInfo.successCnt + vbCrLf
+            tmp += "failCnt (실패건수) : " + sentInfo.failCnt + vbCrLf
+            tmp += "altCnt (대체문자 건수) : " + sentInfo.altCnt + vbCrLf
+            tmp += "cancelCnt (취소건수) : " + sentInfo.cancelCnt + vbCrLf
 
             If Not sentInfo.btns Is Nothing Then
                 For Each btnInfo As KakaoButton In sentInfo.btns
                     tmp += "[버튼정보]" + vbCrLf
-                    tmp += "n(버튼명) : " + btnInfo.n + vbCrLf
-                    tmp += "t(버튼유형) : " + btnInfo.t + vbCrLf
-                    tmp += "u1(버튼링크1) : " + btnInfo.u1 + vbCrLf
-                    tmp += "u2(버튼링크2) : " + btnInfo.u2 + vbCrLf
+                    tmp += "n (버튼명) : " + btnInfo.n + vbCrLf
+                    tmp += "t (버튼유형) : " + btnInfo.t + vbCrLf
+                    tmp += "u1 (버튼링크1) : " + btnInfo.u1 + vbCrLf
+                    tmp += "u2 (버튼링크2) : " + btnInfo.u2 + vbCrLf
+                    tmp += "tg (아웃링크) : " + btnInfo.tg + vbCrLf
                 Next
                 tmp += vbCrLf
             End If
@@ -1263,10 +1267,10 @@ Public Class frmExample
 
         '최대 검색기간 : 6개월 이내
         '시작일자, yyyyMMdd
-        Dim SDate As String = "20220501"
+        Dim SDate As String = "20250701"
 
         '종료일자, yyyyMMdd
-        Dim EDate As String = "20220531"
+        Dim EDate As String = "20250731"
 
         ' 전송상태 배열 ("0" , "1" , "2" , "3" , "4" , "5" 중 선택, 다중 선택 가능)
         ' └ 0 = 전송대기 , 1 = 전송중 , 2 = 전송성공 , 3 = 대체문자 전송 , 4 = 전송실패 , 5 = 전송취소
@@ -1797,13 +1801,13 @@ Public Class frmExample
         '담당자 성명 (최대 100자)
         joinData.personName = "담당자명"
 
-        '담당자 연락처 (최대 20자)
+        '담당자 휴대폰 (최대 20자)
         joinData.tel = "010-1234-1234"
 
-        '담당자 이메일 (최대 100자)
+        '담당자 메일 (최대 100자)
         joinData.email = "test@email.com"
 
-        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
+        '권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
         joinData.searchRole = 3
 
         Try
@@ -1831,15 +1835,15 @@ Public Class frmExample
         Try
             Dim contactInfo As Contact = kakaoService.GetContactInfo(txtCorpNum.Text, contactID)
 
-            tmp += "id (담당자 아이디) : " + contactInfo.id + vbCrLf
-            tmp += "personName (담당자명) : " + contactInfo.personName + vbCrLf
-            tmp += "email (담당자 이메일) : " + contactInfo.email + vbCrLf
-            tmp += "searchRole (담당자 권한) : " + contactInfo.searchRole.ToString + vbCrLf
-            tmp += "tel (연락처) : " + contactInfo.tel + vbCrLf
-            tmp += "mgrYN (관리자 여부) : " + contactInfo.mgrYN.ToString + vbCrLf
+            tmp += "id (아이디) : " + contactInfo.id + vbCrLf
+            tmp += "personName (담당자 성명) : " + contactInfo.personName + vbCrLf
+            tmp += "tel (담당자 휴대폰) : " + contactInfo.tel + vbCrLf
+            tmp += "email (담당자 메일) : " + contactInfo.email + vbCrLf
             tmp += "regDT (등록일시) : " + contactInfo.regDT + vbCrLf
-            tmp += "state (상태) : " + contactInfo.state + vbCrLf
 
+            tmp += "searchRole (권한) : " + contactInfo.searchRole.ToString + vbCrLf
+            tmp += "mgrYN (역할) : " + contactInfo.mgrYN.ToString + vbCrLf
+            tmp += "state (계정상태) : " + contactInfo.state + vbCrLf
             tmp += vbCrLf
 
             MsgBox(tmp)
@@ -1857,8 +1861,8 @@ Public Class frmExample
         Try
             Dim contactList As List(Of Contact) = kakaoService.ListContact(txtCorpNum.Text, txtUserId.Text)
 
-            Dim tmp As String = "id(아이디) | personName(담당자명) | email(메일주소) | tel(연락처) |"
-            tmp += "regDT(등록일시) | searchRole(담당자 권한) | mgrYN(관리자 여부) | state(상태)" + vbCrLf
+            Dim tmp As String = "id(아이디) | personName(담당자 성명) | email(담당자 메일) | tel(담당자 휴대폰) |"
+            tmp += "regDT(등록일시) | searchRole(권한) | mgrYN(역할) | state(계정상태)" + vbCrLf
 
             For Each info As Contact In contactList
                 tmp += info.id + " | " + info.personName + " | " + info.email + " | " + info.tel + " | "
@@ -1887,13 +1891,13 @@ Public Class frmExample
         '담당자 성명 (최대 100자)
         joinData.personName = "담당자명"
 
-        '담당자 연락처 (최대 20자)
+        '담당자 휴대폰 (최대 20자)
         joinData.tel = "010-1234-1234"
 
-        '담당자 이메일 (최대 100자)
+        '담당자 메일 (최대 100자)
         joinData.email = "test@email.com"
 
-        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
+        '권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
         joinData.searchRole = 3
 
         Try
@@ -1982,10 +1986,10 @@ Public Class frmExample
     Private Sub btnGetPaymentHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPaymentHistory.Click
 
         '조회 시작 일자
-        Dim SDate As String = "20230501"
+        Dim SDate As String = "20250701"
 
         '조회 종료 일자
-        Dim EDate As String = "20230530"
+        Dim EDate As String = "20250731"
 
         '목록 페이지 번호
         Dim Page As Integer = 1
@@ -2035,10 +2039,10 @@ Public Class frmExample
     Private Sub btnGetUseHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetUseHistory.Click
 
         '조회 시작 일자
-        Dim SDate As String = "20230501"
+        Dim SDate As String = "20250701"
 
         '조회 종료 일자
-        Dim EDate As String = "20230530"
+        Dim EDate As String = "20250731"
 
         '목록 페이지 번호
         Dim Page As Integer = 1
