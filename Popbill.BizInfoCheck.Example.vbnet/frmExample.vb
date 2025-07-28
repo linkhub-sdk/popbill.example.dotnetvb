@@ -59,18 +59,20 @@ Public Class frmExample
             Dim tmp As String = ""
 
             tmp += "corpNum (사업자번호) : " + result.corpNum + vbCrLf
-            tmp += "companyRegNum (법인번호): " + result.companyRegNum + vbCrLf
-            tmp += "checkDT (확인일시) : " + result.checkDT + vbCrLf
+            tmp += "companyRegNum (법인등록번호): " + result.companyRegNum + vbCrLf
+            tmp += "checkDT (기업정보조회일시) : " + result.checkDT + vbCrLf
             tmp += "corpName (상호): " + result.corpName + vbCrLf
             tmp += "CEOName (대표자명) : " + result.ceoname + vbCrLf
             tmp += "corpCode (기업형태코드): " + nullToString(result.corpCode) + vbCrLf
             tmp += "corpScaleCode (기업규모코드): " + nullToString(result.corpScaleCode) + vbCrLf
+
             tmp += "personCorpCode (개인법인코드): " + nullToString(result.personCorpCode) + vbCrLf
             tmp += "headOfficeCode (본점지점코드) : " + nullToString(result.headOfficeCode) + vbCrLf
             tmp += "industryCode (산업코드) : " + result.industryCode + vbCrLf
             tmp += "establishDate (설립일자) : " + result.establishDate + vbCrLf
             tmp += "establishCode (설립구분코드) : " + nullToString(result.establishCode) + vbCrLf
             tmp += "workPlaceCode (사업장구분코드): " + nullToString(result.workPlaceCode) + vbCrLf
+
             tmp += "addrCode (주소구분코드) : " + nullToString(result.addrCode) + vbCrLf
             tmp += "zipCode (우편번호) : " + result.zipCode + vbCrLf
             tmp += "addr (주소) : " + result.addr + vbCrLf
@@ -78,6 +80,7 @@ Public Class frmExample
             tmp += "enAddr (영문주소) : " + result.enAddr + vbCrLf
             tmp += "bizClass (업종) : " + result.bizClass + vbCrLf
             tmp += "bizType (업태) : " + result.bizType + vbCrLf
+
             tmp += "result (상태코드) : " + nullToString(result.result) + vbCrLf
             tmp += "resultMessage (상태메시지) : " + result.resultMessage + vbCrLf
             tmp += "closeDownState (휴폐업상태) : " + nullToString(result.closeDownState) + vbCrLf
@@ -304,10 +307,10 @@ Public Class frmExample
         '담당자 성명 (최대 100자)
         joinInfo.ContactName = "담당자명"
 
-        '담당자 이메일 (최대 20자)
+        '담당자 메일 (최대 20자)
         joinInfo.ContactEmail = ""
 
-        '담당자 연락처 (최대 20자)
+        '담당자 휴대폰 (최대 20자)
         joinInfo.ContactTEL = ""
 
         Try
@@ -412,13 +415,13 @@ Public Class frmExample
         '담당자 성명 (최대 100자)
         joinData.personName = "담당자명"
 
-        '담당자 연락처 (최대 20자)
+        '담당자 휴대폰 (최대 20자)
         joinData.tel = "010-1234-1234"
 
-        '담당자 이메일 (최대 100자)
+        '담당자 메일 (최대 100자)
         joinData.email = "test@email.com"
 
-        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
+        '권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
         joinData.searchRole = 3
 
         Try
@@ -447,13 +450,13 @@ Public Class frmExample
             Dim contactInfo As Contact = bizInfoCheckService.GetContactInfo(txtCorpNum.Text, contactID)
 
             tmp += "id (담당자 아이디) : " + contactInfo.id + vbCrLf
-            tmp += "personName (담당자명) : " + contactInfo.personName + vbCrLf
-            tmp += "email (담당자 이메일) : " + contactInfo.email + vbCrLf
-            tmp += "searchRole (담당자 권한) : " + contactInfo.searchRole.ToString + vbCrLf
-            tmp += "tel (연락처) : " + contactInfo.tel + vbCrLf
-            tmp += "mgrYN (관리자 여부) : " + contactInfo.mgrYN.ToString + vbCrLf
+            tmp += "personName (담당자 성명) : " + contactInfo.personName + vbCrLf
+            tmp += "tel (담당자 휴대폰) : " + contactInfo.tel + vbCrLf
+            tmp += "email (담당자 메일) : " + contactInfo.email + vbCrLf
             tmp += "regDT (등록일시) : " + contactInfo.regDT + vbCrLf
-            tmp += "state (상태) : " + contactInfo.state + vbCrLf
+            tmp += "searchRole (권한) : " + contactInfo.searchRole.ToString + vbCrLf
+            tmp += "mgrYN (역할) : " + contactInfo.mgrYN.ToString + vbCrLf
+            tmp += "state (계정상태) : " + contactInfo.state + vbCrLf
 
             tmp += vbCrLf
 
@@ -471,8 +474,8 @@ Public Class frmExample
         Try
             Dim contactList As List(Of Contact) = bizInfoCheckService.ListContact(txtCorpNum.Text, txtUserId.Text)
 
-            Dim tmp As String = "id(아이디) | personName(담당자명) | email(메일주소) | tel(연락처) |"
-            tmp += "regDT(등록일시) | searchRole(담당자 권한) | mgrYN(관리자 여부) | state(상태)" + vbCrLf
+            Dim tmp As String = "id(아이디) | personName(담당자 성명) | email(담당자 메일) | tel(담당자 휴대폰) |"
+            tmp += "regDT(등록일시) | searchRole(권한) | mgrYN(역할) | state(계정상태)" + vbCrLf
 
             For Each info As Contact In contactList
                 tmp += info.id + " | " + info.personName + " | " + info.email + " | " + info.tel + " | "
@@ -501,13 +504,13 @@ Public Class frmExample
         '담당자 성명 (최대 100자)
         joinData.personName = "담당자명"
 
-        '담당자 연락처 (최대 20자)
+        '담당자 휴대폰 (최대 20자)
         joinData.tel = "010-1234-1234"
 
-        '담당자 이메일 (최대 100자)
+        '담당자 메일 (최대 100자)
         joinData.email = "test@email.com"
 
-        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
+        '권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
         joinData.searchRole = 3
 
         Try
@@ -595,10 +598,10 @@ Public Class frmExample
     Private Sub btnGetPaymentHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPaymentHistory.Click
 
         '조회 시작 일자
-        Dim SDate As String = "20230501"
+        Dim SDate As String = "20250701"
 
         '조회 종료 일자
-        Dim EDate As String = "20230530"
+        Dim EDate As String = "20250731"
 
         '목록 페이지 번호
         Dim Page As Integer = 1
@@ -648,10 +651,10 @@ Public Class frmExample
     Private Sub btnGetUseHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetUseHistory.Click
 
         '조회 시작 일자
-        Dim SDate As String = "20230501"
+        Dim SDate As String = "20250701"
 
         '조회 종료 일자
-        Dim EDate As String = "20230530"
+        Dim EDate As String = "20250731"
 
         '목록 페이지 번호
         Dim Page As Integer = 1
