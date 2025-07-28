@@ -57,7 +57,7 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnRequestJob_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRequestJob.Click
 
-        '전자(세금)계산서 유형, SELL-매출, BUY-매입, TURSTEE-위수탁
+        '전자세금계산서 유형, SELL-매출, BUY-매입, TURSTEE-위수탁
         Dim tiKeyType As KeyType = KeyType.SELL
 
         '일자유형, W-작성일자, I-발행일자, S-전송일자
@@ -88,18 +88,18 @@ Public Class frmExample
         Try
             Dim jobINfo As HTTaxinvoiceJobState = htTaxinvoiceService.GetJobState(txtCorpNum.Text, txtJobID.Text)
 
-            Dim tmp As String = "jobID(작업아이디) : " + jobINfo.jobID + vbCrLf
-            tmp += "jobState(수집상태) : " + CStr(jobINfo.jobState) + vbCrLf
-            tmp += "queryType(수집유형) : " + jobINfo.queryType + vbCrLf
-            tmp += "queryDateType(일자유형) : " + jobINfo.queryDateType + vbCrLf
-            tmp += "queryStDate(시작일자) : " + jobINfo.queryStDate + vbCrLf
-            tmp += "queryEnDate(종료일자) : " + jobINfo.queryEnDate + vbCrLf
-            tmp += "errorCode(오류코드) : " + CStr(jobINfo.errorCode) + vbCrLf
-            tmp += "errorReason(오류메시지) : " + jobINfo.errorReason + vbCrLf
-            tmp += "jobStartDT(작업 시작일시) : " + jobINfo.jobStartDT + vbCrLf
-            tmp += "jobEndDT(작업 종료일시) : " + jobINfo.jobEndDT + vbCrLf
-            tmp += "collectCount(수집개수) : " + CStr(jobINfo.collectCount) + vbCrLf
-            tmp += "regDT(수집 요청일시) : " + jobINfo.regDT + vbCrLf
+            Dim tmp As String = "jobID (작업아이디) : " + jobINfo.jobID + vbCrLf
+            tmp += "jobState (수집상태) : " + CStr(jobINfo.jobState) + vbCrLf
+            tmp += "queryType (전자세금계산서 유형) : " + jobINfo.queryType + vbCrLf
+            tmp += "queryDateType (일자유형) : " + jobINfo.queryDateType + vbCrLf
+            tmp += "queryStDate (시작일자) : " + jobINfo.queryStDate + vbCrLf
+            tmp += "queryEnDate (종료일자) : " + jobINfo.queryEnDate + vbCrLf
+            tmp += "errorCode (수집 결과코드) : " + CStr(jobINfo.errorCode) + vbCrLf
+            tmp += "errorReason (오류메시지) : " + jobINfo.errorReason + vbCrLf
+            tmp += "jobStartDT (작업 시작일시) : " + jobINfo.jobStartDT + vbCrLf
+            tmp += "jobEndDT (작업 종료일시) : " + jobINfo.jobEndDT + vbCrLf
+            tmp += "collectCount (수집건수) : " + CStr(jobINfo.collectCount) + vbCrLf
+            tmp += "regDT (수집 요청일시) : " + jobINfo.regDT + vbCrLf
 
             MsgBox(tmp)
 
@@ -118,8 +118,8 @@ Public Class frmExample
             Dim jobList As List(Of HTTaxinvoiceJobState) = htTaxinvoiceService.ListActiveJob(txtCorpNum.Text)
 
 
-            Dim tmp As String = "jobID(작업아이디) | 수집상태(jobState) | 수집유형(queryType) | 일자유형(queryDateType) | 시작일자(queryStDate) | 종료일자(queryEnDate) | "
-            tmp += "errorCode(오류코드) | 오류메시지(errorReason) | 작업 시작일시(jobStartDT) | 작업 종료일시(jobEndDT) | 수집개수(collectCount) | 수집 요청일시(regDT) " + vbCrLf
+            Dim tmp As String = "작업아이디 (jobID) | 수집상태(jobState) | 전자세금계산서 유형(queryType) | 일자유형(queryDateType) | 시작일자(queryStDate) | 종료일자(queryEnDate) | "
+            tmp += "수집 결과코드(errorCode) | 오류메시지(errorReason) | 작업 시작일시(jobStartDT) | 작업 종료일시(jobEndDT) | 수집건수(collectCount) | 수집 요청일시(regDT) " + vbCrLf
 
             For Each info As HTTaxinvoiceJobState In jobList
                 tmp += CStr(info.jobID) + " | "
@@ -401,8 +401,8 @@ Public Class frmExample
             Dim taxinvoiceXML As HTTaxinvoiceXML = htTaxinvoiceService.GetXML(txtCorpNum.Text, txtNTSconfirmNum.Text)
 
             Dim tmp As String = "ResultCode (응답코드) : " + taxinvoiceXML.ResultCode.ToString + vbCrLf
-            tmp += "Message (국세청 승인번호) : " + taxinvoiceXML.Message + vbCrLf
-            tmp += "retObject (XML문서) : " + taxinvoiceXML.retObject + vbCrLf
+            tmp += "Message (응답메시지) : " + taxinvoiceXML.Message + vbCrLf
+            tmp += "retObject (전자세금계산서 XML 문서) : " + taxinvoiceXML.retObject + vbCrLf
 
             MsgBox(tmp)
 
@@ -500,6 +500,7 @@ Public Class frmExample
     ' - https://developers.popbill.com/reference/httaxinvoice/dotnet/api/cert#RegistDeptUser
     '=========================================================================
     Private Sub btnRegistDeptUser_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistDeptUser.Click
+
         ' 홈택스에서 생성한 전자세금계산서 부서사용자 아이디
         Dim deptUserID As String = "userid_test"
 
@@ -786,10 +787,10 @@ Public Class frmExample
         '담당자 성명 (최대 100자)
         joinInfo.ContactName = "담당자명"
 
-        '담당자 이메일 (최대 20자)
+        '담당자 메일 (최대 20자)
         joinInfo.ContactEmail = ""
 
-        '담당자 연락처 (최대 20자)
+        '담당자 휴대폰 (최대 20자)
         joinInfo.ContactTEL = ""
 
         Try
@@ -893,13 +894,13 @@ Public Class frmExample
         '담당자 성명 (최대 100자)
         joinData.personName = "담당자명"
 
-        '담당자 연락처 (최대 20자)
+        '담당자 휴대폰 (최대 20자)
         joinData.tel = "010-1234-1234"
 
-        '담당자 이메일 (최대 100자)
+        '담당자 메일 (최대 100자)
         joinData.email = "test@email.com"
 
-        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
+        '권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
         joinData.searchRole = 3
 
         Try
@@ -927,15 +928,15 @@ Public Class frmExample
         Try
             Dim contactInfo As Contact = htTaxinvoiceService.GetContactInfo(txtCorpNum.Text, contactID)
 
-            tmp += "id (담당자 아이디) : " + contactInfo.id + vbCrLf
-            tmp += "personName (담당자명) : " + contactInfo.personName + vbCrLf
-            tmp += "email (담당자 이메일) : " + contactInfo.email + vbCrLf
-            tmp += "searchRole (담당자 권한) : " + contactInfo.searchRole.ToString + vbCrLf
-            tmp += "tel (연락처) : " + contactInfo.tel + vbCrLf
-            tmp += "mgrYN (관리자 여부) : " + contactInfo.mgrYN.ToString + vbCrLf
+            tmp += "id (아이디) : " + contactInfo.id + vbCrLf
+            tmp += "personName (담당자 성명) : " + contactInfo.personName + vbCrLf
+            tmp += "tel (담당자 휴대폰) : " + contactInfo.tel + vbCrLf
+            tmp += "email (담당자 메일) : " + contactInfo.email + vbCrLf
             tmp += "regDT (등록일시) : " + contactInfo.regDT + vbCrLf
-            tmp += "state (상태) : " + contactInfo.state + vbCrLf
 
+            tmp += "searchRole (권한) : " + contactInfo.searchRole.ToString + vbCrLf
+            tmp += "mgrYN (역할) : " + contactInfo.mgrYN.ToString + vbCrLf
+            tmp += "state (계정상태) : " + contactInfo.state + vbCrLf
             tmp += vbCrLf
 
             MsgBox(tmp)
@@ -952,8 +953,8 @@ Public Class frmExample
         Try
             Dim contactList As List(Of Contact) = htTaxinvoiceService.ListContact(txtCorpNum.Text, txtUserId.Text)
 
-            Dim tmp As String = "id(아이디) | personName(담당자명) | email(메일주소) | tel(연락처) |"
-            tmp += "regDT(등록일시) | searchRole(담당자 권한) | mgrYN(관리자 여부) | state(상태)" + vbCrLf
+            Dim tmp As String = "id(아이디) | personName(담당자 성명) | email(담당자 메일) | tel(담당자 휴대폰) |"
+            tmp += "regDT(등록일시) | searchRole(권한) | mgrYN(역할) | state(계정상태)" + vbCrLf
 
             For Each info As Contact In contactList
                 tmp += info.id + " | " + info.personName + " | " + info.email + " | " + info.tel + " | "
@@ -982,13 +983,13 @@ Public Class frmExample
         '담당자 성명 (최대 100자)
         joinData.personName = "담당자명"
 
-        '담당자 연락처 (최대 20자)
+        '담당자 휴대폰 (최대 20자)
         joinData.tel = "010-1234-1234"
 
-        '담당자 이메일 (최대 100자)
+        '담당자 메일 (최대 100자)
         joinData.email = "test@email.com"
 
-        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
+        '권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
         joinData.searchRole = 3
 
         Try
