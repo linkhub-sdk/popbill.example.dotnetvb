@@ -55,7 +55,7 @@ Public Class frmExample
 
         Dim accountInfo As New EasyFinBankAccountForm
 
-        ' 기관코드
+        ' 은행 기관코드
         accountInfo.BankCode = ""
 
         ' 계좌번호, 하이픈('-') 제외
@@ -67,7 +67,7 @@ Public Class frmExample
         ' 계좌유형, "법인" 또는 "개인" 입력
         accountInfo.AccountType = ""
 
-        ' 예금주 식별정보 ('-' 제외)
+        ' 실명정보 ('-' 제외)
         ' 계좌유형이 “법인”인 경우 : 사업자번호(10자리)
         ' 계좌유형이 “개인”인 경우 : 예금주 생년월일 (6자리-YYMMDD)
         accountInfo.IdentityNumber = ""
@@ -95,7 +95,7 @@ Public Class frmExample
 
         Try
 
-            Dim response As Response = easyFinBankService.RegistBankACcount(txtCorpNum.Text, accountInfo)
+            Dim response As Response = easyFinBankService.RegistBankAccount(txtCorpNum.Text, accountInfo)
 
             MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message)
 
@@ -111,7 +111,7 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnUpdateBankAccount_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateBankAccount.Click
 
-        ' 기관코드
+        ' 은행 기관코드
         Dim BankCode = ""
 
         ' 계좌번호, 하이픈('-') 제외
@@ -156,7 +156,7 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnGetBankAccountInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetBankAccountInfo.Click
 
-        ' 기관코드
+        ' 은행 기관코드
         Dim BankCode = ""
 
         ' 계좌번호, 하이픈('-') 제외
@@ -168,7 +168,7 @@ Public Class frmExample
 
             Dim tmp As String = ""
             tmp += "accountNumber (계좌번호) : " + bankAccountInfo.accountNumber + vbCrLf
-            tmp += "bankCode (기관코드) : " + bankAccountInfo.bankCode + vbCrLf
+            tmp += "bankCode (은행 기관코드) : " + bankAccountInfo.bankCode + vbCrLf
             tmp += "accountName (계좌별칭) : " + bankAccountInfo.accountName + vbCrLf
             tmp += "accountType (계좌유형) : " + bankAccountInfo.accountType + vbCrLf
             tmp += "state (계좌 상태) : " + bankAccountInfo.state.ToString + vbCrLf
@@ -203,7 +203,7 @@ Public Class frmExample
             Dim bankAccountList As List(Of EasyFinBankAccount) = easyFinBankService.ListBankAccount(txtCorpNum.Text)
 
             Dim tmp As String = ""
-            tmp += "accountNumber (계좌번호) | bankCode (기관코드) | accountName (계좌별칭) | accountType (계좌유형) | state (계좌 상태) |"
+            tmp += "accountNumber (계좌번호) | bankCode (은행 기관코드) | accountName (계좌별칭) | accountType (계좌유형) | state (계좌 상태) |"
             tmp += " regDT (등록일시)  | contractDT (정액제 서비스 시작일시) | useEndDate (정액제 서비스 종료일자) | baseDate (자동연장 결제일) |"
             tmp += " contractState (정액제 서비스 상태) | closeRequestYN (정액제 해지신청 여부) | useRestrictYN (정액제 사용제한 여부) | closeOnExpired (정액제 만료시 해지여부) |"
             tmp += " unPaidYN (미수금 보유 여부) | memo (메모) " + vbCrLf + vbCrLf
@@ -244,17 +244,15 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnCloseBankAccount_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCloseBankAccount.Click
 
-        ' 기관코드
+        ' 은행 기관코드
         Dim BankCode = ""
 
         ' 계좌번호, 하이픈('-') 제외
         Dim AccountNumber = ""
 
-        ' 해지유형, "일반", "중도" 중 택 1
-        ' 일반(일반해지) – 이용중인 정액제 기간 만료 후 해지
-        ' 중도(중도해지) – 해지 요청일 기준으로 정지되고 팝빌 담당자가 승인시 해지
-        ' └ 중도일 경우, 정액제 잔여기간은 일할로 계산되어 포인트 환불 (무료 이용기간 중 해지하면 전액 환불)
-        Dim CloseType = "중도"
+        ' 해지유형
+        ' 일반 – 이용중인 정액제 기간 만료 후 해지
+        Dim CloseType = "일반"
 
 
         Try
@@ -274,7 +272,7 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnRevokeCloseBankAccount_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRevokeCloseBankAccount.Click
 
-        ' 기관코드
+        ' 은행 기관코드
         Dim BankCode = ""
 
         ' 계좌번호, 하이픈('-') 제외
@@ -299,7 +297,7 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnDeleteBankAccount_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDeleteBankAccount.Click
 
-        ' 기관코드
+        ' 은행 기관코드
         Dim BankCode = ""
 
         ' 계좌번호, 하이픈('-') 제외
@@ -324,7 +322,7 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnRequestJob_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRequestJob.Click
 
-        '기관코드
+        '은행 기관코드
         Dim BankCode As String = ""
 
         '은행 계좌번호
@@ -362,7 +360,7 @@ Public Class frmExample
             tmp += "jobState (수집상태) : " + JobState.jobState.ToString + vbCrLf
             tmp += "startDate (시작일자) : " + JobState.startDate + vbCrLf
             tmp += "endDate (종료일자) : " + JobState.endDate + vbCrLf
-            tmp += "errorCode (오류코드) : " + JobState.errorCode.ToString + vbCrLf
+            tmp += "errorCode (수집 결과코드) : " + JobState.errorCode.ToString + vbCrLf
             tmp += "errorReason (오류메시지) : " + JobState.errorReason + vbCrLf
             tmp += "jobStartDT (작업 시작일시) : " + JobState.jobStartDT + vbCrLf
             tmp += "jobEndDT (작업 종료일시) : " + JobState.jobEndDT + vbCrLf
@@ -386,7 +384,7 @@ Public Class frmExample
             Dim jobList As List(Of EasyFinBankJobState) = easyFinBankService.ListACtiveJob(txtCorpNum.Text)
 
             Dim tmp As String = "jobID (작업아이디) | jobState (수집상태) | startDate (시작일자) | endDate (종료일자) | "
-            tmp += " errorCode (오류코드) | errorReason (오류메시지) |"
+            tmp += " errorCode (수집 결과코드) | errorReason (오류메시지) |"
             tmp += "jobStartDT (작업 시작일시) | jobEndDT (작업 종료일시) | regDT (수집 요청일시) " + vbCrLf
 
             For Each info As EasyFinBankJobState In jobList
@@ -562,7 +560,7 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnGetFlatRateState_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetFlatRateState.Click
 
-        '기관코드
+        '은행 기관코드
         Dim BankCode As String = ""
 
         '은행 계좌번호
@@ -779,7 +777,7 @@ Public Class frmExample
         '담당자 이메일 (최대 20자)
         joinInfo.ContactEmail = ""
 
-        '담당자 연락처 (최대 20자)
+        '담당자 휴대폰 (최대 20자)
         joinInfo.ContactTEL = ""
 
 
@@ -885,13 +883,13 @@ Public Class frmExample
         '담당자 성명 (최대 100자)
         joinData.personName = "담당자명"
 
-        '담당자 연락처 (최대 20자)
+        '담당자 휴대폰 (최대 20자)
         joinData.tel = "010-1234-1234"
 
-        '담당자 이메일 (최대 100자)
+        '담당자 메일 (최대 100자)
         joinData.email = "test@email.com"
 
-        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
+        '권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
         joinData.searchRole = 3
 
         Try
@@ -919,14 +917,14 @@ Public Class frmExample
         Try
             Dim contactInfo As Contact = easyFinBankService.GetContactInfo(txtCorpNum.Text, contactID)
 
-            tmp += "id (담당자 아이디) : " + contactInfo.id + vbCrLf
-            tmp += "personName (담당자명) : " + contactInfo.personName + vbCrLf
-            tmp += "email (담당자 이메일) : " + contactInfo.email + vbCrLf
-            tmp += "searchRole (담당자 권한) : " + contactInfo.searchRole.ToString + vbCrLf
-            tmp += "tel (연락처) : " + contactInfo.tel + vbCrLf
-            tmp += "mgrYN (관리자 여부) : " + contactInfo.mgrYN.ToString + vbCrLf
+            tmp += "id (아이디) : " + contactInfo.id + vbCrLf
+            tmp += "personName (담당자 성명) : " + contactInfo.personName + vbCrLf
+            tmp += "tel (담당자 휴대폰) : " + contactInfo.tel + vbCrLf
+            tmp += "email (담당자 메일) : " + contactInfo.email + vbCrLf
             tmp += "regDT (등록일시) : " + contactInfo.regDT + vbCrLf
-            tmp += "state (상태) : " + contactInfo.state + vbCrLf
+            tmp += "searchRole (권한) : " + contactInfo.searchRole.ToString + vbCrLf
+            tmp += "mgrYN (역할) : " + contactInfo.mgrYN.ToString + vbCrLf
+            tmp += "state (계정상태) : " + contactInfo.state + vbCrLf
 
             tmp += vbCrLf
 
@@ -944,8 +942,8 @@ Public Class frmExample
         Try
             Dim contactList As List(Of Contact) = easyFinBankService.ListContact(txtCorpNum.Text, txtUserId.Text)
 
-            Dim tmp As String = "id(아이디) | personName(담당자명) | email(메일주소) | tel(연락처) |"
-            tmp += "regDT(등록일시) | searchRole(담당자 권한) | mgrYN(관리자 여부) | state(상태)" + vbCrLf
+            Dim tmp As String = "id(아이디) | personName(담당자 성명) | email(담당자 메일) | tel(담당자 휴대폰) |"
+            tmp += "regDT(등록일시) | searchRole(권한) | mgrYN(역할) | state(계정상태)" + vbCrLf
 
             For Each info As Contact In contactList
                 tmp += info.id + " | " + info.personName + " | " + info.email + " | " + info.tel + " | "
@@ -974,13 +972,13 @@ Public Class frmExample
         '담당자 성명 (최대 100자)
         joinData.personName = "담당자명"
 
-        '담당자 연락처 (최대 20자)
+        '담당자 휴대폰 (최대 20자)
         joinData.tel = "010-1234-1234"
 
-        '담당자 이메일 (최대 100자)
+        '담당자 메일 (최대 100자)
         joinData.email = "test@email.com"
 
-        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
+        '권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
         joinData.searchRole = 3
 
         Try
@@ -1068,10 +1066,10 @@ Public Class frmExample
     Private Sub btnGetPaymentHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPaymentHistory.Click
 
         '조회 시작 일자
-        Dim SDate As String = "20230501"
+        Dim SDate As String = "20250701"
 
         '조회 종료 일자
-        Dim EDate As String = "20230530"
+        Dim EDate As String = "20250731"
 
         '목록 페이지 번호
         Dim Page As Integer = 1
@@ -1121,10 +1119,10 @@ Public Class frmExample
     Private Sub btnGetUseHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetUseHistory.Click
 
         '조회 시작 일자
-        Dim SDate As String = "20230501"
+        Dim SDate As String = "20250701"
 
         '조회 종료 일자
-        Dim EDate As String = "20230530"
+        Dim EDate As String = "20250731"
 
         '목록 페이지 번호
         Dim Page As Integer = 1
