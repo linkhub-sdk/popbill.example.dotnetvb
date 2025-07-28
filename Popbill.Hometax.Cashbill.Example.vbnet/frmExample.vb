@@ -61,10 +61,10 @@ Public Class frmExample
         Dim tiKeyType As KeyType = KeyType.BUY
 
         '시작일자, 표시형식(yyyyMMdd)
-        Dim SDate As String = "20220501"
+        Dim SDate As String = "20250701"
 
         '종료일자, 표시형식(yyyyMMdd)
-        Dim EDate As String = "20220513"
+        Dim EDate As String = "20250731"
 
         Try
             Dim jobID As String = htCashbillService.RequestJob(txtCorpNum.Text, tiKeyType, SDate, EDate)
@@ -85,18 +85,18 @@ Public Class frmExample
         Try
             Dim jobINfo As HTCashbillJobState = htCashbillService.GetJobState(txtCorpNum.Text, txtJobID.Text)
 
-            Dim tmp As String = "jobID(작업아이디) : " + jobINfo.jobID + vbCrLf
-            tmp += "jobState(수집상태) : " + jobINfo.jobState.ToString + vbCrLf
-            tmp += "queryType(수집유형) : " + jobINfo.queryType + vbCrLf
-            tmp += "queryDateType(일자유형) : " + jobINfo.queryDateType + vbCrLf
-            tmp += "queryStDate(시작일자) : " + jobINfo.queryStDate + vbCrLf
-            tmp += "queryEnDate(종료일자) : " + jobINfo.queryEnDate + vbCrLf
-            tmp += "errorCode(오류코드) : " + jobINfo.errorCode.ToString + vbCrLf
-            tmp += "errorReason(오류메시지) : " + jobINfo.errorReason + vbCrLf
-            tmp += "jobStartDT(작업 시작일시) : " + jobINfo.jobStartDT + vbCrLf
-            tmp += "jobEndDT(작업 종료일시) : " + jobINfo.jobEndDT + vbCrLf
-            tmp += "collectCount(수집개수) : " + jobINfo.collectCount.ToString + vbCrLf
-            tmp += "regDT(수집 요청일시) : " + jobINfo.regDT + vbCrLf
+            Dim tmp As String = "jobID (작업아이디) : " + jobINfo.jobID + vbCrLf
+            tmp += "jobState (수집상태) : " + jobINfo.jobState.ToString + vbCrLf
+            tmp += "queryType (현금영수증 유형) : " + jobINfo.queryType + vbCrLf
+            tmp += "queryDateType (일자유형) : " + jobINfo.queryDateType + vbCrLf
+            tmp += "queryStDate (시작일자) : " + jobINfo.queryStDate + vbCrLf
+            tmp += "queryEnDate (종료일자) : " + jobINfo.queryEnDate + vbCrLf
+            tmp += "errorCode (수집 결과코드) : " + jobINfo.errorCode.ToString + vbCrLf
+            tmp += "errorReason (오류메시지) : " + jobINfo.errorReason + vbCrLf
+            tmp += "jobStartDT (작업 시작일시) : " + jobINfo.jobStartDT + vbCrLf
+            tmp += "jobEndDT (작업 종료일시) : " + jobINfo.jobEndDT + vbCrLf
+            tmp += "collectCount (수집건수) : " + jobINfo.collectCount.ToString + vbCrLf
+            tmp += "regDT (수집 요청일시) : " + jobINfo.regDT + vbCrLf
 
             MsgBox(tmp)
 
@@ -114,8 +114,8 @@ Public Class frmExample
         Try
             Dim jobList As List(Of HTCashbillJobState) = htCashbillService.ListActiveJob(txtCorpNum.Text)
 
-            Dim tmp As String = "jobID(작업아이디) | 수집상태(jobState) | 수집유형(queryType) | 일자유형(queryDateType) | 시작일자(queryStDate) | 종료일자(queryEnDate) | "
-            tmp += "errorCode(오류코드) | 오류메시지(errorReason) | 작업 시작일시(jobStartDT) | 작업 종료일시(jobEndDT) | 수집개수(collectCount) | 수집 요청일시(regDT) " + vbCrLf
+            Dim tmp As String = "jobID(작업아이디) | 수집상태(jobState) | 현금영수증 유형(queryType) | 일자유형(queryDateType) | 시작일자(queryStDate) | 종료일자(queryEnDate) | "
+            tmp += "errorCode(수집 결과코드) | 오류메시지(errorReason) | 작업 시작일시(jobStartDT) | 작업 종료일시(jobEndDT) | 수집개수(collectCount) | 수집 요청일시(regDT) " + vbCrLf
 
             For Each info As HTCashbillJobState In jobList
                 tmp += CStr(info.jobID) + " | "
@@ -189,7 +189,6 @@ Public Class frmExample
             Dim rowStr As String = "ntsconfirmNum(국세청승인번호) | tradeDate(거래일자) | tradeDT(거래일시) | tradeType(문서형태) | tradeUsage(거래구분) | totalAmount(거래금액) | "
             rowStr += "supplyCost(공급가액) | tax(부가세) | serviceFee(봉사료) | invoiceType(매입/매출) | franchiseCorpNum(발행자 사업자번호) | franchiseCorpName(발행자 상호) | "
             rowStr += "franchiseCorpType(발행자 사업자유형) | identityNum(식별번호) | identityNumType(식별변호유형) | customerName(고객명) | cardOwnerName(카드소유자명) | deductionType(공제유형)"
-
 
             listBox1.Items.Add(rowStr)
 
@@ -594,7 +593,7 @@ Public Class frmExample
         '담당자 이메일 (최대 20자)
         joinInfo.ContactEmail = ""
 
-        '담당자 연락처 (최대 20자)
+        '담당자 휴대폰 (최대 20자)
         joinInfo.ContactTEL = ""
 
         Try
@@ -699,13 +698,13 @@ Public Class frmExample
         '담당자 성명 (최대 100자)
         joinData.personName = "담당자명"
 
-        '담당자 연락처 (최대 20자)
+        '담당자 휴대폰 (최대 20자)
         joinData.tel = "010-1234-1234"
 
-        '담당자 이메일 (최대 100자)
+        '담당자 메일 (최대 100자)
         joinData.email = "test@email.com"
 
-        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
+        '권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
         joinData.searchRole = 3
 
         Try
@@ -733,14 +732,15 @@ Public Class frmExample
         Try
             Dim contactInfo As Contact = htCashbillService.GetContactInfo(txtCorpNum.Text, contactID)
 
-            tmp += "id (담당자 아이디) : " + contactInfo.id + vbCrLf
-            tmp += "personName (담당자명) : " + contactInfo.personName + vbCrLf
-            tmp += "email (담당자 이메일) : " + contactInfo.email + vbCrLf
-            tmp += "searchRole (담당자 권한) : " + contactInfo.searchRole.ToString + vbCrLf
-            tmp += "tel (연락처) : " + contactInfo.tel + vbCrLf
-            tmp += "mgrYN (관리자 여부) : " + contactInfo.mgrYN.ToString + vbCrLf
+            tmp += "id (아이디) : " + contactInfo.id + vbCrLf
+            tmp += "personName (담당자 성명) : " + contactInfo.personName + vbCrLf
+            tmp += "tel (담당자 휴대폰) : " + contactInfo.tel + vbCrLf
+            tmp += "email (담당자 메일) : " + contactInfo.email + vbCrLf
             tmp += "regDT (등록일시) : " + contactInfo.regDT + vbCrLf
-            tmp += "state (상태) : " + contactInfo.state + vbCrLf
+
+            tmp += "searchRole (권한) : " + contactInfo.searchRole.ToString + vbCrLf
+            tmp += "mgrYN (역할) : " + contactInfo.mgrYN.ToString + vbCrLf
+            tmp += "state (계정상태) : " + contactInfo.state + vbCrLf
 
             tmp += vbCrLf
 
@@ -758,8 +758,8 @@ Public Class frmExample
         Try
             Dim contactList As List(Of Contact) = htCashbillService.ListContact(txtCorpNum.Text, txtUserId.Text)
 
-            Dim tmp As String = "id(아이디) | personName(담당자명) | email(메일주소) | tel(연락처) |"
-            tmp += "regDT(등록일시) | searchRole(담당자 권한) | mgrYN(관리자 여부) | state(상태)" + vbCrLf
+            Dim tmp As String = "id(아이디) | personName(담당자 성명) | email(담당자 메일) | tel(담당자 휴대폰) |"
+            tmp += "regDT(등록일시) | searchRole(권한) | mgrYN(역할) | state(계정상태)" + vbCrLf
 
             For Each info As Contact In contactList
                 tmp += info.id + " | " + info.personName + " | " + info.email + " | " + info.tel + " | "
@@ -788,13 +788,13 @@ Public Class frmExample
         '담당자 성명 (최대 100자)
         joinData.personName = "담당자명"
 
-        '담당자 연락처 (최대 20자)
+        '담당자 휴대폰 (최대 20자)
         joinData.tel = "010-1234-1234"
 
-        '담당자 이메일 (최대 100자)
+        '담당자 메일 (최대 100자)
         joinData.email = "test@email.com"
 
-        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
+        '권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
         joinData.searchRole = 3
 
         Try
@@ -883,10 +883,10 @@ Public Class frmExample
     Private Sub btnGetPaymentHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetPaymentHistory.Click
 
         '조회 시작 일자
-        Dim SDate As String = "20230501"
+        Dim SDate As String = "20250701"
 
         '조회 종료 일자
-        Dim EDate As String = "20230530"
+        Dim EDate As String = "20250730"
 
         '목록 페이지 번호
         Dim Page As Integer = 1
@@ -936,10 +936,10 @@ Public Class frmExample
     Private Sub btnGetUseHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetUseHistory.Click
 
         '조회 시작 일자
-        Dim SDate As String = "20230501"
+        Dim SDate As String = "20250701"
 
         '조회 종료 일자
-        Dim EDate As String = "20230530"
+        Dim EDate As String = "20250731"
 
         '목록 페이지 번호
         Dim Page As Integer = 1
