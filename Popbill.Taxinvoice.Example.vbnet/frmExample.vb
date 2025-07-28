@@ -80,26 +80,73 @@ Public Class frmExample
         Handles btnRegistIssue.Click
         Dim taxinvoice As Taxinvoice = New Taxinvoice
 
-        '작성일자,yyyyMMdd( 표시형식 )
-        taxinvoice.writeDate = "20220513"
-
         '발행형태, [정발행, 역발행, 위수탁] 중 기재
         taxinvoice.issueType = "정발행"
+
+        '과세형태, [과세, 영세, 면세] 중 기재
+        taxinvoice.taxType = "과세"
 
         ' 과금방향, {정과금, 역과금} 중 기재
         ' └ 정과금 = 공급자 과금 , 역과금 = 공급받는자 과금
         ' -'역과금'은 역발행 세금계산서 발행 시에만 이용가능
         taxinvoice.chargeDirection = "정과금"
 
+        '기재 상 '일련번호' 항목
+        taxinvoice.serialNum = "123"
+
+        '기재상 권 항목, 최대값 32767
+        '미기재시 taxinvoice.kwon = Nothing
+        taxinvoice.kwon = Nothing
+
+        '기재상 호 항목, 최대값 32767
+        '미기재시 taxinvoice.ho = Nothing
+        taxinvoice.ho = Nothing
+
+        '작성일자,yyyyMMdd( 표시형식 )
+        taxinvoice.writeDate = "20250731"
+
         '영수/청구, [영수, 청구, 없음] 중 기재
         taxinvoice.purposeType = "영수"
 
-        '과세형태, [과세, 영세, 면세] 중 기재
-        taxinvoice.taxType = "과세"
+        '공급가액 합계
+        taxinvoice.supplyCostTotal = "100000"
+
+        '세액 합계
+        taxinvoice.taxTotal = "10000"
+
+        '합계금액, 공급가액 합계 + 세액합계
+        taxinvoice.totalAmount = "110000"
+
+        '기재 상 '현금' 항목
+        taxinvoice.cash = ""
+
+        '기재 상 '수표' 항목
+        taxinvoice.chkBill = ""
+
+        '기재 상 '어음' 항목
+        taxinvoice.note = ""
+
+        '기재 상 '외상미수금' 항목
+        taxinvoice.credit = ""
+
+        ' 비고
+        ' {invoiceeType}이 "외국인" 이면 remark1 필수
+        ' - 외국인 등록번호 또는 여권번호 입력
+        taxinvoice.remark1 = "비고1"
+        taxinvoice.remark2 = "비고2"
+        taxinvoice.remark3 = "비고3"
+
+
+       
+
+        
 
         '=========================================================================
         '                              공급자 정보
         '=========================================================================
+
+        '공급자 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        taxinvoice.invoicerMgtKey = txtMgtKey.Text
 
         '공급자 사업자번호, '-' 제외 10자리
         taxinvoice.invoicerCorpNum = txtCorpNum.Text
@@ -110,20 +157,17 @@ Public Class frmExample
         '공급자 상호
         taxinvoice.invoicerCorpName = "공급자 상호"
 
-        '공급자 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
-        taxinvoice.invoicerMgtKey = txtMgtKey.Text
-
         '공급자 대표자 성명
         taxinvoice.invoicerCEOName = "공급자 대표자 성명"
 
         '공급자 주소
         taxinvoice.invoicerAddr = "공급자 주소"
 
-        '공급자 종목
-        taxinvoice.invoicerBizClass = "공급자 업종"
-
         '공급자 업태
         taxinvoice.invoicerBizType = "공급자 업태,업태2"
+
+        '공급자 종목
+        taxinvoice.invoicerBizClass = "공급자 업종"
 
         '공급자 담당자명
         taxinvoice.invoicerContactName = "공급자 담당자명"
@@ -156,6 +200,9 @@ Public Class frmExample
         ' - {invoiceeType}이 "외국인" 인 경우, "9999999999999" (하이픈 ('-') 제외 13자리)
         taxinvoice.invoiceeCorpNum = "8888888888"
 
+        ' 공급받는자 종사업장 식별번호
+        taxinvoice.invoiceeTaxRegID = ""
+
         '공급자받는자 상호
         taxinvoice.invoiceeCorpName = "공급받는자 상호"
 
@@ -165,11 +212,11 @@ Public Class frmExample
         '공급받는자 주소
         taxinvoice.invoiceeAddr = "공급받는자 주소"
 
-        '공급받는자 종목
-        taxinvoice.invoiceeBizClass = "공급받는자 종목"
-
         '공급받는자 업태
         taxinvoice.invoiceeBizType = "공급받는자 업태"
+
+        '공급받는자 종목
+        taxinvoice.invoiceeBizClass = "공급받는자 종목"
 
         '공급받는자 담당자명
         taxinvoice.invoiceeContactName1 = "공급받는자 담당자명"
@@ -179,7 +226,6 @@ Public Class frmExample
         '실제 거래처의 메일주소가 기재되지 않도록 주의
         taxinvoice.invoiceeEmail1 = ""
 
-
         '공급받는자 담당자 연락처
         taxinvoice.invoiceeTEL1 = ""
 
@@ -187,48 +233,6 @@ Public Class frmExample
         taxinvoice.invoiceeHP1 = ""
 
 
-        '=========================================================================
-        '                            세금계산서 정보
-        '=========================================================================
-
-        '공급가액 합계
-        taxinvoice.supplyCostTotal = "100000"
-
-        '세액 합계
-        taxinvoice.taxTotal = "10000"
-
-        '합계금액, 공급가액 합계 + 세액합계
-        taxinvoice.totalAmount = "110000"
-
-        '기재 상 '일련번호' 항목
-        taxinvoice.serialNum = "123"
-
-        '기재상 권 항목, 최대값 32767
-        '미기재시 taxinvoice.kwon = Nothing
-        taxinvoice.kwon = Nothing
-
-        '기재상 호 항목, 최대값 32767
-        '미기재시 taxinvoice.ho = Nothing
-        taxinvoice.ho = Nothing
-
-        '기재 상 '현금' 항목
-        taxinvoice.cash = ""
-
-        '기재 상 '수표' 항목
-        taxinvoice.chkBill = ""
-
-        '기재 상 '어음' 항목
-        taxinvoice.note = ""
-
-        '기재 상 '외상미수금' 항목
-        taxinvoice.credit = ""
-
-        ' 비고
-        ' {invoiceeType}이 "외국인" 이면 remark1 필수
-        ' - 외국인 등록번호 또는 여권번호 입력
-        taxinvoice.remark1 = "비고1"
-        taxinvoice.remark2 = "비고2"
-        taxinvoice.remark3 = "비고3"
 
         ' 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
         ' └ true = 첨부 , false = 미첨부(기본값)
@@ -262,7 +266,7 @@ Public Class frmExample
         Dim detail As TaxinvoiceDetail = New TaxinvoiceDetail
 
         detail.serialNum = 1                            '일련번호, 1부터 순차기재
-        detail.purchaseDT = "20220513"                 '거래일자, yyyyMMdd
+        detail.purchaseDT = "20250731"                 '거래일자, yyyyMMdd
         detail.itemName = "품목명"                      '품목명
         detail.spec = "규격"                            '규격
         detail.qty = "1"                                '수량
@@ -335,6 +339,7 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnBulkSubmit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnBulkSubmit.Click
+
         ' 세금계산서 객체정보 목록
         Dim taxinvoiceList As List(Of Taxinvoice) = New List(Of Taxinvoice)
 
@@ -347,28 +352,76 @@ Public Class frmExample
         Dim forceIssue As Boolean = False
 
         For i = 0 To 99
-            Dim taxinvoice As Taxinvoice = New Taxinvoice
 
-            '작성일자, 표시형식 (yyyyMMdd)
-            taxinvoice.writeDate = "20220513"
+            Dim taxinvoice As Taxinvoice = New Taxinvoice
 
             '발행형태, [정발행, 역발행, 위수탁] 중 기재
             taxinvoice.issueType = "정발행"
+
+            '과세형태, [과세, 영세, 면세] 중 기재
+            taxinvoice.taxType = "과세"
 
             ' 과금방향, {정과금, 역과금} 중 기재
             ' └ 정과금 = 공급자 과금 , 역과금 = 공급받는자 과금
             ' -'역과금'은 역발행 세금계산서 발행 시에만 이용가능
             taxinvoice.chargeDirection = "정과금"
 
+            '기재 상 '일련번호' 항목
+            taxinvoice.serialNum = "123"
+
+            '기재상 권 항목, 최대값 32767
+            '미기재시 taxinvoice.kwon = Nothing
+            taxinvoice.kwon = Nothing
+
+            '기재상 호 항목, 최대값 32767
+            '미기재시 taxinvoice.ho = Nothing
+            taxinvoice.ho = Nothing
+
+            '작성일자,yyyyMMdd( 표시형식 )
+            taxinvoice.writeDate = "20250731"
+
             '영수/청구, [영수, 청구, 없음] 중 기재
             taxinvoice.purposeType = "영수"
 
-            '과세형태, [과세, 영세, 면세] 중 기재
-            taxinvoice.taxType = "과세"
+            '공급가액 합계
+            taxinvoice.supplyCostTotal = "100000"
+
+            '세액 합계
+            taxinvoice.taxTotal = "10000"
+
+            '합계금액, 공급가액 합계 + 세액합계
+            taxinvoice.totalAmount = "110000"
+
+            '기재 상 '현금' 항목
+            taxinvoice.cash = ""
+
+            '기재 상 '수표' 항목
+            taxinvoice.chkBill = ""
+
+            '기재 상 '어음' 항목
+            taxinvoice.note = ""
+
+            '기재 상 '외상미수금' 항목
+            taxinvoice.credit = ""
+
+            ' 비고
+            ' {invoiceeType}이 "외국인" 이면 remark1 필수
+            ' - 외국인 등록번호 또는 여권번호 입력
+            taxinvoice.remark1 = "비고1"
+            taxinvoice.remark2 = "비고2"
+            taxinvoice.remark3 = "비고3"
+
+
+
+
+
 
             '=========================================================================
             '                              공급자 정보
             '=========================================================================
+
+            '공급자 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+            taxinvoice.invoicerMgtKey = txtMgtKey.Text
 
             '공급자 사업자번호, '-' 제외 10자리
             taxinvoice.invoicerCorpNum = txtCorpNum.Text
@@ -377,10 +430,7 @@ Public Class frmExample
             taxinvoice.invoicerTaxRegID = ""
 
             '공급자 상호
-            taxinvoice.invoicerCorpName = "공급자 "
-
-            '공급자 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
-            taxinvoice.invoicerMgtKey = txtSubmitID.Text + i.ToString
+            taxinvoice.invoicerCorpName = "공급자 상호"
 
             '공급자 대표자 성명
             taxinvoice.invoicerCEOName = "공급자 대표자 성명"
@@ -388,11 +438,11 @@ Public Class frmExample
             '공급자 주소
             taxinvoice.invoicerAddr = "공급자 주소"
 
-            '공급자 종목
-            taxinvoice.invoicerBizClass = "공급자 업종"
-
             '공급자 업태
             taxinvoice.invoicerBizType = "공급자 업태,업태2"
+
+            '공급자 종목
+            taxinvoice.invoicerBizClass = "공급자 업종"
 
             '공급자 담당자명
             taxinvoice.invoicerContactName = "공급자 담당자명"
@@ -425,6 +475,9 @@ Public Class frmExample
             ' - {invoiceeType}이 "외국인" 인 경우, "9999999999999" (하이픈 ('-') 제외 13자리)
             taxinvoice.invoiceeCorpNum = "8888888888"
 
+            ' 공급받는자 종사업장 식별번호
+            taxinvoice.invoiceeTaxRegID = ""
+
             '공급자받는자 상호
             taxinvoice.invoiceeCorpName = "공급받는자 상호"
 
@@ -434,11 +487,11 @@ Public Class frmExample
             '공급받는자 주소
             taxinvoice.invoiceeAddr = "공급받는자 주소"
 
-            '공급받는자 종목
-            taxinvoice.invoiceeBizClass = "공급받는자 종목"
-
             '공급받는자 업태
             taxinvoice.invoiceeBizType = "공급받는자 업태"
+
+            '공급받는자 종목
+            taxinvoice.invoiceeBizClass = "공급받는자 종목"
 
             '공급받는자 담당자명
             taxinvoice.invoiceeContactName1 = "공급받는자 담당자명"
@@ -455,48 +508,6 @@ Public Class frmExample
             taxinvoice.invoiceeHP1 = ""
 
 
-            '=========================================================================
-            '                            세금계산서 정보
-            '=========================================================================
-
-            '공급가액 합계
-            taxinvoice.supplyCostTotal = "100000"
-
-            '세액 합계
-            taxinvoice.taxTotal = "10000"
-
-            '합계금액, 공급가액 합계 + 세액합계
-            taxinvoice.totalAmount = "110000"
-
-            '기재 상 '일련번호' 항목
-            taxinvoice.serialNum = "123"
-
-            '기재상 권 항목, 최대값 32767
-            '미기재시 taxinvoice.kwon = Nothing
-            taxinvoice.kwon = Nothing
-
-            '기재상 호 항목, 최대값 32767
-            '미기재시 taxinvoice.ho = Nothing
-            taxinvoice.ho = Nothing
-
-            '기재 상 '현금' 항목
-            taxinvoice.cash = ""
-
-            '기재 상 '수표' 항목
-            taxinvoice.chkBill = ""
-
-            '기재 상 '어음' 항목
-            taxinvoice.note = ""
-
-            '기재 상 '외상미수금' 항목
-            taxinvoice.credit = ""
-
-            ' 비고
-            ' {invoiceeType}이 "외국인" 이면 remark1 필수
-            ' - 외국인 등록번호 또는 여권번호 입력
-            taxinvoice.remark1 = "비고1"
-            taxinvoice.remark2 = "비고2"
-            taxinvoice.remark3 = "비고3"
 
             ' 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
             ' └ true = 첨부 , false = 미첨부(기본값)
@@ -530,7 +541,7 @@ Public Class frmExample
             Dim detail As TaxinvoiceDetail = New TaxinvoiceDetail
 
             detail.serialNum = 1                            '일련번호, 1부터 순차기재
-            detail.purchaseDT = "20220513"                 '거래일자, yyyyMMdd
+            detail.purchaseDT = "20250731"                 '거래일자, yyyyMMdd
             detail.itemName = "품목명"                      '품목명
             detail.spec = "규격"                            '규격
             detail.qty = "1"                                '수량
@@ -588,28 +599,28 @@ Public Class frmExample
 
             Dim tmp As String = ""
 
-            tmp += "code(응답 코드) : " + result.code.ToString + vbCrLf
-            tmp += "message(응답메시지) : " + result.message + vbCrLf
-            tmp += "submitID(제출아이디) : " + result.submitID + vbCrLf
-            tmp += "submitCount(세금계산서 접수 건수) : " + result.submitCount.ToString + vbCrLf
-            tmp += "successCount(세금계산서 발행 성공 건수) : " + result.successCount.ToString + vbCrLf
-            tmp += "failCount(세금계산서 발행 실패 건수) : " + result.failCount.ToString + vbCrLf
-            tmp += "txState(접수상태코드) : " + result.txState.ToString + vbCrLf
-            tmp += "txResultCode(접수 결과코드) : " + result.txResultCode.ToString + vbCrLf
-            tmp += "txStartDT(발행처리 시작일시) : " + result.txStartDT + vbCrLf
-            tmp += "txEndDT(발행처리 완료일시) : " + result.txEndDT + vbCrLf
-            tmp += "receiptDT(접수일시) : " + result.receiptDT + vbCrLf
-            tmp += "receiptID(접수아이디) : " + result.receiptID + vbCrLf
+            tmp += "code (응답 코드) : " + result.code.ToString + vbCrLf
+            tmp += "message (응답메시지) : " + result.message + vbCrLf
+            tmp += "submitID (제출아이디) : " + result.submitID + vbCrLf
+            tmp += "submitCount (세금계산서 접수 건수) : " + result.submitCount.ToString + vbCrLf
+            tmp += "successCount (세금계산서 발행 성공 건수) : " + result.successCount.ToString + vbCrLf
+            tmp += "failCount (세금계산서 발행 실패 건수) : " + result.failCount.ToString + vbCrLf
+            tmp += "txState (접수상태) : " + result.txState.ToString + vbCrLf
+            tmp += "txResultCode (접수 결과코드) : " + result.txResultCode.ToString + vbCrLf
+            tmp += "txStartDT (발행처리 시작일시) : " + result.txStartDT + vbCrLf
+            tmp += "txEndDT (발행처리 완료일시) : " + result.txEndDT + vbCrLf
+            tmp += "receiptDT (접수일시) : " + result.receiptDT + vbCrLf
+            tmp += "receiptID (접수아이디) : " + result.receiptID + vbCrLf
 
             If Not result.issueResult Is Nothing Then
                 Dim i As Integer = 1
                 For Each issueResult As BulkTaxinvoiceIssueResult In result.issueResult
                     tmp += "===========발행결과[" + i.ToString + "/" + result.issueResult.Count.ToString + "]===========" + vbCrLf
-                    tmp += "invoicerMgtKey(공급자 문서번호) : " + issueResult.invoicerMgtKey + vbCrLf
-                    tmp += "code(응답코드) : " + issueResult.code.ToString + vbCrLf
-                    tmp += "message(응답메시지) : " + issueResult.message + vbCrLf
-                    tmp += "ntsconfirmNum(국세청승인번호) : " + issueResult.ntsconfirmNum + vbCrLf
-                    tmp += "issueDT(발행일시) : " + issueResult.issueDT + vbCrLf
+                    tmp += "invoicerMgtKey (공급자 문서번호) : " + issueResult.invoicerMgtKey + vbCrLf
+                    tmp += "code (응답코드) : " + issueResult.code.ToString + vbCrLf
+                    tmp += "message (응답메시지) : " + issueResult.message + vbCrLf
+                    tmp += "ntsconfirmNum (국세청승인번호) : " + issueResult.ntsconfirmNum + vbCrLf
+                    tmp += "issueDT (발행일시) : " + issueResult.issueDT + vbCrLf
                     i = i + 1
                 Next
             End If
@@ -625,29 +636,76 @@ Public Class frmExample
     ' - https://developers.popbill.com/reference/taxinvoice/dotnet/api/issue#Register
     '=========================================================================
     Private Sub btnRegister_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegister.Click
-        Dim taxinvoice As Taxinvoice = New Taxinvoice
 
-        '작성일자, 표시형식 (yyyyMMdd)
-        taxinvoice.writeDate = "20220513"
+        Dim taxinvoice As Taxinvoice = New Taxinvoice
 
         '발행형태, [정발행, 역발행, 위수탁] 중 기재
         taxinvoice.issueType = "정발행"
+
+        '과세형태, [과세, 영세, 면세] 중 기재
+        taxinvoice.taxType = "과세"
 
         ' 과금방향, {정과금, 역과금} 중 기재
         ' └ 정과금 = 공급자 과금 , 역과금 = 공급받는자 과금
         ' -'역과금'은 역발행 세금계산서 발행 시에만 이용가능
         taxinvoice.chargeDirection = "정과금"
 
+        '기재 상 '일련번호' 항목
+        taxinvoice.serialNum = "123"
+
+        '기재상 권 항목, 최대값 32767
+        '미기재시 taxinvoice.kwon = Nothing
+        taxinvoice.kwon = Nothing
+
+        '기재상 호 항목, 최대값 32767
+        '미기재시 taxinvoice.ho = Nothing
+        taxinvoice.ho = Nothing
+
+        '작성일자,yyyyMMdd( 표시형식 )
+        taxinvoice.writeDate = "20250731"
+
         '영수/청구, [영수, 청구, 없음] 중 기재
         taxinvoice.purposeType = "영수"
 
-        '과세형태, [과세, 영세, 면세] 중 기재
-        taxinvoice.taxType = "과세"
+        '공급가액 합계
+        taxinvoice.supplyCostTotal = "100000"
+
+        '세액 합계
+        taxinvoice.taxTotal = "10000"
+
+        '합계금액, 공급가액 합계 + 세액합계
+        taxinvoice.totalAmount = "110000"
+
+        '기재 상 '현금' 항목
+        taxinvoice.cash = ""
+
+        '기재 상 '수표' 항목
+        taxinvoice.chkBill = ""
+
+        '기재 상 '어음' 항목
+        taxinvoice.note = ""
+
+        '기재 상 '외상미수금' 항목
+        taxinvoice.credit = ""
+
+        ' 비고
+        ' {invoiceeType}이 "외국인" 이면 remark1 필수
+        ' - 외국인 등록번호 또는 여권번호 입력
+        taxinvoice.remark1 = "비고1"
+        taxinvoice.remark2 = "비고2"
+        taxinvoice.remark3 = "비고3"
+
+
+
+
 
 
         '=========================================================================
         '                              공급자 정보
         '=========================================================================
+
+        '공급자 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        taxinvoice.invoicerMgtKey = txtMgtKey.Text
 
         '공급자 사업자번호, '-' 제외 10자리
         taxinvoice.invoicerCorpNum = txtCorpNum.Text
@@ -658,20 +716,17 @@ Public Class frmExample
         '공급자 상호
         taxinvoice.invoicerCorpName = "공급자 상호"
 
-        '공급자 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
-        taxinvoice.invoicerMgtKey = txtMgtKey.Text
-
         '공급자 대표자 성명
         taxinvoice.invoicerCEOName = "공급자 대표자 성명"
 
         '공급자 주소
         taxinvoice.invoicerAddr = "공급자 주소"
 
-        '공급자 종목
-        taxinvoice.invoicerBizClass = "공급자 업종"
-
         '공급자 업태
         taxinvoice.invoicerBizType = "공급자 업태,업태2"
+
+        '공급자 종목
+        taxinvoice.invoicerBizClass = "공급자 업종"
 
         '공급자 담당자명
         taxinvoice.invoicerContactName = "공급자 담당자명"
@@ -691,7 +746,6 @@ Public Class frmExample
         ' - 전송 시 포인트 차감되며, 전송실패시 환불처리
         taxinvoice.invoicerSMSSendYN = False
 
-
         '=========================================================================
         '                            공급받는자 정보
         '=========================================================================
@@ -705,6 +759,9 @@ Public Class frmExample
         ' - {invoiceeType}이 "외국인" 인 경우, "9999999999999" (하이픈 ('-') 제외 13자리)
         taxinvoice.invoiceeCorpNum = "8888888888"
 
+        ' 공급받는자 종사업장 식별번호
+        taxinvoice.invoiceeTaxRegID = ""
+
         '공급자받는자 상호
         taxinvoice.invoiceeCorpName = "공급받는자 상호"
 
@@ -714,11 +771,11 @@ Public Class frmExample
         '공급받는자 주소
         taxinvoice.invoiceeAddr = "공급받는자 주소"
 
-        '공급받는자 종목
-        taxinvoice.invoiceeBizClass = "공급받는자 종목"
-
         '공급받는자 업태
         taxinvoice.invoiceeBizType = "공급받는자 업태"
+
+        '공급받는자 종목
+        taxinvoice.invoiceeBizClass = "공급받는자 종목"
 
         '공급받는자 담당자명
         taxinvoice.invoiceeContactName1 = "공급받는자 담당자명"
@@ -735,47 +792,6 @@ Public Class frmExample
         taxinvoice.invoiceeHP1 = ""
 
 
-        '=========================================================================
-        '                            세금계산서 정보
-        '=========================================================================
-
-        '공급가액 합계
-        taxinvoice.supplyCostTotal = "100000"
-
-        '세액 합계
-        taxinvoice.taxTotal = "10000"
-
-        '합계금액, 공급가액 합계 + 세액합계
-        taxinvoice.totalAmount = "110000"
-
-        '기재 상 '일련번호' 항목
-        taxinvoice.serialNum = "123"
-
-        '기재상 권 항목, 최대값 32767
-        '미기재시 taxinvoice.kwon = Nothing
-        taxinvoice.kwon = Nothing
-
-        '기재상 호 항목, 최대값 32767
-        '미기재시 taxinvoice.ho = Nothing
-        taxinvoice.ho = Nothing
-
-        '기재 상 '현금' 항목
-        taxinvoice.cash = ""
-
-        '기재 상 '수표' 항목
-        taxinvoice.chkBill = ""
-
-        '기재 상 '어음' 항목
-        taxinvoice.note = ""
-
-        '기재 상 '외상미수금' 항목
-        taxinvoice.credit = ""
-        ' 비고
-        ' {invoiceeType}이 "외국인" 이면 remark1 필수
-        ' - 외국인 등록번호 또는 여권번호 입력
-        taxinvoice.remark1 = "비고1"
-        taxinvoice.remark2 = "비고2"
-        taxinvoice.remark3 = "비고3"
 
         ' 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
         ' └ true = 첨부 , false = 미첨부(기본값)
@@ -799,6 +815,7 @@ Public Class frmExample
         ' 원본세금계산서의 국세청승인번호
         taxinvoice.orgNTSConfirmNum = ""
 
+
         '=========================================================================
         '                            상세항목(품목) 정보
         '=========================================================================
@@ -808,7 +825,7 @@ Public Class frmExample
         Dim detail As TaxinvoiceDetail = New TaxinvoiceDetail
 
         detail.serialNum = 1                            '일련번호, 1부터 순차기재
-        detail.purchaseDT = "20220513"                  '거래일자, yyyyMMdd
+        detail.purchaseDT = "20250731"                 '거래일자, yyyyMMdd
         detail.itemName = "품목명"                      '품목명
         detail.spec = "규격"                            '규격
         detail.qty = "1"                                '수량
@@ -860,29 +877,76 @@ Public Class frmExample
     '=========================================================================
     Private Sub btnRegister_Reverse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnRegister_Reverse.Click
-        Dim taxinvoice As Taxinvoice = New Taxinvoice
 
-        '작성일자,yyyyMMdd( 표시형식 )
-        taxinvoice.writeDate = "20220513"
+        Dim taxinvoice As Taxinvoice = New Taxinvoice
 
         '발행형태, [정발행, 역발행, 위수탁] 중 기재
         taxinvoice.issueType = "역발행"
+
+        '과세형태, [과세, 영세, 면세] 중 기재
+        taxinvoice.taxType = "과세"
 
         ' 과금방향, {정과금, 역과금} 중 기재
         ' └ 정과금 = 공급자 과금 , 역과금 = 공급받는자 과금
         ' -'역과금'은 역발행 세금계산서 발행 시에만 이용가능
         taxinvoice.chargeDirection = "정과금"
 
+        '기재 상 '일련번호' 항목
+        taxinvoice.serialNum = "123"
+
+        '기재상 권 항목, 최대값 32767
+        '미기재시 taxinvoice.kwon = Nothing
+        taxinvoice.kwon = Nothing
+
+        '기재상 호 항목, 최대값 32767
+        '미기재시 taxinvoice.ho = Nothing
+        taxinvoice.ho = Nothing
+
+        '작성일자,yyyyMMdd( 표시형식 )
+        taxinvoice.writeDate = "20250731"
+
         '영수/청구, [영수, 청구, 없음] 중 기재
         taxinvoice.purposeType = "영수"
 
-        '과세형태, [과세, 영세, 면세] 중 기재
-        taxinvoice.taxType = "과세"
+        '공급가액 합계
+        taxinvoice.supplyCostTotal = "100000"
+
+        '세액 합계
+        taxinvoice.taxTotal = "10000"
+
+        '합계금액, 공급가액 합계 + 세액합계
+        taxinvoice.totalAmount = "110000"
+
+        '기재 상 '현금' 항목
+        taxinvoice.cash = ""
+
+        '기재 상 '수표' 항목
+        taxinvoice.chkBill = ""
+
+        '기재 상 '어음' 항목
+        taxinvoice.note = ""
+
+        '기재 상 '외상미수금' 항목
+        taxinvoice.credit = ""
+
+        ' 비고
+        ' {invoiceeType}이 "외국인" 이면 remark1 필수
+        ' - 외국인 등록번호 또는 여권번호 입력
+        taxinvoice.remark1 = "비고1"
+        taxinvoice.remark2 = "비고2"
+        taxinvoice.remark3 = "비고3"
+
+
+
+
 
 
         '=========================================================================
         '                              공급자 정보
         '=========================================================================
+
+        '공급자 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        taxinvoice.invoicerMgtKey = ""
 
         '공급자 사업자번호, '-' 제외 10자리
         taxinvoice.invoicerCorpNum = "8888888888"
@@ -893,20 +957,17 @@ Public Class frmExample
         '공급자 상호
         taxinvoice.invoicerCorpName = "공급자 상호"
 
-        '공급자 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
-        taxinvoice.invoicerMgtKey = ""
-
         '공급자 대표자 성명
         taxinvoice.invoicerCEOName = "공급자 대표자 성명"
 
         '공급자 주소
         taxinvoice.invoicerAddr = "공급자 주소"
 
-        '공급자 종목
-        taxinvoice.invoicerBizClass = "공급자 업종"
-
         '공급자 업태
         taxinvoice.invoicerBizType = "공급자 업태,업태2"
+
+        '공급자 종목
+        taxinvoice.invoicerBizClass = "공급자 업종"
 
         '공급자 담당자명
         taxinvoice.invoicerContactName = "공급자 담당자명"
@@ -926,260 +987,41 @@ Public Class frmExample
         ' - 전송 시 포인트 차감되며, 전송실패시 환불처리
         taxinvoice.invoicerSMSSendYN = False
 
-
         '=========================================================================
         '                            공급받는자 정보
         '=========================================================================
 
-        '공급받는자 구분, [사업자, 개인, 외국인] 중 기재
-        taxinvoice.invoiceeType = "사업자"
-
-        '공급받는자 사업자번호, '-' 제외 10자리
-        taxinvoice.invoiceeCorpNum = txtCorpNum.Text
-
-        '공급자받는자 상호
-        taxinvoice.invoiceeCorpName = "공급받는자 상호"
-
-        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수), 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        ' 공급받는자 문서번호
         taxinvoice.invoiceeMgtKey = txtMgtKey.Text
 
-        '공급받는자 대표자 성명
-        taxinvoice.invoiceeCEOName = "공급받는자 대표자 성명"
-
-        '공급받는자 주소
-        taxinvoice.invoiceeAddr = "공급받는자 주소"
-
-        '공급받는자 종목
-        taxinvoice.invoiceeBizClass = "공급받는자 종목"
-
-        '공급받는자 업태
-        taxinvoice.invoiceeBizType = "공급받는자 업태"
-
-        '공급받는자 담당자명
-        taxinvoice.invoiceeContactName1 = "공급받는자 담당자명"
-
-        '공급받는자 담당자 메일주소
-        '팝빌 테스트 환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
-        '실제 거래처의 메일주소가 기재되지 않도록 주의
-        taxinvoice.invoiceeEmail1 = ""
-
-        '공급받는자 담당자 연락처
-        taxinvoice.invoiceeTEL1 = ""
-
-        '공급받는자 담당자 휴대폰번호
-        taxinvoice.invoiceeHP1 = ""
-
-        ' 역발행 안내 문자 전송여부 (true / false 중 택 1)
-        ' └ true = 전송 , false = 미전송
-        ' └ 공급자 담당자 휴대폰번호 {invoicerHP} 값으로 문자 전송
-        ' - 전송 시 포인트 차감되며, 전송실패시 환불처리
-        taxinvoice.invoiceeSMSSendYN = False
-
-        '=========================================================================
-        '                            세금계산서 정보
-        '=========================================================================
-
-        '공급가액 합계
-        taxinvoice.supplyCostTotal = "100000"
-
-        '세액 합계
-        taxinvoice.taxTotal = "10000"
-
-        '합계금액, 공급가액 합계 + 세액합계
-        taxinvoice.totalAmount = "110000"
-
-        '기재 상 '일련번호' 항목
-        taxinvoice.serialNum = "123"
-
-        '기재상 권 항목, 최대값 32767
-        '미기재시 taxinvoice.kwon = Nothing
-        taxinvoice.kwon = Nothing
-
-        '기재상 호 항목, 최대값 32767
-        '미기재시 taxinvoice.ho = Nothing
-        taxinvoice.ho = Nothing
-
-        '기재 상 '현금' 항목
-        taxinvoice.cash = ""
-
-        '기재 상 '수표' 항목
-        taxinvoice.chkBill = ""
-
-        '기재 상 '어음' 항목
-        taxinvoice.note = ""
-
-        '기재 상 '외상미수금' 항목
-        taxinvoice.credit = ""
-
-        ' 비고
-        ' {invoiceeType}이 "외국인" 이면 remark1 필수
-        ' - 외국인 등록번호 또는 여권번호 입력
-        taxinvoice.remark1 = "비고1"
-        taxinvoice.remark2 = "비고2"
-        taxinvoice.remark3 = "비고3"
-
-        ' 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
-        ' └ true = 첨부 , false = 미첨부(기본값)
-        ' - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
-        taxinvoice.businessLicenseYN = False
-
-        ' 통장사본 이미지 첨부여부 (true / false 중 택 1)
-        ' └ true = 첨부 , false = 미첨부(기본값)
-        ' - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
-        taxinvoice.bankBookYN = False
-
-
-        '=========================================================================
-        '         수정세금계산서 정보 (수정세금계산서 작성시에만 기재
-        ' - [참고] 수정세금계산서 작성방법 안내 - https://developers.popbill.com/guide/taxinvoice/dotnet/introduction/modified-taxinvoice
-        '=========================================================================
-
-        ' 수정사유코드, 수정사유에 따라 1~6중 선택기재
-        taxinvoice.modifyCode = Nothing
-
-        ' 원본세금계산서의 국세청승인번호
-        taxinvoice.orgNTSConfirmNum = ""
-
-
-        '=========================================================================
-        '                            상세항목(품목) 정보
-        '=========================================================================
-
-        taxinvoice.detailList = New List(Of TaxinvoiceDetail)
-
-        Dim detail As TaxinvoiceDetail = New TaxinvoiceDetail
-
-        detail.serialNum = 1                            '일련번호, 1부터 순차기재
-        detail.purchaseDT = "20220513"                 '거래일자, yyyyMMdd
-        detail.itemName = "품목명"                      '품목명
-        detail.spec = "규격"                            '규격
-        detail.qty = "1"                                '수량
-        detail.unitCost = "100000"                      '단가
-        detail.supplyCost = "100000"                    '공급가액
-        detail.tax = "10000"                            '세액
-        detail.remark = "품목비고"                      '비고
-
-        taxinvoice.detailList.Add(detail)
-
-        detail = New TaxinvoiceDetail
-
-        detail.serialNum = 2
-        detail.itemName = "품목명"
-
-        taxinvoice.detailList.Add(detail)
-
-        Try
-            Dim response As Response = taxinvoiceService.Register(txtCorpNum.Text, taxinvoice)
-
-            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message)
-        Catch ex As PopbillException
-            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
-        End Try
-    End Sub
-
-    '=========================================================================
-    ' "임시저장" 상태의 세금계산서를 수정합니다.
-    ' - https://developers.popbill.com/reference/taxinvoice/dotnet/api/issue#Update
-    '=========================================================================
-    Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
-
-        '문서번호 유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
-        Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
-
-        Dim taxinvoice As Taxinvoice = New Taxinvoice
-
-        '작성일자,yyyyMMdd( 표시형식 )
-        taxinvoice.writeDate = "20220513"
-
-        '발행형태, [정발행, 역발행, 위수탁] 중 기재
-        taxinvoice.issueType = "정발행"
-
-        ' 과금방향, {정과금, 역과금} 중 기재
-        ' └ 정과금 = 공급자 과금 , 역과금 = 공급받는자 과금
-        ' -'역과금'은 역발행 세금계산서 발행 시에만 이용가능
-        taxinvoice.chargeDirection = "정과금"
-
-        '영수/청구, [영수, 청구] 중 기재
-        taxinvoice.purposeType = "영수"
-
-        '과세형태, [과세, 영세, 면세] 중 기재
-        taxinvoice.taxType = "과세"
-
-        '=========================================================================
-        '                              공급자 정보
-        '=========================================================================
-
-        '공급자 사업자번호, '-' 제외 10자리
-        taxinvoice.invoicerCorpNum = txtCorpNum.Text
-
-        '공급자 종사업장 식별번호. 필요시 숫자 4자리 기재
-        taxinvoice.invoicerTaxRegID = ""
-
-        '공급자 상호
-        taxinvoice.invoicerCorpName = "공급자 상호"
-
-        '공급자 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
-        taxinvoice.invoicerMgtKey = txtMgtKey.Text
-
-        '공급자 대표자 성명
-        taxinvoice.invoicerCEOName = "공급자 대표자 성명"
-
-        '공급자 주소
-        taxinvoice.invoicerAddr = "공급자 주소"
-
-        '공급자 종목
-        taxinvoice.invoicerBizClass = "공급자 업종"
-
-        '공급자 업태
-        taxinvoice.invoicerBizType = "공급자 업태,업태2"
-
-        '공급자 담당자명
-        taxinvoice.invoicerContactName = "공급자 담당자명"
-
-        '공급자 담당자 메일주소
-        taxinvoice.invoicerEmail = ""
-
-        '공급자 담당자 연락처
-        taxinvoice.invoicerTEL = ""
-
-        '공급자 담당자 휴대폰번호
-        taxinvoice.invoicerHP = ""
-
-        ' 발행 안내 문자 전송여부 (true / false 중 택 1)
-        ' └ true = 전송 , false = 미전송
-        ' └ 공급받는자 (주)담당자 휴대폰번호 {invoiceeHP1} 값으로 문자 전송
-        ' - 전송 시 포인트 차감되며, 전송실패시 환불처리
-        taxinvoice.invoicerSMSSendYN = False
-
-        '=========================================================================
-        '                            공급받는자 정보
-        '=========================================================================
-
-        '공급받는자 구분, [사업자, 개인, 외국인] 중 기재
+        ' 공급받는자 구분, [사업자, 개인, 외국인] 중 기재
         taxinvoice.invoiceeType = "사업자"
 
         ' 공급받는자 사업자번호
         ' - {invoiceeType}이 "사업자" 인 경우, 사업자번호 (하이픈 ('-') 제외 10자리)
         ' - {invoiceeType}이 "개인" 인 경우, 주민등록번호 (하이픈 ('-') 제외 13자리)
         ' - {invoiceeType}이 "외국인" 인 경우, "9999999999999" (하이픈 ('-') 제외 13자리)
-        taxinvoice.invoiceeCorpNum = "8888888888"
+        taxinvoice.invoiceeCorpNum = txtCorpNum.Text
 
-        '공급자받는자 상호
+        ' 공급받는자 종사업장 식별번호
+        taxinvoice.invoiceeTaxRegID = ""
+
+        ' 공급자받는자 상호
         taxinvoice.invoiceeCorpName = "공급받는자 상호"
 
-        '공급받는자 대표자 성명
+        ' 공급받는자 대표자 성명
         taxinvoice.invoiceeCEOName = "공급받는자 대표자 성명"
 
-        '공급받는자 주소
+        ' 공급받는자 주소
         taxinvoice.invoiceeAddr = "공급받는자 주소"
 
-        '공급받는자 종목
-        taxinvoice.invoiceeBizClass = "공급받는자 종목"
-
-        '공급받는자 업태
+        ' 공급받는자 업태
         taxinvoice.invoiceeBizType = "공급받는자 업태"
 
-        '공급받는자 담당자명
+        ' 공급받는자 종목
+        taxinvoice.invoiceeBizClass = "공급받는자 종목"
+
+        ' 공급받는자 담당자명
         taxinvoice.invoiceeContactName1 = "공급받는자 담당자명"
 
         '공급받는자 담당자 메일주소
@@ -1193,48 +1035,7 @@ Public Class frmExample
         '공급받는자 담당자 휴대폰번호
         taxinvoice.invoiceeHP1 = ""
 
-        '=========================================================================
-        '                            세금계산서 정보
-        '=========================================================================
 
-        '공급가액 합계
-        taxinvoice.supplyCostTotal = "100000"
-
-        '세액 합계
-        taxinvoice.taxTotal = "10000"
-
-        '합계금액, 공급가액 합계 + 세액합계
-        taxinvoice.totalAmount = "110000"
-
-        '기재 상 '일련번호' 항목
-        taxinvoice.serialNum = "123"
-
-        '기재상 권 항목, 최대값 32767
-        '미기재시 taxinvoice.kwon = Nothing
-        taxinvoice.kwon = Nothing
-
-        '기재상 호 항목, 최대값 32767
-        '미기재시 taxinvoice.ho = Nothing
-        taxinvoice.ho = Nothing
-
-        '기재 상 '현금' 항목
-        taxinvoice.cash = ""
-
-        '기재 상 '수표' 항목
-        taxinvoice.chkBill = ""
-
-        '기재 상 '어음' 항목
-        taxinvoice.note = ""
-
-        '기재 상 '외상미수금' 항목
-        taxinvoice.credit = ""
-
-        ' 비고
-        ' {invoiceeType}이 "외국인" 이면 remark1 필수
-        ' - 외국인 등록번호 또는 여권번호 입력
-        taxinvoice.remark1 = "비고1"
-        taxinvoice.remark2 = "비고2"
-        taxinvoice.remark3 = "비고3"
 
         ' 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
         ' └ true = 첨부 , false = 미첨부(기본값)
@@ -1258,6 +1059,7 @@ Public Class frmExample
         ' 원본세금계산서의 국세청승인번호
         taxinvoice.orgNTSConfirmNum = ""
 
+
         '=========================================================================
         '                            상세항목(품목) 정보
         '=========================================================================
@@ -1267,7 +1069,7 @@ Public Class frmExample
         Dim detail As TaxinvoiceDetail = New TaxinvoiceDetail
 
         detail.serialNum = 1                            '일련번호, 1부터 순차기재
-        detail.purchaseDT = "20220513"                 '거래일자, yyyyMMdd
+        detail.purchaseDT = "20250731"                 '거래일자, yyyyMMdd
         detail.itemName = "품목명"                      '품목명
         detail.spec = "규격"                            '규격
         detail.qty = "1"                                '수량
@@ -1301,6 +1103,231 @@ Public Class frmExample
 
         taxinvoice.addContactList.Add(addContact)
 
+        Try
+            Dim response As Response = taxinvoiceService.Register(txtCorpNum.Text, taxinvoice)
+
+            MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message)
+        Catch ex As PopbillException
+            MsgBox("code(응답코드) : " + ex.code.ToString + vbCrLf + "message(응답메시지) : " + ex.Message)
+        End Try
+    End Sub
+
+    '=========================================================================
+    ' "임시저장" 상태의 세금계산서를 수정합니다.
+    ' - https://developers.popbill.com/reference/taxinvoice/dotnet/api/issue#Update
+    '=========================================================================
+    Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
+
+        '문서번호 유형, MgtKeyType [SELL-매출 /  BUY-매입 / TRUSTEE-위수탁]
+        Dim KeyType As MgtKeyType = [Enum].Parse(GetType(MgtKeyType), cboMgtKeyType.Text)
+
+        Dim taxinvoice As Taxinvoice = New Taxinvoice
+
+        '발행형태, [정발행, 역발행, 위수탁] 중 기재
+        taxinvoice.issueType = "정발행"
+
+        '과세형태, [과세, 영세, 면세] 중 기재
+        taxinvoice.taxType = "과세"
+
+        ' 과금방향, {정과금, 역과금} 중 기재
+        ' └ 정과금 = 공급자 과금 , 역과금 = 공급받는자 과금
+        ' -'역과금'은 역발행 세금계산서 발행 시에만 이용가능
+        taxinvoice.chargeDirection = "정과금"
+
+        '기재 상 '일련번호' 항목
+        taxinvoice.serialNum = "123"
+
+        '기재상 권 항목, 최대값 32767
+        '미기재시 taxinvoice.kwon = Nothing
+        taxinvoice.kwon = Nothing
+
+        '기재상 호 항목, 최대값 32767
+        '미기재시 taxinvoice.ho = Nothing
+        taxinvoice.ho = Nothing
+
+        '작성일자,yyyyMMdd( 표시형식 )
+        taxinvoice.writeDate = "20250731"
+
+        '영수/청구, [영수, 청구, 없음] 중 기재
+        taxinvoice.purposeType = "영수"
+
+        '공급가액 합계
+        taxinvoice.supplyCostTotal = "100000"
+
+        '세액 합계
+        taxinvoice.taxTotal = "10000"
+
+        '합계금액, 공급가액 합계 + 세액합계
+        taxinvoice.totalAmount = "110000"
+
+        '기재 상 '현금' 항목
+        taxinvoice.cash = ""
+
+        '기재 상 '수표' 항목
+        taxinvoice.chkBill = ""
+
+        '기재 상 '어음' 항목
+        taxinvoice.note = ""
+
+        '기재 상 '외상미수금' 항목
+        taxinvoice.credit = ""
+
+        ' 비고
+        ' {invoiceeType}이 "외국인" 이면 remark1 필수
+        ' - 외국인 등록번호 또는 여권번호 입력
+        taxinvoice.remark1 = "비고1"
+        taxinvoice.remark2 = "비고2"
+        taxinvoice.remark3 = "비고3"
+
+
+
+
+
+
+        '=========================================================================
+        '                              공급자 정보
+        '=========================================================================
+
+        '공급자 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        taxinvoice.invoicerMgtKey = txtMgtKey.Text
+
+        '공급자 사업자번호, '-' 제외 10자리
+        taxinvoice.invoicerCorpNum = txtCorpNum.Text
+
+        '공급자 종사업장 식별번호. 필요시 숫자 4자리 기재
+        taxinvoice.invoicerTaxRegID = ""
+
+        '공급자 상호
+        taxinvoice.invoicerCorpName = "공급자 상호"
+
+        '공급자 대표자 성명
+        taxinvoice.invoicerCEOName = "공급자 대표자 성명"
+
+        '공급자 주소
+        taxinvoice.invoicerAddr = "공급자 주소"
+
+        '공급자 업태
+        taxinvoice.invoicerBizType = "공급자 업태,업태2"
+
+        '공급자 종목
+        taxinvoice.invoicerBizClass = "공급자 업종"
+
+        '공급자 담당자명
+        taxinvoice.invoicerContactName = "공급자 담당자명"
+
+        '공급자 담당자 메일주소
+        taxinvoice.invoicerEmail = ""
+
+        '공급자 담당자 연락처
+        taxinvoice.invoicerTEL = ""
+
+        '공급자 담당자 휴대폰번호
+        taxinvoice.invoicerHP = ""
+
+        ' 발행 안내 문자 전송여부 (true / false 중 택 1)
+        ' └ true = 전송 , false = 미전송
+        ' └ 공급받는자 (주)담당자 휴대폰번호 {invoiceeHP1} 값으로 문자 전송
+        ' - 전송 시 포인트 차감되며, 전송실패시 환불처리
+        taxinvoice.invoicerSMSSendYN = False
+
+        '=========================================================================
+        '                            공급받는자 정보
+        '=========================================================================
+
+        '공급받는자 구분, [사업자, 개인, 외국인] 중 기재
+        taxinvoice.invoiceeType = "사업자"
+
+        ' 공급받는자 사업자번호
+        ' - {invoiceeType}이 "사업자" 인 경우, 사업자번호 (하이픈 ('-') 제외 10자리)
+        ' - {invoiceeType}이 "개인" 인 경우, 주민등록번호 (하이픈 ('-') 제외 13자리)
+        ' - {invoiceeType}이 "외국인" 인 경우, "9999999999999" (하이픈 ('-') 제외 13자리)
+        taxinvoice.invoiceeCorpNum = "8888888888"
+
+        ' 공급받는자 종사업장 식별번호
+        taxinvoice.invoiceeTaxRegID = ""
+
+        '공급자받는자 상호
+        taxinvoice.invoiceeCorpName = "공급받는자 상호"
+
+        '공급받는자 대표자 성명
+        taxinvoice.invoiceeCEOName = "공급받는자 대표자 성명"
+
+        '공급받는자 주소
+        taxinvoice.invoiceeAddr = "공급받는자 주소"
+
+        '공급받는자 업태
+        taxinvoice.invoiceeBizType = "공급받는자 업태"
+
+        '공급받는자 종목
+        taxinvoice.invoiceeBizClass = "공급받는자 종목"
+
+        '공급받는자 담당자명
+        taxinvoice.invoiceeContactName1 = "공급받는자 담당자명"
+
+        '공급받는자 담당자 메일주소
+        '팝빌 테스트 환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        '실제 거래처의 메일주소가 기재되지 않도록 주의
+        taxinvoice.invoiceeEmail1 = ""
+
+        '공급받는자 담당자 연락처
+        taxinvoice.invoiceeTEL1 = ""
+
+        '공급받는자 담당자 휴대폰번호
+        taxinvoice.invoiceeHP1 = ""
+
+
+
+        ' 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
+        ' └ true = 첨부 , false = 미첨부(기본값)
+        ' - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
+        taxinvoice.businessLicenseYN = False
+
+        ' 통장사본 이미지 첨부여부 (true / false 중 택 1)
+        ' └ true = 첨부 , false = 미첨부(기본값)
+        ' - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
+        taxinvoice.bankBookYN = False
+
+
+        '=========================================================================
+        '         수정세금계산서 정보 (수정세금계산서 작성시에만 기재
+        ' - [참고] 수정세금계산서 작성방법 안내 - https://developers.popbill.com/guide/taxinvoice/dotnet/introduction/modified-taxinvoice
+        '========================================================================='
+
+        ' 수정사유코드, 수정사유에 따라 1~6중 선택기재
+        taxinvoice.modifyCode = Nothing
+
+        ' 원본세금계산서의 국세청승인번호
+        taxinvoice.orgNTSConfirmNum = ""
+
+
+        '=========================================================================
+        '                            상세항목(품목) 정보
+        '=========================================================================
+
+        taxinvoice.detailList = New List(Of TaxinvoiceDetail)
+
+        Dim detail As TaxinvoiceDetail = New TaxinvoiceDetail
+
+        detail.serialNum = 1                            '일련번호, 1부터 순차기재
+        detail.purchaseDT = "20250731"                 '거래일자, yyyyMMdd
+        detail.itemName = "품목명"                      '품목명
+        detail.spec = "규격"                            '규격
+        detail.qty = "1"                                '수량
+        detail.unitCost = "100000"                      '단가
+        detail.supplyCost = "100000"                    '공급가액
+        detail.tax = "10000"                            '세액
+        detail.remark = "품목비고"                      '비고
+
+        taxinvoice.detailList.Add(detail)
+
+        detail = New TaxinvoiceDetail
+
+        detail.serialNum = 2
+        detail.itemName = "품목명"
+
+        taxinvoice.detailList.Add(detail)
+
+
 
         Try
             Dim response As Response = taxinvoiceService.Update(txtCorpNum.Text, KeyType, txtMgtKey.Text, taxinvoice, txtUserId.Text)
@@ -1324,133 +1351,16 @@ Public Class frmExample
 
         Dim taxinvoice As Taxinvoice = New Taxinvoice
 
-        '작성일자, 표시형식 (yyyyMMdd)
-        taxinvoice.writeDate = "20220513"
-
         '발행형태, [정발행, 역발행, 위수탁] 중 기재
         taxinvoice.issueType = "역발행"
+
+        '과세형태, [과세, 영세, 면세] 중 기재
+        taxinvoice.taxType = "과세"
 
         ' 과금방향, {정과금, 역과금} 중 기재
         ' └ 정과금 = 공급자 과금 , 역과금 = 공급받는자 과금
         ' -'역과금'은 역발행 세금계산서 발행 시에만 이용가능
         taxinvoice.chargeDirection = "정과금"
-
-        '영수/청구, [영수, 청구, 없음] 중 기재
-        taxinvoice.purposeType = "영수"
-
-        '과세형태, [과세, 영세, 면세] 중 기재
-        taxinvoice.taxType = "과세"
-
-        '=========================================================================
-        '                              공급자 정보
-        '=========================================================================
-
-        '공급자 사업자번호, '-' 제외 10자리
-        taxinvoice.invoicerCorpNum = "8888888888"
-
-        '공급자 종사업장 식별번호. 필요시 숫자 4자리 기재
-        taxinvoice.invoicerTaxRegID = ""
-
-        '공급자 상호
-        taxinvoice.invoicerCorpName = "공급자 상호"
-
-        '공급자 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
-        taxinvoice.invoicerMgtKey = txtMgtKey.Text
-
-        '공급자 대표자 성명
-        taxinvoice.invoicerCEOName = "공급자 대표자 성명"
-
-        '공급자 주소
-        taxinvoice.invoicerAddr = "공급자 주소"
-
-        '공급자 종목
-        taxinvoice.invoicerBizClass = "공급자 업종"
-
-        '공급자 업태
-        taxinvoice.invoicerBizType = "공급자 업태,업태2"
-
-        '공급자 담당자명
-        taxinvoice.invoicerContactName = "공급자 담당자명"
-
-        '공급자 담당자 메일주소
-        taxinvoice.invoicerEmail = ""
-
-        '공급자 담당자 연락처
-        taxinvoice.invoicerTEL = ""
-
-        '공급자 담당자 휴대폰번호
-        taxinvoice.invoicerHP = ""
-
-        ' 발행 안내 문자 전송여부 (true / false 중 택 1)
-        ' └ true = 전송 , false = 미전송
-        ' └ 공급받는자 (주)담당자 휴대폰번호 {invoiceeHP1} 값으로 문자 전송
-        ' - 전송 시 포인트 차감되며, 전송실패시 환불처리
-        taxinvoice.invoicerSMSSendYN = False
-
-
-        '=========================================================================
-        '                            공급받는자 정보
-        '=========================================================================
-
-        '공급받는자 구분, [사업자, 개인, 외국인] 중 기재
-        taxinvoice.invoiceeType = "사업자"
-
-        ' 공급받는자 사업자번호
-        ' - {invoiceeType}이 "사업자" 인 경우, 사업자번호 (하이픈 ('-') 제외 10자리)
-        ' - {invoiceeType}이 "개인" 인 경우, 주민등록번호 (하이픈 ('-') 제외 13자리)
-        ' - {invoiceeType}이 "외국인" 인 경우, "9999999999999" (하이픈 ('-') 제외 13자리)
-        taxinvoice.invoiceeCorpNum = txtCorpNum.Text
-
-        '공급자받는자 상호
-        taxinvoice.invoiceeCorpName = "공급받는자 상호"
-
-        '[역발행시 필수] 공급받는자 문서번호(역발행시 필수), 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
-        taxinvoice.invoiceeMgtKey = ""
-
-        '공급받는자 대표자 성명
-        taxinvoice.invoiceeCEOName = "공급받는자 대표자 성명"
-
-        '공급받는자 주소
-        taxinvoice.invoiceeAddr = "공급받는자 주소"
-
-        '공급받는자 종목
-        taxinvoice.invoiceeBizClass = "공급받는자 종목"
-
-        '공급받는자 업태
-        taxinvoice.invoiceeBizType = "공급받는자 업태"
-
-        '공급받는자 담당자명
-        taxinvoice.invoiceeContactName1 = "공급받는자 담당자명"
-
-        '공급받는자 담당자 메일주소
-        '팝빌 테스트 환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
-        '실제 거래처의 메일주소가 기재되지 않도록 주의
-        taxinvoice.invoiceeEmail1 = ""
-
-        '공급받는자 담당자 연락처
-        taxinvoice.invoiceeTEL1 = ""
-
-        '공급받는자 담당자 휴대폰번호
-        taxinvoice.invoiceeHP1 = ""
-
-        ' 역발행 안내 문자 전송여부 (true / false 중 택 1)
-        ' └ true = 전송 , false = 미전송
-        ' └ 공급자 담당자 휴대폰번호 {invoicerHP} 값으로 문자 전송
-        ' - 전송 시 포인트 차감되며, 전송실패시 환불처리
-        taxinvoice.invoiceeSMSSendYN = False
-
-        '=========================================================================
-        '                            세금계산서 정보
-        '=========================================================================
-
-        '공급가액 합계
-        taxinvoice.supplyCostTotal = "100000"
-
-        '세액 합계
-        taxinvoice.taxTotal = "10000"
-
-        '합계금액, 공급가액 합계 + 세액합계
-        taxinvoice.totalAmount = "110000"
 
         '기재 상 '일련번호' 항목
         taxinvoice.serialNum = "123"
@@ -1462,6 +1372,21 @@ Public Class frmExample
         '기재상 호 항목, 최대값 32767
         '미기재시 taxinvoice.ho = Nothing
         taxinvoice.ho = Nothing
+
+        '작성일자,yyyyMMdd( 표시형식 )
+        taxinvoice.writeDate = "20250731"
+
+        '영수/청구, [영수, 청구, 없음] 중 기재
+        taxinvoice.purposeType = "영수"
+
+        '공급가액 합계
+        taxinvoice.supplyCostTotal = "100000"
+
+        '세액 합계
+        taxinvoice.taxTotal = "10000"
+
+        '합계금액, 공급가액 합계 + 세액합계
+        taxinvoice.totalAmount = "110000"
 
         '기재 상 '현금' 항목
         taxinvoice.cash = ""
@@ -1482,6 +1407,107 @@ Public Class frmExample
         taxinvoice.remark2 = "비고2"
         taxinvoice.remark3 = "비고3"
 
+
+
+
+
+
+        '=========================================================================
+        '                              공급자 정보
+        '=========================================================================
+
+        '공급자 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        taxinvoice.invoicerMgtKey = ""
+
+        '공급자 사업자번호, '-' 제외 10자리
+        taxinvoice.invoicerCorpNum = "8888888888"
+
+        '공급자 종사업장 식별번호. 필요시 숫자 4자리 기재
+        taxinvoice.invoicerTaxRegID = ""
+
+        '공급자 상호
+        taxinvoice.invoicerCorpName = "공급자 상호"
+
+        '공급자 대표자 성명
+        taxinvoice.invoicerCEOName = "공급자 대표자 성명"
+
+        '공급자 주소
+        taxinvoice.invoicerAddr = "공급자 주소"
+
+        '공급자 업태
+        taxinvoice.invoicerBizType = "공급자 업태,업태2"
+
+        '공급자 종목
+        taxinvoice.invoicerBizClass = "공급자 업종"
+
+        '공급자 담당자명
+        taxinvoice.invoicerContactName = "공급자 담당자명"
+
+        '공급자 담당자 메일주소
+        taxinvoice.invoicerEmail = ""
+
+        '공급자 담당자 연락처
+        taxinvoice.invoicerTEL = ""
+
+        '공급자 담당자 휴대폰번호
+        taxinvoice.invoicerHP = ""
+
+        ' 발행 안내 문자 전송여부 (true / false 중 택 1)
+        ' └ true = 전송 , false = 미전송
+        ' └ 공급받는자 (주)담당자 휴대폰번호 {invoiceeHP1} 값으로 문자 전송
+        ' - 전송 시 포인트 차감되며, 전송실패시 환불처리
+        taxinvoice.invoicerSMSSendYN = False
+
+        '=========================================================================
+        '                            공급받는자 정보
+        '=========================================================================
+
+        ' 공급받는자 문서번호
+        taxinvoice.invoiceeMgtKey = txtMgtKey.Text
+
+        ' 공급받는자 구분, [사업자, 개인, 외국인] 중 기재
+        taxinvoice.invoiceeType = "사업자"
+
+        ' 공급받는자 사업자번호
+        ' - {invoiceeType}이 "사업자" 인 경우, 사업자번호 (하이픈 ('-') 제외 10자리)
+        ' - {invoiceeType}이 "개인" 인 경우, 주민등록번호 (하이픈 ('-') 제외 13자리)
+        ' - {invoiceeType}이 "외국인" 인 경우, "9999999999999" (하이픈 ('-') 제외 13자리)
+        taxinvoice.invoiceeCorpNum = txtCorpNum.Text
+
+        ' 공급받는자 종사업장 식별번호
+        taxinvoice.invoiceeTaxRegID = ""
+
+        ' 공급자받는자 상호
+        taxinvoice.invoiceeCorpName = "공급받는자 상호"
+
+        ' 공급받는자 대표자 성명
+        taxinvoice.invoiceeCEOName = "공급받는자 대표자 성명"
+
+        ' 공급받는자 주소
+        taxinvoice.invoiceeAddr = "공급받는자 주소"
+
+        ' 공급받는자 업태
+        taxinvoice.invoiceeBizType = "공급받는자 업태"
+
+        ' 공급받는자 종목
+        taxinvoice.invoiceeBizClass = "공급받는자 종목"
+
+        ' 공급받는자 담당자명
+        taxinvoice.invoiceeContactName1 = "공급받는자 담당자명"
+
+        '공급받는자 담당자 메일주소
+        '팝빌 테스트 환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        '실제 거래처의 메일주소가 기재되지 않도록 주의
+        taxinvoice.invoiceeEmail1 = ""
+
+        '공급받는자 담당자 연락처
+        taxinvoice.invoiceeTEL1 = ""
+
+        '공급받는자 담당자 휴대폰번호
+        taxinvoice.invoiceeHP1 = ""
+
+
+
         ' 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
         ' └ true = 첨부 , false = 미첨부(기본값)
         ' - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
@@ -1492,16 +1518,18 @@ Public Class frmExample
         ' - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         taxinvoice.bankBookYN = False
 
+
         '=========================================================================
         '         수정세금계산서 정보 (수정세금계산서 작성시에만 기재
         ' - [참고] 수정세금계산서 작성방법 안내 - https://developers.popbill.com/guide/taxinvoice/dotnet/introduction/modified-taxinvoice
-        '=========================================================================
+        '========================================================================='
 
         ' 수정사유코드, 수정사유에 따라 1~6중 선택기재
         taxinvoice.modifyCode = Nothing
 
         ' 원본세금계산서의 국세청승인번호
         taxinvoice.orgNTSConfirmNum = ""
+
 
         '=========================================================================
         '                            상세항목(품목) 정보
@@ -1512,7 +1540,7 @@ Public Class frmExample
         Dim detail As TaxinvoiceDetail = New TaxinvoiceDetail
 
         detail.serialNum = 1                            '일련번호, 1부터 순차기재
-        detail.purchaseDT = "20220513"                 '거래일자, yyyyMMdd
+        detail.purchaseDT = "20250731"                 '거래일자, yyyyMMdd
         detail.itemName = "품목명"                      '품목명
         detail.spec = "규격"                            '규격
         detail.qty = "1"                                '수량
@@ -1529,6 +1557,22 @@ Public Class frmExample
         detail.itemName = "품목명"
 
         taxinvoice.detailList.Add(detail)
+
+        '=========================================================================
+        '                              추가담당자 정보
+        ' - 세금계산서 발행안내 메일을 수신받을 공급받는자 담당자가 다수인 경우
+        ' 담당자 정보를 추가하여 발행안내메일을 다수에게 전송할 수 있습니다.
+        '=========================================================================
+
+        taxinvoice.addContactList = New List(Of TaxinvoiceAddContact)
+
+        Dim addContact As TaxinvoiceAddContact = New TaxinvoiceAddContact
+
+        addContact.serialNum = 1                        '일련번호, 1부터 순차기재
+        addContact.contactName = "추가담당자명"         '담당자 성명
+        addContact.email = ""         '담당자 메일주소
+
+        taxinvoice.addContactList.Add(addContact)
 
         Try
             Dim response As Response = taxinvoiceService.Update(txtCorpNum.Text, KeyType, txtMgtKey.Text, taxinvoice, txtUserId.Text)
@@ -1681,121 +1725,36 @@ Public Class frmExample
     Private Sub btnRegistRequest_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
         Handles btnRegistRequest.Click
 
-        Dim taxinvoice As Taxinvoice = New Taxinvoice
 
-        '작성일자, 표시형식 (yyyyMMdd)
-        taxinvoice.writeDate = "20220513"
+        Dim taxinvoice As Taxinvoice = New Taxinvoice
 
         '발행형태, [정발행, 역발행, 위수탁] 중 기재
         taxinvoice.issueType = "역발행"
+
+        '과세형태, [과세, 영세, 면세] 중 기재
+        taxinvoice.taxType = "과세"
 
         ' 과금방향, {정과금, 역과금} 중 기재
         ' └ 정과금 = 공급자 과금 , 역과금 = 공급받는자 과금
         ' -'역과금'은 역발행 세금계산서 발행 시에만 이용가능
         taxinvoice.chargeDirection = "정과금"
 
+        '기재 상 '일련번호' 항목
+        taxinvoice.serialNum = "123"
+
+        '기재상 권 항목, 최대값 32767
+        '미기재시 taxinvoice.kwon = Nothing
+        taxinvoice.kwon = Nothing
+
+        '기재상 호 항목, 최대값 32767
+        '미기재시 taxinvoice.ho = Nothing
+        taxinvoice.ho = Nothing
+
+        '작성일자,yyyyMMdd( 표시형식 )
+        taxinvoice.writeDate = "20250731"
+
         '영수/청구, [영수, 청구, 없음] 중 기재
         taxinvoice.purposeType = "영수"
-
-        '과세형태, [과세, 영세, 면세] 중 기재
-        taxinvoice.taxType = "과세"
-
-
-        '=========================================================================
-        '                              공급자 정보
-        '=========================================================================
-
-        '공급자 사업자번호, '-' 제외 10자리
-        taxinvoice.invoicerCorpNum = "8888888888"
-
-        '공급자 종사업장 식별번호. 필요시 숫자 4자리 기재
-        taxinvoice.invoicerTaxRegID = ""
-
-        '공급자 상호
-        taxinvoice.invoicerCorpName = "공급자 상호"
-
-        '공급자 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
-        taxinvoice.invoicerMgtKey = ""
-
-        '공급자 대표자 성명
-        taxinvoice.invoicerCEOName = "공급자 대표자 성명"
-
-        '공급자 주소
-        taxinvoice.invoicerAddr = "공급자 주소"
-
-        '공급자 종목
-        taxinvoice.invoicerBizClass = "공급자 업종"
-
-        '공급자 업태
-        taxinvoice.invoicerBizType = "공급자 업태,업태2"
-
-        '공급자 담당자명
-        taxinvoice.invoicerContactName = "공급자 담당자명"
-
-        '공급자 담당자 메일주소
-        taxinvoice.invoicerEmail = ""
-
-        '공급자 담당자 연락처
-        taxinvoice.invoicerTEL = ""
-
-        '공급자 담당자 휴대폰번호
-        taxinvoice.invoicerHP = ""
-
-        '=========================================================================
-        '                            공급받는자 정보
-        '=========================================================================
-
-        '공급받는자 구분, [사업자, 개인, 외국인] 중 기재
-        taxinvoice.invoiceeType = "사업자"
-
-        ' 공급받는자 사업자번호
-        ' - {invoiceeType}이 "사업자" 인 경우, 사업자번호 (하이픈 ('-') 제외 10자리)
-        ' - {invoiceeType}이 "개인" 인 경우, 주민등록번호 (하이픈 ('-') 제외 13자리)
-        ' - {invoiceeType}이 "외국인" 인 경우, "9999999999999" (하이픈 ('-') 제외 13자리)
-        taxinvoice.invoiceeCorpNum = txtCorpNum.Text
-
-        '공급자받는자 상호
-        taxinvoice.invoiceeCorpName = "공급받는자 상호"
-
-        '[역발행시 필수] 공급받는자 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
-        taxinvoice.invoiceeMgtKey = txtMgtKey.Text
-
-        '공급받는자 대표자 성명
-        taxinvoice.invoiceeCEOName = "공급받는자 대표자 성명"
-
-        '공급받는자 주소
-        taxinvoice.invoiceeAddr = "공급받는자 주소"
-
-        '공급받는자 종목
-        taxinvoice.invoiceeBizClass = "공급받는자 종목"
-
-        '공급받는자 업태
-        taxinvoice.invoiceeBizType = "공급받는자 업태"
-
-        '공급받는자 담당자명
-        taxinvoice.invoiceeContactName1 = "공급받는자 담당자명"
-
-        '공급받는자 담당자 메일주소
-        '팝빌 테스트 환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
-        '실제 거래처의 메일주소가 기재되지 않도록 주의
-        taxinvoice.invoiceeEmail1 = ""
-
-        '공급받는자 담당자 연락처
-        taxinvoice.invoiceeTEL1 = ""
-
-        '공급받는자 담당자 휴대폰번호
-        taxinvoice.invoiceeHP1 = ""
-
-        ' 역발행 안내 문자 전송여부 (true / false 중 택 1)
-        ' └ true = 전송 , false = 미전송
-        ' └ 공급자 담당자 휴대폰번호 {invoicerHP} 값으로 문자 전송
-        ' - 전송 시 포인트 차감되며, 전송실패시 환불처리
-        taxinvoice.invoiceeSMSSendYN = False
-
-
-        '=========================================================================
-        '                            세금계산서 정보
-        '=========================================================================
 
         '공급가액 합계
         taxinvoice.supplyCostTotal = "100000"
@@ -1805,17 +1764,6 @@ Public Class frmExample
 
         '합계금액, 공급가액 합계 + 세액합계
         taxinvoice.totalAmount = "110000"
-
-        '기재 상 '일련번호' 항목
-        taxinvoice.serialNum = ""
-
-        '기재상 권 항목, 최대값 32767
-        '미기재시 taxinvoice.kwon = Nothing
-        taxinvoice.kwon = Nothing
-
-        '기재상 호 항목, 최대값 32767
-        '미기재시 taxinvoice.ho = Nothing
-        taxinvoice.ho = Nothing
 
         '기재 상 '현금' 항목
         taxinvoice.cash = ""
@@ -1836,6 +1784,107 @@ Public Class frmExample
         taxinvoice.remark2 = "비고2"
         taxinvoice.remark3 = "비고3"
 
+
+
+
+
+
+        '=========================================================================
+        '                              공급자 정보
+        '=========================================================================
+
+        '공급자 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        taxinvoice.invoicerMgtKey = ""
+
+        '공급자 사업자번호, '-' 제외 10자리
+        taxinvoice.invoicerCorpNum = "8888888888"
+
+        '공급자 종사업장 식별번호. 필요시 숫자 4자리 기재
+        taxinvoice.invoicerTaxRegID = ""
+
+        '공급자 상호
+        taxinvoice.invoicerCorpName = "공급자 상호"
+
+        '공급자 대표자 성명
+        taxinvoice.invoicerCEOName = "공급자 대표자 성명"
+
+        '공급자 주소
+        taxinvoice.invoicerAddr = "공급자 주소"
+
+        '공급자 업태
+        taxinvoice.invoicerBizType = "공급자 업태,업태2"
+
+        '공급자 종목
+        taxinvoice.invoicerBizClass = "공급자 업종"
+
+        '공급자 담당자명
+        taxinvoice.invoicerContactName = "공급자 담당자명"
+
+        '공급자 담당자 메일주소
+        taxinvoice.invoicerEmail = ""
+
+        '공급자 담당자 연락처
+        taxinvoice.invoicerTEL = ""
+
+        '공급자 담당자 휴대폰번호
+        taxinvoice.invoicerHP = ""
+
+        ' 발행 안내 문자 전송여부 (true / false 중 택 1)
+        ' └ true = 전송 , false = 미전송
+        ' └ 공급받는자 (주)담당자 휴대폰번호 {invoiceeHP1} 값으로 문자 전송
+        ' - 전송 시 포인트 차감되며, 전송실패시 환불처리
+        taxinvoice.invoicerSMSSendYN = False
+
+        '=========================================================================
+        '                            공급받는자 정보
+        '=========================================================================
+
+        ' 공급받는자 문서번호
+        taxinvoice.invoiceeMgtKey = txtMgtKey.Text
+
+        ' 공급받는자 구분, [사업자, 개인, 외국인] 중 기재
+        taxinvoice.invoiceeType = "사업자"
+
+        ' 공급받는자 사업자번호
+        ' - {invoiceeType}이 "사업자" 인 경우, 사업자번호 (하이픈 ('-') 제외 10자리)
+        ' - {invoiceeType}이 "개인" 인 경우, 주민등록번호 (하이픈 ('-') 제외 13자리)
+        ' - {invoiceeType}이 "외국인" 인 경우, "9999999999999" (하이픈 ('-') 제외 13자리)
+        taxinvoice.invoiceeCorpNum = txtCorpNum.Text
+
+        ' 공급받는자 종사업장 식별번호
+        taxinvoice.invoiceeTaxRegID = ""
+
+        ' 공급자받는자 상호
+        taxinvoice.invoiceeCorpName = "공급받는자 상호"
+
+        ' 공급받는자 대표자 성명
+        taxinvoice.invoiceeCEOName = "공급받는자 대표자 성명"
+
+        ' 공급받는자 주소
+        taxinvoice.invoiceeAddr = "공급받는자 주소"
+
+        ' 공급받는자 업태
+        taxinvoice.invoiceeBizType = "공급받는자 업태"
+
+        ' 공급받는자 종목
+        taxinvoice.invoiceeBizClass = "공급받는자 종목"
+
+        ' 공급받는자 담당자명
+        taxinvoice.invoiceeContactName1 = "공급받는자 담당자명"
+
+        '공급받는자 담당자 메일주소
+        '팝빌 테스트 환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        '실제 거래처의 메일주소가 기재되지 않도록 주의
+        taxinvoice.invoiceeEmail1 = ""
+
+        '공급받는자 담당자 연락처
+        taxinvoice.invoiceeTEL1 = ""
+
+        '공급받는자 담당자 휴대폰번호
+        taxinvoice.invoiceeHP1 = ""
+
+
+
         ' 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
         ' └ true = 첨부 , false = 미첨부(기본값)
         ' - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
@@ -1846,16 +1895,18 @@ Public Class frmExample
         ' - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         taxinvoice.bankBookYN = False
 
+
         '=========================================================================
         '         수정세금계산서 정보 (수정세금계산서 작성시에만 기재
         ' - [참고] 수정세금계산서 작성방법 안내 - https://developers.popbill.com/guide/taxinvoice/dotnet/introduction/modified-taxinvoice
-        '=========================================================================
+        '========================================================================='
 
         ' 수정사유코드, 수정사유에 따라 1~6중 선택기재
         taxinvoice.modifyCode = Nothing
 
         ' 원본세금계산서의 국세청승인번호
         taxinvoice.orgNTSConfirmNum = ""
+
 
         '=========================================================================
         '                            상세항목(품목) 정보
@@ -1866,7 +1917,7 @@ Public Class frmExample
         Dim detail As TaxinvoiceDetail = New TaxinvoiceDetail
 
         detail.serialNum = 1                            '일련번호, 1부터 순차기재
-        detail.purchaseDT = "20220513"                  '거래일자, yyyyMMdd
+        detail.purchaseDT = "20250731"                 '거래일자, yyyyMMdd
         detail.itemName = "품목명"                      '품목명
         detail.spec = "규격"                            '규격
         detail.qty = "1"                                '수량
@@ -1883,6 +1934,22 @@ Public Class frmExample
         detail.itemName = "품목명"
 
         taxinvoice.detailList.Add(detail)
+
+        '=========================================================================
+        '                              추가담당자 정보
+        ' - 세금계산서 발행안내 메일을 수신받을 공급받는자 담당자가 다수인 경우
+        ' 담당자 정보를 추가하여 발행안내메일을 다수에게 전송할 수 있습니다.
+        '=========================================================================
+
+        taxinvoice.addContactList = New List(Of TaxinvoiceAddContact)
+
+        Dim addContact As TaxinvoiceAddContact = New TaxinvoiceAddContact
+
+        addContact.serialNum = 1                        '일련번호, 1부터 순차기재
+        addContact.contactName = "추가담당자명"         '담당자 성명
+        addContact.email = ""         '담당자 메일주소
+
+        taxinvoice.addContactList.Add(addContact)
 
 
         '즉시요청 메모
@@ -2100,32 +2167,38 @@ Public Class frmExample
             tmp += "itemKey (팝빌번호) : " + tiInfo.itemKey + vbCrLf
             tmp += "taxType (과세형태) : " + tiInfo.taxType + vbCrLf
             tmp += "writeDate (작성일자) : " + tiInfo.writeDate + vbCrLf
-            tmp += "regDT (임시저장 일자) : " + tiInfo.regDT + vbCrLf
+            tmp += "regDT (임시저장 일시) : " + tiInfo.regDT + vbCrLf
             tmp += "issueType (발행형태) : " + tiInfo.issueType + vbCrLf
             tmp += "supplyCostTotal (공급가액 합계) : " + tiInfo.supplyCostTotal + vbCrLf
             tmp += "taxTotal (세액 합계) : " + tiInfo.taxTotal + vbCrLf
             tmp += "purposeType (영수/청구) : " + tiInfo.purposeType + vbCrLf
             tmp += "issueDT (발행일시) : " + tiInfo.issueDT + vbCrLf
             tmp += "lateIssueYN (지연발행 여부) : " + CStr(tiInfo.lateIssueYN) + vbCrLf
+
             tmp += "openYN (개봉 여부) : " + CStr(tiInfo.openYN) + vbCrLf
             tmp += "openDT (개봉 일시) : " + CStr(tiInfo.openDT) + vbCrLf
             tmp += "stateMemo (상태메모) : " + tiInfo.stateMemo + vbCrLf
             tmp += "stateCode (상태코드) : " + tiInfo.stateCode.ToString + vbCrLf
             tmp += "stateDT (상태 변경일시) : " + tiInfo.stateDT + vbCrLf
+
             tmp += "nstconfirmNum (국세청승인번호) : " + tiInfo.ntsconfirmNum + vbCrLf
             tmp += "ntsresult (국세청 전송결과) : " + tiInfo.ntsresult + vbCrLf
             tmp += "ntssendDT (국세청 전송일시) : " + tiInfo.ntssendDT + vbCrLf
             tmp += "ntsresultDT (국세청 결과 수신일시) : " + tiInfo.ntsresultDT + vbCrLf
-            tmp += "ntssendErrCode (전송실패 사유코드) : " + tiInfo.ntssendErrCode + vbCrLf
+            tmp += "ntssendErrCode (국세청 결과코드) : " + tiInfo.ntssendErrCode + vbCrLf
+
             tmp += "modifyCode (수정 사유코드) : " + tiInfo.modifyCode.ToString + vbCrLf
             tmp += "interOPYN (연동문서 여부) : " + CStr(tiInfo.interOPYN) + vbCrLf
             tmp += "invoicerCorpName (공급자 상호) : " + tiInfo.invoicerCorpName + vbCrLf
             tmp += "invoicerCorpNum (공급자 사업자번호) : " + tiInfo.invoicerCorpNum + vbCrLf
             tmp += "invoicerMgtKey (공급자 문서번호) : " + tiInfo.invoicerMgtKey + vbCrLf
             tmp += "invoicerPrintYN (공급자 인쇄여부) : " + CStr(tiInfo.invoicerPrintYN) + vbCrLf
+
             tmp += "invoiceeCorpName (공급받는자 상호) : " + tiInfo.invoiceeCorpName + vbCrLf
             tmp += "invoiceeCorpNum (공급받는자 사업자번호) : " + tiInfo.invoiceeCorpNum + vbCrLf
-            tmp += "invoiceePrintYN (공급받는자 문서번호) : " + CStr(tiInfo.invoiceePrintYN) + vbCrLf
+            tmp += "invoiceeMgtKey (공급받는자 문서번호) : " + tiInfo.invoiceeMgtKey + vbCrLf
+            tmp += "invoiceePrintYN (공급받는자 인쇄여부) : " + CStr(tiInfo.invoiceePrintYN) + vbCrLf
+
             tmp += "closeDownState (공급받는자 휴폐업상태) : " + tiInfo.closeDownState.ToString + vbCrLf
             tmp += "closeDownStateDate (공급받는자 휴폐업일자) : " + CStr(tiInfo.closeDownStateDate) + vbCrLf
             tmp += "trusteeCorpName (수탁자 상호) : " + tiInfo.trusteeCorpName + vbCrLf
@@ -2166,38 +2239,45 @@ Public Class frmExample
                 tmp += "itemKey (팝빌번호) : " + tiInfo.itemKey + vbCrLf
                 tmp += "taxType (과세형태) : " + tiInfo.taxType + vbCrLf
                 tmp += "writeDate (작성일자) : " + tiInfo.writeDate + vbCrLf
-                tmp += "regDT (임시저장 일자) : " + tiInfo.regDT + vbCrLf
+                tmp += "regDT (임시저장 일시) : " + tiInfo.regDT + vbCrLf
                 tmp += "issueType (발행형태) : " + tiInfo.issueType + vbCrLf
                 tmp += "supplyCostTotal (공급가액 합계) : " + tiInfo.supplyCostTotal + vbCrLf
                 tmp += "taxTotal (세액 합계) : " + tiInfo.taxTotal + vbCrLf
                 tmp += "purposeType (영수/청구) : " + tiInfo.purposeType + vbCrLf
                 tmp += "issueDT (발행일시) : " + tiInfo.issueDT + vbCrLf
                 tmp += "lateIssueYN (지연발행 여부) : " + CStr(tiInfo.lateIssueYN) + vbCrLf
+
                 tmp += "openYN (개봉 여부) : " + CStr(tiInfo.openYN) + vbCrLf
                 tmp += "openDT (개봉 일시) : " + CStr(tiInfo.openDT) + vbCrLf
                 tmp += "stateMemo (상태메모) : " + tiInfo.stateMemo + vbCrLf
                 tmp += "stateCode (상태코드) : " + tiInfo.stateCode.ToString + vbCrLf
                 tmp += "stateDT (상태 변경일시) : " + tiInfo.stateDT + vbCrLf
+
                 tmp += "nstconfirmNum (국세청승인번호) : " + tiInfo.ntsconfirmNum + vbCrLf
                 tmp += "ntsresult (국세청 전송결과) : " + tiInfo.ntsresult + vbCrLf
                 tmp += "ntssendDT (국세청 전송일시) : " + tiInfo.ntssendDT + vbCrLf
                 tmp += "ntsresultDT (국세청 결과 수신일시) : " + tiInfo.ntsresultDT + vbCrLf
-                tmp += "ntssendErrCode (전송실패 사유코드) : " + tiInfo.ntssendErrCode + vbCrLf
+                tmp += "ntssendErrCode (국세청 결과코드) : " + tiInfo.ntssendErrCode + vbCrLf
+
                 tmp += "modifyCode (수정 사유코드) : " + tiInfo.modifyCode.ToString + vbCrLf
                 tmp += "interOPYN (연동문서 여부) : " + CStr(tiInfo.interOPYN) + vbCrLf
                 tmp += "invoicerCorpName (공급자 상호) : " + tiInfo.invoicerCorpName + vbCrLf
                 tmp += "invoicerCorpNum (공급자 사업자번호) : " + tiInfo.invoicerCorpNum + vbCrLf
                 tmp += "invoicerMgtKey (공급자 문서번호) : " + tiInfo.invoicerMgtKey + vbCrLf
                 tmp += "invoicerPrintYN (공급자 인쇄여부) : " + CStr(tiInfo.invoicerPrintYN) + vbCrLf
+
                 tmp += "invoiceeCorpName (공급받는자 상호) : " + tiInfo.invoiceeCorpName + vbCrLf
                 tmp += "invoiceeCorpNum (공급받는자 사업자번호) : " + tiInfo.invoiceeCorpNum + vbCrLf
-                tmp += "invoiceePrintYN (공급받는자 문서번호) : " + CStr(tiInfo.invoiceePrintYN) + vbCrLf
+                tmp += "invoiceeMgtKey (공급받는자 문서번호) : " + tiInfo.invoiceeMgtKey + vbCrLf
+                tmp += "invoiceePrintYN (공급받는자 인쇄여부) : " + CStr(tiInfo.invoiceePrintYN) + vbCrLf
+
                 tmp += "closeDownState (공급받는자 휴폐업상태) : " + tiInfo.closeDownState.ToString + vbCrLf
                 tmp += "closeDownStateDate (공급받는자 휴폐업일자) : " + CStr(tiInfo.closeDownStateDate) + vbCrLf
                 tmp += "trusteeCorpName (수탁자 상호) : " + tiInfo.trusteeCorpName + vbCrLf
                 tmp += "trusteeCorpNum (수탁자 사업자번호) : " + tiInfo.trusteeCorpNum + vbCrLf
                 tmp += "trusteeMgtKey (수탁자 문서번호) : " + tiInfo.trusteeMgtKey + vbCrLf
                 tmp += "trusteePrintYN (수탁자 인쇄여부) : " + CStr(tiInfo.trusteePrintYN) + vbCrLf
+
             Next
 
             MsgBox(tmp)
@@ -2230,6 +2310,7 @@ Public Class frmExample
             tmp += "ho (호) : " + CStr(tiDetailInfo.ho) + vbCrLf
             tmp += "writeDate (작성일자) : " + tiDetailInfo.writeDate + vbCrLf
             tmp += "purposeType (영수/청구) : " + tiDetailInfo.purposeType + vbCrLf
+
             tmp += "supplyCostTotal (공급가액 합계) : " + tiDetailInfo.supplyCostTotal + vbCrLf
             tmp += "taxTotal (세액 합계) : " + tiDetailInfo.taxTotal + vbCrLf
             tmp += "totalAmount (합계금액) : " + tiDetailInfo.totalAmount + vbCrLf
@@ -2247,8 +2328,9 @@ Public Class frmExample
             tmp += "invoicerCorpName (공급자 상호) : " + tiDetailInfo.invoicerCorpName + vbCrLf
             tmp += "invoicerCEOName (공급자 대표자성명) : " + tiDetailInfo.invoicerCEOName + vbCrLf
             tmp += "invoicerAddr (공급자 주소) : " + tiDetailInfo.invoicerAddr + vbCrLf
-            tmp += "invoicerBizClass (공급자 종목) : " + tiDetailInfo.invoicerBizClass + vbCrLf
             tmp += "invoicerBizType (공급자 업태) : " + tiDetailInfo.invoicerBizType + vbCrLf
+            tmp += "invoicerBizClass (공급자 종목) : " + tiDetailInfo.invoicerBizClass + vbCrLf
+
             tmp += "invoicerContactName (담당자 성명) : " + tiDetailInfo.invoicerContactName + vbCrLf
             tmp += "invoicerTEL (담당자 연락처) : " + tiDetailInfo.invoicerTEL + vbCrLf
             tmp += "invoicerHP (담당자 휴대폰) : " + tiDetailInfo.invoicerHP + vbCrLf
@@ -2266,12 +2348,16 @@ Public Class frmExample
             tmp += "invoiceeBizClass (공급받는자 종목) : " + tiDetailInfo.invoiceeBizClass + vbCrLf
             tmp += "closeDownState (휴폐업상태) : " + tiDetailInfo.closeDownState.ToString + vbCrLf
             tmp += "closeDownStateDate (휴폐업일자) : " + CStr(tiDetailInfo.closeDownStateDate) + vbCrLf
+
             tmp += "invoiceeContactName1 (담당자 성명) : " + tiDetailInfo.invoiceeContactName1 + vbCrLf
             tmp += "invoiceeTEL1 (담당자 연락처) : " + tiDetailInfo.invoiceeTEL1 + vbCrLf
             tmp += "invoiceeHP1 (담당자 휴대폰) : " + tiDetailInfo.invoiceeHP1 + vbCrLf
             tmp += "invoiceeEmail1 (담당자 이메일) : " + tiDetailInfo.invoiceeEmail1 + vbCrLf
 
-            tmp += "orgNTSConfirmNum (원본 국세청승인번호) : " + tiDetailInfo.orgNTSConfirmNum + vbCrLf
+            tmp += "orgNTSConfirmNum (당초 국세청승인번호) : " + tiDetailInfo.orgNTSConfirmNum + vbCrLf
+
+            tmp += "businessLicenseYN (사업자등록증 첨부 여부부) : " + CStr(tiDetailInfo.businessLicenseYN) + vbCrLf
+            tmp += "bankBookYN (통장사본 첨부 여부) : " + CStr(tiDetailInfo.bankBookYN) + vbCrLf
 
             If Not tiDetailInfo.detailList Is Nothing Then
                 For Each detailList As TaxinvoiceDetail In tiDetailInfo.detailList
@@ -2353,10 +2439,10 @@ Public Class frmExample
         Dim DType As String = "W"
 
         '시작일자, yyyyMMdd
-        Dim SDate As String = "20220513"
+        Dim SDate As String = "20250701"
 
         '종료일자, yyyyMMdd
-        Dim EDate As String = "20220513"
+        Dim EDate As String = "20250731"
 
         '세금계산서 상태코드 배열 (2,3번째 자리에 와일드카드(*) 사용 가능)
         '- 미입력시 전체조회
@@ -2461,38 +2547,45 @@ Public Class frmExample
                 tmp += "itemKey (팝빌번호) : " + tiInfo.itemKey + vbCrLf
                 tmp += "taxType (과세형태) : " + tiInfo.taxType + vbCrLf
                 tmp += "writeDate (작성일자) : " + tiInfo.writeDate + vbCrLf
-                tmp += "regDT (임시저장 일자) : " + tiInfo.regDT + vbCrLf
+                tmp += "regDT (임시저장 일시) : " + tiInfo.regDT + vbCrLf
                 tmp += "issueType (발행형태) : " + tiInfo.issueType + vbCrLf
                 tmp += "supplyCostTotal (공급가액 합계) : " + tiInfo.supplyCostTotal + vbCrLf
                 tmp += "taxTotal (세액 합계) : " + tiInfo.taxTotal + vbCrLf
                 tmp += "purposeType (영수/청구) : " + tiInfo.purposeType + vbCrLf
                 tmp += "issueDT (발행일시) : " + tiInfo.issueDT + vbCrLf
                 tmp += "lateIssueYN (지연발행 여부) : " + CStr(tiInfo.lateIssueYN) + vbCrLf
+
                 tmp += "openYN (개봉 여부) : " + CStr(tiInfo.openYN) + vbCrLf
                 tmp += "openDT (개봉 일시) : " + CStr(tiInfo.openDT) + vbCrLf
                 tmp += "stateMemo (상태메모) : " + tiInfo.stateMemo + vbCrLf
                 tmp += "stateCode (상태코드) : " + tiInfo.stateCode.ToString + vbCrLf
                 tmp += "stateDT (상태 변경일시) : " + tiInfo.stateDT + vbCrLf
+
                 tmp += "nstconfirmNum (국세청승인번호) : " + tiInfo.ntsconfirmNum + vbCrLf
                 tmp += "ntsresult (국세청 전송결과) : " + tiInfo.ntsresult + vbCrLf
                 tmp += "ntssendDT (국세청 전송일시) : " + tiInfo.ntssendDT + vbCrLf
                 tmp += "ntsresultDT (국세청 결과 수신일시) : " + tiInfo.ntsresultDT + vbCrLf
-                tmp += "ntssendErrCode (전송실패 사유코드) : " + tiInfo.ntssendErrCode + vbCrLf
+                tmp += "ntssendErrCode (국세청 결과코드) : " + tiInfo.ntssendErrCode + vbCrLf
+
                 tmp += "modifyCode (수정 사유코드) : " + tiInfo.modifyCode.ToString + vbCrLf
                 tmp += "interOPYN (연동문서 여부) : " + CStr(tiInfo.interOPYN) + vbCrLf
                 tmp += "invoicerCorpName (공급자 상호) : " + tiInfo.invoicerCorpName + vbCrLf
                 tmp += "invoicerCorpNum (공급자 사업자번호) : " + tiInfo.invoicerCorpNum + vbCrLf
                 tmp += "invoicerMgtKey (공급자 문서번호) : " + tiInfo.invoicerMgtKey + vbCrLf
                 tmp += "invoicerPrintYN (공급자 인쇄여부) : " + CStr(tiInfo.invoicerPrintYN) + vbCrLf
+
                 tmp += "invoiceeCorpName (공급받는자 상호) : " + tiInfo.invoiceeCorpName + vbCrLf
                 tmp += "invoiceeCorpNum (공급받는자 사업자번호) : " + tiInfo.invoiceeCorpNum + vbCrLf
-                tmp += "invoiceePrintYN (공급받는자 문서번호) : " + CStr(tiInfo.invoiceePrintYN) + vbCrLf
+                tmp += "invoiceeMgtKey (공급받는자 문서번호) : " + tiInfo.invoiceeMgtKey + vbCrLf
+                tmp += "invoiceePrintYN (공급받는자 인쇄여부) : " + CStr(tiInfo.invoiceePrintYN) + vbCrLf
+
                 tmp += "closeDownState (공급받는자 휴폐업상태) : " + tiInfo.closeDownState.ToString + vbCrLf
                 tmp += "closeDownStateDate (공급받는자 휴폐업일자) : " + CStr(tiInfo.closeDownStateDate) + vbCrLf
                 tmp += "trusteeCorpName (수탁자 상호) : " + tiInfo.trusteeCorpName + vbCrLf
                 tmp += "trusteeCorpNum (수탁자 사업자번호) : " + tiInfo.trusteeCorpNum + vbCrLf
                 tmp += "trusteeMgtKey (수탁자 문서번호) : " + tiInfo.trusteeMgtKey + vbCrLf
                 tmp += "trusteePrintYN (수탁자 인쇄여부) : " + CStr(tiInfo.trusteePrintYN) + vbCrLf
+
 
             Next
 
@@ -2515,7 +2608,7 @@ Public Class frmExample
             Dim logList As List(Of TaxinvoiceLog) = taxinvoiceService.GetLogs(txtCorpNum.Text, KeyType, txtMgtKey.Text)
 
             Dim tmp As String = ""
-            tmp += "docType(로그타입) | log(이력정보) | procType(처리형태) | procContactName(처리담당자) |"
+            tmp += "docType(로그타입) | log(이력정보) | procType(처리형태) | procCorpName(처리회사명) | procContactName(처리담당자) |"
             tmp += "procMemo(처리메모) | regDT(등록일시) | ip(아이피)" + vbCrLf + vbCrLf
 
             For Each log As TaxinvoiceLog In logList
@@ -2894,10 +2987,10 @@ Public Class frmExample
         Try
             Dim fileList As List(Of AttachedFile) = taxinvoiceService.GetFiles(txtCorpNum.Text, KeyType, txtMgtKey.Text)
 
-            Dim tmp As String = "serialNum(일련번호) | displayName(첨부파일명) | attachedFile(파일아이디) | regDT(등록일자)" + vbCrLf
+            Dim tmp As String = "serialNum (일련번호) | attachedFile (파일 식별번호) | displayName (파일명) | regDT (첨부일시)" + vbCrLf
 
             For Each file As AttachedFile In fileList
-                tmp += file.serialNum.ToString + " | " + file.displayName + " | " + file.attachedFile + " | " + file.regDT + vbCrLf
+                tmp += file.serialNum.ToString + " | " + file.attachedFile + " | " + file.displayName + " | " + file.regDT + vbCrLf
 
             Next
             MsgBox(tmp)
@@ -3510,22 +3603,22 @@ Public Class frmExample
         '담당자 정보객체
         Dim joinData As New Contact
 
-        '아이디 (6자이상 50자미만)
+        ' 아이디 (6자이상 50자미만)
         joinData.id = "testkorea01"
 
-        '비밀번호, 8자 이상 20자 이하(영문, 숫자, 특수문자 조합)
+        ' 비밀번호, 8자 이상 20자 이하(영문, 숫자, 특수문자 조합)
         joinData.Password = "asdf8536!@#"
 
-        '담당자 성명 (최대 100자)
+        ' 담당자 성명 (최대 100자)
         joinData.personName = "담당자명"
 
-        '담당자 연락처 (최대 20자)
+        ' 담당자 휴대폰 (최대 20자)
         joinData.tel = "010-1234-1234"
 
-        '담당자 이메일 (최대 100자)
+        ' 담당자 메일 (최대 100자)
         joinData.email = "test@email.com"
 
-        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
+        ' 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
         joinData.searchRole = 3
 
         Try
@@ -3551,14 +3644,14 @@ Public Class frmExample
         Try
             Dim contactInfo As Contact = taxinvoiceService.GetContactInfo(txtCorpNum.Text, contactID)
 
-            tmp += "id (담당자 아이디) : " + contactInfo.id + vbCrLf
-            tmp += "personName (담당자명) : " + contactInfo.personName + vbCrLf
-            tmp += "email (담당자 이메일) : " + contactInfo.email + vbCrLf
-            tmp += "searchRole (담당자 권한) : " + contactInfo.searchRole.ToString + vbCrLf
-            tmp += "tel (연락처) : " + contactInfo.tel + vbCrLf
-            tmp += "mgrYN (관리자 여부) : " + contactInfo.mgrYN.ToString + vbCrLf
+            tmp += "id (아이디) : " + contactInfo.id + vbCrLf
+            tmp += "personName (담당자 성명) : " + contactInfo.personName + vbCrLf
+            tmp += "email (담당자 메일) : " + contactInfo.email + vbCrLf
+            tmp += "tel (담당자 휴대폰) : " + contactInfo.tel + vbCrLf
             tmp += "regDT (등록일시) : " + contactInfo.regDT + vbCrLf
-            tmp += "state (상태) : " + contactInfo.state + vbCrLf
+            tmp += "searchRole (권한) : " + contactInfo.searchRole.ToString + vbCrLf
+            tmp += "mgrYN (역할) : " + contactInfo.mgrYN.ToString + vbCrLf
+            tmp += "state (계정상태) : " + contactInfo.state + vbCrLf
 
             tmp += vbCrLf
 
@@ -3578,8 +3671,8 @@ Public Class frmExample
         Try
             Dim contactList As List(Of Contact) = taxinvoiceService.ListContact(txtCorpNum.Text, txtUserId.Text)
 
-            Dim tmp As String = "id(아이디) | personName(담당자명) | email(메일주소) | tel(연락처) |"
-            tmp += "regDT(등록일시) | searchRole(담당자 권한) | mgrYN(관리자 여부) | state(상태)" + vbCrLf
+            Dim tmp As String = "id(아이디) | personName(담당자명) | email(담당자 메일) | tel(담당자 휴대폰) |"
+            tmp += "regDT(등록일시) | searchRole(권한) | mgrYN(역할) | state(계정상태)" + vbCrLf
 
             For Each info As Contact In contactList
                 tmp += info.id + " | " + info.personName + " | " + info.email + " | " + info.tel + " | "
@@ -3602,19 +3695,19 @@ Public Class frmExample
         '담당자 정보객체
         Dim joinData As New Contact
 
-        '아이디 (6자이상 50자미만)
+        ' 아이디 (6자이상 50자미만)
         joinData.id = "testkorea1120"
 
-        '담당자 성명 (최대 100자)
+        ' 담당자 성명 (최대 100자)
         joinData.personName = "담당자명"
 
-        '담당자 연락처 (최대 20자)
+        ' 담당자 휴대폰 (최대 20자)
         joinData.tel = "010-1234-1234"
 
-        '담당자 이메일 (최대 100자)
+        ' 담당자 메일 (최대 100자)
         joinData.email = "test@email.com"
 
-        '담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
+        ' 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
         joinData.searchRole = 3
 
         Try

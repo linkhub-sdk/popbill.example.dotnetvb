@@ -53,6 +53,7 @@ Partial Class frmExample
         Me.btnGetRefundInfo = New System.Windows.Forms.Button
         Me.btnGetPaymentHistory = New System.Windows.Forms.Button
         Me.GroupBox2 = New System.Windows.Forms.GroupBox
+        Me.btnDeleteContact = New System.Windows.Forms.Button
         Me.btnUpdateCorpInfo = New System.Windows.Forms.Button
         Me.btnGetContactInfo = New System.Windows.Forms.Button
         Me.btnGetCorpInfo = New System.Windows.Forms.Button
@@ -168,7 +169,6 @@ Partial Class frmExample
         Me.fileDialog = New System.Windows.Forms.OpenFileDialog
         Me.Label8 = New System.Windows.Forms.Label
         Me.txtURL = New System.Windows.Forms.TextBox
-        Me.btnDeleteContact = New System.Windows.Forms.Button
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox15.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
@@ -495,6 +495,15 @@ Partial Class frmExample
         Me.GroupBox2.TabIndex = 0
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "회원 정보"
+        '
+        'btnDeleteContact
+        '
+        Me.btnDeleteContact.Location = New System.Drawing.Point(133, 173)
+        Me.btnDeleteContact.Name = "btnDeleteContact"
+        Me.btnDeleteContact.Size = New System.Drawing.Size(122, 31)
+        Me.btnDeleteContact.TabIndex = 35
+        Me.btnDeleteContact.Text = "담당자 삭제"
+        Me.btnDeleteContact.UseVisualStyleBackColor = True
         '
         'btnUpdateCorpInfo
         '
@@ -1607,9 +1616,9 @@ Partial Class frmExample
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(16, 100)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(109, 12)
+        Me.Label4.Size = New System.Drawing.Size(121, 12)
         Me.Label4.TabIndex = 11
-        Me.Label4.Text = "삭제할 파일 아이디"
+        Me.Label4.Text = "삭제할 파일 식별번호"
         '
         'btnDeleteFile
         '
@@ -1692,15 +1701,6 @@ Partial Class frmExample
         Me.txtURL.Name = "txtURL"
         Me.txtURL.Size = New System.Drawing.Size(419, 21)
         Me.txtURL.TabIndex = 25
-        '
-        'btnDeleteContact
-        '
-        Me.btnDeleteContact.Location = New System.Drawing.Point(133, 173)
-        Me.btnDeleteContact.Name = "btnDeleteContact"
-        Me.btnDeleteContact.Size = New System.Drawing.Size(122, 31)
-        Me.btnDeleteContact.TabIndex = 35
-        Me.btnDeleteContact.Text = "담당자 삭제"
-        Me.btnDeleteContact.UseVisualStyleBackColor = True
         '
         'frmExample
         '
