@@ -2,7 +2,7 @@
 ' 팝빌 홈택스 현금영수증 API .NET SDK VB.NET Example
 ' VB.NET 연동 튜토리얼 안내 : https://developers.popbill.com/guide/htcashbill/dotnet/getting-started/tutorial?fwn=vb
 '
-' 업데이트 일자 : 2025-07-23
+' 업데이트 일자 : 2025-08-27
 ' 연동기술지원 연락처 : 1600-9854
 ' 연동기술지원 이메일 : code@linkhubcorp.com
 '         
@@ -303,18 +303,24 @@ Public Class frmExample
     End Sub
 
     '=========================================================================
-    ' 팝빌에 부서사용자를 등록합니다.
+    ' 팝빌에 현금영수증 전용 부서사용자를 등록합니다.
     ' - https://developers.popbill.com/reference/htcashbill/dotnet/api/cert#RegistDeptUser
     '=========================================================================
     Private Sub btnRegistDeptUser_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRegistDeptUser.Click
-        ' 홈택스에서 생성한 현금영수증 부서사용자 아이디
+        ' 부서사용자 아이디
         Dim deptUserID As String = "userid"
 
-        ' 홈택스에서 생성한 현금영수증 부서사용자 비밀번호
+        ' 부서사용자 비밀번호
         Dim deptUserPWD As String = "passwd"
 
+        ' 부서사용자 대표자 주민번호
+        Dim identityNum As String = ""
+
+        ' 팝빌회원 아이디
+        Dim userID As String = "testkorea"
+
         Try
-            Dim response As Response = htCashbillService.RegistDeptUser(txtCorpNum.Text, deptUserID, deptUserPWD)
+            Dim response As Response = htCashbillService.RegistDeptUser(txtCorpNum.Text, deptUserID, deptUserPWD, identityNum, userID)
 
             MsgBox("code(응답코드) : " + response.code.ToString + vbCrLf + "message(응답메시지) : " + response.message)
         Catch ex As PopbillException
